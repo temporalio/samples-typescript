@@ -1,6 +1,6 @@
 'use strict';
 
-const { makeHTTPRequest } = require('../activities/makeHTTPRequest');
+const { makeHTTPRequest } = require('@activities/makeHTTPRequest');
 
 async function main() {
   const data = await makeHTTPRequest();

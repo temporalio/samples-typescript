@@ -4,10 +4,10 @@ const { Connection } = require('@temporalio/client');
 
 async function run() {
   const connection = new Connection();
-  const example = connection.workflow('example', { taskQueue: 'tutorial17' });
+  const example = connection.workflow('example', { taskQueue: 'tutorial' });
 
   const result = await example.start();
-  console.log(result); // Hello, Temporal!
+  console.log(result); // 'The answer is 42'
 }
 
 run().catch((err) => {
