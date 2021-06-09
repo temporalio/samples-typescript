@@ -1,6 +1,6 @@
 'use strict';
 
-const { greet } = require('../activities/greeter');
+const { greet } = require('@activities/greeter');
 
 async function main(message) {
   return greet(message);
