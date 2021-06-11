@@ -12,7 +12,7 @@ async function main() {
   let err;
   try {
     console.log('Running activity');
-    await shield(() => activityToBeCancelled());
+    await activityToBeCancelled();
     console.log('Completed activity');
   } catch (_err) {
     console.log('Workflow cancelled!');
