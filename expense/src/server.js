@@ -16,7 +16,6 @@ async function run() {
   app.use(express.json());
 
   const allExpenses = {};
-  const tokenMap = {};
 
   app.get('/', function(req, res) {
     res.json(allExpenses);
@@ -51,14 +50,6 @@ async function run() {
       throw new Error(`Invalid action ${req.body.action}`);
     }
 
-    const id = req.body.id;
-    
-    if (oldState == expenseState.created &&
-        (allExpenses[id] == expenseState.approved || allExpenses[id] == expenseState.rejected)) {
-      // report state change
-      // notifyExpenseStateChange(id, allExpenses[id])
-    }
-
     return res.json({ ok: 1 });
   });
 
@@ -77,8 +68,4 @@ async function run() {
 
   await app.listen(3000);
   console.log('Listening on port 3000');
-
-  /*function notifyExpenseStateChange(id, newStatus) {
-    const token = tokenMap[id];
-  }*/
 }
