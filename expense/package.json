@@ -3,11 +3,14 @@
   "private": true,
   "scripts": {
     "schedule-workflow": "node ./src/starter",
+    "server": "node ./src/server",
     "start": "node ./src/worker"
   },
-  "name": "example2",
+  "name": "expense",
   "dependencies": {
+    "axios": "0.21.1",
     "express": "~4.17.1",
-    "temporalio": "^0.2.1"
+    "temporalio": "^0.2.1",
+    "uuid": "8.3.2"
   }
 }
