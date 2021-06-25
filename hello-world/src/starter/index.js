@@ -1,5 +1,6 @@
 'use strict';
 
+// @@@SNIPSTART nodejs-js-hello-client
 const { Connection } = require('@temporalio/client');
 
 async function run() {
@@ -14,3 +15,4 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+// @@@SNIPEND

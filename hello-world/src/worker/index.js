@@ -1,5 +1,6 @@
 'use strict';
 
+// @@@SNIPSTART nodejs-js-hello-worker
 const { Worker } = require('@temporalio/worker');
 
 run().catch(err => console.log(err));
@@ -11,3 +12,4 @@ async function run() {
   });
   await worker.run();
 };
+// @@@SNIPEND
