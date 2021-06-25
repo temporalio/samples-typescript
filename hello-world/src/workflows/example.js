@@ -1,6 +1,5 @@
 'use strict';
 
-// @@@SNIPSTART nodejs-js-hello-activity
 const { greet } = require('@activities/greeter');
 
 async function main(message) {
@@ -8,4 +7,3 @@ async function main(message) {
 }
 
 exports.workflow = { main };
-// @@@SNIPEND
