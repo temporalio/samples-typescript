@@ -1,22 +1,21 @@
 'use strict';
 
-const { Connection } = require('@temporalio/client');
+const { Connection, WorkflowClient } = require('@temporalio/client');
 const uuid = require('uuid');
 
 async function run() {
   const connection = new Connection();
-  const expense = connection.workflow('expense', { taskQueue: 'tutorial_expense1' });
+  const client = new WorkflowClient(connection.service);
+  const expense = client.stub('expense', { taskQueue: 'tutorial_expense1' });
 
   const expenseId = uuid.v4();
 
-  const promise = expense.start(expenseId);
-
-  await expense.started;
+  await expense.start(expenseId);
 
   await new Promise(resolve => setTimeout(resolve, 50));
   await expense.signal.approve();
 
-  console.log('Done:', await promise); // Done: { status: 'COMPLETED' }
+  console.log('Done:', await expense.result()); // Done: { status: 'COMPLETED' }
 }
 run().catch((err) => {
   console.error(err);

@@ -6,11 +6,11 @@
     "server": "node ./src/server",
     "start": "node ./src/worker"
   },
-  "name": "expense",
+  "name": "temporal-expense",
   "dependencies": {
     "axios": "0.21.1",
     "express": "~4.17.1",
-    "temporalio": "^0.2.1",
+    "temporalio": "0.3.x",
     "uuid": "8.3.2"
   }
 }
