@@ -1,12 +1,13 @@
 'use strict';
 
-const { Connection } = require('@temporalio/client');
+const { Connection, WorkflowClient } = require('@temporalio/client');
 
 async function run() {
   const connection = new Connection();
-  const example = connection.workflow('example', { taskQueue: 'tutorial' });
+  const client = new WorkflowClient(connection.service);
+  const example = client.stub('example', { taskQueue: 'tutorial' });
 
-  const result = await example.start();
+  const result = await example.execute();
   console.log(result); // 'The answer is 42'
 }
 

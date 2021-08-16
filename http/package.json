@@ -8,6 +8,6 @@
   "name": "temporal-http",
   "dependencies": {
     "axios": "0.21.1",
-    "temporalio": "^0.2.1"
+    "temporalio": "0.3.x"
   }
 }

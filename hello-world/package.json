@@ -5,8 +5,8 @@
     "schedule-workflow": "node ./src/starter",
     "start": "node ./src/worker"
   },
-  "name": "example2",
+  "name": "temporal-hello-world",
   "dependencies": {
-    "temporalio": "0.3.0"
+    "temporalio": "0.3.x"
   }
 }
