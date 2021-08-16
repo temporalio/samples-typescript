@@ -1,13 +1,14 @@
 'use strict';
 
 // @@@SNIPSTART nodejs-js-hello-client
-const { Connection } = require('@temporalio/client');
+const { Connection, WorkflowClient } = require('@temporalio/client');
 
 async function run() {
   const connection = new Connection();
-  const example = connection.workflow('example', { taskQueue: 'tutorial' });
+  const client = new WorkflowClient(connection.service);
+  const example = client.stub('example', { taskQueue: 'tutorial' });
 
-  const result = await example.start('Temporal');
+  const result = await example.execute('Temporal');
   console.log(result); // Hello, Temporal!
 }
 
