@@ -104,3 +104,5 @@ dist
 .tern-port
 
 package-lock.json
+
+hello-world/lib
