@@ -9,8 +9,8 @@
     "sourceMap": true,
     "composite": true,
     "incremental": true,
-    "rootDir": ".",
-    "outDir": "../../lib/activities"
+    "rootDir": "./src",
+    "outDir": "./lib"
   },
   "include": [
     "./**/*.ts"
