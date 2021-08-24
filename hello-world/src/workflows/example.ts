@@ -1,5 +1,6 @@
+// @@@SNIPSTART nodejs-hello-workflow
 import { Example } from '../interfaces/workflows';
-import { greet } from '@activities/greeter';
+import { greet } from '../activities/greeter';
 
 // A workflow that simply calls an activity
 async function main(name: string): Promise<string> {
@@ -8,3 +9,4 @@ async function main(name: string): Promise<string> {
 
 // Declare the workflow's type to be checked by the Typescript compiler
 export const workflow: Example = { main };
+// @@@SNIPEND

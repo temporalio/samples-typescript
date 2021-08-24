@@ -10,20 +10,9 @@
     "composite": true,
     "incremental": true,
     "rootDir": ".",
-    "outDir": "../../lib/worker"
+    "outDir": "../../lib/activities"
   },
   "include": [
     "./**/*.ts"
-  ],
-  "references": [
-    {
-      "path": "../interfaces/tsconfig.json"
-    },
-    {
-      "path": "../activities/tsconfig.json"
-    },
-    {
-      "path": "../workflows/tsconfig.json"
-    }
   ]
 }

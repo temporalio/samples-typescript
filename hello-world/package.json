@@ -2,8 +2,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "tsc --build src/worker/tsconfig.json src/starter/tsconfig.json",
-    "build.watch": "tsc --build --watch src/worker/tsconfig.json src/starter/tsconfig.json",
+    "build": "tsc --build ./tsconfig.json",
+    "build.watch": "tsc --build --watch ./tsconfig.json",
     "schedule-workflow": "node ./lib/starter",
     "start": "node ./lib/worker"
   },

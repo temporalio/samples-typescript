@@ -1,5 +1,4 @@
-'use strict';
-
+// @@@SNIPSTART nodejs-hello-client
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { Example } from '../interfaces/workflows';
 
@@ -17,3 +16,4 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+// @@@SNIPEND
