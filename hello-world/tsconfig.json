@@ -2,17 +2,15 @@
   "extends": "@tsconfig/node14/tsconfig.json",
   "version": "4.2.2",
   "compilerOptions": {
-    "emitDecoratorMetadata": false,
-    "experimentalDecorators": false,
-    "declaration": true,
-    "declarationMap": true,
     "sourceMap": true,
-    "composite": true,
     "incremental": true,
     "rootDir": "./src",
     "outDir": "./lib"
   },
   "include": [
-    "./**/*.ts"
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "./node_modules/*"
   ]
 }
