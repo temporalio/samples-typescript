@@ -5,7 +5,7 @@ async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
 
-  const example = client.stub<Example>('example', { taskQueue: 'tutorial20210827' });
+  const example = client.stub<Example>('example', { taskQueue: 'tutorial' });
 
   const result = await example.execute();
   console.log(result); // 'The answer is 42'
