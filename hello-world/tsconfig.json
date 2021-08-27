@@ -1,0 +1,16 @@
+{
+  "extends": "@tsconfig/node14/tsconfig.json",
+  "version": "4.2.2",
+  "compilerOptions": {
+    "sourceMap": true,
+    "incremental": true,
+    "rootDir": "./src",
+    "outDir": "./lib"
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "./node_modules/*"
+  ]
+}
