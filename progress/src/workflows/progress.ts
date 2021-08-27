@@ -1,6 +1,5 @@
-'use strict';
-
-const { sleep } = require('@temporalio/workflow');
+import { Progress } from '../interfaces/workflows';
+import { sleep }  from '@temporalio/workflow';
 
 let progress = 0;
 
@@ -13,7 +12,7 @@ async function main() {
   return progress;
 }
 
-exports.workflow = {
+export const workflow: Progress = {
   main,
   queries: {
     getProgress: () => progress
