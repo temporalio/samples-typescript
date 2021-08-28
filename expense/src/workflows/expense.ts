@@ -1,10 +1,8 @@
-'use strict';
+import { createExpense } from '@activities/createExpense';
+import { payment } from '@activities/payment' ;
+import { sleep } from '@temporalio/workflow';
 
-const { createExpense } = require('@activities/createExpense');
-const { payment } = require('@activities/payment');
-const { sleep } = require('@temporalio/workflow');
-
-let complete = null;
+let complete: Function | null = null;
 let status = 'CREATED';
 const timeoutMS = 10000;
 
@@ -23,7 +21,7 @@ const signals = {
   }
 }
 
-async function main(expenseId) {
+async function main(expenseId: string): Promise<{ status: string }> {
   await createExpense(expenseId);
 
   if (status === 'CREATED') {

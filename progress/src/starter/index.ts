@@ -5,7 +5,7 @@ async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
 
-  const progress = client.stub<Progress>('progress', { taskQueue: 'tutorial20210827' });
+  const progress = client.stub<Progress>('progress', { taskQueue: 'tutorial' });
 
   await progress.start();
 
