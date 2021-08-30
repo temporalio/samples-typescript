@@ -14,7 +14,6 @@ async function main() {
   try {
     await activityToBeCancelledWithTimeout();
   } catch (_err) {
-    console.log('Workflow cancelled!', Object.keys(_err as Error));
     if (!(_err instanceof CancelledError)) {
       throw _err;
     }
