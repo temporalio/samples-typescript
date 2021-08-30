@@ -1,11 +1,11 @@
 import express from 'express';
 
-const expenseState = Object.freeze({
-  created: 'CREATED',
-  approved: 'APPROVED',
-  rejected: 'REJECTED',
-  completed: 'COMPLETED'
-});
+enum expenseState {
+  created = 'CREATED',
+  approved = 'APPROVED',
+  rejected = 'REJECTED',
+  completed = 'COMPLETED'
+}
 
 run().catch(err => console.log(err));
 
