@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
-  const expense = client.stub<Expense>('expense', { taskQueue: 'tutorial20210830' });
+  const expense = client.stub<Expense>('expense', { taskQueue: 'tutorial' });
 
   const expenseId = v4();
 
