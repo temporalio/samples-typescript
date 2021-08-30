@@ -5,9 +5,10 @@
   "scripts": {
     "build": "tsc --build ./tsconfig.json",
     "build.watch": "tsc --build --watch ./tsconfig.json",
-    "schedule-workflow": "node ./lib/starter",
     "server": "node ./lib/server",
-    "start": "node ./lib/worker"
+    "start": "node ./lib/worker",
+    "starter-approve": "node ./lib/starter/approve",
+    "starter-timeout": "node ./lib/starter/timeout"
   },
   "dependencies": {
     "axios": "0.21.1",

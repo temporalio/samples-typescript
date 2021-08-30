@@ -6,4 +6,4 @@
 2. Run `npm install` to install dependencies
 3. Run `npm run server` to run the dummy HTTP server that stores the status of each expense report. Leave the dummy HTTP server running.
 4. Run `npm start` to start the worker. Leave the worker process running.
-5. Run `npm run schedule-workflow` to start the example. Should print out `Done: { status: 'COMPLETED' }`
+5. Run one of the starters to start the example. `npm run starter-approve` should print out `Done: { status: 'COMPLETED' }`. `npm run starter-timeout` should print out `Done: { status: 'TIMED_OUT' }`

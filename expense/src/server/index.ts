@@ -1,4 +1,3 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
 import express from 'express';
 
 const expenseState = Object.freeze({
@@ -14,12 +13,7 @@ async function run() {
   const app = express();
   app.use(express.json());
 
-  // Create a Temporal client
-  const connection = new Connection();
-  const client = new WorkflowClient(connection.service);
-
   const allExpenses = new Map();
-  const tokenMap = new Map();
 
   app.get('/', function(req, res) {
     res.json(allExpenses);
@@ -30,13 +24,15 @@ async function run() {
   });
 
   app.post('/create', function(req, res) {
-    allExpenses.set(req.body.id, expenseState.created);
+    // Make sure you validate that `req.body` exists in prod
+    const { id } = req.body;
+    allExpenses.set(id, expenseState.created);
 
     return res.json({ ok: 1 });
   });
 
   app.post('/action', function(req, res) {
-    const id = req.body.id;
+    const { id } = req.body;
     const oldState = allExpenses.get(id);
     if (oldState == null) {
       throw new Error(`Invalid id ${req.body.id}`);
@@ -60,26 +56,12 @@ async function run() {
       throw new Error(`Invalid action ${req.body.action}`);
     }
 
-    if (oldState === expenseState.created &&
-        (newState === expenseState.approved || newState === expenseState.rejected)) {
-      // TODO: need to be able to complete an activity here like in Go
-      // https://github.com/temporalio/samples-go/blob/0248987774da74dceb265bb3f3b06e9d00e50a32/expense/server/main.go#L166
-    }
-
     return res.json({ ok: 1 });
   });
 
   app.get('/status', function(req, res) {
-    const id = req.query.id;
+    const { id } = req.query;
     return res.json({ status: allExpenses.get(id) });
-  });
-
-  app.post('/registerCallback', function(req, res) {
-    const id = req.body.id;
-    const taskToken = req.body.taskToken;
-    tokenMap.set(id, taskToken);
-
-    return res.json({ ok: 1 });
   });
 
   await app.listen(3000);

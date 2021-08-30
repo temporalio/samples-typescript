@@ -10,7 +10,8 @@ async function run() {
   await progress.start();
 
   const val = await progress.query.getProgress();
-  console.log(val); // 10
+  // Should print "10", may print another number depending on timing
+  console.log(val);
 
   const result = await progress.result();
   console.log(result); // 100
