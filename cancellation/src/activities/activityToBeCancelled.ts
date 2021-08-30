@@ -1,8 +1,6 @@
-'use strict';
+import { CancelledError, Context } from '@temporalio/activity';
 
-const { Context } = require('@temporalio/activity');
-
-async function activityToBeCancelled() {
+export async function activityToBeCancelled() {
   const sleepIntervalMs = 100;
 
   try {
@@ -12,7 +10,7 @@ async function activityToBeCancelled() {
       Context.current().heartbeat(progress);
     }
   } catch (err) {
-    if (err instanceof CancellationError) {
+    if (err instanceof CancelledError) {
       return { ok: 1 };
     }
     throw err;
@@ -20,4 +18,3 @@ async function activityToBeCancelled() {
 
   return { ok: 1 };
 }
-exports.activityToBeCancelled = activityToBeCancelled;

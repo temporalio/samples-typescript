@@ -1,0 +1,23 @@
+{
+  "extends": "@tsconfig/node14/tsconfig.json",
+  "version": "4.2.2",
+  "compilerOptions": {
+    "sourceMap": true,
+    "rootDir": "./src",
+    "outDir": "./lib",
+    "paths": {
+      "@activities": [
+        "./src/activities"
+      ],
+      "@activities/*": [
+        "./src/activities/*"
+      ]
+    }
+  },
+  "include": [
+    "./src/**/*.ts"
+  ],
+  "exclude": [
+    "./node_modules/*"
+  ]
+}
