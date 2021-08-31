@@ -19,8 +19,6 @@ async function main() {
     }
     err = _err;
   }
-
-  return { message: err == null ? null : err.message };
 }
 
 exports.workflow = { main };
