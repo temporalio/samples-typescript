@@ -2,7 +2,7 @@ import { createExpense } from '@activities/createExpense';
 import { payment } from '@activities/payment' ;
 import { Trigger, sleep } from '@temporalio/workflow';
 
-type expenseStatus = 'CREATED' | 'APPROVED' | 'REJECTED' | 'TIMED_OUT' | 'COMPLETED';
+type ExpenseStatus = 'CREATED' | 'APPROVED' | 'REJECTED' | 'TIMED_OUT' | 'COMPLETED';
 let status: expenseStatus = 'CREATED';
 
 const signalTrigger = new Trigger<void>();
