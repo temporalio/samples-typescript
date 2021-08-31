@@ -26,17 +26,11 @@ async function main(expenseId: string): Promise<{ status: string }> {
     await Promise.race([signalTrigger, sleep(timeoutMS)]);
   }
 
-  if (status === 'CREATED') {
-    status = 'TIMED_OUT';
-    return { status };
+  if (status === 'APPROVED') {
+    await payment(expenseId);
+    status = 'COMPLETED';
   }
-
-  if (status === 'REJECTED') {
-    return { status };
-  }
-
-  await payment(expenseId);
-  status = 'COMPLETED';
+  return { status };
 
   return { status };
 }
