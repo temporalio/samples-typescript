@@ -9,7 +9,7 @@
   },
   "name": "temporal-hello-world",
   "dependencies": {
-    "temporalio": "0.3.x"
+    "temporalio": "0.4.x"
   },
   "devDependencies": {
     "typescript": "^4.4.2",
