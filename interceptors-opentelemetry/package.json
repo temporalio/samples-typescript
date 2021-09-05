@@ -1,0 +1,18 @@
+{
+  "name": "interceptors-opentelemetry-example",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build src/worker/tsconfig.json",
+    "build.watch": "tsc --build --watch src/worker/tsconfig.json",
+    "start": "node lib/worker"
+  },
+  "dependencies": {
+    "@temporalio/interceptors-opentelemetry": "^0.1.2",
+    "temporalio": "^0.4.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.0",
+    "typescript": "^4.2.2"
+  }
+}
