@@ -1,36 +1,36 @@
+import { ExpenseStatus } from '../interfaces/workflows';
 import { createExpense } from '@activities/createExpense';
 import { payment } from '@activities/payment' ;
 import { Trigger, sleep } from '@temporalio/workflow';
 
-type ExpenseStatus = 'CREATED' | 'APPROVED' | 'REJECTED' | 'TIMED_OUT' | 'COMPLETED';
-let status: expenseStatus = 'CREATED';
+let status: ExpenseStatus = ExpenseStatus.CREATED;
 
-const signalTrigger = new Trigger<void>();
+const signalTrigger = new Trigger<ExpenseStatus.APPROVED | ExpenseStatus.REJECTED>();
 const timeoutMS = 10000;
 
 const signals = {
   approve() {
-    status = 'APPROVED';
-    signalTrigger.resolve();
+    signalTrigger.resolve(ExpenseStatus.APPROVED);
   },
   reject() {
-    status = 'REJECTED';
-    signalTrigger.resolve();
+    signalTrigger.resolve(ExpenseStatus.REJECTED);
   }
-}
+};
 
-async function main(expenseId: string): Promise<{ status: string }> {
+async function main(expenseId: string): Promise<{ status: ExpenseStatus }> {
   await createExpense(expenseId);
 
-  if (status === 'CREATED') {
-    await Promise.race([signalTrigger, sleep(timeoutMS)]);
+  if (status === ExpenseStatus.CREATED) {
+    status = await Promise.race([
+      signalTrigger,
+      sleep(timeoutMS).then((): ExpenseStatus => ExpenseStatus.TIMED_OUT)
+    ]);
   }
 
-  if (status === 'APPROVED') {
+  if (status === ExpenseStatus.APPROVED) {
     await payment(expenseId);
-    status = 'COMPLETED';
+    status = ExpenseStatus.COMPLETED;
   }
-  return { status };
 
   return { status };
 }

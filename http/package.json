@@ -6,7 +6,7 @@
     "build": "tsc --build ./tsconfig.json",
     "build.watch": "tsc --build --watch ./tsconfig.json",
     "schedule-workflow": "node ./lib/starter",
-    "start": "node ./lib/worker"
+    "worker": "node ./lib/worker"
   },
   "dependencies": {
     "axios": "0.21.1",

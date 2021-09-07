@@ -1,13 +1,10 @@
+import { ExpenseStatus } from '../interfaces/workflows';
 import express from 'express';
 
-enum expenseState {
-  created = 'CREATED',
-  approved = 'APPROVED',
-  rejected = 'REJECTED',
-  completed = 'COMPLETED'
-}
-
-run().catch(err => console.log(err));
+run().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 async function run() {
   const app = express();
@@ -26,7 +23,7 @@ async function run() {
   app.post('/create', function(req, res) {
     // Make sure you validate that `req.body` exists in prod
     const { id } = req.body;
-    allExpenses.set(id, expenseState.created);
+    allExpenses.set(id, ExpenseStatus.CREATED);
 
     return res.json({ ok: 1 });
   });
@@ -41,16 +38,16 @@ async function run() {
 
     switch (req.body.action) {
     case 'approve':
-      newState = expenseState.approved;
-      allExpenses.set(id, expenseState.approved);
+      newState = ExpenseStatus.APPROVED;
+      allExpenses.set(id, ExpenseStatus.APPROVED);
       break;
     case 'reject':
-      newState = expenseState.rejected;
-      allExpenses.set(id, expenseState.rejected);
+      newState = ExpenseStatus.REJECTED;
+      allExpenses.set(id, ExpenseStatus.REJECTED);
       break;
     case 'payment':
-      newState = expenseState.completed;
-      allExpenses.set(id, expenseState.completed);
+      newState = ExpenseStatus.COMPLETED;
+      allExpenses.set(id, ExpenseStatus.COMPLETED);
       break;
     default:
       throw new Error(`Invalid action ${req.body.action}`);
