@@ -6,7 +6,7 @@ import { Trigger, sleep } from '@temporalio/workflow';
 let status: ExpenseStatus = ExpenseStatus.CREATED;
 
 const signalTrigger = new Trigger<ExpenseStatus.APPROVED | ExpenseStatus.REJECTED>();
-const timeoutMS = 10000;
+const defaultTimeoutMS = 10000;
 
 const signals = {
   approve() {
@@ -17,7 +17,7 @@ const signals = {
   }
 };
 
-async function main(expenseId: string): Promise<{ status: ExpenseStatus }> {
+async function main(expenseId: string, timeoutMS = defaultTimeoutMS): Promise<{ status: ExpenseStatus }> {
   await createExpense(expenseId);
 
   if (status === ExpenseStatus.CREATED) {

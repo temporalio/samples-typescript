@@ -9,8 +9,8 @@ async function run() {
 
   const expenseId = v4();
 
-  // Prints "Done: { status: 'TIMED_OUT' }" after approximately 10 seconds
-  console.log('Done:', await expense.execute(expenseId));
+  // Prints "Done: { status: 'TIMED_OUT' }" after approximately 1 second
+  console.log('Done:', await expense.execute(expenseId, 1000));
 }
 run().catch((err) => {
   console.error(err);

@@ -9,7 +9,7 @@ export enum ExpenseStatus {
 }
 
 export interface Expense extends Workflow {
-  main(expenseId: string): Promise<{ status: ExpenseStatus }>;
+  main(expenseId: string, timeoutMS?: number): Promise<{ status: ExpenseStatus }>;
 
   signals: {
     approve(): void;
