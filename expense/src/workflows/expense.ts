@@ -34,4 +34,4 @@ async function main(expenseId: string, timeoutMS = defaultTimeoutMS): Promise<{ 
 
   return { status };
 }
-exports.workflow = { main, signals };
+export const workflow: Expense = { main, signals };
