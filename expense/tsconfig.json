@@ -3,7 +3,6 @@
   "version": "4.2.2",
   "compilerOptions": {
     "sourceMap": true,
-    "esModuleInterop": true,
     "rootDir": "./src",
     "outDir": "./lib",
     "paths": {
