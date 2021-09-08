@@ -1,21 +1,16 @@
-'use strict';
+import { ExpenseStatus } from '../interfaces/workflows';
+import express from 'express';
 
-const express = require('express');
-
-const expenseState = Object.freeze({
-  created: 'CREATED',
-  approved: 'APPROVED',
-  rejected: 'REJECTED',
-  completed: 'COMPLETED'
-})
-
-run().catch(err => console.log(err));
+run().catch(err => {
+  console.error(err);
+  process.exit(1);
+});
 
 async function run() {
   const app = express();
   app.use(express.json());
 
-  const allExpenses = {};
+  const allExpenses = new Map();
 
   app.get('/', function(req, res) {
     res.json(allExpenses);
@@ -26,25 +21,33 @@ async function run() {
   });
 
   app.post('/create', function(req, res) {
-    allExpenses[req.body.id] = expenseState.created;
+    // Make sure you validate that `req.body` exists in prod
+    const { id } = req.body;
+    allExpenses.set(id, ExpenseStatus.CREATED);
 
     return res.json({ ok: 1 });
   });
 
   app.post('/action', function(req, res) {
-    const oldState = allExpenses[req.body.id];
+    const { id } = req.body;
+    const oldState = allExpenses.get(id);
     if (oldState == null) {
       throw new Error(`Invalid id ${req.body.id}`);
     }
+    let newState = '';
+
     switch (req.body.action) {
     case 'approve':
-      allExpenses[req.body.id] = expenseState.approved;
+      newState = ExpenseStatus.APPROVED;
+      allExpenses.set(id, ExpenseStatus.APPROVED);
       break;
     case 'reject':
-      allExpenses[req.body.id] = expenseState.rejected;
+      newState = ExpenseStatus.REJECTED;
+      allExpenses.set(id, ExpenseStatus.REJECTED);
       break;
     case 'payment':
-      allExpenses[req.body.id] = expenseState.completed;
+      newState = ExpenseStatus.COMPLETED;
+      allExpenses.set(id, ExpenseStatus.COMPLETED);
       break;
     default:
       throw new Error(`Invalid action ${req.body.action}`);
@@ -54,16 +57,8 @@ async function run() {
   });
 
   app.get('/status', function(req, res) {
-    const id = req.query.id;
-    return res.json({ status: allExpenses[id] });
-  });
-
-  app.post('/registerCallback', function(req, res) {
-    const id = req.body.id;
-    const taskToken = req.body.taskToken;
-    tokenMap[id] = taskToken;
-
-    return res.json({ ok: 1 });
+    const { id } = req.query;
+    return res.json({ status: allExpenses.get(id) });
   });
 
   await app.listen(3000);

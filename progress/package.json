@@ -1,12 +1,18 @@
 {
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "schedule-workflow": "node ./src/starter",
-    "start": "node ./src/worker"
-  },
   "name": "temporal-progress",
+  "scripts": {
+    "build": "tsc --build ./tsconfig.json",
+    "build.watch": "tsc --build --watch ./tsconfig.json",
+    "schedule-workflow": "node ./lib/starter",
+    "worker": "node ./lib/worker"
+  },
   "dependencies": {
     "temporalio": "0.3.x"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.2",
+    "@tsconfig/node14": "^1.0.0"
   }
 }

@@ -1,6 +1,4 @@
-'use strict';
-
-const { Worker } = require('@temporalio/worker');
+import { Worker } from '@temporalio/worker';
 
 run().catch(err => console.log(err));
 
@@ -9,5 +7,6 @@ async function run() {
     workDir: __dirname,
     taskQueue: 'tutorial'
   });
+
   await worker.run();
 };

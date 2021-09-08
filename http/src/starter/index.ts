@@ -1,11 +1,11 @@
-'use strict';
-
-const { Connection, WorkflowClient } = require('@temporalio/client');
+import { Connection, WorkflowClient } from '@temporalio/client';
+import { Example } from '../interfaces/workflows';
 
 async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
-  const example = client.stub('example', { taskQueue: 'tutorial' });
+
+  const example = client.stub<Example>('example', { taskQueue: 'tutorial' });
 
   const result = await example.execute();
   console.log(result); // 'The answer is 42'

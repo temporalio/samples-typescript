@@ -1,13 +1,12 @@
-'use strict';
-
-const { Worker } = require('@temporalio/worker');
+import { Worker } from '@temporalio/worker';
 
 run().catch(err => console.log(err));
 
 async function run() {
   const worker = await Worker.create({
     workDir: __dirname,
-    taskQueue: 'tutorial_expense1'
+    taskQueue: 'tutorial'
   });
+
   await worker.run();
 };

@@ -1,16 +1,25 @@
 {
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "schedule-workflow": "node ./src/starter",
-    "server": "node ./src/server",
-    "start": "node ./src/worker"
-  },
   "name": "temporal-expense",
+  "scripts": {
+    "build": "tsc --build ./tsconfig.json",
+    "build.watch": "tsc --build --watch ./tsconfig.json",
+    "server": "node ./lib/server",
+    "starter-approve": "node ./lib/starter/approve",
+    "starter-timeout": "node ./lib/starter/timeout",
+    "worker": "node ./lib/worker"
+  },
   "dependencies": {
     "axios": "0.21.1",
     "express": "~4.17.1",
     "temporalio": "0.3.x",
     "uuid": "8.3.2"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.2",
+    "@tsconfig/node14": "^1.0.0",
+    "@types/express": "4.17.13",
+    "@types/uuid": "8.3.1"
   }
 }

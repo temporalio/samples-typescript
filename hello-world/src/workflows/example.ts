@@ -1,6 +1,6 @@
 // @@@SNIPSTART nodejs-hello-workflow
 import { Example } from '../interfaces/workflows';
-import { greet } from '../activities/greeter';
+import { greet } from '../activities';
 
 // A workflow that simply calls an activity
 async function main(name: string): Promise<string> {
