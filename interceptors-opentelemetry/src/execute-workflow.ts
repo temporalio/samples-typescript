@@ -1,7 +1,7 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { OpenTelemetryWorkflowClientCallsInterceptor } from '@temporalio/interceptors-opentelemetry/lib/client';
-import { Example } from '../interfaces/workflows';
-import { setupOpentelemetry } from './setup';
+import { Example } from './interfaces/workflows';
+import { setupOpentelemetry } from './worker/setup';
 
 async function run() {
   const otel = await setupOpentelemetry();

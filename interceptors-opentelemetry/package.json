@@ -5,7 +5,8 @@
   "scripts": {
     "build": "tsc --build src/worker/tsconfig.json",
     "build.watch": "tsc --build --watch src/worker/tsconfig.json",
-    "start": "node lib/worker"
+    "start": "node lib/worker",
+    "workflow": "node lib/execute-workflow"
   },
   "dependencies": {
     "@temporalio/interceptors-opentelemetry": "^0.1.2",

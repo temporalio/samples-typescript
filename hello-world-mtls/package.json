@@ -6,7 +6,7 @@
     "build.watch": "tsc --build --watch",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/exec-workflow.ts"
+    "workflow": "ts-node src/execute-workflow.ts"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
