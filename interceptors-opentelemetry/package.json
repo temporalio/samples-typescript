@@ -1,12 +1,13 @@
 {
-  "name": "interceptors-opentelemetry-example",
+  "name": "interceptors-opentelemetry-sample",
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "tsc --build src/worker/tsconfig.json",
-    "build.watch": "tsc --build --watch src/worker/tsconfig.json",
-    "start": "node lib/worker",
-    "workflow": "node lib/execute-workflow"
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "start": "ts-node src/worker.ts",
+    "start.watch": "nodemon src/worker.ts",
+    "workflow": "ts-node src/execute-workflow.ts"
   },
   "dependencies": {
     "@temporalio/interceptors-opentelemetry": "^0.1.2",
@@ -14,6 +15,17 @@
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.0",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1",
     "typescript": "^4.2.2"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "execMap": {
+      "ts": "ts-node"
+    }
   }
 }

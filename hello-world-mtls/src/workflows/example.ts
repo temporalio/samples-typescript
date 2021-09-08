@@ -1,5 +1,4 @@
 import { Context } from '@temporalio/workflow';
-import { Example } from '../interfaces/workflows';
 import * as activities from '../activities';
 
 const { greet } = Context.configureActivities<typeof activities>({
