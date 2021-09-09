@@ -1,9 +1,10 @@
 'use strict';
 
-import { Context, CancelledError } from '@temporalio/workflow';
-import { activityToBeCancelled } from '@activities/activityToBeCancelled';
+import { CancelledFailure } from '@temporalio/common';
+import { Context } from '@temporalio/workflow';
+import * as activities from '../activities';
 
-const activityToBeCancelledWithTimeout = Context.configure(activityToBeCancelled, {
+const { activityToBeCancelled } = Context.configureActivities<typeof activities>({
   type: 'remote',
   startToCloseTimeout: '60s',
   heartbeatTimeout: '3s',
@@ -12,9 +13,9 @@ const activityToBeCancelledWithTimeout = Context.configure(activityToBeCancelled
 async function main() {
   let err;
   try {
-    await activityToBeCancelledWithTimeout();
+    await activityToBeCancelled();
   } catch (_err) {
-    if (!(_err instanceof CancelledError)) {
+    if (!(_err instanceof CancelledFailure)) {
       throw _err;
     }
     err = _err;
