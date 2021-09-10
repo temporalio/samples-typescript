@@ -1,4 +1,4 @@
-import { ExpenseStatus } from '../interfaces/workflows';
+import { Expense, ExpenseStatus } from '../interfaces/workflows';
 import { createExpense } from '@activities/createExpense';
 import { payment } from '@activities/payment' ;
 import { Trigger, sleep } from '@temporalio/workflow';
