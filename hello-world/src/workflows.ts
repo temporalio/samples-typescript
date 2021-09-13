@@ -10,7 +10,7 @@ const { greet } = configureActivities<typeof activities>({
 });
 
 /** A workflow that simply calls an activity */
-export const example = (name: string) => {
+export const ExampleWorkflow = (name: string) => {
   return {
     async execute(): Promise<string> {
       return await greet(name);

@@ -1,6 +1,6 @@
 // @@@SNIPSTART nodejs-hello-client
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { example } from './workflows/example';
+import { ExampleWorkflow } from './workflows';
 
 async function run() {
   // Connect to localhost with default ConnectionOptions,
@@ -10,7 +10,7 @@ async function run() {
   // via options passed the WorkflowClient constructor.
   const client = new WorkflowClient(connection.service);
   // Create a typed client for the example Workflow.
-  const workflow = client.newWorkflowStub(example, { taskQueue: 'tutorial' });
+  const workflow = client.newWorkflowStub(ExampleWorkflow, { taskQueue: 'tutorial' });
   const result = await workflow.execute('Temporal');
   console.log(result); // Hello, Temporal!
 }
