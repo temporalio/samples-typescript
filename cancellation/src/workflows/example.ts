@@ -2,7 +2,7 @@
 
 import { CancelledFailure } from '@temporalio/common';
 import { Context } from '@temporalio/workflow';
-import * as activities from '../activities';
+import type * as activities from '../activities';
 
 const { activityToBeCancelled } = Context.configureActivities<typeof activities>({
   type: 'remote',
