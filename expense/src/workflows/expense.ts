@@ -1,7 +1,7 @@
 import { Expense, ExpenseStatus } from '../interfaces/workflows';
 import { Trigger, sleep } from '@temporalio/workflow';
 import { Context } from '@temporalio/workflow';
-import * as activities from '../activities';
+import type * as activities from '../activities';
 
 const { createExpense, payment } = Context.configureActivities<typeof activities>({
   type: 'remote',
