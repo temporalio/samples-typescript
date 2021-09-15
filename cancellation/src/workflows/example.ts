@@ -1,7 +1,6 @@
 'use strict';
 
-import { CancelledFailure } from '@temporalio/common';
-import { Context } from '@temporalio/workflow';
+import { Context, isCancellation } from '@temporalio/workflow';
 import type * as activities from '../activities';
 
 const { activityToBeCancelled } = Context.configureActivities<typeof activities>({
@@ -15,7 +14,7 @@ async function main() {
   try {
     await activityToBeCancelled();
   } catch (_err) {
-    if (!(_err instanceof CancelledFailure)) {
+    if (!isCancellation(err)) {
       throw _err;
     }
     err = _err;
