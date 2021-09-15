@@ -5,7 +5,7 @@ async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
 
-  const workflow = client.createWorkflowHandle(example, { taskQueue: 'tutorial20210915' });
+  const workflow = client.createWorkflowHandle(example, { taskQueue: 'tutorial' });
 
   await workflow.start();
 
