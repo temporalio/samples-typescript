@@ -4,15 +4,7 @@
   "compilerOptions": {
     "sourceMap": true,
     "rootDir": "./src",
-    "outDir": "./lib",
-    "paths": {
-      "@activities": [
-        "./src/activities"
-      ],
-      "@activities/*": [
-        "./src/activities/*"
-      ]
-    }
+    "outDir": "./lib"
   },
   "include": [
     "./src/**/*.ts"
