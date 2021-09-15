@@ -1,5 +1,3 @@
-import { Workflow } from '@temporalio/workflow';
-
 export enum ExpenseStatus {
   CREATED = 'CREATED',
   APPROVED = 'APPROVED',
@@ -8,8 +6,8 @@ export enum ExpenseStatus {
   COMPLETED = 'COMPLETED'
 }
 
-export interface Expense extends Workflow {
-  main(expenseId: string, timeoutMS?: number): Promise<{ status: ExpenseStatus }>;
+export type Expense = (expenseId: string, timeoutMS?: number) => {
+  execute(): Promise<{ status: ExpenseStatus }>;
 
   signals: {
     approve(): void;
