@@ -1,5 +1,11 @@
 import { Example } from '../interfaces/workflows';
-import { makeHTTPRequest } from '@activities/makeHTTPRequest';
+import { Context } from '@temporalio/workflow';
+import * as activities from '../activities';
+
+const { makeHTTPRequest } = Context.configureActivities<typeof activities>({
+  type: 'remote',
+  scheduleToCloseTimeout: '5 minutes',
+});
 
 async function main(): Promise<string> {
   const answer = await makeHTTPRequest();

@@ -9,7 +9,7 @@
     "worker": "node ./lib/worker"
   },
   "dependencies": {
-    "temporalio": "0.3.x"
+    "temporalio": "0.4.1"
   },
   "devDependencies": {
     "typescript": "^4.4.2",

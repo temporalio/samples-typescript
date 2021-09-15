@@ -1,7 +1,12 @@
 import { Expense, ExpenseStatus } from '../interfaces/workflows';
-import { createExpense } from '@activities/createExpense';
-import { payment } from '@activities/payment' ;
 import { Trigger, sleep } from '@temporalio/workflow';
+import { Context } from '@temporalio/workflow';
+import type * as activities from '../activities';
+
+const { createExpense, payment } = Context.configureActivities<typeof activities>({
+  type: 'remote',
+  scheduleToCloseTimeout: '5 minutes',
+});
 
 let status: ExpenseStatus = ExpenseStatus.CREATED;
 

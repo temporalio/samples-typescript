@@ -1,4 +1,5 @@
-import { CancelledError, Context } from '@temporalio/activity';
+import { CancelledFailure } from '@temporalio/common';
+import { Context } from '@temporalio/activity';
 
 export async function activityToBeCancelled() {
   const sleepIntervalMs = 100;
@@ -10,7 +11,7 @@ export async function activityToBeCancelled() {
       Context.current().heartbeat(progress);
     }
   } catch (err) {
-    if (err instanceof CancelledError) {
+    if (err instanceof CancelledFailure) {
       return { ok: 1 };
     }
     throw err;
