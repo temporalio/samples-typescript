@@ -1,4 +1,5 @@
 {
+  "name": "temporal-hello-world",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,12 +8,11 @@
     "schedule-workflow": "node ./lib/starter",
     "worker": "node ./lib/worker"
   },
-  "name": "temporal-hello-world",
   "dependencies": {
     "temporalio": "0.4.2"
   },
   "devDependencies": {
-    "typescript": "^4.4.2",
-    "@tsconfig/node16": "^1.0.0"
+    "@tsconfig/node16": "^1.0.0",
+    "typescript": "^4.4.2"
   }
 }

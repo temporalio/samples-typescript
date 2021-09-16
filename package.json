@@ -1,5 +1,10 @@
 {
   "name": "samples-node",
+  "private": true,
+  "scripts": {
+    "format": "prettier --write .",
+    "lint": "eslint ."
+  },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
@@ -7,9 +12,5 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "prettier": "^2.3.2"
-  },
-  "scripts": {
-    "format": "prettier --write .",
-    "lint": "eslint ."
   }
 }
