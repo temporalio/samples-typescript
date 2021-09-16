@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "axios": "0.21.1",
-    "temporalio": "0.4.1"
+    "temporalio": "0.4.2"
   },
   "devDependencies": {
     "typescript": "^4.2.2",

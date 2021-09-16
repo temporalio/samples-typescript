@@ -1,20 +1,20 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { Expense } from '../interfaces/workflows';
+import { expense } from '../workflows';
 import { v4 } from 'uuid';
 
 async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
-  const expense = client.stub<Expense>('expense', { taskQueue: 'tutorial' });
+  const workflow = client.createWorkflowHandle(expense, { taskQueue: 'tutorial' });
 
   const expenseId = v4();
 
-  await expense.start(expenseId);
+  await workflow.start(expenseId);
 
   await new Promise(resolve => setTimeout(resolve, 50));
-  await expense.signal.approve();
+  await workflow.signal.approve();
 
-  console.log('Done:', await expense.result()); // Done: { status: 'COMPLETED' }
+  console.log('Done:', await workflow.result()); // Done: { status: 'COMPLETED' }
 }
 run().catch((err) => {
   console.error(err);

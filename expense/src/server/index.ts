@@ -1,4 +1,4 @@
-import { ExpenseStatus } from '../interfaces/workflows';
+import { ExpenseStatus } from '../interfaces';
 import express from 'express';
 
 run().catch(err => {
