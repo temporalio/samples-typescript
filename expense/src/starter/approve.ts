@@ -11,7 +11,7 @@ async function run() {
 
   await workflow.start(expenseId);
 
-  await new Promise(resolve => setTimeout(resolve, 50));
+  await new Promise((resolve) => setTimeout(resolve, 50));
   await workflow.signal.approve();
 
   console.log('Done:', await workflow.result()); // Done: { status: 'COMPLETED' }

@@ -1,7 +1,7 @@
 import { CancelledFailure } from '@temporalio/common';
 import { Context } from '@temporalio/activity';
 
-export async function activityToBeCancelled() {
+export async function activityToBeCancelled(): Promise<void> {
   const sleepIntervalMs = 100;
 
   try {
@@ -12,10 +12,10 @@ export async function activityToBeCancelled() {
     }
   } catch (err) {
     if (err instanceof CancelledFailure) {
-      return { ok: 1 };
+      return;
     }
     throw err;
   }
 
-  return { ok: 1 };
+  return;
 }

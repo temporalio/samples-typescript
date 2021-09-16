@@ -28,7 +28,7 @@ async function main() {
     // Registers opentelemetry interceptors for Workflow and Activity calls
     interceptors: {
       workflowModules: ['example'], // example contains both workflow and interceptors
-      activityInbound: [(_ctx) => new OpenTelemetryActivityInboundInterceptor()],
+      activityInbound: [() => new OpenTelemetryActivityInboundInterceptor()],
     },
   });
   await worker.run();

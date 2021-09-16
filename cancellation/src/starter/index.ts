@@ -9,7 +9,7 @@ async function run() {
 
   await workflow.start();
 
-  await new Promise(resolve => setTimeout(resolve, 100));
+  await new Promise((resolve) => setTimeout(resolve, 100));
   await workflow.cancel();
   console.log('Cancelled workflow successfully');
 }
