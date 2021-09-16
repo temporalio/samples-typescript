@@ -1,4 +1,4 @@
-# hello-world
+# interceptors-opentelemetry
 
 ## Steps to run this example
 

@@ -1,6 +1,6 @@
 // @@@SNIPSTART nodejs-hello-client
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { example } from '../workflows';
+import { example } from './workflows';
 
 async function run() {
   // Connect to localhost with default ConnectionOptions,

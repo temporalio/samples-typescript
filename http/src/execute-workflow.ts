@@ -1,5 +1,5 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { example } from '../workflows';
+import { example } from './workflows';
 
 async function run() {
   const connection = new Connection();
