@@ -9,6 +9,7 @@
     "prettier": "^2.3.2"
   },
   "scripts": {
+    "format": "prettier --write .",
     "lint": "eslint ."
   }
 }
