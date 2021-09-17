@@ -9,7 +9,7 @@ const { createExpense, payment } = createActivityHandle<typeof activities>({
 
 const defaultTimeoutMS = 10000;
 
-export const expense: Expense = function(expenseId: string, timeoutMS = defaultTimeoutMS) {
+export const expense: Expense = function (expenseId: string, timeoutMS = defaultTimeoutMS) {
   let status: ExpenseStatus = ExpenseStatus.CREATED;
 
   const signalTrigger = new Trigger<ExpenseStatus.APPROVED | ExpenseStatus.REJECTED>();
@@ -17,19 +17,19 @@ export const expense: Expense = function(expenseId: string, timeoutMS = defaultT
   return {
     async execute(): Promise<{ status: ExpenseStatus }> {
       await createExpense(expenseId);
-  
+
       if (status === ExpenseStatus.CREATED) {
         status = await Promise.race([
           signalTrigger,
-          sleep(timeoutMS).then((): ExpenseStatus => ExpenseStatus.TIMED_OUT)
+          sleep(timeoutMS).then((): ExpenseStatus => ExpenseStatus.TIMED_OUT),
         ]);
       }
-  
+
       if (status === ExpenseStatus.APPROVED) {
         await payment(expenseId);
         status = ExpenseStatus.COMPLETED;
       }
-  
+
       return { status };
     },
     signals: {
@@ -38,7 +38,7 @@ export const expense: Expense = function(expenseId: string, timeoutMS = defaultT
       },
       reject() {
         signalTrigger.resolve(ExpenseStatus.REJECTED);
-      }
-    }
+      },
+    },
   };
 };

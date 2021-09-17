@@ -20,5 +20,5 @@ export const example: Example = () => ({
       }
       err = _err;
     }
-  }
-})
+  },
+});

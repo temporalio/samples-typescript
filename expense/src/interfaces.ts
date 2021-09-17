@@ -3,14 +3,17 @@ export enum ExpenseStatus {
   APPROVED = 'APPROVED',
   REJECTED = 'REJECTED',
   TIMED_OUT = 'TIMED_OUT',
-  COMPLETED = 'COMPLETED'
+  COMPLETED = 'COMPLETED',
 }
 
-export type Expense = (expenseId: string, timeoutMS?: number) => {
+export type Expense = (
+  expenseId: string,
+  timeoutMS?: number
+) => {
   execute(): Promise<{ status: ExpenseStatus }>;
 
   signals: {
     approve(): void;
     reject(): void;
   };
-}
+};

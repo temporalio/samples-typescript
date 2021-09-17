@@ -1,7 +1,7 @@
 import { Progress } from './interfaces';
-import { sleep }  from '@temporalio/workflow';
+import { sleep } from '@temporalio/workflow';
 
-export const progress: Progress = function() {
+export const progress: Progress = function () {
   let progress = 0;
 
   return {
@@ -10,11 +10,11 @@ export const progress: Progress = function() {
         progress += 10;
         await sleep(10);
       }
-    
+
       return progress;
     },
     queries: {
-      getProgress: () => progress
-    }
+      getProgress: () => progress,
+    },
   };
-}
+};
