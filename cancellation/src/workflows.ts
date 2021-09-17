@@ -1,5 +1,3 @@
-'use strict';
-
 import { createActivityHandle, isCancellation } from '@temporalio/workflow';
 import { Example } from './interfaces';
 import type * as activities from './activities';
