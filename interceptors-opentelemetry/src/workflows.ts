@@ -16,13 +16,11 @@ export const example: Example = (name: string) => ({
   async execute(): Promise<string> {
     return await greet(name);
   },
+});
 
-  interceptors(): WorkflowInterceptors {
-    return {
-      inbound: [new OpenTelemetryInboundInterceptor()],
-      outbound: [new OpenTelemetryOutboundInterceptor()],
-    };
-  },
+export const interceptors = (): WorkflowInterceptors => ({
+  inbound: [new OpenTelemetryInboundInterceptor()],
+  outbound: [new OpenTelemetryOutboundInterceptor()],
 });
 
 registerOpentelemetryTracerProvider();
