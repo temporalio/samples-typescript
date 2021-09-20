@@ -3,7 +3,11 @@ import { Example } from './interfaces';
 import type * as activities from './activities';
 
 const { makeHTTPRequest } = createActivityHandle<typeof activities>({
-  scheduleToCloseTimeout: '5 minutes',
+  retry: {
+    initialInterval: '50 milliseconds',
+    maximumAttempts: 2,
+  },
+  scheduleToCloseTimeout: '30 seconds',
 });
 
 export const example: Example = () => ({
