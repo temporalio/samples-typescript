@@ -1,7 +1,7 @@
 // @@@SNIPSTART nodejs-hello-worker
 import { Worker } from '@temporalio/worker';
 
-run().catch(err => console.log(err));
+run().catch((err) => console.log(err));
 
 async function run() {
   // Automatically locate and register Activities and Workflows relative to __dirname
@@ -14,9 +14,9 @@ async function run() {
   // use the Core.install() method to configure the Rust Core SDK singleton.
   const worker = await Worker.create({
     workDir: __dirname,
-    taskQueue: 'tutorial'
+    taskQueue: 'tutorial',
   });
   // Start accepting tasks on the `tutorial` queue
   await worker.run();
-};
+}
 // @@@SNIPEND

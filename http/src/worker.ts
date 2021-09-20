@@ -1,6 +1,6 @@
 import { Worker } from '@temporalio/worker';
 
-run().catch(err => console.log(err));
+run().catch((err) => console.log(err));
 
 async function run() {
   const worker = await Worker.create({
@@ -9,4 +9,4 @@ async function run() {
   });
 
   await worker.run();
-};
+}

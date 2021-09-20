@@ -14,5 +14,5 @@ export const example: Example = () => ({
   async execute(): Promise<string> {
     const answer = await makeHTTPRequest();
     return `The answer is ${answer}`;
-  }
+  },
 });
