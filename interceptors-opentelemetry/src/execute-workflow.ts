@@ -1,6 +1,6 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { OpenTelemetryWorkflowClientCallsInterceptor } from '@temporalio/interceptors-opentelemetry/lib/client';
-import { Example } from './interfaces/workflows';
+import { example } from './workflows';
 import { setupOpentelemetry } from './worker/setup';
 
 async function run() {
@@ -14,12 +14,12 @@ async function run() {
       calls: [() => new OpenTelemetryWorkflowClientCallsInterceptor()],
     },
   });
-  // Create a typed client using the Example Workflow interface,
+  // Create a typed handle for the example Workflow.
   // Workflow will be started in the "default" namespace unless specified otherwise.
-  const example = client.stub<Example>('example', {
+  const workflow = client.createWorkflowHandle(example, {
     taskQueue: 'interceptors-opentelemetry-example',
   });
-  const result = await example.execute('Temporal');
+  const result = await workflow.execute('Temporal');
   console.log(result); // Hello, Temporal!
   await otel.sdk.shutdown();
 }
