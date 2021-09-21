@@ -1,5 +1,8 @@
 // @@@SNIPSTART nodejs-hello-activity
-export async function greet(name: string): Promise<string> {
-  return `Hello, ${name}!`;
+export async function checkoutItem(itemId: string): Promise<string> {
+  return `checking out ${itemId}!`;
+}
+export async function canceledPurchase(itemId: string): Promise<string> {
+  return `canceled purchase ${itemId}!`;
 }
 // @@@SNIPEND
