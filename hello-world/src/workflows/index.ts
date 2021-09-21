@@ -1,8 +1,8 @@
 // @@@SNIPSTART nodejs-hello-workflow
 import { createActivityHandle } from '@temporalio/workflow';
-import { Example } from './interfaces';
+import { Example } from '../interfaces';
 // Only import the activity types
-import type * as activities from './activities';
+import type * as activities from '../activities';
 
 const { greet } = createActivityHandle<typeof activities>({
   startToCloseTimeout: '1 minute',

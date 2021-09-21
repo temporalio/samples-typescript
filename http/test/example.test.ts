@@ -35,7 +35,7 @@ describe('example workflow', function() {
   });
 
   afterEach(() => {
-    axios.get.restore && axios.get.restore();
+    sinon.restore();
   });
 
   it('returns correct result', async function() {
