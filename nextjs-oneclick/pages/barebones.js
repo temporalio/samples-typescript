@@ -5,7 +5,7 @@ const fetcher = (url) => fetch(url).then((res) => res.json())
 export default function Bones() {
 
   const { data, error } = useSWR('/api/workflow', fetcher)
-  if (error) return <div>failed to load</div>
+  if (error) return <div>failed to load <pre>{JSON.stringify(error, null, 2)}</pre></div>
   if (!data) return <div>loading...</div>
   return <header className="relative overflow-hidden">
 

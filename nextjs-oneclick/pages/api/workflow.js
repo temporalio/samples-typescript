@@ -1,5 +1,5 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { OneClickBuy } from '../../temporal/lib/workflows';
+import { OneClickBuy } from '../../temporal/lib/workflows/index.js';
 
 export default async function helloAPI(req, res) {
   // Connect to localhost with default ConnectionOptions,
