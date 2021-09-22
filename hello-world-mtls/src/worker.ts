@@ -1,4 +1,6 @@
 import fs from 'fs';
+
+// @@@SNIPSTART nodejs-hello-mtls
 import { Worker, Core } from '@temporalio/worker';
 import { getEnv, Env } from './mtls-env';
 
@@ -49,3 +51,4 @@ run(getEnv()).catch((err) => {
   console.error(err);
   process.exit(1);
 });
+// @@@SNIPEND
