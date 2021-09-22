@@ -18,6 +18,7 @@ Each directory contains a sample app that has a separate `README.md` with instru
 - **Timers**:
   - The [**progress example**](https://github.com/temporalio/samples-node/tree/main/progress) demonstrates how to use the `sleep` function from `@temporalio/workflow`.
 - **Signals and Triggers**:
+  - The [**Signals and Queries example**](https://github.com/temporalio/samples-node/tree/main/signals-and-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
   - **Async activity completion**: Example of an [Expense reporting](https://github.com/temporalio/samples-node/tree/main/expense) Workflow that communicates with a server API. How to kick off a workflow, and manually complete it at an arbitrarily later date.
 - [**Cancellation**](https://github.com/temporalio/samples-node/tree/main/cancellation): How to programmatically cancel a workflow
 
