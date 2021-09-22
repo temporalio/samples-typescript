@@ -1,4 +1,10 @@
-# http
+# Activities examples
+
+This sample shows usecases for activities:
+
+- `makeHTTPRequest`: fetch an external API
+- fakeProgress (tbc)
+- cancellableFetch (tbc)
 
 ## Steps to run this example
 
