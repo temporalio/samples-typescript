@@ -1,3 +1,4 @@
+// @@@SNIPSTART nodejs-mtls-worker
 import fs from 'fs';
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { Example } from './interfaces/workflows';
@@ -46,3 +47,4 @@ run(getEnv()).then(
     process.exit(1);
   }
 );
+// @@@SNIPEND

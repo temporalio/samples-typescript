@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-// @@@SNIPSTART nodejs-hello-mtls
+// @@@SNIPSTART nodejs-mtls-worker
 import { Worker, Core } from '@temporalio/worker';
 import { getEnv, Env } from './mtls-env';
 

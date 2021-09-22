@@ -10,7 +10,7 @@ Each directory contains a sample app that has a separate `README.md` with instru
 ## Samples directory
 
 - [**Basic hello world**](https://github.com/temporalio/samples-node/tree/main/hello-world): Simple example of a Workflow Definition and an Activity Definition.
-  - Variant: [Basic hello world with mTLS](https://github.com/temporalio/samples-node/tree/main/hello-world-mtls) shows how to connect to your Temporal Cloud namespace with mTLS authentication.
+  - Variant: [Basic hello world with mTLS](https://github.com/temporalio/samples-node/tree/main/hello-world-mtls) shows how to connect to your Temporal Cloud namespace with mTLS authentication. [Read more on the mTLS docs](https://docs.temporal.io/docs/node/tls).
 
 ### API demonstrations
 
