@@ -1,0 +1,30 @@
+{
+  "version": "0.1.0",
+  "private": true,
+  "name": "temporal-activity-deps",
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "start": "ts-node src/worker.ts",
+    "start.watch": "nodemon src/worker.ts",
+    "execute-workflow": "ts-node src/execute-workflow.ts"
+  },
+  "dependencies": {
+    "temporalio": "0.4.3"
+  },
+  "devDependencies": {
+    "typescript": "^4.4.3",
+    "@tsconfig/node16": "^1.0.0",
+    "ts-node": "^10.2.1",
+    "nodemon": "^2.0.12"
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ],
+    "ext": "ts",
+    "execMap": {
+      "ts": "ts-node"
+    }
+  }
+}
