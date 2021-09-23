@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "preinstall": "git config core.hooksPath .hooks"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",

@@ -1,0 +1,21 @@
+#!/bin/sh
+
+for file in *; do
+  if [[ -d "$file" ]] # is a directory?
+  then
+    if [ "$file" != "node_modules" ]
+    then
+      cp .shared/tsconfig.json $file/
+      git add $file/tsconfig.json
+
+      cp .shared/.gitignore $file/
+      git add $file/.gitignore
+
+      cp .shared/.npmrc $file/
+      git add $file/.npmrc
+
+      cp .shared/.nvmrc $file/
+      git add $file/.nvmrc
+    fi
+  fi
+done
