@@ -1,13 +1,13 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { example } from '../workflows';
 
-async function run() {
+async function run(): Promise<void> {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
 
-  const workflow = client.createWorkflowHandle(example, { taskQueue: 'tutorial' });
+  const handle = client.createWorkflowHandle(example, { taskQueue: 'tutorial' });
 
-  const result = await workflow.execute();
+  const result = await handle.execute();
   console.log(result); // 'The answer is 42'
 }
 
