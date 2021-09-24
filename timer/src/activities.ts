@@ -1,3 +1,4 @@
+// @@@SNIPSTART nodejs-timer-reminder-activity
 import { config } from 'dotenv';
 import mailgun from 'mailgun-js';
 
@@ -23,3 +24,4 @@ export async function sendNotificationEmail(): Promise<void> {
 
   await mg.messages().send(data);
 };
+// @@@SNIPEND

@@ -1,3 +1,4 @@
+// @@@SNIPSTART nodejs-timer-reminder-workflow
 import { createActivityHandle, sleep } from '@temporalio/workflow';
 import { ProcessOrder } from './interfaces';
 // Only import the activity types
@@ -22,3 +23,4 @@ export const processOrderWorkflow: ProcessOrder = (orderProcessingMS = 1000, sen
     }
   }
 });
+// @@@SNIPEND
