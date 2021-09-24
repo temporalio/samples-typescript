@@ -1,3 +1,7 @@
+# Timer Reminder Example
+
+This example shows how to use a Timer to send a reminder email after some time elapses.
+
 ## Steps to run this example
 
 1. Make sure the Temporal Server is running locally. Follow the [Quick install guide](https://docs.temporal.io/docs/server/quick-install) to do that.
