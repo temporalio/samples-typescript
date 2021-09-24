@@ -7,7 +7,7 @@ const { checkoutItem, canceledPurchase } = (0, workflow_1.createActivityHandle)(
 });
 const OneClickBuy = (itemId) => {
     let itemToBuy = itemId;
-    let purchaseState = 'PENDING';
+    let purchaseState = 'PURCHASE_PENDING';
     const cancelTrigger = new workflow_1.Trigger();
     return {
         signals: {
@@ -22,13 +22,16 @@ const OneClickBuy = (itemId) => {
         },
         async execute() {
             try {
+                purchaseState = 'PURCHASE_PENDING';
                 await Promise.race([
                     cancelTrigger,
-                    (0, workflow_1.sleep)(30 * 1000) // 30 seconds
+                    (0, workflow_1.sleep)(5 * 1000) // 5 seconds wait, adjust to taste
                 ]);
+                purchaseState = 'PURCHASE_CONFIRMED';
                 return await checkoutItem(itemToBuy);
             }
             catch (err) {
+                purchaseState = 'PURCHASE_CANCELED';
                 return await canceledPurchase(itemToBuy);
             }
         },
