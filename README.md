@@ -18,6 +18,7 @@ Each directory contains a sample app that has a separate `README.md` with instru
   - `makeHTTPRequest`: How to make an external HTTP request in an activity, with `axios`
   - fakeProgress (tbc)
   - cancellableFetch (tbc)
+  - [**Dependency Injection**](https://github.com/temporalio/samples-node/tree/main/activities-dependency-injection): This sample shows how to share dependencies between activities, for example when you need to initialize a database connection once and then pass it to multiple dependencies.
 - **Timers**:
   - The [**progress example**](https://github.com/temporalio/samples-node/tree/main/progress) demonstrates how to use the `sleep` function from `@temporalio/workflow`.
 - **Signals and Triggers**:

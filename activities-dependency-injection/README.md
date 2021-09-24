@@ -1,6 +1,6 @@
 # Activities dependency injection example
 
-This sample shows how to initialize activity dependencies for example when you need to initialize a database connection.
+This sample shows how to share dependencies between activities, for example when you need to initialize a database connection once and then pass it to multiple dependencies.
 
 ## Steps to run this example
 
