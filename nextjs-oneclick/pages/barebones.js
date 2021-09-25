@@ -1,10 +1,12 @@
 import React from 'react'
-// import useSWR from 'swr'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
-// const fetcher = (url) => fetch(url).then((res) => res.json())
-// const { data, error } = useSWR('/api/workflow', fetcher)
-// if (error) return <div>failed to load <pre>{JSON.stringify(error, null, 2)}</pre></div>
-// if (!data) return <div>loading...</div>
+function fetchAPI(str, obj) {
+  return fetch(str, obj)
+    .then(res => res.json())
+    .catch(err => console.error(err) || toast(err))
+}
 
 export default function Bones() {
   const [itemId, setItemId] = React.useState('item123')
@@ -12,27 +14,29 @@ export default function Bones() {
   const [workflowId, setWFID] = React.useState(null)
   function onClick() {
     setState('sending...')
-    fetch('/api/startBuy', {
+    fetchAPI('/api/startBuy', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ itemId }),
-    }).then(x => x.json()).then(x => setWFID(x.workflowId)).then(() => setState('Purchased! Cancel if you change your mind'))
+    }).then(x => setWFID(x.workflowId))
+      .then(() => setState('Purchased! Cancel if you change your mind'))
   }
   function getState() {
     setState('fetching state...')
-    fetch('/api/getBuyState?id=' + workflowId)
-      .then(x => x.json()).then(x => setState(x.purchaseState))
-      .catch(err => setState('something went wrong ' + err))
+    fetchAPI('/api/getBuyState?id=' + workflowId)
+      .then(x => setState(x.purchaseState))
+    // .catch(err => setState('something went wrong ' + err))
   }
   function cancelBuy() {
-    fetch('/api/cancelBuy?id=' + workflowId)
-      .then(x => x.json()).then(getState)
+    fetchAPI('/api/cancelBuy?id=' + workflowId)
+      .then(getState)
   }
 
   return <header className="relative overflow-hidden">
 
+    <ToastContainer />
     <div className="pt-8 pb-80 sm:pt-12 sm:pb-40 lg:pt-24 lg:pb-48">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
         <div className="sm:max-w-lg">
