@@ -71,6 +71,10 @@ export default function Bones() {
               Cancel Buy
             </button>
           </div>
+          <p className="mt-4 text-xl text-gray-500">
+            Find more <a className="text-blue-400" href="https://github.com/temporalio/samples-node">Node SDK samples</a> or
+            <a className="text-blue-400" href="https://temporal.io/node">browse our docs</a>.
+          </p>
         </div>
       </div>
     </div>
