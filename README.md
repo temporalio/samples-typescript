@@ -19,6 +19,7 @@ Each directory contains a sample app that has a separate `README.md` with instru
   - fakeProgress (tbc)
   - cancellableFetch (tbc)
   - [**Dependency Injection**](https://github.com/temporalio/samples-node/tree/main/activities-dependency-injection): This sample shows how to share dependencies between activities, for example when you need to initialize a database connection once and then pass it to multiple dependencies.
+- [**Child Workflows**](https://github.com/temporalio/samples-node/tree/main/child-workflows)
 - **Timers**:
   - The [**progress example**](https://github.com/temporalio/samples-node/tree/main/progress) demonstrates how to use the `sleep` function from `@temporalio/workflow`.
 - **Signals and Triggers**:
