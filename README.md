@@ -23,7 +23,10 @@ Each directory contains a sample app that has a separate `README.md` with instru
 
 ### Example Apps
 
-- **Next.js**: The `nextjs-oneclick` example.
+- **Next.js**: 
+  - The `nextjs-oneclick` example
+  - [Food Delivery](https://github.com/lorensr/food-delivery)
+
 
 ### Advanced APIs
 
