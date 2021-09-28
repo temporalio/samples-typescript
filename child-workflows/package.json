@@ -1,4 +1,5 @@
 {
+  "name": "child-workflows",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -6,25 +7,24 @@
     "build.watch": "tsc --build --watch",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/exec-workflow.ts"
-  },
-  "devDependencies": {
-    "typescript": "^4.4.2",
-    "@tsconfig/node14": "^1.0.0",
-    "ts-node": "^10.2.1",
-    "nodemon": "^2.0.12"
+    "workflow": "ts-node src/execute-workflow.ts"
   },
   "nodemonConfig": {
-    "watch": [
-      "src"
-    ],
-    "ext": "ts",
     "execMap": {
       "ts": "ts-node"
-    }
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
   },
-  "name": "child-workflows",
   "dependencies": {
     "temporalio": "^0.4.3"
+  },
+  "devDependencies": {
+    "@tsconfig/node14": "^1.0.0",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
   }
 }

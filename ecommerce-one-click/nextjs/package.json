@@ -1,6 +1,6 @@
 {
-  "private": true,
   "name": "temporal-nextjs-oneclick",
+  "private": true,
   "scripts": {
     "dev": "npm run temporal:build && npm run next:dev & npm run temporal:dev & npm run temporal:worker",
     "next:dev": "next dev",

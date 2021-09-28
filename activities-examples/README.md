@@ -1,6 +1,6 @@
 # Activities examples
 
-This sample shows usecases for activities:
+This sample shows use cases for activities:
 
 - `makeHTTPRequest`: fetch an external API
 - fakeProgress (tbc)
