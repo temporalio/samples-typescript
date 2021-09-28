@@ -1,17 +1,15 @@
 // @@@SNIPSTART nodejs-timer-reminder-activity
-import { config } from 'dotenv';
+import { Context } from '@temporalio/activity';
 import mailgun from 'mailgun-js';
 
-config();
-
-const apiKey: string = process.env.MAILGUN_API as string;
-const domain: string = process.env.MAILGUN_DOMAIN as string;
-const to: string = process.env.ADMIN_EMAIL as string;
+const apiKey: string = process.env.MAILGUN_API ?? '';
+const domain: string = process.env.MAILGUN_DOMAIN ?? '';
+const to: string = process.env.ADMIN_EMAIL ?? '';
 
 const mg = mailgun({ apiKey, domain });
 
 export async function processOrder(sleepMS = 1000): Promise<void> {
-  await new Promise(resolve => setTimeout(resolve, sleepMS));
+  await Context.current().sleep(sleepMS);
 };
 
 export async function sendNotificationEmail(): Promise<void> {
