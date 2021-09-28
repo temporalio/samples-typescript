@@ -1,6 +1,5 @@
-// @@@SNIPSTART nodejs-hello-worker
 import { Worker } from '@temporalio/worker';
-import path from 'path'
+import path from 'path';
 
 run().catch((err) => console.log(err));
 
@@ -21,4 +20,3 @@ async function run() {
   // Start accepting tasks on the `tutorial` queue
   await worker.run();
 }
-// @@@SNIPEND

@@ -6,11 +6,11 @@ const { checkoutItem, canceledPurchase } = createActivityHandle<typeof activitie
   startToCloseTimeout: '1 minute',
 });
 
-type PurchaseState = 'PURCHASE_PENDING' | 'PURCHASE_CONFIRMED' | 'PURCHASE_CANCELED'
+type PurchaseState = 'PURCHASE_PENDING' | 'PURCHASE_CONFIRMED' | 'PURCHASE_CANCELED';
 
 export const OneClickBuy = (itemId: string) => {
-  let itemToBuy = itemId
-  let purchaseState: PurchaseState = 'PURCHASE_PENDING'
+  let itemToBuy = itemId;
+  let purchaseState: PurchaseState = 'PURCHASE_PENDING';
   const cancelTrigger = new Trigger<string>();
   return {
     signals: {
@@ -25,15 +25,15 @@ export const OneClickBuy = (itemId: string) => {
     },
     async execute(): Promise<string> {
       try {
-        purchaseState = 'PURCHASE_PENDING'
+        purchaseState = 'PURCHASE_PENDING';
         await Promise.race([
           cancelTrigger,
-          sleep(5 * 1000) // 5 seconds wait, adjust to taste
-        ])
-        purchaseState = 'PURCHASE_CONFIRMED'
+          sleep(5 * 1000), // 5 seconds wait, adjust to taste
+        ]);
+        purchaseState = 'PURCHASE_CONFIRMED';
         return await checkoutItem(itemToBuy);
       } catch (err) {
-        purchaseState = 'PURCHASE_CANCELED'
+        purchaseState = 'PURCHASE_CANCELED';
         return await canceledPurchase(itemToBuy);
       }
     },

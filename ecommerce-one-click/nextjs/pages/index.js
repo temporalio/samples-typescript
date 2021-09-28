@@ -1,4 +1,4 @@
-import Head from 'next/head'
+import Head from 'next/head';
 
 /*
   This example requires Tailwind CSS v2.0+ 
@@ -17,10 +17,10 @@ import Head from 'next/head'
   }
   ```
 */
-import { Fragment, useState } from 'react'
-import { Dialog, Popover, Tab, Transition } from '@headlessui/react'
-import { MenuIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline'
-import { CheckIcon, ClockIcon, QuestionMarkCircleIcon } from '@heroicons/react/solid'
+import { Fragment, useState } from 'react';
+import { Dialog, Popover, Tab, Transition } from '@headlessui/react';
+import { MenuIcon, SearchIcon, ShoppingBagIcon, XIcon } from '@heroicons/react/outline';
+import { CheckIcon, ClockIcon, QuestionMarkCircleIcon } from '@heroicons/react/solid';
 
 const navigation = {
   categories: [
@@ -143,7 +143,7 @@ const navigation = {
     { name: 'Company', href: '#' },
     { name: 'Stores', href: '#' },
   ],
-}
+};
 const favorites = [
   {
     id: 1,
@@ -170,7 +170,7 @@ const favorites = [
     imageAlt:
       "Model wearing women's burgundy red crewneck artwork tee with small white triangle overlapping larger black triangle.",
   },
-]
+];
 const footerNavigation = {
   shop: [
     { name: 'Bags', href: '#' },
@@ -198,14 +198,14 @@ const footerNavigation = {
     { name: 'Instagram', href: '#' },
     { name: 'Pinterest', href: '#' },
   ],
-}
+};
 
 function classNames(...classes) {
-  return classes.filter(Boolean).join(' ')
+  return classes.filter(Boolean).join(' ');
 }
 
 export default function Example() {
-  const [open, setOpen] = useState(false)
+  const [open, setOpen] = useState(false);
 
   return (
     <div className="bg-white">
@@ -462,8 +462,7 @@ export default function Example() {
                 </div>
               </Popover.Group>
 
-              <div className="ml-auto flex items-center">
-              </div>
+              <div className="ml-auto flex items-center"></div>
             </div>
           </div>
         </nav>
@@ -476,8 +475,8 @@ export default function Example() {
                 Temporal.io + Next.js One Click Purchase Demo
               </h1>
               <p className="mt-4 text-xl text-gray-500">
-                Buy something, then change your mind. Or maybe not.
-                Whatever you decide, Temporal makes it easy to add async processes with high reliability.
+                Buy something, then change your mind. Or maybe not. Whatever you decide, Temporal makes it easy to add
+                async processes with high reliability.
               </p>
             </div>
             <div>
@@ -537,7 +536,6 @@ export default function Example() {
             </div>
           </div>
         </section>
-
       </main>
 
       <footer aria-labelledby="footer-heading" className="bg-white">
@@ -631,11 +629,9 @@ export default function Example() {
           </div>
         </div>
       </footer>
-    </div >
-  )
+    </div>
+  );
 }
-
-
 
 const products = [
   {
@@ -671,7 +667,7 @@ const products = [
     imageSrc: 'https://tailwindui.com/img/ecommerce-images/shopping-cart-page-01-product-03.jpg',
     imageAlt: 'Insulated bottle with white base and black snap lid.',
   },
-]
+];
 function Cart() {
   return (
     <div className="bg-white">
@@ -758,5 +754,5 @@ function Cart() {
         </form>
       </div>
     </div>
-  )
+  );
 }

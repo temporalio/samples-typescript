@@ -1,12 +1,11 @@
 # Next.js + Temporal Example
 
-This example shows how to use [Temporal](https://docs.temporal.io/) with Next.js. 
-
+This example shows how to use [Temporal](https://docs.temporal.io/) with Next.js.
 
 ## Instructions
 
 ```bash
-cd nextjs-oneclick # git clone or navigate into this folder
+cd ecommerce-one-click/nextjs # navigate into this folder
 npm i
 npm run dev
 ```
@@ -17,11 +16,24 @@ The `dev` script does 3 things:
 - runs `temporal:dev` which runs the Temporal Worker, Workflows, and Activities code through the TypeScript compiler in watch mode
 - runs `temporal:worker` which runs the compiled `worker.ts` file
 
-Now you can go to http://localhost:3000/api/workflow and see the result:
+Now you can go to http://localhost:3000/api/hello and see the result:
 
 ```json
-{"result":"Hello, Temporal!"}
+{"name":"John Doe"}
 ```
+
+## Demo
+
+Go to http://localhost:3000/barebones and see:
+
+![image](https://user-images.githubusercontent.com/6764957/135000553-6ac7d0b7-d2fb-4901-aee1-73251de33f67.png)
+
+- Click "Buy item"
+- Click "Get State" anytime
+- Things to try
+  - View workflow state in Temporal Web
+  - Click "Cancel Buy" within 5 seconds
+
 
 ## Deploy
 

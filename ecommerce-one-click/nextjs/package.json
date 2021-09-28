@@ -2,7 +2,7 @@
   "private": true,
   "name": "temporal-nextjs-oneclick",
   "scripts": {
-    "dev": "temporal:build && npm run next:dev & npm run temporal:dev & npm run temporal:worker",
+    "dev": "npm run temporal:build && npm run next:dev & npm run temporal:dev & npm run temporal:worker",
     "next:dev": "next dev",
     "temporal:dev": "tsc --build --watch ./temporal/tsconfig.json",
     "build": "next build",
