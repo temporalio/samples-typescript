@@ -6,7 +6,6 @@ Make sure the Temporal Server is running locally. Follow the [Quick install guid
 
 Each directory contains a sample app that has a separate `README.md` with instructions on how to run that app.
 
-
 ## Samples directory
 
 - [**Basic hello world**](https://github.com/temporalio/samples-node/tree/main/hello-world): Simple example of a Workflow Definition and an Activity Definition.
@@ -28,6 +27,11 @@ Each directory contains a sample app that has a separate `README.md` with instru
 - [**Cancellation**](https://github.com/temporalio/samples-node/tree/main/cancellation): How to programmatically cancel a workflow
 
 
+### Example Apps
+
+- **Next.js**:
+  - The `nextjs-oneclick` example
+  - [Food Delivery](https://github.com/lorensr/food-delivery)
 
 ### Advanced APIs
 
