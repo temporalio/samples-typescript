@@ -1,4 +1,4 @@
-import { DefaultLogger, Worker } from '@temporalio/worker';
+import { DefaultLogger, Worker, Core } from '@temporalio/worker';
 import { OpenTelemetryDependencies } from '@temporalio/interceptors-opentelemetry/lib/workflow';
 import {
   OpenTelemetryActivityInboundInterceptor,
@@ -11,8 +11,11 @@ import * as activities from '../activities';
 async function main() {
   const otel = await setupOpentelemetry();
 
-  // Automatically locate and register Activities and Workflows relative to __dirname
-  // (assuming package was bootstrapped with `npm init @temporalio`).
+  Core.install({
+    // Silence the Worker logs to better see the span output
+    logger: new DefaultLogger('WARNING'),
+  });
+
   // Worker connects to localhost by default and uses console error for logging.
   // Customize the Worker by passing more options to create().
   // create() tries to connect to the server and will throw if a connection could not be established.
@@ -23,8 +26,6 @@ async function main() {
     workflowsPath: path.join(__dirname, '../workflows'),
     nodeModulesPath: path.join(__dirname, '../../node_modules'),
     activities,
-    // Silence the Worker logs to better see the span output
-    logger: new DefaultLogger('WARNING'),
     taskQueue: 'interceptors-opentelemetry-example',
     dependencies: {
       exporter: makeWorkflowExporter(otel.exporter),

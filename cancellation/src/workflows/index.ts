@@ -1,6 +1,6 @@
 import { createActivityHandle, isCancellation } from '@temporalio/workflow';
-import { Example } from './interfaces';
-import type * as activities from './activities';
+import { Example } from '../interfaces';
+import type * as activities from '../activities';
 
 const { activityToBeCancelled } = createActivityHandle<typeof activities>({
   startToCloseTimeout: '60s',

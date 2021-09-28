@@ -1,5 +1,5 @@
-import { Progress } from './interfaces';
 import { sleep } from '@temporalio/workflow';
+import { Progress } from '../interfaces';
 
 export const progress: Progress = function () {
   let progress = 0;

@@ -1,7 +1,7 @@
-import { Expense, ExpenseStatus } from './interfaces';
 import { Trigger, sleep } from '@temporalio/workflow';
 import { createActivityHandle } from '@temporalio/workflow';
-import type * as activities from './activities';
+import { Expense, ExpenseStatus } from '../interfaces';
+import type * as activities from '../activities';
 
 const { createExpense, payment } = createActivityHandle<typeof activities>({
   scheduleToCloseTimeout: '5 minutes',

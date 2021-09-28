@@ -4,8 +4,8 @@ import {
   OpenTelemetryOutboundInterceptor,
   registerOpentelemetryTracerProvider,
 } from '@temporalio/interceptors-opentelemetry/lib/workflow';
-import { Example } from './interfaces';
-import type * as activities from './activities';
+import { Example } from '../interfaces';
+import type * as activities from '../activities';
 
 const { greet } = createActivityHandle<typeof activities>({
   startToCloseTimeout: '1 minute',

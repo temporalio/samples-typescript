@@ -1,6 +1,6 @@
 import { createActivityHandle } from '@temporalio/workflow';
-import { Example } from './interfaces';
-import type * as activities from './activities';
+import { Example } from '../interfaces';
+import type * as activities from '../activities';
 
 const { makeHTTPRequest } = createActivityHandle<typeof activities>({
   scheduleToCloseTimeout: '5 minutes',

@@ -1,6 +1,8 @@
 import fs from 'fs';
 import { Worker, Core } from '@temporalio/worker';
+import path from 'path';
 import { getEnv, Env } from './mtls-env';
+import * as activities from './activities';
 
 /**
  * Run a Worker with an mTLS connection, configuration is provided via environment variables.
@@ -37,7 +39,9 @@ async function run({
   });
 
   const worker = await Worker.create({
-    workDir: __dirname,
+    workflowsPath: path.join(__dirname, 'workflows'),
+    nodeModulesPath: path.join(__dirname, '../node_modules'),
+    activities,
     taskQueue,
   });
   console.log('Worker connection succesfully established');
