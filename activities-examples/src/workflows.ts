@@ -2,8 +2,16 @@ import { createActivityHandle } from '@temporalio/workflow';
 import { Example } from '../interfaces';
 import type * as activities from '../activities';
 
-const { makeHTTPRequest } = createActivityHandle<typeof activities>({
-  scheduleToCloseTimeout: '5 minutes',
+const { 
+  makeHTTPRequest,
+  // fakeProgress, // todo: demo usage
+  // cancellableFetch  // todo: demo usage
+ } = createActivityHandle<typeof activities>({
+  retry: {
+    initialInterval: '50 milliseconds',
+    maximumAttempts: 2,
+  },
+  scheduleToCloseTimeout: '30 seconds',
 });
 
 export const example: Example = () => ({

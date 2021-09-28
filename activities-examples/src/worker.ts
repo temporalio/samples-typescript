@@ -9,7 +9,7 @@ async function run() {
     workflowsPath: path.join(__dirname, 'workflows'),
     nodeModulesPath: path.join(__dirname, '../node_modules'),
     activities,
-    taskQueue: 'tutorial20210915',
+    taskQueue: 'tutorial',
   });
 
   await worker.run();

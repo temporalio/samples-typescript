@@ -1,8 +1,7 @@
-// @@@SNIPSTART nodejs-hello-client
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { example } from './workflows';
+import { unblockOrCancel } from './workflows';
 
-async function run() {
+async function run(): Promise<void> {
   // Connect to localhost with default ConnectionOptions,
   // pass options to the Connection constructor to configure TLS and other settings.
   const connection = new Connection();
@@ -10,13 +9,15 @@ async function run() {
   // via options passed the WorkflowClient constructor.
   const client = new WorkflowClient(connection.service);
   // Create a typed handle for the example Workflow.
-  const handle = client.createWorkflowHandle(example, { taskQueue: 'tutorial' });
-  const result = await handle.execute('Temporal');
-  console.log(result); // Hello, Temporal!
+  const handle = client.createWorkflowHandle(unblockOrCancel, { taskQueue: 'tutorial' });
+  await handle.start();
+  console.log(await handle.query.isBlocked()); // true
+  await handle.signal.unblock();
+  await handle.result();
+  console.log(await handle.query.isBlocked()); // false
 }
 
 run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-// @@@SNIPEND
