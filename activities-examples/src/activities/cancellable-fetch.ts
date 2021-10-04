@@ -16,6 +16,10 @@ export async function cancellableFetch(url: string): Promise<Uint8Array> {
   let bytesRead = 0;
   const chunks: Buffer[] = [];
 
+  if (response.body == null) {
+    return new Buffer('');
+  }
+
   for await (const chunk of response.body) {
     if (!(chunk instanceof Buffer)) {
       throw new TypeError('Expected Buffer');
