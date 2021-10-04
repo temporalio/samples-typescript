@@ -1,17 +1,16 @@
 # Child Workflows demo
 
+This sample shows how to write [child workflows](https://docs.temporal.io/docs/node/workflows#child-workflows).
 
-this example shows how to  write child workflows https://docs.temporal.io/docs/node/workflows#child-workflows
+## Steps to run this example
 
-## Instructions
+1. Make sure the Temporal Server is running locally. Follow the [Quick install guide](https://docs.temporal.io/docs/server/quick-install) to do that.
+2. Run `npm install` to install dependencies.
+3. Run `npm run build` to compile the project.
+4. Run `npm start` to start the worker. Leave the worker process running.
+5. Run `npm run workflow` to run the workflow. It should print out:
 
-```bash
-## in different terminals
-npm run build.watch
-npm run start.watch
-npm run workflow
-
-## log output below
+```
 i am a child named Alice
 i am a child named Bob
 i am a child named Charlie

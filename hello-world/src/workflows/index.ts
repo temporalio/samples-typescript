@@ -9,11 +9,9 @@ const { greet } = createActivityHandle<typeof activities>({
 });
 
 /** A workflow that simply calls an activity */
-export const example: Example = (name: string) => {
-  return {
-    async execute(): Promise<string> {
-      return await greet(name);
-    },
-  };
-};
+export const example: Example = (name: string) => ({
+  async execute(): Promise<string> {
+    return await greet(name);
+  },
+});
 // @@@SNIPEND

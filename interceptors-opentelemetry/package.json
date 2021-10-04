@@ -5,27 +5,27 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
-    "start": "ts-node src/worker.ts",
-    "start.watch": "nodemon src/worker.ts",
+    "start": "ts-node src/worker",
+    "start.watch": "nodemon src/worker",
     "workflow": "ts-node src/execute-workflow.ts"
   },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
   "dependencies": {
-    "@temporalio/interceptors-opentelemetry": "^0.1.2",
-    "temporalio": "0.4.1"
+    "@temporalio/interceptors-opentelemetry": "^0.2.0",
+    "temporalio": "^0.4.2"
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.0",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",
     "typescript": "^4.2.2"
-  },
-  "nodemonConfig": {
-    "watch": [
-      "src"
-    ],
-    "ext": "ts",
-    "execMap": {
-      "ts": "ts-node"
-    }
   }
 }

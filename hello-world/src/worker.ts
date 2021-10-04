@@ -1,12 +1,16 @@
 // @@@SNIPSTART nodejs-hello-worker
 import { Worker } from '@temporalio/worker';
+import path from 'path';
+import * as activities from './activities';
 
 run().catch((err) => console.log(err));
 
 async function run() {
-  // Step 1: Automatically locate and register Activities and Workflows relative to __dirname.
+  // Step 1: Register Workflows relative to __dirname.
   const worker = await Worker.create({
-    workDir: __dirname,
+    workflowsPath: path.join(__dirname, 'workflows'),
+    nodeModulesPath: path.join(__dirname, '../node_modules'),
+    activities,
     taskQueue: 'tutorial',
   });
   // // Worker connects to localhost by default and uses console.error for logging.
