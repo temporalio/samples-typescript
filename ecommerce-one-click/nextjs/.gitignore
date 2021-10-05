@@ -11,6 +11,8 @@
 # next.js
 /.next/
 /out/
+next-env.d.ts
+tsconfig.json # nextjs autocreates this
 
 # production
 /build

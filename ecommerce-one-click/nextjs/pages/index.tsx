@@ -20,11 +20,8 @@ function fetchAPI(str, obj ?: RequestInit) {
       toast.error(err, {
         position: "top-right",
         autoClose: 5000,
-        hideProgressBar: false,
         closeOnClick: true,
-        // pauseOnHover: true,
         draggable: true,
-        progress: undefined,
       })
       // throw err
     });
@@ -115,12 +112,6 @@ function ProductList() {
   return (
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        {/* <div className="flex items-center justify-between space-x-4">
-          <h2 className="text-lg font-medium text-gray-900">Customers also viewed</h2>
-          <a href="#" className="whitespace-nowrap text-sm font-medium text-indigo-600 hover:text-indigo-500">
-            View all<span aria-hidden="true"> &rarr;</span>
-          </a>
-        </div> */}
         <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-4">
           {products.map((product) => <Product product={product} key={product.id} />)}
         </div>
@@ -135,6 +126,7 @@ function Product({ product }) {
   const itemId = product.id
   const [state, setState] = React.useState<ITEMSTATE>('NEW');
   const [workflowId, setWFID] = React.useState(null);
+  const toastId = React.useRef(null);
   function buyProduct() {
     setState('SENDING');
     fetchAPI('/api/startBuy', {
@@ -147,16 +139,13 @@ function Product({ product }) {
       .then((x) => setWFID(x.workflowId))
       .then(() => {
         setState('ORDERED')
-        toast.success('Purchased! Cancel if you change your mind', {
+        toastId.current = toast.success('Purchased! Cancel if you change your mind', {
           position: "top-right",
           autoClose: 5000,
-          hideProgressBar: false,
           closeOnClick: true,
-          // pauseOnHover: true,
           draggable: true,
-          progress: undefined,
-          // onClose: () => {if (state === 'ORDERED') setState('CONFIRMED')}
-          onClose: () => {setState('CONFIRMED')}
+          onClose: () => {console.log({state}); if (state === 'NEW') setState('CONFIRMED')}
+          // onClose: () => {setState('CONFIRMED')}
         })
       });
   }
@@ -177,13 +166,11 @@ function Product({ product }) {
           toast.error(err, {
             position: "top-right",
             autoClose: 5000,
-            hideProgressBar: false,
             closeOnClick: true,
-            // pauseOnHover: true,
             draggable: true,
-            progress: undefined,
           })
         })
+    toast.dismiss(toastId.current)
     }
   }
   return (
@@ -192,22 +179,22 @@ function Product({ product }) {
         <img src={product.imageSrc} alt={product.imageAlt} className="object-center object-cover" />
         <div className="flex items-end p-4" aria-hidden="true">
           {{
-            'NEW': <button onClick={buyProduct} className="w-full bg-white bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
+            'NEW': <button onClick={buyProduct} className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
                     Buy Now
                     </button>,
-            'SENDING': <div className="w-full bg-white bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
+            'SENDING': <div className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
                     Sending...
                     </div>,
-            'ORDERED': <button onClick={cancelBuy} className="w-full bg-white bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
-                    Ordered! Click to Cancel
+            'ORDERED': <button onClick={cancelBuy} className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
+                    Click to Cancel
                     </button>,
             'CONFIRMED': <div className="w-full  opacity-100 bg-white bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
                     Purchased!
                     </div>,
-            'CANCELLING': <div className="w-full bg-white bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
+            'CANCELLING': <div className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
                     Cancelling...
                     </div>,
-            'ERROR': <button  onClick={buyProduct} className="w-full bg-white bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
+            'ERROR': <button  onClick={buyProduct} className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
                     Error! Click to Retry
                     </button>,
           }[state]}
@@ -222,12 +209,4 @@ function Product({ product }) {
       <p className="mt-1 text-sm text-gray-500">{product.category}</p>
     </div>
   )
-}
-
-
-
-export async function getServerSideProps(context) {
-  return {
-    props: {}, // will be passed to the page component as props
-  };
 }
