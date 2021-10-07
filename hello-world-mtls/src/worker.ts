@@ -2,7 +2,6 @@ import fs from 'fs';
 
 // @@@SNIPSTART nodejs-mtls-worker
 import { Worker, Core } from '@temporalio/worker';
-import path from 'path';
 import { getEnv, Env } from './mtls-env';
 import * as activities from './activities';
 
@@ -41,8 +40,7 @@ async function run({
   });
 
   const worker = await Worker.create({
-    workflowsPath: path.join(__dirname, 'workflows'),
-    nodeModulesPath: path.join(__dirname, '../node_modules'),
+    workflowsPath: require.resolve('./workflows'),
     activities,
     taskQueue,
   });
