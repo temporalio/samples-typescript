@@ -9,7 +9,7 @@ export async function cancellableFetch(url: string): Promise<Uint8Array> {
     throw new Error('expected Content-Length header to be set');
   }
   if (!response.body) {
-    throw new Error('body is empty')
+    throw new Error('body is empty');
   }
 
   const contentLength = parseInt(contentLengthHeader);

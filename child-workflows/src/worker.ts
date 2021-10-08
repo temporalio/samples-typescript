@@ -9,11 +9,11 @@ async function run() {
   // You may create multiple Workers in a single process in order to poll on multiple task queues.
   // In order to configure the server connection parameters and other global options,
   // use the Core.install() method to configure the Rust Core SDK singleton.
-  const worker = await Worker.create({ 
+  const worker = await Worker.create({
     workflowsPath: path.join(__dirname, 'workflows'),
     nodeModulesPath: path.join(__dirname, '../node_modules'),
     activities,
-    taskQueue: 'tutorial' 
+    taskQueue: 'tutorial',
   });
   // Start accepting tasks on the `tutorial` queue
   await worker.run();

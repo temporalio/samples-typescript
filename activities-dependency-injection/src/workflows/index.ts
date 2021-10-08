@@ -14,6 +14,6 @@ export const dependencyWF: Example = () => ({
   async execute(): Promise<string> {
     const english = await greet('Hello');
     const spanish = await greet_es('Hola');
-    return `${english}\n${spanish}`
+    return `${english}\n${spanish}`;
   },
 });

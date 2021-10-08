@@ -6,8 +6,8 @@ import { createActivities } from './activities';
 
 async function run() {
   // mock db connection initialization in Worker
-  const dbConnection = async () => 'Temporal' 
-  
+  const dbConnection = async () => 'Temporal';
+
   const worker = await Worker.create({
     workflowsPath: path.join(__dirname, 'workflows'),
     nodeModulesPath: path.join(__dirname, '../node_modules'),

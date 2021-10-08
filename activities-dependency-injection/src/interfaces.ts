@@ -1,5 +1,3 @@
-export type Example = (
-  name: string
-) => {
+export type Example = (name: string) => {
   execute(): Promise<string>;
 };

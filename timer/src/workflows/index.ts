@@ -12,7 +12,9 @@ const { processOrder, sendNotificationEmail } = createActivityHandle<typeof acti
 export const processOrderWorkflow: ProcessOrder = ({ orderProcessingMS, sendDelayedEmailTimeoutMS }) => ({
   async execute(): Promise<void> {
     let processing = true;
-    let processOrderPromise = processOrder(orderProcessingMS).then(() => { processing = false; });
+    let processOrderPromise = processOrder(orderProcessingMS).then(() => {
+      processing = false;
+    });
 
     await Promise.race([processOrderPromise, sleep(sendDelayedEmailTimeoutMS)]);
 
@@ -21,6 +23,6 @@ export const processOrderWorkflow: ProcessOrder = ({ orderProcessingMS, sendDela
 
       await processOrderPromise;
     }
-  }
+  },
 });
 // @@@SNIPEND

@@ -4,7 +4,7 @@ export const childWorkflow = (name: string) => ({
   async execute() {
     return 'i am a child named ' + name;
   },
-})
+});
 
 export interface WorkflowExample {
   execute(): Promise<string>;
@@ -14,11 +14,13 @@ export interface WorkflowExample {
 export function childWorkflowExample(names: string[]): WorkflowExample {
   return {
     async execute() {
-      let responseArray = await Promise.all(names.map(name => {
-        const child = createChildWorkflowHandle(childWorkflow);
-        return child.execute(name);
-      }))
-      return responseArray.join('\n')
+      let responseArray = await Promise.all(
+        names.map((name) => {
+          const child = createChildWorkflowHandle(childWorkflow);
+          return child.execute(name);
+        })
+      );
+      return responseArray.join('\n');
     },
   };
 }

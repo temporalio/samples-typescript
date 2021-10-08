@@ -1,4 +1,3 @@
-
 // @@@SNIPSTART nodejs-activity-fake-progress
 import { Context } from '@temporalio/activity';
 import { CancelledFailure } from '@temporalio/common';
