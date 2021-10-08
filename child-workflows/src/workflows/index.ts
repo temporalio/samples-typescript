@@ -14,7 +14,7 @@ export interface WorkflowExample {
 export function childWorkflowExample(names: string[]): WorkflowExample {
   return {
     async execute() {
-      let responseArray = await Promise.all(
+      const responseArray = await Promise.all(
         names.map((name) => {
           const child = createChildWorkflowHandle(childWorkflow);
           return child.execute(name);

@@ -1,5 +1,5 @@
 // @@@SNIPSTART typescript-activity-with-deps
-export const createActivities = (dbConnection: Function) => ({
+export const createActivities = (dbConnection: () => string) => ({
   async greet(msg: string): Promise<string> {
     const name = await dbConnection(); // simulate read from db
     return `${msg}: ${name}`;

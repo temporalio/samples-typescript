@@ -12,7 +12,7 @@ const { processOrder, sendNotificationEmail } = createActivityHandle<typeof acti
 export const processOrderWorkflow: ProcessOrder = ({ orderProcessingMS, sendDelayedEmailTimeoutMS }) => ({
   async execute(): Promise<void> {
     let processing = true;
-    let processOrderPromise = processOrder(orderProcessingMS).then(() => {
+    const processOrderPromise = processOrder(orderProcessingMS).then(() => {
       processing = false;
     });
 
