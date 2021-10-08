@@ -1,5 +1,5 @@
 {
-  "name": "temporal-http",
+  "name": "temporal-activities",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,6 +8,7 @@
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "test": "ts-mocha ./test/*.test.ts",
+    "test.watch": "ts-mocha ./test/*.test.ts -w --watch-files src, test/**/*.ts",
     "workflow": "ts-node src/execute-workflow.ts"
   },
   "nodemonConfig": {
