@@ -1,11 +1,11 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { expense } from '../workflows';
+import { Expense } from '../workflows';
 import { v4 } from 'uuid';
 
 async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
-  const handle = client.createWorkflowHandle(expense, { taskQueue: 'tutorial' });
+  const handle = client.createWorkflowHandle(Expense, { taskQueue: 'tutorial' });
 
   const expenseId = v4();
 

@@ -7,16 +7,14 @@ const { activityToBeCancelled } = createActivityHandle<typeof activities>({
   heartbeatTimeout: '3s',
 });
 
-export const example: Example = () => ({
-  async execute() {
-    let err;
-    try {
-      await activityToBeCancelled();
-    } catch (_err) {
-      if (!isCancellation(err)) {
-        throw _err;
-      }
-      err = _err;
+export const example: Example = () => {
+  let err;
+  try {
+    await activityToBeCancelled();
+  } catch (_err) {
+    if (!isCancellation(err)) {
+      throw _err;
     }
+    err = _err;
   },
-});
+};

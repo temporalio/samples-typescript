@@ -1,20 +1,13 @@
-import { sleep } from '@temporalio/workflow';
-import { Progress } from '../interfaces';
+import { sleep, defineQuery, setListener } from '@temporalio/workflow';
 
-export const progress: Progress = function () {
+export const getProgress = defineQuery<number>('getProgress');
+
+export async function Progress() {
   let progress = 0;
-
-  return {
-    async execute(): Promise<number> {
-      for (let i = 0; i < 10; ++i) {
-        progress += 10;
-        await sleep(10);
-      }
-
-      return progress;
-    },
-    queries: {
-      getProgress: () => progress,
-    },
-  };
+  setListener('progress', () => progress)
+  for (let i = 0; i < 10; ++i) {
+    progress += 10;
+    await sleep(10);
+  }
+  return progress;
 };

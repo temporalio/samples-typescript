@@ -11,7 +11,7 @@ export default async function cancelBuy(req, res) {
   const client = new WorkflowClient(connection.service);
   const workflow = client.createWorkflowHandle({ workflowId: id });
   try {
-    await workflow.signal.cancelPurchase('user cancelled');
+    await workflow.signal('cancelPurchase');
     res.status(200).json({ cancelled: id });
   } catch (e) {
     console.error(e);

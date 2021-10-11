@@ -1,41 +1,29 @@
-import { Trigger, createActivityHandle, sleep } from '@temporalio/workflow';
+import wf from '@temporalio/workflow';
 // // Only import the activity types
 import type * as activities from '../activities';
 
-const { checkoutItem, canceledPurchase } = createActivityHandle<typeof activities>({
+const { checkoutItem, canceledPurchase } = wf.createActivityHandle<typeof activities>({
   startToCloseTimeout: '1 minute',
 });
 
 type PurchaseState = 'PURCHASE_PENDING' | 'PURCHASE_CONFIRMED' | 'PURCHASE_CANCELED';
 
-export const OneClickBuy = (itemId: string) => {
+export const cancelPurchase = wf.defineSignal('cancelPurchase');
+export const purchaseState = wf.defineQuery<PurchaseState>('purchaseState');
+
+export async function OneClickBuy(itemId: string) {
   let itemToBuy = itemId;
-  let purchaseState: PurchaseState = 'PURCHASE_PENDING';
-  const cancelTrigger = new Trigger<string>();
-  return {
-    signals: {
-      cancelPurchase(cancelReason: string): void {
-        cancelTrigger.reject(cancelReason);
-      },
-    },
-    queries: {
-      purchaseState(): null | PurchaseState {
-        return purchaseState;
-      },
-    },
-    async execute(): Promise<string> {
-      try {
-        purchaseState = 'PURCHASE_PENDING';
-        await Promise.race([
-          cancelTrigger,
-          sleep(5 * 1000), // 5 seconds wait, adjust to taste
-        ]);
-        purchaseState = 'PURCHASE_CONFIRMED';
-        return await checkoutItem(itemToBuy);
-      } catch (err) {
-        purchaseState = 'PURCHASE_CANCELED';
-        return await canceledPurchase(itemToBuy);
+  let _purchaseState: PurchaseState = 'PURCHASE_PENDING';
+  wf.setListener(purchaseState, () => _purchaseState);
+  wf.setListener(cancelPurchase, () => {
+    _purchaseState = 'PURCHASE_CANCELED';
+  });
+  await wf.condition('5s', () => _purchaseState !== 'PURCHASE_PENDING')
+    .then(() => {
+      if (_purchaseState === 'PURCHASE_CANCELED') {
+        return canceledPurchase(itemToBuy);
       }
-    },
-  };
+      _purchaseState = 'PURCHASE_CONFIRMED';
+      return checkoutItem(itemToBuy);
+    });
 };

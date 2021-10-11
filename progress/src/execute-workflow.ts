@@ -1,15 +1,15 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { progress } from './workflows';
+import { Progress, getProgress } from './workflows';
 
 async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
 
-  const handle = client.createWorkflowHandle(progress, { taskQueue: 'tutorial' });
+  const handle = client.createWorkflowHandle(Progress, { taskQueue: 'tutorial' });
 
   await handle.start();
 
-  const val = await handle.query.getProgress();
+  const val = await handle.query(getProgress);
   // Should print "10", may print another number depending on timing
   console.log(val);
 

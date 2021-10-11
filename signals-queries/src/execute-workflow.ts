@@ -1,5 +1,5 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { unblockOrCancel } from './workflows';
+import { unblockOrCancel, unblockSignal, isBlockedQuery } from './workflows';
 
 async function run(): Promise<void> {
   // Connect to localhost with default ConnectionOptions,
@@ -11,10 +11,10 @@ async function run(): Promise<void> {
   // Create a typed handle for the example Workflow.
   const handle = client.createWorkflowHandle(unblockOrCancel, { taskQueue: 'tutorial' });
   await handle.start();
-  console.log(await handle.query.isBlocked()); // true
-  await handle.signal.unblock();
+  console.log(await handle.query(isBlockedQuery)); // true
+  await handle.signal(unblockSignal);
   await handle.result();
-  console.log(await handle.query.isBlocked()); // false
+  console.log(await handle.query(isBlockedQuery)); // false
 }
 
 run().catch((err) => {
