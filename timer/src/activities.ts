@@ -2,24 +2,25 @@
 import { Context } from '@temporalio/activity';
 import mailgun from 'mailgun-js';
 
-const apiKey: string = process.env.MAILGUN_API ?? '';
-const domain: string = process.env.MAILGUN_DOMAIN ?? '';
-const to: string = process.env.ADMIN_EMAIL ?? '';
+export interface EmailSettings {
+  to: string;
+  from: string;
+}
 
-const mg = mailgun({ apiKey, domain });
+export const createActivities = (mg: mailgun.Mailgun, { to, from }: EmailSettings) => ({
+  async processOrder(sleepMS = 1000): Promise<void> {
+    await Context.current().sleep(sleepMS);
+  },
 
-export async function processOrder(sleepMS = 1000): Promise<void> {
-  await Context.current().sleep(sleepMS);
-};
+  async sendNotificationEmail(): Promise<void> {
+    const data = {
+      to,
+      from,
+      subject: 'Order processing taking longer than expected',
+      html: "Order processing is taking longer than expected, but don't worry, the job is still running!",
+    };
 
-export async function sendNotificationEmail(): Promise<void> {
-  const data = {
-    to,
-    subject: 'Order processing taking longer than expected',
-    from: 'Temporal Bot <temporal@' + process.env.MAILGUN_DOMAIN + '>',
-    html: 'Order processing is taking longer than expected, but don\'t worry, the job is still running!'
-  };
-
-  await mg.messages().send(data);
-};
+    await mg.messages().send(data);
+  },
+});
 // @@@SNIPEND
