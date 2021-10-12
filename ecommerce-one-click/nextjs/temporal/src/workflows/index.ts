@@ -1,3 +1,4 @@
+// @@@SNIPSTART nodejs-oneclick-buy
 import wf from '@temporalio/workflow';
 // // Only import the activity types
 import type * as activities from '../activities';
@@ -23,3 +24,4 @@ export async function OneClickBuy(itemId: string) {
     return checkoutItem(itemToBuy);
   }
 };
+// @@@SNIPEND
