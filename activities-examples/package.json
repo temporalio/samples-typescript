@@ -22,7 +22,7 @@
   "dependencies": {
     "axios": "0.21.1",
     "node-fetch": "2.x",
-    "temporalio": "0.4.2"
+    "temporalio": "0.11.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
