@@ -20,20 +20,18 @@ export const approve = wf.defineSignal('approve');
 export const reject = wf.defineSignal('reject');
 
 export async function Expense(expenseId: string, timeoutMS = defaultTimeoutMS) {
-  let status: ExpenseStatus = ExpenseStatus.CREATED;
+  let status = ExpenseStatus.CREATED as ExpenseStatus;
   wf.setListener(approve, () => status = ExpenseStatus.APPROVED)
   wf.setListener(reject, () => status = ExpenseStatus.REJECTED)
 
   await createExpense(expenseId);
-
-  status = await Promise.race([
-    wf.condition(() => [ExpenseStatus.APPROVED, ExpenseStatus.REJECTED].includes(status)),
-    wf.sleep(timeoutMS).then((): ExpenseStatus => ExpenseStatus.TIMED_OUT),
-  ]);
-  
-  if (status === ExpenseStatus.APPROVED) {
-    await payment(expenseId);
-    status = ExpenseStatus.COMPLETED;
+  if (await wf.condition(timeoutMS, () => status !== ExpenseStatus.CREATED)) {
+    if (status === ExpenseStatus.APPROVED) {
+      await payment(expenseId);
+      status = ExpenseStatus.COMPLETED;
+    }
+  } else {
+    status = ExpenseStatus.TIMED_OUT;
   }
 
   return { status };

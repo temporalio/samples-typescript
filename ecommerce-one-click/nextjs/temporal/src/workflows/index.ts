@@ -15,15 +15,11 @@ export async function OneClickBuy(itemId: string) {
   let itemToBuy = itemId;
   let _purchaseState: PurchaseState = 'PURCHASE_PENDING';
   wf.setListener(purchaseState, () => _purchaseState);
-  wf.setListener(cancelPurchase, () => {
-    _purchaseState = 'PURCHASE_CANCELED';
-  });
-  await wf.condition('5s', () => _purchaseState !== 'PURCHASE_PENDING')
-    .then(() => {
-      if (_purchaseState === 'PURCHASE_CANCELED') {
-        return canceledPurchase(itemToBuy);
-      }
-      _purchaseState = 'PURCHASE_CONFIRMED';
-      return checkoutItem(itemToBuy);
-    });
+  wf.setListener(cancelPurchase, () => void (_purchaseState = 'PURCHASE_CANCELED'));
+  if (await wf.condition('5s', () => _purchaseState === 'PURCHASE_CANCELED')) {
+    return canceledPurchase(itemToBuy);
+  } else {
+    _purchaseState = 'PURCHASE_CONFIRMED';
+    return checkoutItem(itemToBuy);
+  }
 };
