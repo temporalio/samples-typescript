@@ -7,7 +7,8 @@
     "build.watch": "tsc --build --watch",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/execute-workflow.ts"
+    "workflow": "ts-node src/execute-workflow.ts",
+    "lint": "eslint ."
   },
   "nodemonConfig": {
     "execMap": {
@@ -19,10 +20,13 @@
     ]
   },
   "dependencies": {
-    "temporalio": "0.5.0"
+    "temporalio": "0.4.2"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.30.0",
+    "@typescript-eslint/parser": "^4.30.0",
+    "eslint": "^7.32.0",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.2"

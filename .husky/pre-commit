@@ -6,19 +6,26 @@
 for file in *; do
   if [[ -d "$file" ]] # is a directory?
   then
-    if ! [[ " node_modules ecommerce-one-click " =~ " $file " ]]
+    dir=$file
+    if ! [[ " node_modules ecommerce-one-click " =~ " $dir " ]]
     then
-      cp .shared/tsconfig.json $file/
-      git add $file/tsconfig.json
+      cp .shared/tsconfig.json $dir/
+      git add $dir/tsconfig.json
 
-      cp .shared/.gitignore $file/
-      git add $file/.gitignore
+      cp .shared/.eslintrc.json $dir/
+      git add $dir/.eslintrc.json
 
-      cp .shared/.npmrc $file/
-      git add $file/.npmrc
+      cp .shared/.eslintignore $dir/
+      git add $dir/.eslintignore
 
-      cp .shared/.nvmrc $file/
-      git add $file/.nvmrc
+      cp .shared/.gitignore $dir/
+      git add $dir/.gitignore
+
+      cp .shared/.npmrc $dir/
+      git add $dir/.npmrc
+
+      cp .shared/.nvmrc $dir/
+      git add $dir/.nvmrc
     fi
   fi
 done
