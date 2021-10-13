@@ -1,4 +1,4 @@
-import { Connection, WorkflowClient, WorkflowHandle, WorkflowExecutionFailedError } from '@temporalio/client';
+import { WorkflowClient, WorkflowHandle, WorkflowExecutionFailedError } from '@temporalio/client';
 import { Core, Worker, DefaultLogger } from '@temporalio/worker';
 import { describe, before, after, afterEach, it } from 'mocha';
 import assert from 'assert';
@@ -31,8 +31,7 @@ describe('example workflow', function () {
   });
 
   beforeEach(() => {
-    const connection = new Connection();
-    const client = new WorkflowClient(connection.service);
+    const client = new WorkflowClient();
 
     workflow = client.createWorkflowHandle(httpWorkflow, {
       taskQueue: 'test-activities',
