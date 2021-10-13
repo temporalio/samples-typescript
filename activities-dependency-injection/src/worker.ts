@@ -6,7 +6,6 @@ import { createActivities } from './activities';
 async function run() {
   // Mock DB connection initialization in Worker
   const db = {
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
     async get(_key: string) {
       return 'Temporal';
     },

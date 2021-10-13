@@ -12,4 +12,12 @@ module.exports = {
     'plugin:@typescript-eslint/recommended',
     'prettier',
   ],
+  rules: {
+    '@typescript-eslint/no-unused-vars': [
+      1,
+      {
+        argsIgnorePattern: '^_',
+      },
+    ],
+  },
 };
