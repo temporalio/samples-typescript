@@ -2,8 +2,8 @@
   "name": "samples-node",
   "private": true,
   "scripts": {
-    "pretest": "cd activities-examples && npm install",
-    "test": "cd activities-examples && npm test",
+    "pretest": "pushd activities-examples && npm install; popd",
+    "test": "pushd activities-examples && npm test; popd",
     "format": "prettier --write .",
     "lint": "eslint .",
     "preinstall": "git config core.hooksPath .hooks",

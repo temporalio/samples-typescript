@@ -19,5 +19,5 @@ jobs:
           cache: 'npm'
       - run: npm install
       - run: npx prettier . --check
-      # - run: npm run lint
-      - run: npm test
+      - run: npm run lint
+      # - run: npm test
