@@ -4,7 +4,6 @@ import {
   OpenTelemetryActivityInboundInterceptor,
   makeWorkflowExporter,
 } from '@temporalio/interceptors-opentelemetry/lib/worker';
-import path from 'path';
 import { setupOpentelemetry } from './setup';
 import * as activities from '../activities';
 
@@ -23,8 +22,7 @@ async function main() {
   // In order to configure the server connection parameters and other global options,
   // use the Core.install() method to configure the Rust Core SDK singleton.
   const worker = await Worker.create<{ dependencies: OpenTelemetryDependencies }>({
-    workflowsPath: path.join(__dirname, '../workflows'),
-    nodeModulesPath: path.join(__dirname, '../../node_modules'),
+    workflowsPath: require.resolve('../workflows'),
     activities,
     taskQueue: 'interceptors-opentelemetry-example',
     dependencies: {
