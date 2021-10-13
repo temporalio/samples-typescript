@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 // @@@SNIPSTART nodejs-timer-reminder-activity
 import { Context } from '@temporalio/activity';
 import mailgun from 'mailgun-js';
@@ -7,10 +8,7 @@ export interface EmailSettings {
   from: string;
 }
 
-export const createActivities = (
-  mg: mailgun.Mailgun,
-  { to, from }: EmailSettings
-): { processOrder: (sleepMS: number) => Promise<void>; sendNotificationEmail: () => Promise<void> } => ({
+export const createActivities = (mg: mailgun.Mailgun, { to, from }: EmailSettings) => ({
   async processOrder(sleepMS = 1000): Promise<void> {
     await Context.current().sleep(sleepMS);
   },

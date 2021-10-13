@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Trigger, createActivityHandle, sleep } from '@temporalio/workflow';
 // // Only import the activity types
 import type * as activities from '../activities';
