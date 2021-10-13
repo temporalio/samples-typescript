@@ -1,5 +1,4 @@
 // @@@SNIPSTART typescript-activity-with-deps
-
 export interface DB {
   get(key: string): Promise<string>;
 }

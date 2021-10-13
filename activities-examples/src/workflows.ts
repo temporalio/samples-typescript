@@ -3,7 +3,6 @@ import type * as activities from './activities';
 
 const {
   makeHTTPRequest,
-  // fakeProgress, // todo: demo usage
   // cancellableFetch  // todo: demo usage
 } = createActivityHandle<typeof activities>({
   retry: {
@@ -13,7 +12,7 @@ const {
   scheduleToCloseTimeout: '30 seconds',
 });
 
-export async function example(): Promise<string> {
+export async function httpWorkflow(): Promise<string> {
   const answer = await makeHTTPRequest();
   return `The answer is ${answer}`;
 }

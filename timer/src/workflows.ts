@@ -12,7 +12,6 @@ export interface ProcessOrderOptions {
   sendDelayedEmailTimeoutMS: number;
 }
 
-/** A workflow that simply calls an activity */
 export async function processOrderWorkflow({
   orderProcessingMS,
   sendDelayedEmailTimeoutMS,

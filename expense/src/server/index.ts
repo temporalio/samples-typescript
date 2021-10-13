@@ -1,22 +1,38 @@
-import { ExpenseStatus } from '../interfaces';
+import { ExpenseStatus } from '../workflows';
 import express from 'express';
+import http from 'http';
 
-run().catch((err) => {
-  console.error(err);
-  process.exit(1);
-});
+const PORT = 3000;
+
+function actionStringToExpenseStatus(action?: string) {
+  switch (action) {
+    case 'payment':
+      return ExpenseStatus.COMPLETED;
+    default:
+      throw new Error(`Invalid action ${action}`);
+  }
+}
+
+function isValidTransition(oldStatus: ExpenseStatus, newStatus: ExpenseStatus): boolean {
+  switch (oldStatus) {
+    case ExpenseStatus.CREATED:
+      return newStatus === ExpenseStatus.COMPLETED;
+    default:
+      return false;
+  }
+}
 
 async function run() {
   const app = express();
   app.use(express.json());
 
-  const allExpenses = new Map();
+  const allExpenses = new Map<string, ExpenseStatus>();
 
-  app.get('/', function (req, res) {
+  app.get('/', function (_req, res) {
     res.json(allExpenses);
   });
 
-  app.get('/list', function (req, res) {
+  app.get('/list', function (_req, res) {
     res.json(allExpenses);
   });
 
@@ -25,42 +41,48 @@ async function run() {
     const { id } = req.body;
     allExpenses.set(id, ExpenseStatus.CREATED);
 
-    return res.json({ ok: 1 });
+    return res.json({ ok: true });
   });
 
   app.post('/action', function (req, res) {
-    const { id } = req.body;
-    const oldState = allExpenses.get(id);
-    if (oldState == null) {
-      throw new Error(`Invalid id ${req.body.id}`);
+    const { id, action } = req.body;
+    if (typeof id !== 'string' || typeof action !== 'string') {
+      return res.status(400).json({ error: 'Invalid request body, expected JSON with id and action attributes' });
     }
-    let newState = '';
-
-    switch (req.body.action) {
-      case 'approve':
-        newState = ExpenseStatus.APPROVED;
-        allExpenses.set(id, ExpenseStatus.APPROVED);
-        break;
-      case 'reject':
-        newState = ExpenseStatus.REJECTED;
-        allExpenses.set(id, ExpenseStatus.REJECTED);
-        break;
-      case 'payment':
-        newState = ExpenseStatus.COMPLETED;
-        allExpenses.set(id, ExpenseStatus.COMPLETED);
-        break;
-      default:
-        throw new Error(`Invalid action ${req.body.action}`);
+    const oldStatus = allExpenses.get(id);
+    if (oldStatus === undefined) {
+      return res.status(404).json({ error: `No expense found for id: ${id}` });
     }
-
-    return res.json({ ok: 1, newState });
+    const newStatus = actionStringToExpenseStatus(action);
+    if (!isValidTransition(oldStatus, newStatus)) {
+      return res.status(400).json({ error: `Invalid status transition ${oldStatus} -> ${newStatus}` });
+    }
+    allExpenses.set(id, newStatus);
+    return res.json({ ok: true, newStatus: newStatus });
   });
 
   app.get('/status', function (req, res) {
     const { id } = req.query;
-    return res.json({ status: allExpenses.get(id) });
+    if (typeof id !== 'string') {
+      return res.status(400).json({ error: 'Invalid or missing "id" query param' });
+    }
+    const status = allExpenses.get(id);
+    if (status === undefined) {
+      return res.status(404).json({ error: `No expense found for id: ${id}` });
+    }
+    return res.json({ status });
   });
 
-  await app.listen(3000);
-  console.log('Listening on port 3000');
+  const server = http.createServer(app);
+  await new Promise<void>((resolve, reject) => {
+    server.listen(PORT, resolve);
+    server.once('error', reject);
+  });
+
+  console.log(`Listening on port ${PORT}`);
 }
+
+run().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

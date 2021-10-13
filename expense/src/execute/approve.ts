@@ -1,5 +1,5 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { expense } from '../workflows';
+import { expense, approveSignal } from '../workflows';
 import { v4 } from 'uuid';
 
 async function run() {
@@ -12,7 +12,7 @@ async function run() {
   await handle.start(expenseId);
 
   await new Promise((resolve) => setTimeout(resolve, 50));
-  await handle.signal.approve();
+  await handle.signal(approveSignal);
 
   console.log('Done:', await handle.result()); // Done: { status: 'COMPLETED' }
 }
