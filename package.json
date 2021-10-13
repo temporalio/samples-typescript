@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
-    "lint": "eslint hello-world",
+    "lint": "cd hello-world && npm run lint",
     "preinstall": "git config core.hooksPath .hooks",
     "prepare": "husky install"
   },
