@@ -1,5 +1,5 @@
 {
-  "name": "temporal-http",
+  "name": "temporal-activities-examples",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,7 +7,7 @@
     "build.watch": "tsc --build --watch",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "test": "ts-mocha ./test/*.test.ts",
+    "test": "ts-mocha src/test/*.test.ts",
     "workflow": "ts-node src/execute-workflow.ts"
   },
   "nodemonConfig": {
@@ -28,6 +28,7 @@
     "@tsconfig/node16": "^1.0.0",
     "@types/mocha": "8.x",
     "@types/node-fetch": "^2.5.12",
+    "@types/sinon": "^10.0.4",
     "mocha": "8.x",
     "nodemon": "^2.0.12",
     "sinon": "^11.1.2",

@@ -8,17 +8,9 @@ export async function cancellableFetch(url: string): Promise<Uint8Array> {
   if (contentLengthHeader === null) {
     throw new Error('expected Content-Length header to be set');
   }
-  if (!response.body) {
-    throw new Error('body is empty')
-  }
-
   const contentLength = parseInt(contentLengthHeader);
   let bytesRead = 0;
   const chunks: Buffer[] = [];
-
-  if (response.body == null) {
-    return new Buffer('');
-  }
 
   for await (const chunk of response.body) {
     if (!(chunk instanceof Buffer)) {
@@ -31,3 +23,4 @@ export async function cancellableFetch(url: string): Promise<Uint8Array> {
   return Buffer.concat(chunks);
 }
 // @@@SNIPEND
+
