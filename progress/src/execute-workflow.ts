@@ -1,5 +1,5 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { progress } from './workflows';
+import { progress, getProgress } from './workflows';
 
 async function run() {
   const connection = new Connection();
@@ -9,12 +9,13 @@ async function run() {
 
   await handle.start();
 
-  const val = await handle.query.getProgress();
+  await new Promise((resolve) => setTimeout(resolve, 2000));
+  const val = await handle.query(getProgress);
   // Should print "10", may print another number depending on timing
   console.log(val);
 
-  const result = await handle.result();
-  console.log(result); // 100
+  await handle.result();
+  console.log('complete');
 }
 
 run().catch((err) => {

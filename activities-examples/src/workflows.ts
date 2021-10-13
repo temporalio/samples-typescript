@@ -1,10 +1,8 @@
 import { createActivityHandle } from '@temporalio/workflow';
-import { Example } from '../interfaces';
-import type * as activities from '../activities';
+import type * as activities from './activities';
 
 const {
   makeHTTPRequest,
-  // fakeProgress, // todo: demo usage
   // cancellableFetch  // todo: demo usage
 } = createActivityHandle<typeof activities>({
   retry: {
@@ -14,9 +12,7 @@ const {
   scheduleToCloseTimeout: '30 seconds',
 });
 
-export const example: Example = () => ({
-  async execute(): Promise<string> {
-    const answer = await makeHTTPRequest();
-    return `The answer is ${answer}`;
-  },
-});
+export async function httpWorkflow(): Promise<string> {
+  const answer = await makeHTTPRequest();
+  return `The answer is ${answer}`;
+}

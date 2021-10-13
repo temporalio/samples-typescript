@@ -1,25 +1,39 @@
 import { Worker } from '@temporalio/worker';
-import { config } from 'dotenv';
+import dotenv from 'dotenv';
+import mailgun from 'mailgun-js';
+import { createActivities } from './activities';
 
-config();
+dotenv.config();
 
-run().catch((err) => console.log(err));
+function getEnv(key: string): string {
+  const val = process.env[key];
+  if (!val) {
+    throw new Error(`Missing '${key}' environment variable`);
+  }
+  return val;
+}
 
 async function run(): Promise<void> {
-  // Step 1: Automatically locate and register Activities and Workflows relative to __dirname.
-  const worker = await Worker.create({
-    workDir: __dirname,
-    taskQueue: 'tutorial20210928',
+  const apiKey = getEnv('MAILGUN_API');
+  const domain = getEnv('MAILGUN_DOMAIN');
+  const to = getEnv('ADMIN_EMAIL');
+
+  const mg = mailgun({ apiKey, domain });
+
+  const activities = createActivities(mg, {
+    to,
+    from: `Temporal Bot <temporal@${domain}>`,
   });
-  // // Worker connects to localhost by default and uses console.error for logging.
-  // // Customize the Worker by passing more options to create():
-  // // https://nodejs.temporal.io/api/classes/worker.Worker
 
-  // // If you need to configure server connection parameters, see the mTLS example:
-  // // https://github.com/temporalio/samples-node/tree/main/hello-world-mtls
-
-  // Step 2: Start accepting tasks on the `tutorial` queue
+  const worker = await Worker.create({
+    taskQueue: 'tutorial20210928',
+    activities,
+    workflowsPath: require.resolve('./workflows'),
+  });
   await worker.run();
-
-  // You may create multiple Workers in a single process in order to poll on multiple task queues.
 }
+
+run().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

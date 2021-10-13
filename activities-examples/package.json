@@ -1,5 +1,5 @@
 {
-  "name": "temporal-activities",
+  "name": "temporal-activities-examples",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,8 +7,8 @@
     "build.watch": "tsc --build --watch",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "test": "ts-mocha ./test/*.test.ts",
-    "test.watch": "ts-mocha ./test/*.test.ts -w --watch-files src, test/**/*.ts",
+    "test": "ts-mocha src/test/*.test.ts",
+    "test.watch": "ts-mocha src/test/*.test.ts -w --watch-files src",
     "workflow": "ts-node src/execute-workflow.ts"
   },
   "nodemonConfig": {
@@ -23,12 +23,13 @@
   "dependencies": {
     "axios": "0.21.1",
     "node-fetch": "2.x",
-    "temporalio": "0.4.2"
+    "temporalio": "0.11.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
     "@types/mocha": "8.x",
     "@types/node-fetch": "^2.5.12",
+    "@types/sinon": "^10.0.4",
     "mocha": "8.x",
     "nodemon": "^2.0.12",
     "sinon": "^11.1.2",

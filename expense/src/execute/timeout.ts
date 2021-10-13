@@ -10,7 +10,7 @@ async function run() {
   const expenseId = v4();
 
   // Prints "Done: { status: 'TIMED_OUT' }" after approximately 1 second
-  console.log('Done:', await handle.execute(expenseId, 1000));
+  console.log('Done:', await handle.execute(expenseId, '1s'));
 }
 run().catch((err) => {
   console.error(err);

@@ -2,8 +2,6 @@
   "extends": "@tsconfig/node16/tsconfig.json",
   "version": "4.4.2",
   "compilerOptions": {
-    "emitDecoratorMetadata": false,
-    "experimentalDecorators": false,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,

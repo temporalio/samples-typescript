@@ -7,7 +7,7 @@ async function run(): Promise<void> {
 
   const handle = client.createWorkflowHandle(dependencyWF, { taskQueue: 'tutorial' });
 
-  const result = await handle.execute('Temporal');
+  const result = await handle.execute();
   console.log(result);
 }
 
