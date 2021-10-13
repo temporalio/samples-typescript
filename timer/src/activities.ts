@@ -7,7 +7,10 @@ export interface EmailSettings {
   from: string;
 }
 
-export const createActivities = (mg: mailgun.Mailgun, { to, from }: EmailSettings) => ({
+export const createActivities = (
+  mg: mailgun.Mailgun,
+  { to, from }: EmailSettings
+): { processOrder: (sleepMS: number) => Promise<void>; sendNotificationEmail: () => Promise<void> } => ({
   async processOrder(sleepMS = 1000): Promise<void> {
     await Context.current().sleep(sleepMS);
   },

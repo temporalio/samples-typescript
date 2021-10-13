@@ -7,6 +7,7 @@ async function run() {
   // Mock DB connection initialization in Worker
   const db = {
     async get(_key: string) {
+      // eslint-disable-line @typescript-eslint/no-unused-vars
       return 'Temporal';
     },
   };

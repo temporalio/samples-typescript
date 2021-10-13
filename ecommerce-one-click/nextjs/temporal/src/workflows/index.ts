@@ -9,7 +9,7 @@ const { checkoutItem, canceledPurchase } = createActivityHandle<typeof activitie
 type PurchaseState = 'PURCHASE_PENDING' | 'PURCHASE_CONFIRMED' | 'PURCHASE_CANCELED';
 
 export const OneClickBuy = (itemId: string) => {
-  let itemToBuy = itemId;
+  const itemToBuy = itemId;
   let purchaseState: PurchaseState = 'PURCHASE_PENDING';
   const cancelTrigger = new Trigger<string>();
   return {

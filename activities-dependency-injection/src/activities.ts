@@ -3,7 +3,9 @@ export interface DB {
   get(key: string): Promise<string>;
 }
 
-export const createActivities = (db: DB) => ({
+export const createActivities = (
+  db: DB
+): { greet: (msg: string) => Promise<string>; greet_es: (mensaje: string) => Promise<string> } => ({
   async greet(msg: string): Promise<string> {
     const name = await db.get('name'); // simulate read from db
     return `${msg}: ${name}`;
