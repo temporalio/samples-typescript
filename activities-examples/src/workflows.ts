@@ -3,7 +3,6 @@ import type * as activities from './activities';
 
 const {
   makeHTTPRequest,
-  // fakeProgress, // todo: demo usage
   // cancellableFetch  // todo: demo usage
 } = createActivityHandle<typeof activities>({
   retry: {

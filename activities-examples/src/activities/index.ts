@@ -1,5 +1,4 @@
 import axios from 'axios';
-export { fakeProgress } from './fake-progress';
 export { cancellableFetch } from './cancellable-fetch';
 
 export async function makeHTTPRequest(): Promise<string> {

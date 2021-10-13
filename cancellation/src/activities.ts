@@ -1,9 +1,8 @@
-import { CancelledFailure } from '@temporalio/common';
+// @@@SNIPSTART nodejs-activity-fake-progress
 import { Context } from '@temporalio/activity';
+import { CancelledFailure } from '@temporalio/common';
 
-export async function activityToBeCancelled(): Promise<void> {
-  const sleepIntervalMs = 100;
-
+export async function fakeProgress(sleepIntervalMs = 1000): Promise<void> {
   try {
     for (let progress = 1; progress <= 100; ++progress) {
       // sleep for given interval or throw if Activity is cancelled
@@ -12,10 +11,10 @@ export async function activityToBeCancelled(): Promise<void> {
     }
   } catch (err) {
     if (err instanceof CancelledFailure) {
-      return;
+      console.log('Fake progress activity cancelled');
+      // Cleanup
     }
     throw err;
   }
-
-  return;
 }
+// @@@SNIPEND
