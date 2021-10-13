@@ -8,7 +8,8 @@
     "build:next": "next build",
     "build:temporal": "tsc --build ./temporal/tsconfig.json",
     "start": "npm run dev",
-    "start:worker": "node ./temporal/lib/worker"
+    "start:worker": "node ./temporal/lib/worker",
+    "lint": "eslint ."
   },
   "dependencies": {
     "@headlessui/react": "^1.4.1",
