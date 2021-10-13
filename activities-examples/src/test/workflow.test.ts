@@ -1,4 +1,10 @@
-import { WorkflowClient, WorkflowHandle, WorkflowExecutionFailedError } from '@temporalio/client';
+import {
+  WorkflowClient,
+  WorkflowHandle,
+  WorkflowExecutionFailedError,
+  ActivityFailure,
+  ApplicationFailure,
+} from '@temporalio/client';
 import { Core, Worker, DefaultLogger } from '@temporalio/worker';
 import { describe, before, after, afterEach, it } from 'mocha';
 import assert from 'assert';
@@ -73,9 +79,9 @@ describe('example workflow', function () {
       () => workflow.execute(),
       (err: unknown) =>
         err instanceof WorkflowExecutionFailedError &&
-        err.cause &&
-        'cause' in err.cause &&
-        err.cause['cause']['message'] === 'example error'
+        err.cause instanceof ActivityFailure &&
+        err.cause.cause instanceof ApplicationFailure &&
+        err.cause.cause.message === 'example error'
     );
   });
 });
