@@ -6,7 +6,7 @@
     "test": "pushd activities-examples && npm test; popd",
     "format": "prettier --write .",
     "lint": "eslint .",
-    "preinstall": "git config core.hooksPath .hooks",
+    "copy-shared-files": "zx .shared/copy-shared-files.mjs",
     "prepare": "husky install"
   },
   "devDependencies": {
@@ -20,7 +20,8 @@
     "lint-staged": "^11.2.3",
     "next": "^11.1.2",
     "prettier": "^2.3.2",
-    "typescript": "^4.4.3"
+    "typescript": "^4.4.3",
+    "zx": "^4.2.0"
   },
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix",

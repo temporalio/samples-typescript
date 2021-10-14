@@ -2,30 +2,4 @@
 # . "$(dirname "$0")/_/husky.sh"
 
 npx lint-staged
-
-for file in *; do
-  if [[ -d "$file" ]] # is a directory?
-  then
-    dir=$file
-    if ! [[ " node_modules ecommerce-one-click " =~ " $dir " ]]
-    then
-      cp .shared/tsconfig.json $dir/
-      git add $dir/tsconfig.json
-
-      cp .shared/.eslintrc.js $dir/
-      git add $dir/.eslintrc.js
-
-      cp .shared/.eslintignore $dir/
-      git add $dir/.eslintignore
-
-      cp .shared/.gitignore $dir/
-      git add $dir/.gitignore
-
-      cp .shared/.npmrc $dir/
-      git add $dir/.npmrc
-
-      cp .shared/.nvmrc $dir/
-      git add $dir/.nvmrc
-    fi
-  fi
-done
+npm run copy-shared-files
