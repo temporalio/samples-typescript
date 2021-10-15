@@ -1,0 +1,15 @@
+{
+  "extends": "@tsconfig/node16/tsconfig.json",
+  "version": "4.4.2",
+  "compilerOptions": {
+    "module": "esnext",
+    "moduleResolution": "node",
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "rootDir": "./src",
+    "outDir": "./lib"
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
