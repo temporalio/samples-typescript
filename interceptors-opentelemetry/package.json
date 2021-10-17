@@ -20,6 +20,9 @@
     ]
   },
   "dependencies": {
+    "@opentelemetry/core": "^1.0.0",
+    "@opentelemetry/sdk-node": "^0.26.0",
+    "@opentelemetry/sdk-trace-base": "^1.0.0",
     "@temporalio/interceptors-opentelemetry": "0.11.x",
     "temporalio": "0.11.x"
   },

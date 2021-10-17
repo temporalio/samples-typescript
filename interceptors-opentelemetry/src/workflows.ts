@@ -2,7 +2,6 @@ import { createActivityHandle, WorkflowInterceptors } from '@temporalio/workflow
 import {
   OpenTelemetryInboundInterceptor,
   OpenTelemetryOutboundInterceptor,
-  registerOpentelemetryTracerProvider,
 } from '@temporalio/interceptors-opentelemetry/lib/workflow';
 import type * as activities from './activities';
 
@@ -19,5 +18,3 @@ export const interceptors = (): WorkflowInterceptors => ({
   inbound: [new OpenTelemetryInboundInterceptor()],
   outbound: [new OpenTelemetryOutboundInterceptor()],
 });
-
-registerOpentelemetryTracerProvider();
