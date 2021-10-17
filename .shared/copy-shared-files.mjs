@@ -3,6 +3,8 @@ const TSCONFIG_EXCLUDE = ['fetch-esm'];
 const GITIGNORE_EXCLUDE = ['ecommerce-one-click/nextjs'];
 const ESLINTRC_EXCLUDE = ['ecommerce-one-click/nextjs'];
 
+$.verbose = false;
+
 let answer = await question(
   `Running pre-commit hook.
 This will overwrite any changes made to config files in samples (like ${chalk.bold('hello-world/tsconfig.json')}).
@@ -35,6 +37,8 @@ for (const dir of directories) {
   }
 }
 
+process.stdout.write('Copying config files from .shared/ to samples...');
+
 for (const sample of samples) {
   if (!TSCONFIG_EXCLUDE.includes(sample)) {
     await copyAndAdd(sample, 'tsconfig.json');
@@ -52,6 +56,8 @@ for (const sample of samples) {
   await copyAndAdd(sample, '.npmrc');
   await copyAndAdd(sample, '.nvmrc');
 }
+
+console.log(' done.');
 
 async function copyAndAdd(sample, file) {
   await $`cp .shared/${file} ${sample}/`;
