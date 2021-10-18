@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Trigger, createActivityHandle, sleep } from '@temporalio/workflow';
 // // Only import the activity types
 import type * as activities from '../activities';
@@ -9,7 +10,7 @@ const { checkoutItem, canceledPurchase } = createActivityHandle<typeof activitie
 type PurchaseState = 'PURCHASE_PENDING' | 'PURCHASE_CONFIRMED' | 'PURCHASE_CANCELED';
 
 export const OneClickBuy = (itemId: string) => {
-  let itemToBuy = itemId;
+  const itemToBuy = itemId;
   let purchaseState: PurchaseState = 'PURCHASE_PENDING';
   const cancelTrigger = new Trigger<string>();
   return {
