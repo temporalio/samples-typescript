@@ -2,6 +2,7 @@
 import { createActivityHandle, sleep } from '@temporalio/workflow';
 // Only import the activity types
 import type { createActivities } from './activities';
+export * from './UpdatableTimer'
 
 const { processOrder, sendNotificationEmail } = createActivityHandle<ReturnType<typeof createActivities>>({
   startToCloseTimeout: '5 minutes',

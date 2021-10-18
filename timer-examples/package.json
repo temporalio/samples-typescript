@@ -4,9 +4,10 @@
   "scripts": {
     "build": "tsc --build ./tsconfig.json",
     "build.watch": "tsc --build --watch ./tsconfig.json",
-    "worker": "node ./lib/worker",
+    "start": "node ./lib/worker",
     "workflow-fast": "node ./lib/starter/fast",
-    "workflow-slow": "node ./lib/starter/slow"
+    "workflow-slow": "node ./lib/starter/slow",
+    "workflow-updating": "node ./lib/starter/updating"
   },
   "name": "temporal-timer",
   "dependencies": {
