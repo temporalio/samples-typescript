@@ -2,6 +2,7 @@ import { Worker } from '@temporalio/worker';
 import { createStickyActivities, createNonStickyActivities } from './activities';
 import { v4 as uuid } from 'uuid';
 
+// @@@SNIPSTART nodejs-sticky-queues-worker
 async function run() {
   const uniqueWorkerTaskQueue = uuid();
 
@@ -19,6 +20,7 @@ async function run() {
   ]);
   await Promise.all(workers.map((w) => w.run()));
 }
+// @@@SNIPEND
 
 run().catch((err) => {
   console.error(err);
