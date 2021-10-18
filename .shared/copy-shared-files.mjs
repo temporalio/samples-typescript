@@ -5,13 +5,13 @@ const ESLINTRC_EXCLUDE = ['ecommerce-one-click/nextjs'];
 
 $.verbose = false;
 
-let answer = await question(
+let [answer] = await question(
   `Running pre-commit hook.
 This will overwrite any changes made to config files in samples (like ${chalk.bold('hello-world/tsconfig.json')}).
 Proceed? [Y/n] `
 );
 
-if (answer[0].toUpperCase() !== 'Y') {
+if ((answer ?? 'y').toUpperCase() !== 'Y') {
   console.log(`To change config files, edit them in the ${chalk.bold('.shared/')} directory.\nAborting commit.`);
   process.exit(1);
 }
