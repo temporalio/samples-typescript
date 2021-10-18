@@ -21,7 +21,7 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           # Comment out next line when testing with `act`
-          # cache: 'npm'
+          cache: 'npm'
       - run: npm install
       - run: npx prettier . --check
       # - run: npm run lint
