@@ -1,0 +1,38 @@
+{
+  "name": "temporal-query-subscriptions",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "start": "ts-node src/worker.ts",
+    "start.watch": "nodemon src/worker.ts",
+    "subscribe": "ts-node src/subscribe.ts",
+    "lint": "eslint ."
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
+  "dependencies": {
+    "immer": "^9.0.6",
+    "ioredis": "^4.28.0",
+    "temporalio": "0.11.x"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.0",
+    "@types/ioredis": "^4.27.7",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-deprecation": "^1.2.1",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1",
+    "typescript": "^4.4.2"
+  }
+}

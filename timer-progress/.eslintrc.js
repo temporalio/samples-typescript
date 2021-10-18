@@ -17,9 +17,10 @@ module.exports = {
       'warn',
       {
         argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
       },
     ],
-    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
     'object-shorthand': ['error', 'always'],
     'deprecation/deprecation': 'warn',
   },
