@@ -10,6 +10,8 @@ The strategy is:
 - For activities intended to be "sticky", only register them in one Worker, and have that be the only Worker listening on that `uniqueWorkerTaskQueue`
 - execute workflows from the Client like normal
 
+Activities have been artificially slowed with `activity.Context().sleep(3000)` to simulate slow activities.
+
 ## Steps to run this example
 
 1. Make sure the Temporal Server is running locally. Follow the [Quick install guide](https://docs.temporal.io/docs/server/quick-install) to do that.
@@ -27,3 +29,19 @@ Did some work on /tmp/b15036de-dbc7-4bc9-b2c7-7c48635c5797, checksum: b3fc767460
 
 Removing /tmp/b15036de-dbc7-4bc9-b2c7-7c48635c5797
 ```
+
+
+![image](https://user-images.githubusercontent.com/6764957/137707555-967503fd-d0d5-4b57-a04e-48d297ab7dfb.png)
+
+## Things to try
+
+<details>
+<summary>
+You should also try to intentionally crash workers while they are doing work to see what happens when work gets "stuck" in a unique queue - currently the Workflow will `scheduleToCloseTimeout` without a Worker, and retry when a Worker comes back online. 
+</summary>
+
+![image](https://user-images.githubusercontent.com/6764957/137708492-41611a1f-3093-4221-800c-017c0a9d88b2.png)
+
+</details>
+
+After the 5th attempt,  it logs `Final attempt 5 failed, giving up` and exit. But you may wish to implement compensatory logic, including notifying you.
