@@ -1,9 +1,10 @@
-const NON_SAMPLES = ['node_modules'];
+const NON_SAMPLES = ['node_modules', 'ecommerce-one-click'];
 const TSCONFIG_EXCLUDE = ['fetch-esm'];
 const GITIGNORE_EXCLUDE = ['ecommerce-one-click/nextjs'];
 const ESLINTRC_EXCLUDE = ['ecommerce-one-click/nextjs'];
+const ADDITIONAL_SAMPLES = ['ecommerce-one-click/nextjs', 'ecommerce-one-click/sveltejs', 'ecommerce-one-click/vuejs'];
 
-$.verbose = false;
+$.verbose = true;
 
 let [answer] = await question(
   `Running pre-commit hook.
@@ -17,25 +18,10 @@ if ((answer ?? 'y').toUpperCase() !== 'Y') {
 }
 
 const dirents = await fs.readdir('.', { withFileTypes: true });
-const directories = dirents.filter(
-  (dirent) => dirent.isDirectory() && !NON_SAMPLES.includes(dirent.name) && dirent.name[0] !== '.'
-);
-
-const samples = [];
-for (const dir of directories) {
-  try {
-    await fs.access(dir.name + '/package.json');
-    samples.push(dir.name);
-  } catch (error) {
-    if (error.code === 'ENOENT') {
-      // There's no package.json. Add the subdirectories as samples.
-      const subdirectories = fs.readdirSync(dir.name, { withFileTypes: true }).filter((dirent) => dirent.isDirectory());
-      samples.push(...subdirectories.map((dirent) => `${dir.name}/${dirent.name}`));
-    } else {
-      throw error;
-    }
-  }
-}
+const samples = dirents
+  .filter((dirent) => dirent.isDirectory() && !NON_SAMPLES.includes(dirent.name) && dirent.name[0] !== '.')
+  .map(({ name }) => name)
+  .concat(ADDITIONAL_SAMPLES);
 
 process.stdout.write('Copying config files from .shared/ to samples...');
 
