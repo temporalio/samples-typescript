@@ -30,3 +30,11 @@ Activity time: 1634551861106
 ```
 
 The difference between "Workflow time" and "Activity time" reflects the latency between scheduling an Activity and actually starting it.
+
+Each new Workflow is `continuedAsNew` under the hood:
+
+![image](https://user-images.githubusercontent.com/6764957/137712906-2a1d821b-d664-442c-8f17-a174b284c722.png)
+
+And you can see the details in the event history:
+
+![image](https://user-images.githubusercontent.com/6764957/137713250-f19a2987-4e9f-4e76-8e35-c17507731a20.png)
