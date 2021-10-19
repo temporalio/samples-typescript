@@ -54,4 +54,6 @@ External contributions are very welcome, just please make sure you agree with us
 
 ### Advanced APIs
 
-- [**Interceptors**](https://github.com/temporalio/samples-node/tree/main/interceptors-opentelemetry): How to use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows. ⚠️ This sample is broken for now.
+- Interceptors
+  - [OpenTelemetry](https://github.com/temporalio/samples-node/tree/main/interceptors-opentelemetry): How to use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows. ⚠️ This sample is broken for now.
+  - [Query Subscriptions](https://github.com/temporalio/samples-node/tree/main/interceptors-opentelemetry): Demo using Redis Streams, Immer, and SDK Interceptors to build a subscribable query mechanism for Workflow state.
