@@ -13,11 +13,13 @@ Each directory contains a sample app that has a separate `README.md` with instru
 
 ### API demonstrations
 
-- [**Activities**](https://github.com/temporalio/samples-node/tree/main/activities-examples): 
-  - `makeHTTPRequest`: How to make an external HTTP request in an activity, with `axios`
-  - fakeProgress (tbc)
-  - cancellableFetch (tbc)
+- **Activities**
+  - [**Activities Examples**](https://github.com/temporalio/samples-node/tree/main/activities-examples): 
+    - `makeHTTPRequest`: How to make an external HTTP request in an activity, with `axios`
+    - fakeProgress (tbc)
+    - cancellableFetch (tbc)
   - [**Dependency Injection**](https://github.com/temporalio/samples-node/tree/main/activities-dependency-injection): This sample shows how to share dependencies between activities, for example when you need to initialize a database connection once and then pass it to multiple dependencies.
+  - [**Sticky Queues**](https://github.com/temporalio/samples-node/tree/main/activities-sticky-queues): This sample shows how to dynamically assign task queue names to ensure activities execute sequentially on the same machine (eg for CI/CD, file processing workflows)
 - [**Cron Workflows**](https://github.com/temporalio/samples-node/tree/main/cron-workflows): how to schedule a cron job with Temporal.
 - [**Child Workflows**](https://github.com/temporalio/samples-node/tree/main/child-workflows)
 - **Timers**:
@@ -31,9 +33,10 @@ Each directory contains a sample app that has a separate `README.md` with instru
 ### Example Apps
 
 - **Next.js**:
-  - The `nextjs-oneclick` example
+  - The `nextjs-oneclick` example: https://github.com/temporalio/samples-node/tree/main/nextjs-ecommerce-oneclick
   - [Food Delivery](https://github.com/lorensr/food-delivery)
+- Ecommerce example: https://github.com/vkarpov15/temporal-ecommerce-ts
 
 ### Advanced APIs
 
-- [**Interceptors**](https://github.com/temporalio/samples-node/tree/main/interceptors-opentelemetry): How to use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows
+- [**Interceptors**](https://github.com/temporalio/samples-node/tree/main/interceptors-opentelemetry): How to use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows. ⚠️ This sample is broken for now.

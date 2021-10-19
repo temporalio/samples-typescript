@@ -1,5 +1,0 @@
-## todo: vue example
-
-```
-
-```
