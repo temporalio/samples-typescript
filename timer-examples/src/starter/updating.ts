@@ -7,9 +7,9 @@ async function run(): Promise<void> {
 
   const handle = client.createWorkflowHandle(countdownWorkflow, { taskQueue: 'tutorial20210928' });
   await handle.start();
-  console.log('Time left: ', await handle.query(timeLeftQuery));
-  await handle.signal(addTimeSignal, Date.now() + 1000)
-  console.log('Time left: ', await handle.query(timeLeftQuery));
+  // console.log('Time left: ', await handle.query(timeLeftQuery)); // buggy for now until Temporal Server v1.12.4 released
+  await handle.signal(addTimeSignal, Date.now() + 1000);
+  // console.log('Time left: ', await handle.query(timeLeftQuery));
   console.log('Done');
 }
 

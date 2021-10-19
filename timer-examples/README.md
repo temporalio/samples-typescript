@@ -1,6 +1,9 @@
 # Timer Reminder Example
 
-This example shows how to use a Timer to send a reminder email after some time elapses.
+This example shows
+
+- how to use `sleep` to send a reminder email after some time elapses
+- how to use `sleep` to create an Updatable Timer
 
 ## Steps to run this example
 
@@ -11,3 +14,4 @@ This example shows how to use a Timer to send a reminder email after some time e
 5. Run `npm run build` to compile the project.
 6. Run `npm run start` to start the worker. Leave the worker process running.
 7. Run `npm run workflow-slow` to start the example. Should print out "Done" and send an email to the email specified in the `ADMIN_EMAIL` environment variable
+8. Run `npm run workflow-updating`.

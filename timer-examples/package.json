@@ -3,7 +3,7 @@
   "private": true,
   "scripts": {
     "build": "tsc --build ./tsconfig.json",
-    "build.watch": "tsc --build --watch ./tsconfig.json",
+    "build.once": "tsc --build --watch ./tsconfig.json",
     "start": "node ./lib/worker",
     "workflow-fast": "node ./lib/starter/fast",
     "workflow-slow": "node ./lib/starter/slow",
