@@ -7,13 +7,9 @@
     "start": "node ./lib/worker",
     "workflow-fast": "node ./lib/starter/fast",
     "workflow-slow": "node ./lib/starter/slow",
-<<<<<<< HEAD:timer-examples/package.json
-    "workflow-updating": "node ./lib/starter/updating"
-=======
+    "workflow-updating": "node ./lib/starter/updating",
     "lint": "eslint ."
->>>>>>> main:timer/package.json
   },
-  "name": "temporal-timer",
   "dependencies": {
     "dotenv": "^10.0.0",
     "mailgun-js": "^0.22.0",
