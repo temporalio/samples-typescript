@@ -1,34 +1,34 @@
 import Head from 'next/head';
+import Image from 'next/image';
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-function fetchAPI(str, obj ?: RequestInit) {
+function fetchAPI(str, obj?: RequestInit) {
   return fetch(str, obj)
     .then(async (res) => {
-      console.log(res)
-      if (res.ok) return res.json()
+      console.log(res);
+      if (res.ok) return res.json();
       try {
-        const { message, errorCode } = await res.json()
+        const { message, errorCode } = await res.json();
         throw new Error(errorCode + ': ' + message);
       } catch (err) {
         throw new Error(res.status + ': ' + res.statusText);
       }
     })
     .catch((err) => {
-      console.error(err)
+      console.error(err);
       toast.error(err, {
-        position: "top-right",
+        position: 'top-right',
         autoClose: 5000,
         closeOnClick: true,
         draggable: true,
-      })
+      });
       // throw err
     });
 }
 
 export default function Bones() {
-
   return (
     <div className="pt-8 pb-80 sm:pt-12 sm:pb-40 lg:pt-24 lg:pb-48">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 sm:static">
@@ -106,24 +106,26 @@ const products = [
     imageAlt:
       'Payment application dashboard screenshot with transaction table, financial highlights, and main clients on colorful purple background.',
   },
-]
+];
 
 function ProductList() {
   return (
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
         <div className="mt-6 grid grid-cols-1 gap-x-8 gap-y-8 sm:grid-cols-2 sm:gap-y-10 md:grid-cols-4">
-          {products.map((product) => <Product product={product} key={product.id} />)}
+          {products.map((product) => (
+            <Product product={product} key={product.id} />
+          ))}
         </div>
       </div>
     </div>
-  )
+  );
 }
 
-type ITEMSTATE = 'NEW' | 'SENDING' | 'ORDERED' | 'CONFIRMED' | 'CANCELLING' | 'ERROR'
+type ITEMSTATE = 'NEW' | 'SENDING' | 'ORDERED' | 'CONFIRMED' | 'CANCELLING' | 'ERROR';
 
 function Product({ product }) {
-  const itemId = product.id
+  const itemId = product.id;
   const [state, setState] = React.useState<ITEMSTATE>('NEW');
   const [workflowId, setWFID] = React.useState(null);
   const toastId = React.useRef(null);
@@ -138,15 +140,18 @@ function Product({ product }) {
     })
       .then((x) => setWFID(x.workflowId))
       .then(() => {
-        setState('ORDERED')
+        setState('ORDERED');
         toastId.current = toast.success('Purchased! Cancel if you change your mind', {
-          position: "top-right",
+          position: 'top-right',
           autoClose: 5000,
           closeOnClick: true,
           draggable: true,
-          onClose: () => {console.log({state}); if (state === 'NEW') setState('CONFIRMED')}
+          onClose: () => {
+            console.log({ state });
+            if (state === 'NEW') setState('CONFIRMED');
+          },
           // onClose: () => {setState('CONFIRMED')}
-        })
+        });
       });
   }
   // function getState() {
@@ -161,52 +166,73 @@ function Product({ product }) {
       setState('CANCELLING');
       fetchAPI('/api/cancelBuy?id=' + workflowId)
         .then(() => setState('NEW'))
-        .catch(err => {
-          setState('ERROR')
+        .catch((err) => {
+          setState('ERROR');
           toast.error(err, {
-            position: "top-right",
+            position: 'top-right',
             autoClose: 5000,
             closeOnClick: true,
             draggable: true,
-          })
-        })
-    toast.dismiss(toastId.current)
+          });
+        });
+      toast.dismiss(toastId.current);
     }
   }
   return (
     <div key={product.id} className="relative group">
       <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden bg-gray-100">
-        <img src={product.imageSrc} alt={product.imageAlt} className="object-center object-cover" />
+        <Image src={product.imageSrc} alt={product.imageAlt} className="object-center object-cover" />
         <div className="flex items-end p-4" aria-hidden="true">
-          {{
-            'NEW': <button onClick={buyProduct} className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
-                    Buy Now
-                    </button>,
-            'SENDING': <div className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
-                    Sending...
-                    </div>,
-            'ORDERED': <button onClick={cancelBuy} className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
-                    Click to Cancel
-                    </button>,
-            'CONFIRMED': <div className="w-full  opacity-100 bg-white bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
-                    Purchased!
-                    </div>,
-            'CANCELLING': <div className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
-                    Cancelling...
-                    </div>,
-            'ERROR': <button  onClick={buyProduct} className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
-                    Error! Click to Retry
-                    </button>,
-          }[state]}
+          {
+            {
+              NEW: (
+                <button
+                  onClick={buyProduct}
+                  className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center"
+                >
+                  Buy Now
+                </button>
+              ),
+              SENDING: (
+                <div className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
+                  Sending...
+                </div>
+              ),
+              ORDERED: (
+                <button
+                  onClick={cancelBuy}
+                  className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center"
+                >
+                  Click to Cancel
+                </button>
+              ),
+              CONFIRMED: (
+                <div className="w-full  opacity-100 bg-white bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
+                  Purchased!
+                </div>
+              ),
+              CANCELLING: (
+                <div className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center">
+                  Cancelling...
+                </div>
+              ),
+              ERROR: (
+                <button
+                  onClick={buyProduct}
+                  className="w-full bg-white hover:bg-blue-200 bg-opacity-75 backdrop-filter backdrop-blur py-2 px-4 rounded-md text-sm font-medium text-gray-900 text-center"
+                >
+                  Error! Click to Retry
+                </button>
+              ),
+            }[state]
+          }
         </div>
       </div>
       <div className="mt-4 flex items-center justify-between text-base font-medium text-gray-900 space-x-8">
-        <h3>
-            {product.name}
-        </h3>
+        <h3>{product.name}</h3>
         <p>{product.price}</p>
       </div>
       <p className="mt-1 text-sm text-gray-500">{product.category}</p>
     </div>
-  )
+  );
 }

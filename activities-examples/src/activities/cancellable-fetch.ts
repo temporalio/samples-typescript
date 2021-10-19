@@ -23,4 +23,3 @@ export async function cancellableFetch(url: string): Promise<Uint8Array> {
   return Buffer.concat(chunks);
 }
 // @@@SNIPEND
-

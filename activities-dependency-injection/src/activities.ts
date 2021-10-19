@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 // @@@SNIPSTART typescript-activity-with-deps
 export interface DB {
   get(key: string): Promise<string>;

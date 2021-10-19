@@ -1,5 +1,5 @@
 import { ExportResult } from '@opentelemetry/core';
-import { ConsoleSpanExporter, ReadableSpan } from '@opentelemetry/tracing';
+import { ConsoleSpanExporter, ReadableSpan } from '@opentelemetry/sdk-trace-base';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { SpanName } from '@temporalio/interceptors-opentelemetry/lib/workflow';
 

@@ -19,7 +19,7 @@ The `dev` script does 3 things:
 Now you can go to http://localhost:3000/api/hello and see the result:
 
 ```json
-{"name":"John Doe"}
+{ "name": "John Doe" }
 ```
 
 ## Demo
@@ -37,7 +37,6 @@ There are two versions of this for development purposes.
 - Things to try
   - View workflow state in Temporal Web
   - Click "Cancel Buy" within 5 seconds
-
 
 ## Deploy
 

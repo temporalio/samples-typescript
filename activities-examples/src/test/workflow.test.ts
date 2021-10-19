@@ -1,4 +1,10 @@
-import { Connection, WorkflowClient, WorkflowHandle } from '@temporalio/client';
+import {
+  WorkflowClient,
+  WorkflowHandle,
+  WorkflowExecutionFailedError,
+  ActivityFailure,
+  ApplicationFailure,
+} from '@temporalio/client';
 import { Core, Worker, DefaultLogger } from '@temporalio/worker';
 import { describe, before, after, afterEach, it } from 'mocha';
 import assert from 'assert';
@@ -11,12 +17,14 @@ describe('example workflow', function () {
   let shutdown: () => Promise<void>;
   let workflow: WorkflowHandle<typeof httpWorkflow>;
 
+  this.slow(1000);
+
   before(async function () {
-    this.timeout(10000);
+    this.timeout(10 * 1000);
     // Filter INFO log messages for clearer test output
     await Core.install({ logger: new DefaultLogger('WARN') });
     const worker = await Worker.create({
-      taskQueue: 'testhttp',
+      taskQueue: 'test-activities',
       workflowsPath: require.resolve('../workflows'),
       activities,
     });
@@ -29,10 +37,12 @@ describe('example workflow', function () {
   });
 
   beforeEach(() => {
-    const connection = new Connection();
-    const client = new WorkflowClient(connection.service);
+    const client = new WorkflowClient();
 
-    workflow = client.createWorkflowHandle(httpWorkflow, { taskQueue: 'testhttp' });
+    workflow = client.createWorkflowHandle(httpWorkflow, {
+      taskQueue: 'test-activities',
+      workflowExecutionTimeout: 1000,
+    });
   });
 
   after(async () => {
@@ -67,7 +77,11 @@ describe('example workflow', function () {
 
     await assert.rejects(
       () => workflow.execute(),
-      (err: any) => err.name === 'WorkflowExecutionFailedError' && err.cause.cause.message === 'example error'
+      (err: unknown) =>
+        err instanceof WorkflowExecutionFailedError &&
+        err.cause instanceof ActivityFailure &&
+        err.cause.cause instanceof ApplicationFailure &&
+        err.cause.cause.message === 'example error'
     );
   });
 });

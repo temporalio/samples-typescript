@@ -15,4 +15,3 @@ i am a child named Alice
 i am a child named Bob
 i am a child named Charlie
 ```
-

@@ -1,4 +1,4 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { Connection, WorkflowClient, WorkflowExecutionCancelledError } from '@temporalio/client';
 import { runCancellableActivity } from './workflows';
 
 async function run() {
@@ -14,8 +14,8 @@ async function run() {
   console.log('Cancelled workflow successfully');
   try {
     await handle.result();
-  } catch (err: any) {
-    if (err.name === 'WorkflowExecutionCancelledError') {
+  } catch (err: unknown) {
+    if (err instanceof WorkflowExecutionCancelledError) {
       console.log('handle.result() threw because Workflow was cancelled');
     } else {
       throw err;

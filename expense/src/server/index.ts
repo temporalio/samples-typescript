@@ -58,7 +58,7 @@ async function run() {
       return res.status(400).json({ error: `Invalid status transition ${oldStatus} -> ${newStatus}` });
     }
     allExpenses.set(id, newStatus);
-    return res.json({ ok: true, newStatus: newStatus });
+    return res.json({ ok: true, newStatus });
   });
 
   app.get('/status', function (req, res) {

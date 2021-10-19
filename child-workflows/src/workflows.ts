@@ -6,7 +6,7 @@ export async function childWorkflow(name: string): Promise<string> {
 
 // @@@SNIPSTART nodejs-child-workflow
 export async function parentWorkflow(names: string[]): Promise<string> {
-  let responseArray = await Promise.all(
+  const responseArray = await Promise.all(
     names.map((name) => {
       const child = createChildWorkflowHandle(childWorkflow);
       return child.execute(name);

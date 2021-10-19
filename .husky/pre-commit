@@ -1,0 +1,6 @@
+#!/bin/sh
+set -euo pipefail
+
+exec < /dev/tty
+npm run copy-shared-files
+npx lint-staged

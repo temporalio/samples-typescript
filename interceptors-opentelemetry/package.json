@@ -7,7 +7,8 @@
     "build.watch": "tsc --build --watch",
     "start": "ts-node src/worker",
     "start.watch": "nodemon src/worker",
-    "workflow": "ts-node src/execute-workflow.ts"
+    "workflow": "ts-node src/execute-workflow.ts",
+    "lint": "eslint ."
   },
   "nodemonConfig": {
     "execMap": {
@@ -19,11 +20,18 @@
     ]
   },
   "dependencies": {
-    "@temporalio/interceptors-opentelemetry": "^0.2.0",
+    "@opentelemetry/core": "^1.0.0",
+    "@opentelemetry/sdk-node": "^0.26.0",
+    "@opentelemetry/sdk-trace-base": "^1.0.0",
+    "@temporalio/interceptors-opentelemetry": "0.11.x",
     "temporalio": "0.11.x"
   },
   "devDependencies": {
     "@tsconfig/node14": "^1.0.0",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-deprecation": "^1.2.1",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",
     "typescript": "^4.2.2"

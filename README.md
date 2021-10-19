@@ -29,7 +29,6 @@ Each directory contains a sample app that has a separate `README.md` with instru
   - **Async activity completion**: Example of an [Expense reporting](https://github.com/temporalio/samples-node/tree/main/expense) Workflow that communicates with a server API. How to kick off a workflow, and manually complete it at an arbitrarily later date.
 - [**Cancellation**](https://github.com/temporalio/samples-node/tree/main/cancellation): How to programmatically cancel a workflow
 
-
 ### Example Apps
 
 - **Next.js**:
