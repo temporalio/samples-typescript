@@ -1,8 +1,8 @@
-const NON_SAMPLES = ['node_modules', 'ecommerce-one-click'];
+const NON_SAMPLES = ['node_modules'];
 const TSCONFIG_EXCLUDE = ['fetch-esm'];
-const GITIGNORE_EXCLUDE = ['ecommerce-one-click/nextjs'];
-const ESLINTRC_EXCLUDE = ['ecommerce-one-click/nextjs'];
-const ADDITIONAL_SAMPLES = ['ecommerce-one-click/nextjs', 'ecommerce-one-click/sveltejs', 'ecommerce-one-click/vuejs'];
+const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick'];
+const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick'];
+// const ADDITIONAL_SAMPLES = ['ecommerce-one-click/nextjs', 'ecommerce-one-click/sveltejs', 'ecommerce-one-click/vuejs'];
 
 $.verbose = true;
 
@@ -20,8 +20,8 @@ if ((answer ?? 'y').toUpperCase() !== 'Y') {
 const dirents = await fs.readdir('.', { withFileTypes: true });
 const samples = dirents
   .filter((dirent) => dirent.isDirectory() && !NON_SAMPLES.includes(dirent.name) && dirent.name[0] !== '.')
-  .map(({ name }) => name)
-  .concat(ADDITIONAL_SAMPLES);
+  .map(({ name }) => name);
+  // .concat(ADDITIONAL_SAMPLES);
 
 process.stdout.write('Copying config files from .shared/ to samples...');
 

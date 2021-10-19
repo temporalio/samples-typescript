@@ -12,7 +12,7 @@ export default async function queryState(req, res) {
   console.log({ id });
   const workflow = client.createWorkflowHandle({ workflowId: id });
   try {
-    const purchaseState = await workflow.query.purchaseState();
+    const purchaseState = await workflow.query('purchaseState');
     res.status(200).json({ purchaseState });
   } catch (e) {
     console.error(e);

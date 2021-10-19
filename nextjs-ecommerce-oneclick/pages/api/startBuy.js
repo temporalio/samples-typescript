@@ -1,5 +1,5 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { OneClickBuy } from '../../temporal/lib/workflows/index.js';
+import { OneClickBuy } from '../../temporal/lib/workflows.js';
 
 export default async function startBuy(req, res) {
   if (req.method !== 'POST') {
