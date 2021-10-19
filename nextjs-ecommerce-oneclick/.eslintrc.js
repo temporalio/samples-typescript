@@ -1,6 +1,5 @@
 module.exports = {
   root: true,
-  ignorePatterns: ['/pages/api/*.js'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
@@ -18,9 +17,10 @@ module.exports = {
       'warn',
       {
         argsIgnorePattern: '^_',
+        varsIgnorePattern: '^_',
       },
     ],
-    '@typescript-eslint/no-explicit-any': 'error',
+    '@typescript-eslint/no-explicit-any': 'off',
     'object-shorthand': ['error', 'always'],
     'deprecation/deprecation': 'warn',
   },
