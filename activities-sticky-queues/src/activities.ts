@@ -1,6 +1,6 @@
 import * as fs from 'fs/promises';
 import { createHash } from 'crypto';
-import { Context } from '@temporalio/activity'
+import { Context } from '@temporalio/activity';
 
 export function createNonStickyActivities(uniqueWorkerTaskQueue: string) {
   return {

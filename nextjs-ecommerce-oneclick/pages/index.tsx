@@ -1,5 +1,4 @@
 import Head from 'next/head';
-import Image from 'next/image';
 import React from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
@@ -181,7 +180,8 @@ function Product({ product }) {
   return (
     <div key={product.id} className="relative group">
       <div className="aspect-w-4 aspect-h-3 rounded-lg overflow-hidden bg-gray-100">
-        <Image src={product.imageSrc} alt={product.imageAlt} className="object-center object-cover" />
+        {/* eslint-disable @next/next/no-img-element */}
+        <img src={product.imageSrc} alt={product.imageAlt} className="object-center object-cover" />
         <div className="flex items-end p-4" aria-hidden="true">
           {
             {

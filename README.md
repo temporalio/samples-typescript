@@ -6,20 +6,36 @@ Make sure the Temporal Server is running locally. Follow the [Quick install guid
 
 Each directory contains a sample app that has a separate `README.md` with instructions on how to run that app.
 
+### Contributing
+
+```bash
+npm install # at project root
+```
+
+This repo uses `husky` and `eslint` to ensure code standards - make sure to run `npm install` at the project root, as `husky` needs to lint every git commit.
+
+External contributions are very welcome, just please make sure you agree with us on the overall direction before sending in your PR.
+
 ## Samples directory
 
 - [**Basic hello world**](https://github.com/temporalio/samples-node/tree/main/hello-world): Simple example of a Workflow Definition and an Activity Definition.
   - Variant: [Basic hello world with mTLS](https://github.com/temporalio/samples-node/tree/main/hello-world-mtls) shows how to connect to your Temporal Cloud namespace with mTLS authentication. [Read more on the mTLS docs](https://docs.temporal.io/docs/node/tls).
+- [**Pure ES Modules**](https://github.com/temporalio/samples-node/tree/main/activities-sticky-queues) - example of how to configure Temporal with TyepScript and Pure ESM in Node.js.
 
 ### API demonstrations
 
-- **Activities**
-  - [**Activities Examples**](https://github.com/temporalio/samples-node/tree/main/activities-examples): 
-    - `makeHTTPRequest`: How to make an external HTTP request in an activity, with `axios`
-    - fakeProgress (tbc)
-    - cancellableFetch (tbc)
-  - [**Dependency Injection**](https://github.com/temporalio/samples-node/tree/main/activities-dependency-injection): This sample shows how to share dependencies between activities, for example when you need to initialize a database connection once and then pass it to multiple dependencies.
-  - [**Sticky Queues**](https://github.com/temporalio/samples-node/tree/main/activities-sticky-queues): This sample shows how to dynamically assign task queue names to ensure activities execute sequentially on the same machine (eg for CI/CD, file processing workflows)
+**Activities APIs and Design Patterns**
+
+- [**Activities Examples**](https://github.com/temporalio/samples-node/tree/main/activities-examples):
+  - `makeHTTPRequest`: How to make an external HTTP request in an activity, with `axios`
+  - fakeProgress (tbc)
+  - cancellableFetch (tbc)
+- [**Activity Cancellation and Heartbeating**](https://github.com/temporalio/samples-node/tree/main/activities-cancellation-heartbeating): This sample shows how to heartbeat progress for long running activities and cancel them.
+- [**Dependency Injection**](https://github.com/temporalio/samples-node/tree/main/activities-dependency-injection): This sample shows how to share dependencies between activities, for example when you need to initialize a database connection once and then pass it to multiple dependencies.
+- [**Sticky Queues**](https://github.com/temporalio/samples-node/tree/main/activities-sticky-queues): This sample shows how to dynamically assign task queue names to ensure activities execute sequentially on the same machine (eg for CI/CD, file processing workflows)
+
+**Workflow APIs**
+
 - [**Cron Workflows**](https://github.com/temporalio/samples-node/tree/main/cron-workflows): how to schedule a cron job with Temporal.
 - [**Child Workflows**](https://github.com/temporalio/samples-node/tree/main/child-workflows)
 - **Timers**:
