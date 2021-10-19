@@ -10,5 +10,8 @@
     "plugin:@typescript-eslint/eslint-recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier"
-  ]
+  ],
+  "rules": {
+    "@next/next/no-html-link-for-pages": 0
+  }
 }

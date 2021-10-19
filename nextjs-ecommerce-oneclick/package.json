@@ -1,0 +1,37 @@
+{
+  "name": "temporal-nextjs-oneclick",
+  "private": true,
+  "scripts": {
+    "dev": "npm-run-all -l build:temporal --parallel dev:temporal dev:next start:worker",
+    "dev:next": "next dev",
+    "dev:temporal": "tsc --build --watch ./temporal/tsconfig.json",
+    "build:next": "next build",
+    "build:temporal": "tsc --build ./temporal/tsconfig.json",
+    "start": "npm run dev",
+    "start:worker": "node ./temporal/lib/worker",
+    "lint": "eslint ."
+  },
+  "dependencies": {
+    "@headlessui/react": "^1.4.1",
+    "@heroicons/react": "^1.0.4",
+    "@tailwindcss/aspect-ratio": "^0.2.1",
+    "@tailwindcss/forms": "^0.3.3",
+    "next": "latest",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-toastify": "^8.0.3",
+    "swr": "^1.0.1",
+    "temporalio": "^0.11.x"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.2",
+    "@types/react": "^17.0.27",
+    "autoprefixer": "^10.2.6",
+    "eslint": "^7.32.0",
+    "eslint-config-next": "^11.1.2",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.3.5",
+    "tailwindcss": "^2.2.4",
+    "typescript": "^4.4.3"
+  }
+}

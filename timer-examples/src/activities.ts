@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 // @@@SNIPSTART nodejs-timer-reminder-activity
 import { Context } from '@temporalio/activity';
 import mailgun from 'mailgun-js';

@@ -7,7 +7,11 @@
     "start": "node ./lib/worker",
     "workflow-fast": "node ./lib/starter/fast",
     "workflow-slow": "node ./lib/starter/slow",
+<<<<<<< HEAD:timer-examples/package.json
     "workflow-updating": "node ./lib/starter/updating"
+=======
+    "lint": "eslint ."
+>>>>>>> main:timer/package.json
   },
   "name": "temporal-timer",
   "dependencies": {
@@ -18,6 +22,10 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
     "@types/mailgun-js": "0.22.12",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-deprecation": "^1.2.1",
     "typescript": "^4.4.2"
   }
 }
