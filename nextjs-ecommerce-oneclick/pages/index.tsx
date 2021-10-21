@@ -50,11 +50,11 @@ export default function Bones() {
         <ProductList />
         <p className="mt-4 text-xl text-gray-500">
           Find more{' '}
-          <a className="text-blue-400" href="https://github.com/temporalio/samples-node">
-            Node SDK samples
+          <a className="text-blue-400" href="https://github.com/temporalio/samples-typescript">
+            TypeScript SDK samples
           </a>{' '}
           or{' '}
-          <a className="text-blue-400" href="https://temporal.io/node">
+          <a className="text-blue-400" href="https://temporal.io/typescript">
             browse our docs
           </a>
           .
