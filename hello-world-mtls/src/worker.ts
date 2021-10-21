@@ -1,6 +1,6 @@
 import fs from 'fs';
 
-// @@@SNIPSTART nodejs-mtls-worker
+// @@@SNIPSTART typescript-mtls-worker
 import { Worker, Core } from '@temporalio/worker';
 import { getEnv, Env } from './mtls-env';
 import * as activities from './activities';

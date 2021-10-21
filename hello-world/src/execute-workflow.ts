@@ -1,4 +1,4 @@
-// @@@SNIPSTART nodejs-hello-client
+// @@@SNIPSTART typescript-hello-client
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { example } from './workflows';
 

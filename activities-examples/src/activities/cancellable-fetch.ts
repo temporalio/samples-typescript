@@ -1,4 +1,4 @@
-// @@@SNIPSTART nodejs-activity-cancellable-fetch
+// @@@SNIPSTART typescript-activity-cancellable-fetch
 import fetch from 'node-fetch';
 import { Context } from '@temporalio/activity';
 

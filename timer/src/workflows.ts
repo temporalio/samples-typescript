@@ -1,4 +1,4 @@
-// @@@SNIPSTART nodejs-timer-reminder-workflow
+// @@@SNIPSTART typescript-timer-reminder-workflow
 import { createActivityHandle, sleep } from '@temporalio/workflow';
 // Only import the activity types
 import type { createActivities } from './activities';

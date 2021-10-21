@@ -1,4 +1,4 @@
-// @@@SNIPSTART nodejs-blocked-workflow
+// @@@SNIPSTART typescript-blocked-workflow
 import * as wf from '@temporalio/workflow';
 
 export const unblockSignal = wf.defineSignal('unblock');

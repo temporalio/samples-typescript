@@ -4,7 +4,7 @@ export async function childWorkflow(name: string): Promise<string> {
   return `i am a child named ${name}`;
 }
 
-// @@@SNIPSTART nodejs-child-workflow
+// @@@SNIPSTART typescript-child-workflow
 export async function parentWorkflow(names: string[]): Promise<string> {
   const responseArray = await Promise.all(
     names.map((name) => {

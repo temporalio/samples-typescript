@@ -1,4 +1,4 @@
-// @@@SNIPSTART nodejs-mtls-worker
+// @@@SNIPSTART typescript-mtls-worker
 import fs from 'fs';
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { example } from './workflows';

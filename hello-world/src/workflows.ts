@@ -1,4 +1,4 @@
-// @@@SNIPSTART nodejs-hello-workflow
+// @@@SNIPSTART typescript-hello-workflow
 import { createActivityHandle } from '@temporalio/workflow';
 // Only import the activity types
 import type * as activities from './activities';

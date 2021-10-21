@@ -1,7 +1,7 @@
 import { createActivityHandle, uuid4 } from '@temporalio/workflow';
 import type { createStickyActivities, createNonStickyActivities } from './activities';
 
-// @@@SNIPSTART nodejs-sticky-queues-workflow
+// @@@SNIPSTART typescript-sticky-queues-workflow
 const { getUniqueTaskQueue } = createActivityHandle<ReturnType<typeof createNonStickyActivities>>({
   startToCloseTimeout: '1 minute',
 });
