@@ -1,6 +1,6 @@
 # Child Workflows demo
 
-This sample shows how to write [child workflows](https://docs.temporal.io/docs/node/workflows#child-workflows).
+This sample shows how to write [child workflows](https://docs.temporal.io/docs/typescript/workflows#child-workflows).
 
 ## Steps to run this example
 
