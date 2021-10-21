@@ -5,8 +5,7 @@ This example demonstrates a working Cron workflow. Note the limitations and cave
 Differences to the hello world demo:
 
 - the activity actually prints a log, instead of returning a string.
-- the Client exits without waiting for the scheduled workflow to complete, printing an id like `
-Cron Workflow 1e793a6c-31e2-41c9-8139-53d114293a9e started` which can be used to cancel later
+- the Client exits without waiting for the scheduled workflow to complete, printing an id like ` Cron Workflow 1e793a6c-31e2-41c9-8139-53d114293a9e started` which can be used to cancel later
 
 Note that if you are changing code and restarting Workers, that your old, still-running workflows may pick up the new code (since you likely didn't change workflow name or task queue) and their output may conflict/mix with new workflows you are starting. You should check what is still running in Temporal Web in case you need to kill all previous workflows (this is not default behavior).
 

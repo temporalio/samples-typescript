@@ -9,7 +9,6 @@ async function run() {
     taskQueue: 'tutorial',
   });
   await worker.run();
-
 }
 
 run().catch((err) => {
