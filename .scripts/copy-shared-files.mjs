@@ -2,6 +2,7 @@ const NON_SAMPLES = ['node_modules'];
 const TSCONFIG_EXCLUDE = ['fetch-esm'];
 const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-one-click'];
 const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-one-click', 'fetch-esm'];
+const POST_CREATE_EXCLUDE = [''];
 const ADDITIONAL_SAMPLES = [];
 
 $.verbose = false;
@@ -36,6 +37,10 @@ for (const sample of samples) {
 
   if (!ESLINTRC_EXCLUDE.includes(sample)) {
     await copyAndAdd(sample, '.eslintrc.js');
+  }
+
+  if (!POST_CREATE_EXCLUDE.includes(sample)) {
+    await copyAndAdd(sample, '.post-create');
   }
 
   await copyAndAdd(sample, '.eslintignore');
