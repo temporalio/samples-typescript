@@ -1,4 +1,4 @@
-const NON_SAMPLES = ['node_modules', 'ecommerce-one-click'];
+const NON_SAMPLES = ['node_modules'];
 const TSCONFIG_EXCLUDE = ['fetch-esm'];
 const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-one-click'];
 const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-one-click', 'fetch-esm'];
