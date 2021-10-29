@@ -1,6 +1,6 @@
 # cron-workflows
 
-This example demonstrates a working Cron workflow. Note the limitations and caveats listed in the docs: http://localhost:3000/docs/content/what-is-a-temporal-cron-job/.
+This example demonstrates a working Cron workflow. Note the limitations and caveats listed in the [docs](https://docs.temporal.io/docs/content/what-is-a-temporal-cron-job/)
 
 Differences to the hello world demo:
 
