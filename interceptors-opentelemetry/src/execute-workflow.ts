@@ -14,12 +14,10 @@ async function run() {
       calls: [() => new OpenTelemetryWorkflowClientCallsInterceptor()],
     },
   });
-  // Create a typed handle for the example Workflow.
-  // Workflow will be started in the "default" namespace unless specified otherwise.
-  const workflow = client.createWorkflowHandle(example, {
+  const result = await client.execute(example, {
     taskQueue: 'interceptors-opentelemetry-example',
+    args: ['Temporal'],
   });
-  const result = await workflow.execute('Temporal');
   console.log(result); // Hello, Temporal!
   await otel.sdk.shutdown();
 }

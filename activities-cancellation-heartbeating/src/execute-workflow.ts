@@ -5,10 +5,10 @@ async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
 
-  const handle = client.createWorkflowHandle(runCancellableActivity, { taskQueue: 'tutorial' });
+  const handle = await client.start(runCancellableActivity, { taskQueue: 'tutorial' });
 
-  await handle.start();
-
+  // Simulate waiting for some time
+  // Cancel may be immediately called, waiting is not needed
   await new Promise((resolve) => setTimeout(resolve, 100));
   await handle.cancel();
   console.log('Cancelled workflow successfully');

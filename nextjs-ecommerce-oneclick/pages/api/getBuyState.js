@@ -10,7 +10,7 @@ export default async function queryState(req, res) {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
   console.log({ id });
-  const workflow = client.createWorkflowHandle({ workflowId: id });
+  const workflow = client.getHandle(id);
   try {
     const purchaseState = await workflow.query('purchaseState');
     res.status(200).json({ purchaseState });

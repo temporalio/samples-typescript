@@ -5,9 +5,7 @@ async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
 
-  const handle = client.createWorkflowHandle(progress, { taskQueue: 'tutorial' });
-
-  await handle.start();
+  const handle = await client.start(progress, { taskQueue: 'tutorial' });
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
   const val = await handle.query(getProgress);
