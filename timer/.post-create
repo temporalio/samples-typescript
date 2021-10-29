@@ -9,5 +9,5 @@ https://docs.temporal.io/docs/typescript/getting-started/}
 Then, in the project directory, using two other shells, run these commands:
 
   {cyan npm run start.watch}
-  {cyan npm run workflow}
+  {cyan npm run workflow-slow} or {cyan npm run workflow-fast}
 

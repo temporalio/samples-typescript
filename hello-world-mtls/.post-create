@@ -1,13 +1,11 @@
-To begin development, start Temporal Server:
+To begin development, follow the mTLS setup instructions:
 
-  {cyan cd} ~/path/to/temporal/docker-compose/
-  {cyan docker-compose up}
+{bold https://docs.temporal.io/docs/typescript/security/#mtls-tutorial}
 
-{dim.italic If you haven’t run Temporal Server before, visit:
-https://docs.temporal.io/docs/typescript/getting-started/}
-
-Then, in the project directory, using two other shells, run these commands:
+For step 8, run:
 
   {cyan npm run start.watch}
-  {cyan npm run workflow}
 
+For step 9, in another shell, run:
+
+  {cyan npm run workflow}
