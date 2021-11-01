@@ -12,7 +12,7 @@ export enum ExpenseStatus {
 export const approveSignal = wf.defineSignal('approve');
 export const rejectSignal = wf.defineSignal('reject');
 
-const { createExpense, payment } = wf.createActivityHandle<typeof activities>({
+const { createExpense, payment } = wf.proxyActivities<typeof activities>({
   scheduleToCloseTimeout: '5 minutes',
 });
 

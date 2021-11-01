@@ -48,9 +48,9 @@ export async function cancelTimerAltImpl(): Promise<void> {
  * Demonstrates how to clean up after cancellation.
  */
 // @@@SNIPSTART typescript-handle-external-workflow-cancellation-while-activity-running
-import { createActivityHandle, isCancellation } from '@temporalio/workflow';
+import { proxyActivities, isCancellation } from '@temporalio/workflow';
 
-const { httpPostJSON, httpGetJSON, cleanup } = createActivityHandle({
+const { httpPostJSON, httpGetJSON, cleanup } = proxyActivities({
   startToCloseTimeout: '10m',
 });
 

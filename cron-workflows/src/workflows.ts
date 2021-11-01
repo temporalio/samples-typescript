@@ -1,7 +1,7 @@
-import { createActivityHandle } from '@temporalio/workflow';
+import { proxyActivities } from '@temporalio/workflow';
 import type * as activities from './activities';
 
-const { logTime } = createActivityHandle<typeof activities>({
+const { logTime } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
 });
 

@@ -3,7 +3,7 @@ import * as wf from '@temporalio/workflow';
 // // Only import the activity types
 import type * as activities from './activities';
 
-const { checkoutItem, canceledPurchase } = wf.createActivityHandle<typeof activities>({
+const { checkoutItem, canceledPurchase } = wf.proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
 });
 

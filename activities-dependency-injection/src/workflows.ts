@@ -1,10 +1,10 @@
-import { createActivityHandle } from '@temporalio/workflow';
+import { proxyActivities } from '@temporalio/workflow';
 
 // @@@SNIPSTART typescript-activity-deps-workflow
 import type { createActivities } from './activities';
 
 // Note usage of ReturnType<> generic since createActivities is a factory function
-const { greet, greet_es } = createActivityHandle<ReturnType<typeof createActivities>>({
+const { greet, greet_es } = proxyActivities<ReturnType<typeof createActivities>>({
   scheduleToCloseTimeout: '30 seconds',
 });
 // @@@SNIPEND

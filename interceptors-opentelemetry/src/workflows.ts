@@ -1,11 +1,11 @@
-import { createActivityHandle, WorkflowInterceptors } from '@temporalio/workflow';
+import { proxyActivities, WorkflowInterceptors } from '@temporalio/workflow';
 import {
   OpenTelemetryInboundInterceptor,
   OpenTelemetryOutboundInterceptor,
 } from '@temporalio/interceptors-opentelemetry/lib/workflow';
 import type * as activities from './activities';
 
-const { greet } = createActivityHandle<typeof activities>({
+const { greet } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
 });
 

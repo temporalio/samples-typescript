@@ -1,11 +1,11 @@
-import { createActivityHandle, sleep } from '@temporalio/workflow';
+import { proxyActivities, sleep } from '@temporalio/workflow';
 import type * as activities from './activities';
 
 const {
   activityB,
   // activityA,
   // activityThatMustRunAfterA,
-} = createActivityHandle<typeof activities>({
+} = proxyActivities<typeof activities>({
   scheduleToCloseTimeout: '30 seconds',
 });
 

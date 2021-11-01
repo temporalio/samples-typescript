@@ -1,8 +1,8 @@
-import { createActivityHandle, WorkflowInterceptors, setListener, defineQuery, condition } from '@temporalio/workflow';
+import { proxyActivities, WorkflowInterceptors, setListener, defineQuery, condition } from '@temporalio/workflow';
 import { createDraft, enablePatches, finishDraft } from 'immer';
 import type { createActivities } from '../activities';
 
-const { publish } = createActivityHandle<ReturnType<typeof createActivities>>({
+const { publish } = proxyActivities<ReturnType<typeof createActivities>>({
   startToCloseTimeout: '30 minutes',
 });
 

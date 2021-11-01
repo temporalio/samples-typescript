@@ -1,8 +1,8 @@
-import { createActivityHandle, uuid4 } from '@temporalio/workflow';
+import { proxyActivities, uuid4 } from '@temporalio/workflow';
 import type { createStickyActivities, createNonStickyActivities } from './activities';
 
 // @@@SNIPSTART typescript-sticky-queues-workflow
-const { getUniqueTaskQueue } = createActivityHandle<ReturnType<typeof createNonStickyActivities>>({
+const { getUniqueTaskQueue } = proxyActivities<ReturnType<typeof createNonStickyActivities>>({
   startToCloseTimeout: '1 minute',
 });
 
@@ -10,7 +10,7 @@ export async function fileProcessingWorkflow(maxAttempts = 5): Promise<void> {
   for (let attempt = 1; attempt <= maxAttempts; ++attempt) {
     try {
       const uniqueWorkerTaskQueue = await getUniqueTaskQueue();
-      const act = createActivityHandle<ReturnType<typeof createStickyActivities>>({
+      const act = proxyActivities<ReturnType<typeof createStickyActivities>>({
         taskQueue: uniqueWorkerTaskQueue,
         // Note the use of scheduleToCloseTimeout.
         // The reason this timeout type is used if because this task queue is unique
