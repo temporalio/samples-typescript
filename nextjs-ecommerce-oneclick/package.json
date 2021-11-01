@@ -21,7 +21,7 @@
     "react-dom": "^17.0.2",
     "react-toastify": "^8.0.3",
     "swr": "^1.0.1",
-    "temporalio": "^0.11.x"
+    "temporalio": "^0.13.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.2",

@@ -36,14 +36,15 @@ External contributions are very welcome, just please make sure you agree with us
 
 **Workflow APIs**
 
-- [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): how to schedule a cron job with Temporal.
-- [**Child Workflows**](https://github.com/temporalio/samples-typescript/tree/main/child-workflows)
 - **Timers**:
   - The [**progress example**](https://github.com/temporalio/samples-typescript/tree/main/progress) demonstrates how to use the `sleep` function from `@temporalio/workflow`.
 - **Signals and Triggers**:
   - The [**Signals and Queries example**](https://github.com/temporalio/samples-typescript/tree/main/signals-and-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
   - **Async activity completion**: Example of an [Expense reporting](https://github.com/temporalio/samples-typescript/tree/main/expense) Workflow that communicates with a server API. How to kick off a workflow, and manually complete it at an arbitrarily later date.
-- [**Cancellation**](https://github.com/temporalio/samples-typescript/tree/main/cancellation): How to programmatically cancel a workflow
+- [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): how to schedule a cron job with Temporal.
+- [**Child Workflows**](https://github.com/temporalio/samples-typescript/tree/main/child-workflows): shows how to start and control Child Workflows
+- [**Infinite Workflows**](https://github.com/temporalio/samples-typescript/tree/main/continue-as-new): shows how to use the continueAsNew API for indefinitely long running Workflows
+- [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): How to set up Search Attributes (an experimental feature for now)
 
 ### Example Apps
 
@@ -51,6 +52,7 @@ External contributions are very welcome, just please make sure you agree with us
   - The `nextjs-oneclick` example: https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick
   - [Food Delivery](https://github.com/lorensr/food-delivery)
 - Ecommerce example: https://github.com/vkarpov15/temporal-ecommerce-ts
+- XState example: https://github.com/Devessier/temporal-electronic-signature
 
 ### Advanced APIs
 

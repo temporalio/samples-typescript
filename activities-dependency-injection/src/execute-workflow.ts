@@ -5,9 +5,7 @@ async function run(): Promise<void> {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
 
-  const handle = client.createWorkflowHandle(dependencyWF, { taskQueue: 'tutorial' });
-
-  const result = await handle.execute();
+  const result = await client.execute(dependencyWF, { taskQueue: 'tutorial' });
   console.log(result);
 }
 

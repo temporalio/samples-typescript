@@ -18,8 +18,8 @@ export default async function startBuy(req, res) {
   // Workflows will be started in the "default" namespace unless specified otherwise
   // via options passed the WorkflowClient constructor.
   const client = new WorkflowClient(connection.service);
-  const handle = client.createWorkflowHandle(OneClickBuy, { taskQueue: 'tutorial' });
-  await handle.start(itemId); // kick off the purchase async
+  // kick off the purchase async
+  const { workflowId } = await client.start(OneClickBuy, { taskQueue: 'tutorial', args: [itemId] });
 
-  res.status(200).json({ workflowId: handle.workflowId }); // Hello, Temporal!
+  res.status(200).json({ workflowId });
 }

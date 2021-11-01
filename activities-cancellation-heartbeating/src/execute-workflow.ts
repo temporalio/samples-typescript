@@ -3,12 +3,14 @@ import { runCancellableActivity } from './workflows';
 
 async function run() {
   const connection = new Connection();
-  const client = new WorkflowClient(connection.service);
+  const client = new WorkflowClient(connection.service, {
+    workflowDefaults: { taskQueue: 'tutorial' },
+  });
 
-  const handle = client.createWorkflowHandle(runCancellableActivity, { taskQueue: 'tutorial' });
+  const handle = await client.start(runCancellableActivity);
 
-  await handle.start();
-
+  // Simulate waiting for some time
+  // Cancel may be immediately called, waiting is not needed
   await new Promise((resolve) => setTimeout(resolve, 100));
   await handle.cancel();
   console.log('Cancelled workflow successfully');

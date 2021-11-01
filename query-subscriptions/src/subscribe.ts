@@ -61,7 +61,7 @@ export class SubscriptionClient {
   async *subscribe<T>(workflowId: string): AsyncIterable<T> {
     // Create a new Redis connection as opposed to reusing a shared one because the xread API blocks.
     const redis = new Redis();
-    const handle = this.workflowClient.createWorkflowHandle({ workflowId });
+    const handle = this.workflowClient.getHandle(workflowId);
     const resultPromise = handle.result();
     let { version, value } = await handle.query<Versioned<T>>('getValue');
     yield value;
@@ -87,9 +87,7 @@ export class SubscriptionClient {
 export async function run() {
   const workflowClient = new WorkflowClient();
   const subsClient = new SubscriptionClient(workflowClient);
-  const handle = workflowClient.createWorkflowHandle(counter, { taskQueue });
-  await handle.start(0 /* initialValue */);
-  const { workflowId } = handle;
+  const { workflowId } = await workflowClient.start(counter, { taskQueue, args: [0 /* initialValue */] });
   for await (const state of subsClient.subscribe<State>(workflowId)) {
     console.log(state);
   }

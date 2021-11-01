@@ -1,16 +1,15 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { expense, approveSignal } from '../workflows';
-import { v4 } from 'uuid';
+import { v4 as uuid4 } from 'uuid';
 
 async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
-  const handle = client.createWorkflowHandle(expense, { taskQueue: 'tutorial' });
 
-  const expenseId = v4();
+  const expenseId = uuid4();
+  const handle = await client.start(expense, { taskQueue: 'tutorial', args: [expenseId] });
 
-  await handle.start(expenseId);
-
+  // At a "later time" send signal for approval
   await new Promise((resolve) => setTimeout(resolve, 50));
   await handle.signal(approveSignal);
 
