@@ -9,7 +9,7 @@ const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm'];
 const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick'];
 const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm'];
 const POST_CREATE_EXCLUDE = [
-  'timer',
+  'timer-examples',
   'query-subscriptions',
   'nextjs-ecommerce-oneclick',
   'hello-world-mtls',
