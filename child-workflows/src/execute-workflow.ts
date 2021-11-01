@@ -9,8 +9,10 @@ async function run() {
   // via options passed the WorkflowClient constructor.
   const client = new WorkflowClient(connection.service);
   // Create a typed handle for the childWorkflowExample Workflow.
-  const workflow = client.createWorkflowHandle(parentWorkflow, { taskQueue: 'tutorial' });
-  const result = await workflow.execute(['Alice', 'Bob', 'Charlie']);
+  const result = await client.execute(parentWorkflow, {
+    taskQueue: 'tutorial',
+    args: ['Alice', 'Bob', 'Charlie'],
+  });
   console.log(result);
   // i am a child named Alice
   // i am a child named Bob

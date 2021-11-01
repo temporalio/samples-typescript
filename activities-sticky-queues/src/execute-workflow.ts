@@ -8,8 +8,7 @@ async function run() {
       taskQueue: 'sticky-activity-tutorial',
     },
   });
-  const handle = client.createWorkflowHandle(fileProcessingWorkflow);
-  await handle.execute();
+  await client.execute(fileProcessingWorkflow);
 }
 
 run().catch((err) => {

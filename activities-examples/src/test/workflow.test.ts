@@ -1,10 +1,4 @@
-import {
-  WorkflowClient,
-  WorkflowHandle,
-  WorkflowExecutionFailedError,
-  ActivityFailure,
-  ApplicationFailure,
-} from '@temporalio/client';
+import { WorkflowClient, WorkflowExecutionFailedError, ActivityFailure, ApplicationFailure } from '@temporalio/client';
 import { Core, Worker, DefaultLogger } from '@temporalio/worker';
 import { describe, before, after, afterEach, it } from 'mocha';
 import assert from 'assert';
@@ -15,7 +9,7 @@ import * as activities from '../activities';
 
 describe('example workflow', function () {
   let shutdown: () => Promise<void>;
-  let workflow: WorkflowHandle<typeof httpWorkflow>;
+  let execute: () => ReturnType<typeof httpWorkflow>;
 
   this.slow(1000);
 
@@ -39,10 +33,11 @@ describe('example workflow', function () {
   beforeEach(() => {
     const client = new WorkflowClient();
 
-    workflow = client.createWorkflowHandle(httpWorkflow, {
-      taskQueue: 'test-activities',
-      workflowExecutionTimeout: 1000,
-    });
+    execute = () =>
+      client.execute(httpWorkflow, {
+        taskQueue: 'test-activities',
+        workflowExecutionTimeout: 1000,
+      });
   });
 
   after(async () => {
@@ -54,7 +49,7 @@ describe('example workflow', function () {
   });
 
   it('returns correct result', async () => {
-    const result = await workflow.execute();
+    const result = await execute();
     assert.equal(result, 'The answer is 42');
   });
 
@@ -68,7 +63,7 @@ describe('example workflow', function () {
       return Promise.resolve({ data: { args: { answer: '88' } } });
     });
 
-    const result = await workflow.execute();
+    const result = await execute();
     assert.equal(result, 'The answer is 88');
   });
 
@@ -76,7 +71,7 @@ describe('example workflow', function () {
     sinon.stub(axios, 'get').callsFake(() => Promise.reject(new Error('example error')));
 
     await assert.rejects(
-      () => workflow.execute(),
+      execute,
       (err: unknown) =>
         err instanceof WorkflowExecutionFailedError &&
         err.cause instanceof ActivityFailure &&

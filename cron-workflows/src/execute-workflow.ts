@@ -6,11 +6,11 @@ let handle: WorkflowHandle<(name: string) => Promise<void>>;
 async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
-  handle = client.createWorkflowHandle(scheduledWorkflow, {
+  const handle = await client.start(scheduledWorkflow, {
     taskQueue: 'tutorial',
     cronSchedule: '* * * * *', // start every minute
+    args: ['Temporal'],
   });
-  await handle.start('Temporal'); // note that we do not block for completion
   console.log(`Cron Workflow ${handle.workflowId} started`); // you can lookup this ID to cancel in future
   try {
     await handle.result(); // await completion of workflow, which doesn't happen since it is a standard cron workflow

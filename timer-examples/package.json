@@ -3,17 +3,18 @@
   "private": true,
   "scripts": {
     "build": "tsc --build ./tsconfig.json",
-    "build.watch": "tsc --build --watch ./tsconfig.json",
-    "worker": "node ./lib/worker",
+    "build.once": "tsc --build --watch ./tsconfig.json",
+    "start": "node ./lib/worker",
     "workflow-fast": "node ./lib/starter/fast",
     "workflow-slow": "node ./lib/starter/slow",
+    "workflow-updating": "node ./lib/starter/updating-timer",
     "lint": "eslint ."
   },
   "name": "temporal-timer",
   "dependencies": {
     "dotenv": "^10.0.0",
     "mailgun-js": "^0.22.0",
-    "temporalio": "0.11.x"
+    "temporalio": "0.13.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

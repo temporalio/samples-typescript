@@ -1,7 +1,7 @@
-// @@@SNIPSTART typescript-timer-reminder-workflow
 import { createActivityHandle, sleep } from '@temporalio/workflow';
 // Only import the activity types
 import type { createActivities } from './activities';
+export * from './UpdatableTimer';
 
 const { processOrder, sendNotificationEmail } = createActivityHandle<ReturnType<typeof createActivities>>({
   startToCloseTimeout: '5 minutes',
@@ -12,6 +12,7 @@ export interface ProcessOrderOptions {
   sendDelayedEmailTimeoutMS: number;
 }
 
+// @@@SNIPSTART typescript-timer-reminder-workflow
 export async function processOrderWorkflow({
   orderProcessingMS,
   sendDelayedEmailTimeoutMS,
