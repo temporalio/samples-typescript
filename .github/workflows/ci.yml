@@ -27,7 +27,7 @@ jobs:
       - run: npx prettier . --check
       # - run: npm run lint
       - name: Get Temporal docker-compose.yml
-        run: wget https://raw.githubusercontent.com/temporalio/docker-compose/v1.13.0/docker-compose.yml
+        run: wget https://raw.githubusercontent.com/temporalio/docker-compose/main/docker-compose.yml
         # TODO: Test on MacOS once we get docker-compose running on the GH actions Mac instance
         if: ${{ startsWith(matrix.os, 'ubuntu') }}
       - name: Start Temporal Server
