@@ -1,5 +1,9 @@
 # hello-world
 
+This example is the default project that is scaffolded out for you when you run `npx @temporalio/create@latest ./myfolder`.
+
+You can read the explanation on our docs: https://docs.temporal.io/docs/typescript/hello-world
+
 ## Steps to run this example
 
 1. Make sure the Temporal Server is running locally. Follow the [Quick install guide](https://docs.temporal.io/docs/server/quick-install) to do that.
