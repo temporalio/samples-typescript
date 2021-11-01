@@ -8,7 +8,8 @@
     "build.watch": "tsc --build --watch",
     "start": "node --loader ts-node/esm src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow": "node --loader ts-node/esm src/execute-workflow.ts"
+    "workflow": "node --loader ts-node/esm src/execute-workflow.ts",
+    "lint": "eslint ."
   },
   "nodemonConfig": {
     "execMap": {

@@ -2,10 +2,10 @@
   "name": "samples-typescript",
   "private": true,
   "scripts": {
-    "pretest": "pushd activities-examples && npm install; popd",
-    "test": "pushd activities-examples && npm test; popd",
+    "bootstrap": "lerna bootstrap",
+    "test": "lerna run test",
     "format": "prettier --write .",
-    "lint": "eslint .",
+    "lint": "lerna run lint",
     "copy-shared-files": "zx .shared/copy-shared-files.mjs",
     "prepare": "husky install"
   },
@@ -27,5 +27,8 @@
   "lint-staged": {
     "*.{js,ts}": "eslint --cache --fix",
     "*.{js,ts,json,md}": "prettier --write"
+  },
+  "dependencies": {
+    "lerna": "^4.0.0"
   }
 }

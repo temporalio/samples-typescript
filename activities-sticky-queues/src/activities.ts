@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as fs from 'fs/promises';
 import { createHash } from 'crypto';
 import { Context } from '@temporalio/activity';
