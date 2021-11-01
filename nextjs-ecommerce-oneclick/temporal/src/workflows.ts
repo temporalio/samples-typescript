@@ -12,6 +12,7 @@ type PurchaseState = 'PURCHASE_PENDING' | 'PURCHASE_CONFIRMED' | 'PURCHASE_CANCE
 export const cancelPurchase = wf.defineSignal('cancelPurchase');
 export const purchaseStateQuery = wf.defineQuery<PurchaseState>('purchaseState');
 
+// @@@SNIPSTART typescript-oneclick-buy
 export async function OneClickBuy(itemId: string) {
   const itemToBuy = itemId;
   let purchaseState: PurchaseState = 'PURCHASE_PENDING';
@@ -24,3 +25,4 @@ export async function OneClickBuy(itemId: string) {
     return await checkoutItem(itemToBuy);
   }
 }
+// @@@SNIPEND
