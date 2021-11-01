@@ -7,7 +7,7 @@ on:
     branches: [$default-branch, next]
 
 jobs:
-  build:
+  build-lint-test:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -20,9 +20,25 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
-          # Comment out next line when testing with `act`
+          # Comment out cache line when testing with act:
+          # act --platform ubuntu-latest=lucasalt/act_base:latest
           cache: 'npm'
       - run: npm install
       - run: npx prettier . --check
       # - run: npm run lint
-      # - run: npm test
+      - name: Get Temporal docker-compose.yml
+        run: wget https://raw.githubusercontent.com/temporalio/docker-compose/main/docker-compose.yml
+        # TODO: Test on MacOS once we get docker-compose running on the GH actions Mac instance
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
+      - name: Start Temporal Server
+        run: docker-compose up -d
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
+      - name: Install sample deps
+        run: npm install
+        working-directory: activities-examples
+      - name: Wait for Temporal Server
+        run: node .scripts/wait-on-temporal.mjs
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
+      - run: npm test
+        working-directory: activities-examples
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
