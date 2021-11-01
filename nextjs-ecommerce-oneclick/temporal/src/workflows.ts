@@ -16,8 +16,8 @@ export const purchaseStateQuery = wf.defineQuery<PurchaseState>('purchaseState')
 export async function OneClickBuy(itemId: string) {
   const itemToBuy = itemId;
   let purchaseState: PurchaseState = 'PURCHASE_PENDING';
-  wf.setListener(cancelPurchase, () => void (purchaseState = 'PURCHASE_CANCELED'));
-  wf.setListener(purchaseStateQuery, () => purchaseState);
+  wf.setHandler(cancelPurchase, () => void (purchaseState = 'PURCHASE_CANCELED'));
+  wf.setHandler(purchaseStateQuery, () => purchaseState);
   if (await wf.condition('5s', () => purchaseState === 'PURCHASE_CANCELED')) {
     return await canceledPurchase(itemToBuy);
   } else {

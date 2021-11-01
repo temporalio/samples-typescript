@@ -18,8 +18,8 @@ const { createExpense, payment } = wf.proxyActivities<typeof activities>({
 
 export function timeoutOrUserAction(timeout: string): Promise<ExpenseStatus> {
   return new Promise((resolve, reject) => {
-    wf.setListener(approveSignal, () => resolve(ExpenseStatus.APPROVED));
-    wf.setListener(rejectSignal, () => resolve(ExpenseStatus.REJECTED));
+    wf.setHandler(approveSignal, () => resolve(ExpenseStatus.APPROVED));
+    wf.setHandler(rejectSignal, () => resolve(ExpenseStatus.REJECTED));
     wf.sleep(timeout).then(() => resolve(ExpenseStatus.TIMED_OUT), reject);
   });
 }
