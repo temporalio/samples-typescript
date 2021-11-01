@@ -1,5 +1,5 @@
 {
-  "name": "temporal-activities-examples",
+  "name": "temporal-patching-api",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -7,8 +7,6 @@
     "build.watch": "tsc --build --watch",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "test": "ts-mocha src/test/*.test.ts",
-    "test.watch": "ts-mocha src/test/*.test.ts -w --watch-files src",
     "workflow": "ts-node src/execute-workflow.ts",
     "lint": "eslint ."
   },

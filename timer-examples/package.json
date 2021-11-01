@@ -1,4 +1,5 @@
 {
+  "name": "temporal-timer",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -10,7 +11,6 @@
     "workflow-updating": "node ./lib/starter/updating-timer",
     "lint": "eslint ."
   },
-  "name": "temporal-timer",
   "dependencies": {
     "dotenv": "^10.0.0",
     "mailgun-js": "^0.22.0",
