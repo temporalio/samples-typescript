@@ -5,9 +5,9 @@ const ADDITIONAL_SAMPLES = [];
 
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
-const TSCONFIG_EXCLUDE = ['fetch-esm'];
-const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-one-click'];
-const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-one-click', 'fetch-esm'];
+const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm'];
+const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick'];
+const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm'];
 const POST_CREATE_EXCLUDE = [
   'timer',
   'query-subscriptions',
