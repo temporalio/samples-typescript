@@ -15,7 +15,7 @@ This sample shows how to use the patching API
 - Kill and restart the worker (`npm start`) to pick up the change.
 - Start a v2 workflow with `npm run workflow`. This will run alongside the v1 workflow.
 - You can see the deprecation marker recorded in Temporal Web for the v2 workflow.
-  ![image](https://user-images.githubusercontent.com/6764957/139672604-28ff0c95-4ca7-4ea4-a42f-ede532380684.png)
+  ![image](https://user-images.githubusercontent.com/6764957/139673361-35d61b38-ab94-401e-ae7b-feaa52eae8c6.png)
 
 7. Step 2 of the migration: deprecate the patch
 
