@@ -5,8 +5,8 @@
     "bootstrap": "lerna bootstrap",
     "test": "lerna run test",
     "format": "prettier --write .",
+    "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
     "lint": "lerna run lint",
-    "copy-shared-files": "zx .shared/copy-shared-files.mjs",
     "prepare": "husky install"
   },
   "devDependencies": {

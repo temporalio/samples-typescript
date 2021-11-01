@@ -1,9 +1,22 @@
-const NON_SAMPLES = ['node_modules', 'ecommerce-one-click'];
-const TSCONFIG_EXCLUDE = ['fetch-esm'];
-const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-one-click'];
-const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-one-click', 'fetch-esm'];
+// Run with https://github.com/google/zx
+
+const NON_SAMPLES = ['node_modules'];
 const ADDITIONAL_SAMPLES = [];
 
+// Some samples have different config files from those in .shared/
+// that we don't want to overwrite
+const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm'];
+const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick'];
+const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm'];
+const POST_CREATE_EXCLUDE = [
+  'timer',
+  'query-subscriptions',
+  'nextjs-ecommerce-oneclick',
+  'hello-world-mtls',
+  'expense',
+];
+
+// By default, zx logs all commands spawned
 $.verbose = false;
 
 let [answer] = await question(
@@ -36,6 +49,10 @@ for (const sample of samples) {
 
   if (!ESLINTRC_EXCLUDE.includes(sample)) {
     await copyAndAdd(sample, '.eslintrc.js');
+  }
+
+  if (!POST_CREATE_EXCLUDE.includes(sample)) {
+    await copyAndAdd(sample, '.post-create');
   }
 
   await copyAndAdd(sample, '.eslintignore');
