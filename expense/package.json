@@ -24,7 +24,7 @@
   "dependencies": {
     "axios": "0.21.1",
     "express": "~4.17.1",
-    "temporalio": "0.13.x",
+    "temporalio": "0.14.x",
     "uuid": "8.3.2"
   },
   "devDependencies": {
