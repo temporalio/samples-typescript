@@ -1,4 +1,4 @@
-import { WorkflowClient, WorkflowExecutionFailedError, ActivityFailure, ApplicationFailure } from '@temporalio/client';
+import { WorkflowClient, WorkflowFailedError, ActivityFailure, ApplicationFailure } from '@temporalio/client';
 import { Core, Worker, DefaultLogger } from '@temporalio/worker';
 import { describe, before, after, afterEach, it } from 'mocha';
 import assert from 'assert';
@@ -73,7 +73,7 @@ describe('example workflow', function () {
     await assert.rejects(
       execute,
       (err: unknown) =>
-        err instanceof WorkflowExecutionFailedError &&
+        err instanceof WorkflowFailedError &&
         err.cause instanceof ActivityFailure &&
         err.cause.cause instanceof ApplicationFailure &&
         err.cause.cause.message === 'example error'

@@ -81,7 +81,7 @@ export async function nonCancellable(url: string): Promise<any> {
 // @@@SNIPSTART typescript-multiple-activities-single-timeout-workflow
 export function multipleActivitiesSingleTimeout(urls: string[], timeoutMs: number): Promise<any> {
   // If timeout triggers before all activities complete
-  // the Workflow will fail with a CancelledError.
+  // the Workflow will fail with a CancelledFailure.
   return CancellationScope.withTimeout(timeoutMs, () => Promise.all(urls.map((url) => httpGetJSON(url))));
 }
 // @@@SNIPEND

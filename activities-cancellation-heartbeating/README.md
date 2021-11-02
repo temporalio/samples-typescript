@@ -13,8 +13,9 @@ Running `execute-workflow` does this:
     - prints `Fake progress activity cancelled` in the Worker terminal
   - Workflow prints `Workflow cancelled along with its activity` in the Worker terminal
 - Prints `Cancelled workflow successfully`
-- Calls `result()` demonstrate that calling `result()` on a workflow that is cancelled will throw a `WorkflowExecutionCancelledError`
-- the `WorkflowExecutionCancelledError` is caught and we print `handle.result() threw because Workflow was cancelled`
+- Calls `result()` demonstrate that calling `result()` on a workflow that is cancelled will throw a `WorkflowFailedError`
+  with a cause of `CancelledFailure`.
+- the `WorkflowFailedError` is caught and we print `handle.result() threw because Workflow was cancelled`
 
 ## Steps to run this example
 
