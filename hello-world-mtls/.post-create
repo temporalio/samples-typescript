@@ -1,0 +1,11 @@
+To begin development, follow the mTLS setup instructions:
+
+{bold https://docs.temporal.io/docs/typescript/security/#mtls-tutorial}
+
+For step 8, run:
+
+  {cyan npm run start.watch}
+
+For step 9, in another shell, run:
+
+  {cyan npm run workflow}
