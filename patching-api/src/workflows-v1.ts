@@ -1,7 +1,7 @@
 import { createActivityHandle, sleep } from '@temporalio/workflow';
 import type * as activities from './activities';
 
-const { activityB, activityA, activityThatMustRunAfterA } = createActivityHandle<typeof activities>({
+const { activityA, activityThatMustRunAfterA } = createActivityHandle<typeof activities>({
   scheduleToCloseTimeout: '30 seconds',
 });
 

@@ -1,4 +1,5 @@
 {
+  "name": "temporal-timer",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -11,7 +12,6 @@
     "workflow-updating": "ts-node src/starter/updating-timer.ts",
     "lint": "eslint ."
   },
-  "name": "temporal-timer",
   "nodemonConfig": {
     "execMap": {
       "ts": "ts-node"
