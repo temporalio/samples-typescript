@@ -5,11 +5,21 @@
   "scripts": {
     "build": "tsc --build ./tsconfig.json",
     "build.once": "tsc --build --watch ./tsconfig.json",
-    "start": "node ./lib/worker",
-    "workflow-fast": "node ./lib/starter/fast",
-    "workflow-slow": "node ./lib/starter/slow",
-    "workflow-updating": "node ./lib/starter/updating-timer",
+    "start": "ts-node src/worker.ts",
+    "start.watch": "nodemon src/worker.ts",
+    "workflow-fast": "ts-node src/starter/fast.ts",
+    "workflow-slow": "ts-node src/starter/slow.ts",
+    "workflow-updating": "ts-node src/starter/updating-timer.ts",
     "lint": "eslint ."
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
   },
   "dependencies": {
     "dotenv": "^10.0.0",
@@ -23,6 +33,8 @@
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",
     "eslint-plugin-deprecation": "^1.2.1",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.2.1",
     "typescript": "^4.4.2"
   }
 }
