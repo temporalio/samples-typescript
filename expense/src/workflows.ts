@@ -13,7 +13,7 @@ export const approveSignal = wf.defineSignal('approve');
 export const rejectSignal = wf.defineSignal('reject');
 
 const { createExpense, payment } = wf.proxyActivities<typeof activities>({
-  scheduleToCloseTimeout: '5 minutes',
+  startToCloseTimeout: '5 minutes',
 });
 
 export function timeoutOrUserAction(timeout: string): Promise<ExpenseStatus> {

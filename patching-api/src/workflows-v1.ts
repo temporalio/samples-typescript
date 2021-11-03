@@ -2,7 +2,7 @@ import { proxyActivities, sleep } from '@temporalio/workflow';
 import type * as activities from './activities';
 
 const { activityA, activityThatMustRunAfterA } = proxyActivities<typeof activities>({
-  scheduleToCloseTimeout: '30 seconds',
+  startToCloseTimeout: '30 seconds',
 });
 
 export const workflowId = 'patching-workflows-v1';
