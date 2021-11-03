@@ -2,6 +2,7 @@ import { Worker } from '@temporalio/worker';
 import * as activities from './activities';
 
 async function run() {
+  // @@@SNIPSTART typescript-production-worker
   const worker = await Worker.create({
     ...(process.env.NODE_ENV === 'production'
       ? { workflowBundle: { path: require.resolve('../workflow-bundle.js') } }
@@ -9,6 +10,7 @@ async function run() {
     activities,
     taskQueue: 'tutorial',
   });
+  // @@@SNIPEND
 
   await worker.run();
 }
