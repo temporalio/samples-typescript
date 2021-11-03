@@ -1,7 +1,7 @@
-import { createActivityHandle, isCancellation, ActivityCancellationType } from '@temporalio/workflow';
+import { proxyActivities, isCancellation, ActivityCancellationType } from '@temporalio/workflow';
 import type * as activities from './activities';
 
-const { fakeProgress } = createActivityHandle<typeof activities>({
+const { fakeProgress } = proxyActivities<typeof activities>({
   startToCloseTimeout: '60s',
   heartbeatTimeout: '3s',
   // Don't send rejection to our Workflow until the Activity has confirmed cancellation

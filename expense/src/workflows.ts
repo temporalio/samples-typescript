@@ -12,14 +12,14 @@ export enum ExpenseStatus {
 export const approveSignal = wf.defineSignal('approve');
 export const rejectSignal = wf.defineSignal('reject');
 
-const { createExpense, payment } = wf.createActivityHandle<typeof activities>({
+const { createExpense, payment } = wf.proxyActivities<typeof activities>({
   scheduleToCloseTimeout: '5 minutes',
 });
 
 export function timeoutOrUserAction(timeout: string): Promise<ExpenseStatus> {
   return new Promise((resolve, reject) => {
-    wf.setListener(approveSignal, () => resolve(ExpenseStatus.APPROVED));
-    wf.setListener(rejectSignal, () => resolve(ExpenseStatus.REJECTED));
+    wf.setHandler(approveSignal, () => resolve(ExpenseStatus.APPROVED));
+    wf.setHandler(rejectSignal, () => resolve(ExpenseStatus.REJECTED));
     wf.sleep(timeout).then(() => resolve(ExpenseStatus.TIMED_OUT), reject);
   });
 }

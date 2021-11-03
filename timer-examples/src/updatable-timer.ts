@@ -1,5 +1,5 @@
 // TODO - incorporate into the starter
-import { defineSignal, defineQuery, setListener, condition } from '@temporalio/workflow';
+import { defineSignal, defineQuery, setHandler, condition } from '@temporalio/workflow';
 
 export const setDeadlineSignal = defineSignal<[number]>('setDeadline');
 export const timeLeftQuery = defineQuery<number>('timeLeft');
@@ -10,12 +10,12 @@ export async function countdownWorkflow(): Promise<void> {
   const target = Date.now() + 24 * 60 * 60 * 1000; // 1 day!!!
   const timer = new UpdatableTimer(target);
   console.log('timer set for: ' + new Date(target).toString());
-  setListener(setDeadlineSignal, (deadline) => {
+  setHandler(setDeadlineSignal, (deadline) => {
     // send in new deadlines via Signal
     timer.deadline = deadline;
     console.log('timer now set for: ' + new Date(deadline).toString());
   });
-  setListener(timeLeftQuery, () => timer.deadline - Date.now());
+  setHandler(timeLeftQuery, () => timer.deadline - Date.now());
   await timer; // if you send in a signal witha  new time, this timer will resolve earlier!
   console.log('countdown done!');
 }

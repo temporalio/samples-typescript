@@ -1,10 +1,10 @@
-import { createActivityHandle } from '@temporalio/workflow';
+import { proxyActivities } from '@temporalio/workflow';
 import type * as activities from './activities';
 
 const {
   makeHTTPRequest,
   // cancellableFetch  // todo: demo usage
-} = createActivityHandle<typeof activities>({
+} = proxyActivities<typeof activities>({
   retry: {
     initialInterval: '50 milliseconds',
     maximumAttempts: 2,

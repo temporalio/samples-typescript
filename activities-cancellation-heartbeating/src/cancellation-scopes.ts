@@ -48,9 +48,9 @@ export async function cancelTimerAltImpl(): Promise<void> {
  * Demonstrates how to clean up after cancellation.
  */
 // @@@SNIPSTART typescript-handle-external-workflow-cancellation-while-activity-running
-import { createActivityHandle, isCancellation } from '@temporalio/workflow';
+import { proxyActivities, isCancellation } from '@temporalio/workflow';
 
-const { httpPostJSON, httpGetJSON, cleanup } = createActivityHandle({
+const { httpPostJSON, httpGetJSON, cleanup } = proxyActivities({
   startToCloseTimeout: '10m',
 });
 
@@ -81,7 +81,7 @@ export async function nonCancellable(url: string): Promise<any> {
 // @@@SNIPSTART typescript-multiple-activities-single-timeout-workflow
 export function multipleActivitiesSingleTimeout(urls: string[], timeoutMs: number): Promise<any> {
   // If timeout triggers before all activities complete
-  // the Workflow will fail with a CancelledError.
+  // the Workflow will fail with a CancelledFailure.
   return CancellationScope.withTimeout(timeoutMs, () => Promise.all(urls.map((url) => httpGetJSON(url))));
 }
 // @@@SNIPEND

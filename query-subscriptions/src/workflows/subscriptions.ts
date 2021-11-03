@@ -1,8 +1,8 @@
-import { createActivityHandle, WorkflowInterceptors, setListener, defineQuery, condition } from '@temporalio/workflow';
+import { proxyActivities, WorkflowInterceptors, setHandler, defineQuery, condition } from '@temporalio/workflow';
 import { createDraft, enablePatches, finishDraft } from 'immer';
 import type { createActivities } from '../activities';
 
-const { publish } = createActivityHandle<ReturnType<typeof createActivities>>({
+const { publish } = proxyActivities<ReturnType<typeof createActivities>>({
   startToCloseTimeout: '30 minutes',
 });
 
@@ -28,7 +28,7 @@ enablePatches();
 export function subscribableState<T>(initialValue: T): { value: T } {
   state.draft.value = initialValue;
   state.current.value = initialValue;
-  setListener(defineQuery<Versioned<T>>('getValue'), () => ({
+  setHandler(defineQuery<Versioned<T>>('getValue'), () => ({
     value: state.current.value,
     version: state.version,
   }));
