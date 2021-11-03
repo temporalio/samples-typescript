@@ -9,7 +9,7 @@ async function bundle() {
 
   await writeFile(path.join(__dirname, '../workflow-bundle.js'), code);
 
-  console.log('Bundle written to lib/workflow-bundle.js');
+  console.log('Bundle written to workflow-bundle.js');
 }
 
 bundle();
