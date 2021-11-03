@@ -53,6 +53,7 @@ External contributions are very welcome, just please make sure you agree with us
   - [Food Delivery](https://github.com/lorensr/food-delivery)
 - Ecommerce example: https://github.com/vkarpov15/temporal-ecommerce-ts
 - XState example: https://github.com/Devessier/temporal-electronic-signature
+- [Production example](https://github.com/temporalio/samples-typescript/tree/main/production): how to ship Temporal to Production
 
 ### Advanced APIs
 
