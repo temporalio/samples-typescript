@@ -5,7 +5,7 @@ import type { createActivities } from './activities';
 
 // Note usage of ReturnType<> generic since createActivities is a factory function
 const { greet, greet_es } = proxyActivities<ReturnType<typeof createActivities>>({
-  scheduleToCloseTimeout: '30 seconds',
+  startToCloseTimeout: '30 seconds',
 });
 // @@@SNIPEND
 

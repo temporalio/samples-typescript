@@ -9,7 +9,7 @@ const {
     initialInterval: '50 milliseconds',
     maximumAttempts: 2,
   },
-  scheduleToCloseTimeout: '30 seconds',
+  startToCloseTimeout: '30 seconds',
 });
 
 export async function httpWorkflow(): Promise<string> {

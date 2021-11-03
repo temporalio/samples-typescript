@@ -6,7 +6,7 @@ const {
   // activityA,
   // activityThatMustRunAfterA,
 } = proxyActivities<typeof activities>({
-  scheduleToCloseTimeout: '30 seconds',
+  startToCloseTimeout: '30 seconds',
 });
 
 export const workflowId = 'patching-workflows-vFinal';
