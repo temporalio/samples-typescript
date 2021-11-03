@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
-    "build:workflow": "ts-node scripts/build-workflow-bundle.ts",
+    "build:workflow": "ts-node src/scripts/build-workflow-bundle.ts",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow": "ts-node src/execute-workflow.ts",

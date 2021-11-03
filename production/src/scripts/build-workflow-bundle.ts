@@ -4,12 +4,13 @@ import path from 'path';
 
 async function bundle() {
   const { code } = await bundleWorkflowCode({
-    workflowsPath: require.resolve('../src/workflows'),
+    workflowsPath: require.resolve('../workflows'),
   });
+  const bundlePath = path.join(__dirname, '../../workflow-bundle.js');
 
-  await writeFile(path.join(__dirname, '../workflow-bundle.js'), code);
+  await writeFile(bundlePath, code);
 
-  console.log('Bundle written to workflow-bundle.js');
+  console.log(`Bundle written to ${bundlePath}`);
 }
 
 bundle();

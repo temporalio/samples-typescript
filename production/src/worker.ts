@@ -1,19 +1,22 @@
 import { Worker } from '@temporalio/worker';
 import * as activities from './activities';
 
+// @@@SNIPSTART typescript-production-worker
+const workflowOption = () =>
+  process.env.NODE_ENV === 'production'
+    ? { workflowBundle: { path: require.resolve('../workflow-bundle.js') } }
+    : { workflowsPath: require.resolve('./workflows') };
+
 async function run() {
-  // @@@SNIPSTART typescript-production-worker
   const worker = await Worker.create({
-    ...(process.env.NODE_ENV === 'production'
-      ? { workflowBundle: { path: require.resolve('../workflow-bundle.js') } }
-      : { workflowsPath: require.resolve('./workflows') }),
+    ...workflowOption(),
     activities,
     taskQueue: 'tutorial',
   });
-  // @@@SNIPEND
 
   await worker.run();
 }
+// @@@SNIPEND
 
 run().catch((err) => {
   console.error(err);
