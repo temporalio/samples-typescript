@@ -1,4 +1,3 @@
-// @@@SNIPSTART typescript-hello-client
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { example } from './workflows';
 
@@ -23,4 +22,3 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-// @@@SNIPEND
