@@ -5,15 +5,17 @@ const ADDITIONAL_SAMPLES = [];
 
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
-const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm'];
-const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick'];
+const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm', 'production'];
+const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick', 'production'];
 const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm'];
+const ESLINTIGNORE_EXCLUDE = ['production'];
 const POST_CREATE_EXCLUDE = [
   'timer-examples',
   'query-subscriptions',
   'nextjs-ecommerce-oneclick',
   'hello-world-mtls',
   'expense',
+  'production',
 ];
 
 // By default, zx logs all commands spawned
@@ -55,7 +57,10 @@ for (const sample of samples) {
     await copyAndAdd(sample, '.post-create');
   }
 
-  await copyAndAdd(sample, '.eslintignore');
+  if (!ESLINTIGNORE_EXCLUDE.includes(sample)) {
+    await copyAndAdd(sample, '.eslintignore');
+  }
+
   await copyAndAdd(sample, '.npmrc');
   await copyAndAdd(sample, '.nvmrc');
 }
