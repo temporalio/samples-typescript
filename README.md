@@ -34,9 +34,9 @@ Each directory in this repo is a sample Temporal project built with the Typescri
   - `makeHTTPRequest`: Make an external HTTP request in an Activity (using `axios`)
   - `fakeProgress` (tbc)
   - `cancellableFetch` (tbc)
-- [**Activity Cancellation and Heartbeating**](https://github.com/temporalio/samples-typescript/tree/main/activities-cancellation-heartbeating): Heartbeat progress for long running activities and cancel them.
-- [**Dependency Injection**](https://github.com/temporalio/samples-typescript/tree/main/activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities).
-- [**Sticky Queues**](https://github.com/temporalio/samples-typescript/tree/main/activities-sticky-queues): Dynamically assign task queue names to ensure activities execute sequentially on the same machine (eg for CI/CD, file processing workflows).
+- [**Activity Cancellation and Heartbeating**](https://github.com/temporalio/samples-typescript/tree/main/activities-cancellation-heartbeating): Heartbeat progress for long running activities and cancel them. [Read more on Activities docs](https://docs.temporal.io/docs/typescript/activities#heartbeating)
+- [**Dependency Injection**](https://github.com/temporalio/samples-typescript/tree/main/activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities). [Read more on Activities docs](https://docs.temporal.io/docs/typescript/activities#sharing-dependencies-in-activity-functions)
+- [**Sticky Activities**](https://github.com/temporalio/samples-typescript/tree/main/activities-sticky-queues): Dynamically assign task queue names to ensure activities execute sequentially on the same machine (eg for CI/CD, file processing workflows). [Read more on Worker docs](https://docs.temporal.io/docs/typescript/workers#example-sticky-activities)
 
 #### Workflow APIs
 
@@ -44,7 +44,7 @@ Each directory in this repo is a sample Temporal project built with the Typescri
   - The [**progress example**](https://github.com/temporalio/samples-typescript/tree/main/timer-progress) demonstrates how to use the `sleep` function from `@temporalio/workflow`.
   - [**Timer Examples**](https://github.com/temporalio/samples-typescript/tree/main/timer-examples):
     - Send a notification to the customer if their order is taking longer than expected (using a `Promise.race` between the order activity and `sleep`).
-    - Create an `UpdatableTimer` that can be slept upon and updated via Signals.
+    - Create an `UpdatableTimer` that can be updated via Signals while it is still sleeping.
 - **Signals and Triggers**:
   - The [**Signals and Queries example**](https://github.com/temporalio/samples-typescript/tree/main/signals-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
   - **Async activity completion**: Example of an [**Expense reporting**](https://github.com/temporalio/samples-typescript/tree/main/expense) Workflow that communicates with a server API. Shows how to kick off a workflow and manually complete it at an arbitrarily later date.
