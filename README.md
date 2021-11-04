@@ -56,11 +56,9 @@ Each directory in this repo is a sample Temporal project built with the Typescri
 #### Production APIs
 
 - [**Production**](https://github.com/temporalio/samples-typescript/tree/main/production): Build code in advance for faster Worker startup times.
-- [**Patching**](https://docs.temporal.io/docs/typescript/patching/): Patch in new Workflow code when making updates to Workflows that have instances in progress in production.
+- [**Patching**](https://docs.temporal.io/docs/typescript/patching/): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
 
 #### Advanced APIs
-
-This sample shows how to use the [patching/versioning API](https://docs.temporal.io/docs/typescript/patching/) to update the code of a Workflow that has instances in progress in production.
 
 - Interceptors
   - [**OpenTelemetry**](https://github.com/temporalio/samples-typescript/tree/main/interceptors-opentelemetry): Use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows. ⚠️ This sample is broken for now.
