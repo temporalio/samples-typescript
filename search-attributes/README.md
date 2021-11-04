@@ -1,6 +1,6 @@
 # Search Attributes
 
-This example demonstrates usage of custom search attributes with Temporal. This requires an Elasticsearch instance, which comes setup with the default `docker-compose`.
+This example demonstrates usage of custom search attributes with Temporal. This requires an Elasticsearch instance, which comes set up with the default `docker-compose`.
 
 ## Steps to run this example
 

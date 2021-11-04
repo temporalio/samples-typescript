@@ -29,6 +29,7 @@
     "*.{js,ts,json,md}": "prettier --write"
   },
   "dependencies": {
+    "doctoc": "^2.1.0",
     "lerna": "^4.0.0"
   }
 }

@@ -4,7 +4,7 @@ Demo using [Redis Streams](https://redis.io/topics/streams-intro), [Immer](https
 and [SDK Interceptors](https://docs.temporal.io/docs/typescript/interceptors) to build a subscribable query mechanism for Workflow state.
 
 This is an advanced sample that requires knowledge of SDK internals. There's a lot going on "behind the scenes" in [subscriptions.ts](./src/workflows/subscriptions.ts).
-It is far simpler to manually publish updates from Workflow code but we put the sample here for showing off some of the advanced capabilities provided by the runtime.
+It is far simpler to manually publish updates from Workflow code but we put the sample here to show off some of the advanced capabilities provided by the runtime.
 
 ## Steps to run this example
 

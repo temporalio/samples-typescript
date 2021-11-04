@@ -4,11 +4,11 @@ This sample shows how to use a unique task queue per Worker for running activiti
 
 The strategy is:
 
-- create a `getUniqueTaskQueue` activity that generates a unique task queue name.
-- It doesn't matter where this activity is run so this can be "non sticky" as per Temporal default behavior
-- In this demo, `uniqueWorkerTaskQueue` simply reflects a `uuid` initialized in the Worker, but you can inject smart logic here to uniquely identify the Worker, [as Netflix did](https://community.temporal.io/t/using-dynamic-task-queues-for-traffic-routing/3045)
-- For activities intended to be "sticky", only register them in one Worker, and have that be the only Worker listening on that `uniqueWorkerTaskQueue`
-- execute workflows from the Client like normal
+- Create a `getUniqueTaskQueue` activity that generates a unique task queue name.
+- It doesn't matter where this activity is run so this can be "non sticky" as per Temporal default behavior.
+- In this demo, `uniqueWorkerTaskQueue` simply reflects a `uuid` initialized in the Worker, but you can inject smart logic here to uniquely identify the Worker, [as Netflix did](https://community.temporal.io/t/using-dynamic-task-queues-for-traffic-routing/3045).
+- For activities intended to be "sticky", only register them in one Worker, and have that be the only Worker listening on that `uniqueWorkerTaskQueue`.
+- Execute workflows from the Client like normal.
 
 Activities have been artificially slowed with `activity.Context().sleep(3000)` to simulate slow activities.
 
