@@ -23,7 +23,7 @@ Each directory in this repo is a sample Temporal project built with the Typescri
 ### Basic
 
 - [**Basic hello world**](https://github.com/temporalio/samples-typescript/tree/main/hello-world): Simple example of a Workflow Definition and an Activity Definition.
-  - Variant: [Basic hello world with mTLS](https://github.com/temporalio/samples-typescript/tree/main/hello-world-mtls) shows how to connect to your Temporal Cloud namespace with mTLS authentication. [Read more on the mTLS docs](https://docs.temporal.io/docs/typescript/tls).
+  - Variant: [Basic hello world with mTLS](https://github.com/temporalio/samples-typescript/tree/main/hello-world-mtls) shows how to connect to your Temporal Cloud namespace with mTLS authentication.
 - [**Pure ES Modules**](https://github.com/temporalio/samples-typescript/tree/main/fetch-esm): Configure Temporal with TypeScript and Pure ESM.
 
 ### API demos
@@ -34,9 +34,9 @@ Each directory in this repo is a sample Temporal project built with the Typescri
   - `makeHTTPRequest`: Make an external HTTP request in an Activity (using `axios`)
   - `fakeProgress` (tbc)
   - `cancellableFetch` (tbc)
-- [**Activity Cancellation and Heartbeating**](https://github.com/temporalio/samples-typescript/tree/main/activities-cancellation-heartbeating): Heartbeat progress for long running activities and cancel them. [Read more on Activities docs](https://docs.temporal.io/docs/typescript/activities#heartbeating)
-- [**Dependency Injection**](https://github.com/temporalio/samples-typescript/tree/main/activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities). [Read more on Activities docs](https://docs.temporal.io/docs/typescript/activities#sharing-dependencies-in-activity-functions)
-- [**Sticky Activities**](https://github.com/temporalio/samples-typescript/tree/main/activities-sticky-queues): Dynamically assign task queue names to ensure activities execute sequentially on the same machine (eg for CI/CD, file processing workflows). [Read more on Worker docs](https://docs.temporal.io/docs/typescript/workers#example-sticky-activities)
+- [**Activity Cancellation and Heartbeating**](https://github.com/temporalio/samples-typescript/tree/main/activities-cancellation-heartbeating): Heartbeat progress for long running activities and cancel them.
+- [**Dependency Injection**](https://github.com/temporalio/samples-typescript/tree/main/activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities).
+- [**Sticky Activities**](https://github.com/temporalio/samples-typescript/tree/main/activities-sticky-queues): Dynamically assign task queue names to ensure activities execute sequentially on the same machine (eg for CI/CD, file processing workflows).
 
 #### Workflow APIs
 
