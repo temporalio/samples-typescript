@@ -2,7 +2,7 @@
 
 This example shows
 
-- how to use `sleep` to send a reminder email after some time elapses
+- how to use `sleep` to send a notification email after some time elapses
 - how to use `sleep` to create an Updatable Timer
 
 ## Steps to run the fast and slow examples

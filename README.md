@@ -5,13 +5,12 @@ Each directory in this repo is a sample Temporal project built with the Typescri
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-**Contents:**
-
 - [Samples](#samples)
   - [Basic](#basic)
   - [API demos](#api-demos)
     - [Activity APIs and Design Patterns](#activity-apis-and-design-patterns)
     - [Workflow APIs](#workflow-apis)
+    - [Production APIs](#production-apis)
     - [Advanced APIs](#advanced-apis)
   - [Apps](#apps)
 - [Contributing](#contributing)
@@ -38,21 +37,30 @@ Each directory in this repo is a sample Temporal project built with the Typescri
 - [**Activity Cancellation and Heartbeating**](https://github.com/temporalio/samples-typescript/tree/main/activities-cancellation-heartbeating): Heartbeat progress for long running activities and cancel them.
 - [**Dependency Injection**](https://github.com/temporalio/samples-typescript/tree/main/activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities).
 - [**Sticky Queues**](https://github.com/temporalio/samples-typescript/tree/main/activities-sticky-queues): Dynamically assign task queue names to ensure activities execute sequentially on the same machine (eg for CI/CD, file processing workflows).
-- [**Production**](https://github.com/temporalio/samples-typescript/tree/main/production): Build code in advance for faster Worker startup times.
 
 #### Workflow APIs
 
 - **Timers**:
-  - The [**progress example**](https://github.com/temporalio/samples-typescript/tree/main/progress) demonstrates how to use the `sleep` function from `@temporalio/workflow`.
+  - The [**progress example**](https://github.com/temporalio/samples-typescript/tree/main/timer-progress) demonstrates how to use the `sleep` function from `@temporalio/workflow`.
+  - [**Timer Examples**](https://github.com/temporalio/samples-typescript/tree/main/timer-examples):
+    - Send a notification to the customer if their order is taking longer than expected (using a `Promise.race` between the order activity and `sleep`).
+    - Create an `UpdatableTimer` that can be slept upon and updated via Signals.
 - **Signals and Triggers**:
-  - The [**Signals and Queries example**](https://github.com/temporalio/samples-typescript/tree/main/signals-and-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
+  - The [**Signals and Queries example**](https://github.com/temporalio/samples-typescript/tree/main/signals-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
   - **Async activity completion**: Example of an [**Expense reporting**](https://github.com/temporalio/samples-typescript/tree/main/expense) Workflow that communicates with a server API. Shows how to kick off a workflow and manually complete it at an arbitrarily later date.
 - [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): Schedule a cron job.
 - [**Child Workflows**](https://github.com/temporalio/samples-typescript/tree/main/child-workflows): Start and control Child Workflows.
 - [**Infinite Workflows**](https://github.com/temporalio/samples-typescript/tree/main/continue-as-new): Use the `continueAsNew` API for indefinitely long running Workflows.
 - [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): Set up Search Attributes (an experimental feature for now).
 
+#### Production APIs
+
+- [**Production**](https://github.com/temporalio/samples-typescript/tree/main/production): Build code in advance for faster Worker startup times.
+- [**Patching**](https://docs.temporal.io/docs/typescript/patching/): Patch in new Workflow code when making updates to Workflows that have instances in progress in production.
+
 #### Advanced APIs
+
+This sample shows how to use the [patching/versioning API](https://docs.temporal.io/docs/typescript/patching/) to update the code of a Workflow that has instances in progress in production.
 
 - Interceptors
   - [**OpenTelemetry**](https://github.com/temporalio/samples-typescript/tree/main/interceptors-opentelemetry): Use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows. ⚠️ This sample is broken for now.
