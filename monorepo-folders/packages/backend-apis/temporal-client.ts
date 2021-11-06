@@ -1,4 +1,3 @@
-// @ts-nocheck
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { WorkflowA, WorkflowB } from 'temporal-workflows/src/all-workflows';
 

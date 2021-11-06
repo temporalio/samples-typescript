@@ -1,4 +1,3 @@
-// @ts-nocheck
 // #!/usr/bin/env node
 var createError = require('http-errors');
 var express = require('express');
@@ -16,9 +15,10 @@ var port = 4000;
 
 /** routes */
 var temporalClient = require('./temporal-client');
+// @ts-ignore
 app.get('/api/workflow', async function (req, res) {
   try {
-    const result = await temporalClient.runWorkflow().catch((err) => {
+    const result = await temporalClient.runWorkflow().catch((err: Error) => {
       console.error(err);
       process.exit(1);
     });
@@ -28,6 +28,7 @@ app.get('/api/workflow', async function (req, res) {
     res.status(500).send(err);
   }
 });
+// @ts-ignore
 app.get('/api/data', function (req, res) {
   setTimeout(() => {
     // artificial server delay
@@ -36,10 +37,11 @@ app.get('/api/data', function (req, res) {
 });
 
 /** standard error handling */
+// @ts-ignore
 app.use(function (req, res, next) {
   next(createError(404));
 });
-
+// @ts-ignore
 app.use(function (err, req, res) {
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
