@@ -1,0 +1,14 @@
+{
+  "name": "temporal-worker",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "ts-node worker.ts"
+  },
+  "dependencies": {
+    "ts-node": "^10.4.0",
+    "temporal-workflows": "*",
+    "temporalio": "*"
+  },
+  "devDependencies": {}
+}

@@ -1,0 +1,20 @@
+{
+  "private": true,
+  "name": "monorepo-folders",
+  "workspaces": [
+    "packages/*"
+  ],
+  "scripts": {
+    "frontend": "yarn workspace frontend-ui start",
+    "backend": "yarn workspace backend-apis start",
+    "worker": "yarn workspace temporal-worker start",
+    "start": "concurrently --kill-others-on-fail \"yarn frontend\"  \"yarn backend\" \"yarn worker\""
+  },
+  "dependencies": {
+    "concurrently": "^6.3.0",
+    "temporalio": "^0.14.0"
+  },
+  "devDependencies": {
+    "ts-loader": "^9.2.6"
+  }
+}
