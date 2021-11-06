@@ -1,11 +1,17 @@
 # monorepo-folders
 
-This example is meant to help people with alternative folder structures to our hello-world:
+This example is meant to demonstrate a realistic monorepo folder structure where:
+
+- `frontend-ui` contains the frontend UI that calls some backend APIs (we use Create-React-App)
+- `backend-apis` contains all the backend API routes (we use Express.js here, but could easily be a set of serverless functions)
+  - Some routes have a Temporal Client that calls workflows
+- `temporal-worker` has independently scalable Workers that have Workflows and Activities registered
+- `temporal-workflows` is a shared source folder containing Workflow and Activity code that is used by both the Client in `backend-apis` and the Worker in `temporal-worker`
 
 ```bash
 packages/
   backend-apis/
-    server.ts # runs Express server on localhost:4000, has Temporal Client that calls workflows
+    server.ts # runs Express server on localhost:4000 
   frontend-ui # this is a Create-React-App on localhost:3000, proxies api requests to :4000
   temporal-worker/
     worker.ts # registers Temporal Worker that has Workflows and Activities from /temporal-workflows
@@ -22,18 +28,17 @@ packages/
             activitiesC.ts
             activitiesD.ts
           workflow.ts
-      workflowE.ts
       all_workflows.ts
-      activityF.ts
+      all_activities.ts
 node_modules
 package.json
 ```
 
 Notes on the structure demonstrated:
 
-- **Workflows require one file**: you can organize workflows however you like, but you need to export them all in a single file per Worker (so that the Worker's webpack has an entry point)
+- **Workflows require one file**:  you can organize Workflow code however you like, but each Worker needs to reference a single file that exports all the Workflows it handles (so that the Worker's webpack has an entry point)
 - **Activities are top level**:
-  - Inside Temporal Server, Activities are registered at the same level Workflows are.
+  - Inside the Temporal Worker, Activities are registered at the same level Workflows are.
   - Since Activities are required, not bundled, Activities don't need to be exported in a single file.
     Just make sure they are registered with some Workers if you intend them to be executed.
   - You can organize activities however you like, but it is important to understand that activities don't "belong" to workflows as far as Temporal is concerned.
@@ -54,12 +59,12 @@ The route handler has a Temporal Client which executes WorkflowA and starts Work
 You can see the logs in the terminal output:
 
 ```bash
-[2] hello from A Temporal
-[2] hello from B Temporal
-[1] Hello, Temporal! Hello, Temporal!
-[1] GET /api/workflow 200 1049.024 ms - 46
-[2] hello from C defaultWorkflowBName
-[2] hello from D defaultWorkflowBName
+[worker] hello from A Temporal
+[worker] hello from B Temporal
+[api-server] A: Hello, Temporal! B: Hello, Temporal!
+[api-server] GET /api/workflow 200 1049.024 ms - 46
+[worker] hello from C defaultWorkflowBName
+[worker] hello from D defaultWorkflowBName
 ```
 
 This code isn't meant to be meaningful, the important thing is that we show how all 4 packages in this monorepo can realistically work together with Temporal spread across 3 of them.

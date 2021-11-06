@@ -9,7 +9,7 @@
     "backend": "yarn workspace backend-apis start",
     "worker": "yarn workspace temporal-worker start",
     "build.workflows": "yarn workspace temporal-workflows compile",
-    "start": "yarn build.workflows && concurrently --kill-others-on-fail \"yarn frontend\"  \"yarn backend\" \"yarn worker\""
+    "start": "yarn build.workflows && concurrently --kill-others-on-fail -n 'frontend,api-server,worker' \"yarn frontend\"  \"yarn backend\" \"yarn worker\""
   },
   "dependencies": {
     "concurrently": "^6.3.0",
