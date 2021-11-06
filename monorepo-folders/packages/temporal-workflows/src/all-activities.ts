@@ -1,3 +1,3 @@
-export async function greet(name: string): Promise<string> {
-  return `Hello, ${name}!`;
-}
+export * from './workflowA/activities/activitiesA';
+export * from './workflowA/activities/activitiesB';
+export * from './workflowB/activities';

@@ -8,7 +8,8 @@
     "frontend": "yarn workspace frontend-ui start",
     "backend": "yarn workspace backend-apis start",
     "worker": "yarn workspace temporal-worker start",
-    "start": "concurrently --kill-others-on-fail \"yarn frontend\"  \"yarn backend\" \"yarn worker\""
+    "build.workflows": "yarn workspace temporal-workflows compile",
+    "start": "yarn build.workflows && concurrently --kill-others-on-fail \"yarn frontend\"  \"yarn backend\" \"yarn worker\""
   },
   "dependencies": {
     "concurrently": "^6.3.0",

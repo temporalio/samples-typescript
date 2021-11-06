@@ -1,6 +1,6 @@
 // @ts-nocheck
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { example } from 'temporal-workflows/src/all-workflows';
+import { WorkflowA, WorkflowB } from 'temporal-workflows/src/all-workflows';
 
 export async function runWorkflow() {
   const connection = new Connection(); // Connect to localhost with default ConnectionOptions.
@@ -12,10 +12,12 @@ export async function runWorkflow() {
     workflowDefaults: { taskQueue: 'tutorial' },
   });
 
-  // Invoke the `example` Workflow, only resolved when the workflow completes
-  const result = await client.execute(example, {
+  // Invoke the `WorkflowA` Workflow, only resolved when the workflow completes
+  const result = await client.execute(WorkflowA, {
     args: ['Temporal'], // type inference works! args: [name: string]
   });
+  // Starts the `WorkflowB` Workflow, don't wait for it to complete
+  await client.start(WorkflowB);
   console.log(result); // Hello, Temporal!
   return result;
 }
