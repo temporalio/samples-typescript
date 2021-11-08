@@ -25,8 +25,8 @@
     "zx": "^4.2.0"
   },
   "lint-staged": {
-    "*.{js,ts}": "eslint --cache --fix",
-    "*.{js,ts,json,md}": "prettier --write"
+    "*.{js,ts,json,md}": "prettier --write",
+    "*.{js,ts}": "lerna run lint -- --fix --cache"
   },
   "dependencies": {
     "doctoc": "^2.1.0",

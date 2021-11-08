@@ -2,15 +2,15 @@
 
 This example shows how to use [`sleep`](https://typescript.temporal.io/api/namespaces/workflow/#sleep) to:
 
-- Send a notification to the customer if their order is taking longer than expected: [`src/workflows.ts`](https://github.com/temporalio/samples-typescript/blob/main/timer-examples/src/workflows.ts)
-- Create an `UpdatableTimer` that can be slept on, and at the same time, have its duration updated via Signals: [`src/updatable-timer.ts`](https://github.com/temporalio/samples-typescript/blob/main/timer-examples/src/updatable-timer.ts)
+- Send a notification to the customer if their order is taking longer than expected: [`src/workflows.ts`](./src/workflows.ts)
+- Create an `UpdatableTimer` that can be slept on, and at the same time, have its duration updated via Signals: [`src/updatable-timer.ts`](./src/updatable-timer.ts)
 
 ## Running the sample
 
 1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
 1. `npm install` to install dependencies.
 1. _Optional_: Set up an account with [Mailgun](https://www.mailgun.com/) and create a `.env` file with the following environment variables: `MAILGUN_API`, `MAILGUN_DOMAIN`, and `ADMIN_EMAIL`
-1. `npm start.watch` to start the Worker.
+1. `npm run start.watch` to start the Worker.
 
 ### Email notification
 
@@ -34,7 +34,7 @@ Run `npm run workflow-updating` to demonstrate the Updatable Timer.
 
 This example shows how to write reusable libraries that encompass Workflow APIs.
 
-[`countdownWorkflow`](https://github.com/temporalio/samples-typescript/blob/main/timer-examples/src/updatable-timer.ts) is originally set to resolve after 1 day; however, the Workflow sends in a `setDeadlineSignal` that updates it to resolve in 1 second, and it does. You can see each step in the Worker log output, as well as the [Temporal Web](https://docs.temporal.io/docs/system-tools/web-ui/#using-temporal-web-for-development) Timer settings.
+[`countdownWorkflow`](./src/updatable-timer.ts) is originally set to resolve after 1 day; however, the Workflow sends in a `setDeadlineSignal` that updates it to resolve in 1 second, and it does. You can see each step in the Worker log output, as well as the [Temporal Web](https://docs.temporal.io/docs/system-tools/web-ui/#using-temporal-web-for-development) Timer settings.
 
 ```bash
 [countdownWorkflow(6c0c152b-aead-4b1a-acf0-17e809acf0fc)] timer set for: Tue Nov 02 2021 03:03:57 GMT-0700 (Pacific Daylight Time)

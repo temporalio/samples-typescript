@@ -1,11 +1,10 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { WorkflowClient } from '@temporalio/client';
 import { countdownWorkflow, setDeadlineSignal, timeLeftQuery } from '../workflows';
 
 async function run(): Promise<void> {
-  const connection = new Connection();
-  const client = new WorkflowClient(connection.service);
+  const client = new WorkflowClient();
 
-  const handle = await client.start(countdownWorkflow, { taskQueue: 'tutorial20210928' });
+  const handle = await client.start(countdownWorkflow, { taskQueue: 'timer-examples' });
   console.log('Time left: ', await handle.query(timeLeftQuery));
   await handle.signal(setDeadlineSignal, Date.now() + 3000);
   console.log('Time left: ', await handle.query(timeLeftQuery));

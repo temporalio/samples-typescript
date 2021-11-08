@@ -1,4 +1,4 @@
-# Next.js + Temporal Example
+# Next.js + Temporal
 
 This example shows how to use [Temporal](https://docs.temporal.io/) with Next.js.
 

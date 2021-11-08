@@ -19,7 +19,7 @@ async function run(): Promise<void> {
   });
 
   const worker = await Worker.create({
-    taskQueue: 'tutorial20210928',
+    taskQueue: 'timer-examples',
     activities,
     workflowsPath: require.resolve('./workflows'),
   });

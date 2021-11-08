@@ -1,17 +1,20 @@
-# Child Workflows demo
+# Child Workflows
 
-This sample shows how to write [child workflows](https://docs.temporal.io/docs/typescript/workflows#child-workflows).
+This sample shows how to use [child workflows](https://docs.temporal.io/docs/typescript/workflows#child-workflows):
 
-## Steps to run this example
+[`src/workflows.ts`](./src/workflows.ts)
 
-1. Make sure the Temporal Server is running locally. Follow the [Quick install guide](https://docs.temporal.io/docs/server/quick-install) to do that.
-2. Run `npm install` to install dependencies.
-3. Run `npm run build` to compile the project.
-4. Run `npm start` to start the worker. Leave the worker process running.
-5. Run `npm run workflow` to run the workflow. It should print out:
+### Running this sample
+
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
+1. `npm install` to install dependencies.
+1. `npm run start.watch` to start the Worker.
+1. In another shell, `npm run workflow` to run the Workflow.
+
+The Workflow should return:
 
 ```
-i am a child named Alice
-i am a child named Bob
-i am a child named Charlie
+I am a child named Alice
+I am a child named Bob
+I am a child named Charlie
 ```

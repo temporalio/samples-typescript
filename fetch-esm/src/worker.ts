@@ -10,7 +10,7 @@ const workflowsPath = new URL(`./workflows${path.extname(import.meta.url)}`, imp
 const worker = await Worker.create({
   workflowsPath,
   activities,
-  taskQueue: 'tutorial',
+  taskQueue: 'fetch-esm',
 });
 
 await worker.run();

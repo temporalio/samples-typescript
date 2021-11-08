@@ -26,6 +26,6 @@ export function getEnv(): Env {
     clientKeyPath: requiredEnv('TEMPORAL_CLIENT_KEY_PATH'),
     serverNameOverride: process.env.TEMPORAL_SERVER_NAME_OVERRIDE,
     serverRootCACertificatePath: process.env.TEMPORAL_SERVER_ROOT_CA_CERT_PATH,
-    taskQueue: process.env.TEMPORAL_TASK_QUEUE || 'tutorial',
+    taskQueue: process.env.TEMPORAL_TASK_QUEUE || 'hello-world-mtls',
   };
 }

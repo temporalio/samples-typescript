@@ -10,3 +10,5 @@ Then, in the project directory, using two other shells, run these commands:
 
   {cyan npm run start.watch}
   {cyan npm run workflow}
+
+To try out the patching API, follow the rest of the steps in {bold README.md}.

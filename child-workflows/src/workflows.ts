@@ -1,7 +1,7 @@
 // @@@SNIPSTART typescript-child-workflow
 import { executeChild } from '@temporalio/workflow';
 
-export async function parentWorkflow(names: string[]): Promise<string> {
+export async function parentWorkflow(...names: string[]): Promise<string> {
   const responseArray = await Promise.all(
     names.map((name) =>
       executeChild(childWorkflow, {
@@ -18,5 +18,5 @@ export async function parentWorkflow(names: string[]): Promise<string> {
 // @@@SNIPEND
 
 export async function childWorkflow(name: string): Promise<string> {
-  return `i am a child named ${name}`;
+  return `I am a child named ${name}`;
 }
