@@ -21,11 +21,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           # Comment out cache line when testing with act:
-          # act --platform ubuntu-latest=lucasalt/act_base:latest
+          # (`act --platform ubuntu-latest=lucasalt/act_base:latest`)
           cache: 'npm'
-      - run: npm install
+      - run: npm ci
       - run: npx prettier . --check
-      # - run: npm run lint
+      - run: npm run lint
       - name: Get Temporal docker-compose.yml
         run: wget https://raw.githubusercontent.com/temporalio/docker-compose/main/docker-compose.yml
         # TODO: Test on MacOS once we get docker-compose running on the GH actions Mac instance
