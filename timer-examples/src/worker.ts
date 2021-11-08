@@ -5,22 +5,13 @@ import { createActivities } from './activities';
 
 dotenv.config();
 
-const errs = [] as string[];
-function getEnv(key: string): string {
-  const val = process.env[key];
-  if (!val) {
-    errs.push(`Missing '${key}' environment variable`);
-    return 'ERROR';
-  }
-  return val;
-}
+const { MAILGUN_API: apiKey, MAILGUN_DOMAIN: domain, ADMIN_EMAIL: to } = process.env;
 
 async function run(): Promise<void> {
-  const apiKey = getEnv('MAILGUN_API');
-  const domain = getEnv('MAILGUN_DOMAIN');
-  const to = getEnv('ADMIN_EMAIL');
-  if (errs.length) throw new Error(errs.join('\n'));
-  const mg = mailgun({ apiKey, domain });
+  let mg;
+  if (apiKey && domain) {
+    mg = mailgun({ apiKey, domain });
+  }
 
   const activities = createActivities(mg, {
     to,
@@ -28,7 +19,7 @@ async function run(): Promise<void> {
   });
 
   const worker = await Worker.create({
-    taskQueue: 'tutorial20210928',
+    taskQueue: 'timer-examples',
     activities,
     workflowsPath: require.resolve('./workflows'),
   });

@@ -12,7 +12,7 @@ async function run() {
   };
 
   const worker = await Worker.create({
-    taskQueue: 'tutorial',
+    taskQueue: 'dependency-injection',
     workflowsPath: require.resolve('./workflows'),
     activities: createActivities(db),
   });

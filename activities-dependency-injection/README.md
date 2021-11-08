@@ -1,14 +1,17 @@
-# Activities dependency injection example
+# Activities Dependency Injection
 
-This sample shows how to share dependencies between activities: for example, when you need to initialize a database connection once and then pass it to multiple dependencies.
+This sample shows how to [share dependencies](https://docs.temporal.io/docs/typescript/activities#sharing-dependencies-in-activity-functions) between Activities: for example, when you need to initialize a database connection once and then pass it to multiple Activities.
 
-## Steps to run this example
+[`src/worker.ts`](./src/worker.ts)
 
-1. Make sure the Temporal Server is running locally. Follow the [Quick install guide](https://docs.temporal.io/docs/server/quick-install) to do that.
-2. Run `npm install` to install dependencies.
-3. Run `npm run build` to compile the project.
-4. Run `npm start.watch` to start the worker and reload on changes. Leave the worker process running.
-5. Run `npm run workflow` to run the workflow. It should print out:
+### Running this sample
+
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
+1. `npm install` to install dependencies.
+1. `npm run start.watch` to start the Worker.
+1. In another shell, `npm run workflow` to run the Workflow.
+
+The Workflow should return:
 
 ```
 Hello: Temporal

@@ -1,11 +1,24 @@
-# Signals and Queries Example
+# Signals and Queries
 
-This example demonstrates the usage of Signals, Queries, and Workflow Cancellation.
+This example demonstrates the usage of [Signals, Queries](https://docs.temporal.io/docs/typescript/workflows#signals-and-queries), and [Workflow Cancellation](https://docs.temporal.io/docs/typescript/cancellation-scopes).
 
-## Steps to run this example
+Signals, Queries, and cancellation messages are sent through the `WorkflowClient`:
 
-1. Make sure the Temporal Server is running locally. Follow the [Quick install guide](https://docs.temporal.io/docs/server/quick-install) to do that.
-2. Run `npm install` to install dependencies.
-3. Run `npm run build` to compile the project.
-4. Run `npm run worker` to start the worker. Leave the worker process running.
-5. Run `npm run workflow` to start the example. Should print out "Hello, Temporal!"
+[`src/execute-workflow.ts`](./src/execute-workflow.ts)
+
+and are handled in the Workflow:
+
+[`src/workflows.ts`](./src/workflows.ts)
+
+### Running this sample
+
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
+1. `npm install` to install dependencies.
+1. `npm run start.watch` to start the Worker.
+1. In another shell, `npm run workflow` to run the Workflow.
+
+The Workflow should return:
+
+```
+Hello, Temporal!
+```

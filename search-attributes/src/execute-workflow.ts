@@ -4,8 +4,9 @@ import { example } from './workflows';
 async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service, {
-    workflowDefaults: { taskQueue: 'tutorial' },
+    workflowDefaults: { taskQueue: 'search-attributes' },
   });
+
   // @@@SNIPSTART typescript-search-attributes-at-creation
   const result = await client.execute(example, {
     // workflowId,
@@ -20,6 +21,7 @@ async function run() {
     },
   });
   // @@@SNIPEND
+
   console.log(result);
 }
 

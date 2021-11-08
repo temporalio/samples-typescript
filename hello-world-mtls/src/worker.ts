@@ -44,8 +44,8 @@ async function run({
     activities,
     taskQueue,
   });
-  console.log('Worker connection succesfully established');
-  // Start accepting tasks on the `tutorial` queue
+  console.log('Worker connection successfully established');
+
   await worker.run();
 }
 

@@ -29,11 +29,11 @@ async function run() {
   const allExpenses = new Map<string, ExpenseStatus>();
 
   app.get('/', function (_req, res) {
-    res.json(allExpenses);
+    res.json(Object.fromEntries(allExpenses));
   });
 
   app.get('/list', function (_req, res) {
-    res.json(allExpenses);
+    res.json(Object.fromEntries(allExpenses));
   });
 
   app.post('/create', function (req, res) {
