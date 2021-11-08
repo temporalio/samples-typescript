@@ -7,8 +7,9 @@ async function run() {
   const worker = await Worker.create({
     workflowsPath: require.resolve('./workflows'),
     activities,
-    taskQueue: 'tutorial',
+    taskQueue: 'ecommerce-oneclick',
   });
+
   // Start accepting tasks on the `tutorial` queue
   await worker.run();
 }

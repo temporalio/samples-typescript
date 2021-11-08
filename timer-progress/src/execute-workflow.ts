@@ -1,11 +1,10 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { WorkflowClient } from '@temporalio/client';
 import { progress, getProgress } from './workflows';
 
 async function run() {
-  const connection = new Connection();
-  const client = new WorkflowClient(connection.service);
+  const client = new WorkflowClient();
 
-  const handle = await client.start(progress, { taskQueue: 'tutorial' });
+  const handle = await client.start(progress, { taskQueue: 'timer-progress' });
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
   const val = await handle.query(getProgress);

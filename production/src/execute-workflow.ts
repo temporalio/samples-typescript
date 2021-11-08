@@ -8,12 +8,11 @@ async function run() {
 
   const client = new WorkflowClient(connection.service, {
     // In production you will likely specify `namespace` here; it is 'default' if omitted
-    workflowDefaults: { taskQueue: 'tutorial' },
+    workflowDefaults: { taskQueue: 'production-sample' },
   });
 
-  // Invoke the `example` Workflow, only resolved when the workflow completes
   const result = await client.execute(example, {
-    args: ['Temporal'], // type inference works! args: [name: string]
+    args: ['Temporal'],
   });
   console.log(result); // Hello, Temporal!
 }

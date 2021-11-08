@@ -1,27 +1,31 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-// @@@SNIPSTART typescript-timer-reminder-activity
 import { Context } from '@temporalio/activity';
 import mailgun from 'mailgun-js';
 
 export interface EmailSettings {
-  to: string;
+  to: string | undefined;
   from: string;
 }
 
-export const createActivities = (mg: mailgun.Mailgun, { to, from }: EmailSettings) => ({
+const html = `Order processing is taking longer than expected, but don't worry—the job is still running!`;
+
+export const createActivities = (mg: mailgun.Mailgun | undefined, { to, from }: EmailSettings) => ({
   async processOrder(sleepMS = 1000): Promise<void> {
     await Context.current().sleep(sleepMS);
   },
 
   async sendNotificationEmail(): Promise<void> {
-    const data = {
-      to,
-      from,
-      subject: 'Order processing taking longer than expected',
-      html: "Order processing is taking longer than expected, but don't worry, the job is still running!",
-    };
+    console.log('Sending email:', html);
 
-    await mg.messages().send(data);
+    if (mg && to) {
+      const data = {
+        to,
+        from,
+        subject: 'Order processing taking longer than expected',
+        html,
+      };
+
+      await mg.messages().send(data);
+    }
   },
 });
-// @@@SNIPEND

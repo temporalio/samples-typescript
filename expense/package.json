@@ -6,6 +6,7 @@
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
     "server": "ts-node src/server",
+    "server.watch": "nodemon src/server/index",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow-approve": "ts-node src/execute/approve",
