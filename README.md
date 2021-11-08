@@ -69,11 +69,12 @@ npx @temporalio/create@latest my-project-name
   - [**OpenTelemetry**](./interceptors-opentelemetry): Use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows. ⚠️ This sample is broken for now.
   - [**Query Subscriptions**](./query-subscriptions): Use Redis Streams, Immer, and SDK Interceptors to subscribe to Workflow state.
 
-### Apps
+### Full Apps
 
 - **Next.js**:
   - [**One-click e-commerce**](./nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
   - Food Delivery: https://github.com/lorensr/food-delivery
+- Subscription Workflow example: https://github.com/temporalio/subscription-workflow-project-template-typescript/ (useful to compare with other SDKs)
 - E-commerce example: https://github.com/vkarpov15/temporal-ecommerce-ts
 - XState example: https://github.com/Devessier/temporal-electronic-signature
 
