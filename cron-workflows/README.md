@@ -1,31 +1,36 @@
-# cron-workflows
+# Cron Workflows
 
-This example demonstrates a working Cron workflow. Note the limitations and caveats listed in the [docs](https://docs.temporal.io/docs/content/what-is-a-temporal-cron-job/)
+This example demonstrates a working Cron workflow. Note the limitations and caveats listed in the [docs](https://docs.temporal.io/docs/content/what-is-a-temporal-cron-job/).
 
-Differences to the hello world demo:
+Differences from the hello world demo:
 
-- the activity actually prints a log, instead of returning a string.
-- the Client exits without waiting for the scheduled workflow to complete, printing an id like ` Cron Workflow 1e793a6c-31e2-41c9-8139-53d114293a9e started` which can be used to cancel later
+- The Workflow is started with the `cronSchedule: '* * * * *',` option: [`src/execute-workflow.ts`](./src/execute-workflow.ts).
+- The Activity actually prints a log, instead of returning a string.
+- The Workflow runs forever, so if we want it to stop, we have to cancel it. In our `execute-workflow.ts` script, we cancel it using the handle (when `Ctrl/Cmd-C` is hit). Usually, we'd use the Workflow ID to cancel—for example:
 
-Note that if you are changing code and restarting Workers, that your old, still-running workflows may pick up the new code (since you likely didn't change workflow name or task queue) and their output may conflict/mix with new workflows you are starting. You should check what is still running in Temporal Web in case you need to kill all previous workflows (this is not default behavior).
+```js
+const handle = client.getHandle('1e793a6c-31e2-41c9-8139-53d114293a9e');
+await handle.cancel();
+```
 
-## Steps to run this example
+Note that when we're changing code and restarting Workers, unless we cancel all previous Workflows, they may get picked up by our Worker (since we likely didn't change our Workflow name or task queue), and their output may conflict/mix with new Workflows we're starting. We can check what is still running in Temporal Web ([localhost:8088](http://localhost:8088) in case we need to kill all previous Workflows.
 
-1. Make sure the Temporal Server is running locally. Follow the [Quick install guide](https://docs.temporal.io/docs/server/quick-install) to do that.
-2. Run `npm install` to install dependencies.
-3. Run `npm run build` to compile the project.
-4. Run `npm start` to start the worker. Leave the worker process running.
-5. Run `npm run workflow` to run the workflow. It should print out `Hello, Temporal!`
+### Running this sample
 
-Example output
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
+1. `npm install` to install dependencies.
+1. `npm run start.watch` to start the Worker.
+1. In another shell, `npm run workflow` to run the Workflow.
+
+Example Worker output:
 
 ```bash
-Hello, Temporal!
-Workflow time:  1634551851356
-Activity time: 1634551851802
-Hello, Temporal!
-Workflow time:  1634551860900
-Activity time: 1634551861106
+Hello from 075f6172-9151-43d8-9848-b8ddb615a3a5, Temporal!
+Workflow time:  1636333860201
+Activity time: 1636333860241
+Hello from 075f6172-9151-43d8-9848-b8ddb615a3a5, Temporal!
+Workflow time:  1636333920319
+Activity time: 1636333920340
 ```
 
 The difference between "Workflow time" and "Activity time" reflects the latency between scheduling an Activity and actually starting it.

@@ -16,7 +16,7 @@ export interface ProcessOrderOptions {
 export async function processOrderWorkflow({
   orderProcessingMS,
   sendDelayedEmailTimeoutMS,
-}: ProcessOrderOptions): Promise<void> {
+}: ProcessOrderOptions): Promise<string> {
   let processing = true;
   const processOrderPromise = processOrder(orderProcessingMS).then(() => {
     processing = false;
@@ -29,5 +29,7 @@ export async function processOrderWorkflow({
 
     await processOrderPromise;
   }
+
+  return 'Order completed!';
 }
 // @@@SNIPEND

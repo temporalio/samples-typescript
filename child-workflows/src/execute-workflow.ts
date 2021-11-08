@@ -1,22 +1,17 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { WorkflowClient } from '@temporalio/client';
 import { parentWorkflow } from './workflows';
 
 async function run() {
-  // Connect to localhost with default ConnectionOptions,
-  // pass options to the Connection constructor to configure TLS and other settings.
-  const connection = new Connection();
-  // Workflows will be started in the "default" namespace unless specified otherwise
-  // via options passed the WorkflowClient constructor.
-  const client = new WorkflowClient(connection.service);
-  // Create a typed handle for the childWorkflowExample Workflow.
+  const client = new WorkflowClient();
+
   const result = await client.execute(parentWorkflow, {
-    taskQueue: 'tutorial',
+    taskQueue: 'child-workflows',
     args: ['Alice', 'Bob', 'Charlie'],
   });
   console.log(result);
-  // i am a child named Alice
-  // i am a child named Bob
-  // i am a child named Charlie
+  // I am a child named Alice
+  // I am a child named Bob
+  // I am a child named Charlie
 }
 
 run().catch((err) => {

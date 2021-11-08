@@ -11,7 +11,7 @@ async function run() {
   const worker = await Worker.create({
     ...workflowOption(),
     activities,
-    taskQueue: 'tutorial',
+    taskQueue: 'production-sample',
   });
 
   await worker.run();

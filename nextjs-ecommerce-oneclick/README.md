@@ -1,4 +1,4 @@
-# Next.js + Temporal Example
+# Next.js + Temporal
 
 This example shows how to use [Temporal](https://docs.temporal.io/) with Next.js.
 
@@ -26,7 +26,7 @@ Now you can go to http://localhost:3000/api/hello and see the result:
 
 There are two versions of this for development purposes.
 
-- http://localhost:3000/ (index) shows a realistic ecommerce situation where some of the state is managed on the frontend.
+- http://localhost:3000/ (index) shows a realistic e-commerce situation where some of the state is managed on the frontend.
   - You can see a demo of this at our Sept 2021 meetup: https://youtu.be/JQ6FRTnQWFI
 - http://localhost:3000/barebones shows buttons for the raw API calls which can be useful for learning and debugging.
 

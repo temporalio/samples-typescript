@@ -16,6 +16,7 @@ const POST_CREATE_EXCLUDE = [
   'hello-world-mtls',
   'expense',
   'production',
+  'patching-api',
 ];
 
 // By default, zx logs all commands spawned

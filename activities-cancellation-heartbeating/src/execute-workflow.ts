@@ -4,7 +4,7 @@ import { runCancellableActivity } from './workflows';
 async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service, {
-    workflowDefaults: { taskQueue: 'tutorial' },
+    workflowDefaults: { taskQueue: 'cancellation-heartbeating' },
   });
 
   const handle = await client.start(runCancellableActivity);
