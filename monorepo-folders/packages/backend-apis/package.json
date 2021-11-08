@@ -12,8 +12,5 @@
     "morgan": "~1.9.1",
     "temporal-workflows": "*",
     "ts-node": "^10.4.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.14"
   }
 }
