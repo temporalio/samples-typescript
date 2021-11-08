@@ -17,7 +17,7 @@ export async function runWorkflow() {
   });
   // Starts the `WorkflowB` Workflow, don't wait for it to complete
   await client.start(WorkflowB);
-  console.log(result); // Hello, Temporal!
+  console.log(result); // // [api-server] A: Hello, Temporal!, B: Hello, Temporal!
   return result;
 }
 
