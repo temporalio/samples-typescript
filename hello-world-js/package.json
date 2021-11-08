@@ -1,0 +1,26 @@
+{
+  "name": "hello-world-js",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/worker.js",
+    "start.watch": "nodemon src/worker.js",
+    "workflow": "node src/execute-workflow.js",
+    "lint": "eslint ."
+  },
+  "nodemonConfig": {
+    "watch": [
+      "src"
+    ]
+  },
+  "dependencies": {
+    "temporalio": "0.14.x"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.0",
+    "eslint": "^7.32.0",
+    "eslint-plugin-import": "^2.25.2",
+    "nodemon": "^2.0.12"
+  }
+}
