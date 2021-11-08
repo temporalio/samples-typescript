@@ -20,8 +20,3 @@ export async function runWorkflow() {
   console.log(result); // // [api-server] A: Hello, Temporal!, B: Hello, Temporal!
   return result;
 }
-
-// run().catch((err) => {
-//   console.error(err);
-//   process.exit(1);
-// });
