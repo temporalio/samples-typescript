@@ -1,8 +1,8 @@
-# Hello World
+# Hello World in JavaScript
 
-This is the default project that is scaffolded out when you run `npx @temporalio/create@latest ./myfolder`.
+This is the JavaScript version of our Hello World sample.
 
-The [Hello World Tutorial](https://docs.temporal.io/docs/typescript/hello-world/) walks through the code in this sample.
+The [Hello World Tutorial](https://docs.temporal.io/docs/typescript/hello-world/) walks through the TypeScript version of this sample.
 
 ### Running this sample
 
