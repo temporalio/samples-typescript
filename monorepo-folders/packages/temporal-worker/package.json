@@ -8,7 +8,7 @@
   "dependencies": {
     "ts-node": "^10.4.0",
     "temporal-workflows": "*",
-    "temporalio": "*"
+    "temporalio": "0.14.0"
   },
   "devDependencies": {}
 }
