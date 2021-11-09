@@ -10,12 +10,14 @@ tasks:
       cd hello-world
       gp open README.md
       npm install
+      gp sync-done install-done
     command: |
       gp sync-await server-up
       npm run start.watch
   - name: Run Hello World Workflow
     command: |
       cd hello-world
+      gp sync-await install-done
       until npm run workflow; do sleep 2; done; clear; # retry until it works
       gp sync-done server-up
       gp preview http://localhost:8088 # reload Temporal Web to show new workflow
