@@ -8,6 +8,6 @@
     "rootDir": "./src",
     "outDir": "./lib"
   },
-  "include": ["src/**/*.ts"],
+  "include": ["packages/**/*.ts"],
   "exclude": ["node_modules"]
 }

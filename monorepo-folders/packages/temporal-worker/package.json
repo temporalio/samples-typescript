@@ -3,12 +3,14 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "ts-node worker.ts"
+    "start": "nodemon worker.ts --watch ./worker.ts --watch ../temporal-workflows"
   },
   "dependencies": {
-    "ts-node": "^10.4.0",
     "temporal-workflows": "*",
-    "temporalio": "0.14.0"
+    "temporalio": "0.14.0",
+    "ts-node": "^10.4.0"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
 }

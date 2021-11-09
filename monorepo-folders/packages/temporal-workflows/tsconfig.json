@@ -5,7 +5,7 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "rootDir": "./src",
+    "rootDir": "./packages",
     "outDir": "./lib"
   },
   // "include": ["src/**/*.ts", "../backend-apis/execute-workflow.ts"],

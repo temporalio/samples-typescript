@@ -1,4 +1,4 @@
 export async function activityA(name: string): Promise<string> {
-  console.log('hello from A', name);
-  return `Hello, ${name}!`;
+  console.log('hello from activityA', name);
+  return `ActivityA result: A-${name}!`;
 }

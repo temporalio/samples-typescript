@@ -11,7 +11,7 @@ This example is meant to demonstrate a realistic monorepo folder structure where
 ```bash
 packages/
   backend-apis/
-    server.ts # runs Express server on localhost:4000 
+    server.ts # runs Express server on localhost:4000
   frontend-ui # this is a Create-React-App on localhost:3000, proxies api requests to :4000
   temporal-worker/
     worker.ts # registers Temporal Worker that has Workflows and Activities from /temporal-workflows
@@ -36,7 +36,7 @@ package.json
 
 Notes on the structure demonstrated:
 
-- **Workflows require one file**:  you can organize Workflow code however you like, but each Worker needs to reference a single file that exports all the Workflows it handles (so you have to handle name conflicts instead of us)
+- **Workflows require one file**: you can organize Workflow code however you like, but each Worker needs to reference a single file that exports all the Workflows it handles (so you have to handle name conflicts instead of us)
 - **Activities are top level**:
   - Inside the Temporal Worker, Activities are registered at the same level Workflows are.
   - Since Activities are required, not bundled, Activities don't need to be exported in a single file.
@@ -54,17 +54,24 @@ We built this with `yarn` Workspaces. We expect this structure to work with most
 
 ![image](https://user-images.githubusercontent.com/6764957/140593030-43b74199-8636-473e-8292-b5dfaa12b131.png)
 
-This calls `localhost:3000/api/workflow` which CRA proxies to `localhost:4000/api/workflow` and is handled by the Express.js server in `backend-apis`.
-The route handler has a Temporal Client which executes WorkflowA and starts WorkflowB.
+This calls `localhost:3000/api/workflow`...
+
+- which CRA proxies to `localhost:4000/api/workflow` and is handled by the Express.js server in `backend-apis`.
+- The `/api/workflow` route handler has a Temporal Client which executes WorkflowA and starts WorkflowB.
+
 You can see the logs in the terminal output:
 
 ```bash
-[worker] hello from A Temporal
-[worker] hello from B Temporal
-[api-server] A: Hello, Temporal! B: Hello, Temporal!
-[api-server] GET /api/workflow 200 1049.024 ms - 46
-[worker] hello from C defaultWorkflowBName
-[worker] hello from D defaultWorkflowBName
+[worker] [WorkflowA(a19adbef-9e67-416a-ada6-234e73081e74)] Hello from WorkflowA
+[worker] hello from activityA Temporal
+[worker] hello from activityB Temporal
+[api-server] A: ActivityA result: A-Temporal!, B: ActivityB result: B-Temporal!
+[api-server] GET /api/workflow 200 2081.536 ms - 79
+[worker] [WorkflowB(68f37547-5e72-46ea-8fd0-54c3adddee53)] Hello from WorkflowB
+[worker] hello from activityC in WorkflowB
+[worker] hello from activityD in WorkflowB
 ```
 
-This code isn't meant to be meaningful, the important thing is that we show how all 4 packages in this monorepo can realistically work together with Temporal spread across 3 of them.
+Both the `temporal-worker` and the backend `api-server` have been set up to reload whenever `temporal-workflows` are edited, with `nodemon`.
+
+The workflow code and logs aren't meant to be meaningful, the important thing is that we show how all 4 packages in this monorepo can realistically work together with Temporal spread across 3 of packages in the monorepo.

@@ -3,14 +3,15 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "ts-node server.ts"
+    "start": "nodemon server.ts --watch ./*.ts --watch ../temporal-workflows"
   },
   "dependencies": {
-    "cookie-parser": "~1.4.4",
     "express": "~4.16.1",
-    "http-errors": "~1.6.3",
-    "morgan": "~1.9.1",
     "temporal-workflows": "*",
     "ts-node": "^10.4.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.13",
+    "nodemon": "^2.0.14"
   }
 }

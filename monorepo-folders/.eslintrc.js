@@ -3,8 +3,9 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   ignorePatterns: ['**/package/*.js', '**/package/*.ts'],
   parserOptions: {
-    project: 'monorepo-folders/tsconfig.json',
+    project: './tsconfig.json',
     tsconfigRootDir: __dirname,
+    include: ['packages/*'],
   },
   plugins: ['@typescript-eslint', 'deprecation'],
   extends: [

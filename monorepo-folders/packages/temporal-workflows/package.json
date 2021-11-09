@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "compile": "tsc --build",
+    "compile": "tsc --build -w --preserveWatchOutput",
     "lint": "eslint ."
   },
   "devDependencies": {

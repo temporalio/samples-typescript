@@ -1,56 +1,35 @@
 // #!/usr/bin/env node
-var createError = require('http-errors');
-var express = require('express');
-// var path = require('path');
-var cookieParser = require('cookie-parser');
-var logger = require('morgan');
+import express from 'express';
 
-var app = express();
-app.use(logger('dev'));
+const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cookieParser());
 
-var port = 4000;
+const port = 4000;
 
 /** routes */
-var temporalClient = require('./temporal-client');
-// @ts-ignore
+import * as temporalClient from './temporal-client';
 app.get('/api/workflow', async function (req, res) {
   try {
     const result = await temporalClient.runWorkflow().catch((err: Error) => {
       console.error(err);
       process.exit(1);
     });
-    // res.send(workflow);
     res.json({ result });
   } catch (err) {
     res.status(500).send(err);
   }
 });
-// @ts-ignore
+
 app.get('/api/data', function (req, res) {
   setTimeout(() => {
     // artificial server delay
     res.json({ title: 'Express' });
-  }, 1000);
-});
-
-/** standard error handling */
-// @ts-ignore
-app.use(function (req, res, next) {
-  next(createError(404));
-});
-// @ts-ignore
-app.use(function (err, req, res) {
-  res.locals.message = err.message;
-  res.locals.error = req.app.get('env') === 'development' ? err : {};
-  res.status(err.status || 500);
-  res.render('error');
+  }, 100);
 });
 
 app.set('port', port);
 
-var http = require('http');
-var server = http.createServer(app);
+import http from 'http';
+const server = http.createServer(app);
 server.listen(port);
