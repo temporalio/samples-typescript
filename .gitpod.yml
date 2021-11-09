@@ -1,10 +1,19 @@
+# this is just a config file for gitpod. Try it out at https://gitpod.io/#https://github.com/temporalio/samples-typescript/
 ports:
   - port: 5432
-  - port: 9200
-  - port: 8088
   - port: 7233
+  - port: 8088
+  - port: 9200
 tasks:
   - name: Temporal Server
-    init: npm install
     command: docker-compose up
+  - name: Open Temporal Web
+    command: |
+      gp await-port 8088
+      gp preview http://localhost:8088
     openMode: tab-after
+  - name: Run Hello World
+    init: gp open hello-world/README.md && npm install
+    command: |
+      npm run start.watch
+      npm run workflow
