@@ -3,20 +3,21 @@
 # thanks to Johannes Schickling for figuring this out
 version: "3.5"
 services:
-  elasticsearch:
-    container_name: temporal-elasticsearch
-    environment:
-      - cluster.routing.allocation.disk.threshold_enabled=true
-      - cluster.routing.allocation.disk.watermark.low=512mb
-      - cluster.routing.allocation.disk.watermark.high=256mb
-      - cluster.routing.allocation.disk.watermark.flood_stage=128mb
-      - discovery.type=single-node
-      - ES_JAVA_OPTS=-Xms100m -Xmx100m
-    image: elasticsearch:7.10.1
-    # networks:
-      # - temporal-network
-    ports:
-      - 9200:9200
+  ## uncomment if you need search attributes feature
+  # elasticsearch:
+  #   container_name: temporal-elasticsearch
+  #   environment:
+  #     - cluster.routing.allocation.disk.threshold_enabled=true
+  #     - cluster.routing.allocation.disk.watermark.low=512mb
+  #     - cluster.routing.allocation.disk.watermark.high=256mb
+  #     - cluster.routing.allocation.disk.watermark.flood_stage=128mb
+  #     - discovery.type=single-node
+  #     - ES_JAVA_OPTS=-Xms100m -Xmx100m
+  #   image: elasticsearch:7.10.1
+  #   # networks:
+  #     # - temporal-network
+  #   ports:
+  #     - 9200:9200
   postgresql:
     container_name: temporal-postgresql
     environment:
