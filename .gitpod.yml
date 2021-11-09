@@ -1,0 +1,10 @@
+ports:
+  - port: 5432
+  - port: 9200
+  - port: 8088
+  - port: 7233
+tasks:
+  - name: Temporal Server
+    init: npm install
+    command: docker-compose up
+    openMode: tab-after
