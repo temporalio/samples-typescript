@@ -31,7 +31,7 @@ tasks:
   - name: Temporal Web/tctl
 #      gp await-port 8088 # temporal web
     command: |
-      docker run -t -i -p 8088:8088 -e TEMPORAL_GRPC_ENDPOINT=7233
+      docker run -t -i -p 8088:8088 -e TEMPORAL_GRPC_ENDPOINT=temporal:7233 temporalio/web:1.12.0
       alias tctl="docker exec temporal-admin-tools tctl"
       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
     openMode: split-right
