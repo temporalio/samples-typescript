@@ -1,9 +1,11 @@
 # this is a simple docker compose that has been tested to work with gitpod, 
 # for running these samples in the browser with no need to run Temporal Server locally
 # thanks to Johannes Schickling for figuring this out
+# see https://github.com/temporalio/docker-compose for other reference docker-compose files
 version: "3.5"
 services:
   ## uncomment if you need search attributes feature
+  ## dont forget to uncomment the ES related comments in the temporal service
   # elasticsearch:
   #   container_name: temporal-elasticsearch
   #   environment:
@@ -32,7 +34,7 @@ services:
     container_name: temporal
     depends_on:
       - postgresql
-      - elasticsearch
+    #  - elasticsearch
     environment:
       - DB=postgresql
       - DB_PORT=5432
@@ -40,9 +42,9 @@ services:
       - POSTGRES_PWD=temporal
       - POSTGRES_SEEDS=postgresql
       - DYNAMIC_CONFIG_FILE_PATH=config/dynamicconfig/development_es.yaml
-      - ENABLE_ES=true
-      - ES_SEEDS=elasticsearch
-      - ES_VERSION=v7
+    #  - ENABLE_ES=true
+    #  - ES_SEEDS=elasticsearch
+    #  - ES_VERSION=v7
     image: temporalio/auto-setup:1.12.3
     # networks:
       # - temporal-network
@@ -74,26 +76,27 @@ services:
     ports:
       - 8088:8088
 
-  # Collector
-  otel-collector:
-    image: otel/opentelemetry-collector:0.27.0
-    command: ['--config=/conf/collector-config.yaml', '--log-level=DEBUG']
-    volumes:
-      - ./collector-config.yaml:/conf/collector-config.yaml
-    ports:
-      - '9464:9464'
-      - '4317:4317'
-      - '55681:55681'
-    depends_on:
-      - jaeger-all-in-one
-
-  # Jaeger
-  jaeger-all-in-one:
-    image: jaegertracing/all-in-one:1.22.0
-    ports:
-      - '16686:16686'
-      - '14268:14268'
-      - '14250'
+  ## uncomment only if you need these features, eg you are Johannes
+  ## Collector
+  #otel-collector:
+  #  image: otel/opentelemetry-collector:0.27.0
+  #  command: ['--config=/conf/collector-config.yaml', '--log-level=DEBUG']
+  #  volumes:
+  #    - ./collector-config.yaml:/conf/collector-config.yaml
+  #  ports:
+  #    - '9464:9464'
+  #    - '4317:4317'
+  #    - '55681:55681'
+  #  depends_on:
+  #    - jaeger-all-in-one
+  #
+  ## Jaeger
+  #jaeger-all-in-one:
+  #  image: jaegertracing/all-in-one:1.22.0
+  #  ports:
+  #    - '16686:16686'
+  #    - '14268:14268'
+  #    - '14250'
 # networks:
   # temporal-network:
     # driver: bridge
