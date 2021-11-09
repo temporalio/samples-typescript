@@ -29,8 +29,8 @@ tasks:
     init: go install github.com/DataDog/temporalite/cmd/temporalite@latest
     command: temporalite start
   - name: Temporal Web/tctl
-    command: |
 #      gp await-port 8088 # temporal web
+    command: |
       docker run -t -i -p 8088:8088 -e TEMPORAL_GRPC_ENDPOINT=7233
       alias tctl="docker exec temporal-admin-tools tctl"
       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
