@@ -5,14 +5,16 @@ const ADDITIONAL_SAMPLES = [];
 
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
-const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm', 'production', 'hello-world-js'];
-const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick', 'production', 'hello-world-js'];
-const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'fetch-esm', 'hello-world-js'];
-const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js'];
+const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'production', 'hello-world-js'];
+const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'production', 'hello-world-js'];
+const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js'];
+const ESLINTIGNORE_EXCLUDE = ['production', 'monorepo-folders', 'hello-world-js'];
+
 const POST_CREATE_EXCLUDE = [
   'timer-examples',
   'query-subscriptions',
   'nextjs-ecommerce-oneclick',
+  'monorepo-folders', 
   'hello-world-mtls',
   'expense',
   'production',

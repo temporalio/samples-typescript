@@ -1,0 +1,14 @@
+{
+  "extends": "@tsconfig/node14/tsconfig.json",
+  "version": "4.4.2",
+  "compilerOptions": {
+    "declaration": true,
+    "declarationMap": true,
+    "sourceMap": true,
+    "rootDir": "./packages",
+    "outDir": "./lib"
+  },
+  // "include": ["src/**/*.ts", "../backend-apis/execute-workflow.ts"],
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules"]
+}
