@@ -18,10 +18,10 @@ tasks:
     command: |
       cd hello-world
       gp sync-await install-done
-#      until docker exec temporal-admin-tools tctl cl h; do sleep 2; done; clear; # retry until it works
       gp sync-done server-up
       npm run workflow
       gp preview http://localhost:8088 # reload Temporal Web to show new workflow
+#      until docker exec temporal-admin-tools tctl cl h; do sleep 2; done; clear; # retry until it works
     openMode: split-right
 #  - name: Temporal Server
 #    command: docker-compose up
@@ -32,7 +32,6 @@ tasks:
     command: |
 #      gp await-port 8088 # temporal web
       docker run -t -i -p 8088:8088 -e TEMPORAL_GRPC_ENDPOINT=7233
-#      gp preview http://localhost:8088 # probably shows connection error
       alias tctl="docker exec temporal-admin-tools tctl"
       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
     openMode: split-right
