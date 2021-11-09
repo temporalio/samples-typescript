@@ -10,17 +10,22 @@ tasks:
   - name: Temporal Web/tctl
     command: |
       gp await-port 8088
+      gp sync-done server-up
       gp preview http://localhost:8088
       alias tctl="docker exec temporal-admin-tools tctl"
       tctl -v
     openMode: split-right
   - name: Run Hello World Worker
     init: |
-      gp open hello-world/README.md
+      cd hello-world
+      gp open README.md
       npm install
-      gp sync-done install
-    command: npm run start.watch
+      gp sync-await server-up
+    command: |
+      npm run start.watch
   - name: Run Hello World Workflow
-    init: gp sync-await install
-    command: npm run workflow
+    init: gp sync-await server-up
+    command: |
+      cd hello-world
+      npm run workflow
     openMode: split-right
