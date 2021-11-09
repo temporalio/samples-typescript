@@ -27,7 +27,7 @@ tasks:
 #    command: docker-compose up
   - name: Temporalite 
     init: go install github.com/DataDog/temporalite/cmd/temporalite@latest
-    command: temporalite start
+    command: temporalite start --namespace default -f my-test.db
   - name: Temporal Web/tctl
 #      gp await-port 8088 # temporal web
     command: |
