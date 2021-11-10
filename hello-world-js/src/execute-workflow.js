@@ -13,7 +13,7 @@ async function run() {
 
   // Invoke the `example` Workflow, only resolved when the workflow completes
   const result = await client.execute(example, {
-    args: ['Temporal'], // type inference works! args: [name: string]
+    args: ['Temporal'],
   });
   console.log(result); // Hello, Temporal!
 }
