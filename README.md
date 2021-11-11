@@ -69,8 +69,9 @@ npx @temporalio/create@latest my-project-name
 
 #### Production APIs
 
-- [**Production**](https://github.com/temporalio/samples-typescript/tree/main/production): Build code in advance for faster Worker startup times.
+- [**Production Build**](https://github.com/temporalio/samples-typescript/tree/main/production): Build code in advance for faster Worker startup times.
 - [**Patching**](https://docs.temporal.io/docs/typescript/patching/): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
+- [**Logging**](https://github.com/temporalio/samples-typescript/tree/main/logging-sinks): Use Sinks to extract data out of Workflows for logging/metrics/tracing purposes.
 
 #### Advanced APIs
 
