@@ -18,7 +18,7 @@ export async function OneClickBuy(itemId: string) {
   let purchaseState: PurchaseState = 'PURCHASE_PENDING';
   wf.setHandler(cancelPurchase, () => void (purchaseState = 'PURCHASE_CANCELED'));
   wf.setHandler(purchaseStateQuery, () => purchaseState);
-  if (await wf.condition('5s', () => purchaseState === 'PURCHASE_CANCELED')) {
+  if (await wf.condition(() => purchaseState === 'PURCHASE_CANCELED', '5s')) {
     return await canceledPurchase(itemToBuy);
   } else {
     purchaseState = 'PURCHASE_CONFIRMED';

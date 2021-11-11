@@ -33,7 +33,7 @@ export class UpdatableTimer implements PromiseLike<void> {
     /* eslint-disable no-constant-condition */
     while (true) {
       this.deadlineUpdated = false;
-      if (!(await condition(this.#deadline - Date.now(), () => this.deadlineUpdated))) {
+      if (!(await condition(() => this.deadlineUpdated, this.#deadline - Date.now()))) {
         break;
       }
     }

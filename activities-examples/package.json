@@ -24,7 +24,7 @@
   "dependencies": {
     "axios": "0.21.1",
     "node-fetch": "2.x",
-    "temporalio": "0.14.x"
+    "temporalio": "0.15.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

@@ -7,10 +7,10 @@
   },
   "dependencies": {
     "temporal-workflows": "*",
-    "temporalio": "0.14.0",
+    "temporalio": "0.15.0",
     "ts-node": "^10.4.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.14"
+    "nodemon": "^2.0.15"
   }
 }
