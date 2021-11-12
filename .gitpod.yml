@@ -1,33 +1,34 @@
 # this is just a config file for gitpod. Try it out at https://gitpod.io/#https://github.com/temporalio/samples-typescript/
 ports:
   - port: 5432
+    onOpen: ignore
   - port: 7233
+    onOpen: ignore
   - port: 8088
+    onOpen: open-preview
   - port: 9200
+    onOpen: ignore
 tasks:
   - name: Run Hello World Worker
     init: |
       cd hello-world
-      gp open README.md
       npm install
-      gp sync-done install-done
     command: |
       gp sync-await server-up
+      gp open README.md
       npm run start.watch
   - name: Run Hello World Workflow
+    init: cd hello-world
     command: |
-      cd hello-world
-      gp sync-await install-done
       until docker exec temporal-admin-tools tctl cl h; do sleep 5; done; clear; # retry until it works
-      sleep 10 # random buffer just to make really sure temporal is live
       gp sync-done server-up
       npm run workflow
       gp preview http://localhost:8088 # reload Temporal Web to show new workflow
     openMode: split-right
   - name: Temporal Server
+    init: docker-compose pull
     command: docker-compose up
-  - name: Temporal Web/tctl
-      gp await-port 8088 # temporal web
+  - name: tctl
     command: |
       alias tctl="docker exec temporal-admin-tools tctl"
       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
