@@ -34,9 +34,8 @@ tasks:
       alias tctl="docker exec temporal-admin-tools tctl"
       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
     openMode: split-right
-
 # notes for future temporalite usage
-#  - name: Temporalite 
+#  - name: Temporalite
 #    init: go install github.com/DataDog/temporalite/cmd/temporalite@latest
 #    command: temporalite start --namespace default -f my-test.db
 # separate temporal web

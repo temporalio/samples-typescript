@@ -14,7 +14,7 @@ const POST_CREATE_EXCLUDE = [
   'timer-examples',
   'query-subscriptions',
   'nextjs-ecommerce-oneclick',
-  'monorepo-folders', 
+  'monorepo-folders',
   'hello-world-mtls',
   'expense',
   'production',

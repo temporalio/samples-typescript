@@ -130,7 +130,7 @@ function Product({ product }) {
   // Generate a uuid for initiating this transaction.
   // This is generated on this client for idempotency concerns.
   // The request handler starts a Temporal Workflow using this transaction ID as
-  // a unique workflow ID, this allows us to retry the HTTP call and avoid 
+  // a unique workflow ID, this allows us to retry the HTTP call and avoid
   // purchasing the same product more than once
   // In more advanced scenarios you may want to persist this in LocalStorage or
   // in the backend to be able to resume this transaction.
@@ -144,21 +144,20 @@ function Product({ product }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ itemId, transactionId }),
-    })
-      .then(() => {
-        setState('ORDERED');
-        toastId.current = toast.success('Purchased! Cancel if you change your mind', {
-          position: 'top-right',
-          autoClose: 5000,
-          closeOnClick: true,
-          draggable: true,
-          onClose: () => {
-            console.log({ state });
-            if (state === 'ORDERED') setState('CONFIRMED');
-          },
-          // onClose: () => {setState('CONFIRMED')}
-        });
+    }).then(() => {
+      setState('ORDERED');
+      toastId.current = toast.success('Purchased! Cancel if you change your mind', {
+        position: 'top-right',
+        autoClose: 5000,
+        closeOnClick: true,
+        draggable: true,
+        onClose: () => {
+          console.log({ state });
+          if (state === 'ORDERED') setState('CONFIRMED');
+        },
+        // onClose: () => {setState('CONFIRMED')}
       });
+    });
   }
   // function getState() {
   //   if (workflowId) {

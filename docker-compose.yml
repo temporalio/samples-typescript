@@ -1,8 +1,8 @@
-# this is a simple docker compose that has been tested to work with gitpod, 
+# this is a simple docker compose that has been tested to work with gitpod,
 # for running these samples in the browser with no need to run Temporal Server locally
 # thanks to Johannes Schickling for figuring this out
 # see https://github.com/temporalio/docker-compose for other reference docker-compose files
-version: "3.5"
+version: '3.5'
 services:
   ## uncomment if you need search attributes feature
   ## dont forget to uncomment the ES related comments in the temporal service
@@ -27,7 +27,7 @@ services:
       POSTGRES_USER: temporal
     image: postgres:9.6
     # networks:
-      # - temporal-network
+    # - temporal-network
     ports:
       - 5432:5432
   temporal:
@@ -47,7 +47,7 @@ services:
     #  - ES_VERSION=v7
     image: temporalio/auto-setup:1.12.3
     # networks:
-      # - temporal-network
+    # - temporal-network
     ports:
       - 7233:7233
     volumes:
@@ -60,7 +60,7 @@ services:
       - TEMPORAL_CLI_ADDRESS=temporal:7233
     image: temporalio/admin-tools:1.12.3
     # networks:
-      # - temporal-network
+    # - temporal-network
     stdin_open: true
     tty: true
   temporal-web:
@@ -72,7 +72,7 @@ services:
       - TEMPORAL_PERMIT_WRITE_API=true
     image: temporalio/web:1.12.0
     # networks:
-      # - temporal-network
+    # - temporal-network
     ports:
       - 8088:8088
 
@@ -98,6 +98,6 @@ services:
   #    - '14268:14268'
   #    - '14250'
 # networks:
-  # temporal-network:
-    # driver: bridge
-    # name: temporal-network
+# temporal-network:
+# driver: bridge
+# name: temporal-network

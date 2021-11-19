@@ -84,7 +84,7 @@ export class SubscriptionClient {
   }
 }
 
-export async function run() {
+export async function run(): Promise<void> {
   const workflowClient = new WorkflowClient();
   const subsClient = new SubscriptionClient(workflowClient);
   const { workflowId } = await workflowClient.start(counter, {
