@@ -20,9 +20,10 @@ tasks:
   - name: Run Hello World Workflow
     command: |
       cd hello-world # gitpod prebuild doesnt persist the cd
-      until docker exec temporal-admin-tools tctl cl h; do sleep 5; done; clear; # "sleep until temporal is actually up"
+      # until docker exec temporal-admin-tools tctl cl h; do sleep 5; done; clear; # "sleep until temporal is actually up"
+      until npm run workflow; do sleep 5; done; clear;
       gp sync-done server-up
-      npm run workflow
+      # npm run workflow
       gp preview http://localhost:8088 # reload Temporal Web to show new workflow
     openMode: split-right
   - name: Temporal Server
