@@ -24,7 +24,7 @@
     "temporalio": "0.15.x"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.2",
+    "@tsconfig/node16": "^1.0.0",
     "@types/react": "^17.0.27",
     "autoprefixer": "^10.2.6",
     "eslint": "^7.32.0",
