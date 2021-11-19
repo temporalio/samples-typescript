@@ -25,7 +25,7 @@
     "temporalio": "0.15.x"
   },
   "devDependencies": {
-    "@tsconfig/node14": "^1.0.0",
+    "@tsconfig/node16": "^1.0.0",
     "@types/mocha": "8.x",
     "@types/node-fetch": "^2.5.12",
     "@types/sinon": "^10.0.4",
