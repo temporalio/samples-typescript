@@ -6,6 +6,7 @@ async function run() {
 
   const result = await client.execute(parentWorkflow, {
     taskQueue: 'child-workflows',
+    workflowId: 'parent-sample-0',
     args: ['Alice', 'Bob', 'Charlie'],
   });
   console.log(result);

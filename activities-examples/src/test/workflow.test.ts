@@ -37,6 +37,8 @@ describe('example workflow', function () {
       client.execute(httpWorkflow, {
         taskQueue: 'test-activities',
         workflowExecutionTimeout: 1000,
+        // Use random ID because ID is meaningless for this test
+        workflowId: `test-${Date.now()}`,
       });
   });
 

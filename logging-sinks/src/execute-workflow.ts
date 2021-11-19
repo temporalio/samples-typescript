@@ -8,11 +8,13 @@ async function run() {
 
   const client = new WorkflowClient(connection.service, {
     // In production you will likely specify `namespace` here; it is 'default' if omitted
-    workflowDefaults: { taskQueue: 'tutorial' },
   });
 
   // Invoke the `example` Workflow, only resolved when the workflow completes
-  const result = await client.execute(logSampleWorkflow);
+  const result = await client.execute(logSampleWorkflow, {
+    taskQueue: 'tutorial',
+    workflowId: 'log-sample-0',
+  });
   console.log(result); // Hello, Temporal!
 }
 

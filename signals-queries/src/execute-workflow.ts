@@ -4,7 +4,10 @@ import { unblockOrCancel, unblockSignal, isBlockedQuery } from './workflows';
 async function run(): Promise<void> {
   const client = new WorkflowClient();
 
-  const handle = await client.start(unblockOrCancel, { taskQueue: 'signals-queries' });
+  const handle = await client.start(unblockOrCancel, {
+    taskQueue: 'signals-queries',
+    workflowId: 'unblock-or-cancel-0',
+  });
 
   console.log('blocked?', await handle.query(isBlockedQuery)); // true
 

@@ -13,7 +13,7 @@
   },
   "dependencies": {
     "concurrently": "^6.3.0",
-    "temporalio": "^0.15.0"
+    "temporalio": "0.16.x"
   },
   "devDependencies": {
     "ts-loader": "^9.2.6"

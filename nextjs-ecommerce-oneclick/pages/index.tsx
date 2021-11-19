@@ -1,5 +1,6 @@
 import Head from 'next/head';
 import React from 'react';
+import { v4 as uuid4 } from 'uuid';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -126,7 +127,14 @@ type ITEMSTATE = 'NEW' | 'SENDING' | 'ORDERED' | 'CONFIRMED' | 'CANCELLING' | 'E
 function Product({ product }) {
   const itemId = product.id;
   const [state, setState] = React.useState<ITEMSTATE>('NEW');
-  const [workflowId, setWFID] = React.useState(null);
+  // Generate a uuid for initiating this transaction.
+  // This is generated on this client for idempotency concerns.
+  // The request handler starts a Temporal Workflow using this transaction ID as
+  // a unique workflow ID, this allows us to retry the HTTP call and avoid 
+  // purchasing the same product more than once
+  // In more advanced scenarios you may want to persist this in LocalStorage or
+  // in the backend to be able to resume this transaction.
+  const [transactionId] = React.useState(uuid4());
   const toastId = React.useRef(null);
   function buyProduct() {
     setState('SENDING');
@@ -135,9 +143,8 @@ function Product({ product }) {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ itemId }),
+      body: JSON.stringify({ itemId, transactionId }),
     })
-      .then((x) => setWFID(x.workflowId))
       .then(() => {
         setState('ORDERED');
         toastId.current = toast.success('Purchased! Cancel if you change your mind', {
@@ -147,7 +154,7 @@ function Product({ product }) {
           draggable: true,
           onClose: () => {
             console.log({ state });
-            if (state === 'NEW') setState('CONFIRMED');
+            if (state === 'ORDERED') setState('CONFIRMED');
           },
           // onClose: () => {setState('CONFIRMED')}
         });
@@ -161,9 +168,9 @@ function Product({ product }) {
   //   }
   // }
   function cancelBuy() {
-    if (workflowId && state === 'ORDERED') {
+    if (state === 'ORDERED') {
       setState('CANCELLING');
-      fetchAPI('/api/cancelBuy?id=' + workflowId)
+      fetchAPI('/api/cancelBuy?id=' + transactionId)
         .then(() => setState('NEW'))
         .catch((err) => {
           setState('ERROR');

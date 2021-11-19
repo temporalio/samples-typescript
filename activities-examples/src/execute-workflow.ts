@@ -4,7 +4,10 @@ import { httpWorkflow } from './workflows';
 async function run(): Promise<void> {
   const client = new WorkflowClient();
 
-  const result = await client.execute(httpWorkflow, { taskQueue: 'activities-examples' });
+  const result = await client.execute(httpWorkflow, {
+    taskQueue: 'activities-examples',
+    workflowId: 'activities-examples',
+  });
   console.log(result); // 'The answer is 42'
 }
 
