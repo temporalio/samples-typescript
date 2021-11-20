@@ -84,10 +84,14 @@ export class SubscriptionClient {
   }
 }
 
-export async function run() {
+export async function run(): Promise<void> {
   const workflowClient = new WorkflowClient();
   const subsClient = new SubscriptionClient(workflowClient);
-  const { workflowId } = await workflowClient.start(counter, { taskQueue, args: [0 /* initialValue */] });
+  const { workflowId } = await workflowClient.start(counter, {
+    taskQueue,
+    workflowId: `counter-${Date.now()}`,
+    args: [0 /* initialValue */],
+  });
   for await (const state of subsClient.subscribe<State>(workflowId)) {
     console.log(state);
   }

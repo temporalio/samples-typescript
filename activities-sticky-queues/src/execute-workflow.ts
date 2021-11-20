@@ -3,12 +3,11 @@ import { fileProcessingWorkflow } from './workflows';
 
 async function run() {
   const connection = new Connection();
-  const client = new WorkflowClient(connection.service, {
-    workflowDefaults: {
-      taskQueue: 'sticky-activity-tutorial',
-    },
+  const client = new WorkflowClient(connection.service);
+  await client.execute(fileProcessingWorkflow, {
+    taskQueue: 'sticky-activity-tutorial',
+    workflowId: 'file-processing-0',
   });
-  await client.execute(fileProcessingWorkflow);
 }
 
 run().catch((err) => {

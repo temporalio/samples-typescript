@@ -4,7 +4,7 @@ import { countdownWorkflow, setDeadlineSignal, timeLeftQuery } from '../workflow
 async function run(): Promise<void> {
   const client = new WorkflowClient();
 
-  const handle = await client.start(countdownWorkflow, { taskQueue: 'timer-examples' });
+  const handle = await client.start(countdownWorkflow, { taskQueue: 'timer-examples', workflowId: 'countdown-0' });
   console.log('Time left: ', await handle.query(timeLeftQuery));
   await handle.signal(setDeadlineSignal, Date.now() + 3000);
   console.log('Time left: ', await handle.query(timeLeftQuery));

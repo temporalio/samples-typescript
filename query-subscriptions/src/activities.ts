@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Patch } from 'immer';
 import Redis from 'ioredis';
 import { Context } from '@temporalio/activity';

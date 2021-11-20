@@ -7,7 +7,7 @@ export default async function startBuy(req, res) {
     return;
   }
 
-  const { itemId } = req.body;
+  const { itemId, transactionId } = req.body;
   if (!itemId) {
     res.status(405).send({ message: 'must send itemId to buy' });
     return;
@@ -19,7 +19,11 @@ export default async function startBuy(req, res) {
   // via options passed the WorkflowClient constructor.
   const client = new WorkflowClient(connection.service);
   // kick off the purchase async
-  const { workflowId } = await client.start(OneClickBuy, { taskQueue: 'ecommerce-oneclick', args: [itemId] });
+  await client.start(OneClickBuy, {
+    taskQueue: 'ecommerce-oneclick',
+    workflowId: transactionId,
+    args: [itemId],
+  });
 
-  res.status(200).json({ workflowId });
+  res.status(200).json({ ok: true });
 }

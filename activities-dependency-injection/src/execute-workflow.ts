@@ -4,7 +4,10 @@ import { dependencyWF } from './workflows';
 async function run(): Promise<void> {
   const client = new WorkflowClient();
 
-  const result = await client.execute(dependencyWF, { taskQueue: 'dependency-injection' });
+  const result = await client.execute(dependencyWF, {
+    taskQueue: 'dependency-injection',
+    workflowId: 'dependency-injection',
+  });
   console.log(result);
 }
 

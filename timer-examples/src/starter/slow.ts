@@ -7,6 +7,7 @@ async function run(): Promise<void> {
   // Sends email to `process.env.ADMIN_EMAIL` that order processing is slow
   const result = await client.execute(processOrderWorkflow, {
     taskQueue: 'timer-examples',
+    workflowId: 'process-order-0',
     args: [{ orderProcessingMS: 1000, sendDelayedEmailTimeoutMS: 100 }],
   });
 

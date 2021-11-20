@@ -3,11 +3,12 @@ import { runCancellableActivity } from './workflows';
 
 async function run() {
   const connection = new Connection();
-  const client = new WorkflowClient(connection.service, {
-    workflowDefaults: { taskQueue: 'cancellation-heartbeating' },
-  });
+  const client = new WorkflowClient(connection.service);
 
-  const handle = await client.start(runCancellableActivity);
+  const handle = await client.start(runCancellableActivity, {
+    taskQueue: 'cancellation-heartbeating',
+    workflowId: 'cancellation-heartbeating-0',
+  });
 
   // Simulate waiting for some time
   // Cancel may be immediately called, waiting is not needed

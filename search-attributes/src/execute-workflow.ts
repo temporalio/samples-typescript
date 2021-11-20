@@ -3,13 +3,12 @@ import { example } from './workflows';
 
 async function run() {
   const connection = new Connection();
-  const client = new WorkflowClient(connection.service, {
-    workflowDefaults: { taskQueue: 'search-attributes' },
-  });
+  const client = new WorkflowClient(connection.service);
 
   // @@@SNIPSTART typescript-search-attributes-at-creation
   const result = await client.execute(example, {
-    // workflowId,
+    taskQueue: 'search-attributes',
+    workflowId: 'search-attributes-example-0',
     searchAttributes: {
       CustomIntField: 2, // update CustomIntField from 1 to 2, then insert other fields
       CustomKeywordField: 'Update1',

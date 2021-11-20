@@ -8,15 +8,19 @@ export async function runWorkflow() {
 
   const client = new WorkflowClient(connection.service, {
     // In production you will likely specify `namespace` here; it is 'default' if omitted
-    workflowDefaults: { taskQueue: 'tutorial' },
   });
 
   // Invoke the `WorkflowA` Workflow, only resolved when the workflow completes
   const result = await client.execute(WorkflowA, {
+    taskQueue: 'tutorial',
+    workflowId: 'workflow-a',
     args: ['Temporal'], // type inference works! args: [name: string]
   });
   // Starts the `WorkflowB` Workflow, don't wait for it to complete
-  await client.start(WorkflowB);
+  await client.start(WorkflowB, {
+    taskQueue: 'tutorial',
+    workflowId: 'workflow-b',
+  });
   console.log(result); // // [api-server] A: Hello, Temporal!, B: Hello, Temporal!
   return result;
 }

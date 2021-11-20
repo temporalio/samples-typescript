@@ -54,7 +54,10 @@ const { httpPostJSON, httpGetJSON, cleanup } = proxyActivities({
   startToCloseTimeout: '10m',
 });
 
-export async function handleExternalWorkflowCancellationWhileActivityRunning(url: string, data: any): Promise<void> {
+export async function handleExternalWorkflowCancellationWhileActivityRunning(
+  url: string,
+  data: unknown
+): Promise<void> {
   try {
     await httpPostJSON(url, data);
   } catch (err) {
