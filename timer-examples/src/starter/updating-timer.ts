@@ -8,6 +8,7 @@ async function run(): Promise<void> {
   console.log('Time left: ', await handle.query(timeLeftQuery));
   await handle.signal(setDeadlineSignal, Date.now() + 3000);
   console.log('Time left: ', await handle.query(timeLeftQuery));
+  await handle.result();
   console.log('Done');
 }
 

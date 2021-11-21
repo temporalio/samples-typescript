@@ -24,9 +24,14 @@ export async function countdownWorkflow(): Promise<void> {
 export class UpdatableTimer implements PromiseLike<void> {
   deadlineUpdated = false;
   #deadline: number;
+  readonly promise: Promise<void>;
 
   constructor(deadline: number) {
     this.#deadline = deadline;
+    this.promise = this.run();
+    this.promise.catch(() => {
+      // avoid unhandled rejection
+    });
   }
 
   private async run(): Promise<void> {
@@ -43,7 +48,7 @@ export class UpdatableTimer implements PromiseLike<void> {
     onfulfilled?: (value: void) => TResult1 | PromiseLike<TResult1>,
     onrejected?: (reason: any) => TResult2 | PromiseLike<TResult2>
   ): PromiseLike<TResult1 | TResult2> {
-    return this.run().then(onfulfilled, onrejected);
+    return this.promise.then(onfulfilled, onrejected);
   }
 
   set deadline(value: number) {
