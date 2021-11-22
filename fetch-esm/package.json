@@ -26,6 +26,11 @@
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
     "@types/node-fetch": "^3.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.3.0",
+    "@typescript-eslint/parser": "^5.3.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-deprecation": "^1.2.1",
     "node-fetch": "^3.0.0",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",
