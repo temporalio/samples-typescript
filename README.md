@@ -20,19 +20,13 @@
 
 Each directory in this repo is a sample Temporal project built with the [TypeScript SDK](https://docs.temporal.io/docs/typescript/introduction/).
 
-To run these samples locally, go through the prerequisites listed in our [Getting Started docs](https://docs.temporal.io/docs/typescript/introduction#getting-started).
-
-To check them out without installing locally, you can try:
-
-- [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/temporalio/samples-typescript/)
-- [GitHub Codespaces](https://github.com/features/codespaces) (if you have access)
-
-To scaffold a new project from one of these samples, run:
-
-```sh
-npx @temporalio/create@latest my-project-name
-# or npx @temporalio/create@latest my-project-name --sample sample-name
-```
+- To try these samples without installing locally, you can try this out on Gitpod: [![Gitpod ready-to-code](https://img.shields.io/badge/Gitpod-ready--to--code-908a85?logo=gitpod)](https://gitpod.io/#https://github.com/temporalio/samples-typescript/) (there is a good free tier)
+- To run these samples locally, go through the prerequisites listed in our [Getting Started docs](https://docs.temporal.io/docs/typescript/introduction#getting-started).
+- To scaffold a new project from one of these samples, run:
+  ```sh
+  npx @temporalio/create@latest my-project-name
+  # or npx @temporalio/create@latest my-project-name --sample sample-name
+  ```
 
 ### Basic
 

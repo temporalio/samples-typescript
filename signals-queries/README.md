@@ -17,8 +17,16 @@ and are handled in the Workflow:
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run workflow` to run the Workflow.
 
-The Workflow should return:
+The Workflow should print:
 
+```bash
+blocked? true
+blocked? false
 ```
-Hello, Temporal!
+
+and the Worker should print:
+
+```bash
+[unblockOrCancel(unblock-or-cancel-0)] Blocked
+[unblockOrCancel(unblock-or-cancel-0)] Unblocked
 ```
