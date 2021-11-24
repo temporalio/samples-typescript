@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-activity-use-injected-logger
 import { getContext } from './interceptors';
 
 export async function greet(name: string): Promise<string> {
@@ -5,3 +6,4 @@ export async function greet(name: string): Promise<string> {
   logger.info('Log from activity', { name });
   return `Hello, ${name}!`;
 }
+// @@@SNIPEND

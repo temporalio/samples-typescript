@@ -5,8 +5,8 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
-    "start": "ts-node src/worker",
-    "start.watch": "nodemon src/worker",
+    "start": "ts-node src/worker.ts",
+    "start.watch": "nodemon src/worker.ts",
     "workflow": "ts-node src/execute-workflow.ts",
     "lint": "eslint ."
   },
@@ -21,9 +21,11 @@
   },
   "dependencies": {
     "@opentelemetry/core": "^1.0.0",
+    "@opentelemetry/resources": "^1.0.0",
+    "@opentelemetry/sdk-trace-base": "^1.0.0",
     "@opentelemetry/sdk-node": "^0.26.0",
     "@opentelemetry/sdk-trace-base": "^1.0.0",
-    "@temporalio/interceptors-opentelemetry": "0.15.x",
+    "@temporalio/interceptors-opentelemetry": "0.16.x",
     "temporalio": "0.16.x"
   },
   "devDependencies": {
