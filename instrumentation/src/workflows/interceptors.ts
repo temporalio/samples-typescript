@@ -8,7 +8,7 @@ import {
 import { logger } from './logger';
 
 /** Logs Workflow executions and their duration */
-export class WorkflowInboundLogInterceptor implements WorkflowInboundCallsInterceptor {
+class WorkflowInboundLogInterceptor implements WorkflowInboundCallsInterceptor {
   async execute(input: WorkflowExecuteInput, next: Next<WorkflowInboundCallsInterceptor, 'execute'>): Promise<unknown> {
     let error: any = undefined;
     const startTime = Date.now();

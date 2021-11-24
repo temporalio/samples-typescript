@@ -1,4 +1,6 @@
 import winston from 'winston';
+import util from 'util';
+import { LEVEL, SPLAT, MESSAGE } from 'triple-beam';
 
 export interface LoggerOptions {
   isProduction: boolean;
@@ -12,9 +14,11 @@ function getDateStr(timestamp?: number): string {
 
 /** Format function for logging in development */
 const devLogFormat = winston.format.printf(({ level, message, label, timestamp, ...rest }) => {
-  return Object.keys(rest).length === 0
+  // The type signature in winston is wrong
+  const { [LEVEL]: _lvl, [SPLAT]: _splt, [MESSAGE]: _msg, ...restNoSymbols } = rest as Record<string | symbol, any>;
+  return Object.keys(restNoSymbols).length === 0
     ? `${getDateStr(timestamp)} [${label}] ${level}: ${message}`
-    : `${getDateStr(timestamp)} [${label}] ${level}: ${message} ${JSON.stringify(rest, undefined, 4)}`;
+    : `${getDateStr(timestamp)} [${label}] ${level}: ${message} ${util.inspect(restNoSymbols, false, 4, true)}`;
 });
 
 /** Create a winston logger from given options */
