@@ -16,7 +16,7 @@ tasks:
       npm install
     command: |
       cd hello-world # gitpod prebuild doesnt persist the cd
-      gp open .gitpod.readme.md
+      gp open ../.gitpod.readme.md
       gp sync-await server-up
       # gp open README.md
       npm run start.watch
