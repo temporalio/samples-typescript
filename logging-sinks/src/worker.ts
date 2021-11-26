@@ -15,7 +15,7 @@ async function main() {
   };
   const worker = await Worker.create({
     workflowsPath: require.resolve('./workflows'),
-    taskQueue: 'sample',
+    taskQueue: 'logging-sinks',
     sinks,
   });
   await worker.run();
