@@ -11,7 +11,8 @@ export interface LoggerSinks extends wf.Sinks {
 
 const { logger } = wf.proxySinks<LoggerSinks>();
 
-export async function logSampleWorkflow(): Promise<void> {
+export async function logSampleWorkflow(): Promise<string> {
   logger.info('Workflow execution started');
+  return 'Hello, Temporal!';
 }
 // @@@SNIPEND
