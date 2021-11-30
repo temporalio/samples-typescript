@@ -9,8 +9,8 @@
     "server.watch": "nodemon src/server/index",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow-approve": "ts-node src/execute/approve",
-    "workflow-timeout": "ts-node src/execute/timeout",
+    "workflow-approve": "ts-node src/clients/approve",
+    "workflow-timeout": "ts-node src/clients/timeout",
     "lint": "eslint ."
   },
   "nodemonConfig": {

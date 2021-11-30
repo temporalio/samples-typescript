@@ -4,7 +4,7 @@ This sample demonstrates how to handle canceling a long-running Activity when it
 
 Docs: [Activity heartbeating](https://docs.temporal.io/docs/typescript/activities#heartbeating) and [cancellation](https://docs.temporal.io/docs/typescript/activities#activity-cancellation)
 
-Running [`src/execute-workflow.ts`](./src/execute-workflow.ts) does this:
+Running [`src/client.ts`](./src/client.ts) does this:
 
 - Starts the `runCancellableActivity` Workflow and retains a handle to it for later use
   - The `fakeProgress` activity starts and heartbeats with increasing periods (note that heartbeats are debounced)

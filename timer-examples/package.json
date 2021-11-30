@@ -7,9 +7,9 @@
     "build.once": "tsc --build --watch ./tsconfig.json",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow-fast": "ts-node src/starter/fast.ts",
-    "workflow-slow": "ts-node src/starter/slow.ts",
-    "workflow-updating": "ts-node src/starter/updating-timer.ts",
+    "workflow-fast": "ts-node src/clients/fast.ts",
+    "workflow-slow": "ts-node src/clients/slow.ts",
+    "workflow-updating": "ts-node src/clients/updating-timer.ts",
     "lint": "eslint ."
   },
   "nodemonConfig": {

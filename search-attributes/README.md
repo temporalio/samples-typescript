@@ -2,7 +2,7 @@
 
 This sample demonstrates how to add [custom search attributes](https://docs.temporal.io/docs/typescript/search-attributes/) to your Workflow Executions:
 
-[src/execute-workflow.ts](./src/execute-workflow.ts)
+[src/client.ts](./src/client.ts)
 
 This requires an Elasticsearch instance, which is included in the default `docker-compose`.
 

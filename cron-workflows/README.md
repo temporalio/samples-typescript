@@ -4,9 +4,9 @@ This example demonstrates a working Cron workflow. Note the limitations and cave
 
 Differences from the hello world demo:
 
-- The Workflow is started with the `cronSchedule: '* * * * *',` option: [`src/execute-workflow.ts`](./src/execute-workflow.ts).
+- The Workflow is started with the `cronSchedule: '* * * * *',` option: [`src/client.ts`](./src/client.ts).
 - The Activity actually prints a log, instead of returning a string.
-- The Workflow runs forever, so if we want it to stop, we have to cancel it. In our `execute-workflow.ts` script, we cancel it using the handle (when `Ctrl/Cmd-C` is hit). Usually, we'd use the Workflow ID to cancel—for example:
+- The Workflow runs forever, so if we want it to stop, we have to cancel it. In our `client.ts` script, we cancel it using the handle (when `Ctrl/Cmd-C` is hit). Usually, we'd use the Workflow ID to cancel—for example:
 
 ```js
 const handle = client.getHandle('1e793a6c-31e2-41c9-8139-53d114293a9e');
