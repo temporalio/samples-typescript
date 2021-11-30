@@ -1,15 +1,17 @@
-# this is just a config file for gitpod. See readme at https://github.com/temporalio/samples-typescript/blob/main/.gitpod.readme.md
+# this is a config file for gitpod setup, ignore if you are running samples locally
+# See readme at https://github.com/temporalio/samples-typescript/blob/main/.gitpod.readme.md
 
 tasks:
   - name: Run Hello World Worker
     init: |
       alias tctl="docker exec temporal-admin-tools tctl"
       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
-      gp open .gitpod.readme.md
-      cd hello-world
+      cd hello-world # this cd doesnt persist in postbuild
       npm install
     command: |
+      gp open .gitpod.readme.md
       gp sync-await server-up
+      cd hello-world
       npm run start.watch
   - name: Run Hello World Workflow
     init: |
@@ -17,7 +19,7 @@ tasks:
       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
     command: |
       cd hello-world
-      until npm run workflow; do clear; sleep 5; done; # "sleep until temporal is actually up"
+      until npm run workflow; do sleep 5; done; # "sleep until temporal is actually up"
       gp sync-done server-up
       gp preview http://localhost:8088 # open up Temporal Web to show new workflow
       npm run workflow # run workflow again for user's easy access
@@ -27,11 +29,11 @@ tasks:
     command: docker-compose up
 
 ports:
-  - port: 5432 #postgres
+  - port: 5432 # postgres
     onOpen: ignore
-  - port: 7233 #temporal server
+  - port: 7233 # temporal server
     onOpen: ignore
-  - port: 8088 #temporal web
+  - port: 8088 # temporal web
     onOpen: ignore
     visibility: public
 
