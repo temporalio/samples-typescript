@@ -12,7 +12,7 @@ async function run() {
 
   // Invoke the `example` Workflow, only resolved when the workflow completes
   const result = await client.execute(logSampleWorkflow, {
-    taskQueue: 'tutorial',
+    taskQueue: 'logging-sinks',
     workflowId: 'log-sample-0',
   });
   console.log(result); // Hello, Temporal!
