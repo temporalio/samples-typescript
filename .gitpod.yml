@@ -5,10 +5,10 @@ tasks:
     init: |
       alias tctl="docker exec temporal-admin-tools tctl"
       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
+      gp open .gitpod.readme.md
       cd hello-world
       npm install
     command: |
-      gp open .gitpod.readme.md
       gp sync-await server-up
       npm run start.watch
   - name: Run Hello World Workflow
@@ -16,7 +16,7 @@ tasks:
       alias tctl="docker exec temporal-admin-tools tctl"
       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
     command: |
-      cd hello-world # gitpod prebuild doesnt persist the cd
+      cd hello-world
       until npm run workflow; do clear; sleep 5; done; # "sleep until temporal is actually up"
       gp sync-done server-up
       gp preview http://localhost:8088 # open up Temporal Web to show new workflow
