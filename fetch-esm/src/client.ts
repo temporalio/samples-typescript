@@ -1,4 +1,4 @@
-// @@@SNIPSTART typescript-esm-execute-workflow
+// @@@SNIPSTART typescript-esm-client
 import { WorkflowClient } from '@temporalio/client';
 import { example } from './workflows.js';
 

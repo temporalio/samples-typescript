@@ -8,7 +8,7 @@
     "rootDir": "./packages",
     "outDir": "./lib"
   },
-  // "include": ["src/**/*.ts", "../backend-apis/execute-workflow.ts"],
+  // "include": ["src/**/*.ts", "../backend-apis/client.ts"],
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }

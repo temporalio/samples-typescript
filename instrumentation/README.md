@@ -30,7 +30,7 @@ Sample worker output
 2021-11-24T15:53:35.976Z [worker] info:     assets by path ../Users/bergundy/temporal/samples-node/instrumentation/lib/activities/*.map 821 bytes 2 assets
 2021-11-24T15:53:35.976Z [worker] info:   assets by path ../Users/bergundy/temporal/samples-node/instrumentation/lib/*.ts 409 bytes 3 assets
 2021-11-24T15:53:35.976Z [worker] info:   assets by path ../Users/bergundy/temporal/samples-node/instrumentation/lib/*.map 232 bytes
-2021-11-24T15:53:35.976Z [worker] info:     asset ../Users/bergundy/temporal/samples-node/instrumentation/lib/execute-workflow.d.ts.map 126 bytes [compared for emit]
+2021-11-24T15:53:35.976Z [worker] info:     asset ../Users/bergundy/temporal/samples-node/instrumentation/lib/client.d.ts.map 126 bytes [compared for emit]
 2021-11-24T15:53:35.976Z [worker] info:     asset ../Users/bergundy/temporal/samples-node/instrumentation/lib/worker.d.ts.map 106 bytes [compared for emit]
 2021-11-24T15:53:35.976Z [worker] info: assets by status 2.52 MiB [emitted]
 2021-11-24T15:53:35.976Z [worker] info:   asset main.js 2.52 MiB [emitted] (name: main)

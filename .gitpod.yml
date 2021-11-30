@@ -1,4 +1,31 @@
-# this is just a config file for gitpod. Try it out at https://gitpod.io/#https://github.com/temporalio/samples-typescript/
+# this is just a config file for gitpod. See readme at https://github.com/temporalio/samples-typescript/blob/main/.gitpod.readme.md
+
+tasks:
+  - name: Run Hello World Worker
+    init: |
+      alias tctl="docker exec temporal-admin-tools tctl"
+      echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
+      gp open .gitpod.readme.md
+      cd hello-world
+      npm install
+    command: |
+      gp sync-await server-up
+      npm run start.watch
+  - name: Run Hello World Workflow
+    init: |
+      alias tctl="docker exec temporal-admin-tools tctl"
+      echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
+    command: |
+      cd hello-world
+      until npm run workflow; do clear; sleep 5; done; # "sleep until temporal is actually up"
+      gp sync-done server-up
+      gp preview http://localhost:8088 # open up Temporal Web to show new workflow
+      npm run workflow # run workflow again for user's easy access
+    openMode: split-right
+  - name: Temporal Server
+    init: docker-compose pull
+    command: docker-compose up
+
 ports:
   - port: 5432 #postgres
     onOpen: ignore
@@ -7,39 +34,7 @@ ports:
   - port: 8088 #temporal web
     onOpen: ignore
     visibility: public
-tasks:
-  - name: Run Hello World Worker
-    init: |
-      alias tctl="docker exec temporal-admin-tools tctl"
-      echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
-      cd hello-world
-      npm install
-    command: |
-      cd hello-world # gitpod prebuild doesnt persist the cd
-      gp open .gitpod.readme.md
-      gp sync-await server-up
-      # gp open README.md
-      npm run start.watch
-  - name: Run Hello World Workflow
-    init: |
-      alias tctl="docker exec temporal-admin-tools tctl"
-      echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
-    command: |
-      cd hello-world # gitpod prebuild doesnt persist the cd
-      # until docker exec temporal-admin-tools tctl cl h; do sleep 5; done; clear; # "sleep until temporal is actually up"
-      until npm run workflow; do sleep 5; done; clear;
-      gp sync-done server-up
-      # npm run workflow
-      gp preview http://localhost:8088 # reload Temporal Web to show new workflow
-    openMode: split-right
-  - name: Temporal Server
-    init: docker-compose pull
-    command: docker-compose up
-#   - name: tctl
-#     command: |
-#       alias tctl="docker exec temporal-admin-tools tctl"
-#       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
-#     openMode: split-right
+
 # notes for future temporalite usage
 #  - name: Temporalite
 #    init: go install github.com/DataDog/temporalite/cmd/temporalite@latest
