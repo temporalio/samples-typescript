@@ -4,7 +4,7 @@ This example demonstrates the usage of [Signals, Queries](https://docs.temporal.
 
 Signals, Queries, and cancellation messages are sent through the `WorkflowClient`:
 
-[`src/execute-workflow.ts`](./src/execute-workflow.ts)
+[`src/client.ts`](./src/client.ts)
 
 and are handled in the Workflow:
 
