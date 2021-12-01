@@ -9,4 +9,10 @@ https://docs.temporal.io/docs/typescript/getting-started/}
 Then, in the project directory, using two other shells, run these commands:
 
   {cyan npm run start.watch}
-  {cyan npm run workflow}
+  {cyan npm run workflow.start}
+
+After the Workflow is started, you can run any of these commands:
+
+  {cyan npm run workflow.signal}
+  {cyan npm run workflow.query}
+  {cyan npm run workflow.cancel}
