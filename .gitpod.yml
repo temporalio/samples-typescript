@@ -36,7 +36,6 @@ ports:
   - port: 8088 # temporal web
     onOpen: ignore
     visibility: public
-
 # notes for future temporalite usage
 #  - name: Temporalite
 #    init: go install github.com/DataDog/temporalite/cmd/temporalite@latest
