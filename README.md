@@ -76,6 +76,8 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 
 ### Full Apps
 
+- **Control Flow demonstrations**:
+  - [**DSL Interpreter**](https://github.com/temporalio/samples-typescript/tree/main/dsl-interpreter): demonstrates how to make workflows interpret a custom YML based Domain Specific Language.
 - **Next.js**:
   - [**One-click e-commerce**](https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
   - Food Delivery: https://github.com/lorensr/food-delivery
