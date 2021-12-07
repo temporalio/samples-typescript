@@ -32,7 +32,7 @@ async function run() {
 
   // Invoke the `DSLInterpreter` Workflow, only resolved when the workflow completes
   const result = await client.execute(DSLInterpreter, {
-    args: [dslInput], // type inference works! args: [name: string]
+    args: [dslInput],
     taskQueue: 'tutorial',
     workflowId: 'my-business-id',
   });
