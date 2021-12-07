@@ -76,14 +76,15 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 
 ### Full Apps
 
-- **Control Flow demonstrations**:
-  - [**DSL Interpreter**](https://github.com/temporalio/samples-typescript/tree/main/dsl-interpreter): demonstrates how to make workflows interpret a custom YML based Domain Specific Language.
+- **DSL Control Flows**:
+  - [**YAML DSL Interpreter**](https://github.com/temporalio/samples-typescript/tree/main/dsl-interpreter): demonstrates how to make workflows interpret a custom YAML based Domain Specific Language of your design.
+  - [**XState Interpreter**](https://github.com/Devessier/temporal-electronic-signature): demonstrates how to write a workflow that interprets XState state charts. Presented at [the November 2021 meetup](https://youtu.be/GpbOkDjpeYU?t=1616).
 - **Next.js**:
   - [**One-click e-commerce**](https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
   - Food Delivery: https://github.com/lorensr/food-delivery
-- Subscription Workflow example: https://github.com/temporalio/subscription-workflow-project-template-typescript/ (useful to compare with other SDKs)
-- E-commerce example: https://github.com/vkarpov15/temporal-ecommerce-ts
-- XState example: https://github.com/Devessier/temporal-electronic-signature
+- **Example Apps**:
+  - Subscription Workflow example: https://github.com/temporalio/subscription-workflow-project-template-typescript/ (useful to compare with other SDKs)
+  - E-commerce example: https://github.com/vkarpov15/temporal-ecommerce-ts
 
 ## Contributing
 
