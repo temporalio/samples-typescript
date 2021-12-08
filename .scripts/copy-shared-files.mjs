@@ -11,8 +11,7 @@ const ESLINTRC_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'fetch-esm',
-  'hello-world-js',
-  'dsl-interpreter',
+  'hello-world-js'
 ];
 const ESLINTIGNORE_EXCLUDE = ['production', 'monorepo-folders', 'hello-world-js'];
 
