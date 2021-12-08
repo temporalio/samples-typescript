@@ -20,7 +20,6 @@ module.exports = {
         varsIgnorePattern: '^_',
       },
     ],
-    '@typescript-eslint/ban-ts-comment': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
     'object-shorthand': ['error', 'always'],
     'deprecation/deprecation': 'warn',

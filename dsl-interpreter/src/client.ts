@@ -1,8 +1,10 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { WorkflowClient } from '@temporalio/client';
 import { DSLInterpreter, DSL } from './workflows';
-// @ts-ignore
-import { read } from 'node-yaml';
+import yaml from 'js-yaml';
+import fs from 'fs';
 
+// default DSL structure if no arguments are passed
+// validate with http://nodeca.github.io/js-yaml/
 let dslInput: DSL = {
   variables: { arg1: 'value1', arg2: 'value2' },
   root: {
@@ -19,22 +21,15 @@ let dslInput: DSL = {
 async function run() {
   const path = process.argv[2];
   if (path) {
-    dslInput = await read(path);
-    console.log({ dslInput });
+    dslInput = yaml.load((await fs.promises.readFile(path)).toString()) as DSL;
   }
-  const connection = new Connection(); // Connect to localhost with default ConnectionOptions.
-  // In production, pass options to the Connection constructor to configure TLS and other settings.
-  // This is optional but we leave this here to remind you there is a gRPC connection being established.
-
-  const client = new WorkflowClient(connection.service, {
-    // In production you will likely specify `namespace` here; it is 'default' if omitted
-  });
+  const client = new WorkflowClient(); // remember to configure Connection for production
 
   // Invoke the `DSLInterpreter` Workflow, only resolved when the workflow completes
   const result = await client.execute(DSLInterpreter, {
     args: [dslInput],
-    taskQueue: 'tutorial',
-    workflowId: 'my-business-id',
+    taskQueue: 'dsl-interpreter',
+    workflowId: 'my-dsl-id',
   });
   console.log(result); // Hello, Temporal!
 }

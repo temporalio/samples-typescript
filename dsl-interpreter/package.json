@@ -21,11 +21,12 @@
     ]
   },
   "dependencies": {
-    "node-yaml": "^4.0.1",
+    "js-yaml": "^4.1.0",
     "temporalio": "0.16.x"
   },
   "devDependencies": {
-    "@tsconfig/node14": "^1.0.0",
+    "@tsconfig/node16": "^1.0.0",
+    "@types/js-yaml": "^4.0.5",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",

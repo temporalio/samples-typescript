@@ -2,7 +2,7 @@ import { proxyActivities } from '@temporalio/workflow';
 import type * as activities from './activities';
 
 export type DSL = {
-  variables: Record<string, string>; // could be string | number?
+  variables: Record<string, unknown>;
   root: Statement;
 };
 
