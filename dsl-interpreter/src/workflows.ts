@@ -1,5 +1,4 @@
 import { proxyActivities } from '@temporalio/workflow';
-// Only import the activity types
 import type * as activities from './activities';
 
 export type DSL = {
@@ -25,7 +24,6 @@ const acts = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
 }) as Record<string, (...args: string[]) => Promise<string | undefined>>;
 
-/** A workflow that simply calls an activity */
 export async function DSLInterpreter(dsl: DSL): Promise<any> {
   const bindings = dsl.variables as Record<string, string>;
   return execute(dsl.root, bindings);
