@@ -24,9 +24,9 @@ const acts = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
 }) as Record<string, (...args: string[]) => Promise<string | undefined>>;
 
-export async function DSLInterpreter(dsl: DSL): Promise<any> {
+export async function DSLInterpreter(dsl: DSL): Promise<unknown> {
   const bindings = dsl.variables as Record<string, string>;
-  return execute(dsl.root, bindings);
+  return await execute(dsl.root, bindings);
 }
 
 async function execute(
