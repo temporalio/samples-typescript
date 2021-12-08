@@ -26,7 +26,7 @@ const acts = proxyActivities<typeof activities>({
 }) as Record<string, (...args: string[]) => Promise<string | undefined>>;
 
 /** A workflow that simply calls an activity */
-export async function DSLInterpreter(dsl: DSL): Promise<any> {
+export async function DSLInterpreter(dsl: DSL): Promise<unknown> {
   const bindings = dsl.variables as Record<string, string>;
   return execute(dsl.root, bindings);
 }
