@@ -43,12 +43,12 @@ There are two versions of this for development purposes.
 This example makes two decisions which often generate questions:
 
 1. Modeling the timeout on the clientside as well as in the Temporal workflow
-  - This is a UX tradeoff, not a necessary design choice
-  - You can equally have the frontend poll an API endpoint that runs a query on the workflow if precision/single source of truth is important to you
-  - Long polling or websocket subscriptions model is also possible for more instantaneous update but probably would require a different API architecture
+    - This is a UX tradeoff, not a necessary design choice
+    - You can equally have the frontend poll an API endpoint that runs a query on the workflow if precision/single source of truth is important to you
+    - Long polling or websocket subscriptions model is also possible for more instantaneous update but probably would require a different API architecture
 2. Next.js frontend talking to a Next.js API route, instead of talking to Temporal directly
-  - Temporal Clients use gRPC to talk to Temporal Server, therefore it is easier to do it from the serverside than from the browser, particularly where auth secrets are involved
-  - However we do have users that use `grpc-web` on the frontend directly and do authz on the backend through authz middleware on an ambassador router/envoy proxy. Ask in our Slack for more info.
+    - Temporal Clients use gRPC to talk to Temporal Server, therefore it is easier to do it from the serverside than from the browser, particularly where auth secrets are involved
+    - However we do have users that use `grpc-web` on the frontend directly and do authz on the backend through authz middleware on an ambassador router/envoy proxy. Ask in our Slack for more info.
 
 ## Deploy
 
