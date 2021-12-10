@@ -127,6 +127,9 @@ type ITEMSTATE = 'NEW' | 'SENDING' | 'ORDERED' | 'CONFIRMED' | 'CANCELLING' | 'E
 function Product({ product }) {
   const itemId = product.id;
   const [state, setState] = React.useState<ITEMSTATE>('NEW');
+  const stateRef = React.useRef<ITEMSTATE>();
+  stateRef.current = state;
+  
   // Generate a uuid for initiating this transaction.
   // This is generated on this client for idempotency concerns.
   // The request handler starts a Temporal Workflow using this transaction ID as
@@ -134,7 +137,7 @@ function Product({ product }) {
   // purchasing the same product more than once
   // In more advanced scenarios you may want to persist this in LocalStorage or
   // in the backend to be able to resume this transaction.
-  const [transactionId] = React.useState(uuid4());
+  const [transactionId, setTransactionId] = React.useState(uuid4());
   const toastId = React.useRef(null);
   function buyProduct() {
     setState('SENDING');
@@ -152,10 +155,14 @@ function Product({ product }) {
         closeOnClick: true,
         draggable: true,
         onClose: () => {
-          console.log({ state });
-          if (state === 'ORDERED') setState('CONFIRMED');
+          console.log({ state: stateRef.current });
+          if (stateRef.current === 'ORDERED') {
+            setState('CONFIRMED');
+          } else if (stateRef.current === 'CANCELLING') {
+            setState('NEW');
+            setTransactionId(uuid4());
+          }
         },
-        // onClose: () => {setState('CONFIRMED')}
       });
     });
   }
@@ -170,7 +177,6 @@ function Product({ product }) {
     if (state === 'ORDERED') {
       setState('CANCELLING');
       fetchAPI('/api/cancelBuy?id=' + transactionId)
-        .then(() => setState('NEW'))
         .catch((err) => {
           setState('ERROR');
           toast.error(err, {
