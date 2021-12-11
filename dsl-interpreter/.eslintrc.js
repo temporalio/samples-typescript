@@ -21,6 +21,7 @@ module.exports = {
       },
     ],
     '@typescript-eslint/no-explicit-any': 'off',
+    '@typescript-eslint/no-floating-promises': 'error',
     'object-shorthand': ['error', 'always'],
     'deprecation/deprecation': 'warn',
   },
