@@ -32,16 +32,15 @@ export async function DSLInterpreter(dsl: DSL): Promise<unknown> {
 async function execute(
   statement: Statement,
   bindings: Record<string, string | undefined>
-): Promise<string | undefined> {
+): Promise<void> {
+  // note that this function returns void
+  // we don't assign the results here - all results must be declared+bound in the activity DSL
   if ('parallel' in statement) {
     await Promise.all(statement.parallel.branches.map((el) => execute(el, bindings)));
-    // todo: if one activity fails we want to cancel all the others
   } else if ('sequence' in statement) {
-    let result: string | undefined;
     for (const el of statement.sequence.elements) {
-      result = await execute(el, bindings);
+      await execute(el, bindings);
     }
-    return result;
   } else {
     const activity = statement.activity;
     let args = activity.arguments || [];
@@ -50,6 +49,5 @@ async function execute(
     if (activity.result) {
       bindings[activity.result] = activityResult;
     }
-    return activityResult;
   }
 }
