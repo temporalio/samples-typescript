@@ -10,9 +10,9 @@ let dslInput: DSL = {
   root: {
     sequence: {
       elements: [
-        { activity: { name: 'Activity1', arguments: ['arg1'], result: 'result1' } },
-        { activity: { name: 'Activity2', arguments: ['result1'], result: 'result2' } },
-        { activity: { name: 'Activity3', arguments: ['arg2', 'result2'], result: 'result3' } },
+        { activity: { name: 'activity1', arguments: ['arg1'], result: 'result1' } },
+        { activity: { name: 'activity2', arguments: ['result1'], result: 'result2' } },
+        { activity: { name: 'activity3', arguments: ['arg2', 'result2'], result: 'result3' } },
       ],
     },
   },
