@@ -29,10 +29,7 @@ export async function DSLInterpreter(dsl: DSL): Promise<unknown> {
   return await execute(dsl.root, bindings);
 }
 
-async function execute(
-  statement: Statement,
-  bindings: Record<string, string | undefined>
-): Promise<void> {
+async function execute(statement: Statement, bindings: Record<string, string | undefined>): Promise<void> {
   // note that this function returns void
   // we don't assign the results here - all results must be declared+bound in the activity DSL
   if ('parallel' in statement) {

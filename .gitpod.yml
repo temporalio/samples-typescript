@@ -10,8 +10,8 @@ tasks:
       npm install
     command: |
       gp open .gitpod.readme.md
-      gp sync-await server-up
       cd hello-world
+      sleep 30
       npm run start.watch
   - name: Run Hello World Workflow
     init: |
@@ -19,10 +19,10 @@ tasks:
       echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
     command: |
       cd hello-world
-      until npm run workflow; do sleep 5; done; # "sleep until temporal is actually up"
-      gp sync-done server-up
-      gp preview http://localhost:8088 # open up Temporal Web to show new workflow
+      sleep 30
       npm run workflow # run workflow again for user's easy access
+      sleep 5
+      gp preview http://localhost:8088 # open up Temporal Web to show new workflow
     openMode: split-right
   - name: Temporal Server
     init: docker-compose pull

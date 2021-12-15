@@ -19,8 +19,8 @@ module.exports = {
 
     // code style preference
     'object-shorthand': ['error', 'always'],
-    
-     // relaxed rules, for convenience
+
+    // relaxed rules, for convenience
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {

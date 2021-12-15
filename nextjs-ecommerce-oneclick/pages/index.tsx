@@ -129,7 +129,7 @@ function Product({ product }) {
   const [state, setState] = React.useState<ITEMSTATE>('NEW');
   const stateRef = React.useRef<ITEMSTATE>();
   stateRef.current = state;
-  
+
   // Generate a uuid for initiating this transaction.
   // This is generated on this client for idempotency concerns.
   // The request handler starts a Temporal Workflow using this transaction ID as
@@ -176,16 +176,15 @@ function Product({ product }) {
   function cancelBuy() {
     if (state === 'ORDERED') {
       setState('CANCELLING');
-      fetchAPI('/api/cancelBuy?id=' + transactionId)
-        .catch((err) => {
-          setState('ERROR');
-          toast.error(err, {
-            position: 'top-right',
-            autoClose: 5000,
-            closeOnClick: true,
-            draggable: true,
-          });
+      fetchAPI('/api/cancelBuy?id=' + transactionId).catch((err) => {
+        setState('ERROR');
+        toast.error(err, {
+          position: 'top-right',
+          autoClose: 5000,
+          closeOnClick: true,
+          draggable: true,
         });
+      });
       toast.dismiss(toastId.current);
     }
   }
