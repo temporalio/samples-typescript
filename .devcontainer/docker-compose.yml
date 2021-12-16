@@ -8,9 +8,9 @@ services:
       context: .
       dockerfile: Dockerfile
       args:
-        USERNAME: vscode
-        INSTALL_ZSH: false
-        UPGRADE_PACKAGES: true
+        USERNAME: 'vscode'
+        INSTALL_ZSH: 'false'
+        UPGRADE_PACKAGES: 'true'
 
     volumes:
       # Forwards the local Docker socket to the container.
