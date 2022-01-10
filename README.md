@@ -82,9 +82,12 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 - **Next.js**:
   - [**One-click e-commerce**](https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
   - Food Delivery: https://github.com/lorensr/food-delivery
+- **GraphQL**:
+  - [**Temporal + GraphQL**](https://github.com/vkarpov15/temporal-graphql): Expose Temporal Workflows in an Apollo GraphQL API
 - **Example Apps**:
   - Subscription Workflow example: https://github.com/temporalio/subscription-workflow-project-template-typescript/ (useful to compare with other SDKs)
   - E-commerce example: https://github.com/vkarpov15/temporal-ecommerce-ts
+  - Chatbot example with Slack/Discord: [Walkthrough](https://docs.temporal.io/docs/typescript/chatbot-tutorial), [Video](https://www.youtube.com/watch?v=hGIhc6m2keQ), [Code](https://github.com/JoshuaKGoldberg/temporal-adventure-bot)
 
 ## Contributing
 
