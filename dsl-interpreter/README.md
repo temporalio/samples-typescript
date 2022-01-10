@@ -13,3 +13,21 @@ See also:
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
 1. In another terminal, `npm run workflow1` or `npm run workflow2` to run the Workflows accordingly
+
+Example output from workflow1:
+
+```
+[ '[activity1] arg1: ', '!' ] value1
+[ '[activity2] arg: ', '!' ] [result from activity1: value1]
+```
+
+Example output from workflow2:
+
+```
+[ '[activity1] arg1: ', '!' ] value1
+[ '[activity2] arg: ', '!' ] [result from activity1: value1]
+[ '[activity4] result1: ', '!' ] [result from activity1: value1]
+[ '[activity1] arg1: ', '!' ] activity3 received arg2: value2: 
+  
+  And received: [result from activity2: [result from activity1: value1]]
+```

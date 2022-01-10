@@ -25,10 +25,10 @@ Note that when we're changing code and restarting Workers, unless we cancel all 
 Example Worker output:
 
 ```bash
-Hello from 075f6172-9151-43d8-9848-b8ddb615a3a5, Temporal!
+Hello from my-schedule, Temporal!
 Workflow time:  1636333860201
 Activity time: 1636333860241
-Hello from 075f6172-9151-43d8-9848-b8ddb615a3a5, Temporal!
+Hello from my-schedule, Temporal!
 Workflow time:  1636333920319
 Activity time: 1636333920340
 ```

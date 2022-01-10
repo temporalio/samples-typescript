@@ -7,8 +7,8 @@
     "build.watch": "tsc --build --watch",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow1": "ts-node src/client.ts ../workflow1.yaml",
-    "workflow2": "ts-node src/client.ts ../workflow2.yaml",
+    "workflow1": "ts-node src/client.ts ./workflow1.yaml",
+    "workflow2": "ts-node src/client.ts ./workflow2.yaml",
     "lint": "eslint ."
   },
   "nodemonConfig": {
@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "js-yaml": "^4.1.0",
-    "temporalio": "0.16.x"
+    "temporalio": "0.17.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

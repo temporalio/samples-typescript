@@ -16,3 +16,9 @@ This requires an Elasticsearch instance, which is included in the default `docke
 You can see the search attributes in Temporal Web ([localhost:8088](http://localhost:8088)):
 
 ![image](https://user-images.githubusercontent.com/6764957/139664903-9fc3a3a9-7e02-4184-9d19-7de15c9e52d7.png)
+
+Example output:
+
+```
+hello workflow
+```
