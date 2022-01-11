@@ -8,7 +8,6 @@
     "rootDir": "./src",
     "outDir": "./lib"
   },
-  // "include": ["src/**/*.ts", "../backend-apis/client.ts"],
-  "include": ["src/*.ts", "src/**/*.ts"],
+  "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]
 }
