@@ -10,3 +10,9 @@ The [Logging docs](https://docs.temporal.io/docs/typescript/logging/) explains s
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run workflow` to run the Workflow.
+
+Example output:
+
+```
+Hello, Temporal!
+```

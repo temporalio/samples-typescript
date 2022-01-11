@@ -12,3 +12,18 @@ This sample demonstrates the [continueAsNew API](https://docs.temporal.io/docs/t
 In Temporal Web ([localhost:8088](http://localhost:8088)), you will see 10 Workflows spun out as new Workflows with new event histories and `Continuedasnew` status:
 
 ![image](https://user-images.githubusercontent.com/6764957/139667701-25369e04-5cad-4721-bbff-3d12bf8bfd66.png)
+
+Example output:
+
+```
+[loopingWorkflow(loop-0)] Running Workflow iteration: 0
+[loopingWorkflow(loop-0)] Running Workflow iteration: 1
+[loopingWorkflow(loop-0)] Running Workflow iteration: 2
+[loopingWorkflow(loop-0)] Running Workflow iteration: 3
+[loopingWorkflow(loop-0)] Running Workflow iteration: 4
+[loopingWorkflow(loop-0)] Running Workflow iteration: 5
+[loopingWorkflow(loop-0)] Running Workflow iteration: 6
+[loopingWorkflow(loop-0)] Running Workflow iteration: 7
+[loopingWorkflow(loop-0)] Running Workflow iteration: 8
+[loopingWorkflow(loop-0)] Running Workflow iteration: 9
+```
