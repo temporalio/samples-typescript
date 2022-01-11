@@ -81,7 +81,10 @@ export const interceptors = (): WorkflowInterceptors => ({
           );
         });
         if (state.workflowComplete) {
-          state.lastPublishPromise.then(() => (state.syncComplete = true));
+          state.lastPublishPromise.then(
+            () => (state.syncComplete = true),
+            () => undefined
+          );
         }
         try {
           return next({ commands });

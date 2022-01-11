@@ -13,4 +13,7 @@ async function bundle() {
   console.log(`Bundle written to ${bundlePath}`);
 }
 
-bundle();
+bundle().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

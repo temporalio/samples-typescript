@@ -1,5 +1,3 @@
 {
-  "eslint.rules.customizations": [
-    { "rule": "*", "severity": "downgrade" }
-  ]
+  "eslint.rules.customizations": [{ "rule": "*", "severity": "downgrade" }]
 }

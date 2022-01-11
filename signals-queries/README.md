@@ -15,18 +15,7 @@ and are handled in the Workflow:
 1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
-1. In another shell, `npm run workflow` to run the Workflow.
-
-The Workflow should print:
-
-```bash
-blocked? true
-blocked? false
-```
-
-and the Worker should print:
-
-```bash
-[unblockOrCancel(unblock-or-cancel-0)] Blocked
-[unblockOrCancel(unblock-or-cancel-0)] Unblocked
-```
+1. In another shell, `npm run workflow.start` to run the Workflow.
+1. Run `npm run workflow.query` to query the Workflow. Should print `blocked? true`
+1. Run `npm run workflow.signal` to unblock the Workflow. Should print `unblockSignal sent`
+1. Run `npm run workflow.query` to query the Workflow. Should print `blocked? false`
