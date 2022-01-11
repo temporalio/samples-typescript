@@ -1,5 +1,5 @@
 import { Worker } from '@temporalio/worker';
-import * as activities from 'temporal-workflows/lib/all-activities';
+import * as activities from '../temporal-workflows/src/all-activities';
 import path from 'path';
 
 async function run() {

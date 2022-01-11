@@ -5,10 +5,10 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "rootDir": "./packages",
+    "rootDir": "./src",
     "outDir": "./lib"
   },
   // "include": ["src/**/*.ts", "../backend-apis/client.ts"],
-  "include": ["src/**/*.ts"],
+  "include": ["src/*.ts", "src/**/*.ts"],
   "exclude": ["node_modules"]
 }
