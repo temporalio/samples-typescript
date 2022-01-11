@@ -4,3 +4,4 @@ node_modules
 build
 lib
 .next
+.vscode
