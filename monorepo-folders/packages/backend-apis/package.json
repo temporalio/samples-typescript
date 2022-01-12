@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "nodemon server.ts --watch ./*.ts --watch ../temporal-workflows"
+    "start": "nodemon server.ts --watch . --watch ../temporal-workflows"
   },
   "dependencies": {
     "express": "~4.16.1",
