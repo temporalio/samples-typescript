@@ -13,7 +13,7 @@ export async function runWorkflow() {
   // Invoke the `WorkflowA` Workflow, only resolved when the workflow completes
   const result = await client.execute(WorkflowA, {
     taskQueue: 'tutorial',
-    workflowId: 'workflow-a-' + Date.now(),
+    workflowId: 'workflow-a-' + Date.now(), // TODO: remember to replace this with a meaningful business ID
     args: ['Temporal'], // type inference works! args: [name: string]
   });
   // Starts the `WorkflowB` Workflow, don't wait for it to complete
