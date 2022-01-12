@@ -19,7 +19,7 @@ export async function runWorkflow() {
   // Starts the `WorkflowB` Workflow, don't wait for it to complete
   await client.start(WorkflowB, {
     taskQueue: 'tutorial',
-    workflowId: 'workflow-b-' + Date.now(),
+    workflowId: 'workflow-b-' + Date.now(), // TODO: remember to replace this with a meaningful business ID
   });
   console.log(result); // // [api-server] A: Hello, Temporal!, B: Hello, Temporal!
   return result;
