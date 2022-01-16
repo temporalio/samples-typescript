@@ -5,12 +5,12 @@
   "scripts": {
     "build": "tsc --build ./tsconfig.json",
     "build.once": "tsc --build --watch ./tsconfig.json",
+    "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow-fast": "ts-node src/clients/fast.ts",
     "workflow-slow": "ts-node src/clients/slow.ts",
-    "workflow-updating": "ts-node src/clients/updating-timer.ts",
-    "lint": "eslint ."
+    "workflow-updating": "ts-node src/clients/updating-timer.ts"
   },
   "nodemonConfig": {
     "execMap": {

@@ -5,11 +5,11 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow1": "ts-node src/client.ts ./workflow1.yaml",
-    "workflow2": "ts-node src/client.ts ./workflow2.yaml",
-    "lint": "eslint ."
+    "workflow2": "ts-node src/client.ts ./workflow2.yaml"
   },
   "nodemonConfig": {
     "execMap": {

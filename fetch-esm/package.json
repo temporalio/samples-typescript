@@ -6,10 +6,10 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
     "start": "node --loader ts-node/esm src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow": "node --loader ts-node/esm src/client.ts",
-    "lint": "eslint ."
+    "workflow": "node --loader ts-node/esm src/client.ts"
   },
   "nodemonConfig": {
     "execMap": {
