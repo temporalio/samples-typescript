@@ -3,8 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "build": "echo 'skipping frontend-ui build until issue # is solved'",
-    "build.cra": "react-scripts build",
+    "build": "react-scripts build",
     "eject": "react-scripts eject",
     "start": "react-scripts start",
     "test": "react-scripts test"

@@ -2,7 +2,7 @@
   "name": "samples-typescript",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap --no-ci",
+    "bootstrap": "lerna bootstrap --npm-client=yarn",
     "build": "lerna run build",
     "test": "lerna run test",
     "format": "prettier --write .",
