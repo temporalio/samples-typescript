@@ -15,6 +15,9 @@
   "dependencies": {
     "concurrently": "^6.3.0"
   },
+  "resolutions": {
+    "mini-css-extract-plugin": "2.4.5"
+  },
   "devDependencies": {
     "eslint": "^7.32.0",
     "ts-loader": "^9.2.6"
