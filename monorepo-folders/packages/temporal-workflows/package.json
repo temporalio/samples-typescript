@@ -3,8 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "compile": "tsc --build -w --preserveWatchOutput",
+    "build": "tsc --build",
+    "build.watch": "tsc --build -w --preserveWatchOutput",
     "lint": "eslint ."
+  },
+  "dependencies": {
+    "temporalio": "0.17.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

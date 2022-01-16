@@ -3,11 +3,13 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "tsc --build",
     "start": "nodemon server.ts --watch . --watch ../temporal-workflows"
   },
   "dependencies": {
     "express": "~4.16.1",
     "temporal-workflows": "*",
+    "temporalio": "0.17.x",
     "ts-node": "^10.4.0"
   },
   "devDependencies": {
