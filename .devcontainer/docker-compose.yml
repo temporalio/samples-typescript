@@ -43,6 +43,18 @@ services:
       - 7233:7233
     environment:
       TEMPORAL_CLI_ADDRESS: localhost:7233
+      
+  temporal-admin-tools:
+    container_name: samples_admin-tools
+    depends_on:
+      - temporal
+    environment:
+      - TEMPORAL_CLI_ADDRESS=localhost:7233
+    image: temporalio/admin-tools:latest
+    network_mode: service:temporalite
+    restart: unless-stopped
+    stdin_open: true
+    tty: true
 
   web:
     image: temporaliotest/ui:latest
