@@ -2,49 +2,22 @@
 // https://github.com/microsoft/vscode-dev-containers/tree/v0.209.5/containers/javascript-node-postgres
 // Update the VARIANT arg in docker-compose.yml to pick a Node.js version
 {
-	"name": "Samples Typescript",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "samples",
-	"workspaceFolder": "/workspace",
-	"shutdownAction": "stopCompose",
-	// Set *default* container specific settings.json values on container create.
-	"settings": {
-		"sqltools.connections": [
-			{
-				"name": "temporal",
-				"driver": "PostgreSQL",
-				"previewLimit": 50,
-				"server": "localhost",
-				"port": 5432,
-				"database": "temporal",
-				"username": "temporal",
-				"password": "temporal"
-			},
-			{
-				"name": "visibility",
-				"driver": "PostgreSQL",
-				"previewLimit": 50,
-				"server": "localhost",
-				"port": 5432,
-				"database": "temporal_visibility",
-				"username": "temporal",
-				"password": "temporal"
-			}
-		],
-		"#terminal.integrated.defaultProfile.linux#": "bash",
-	},
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"ms-azuretools.vscode-docker",
-		"dbaeumer.vscode-eslint",
-	],
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [
-		8080,
-	],
-	// Use 'postCreateCommand' to run commands after the container is created.
-	// "postCreateCommand": "yarn install",
-	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode",
-	"updateRemoteUserUID": true,
+  "name": "Samples Typescript",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "samples",
+  "workspaceFolder": "/workspace",
+  "shutdownAction": "stopCompose",
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "#terminal.integrated.defaultProfile.linux#": "bash"
+  },
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": ["ms-azuretools.vscode-docker", "dbaeumer.vscode-eslint"],
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [8080],
+  // Use 'postCreateCommand' to run commands after the container is created.
+  // "postCreateCommand": "yarn install",
+  // Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
+  "remoteUser": "vscode",
+  "updateRemoteUserUID": true
 }
