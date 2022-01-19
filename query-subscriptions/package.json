@@ -5,10 +5,10 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "subscribe": "ts-node src/subscribe.ts",
-    "lint": "eslint ."
+    "subscribe": "ts-node src/subscribe.ts"
   },
   "nodemonConfig": {
     "execMap": {

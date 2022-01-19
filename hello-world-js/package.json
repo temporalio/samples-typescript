@@ -4,10 +4,10 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "lint": "eslint .",
     "start": "node src/worker.js",
     "start.watch": "nodemon src/worker.js",
-    "workflow": "node src/client.js",
-    "lint": "eslint ."
+    "workflow": "node src/client.js"
   },
   "nodemonConfig": {
     "watch": [

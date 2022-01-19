@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "build": "tsc --build",
     "start": "nodemon worker.ts --watch ./worker.ts --watch ../temporal-workflows"
   },
   "dependencies": {

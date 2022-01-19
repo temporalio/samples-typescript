@@ -19,9 +19,11 @@ jobs:
         with:
           node-version: ${{ matrix.node }}
           # Comment out cache line when testing with act:
-          # (`act --platform ubuntu-latest=lucasalt/act_base:latest`)
+          # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
           cache: 'npm'
       - run: npm ci
+      - run: npx lerna bootstrap --no-ci --npm-client=yarn
+      - run: npm run build
       - run: npx prettier . --check
       - run: npm run lint
       - name: Get Temporal docker-compose.yml

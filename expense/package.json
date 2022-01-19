@@ -5,13 +5,13 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
     "server": "ts-node src/server",
     "server.watch": "nodemon src/server/index",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow-approve": "ts-node src/clients/approve",
-    "workflow-timeout": "ts-node src/clients/timeout",
-    "lint": "eslint ."
+    "workflow-timeout": "ts-node src/clients/timeout"
   },
   "nodemonConfig": {
     "execMap": {

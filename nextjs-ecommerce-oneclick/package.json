@@ -5,6 +5,7 @@
     "dev": "npm-run-all -l build:temporal --parallel dev:temporal dev:next start:worker",
     "dev:next": "next dev",
     "dev:temporal": "tsc --build --watch ./temporal/tsconfig.json",
+    "build": "npm-run-all -l --parallel build:next build:temporal",
     "build:next": "next build",
     "build:temporal": "tsc --build ./temporal/tsconfig.json",
     "start": "npm run dev",
