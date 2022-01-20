@@ -3,21 +3,25 @@ import { Connection, WorkflowClient } from '@temporalio/client';
 import { example } from './workflows';
 
 async function run() {
-  const connection = new Connection(); // Connect to localhost with default ConnectionOptions.
-  // In production, pass options to the Connection constructor to configure TLS and other settings.
-  // This is optional but we leave this here to remind you there is a gRPC connection being established.
+  const connection = new Connection({
+    // // Connect to localhost with default ConnectionOptions.
+    // // In production, pass options to the Connection constructor to configure TLS and other settings:
+    // address: 'foo.bar.tmprl.cloud', // as provisioned
+    // tls: {} // as provisioned
+  }); 
 
   const client = new WorkflowClient(connection.service, {
-    // In production you will likely specify `namespace` here; it is 'default' if omitted
+    // namespace: 'default', // change if you have a different namespace
   });
 
-  // Invoke the `example` Workflow, only resolved when the workflow completes
   const handle = await client.start(example, {
     args: ['Temporal'], // type inference works! args: [name: string]
     taskQueue: 'tutorial',
-    workflowId: 'my-business-id',
+    // in practice, use a meaningful business id, eg customerId or transactionId
+    workflowId: 'wf-id-' + Math.floor(Math.random() * 1000), 
   });
   console.log(`Started workflow ${handle.workflowId}`);
+
   // optional: wait for client result
   // console.log(await handle.result()); // Hello, Temporal!
 }
