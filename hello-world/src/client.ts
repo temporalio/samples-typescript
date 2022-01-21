@@ -8,7 +8,7 @@ async function run() {
     // // In production, pass options to the Connection constructor to configure TLS and other settings:
     // address: 'foo.bar.tmprl.cloud', // as provisioned
     // tls: {} // as provisioned
-  }); 
+  });
 
   const client = new WorkflowClient(connection.service, {
     // namespace: 'default', // change if you have a different namespace
@@ -18,7 +18,7 @@ async function run() {
     args: ['Temporal'], // type inference works! args: [name: string]
     taskQueue: 'tutorial',
     // in practice, use a meaningful business id, eg customerId or transactionId
-    workflowId: 'wf-id-' + Math.floor(Math.random() * 1000), 
+    workflowId: 'wf-id-' + Math.floor(Math.random() * 1000),
   });
   console.log(`Started workflow ${handle.workflowId}`);
 
