@@ -10,8 +10,9 @@
     - [Workflow APIs](#workflow-apis)
     - [Production APIs](#production-apis)
     - [Advanced APIs](#advanced-apis)
-  - [Apps](#apps)
+  - [Fullstack Apps](#fullstack-apps)
 - [Contributing](#contributing)
+  - [Upgrading the SDK version](#upgrading-the-sdk-version)
   - [Config files](#config-files)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -76,7 +77,7 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
   - [**OpenTelemetry**](https://github.com/temporalio/samples-typescript/tree/main/interceptors-opentelemetry): Use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows.
   - [**Query Subscriptions**](https://github.com/temporalio/samples-typescript/tree/main/query-subscriptions): Use Redis Streams, Immer, and SDK Interceptors to subscribe to Workflow state.
 
-### Full Apps
+### Fullstack Apps
 
 - **DSL Control Flows**:
   - [**YAML DSL Interpreter**](https://github.com/temporalio/samples-typescript/tree/main/dsl-interpreter): demonstrates how to make workflows interpret a custom YAML based Domain Specific Language of your design.
@@ -115,7 +116,9 @@ npm run lint
 ### Upgrading the SDK version
 
 ```sh
-for f in */package.json; do jq '.dependencies.temporalio = "NEW_VERSION_HERE"' $f | sponge $f; done
+shopt -s extglob
+for f in !(monorepo-folders)/package.json; do jq '.dependencies.temporalio = "NEW_VERSION_HERE"' $f | sponge $f; done
+for f in monorepo-folders/packages/!(frontend-ui)/package.json; do jq '.dependencies.temporalio = "NEW_VERSION_HERE"' $f | sponge $f; done
 ```
 
 ### Config files
