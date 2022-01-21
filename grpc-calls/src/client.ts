@@ -1,6 +1,6 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
-import { example } from './workflows';
-import { ApplicationFailure, defaultDataConverter, errorToFailure, msToTs, RetryState } from '@temporalio/common';
+// @@@SNIPSTART typescript-grpc-call-basic
+import { Connection } from '@temporalio/client';
+import { defaultDataConverter } from '@temporalio/common';
 
 async function run() {
   const connection = new Connection();
@@ -19,24 +19,29 @@ async function run() {
     workflowType: { name: 'example' },
     input: { payloads: await defaultDataConverter.toPayloads('Temporal') },
   });
+  // @@@SNIPEND
 
   await sleep();
 
+  // @@@SNIPSTART typescript-grpc-call-getWorkflowExecutionHistory
   // no equivalent call in client, this is only available as an SDK call
   const res = await connection.service.getWorkflowExecutionHistory({
     execution: { workflowId },
     namespace: 'default',
   });
   console.log(res.history);
+  // @@@SNIPEND
 
   await sleep();
 
+  // @@@SNIPSTART typescript-grpc-call-listWorkflowExecutions
   // no equivalent call in client, this is only available as an SDK call
   // requires ElasticSearch
   const results = await connection.service.listWorkflowExecutions({
     namespace: 'default',
   });
   console.table(results.executions);
+  // @@@SNIPEND
 }
 
 run().catch((err) => {
