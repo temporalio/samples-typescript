@@ -1,8 +1,8 @@
-// @@@SNIPSTART typescript-grpc-call-basic
 import { Connection } from '@temporalio/client';
 import { defaultDataConverter } from '@temporalio/common';
 
 async function run() {
+  // @@@SNIPSTART typescript-grpc-call-basic
   const connection = new Connection();
 
   // // normal way of starting a Workflow, with a WorkflowClient
