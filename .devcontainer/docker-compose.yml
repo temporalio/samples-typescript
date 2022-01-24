@@ -47,7 +47,7 @@ services:
   temporal-admin-tools:
     container_name: samples_admin-tools
     depends_on:
-      - temporal
+      - temporalite
     environment:
       - TEMPORAL_CLI_ADDRESS=localhost:7233
     image: temporalio/admin-tools:latest
