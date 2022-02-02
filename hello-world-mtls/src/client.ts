@@ -37,7 +37,11 @@ async function run({
   await connection.untilReady();
   const client = new WorkflowClient(connection.service, { namespace });
   // Run example workflow and await its completion
-  const result = await client.execute(example, { taskQueue, workflowId: 'my-business-id', args: ['Temporal'] });
+  const result = await client.execute(example, {
+    taskQueue,
+    workflowId: `my-business-id-${Date.now()}`,
+    args: ['Temporal'],
+  });
   console.log(result); // Hello, Temporal!
 }
 
