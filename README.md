@@ -92,6 +92,8 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
   - Subscription Workflow example: https://github.com/temporalio/subscription-workflow-project-template-typescript/ (useful to compare with other SDKs)
   - E-commerce example: https://github.com/vkarpov15/temporal-ecommerce-ts
   - Chatbot example with Slack/Discord: [Walkthrough](https://docs.temporal.io/docs/typescript/chatbot-tutorial), [Video](https://www.youtube.com/watch?v=hGIhc6m2keQ), [Code](https://github.com/JoshuaKGoldberg/temporal-adventure-bot)
+  - Temporal + Remix Survey app: https://github.com/gustavofsantos/temporal-survey
+  - URL Batch Scraping demo: https://github.com/andreasasprou/temporal-url-batch-scraping
 
 ## Contributing
 
