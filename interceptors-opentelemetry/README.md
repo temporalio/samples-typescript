@@ -1,6 +1,6 @@
 # OpenTelemetry Interceptors
 
-This sample features '@temporalio/interceptors-opentelemetry`, which uses [Interceptors](https://docs.temporal.io/docs/typescript/interceptors) to add tracing of Workflows and Activities with [opentelemetry](https://opentelemetry.io/).
+This sample features `@temporalio/interceptors-opentelemetry`, which uses [Interceptors](https://docs.temporal.io/docs/typescript/interceptors) to add tracing of Workflows and Activities with [opentelemetry](https://opentelemetry.io/).
 
 ### Running this sample
 
