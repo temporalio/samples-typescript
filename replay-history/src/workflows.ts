@@ -11,16 +11,16 @@ export const signals = {
 
 export async function calculator(): Promise<void> {
   let value = 0;
-  wf.setHandler(signals.add, (x) => {
+  wf.setHandler(signals.add, (x: number) => {
     value += x;
   });
-  wf.setHandler(signals.sub, (x) => {
+  wf.setHandler(signals.sub, (x: number) => {
     value -= x;
   });
-  wf.setHandler(signals.div, (x) => {
+  wf.setHandler(signals.div, (x: number) => {
     value /= x;
   });
-  wf.setHandler(signals.mul, (x) => {
+  wf.setHandler(signals.mul, (x: number) => {
     value *= x;
   });
   wf.setHandler(signals.inverseFraction, () => {

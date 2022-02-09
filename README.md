@@ -67,6 +67,7 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 #### Production APIs
 
 - [**Production Build**](https://github.com/temporalio/samples-typescript/tree/main/production): Build code in advance for faster Worker startup times.
+- [**Debugging**](https://docs.temporal.io/docs/typescript/troubleshooting): The [replay-history](https://github.com/temporalio/samples-typescript/tree/main/replay-history) sample shows how to retrieve Workflow Event History and debug it using the `runReplayHistory` Worker API ([video](https://youtu.be/fN5bIL7wc5M)).
 - [**Patching**](https://docs.temporal.io/docs/typescript/patching/): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
 - [**Logging**](https://github.com/temporalio/samples-typescript/tree/main/logging-sinks): Use Sinks to extract data out of Workflows for logging/metrics/tracing purposes.
 - [**Instrumentation**](https://github.com/temporalio/samples-typescript/tree/main/instrumentation): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components and get metrics and traces out of Rust Core.
