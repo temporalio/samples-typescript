@@ -5,21 +5,20 @@ tasks:
   - name: Run Hello World Worker
     init: |
       alias tctl="docker exec temporal-admin-tools tctl"
-      echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
+      echo "tctl configured! try typing tctl -v"
       cd hello-world # this cd doesnt persist in postbuild
       npm install
     command: |
-      gp open .gitpod.readme.md
-      cd hello-world
-      sleep 30
+      gp open ../.gitpod.readme.md
+      sleep 40
       npm run start.watch
   - name: Run Hello World Workflow
     init: |
       alias tctl="docker exec temporal-admin-tools tctl"
-      echo "tctl configured! try typing tctl -v" # can't run tctl directly from gitpod.yml
+      echo "tctl configured! try typing tctl -v"
     command: |
       cd hello-world
-      sleep 30
+      sleep 45
       npm run workflow # run workflow again for user's easy access
       sleep 5
       gp preview http://localhost:8088 # open up Temporal Web to show new workflow
