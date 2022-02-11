@@ -21,7 +21,7 @@ async function run() {
     input: {
       // the client passes every payload through Data Converter; with gRPC calls have to do it yourself
       // import { defaultDataConverter } from '@temporalio/common';
-      payloads: await defaultDataConverter.toPayloads('Temporal')
+      payloads: await defaultDataConverter.toPayloads('Temporal'),
     },
   });
   // @@@SNIPEND
