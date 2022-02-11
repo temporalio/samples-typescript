@@ -12,7 +12,7 @@ async function run() {
 
   // Simulate waiting for some time
   // Cancel may be immediately called, waiting is not needed
-  await new Promise((resolve) => setTimeout(resolve, 100));
+  await new Promise((resolve) => setTimeout(resolve, 40 * 1000));
   await handle.cancel();
   console.log('Cancelled workflow successfully');
   try {

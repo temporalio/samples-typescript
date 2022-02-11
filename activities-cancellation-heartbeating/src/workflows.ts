@@ -14,7 +14,7 @@ export async function runCancellableActivity(): Promise<void> {
   } catch (err) {
     if (isCancellation(err)) {
       console.log('Workflow cancelled along with its activity');
-      // To cleanup use CancellationScope.nonCancellable
+      // To clean up use CancellationScope.nonCancellable
     }
     throw err;
   }
