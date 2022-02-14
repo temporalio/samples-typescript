@@ -20,6 +20,7 @@ const POST_CREATE_EXCLUDE = [
   'production',
   'patching-api',
   'signals-queries',
+  'activities-cancellation-heartbeating',
 ];
 
 // By default, zx logs all commands spawned
