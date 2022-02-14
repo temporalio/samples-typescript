@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "js-yaml": "^4.1.0",
-    "temporalio": "0.17.x"
+    "temporalio": "0.18.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

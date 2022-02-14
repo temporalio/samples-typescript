@@ -8,7 +8,7 @@
   },
   "dependencies": {
     "temporal-workflows": "*",
-    "temporalio": "0.17.x",
+    "temporalio": "0.18.x",
     "ts-node": "^10.4.0"
   },
   "devDependencies": {
