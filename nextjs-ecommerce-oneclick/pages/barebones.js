@@ -88,7 +88,7 @@ export default function Bones() {
               <a className="text-blue-400" href="https://github.com/temporalio/samples-typescript">
                 TypeScript SDK samples
               </a>{' '}
-              or
+              or{' '}
               <a className="text-blue-400" href="https://temporal.io/typescript">
                 browse our docs
               </a>
