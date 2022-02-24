@@ -45,7 +45,8 @@ services:
     #  - ENABLE_ES=true
     #  - ES_SEEDS=elasticsearch
     #  - ES_VERSION=v7
-    image: temporalio/auto-setup:1.15.0
+    # https://github.com/temporalio/temporal/issues/2539
+    image: temporalio/auto-setup:1.13.4
     # networks:
     # - temporal-network
     ports:
@@ -58,7 +59,8 @@ services:
       - temporal
     environment:
       - TEMPORAL_CLI_ADDRESS=temporal:7233
-    image: temporalio/admin-tools:1.15.0
+    # https://github.com/temporalio/temporal/issues/2539
+    image: temporalio/admin-tools:1.13.4
     # networks:
     # - temporal-network
     stdin_open: true
@@ -71,7 +73,7 @@ services:
     environment:
       - TEMPORAL_GRPC_ENDPOINT=temporal:7233
       - TEMPORAL_PERMIT_WRITE_API=true
-    image: temporalio/web:1.12.0
+    image: temporalio/web:1.13.0
     # networks:
     # - temporal-network
     ports:
