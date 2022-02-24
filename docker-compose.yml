@@ -25,7 +25,7 @@ services:
     environment:
       POSTGRES_PASSWORD: temporal
       POSTGRES_USER: temporal
-    image: postgres:9.6
+    image: postgres:13
     # networks:
     # - temporal-network
     ports:
@@ -45,7 +45,7 @@ services:
     #  - ENABLE_ES=true
     #  - ES_SEEDS=elasticsearch
     #  - ES_VERSION=v7
-    image: temporalio/auto-setup:1.12.3
+    image: temporalio/auto-setup:1.15.0
     # networks:
     # - temporal-network
     ports:
@@ -58,11 +58,12 @@ services:
       - temporal
     environment:
       - TEMPORAL_CLI_ADDRESS=temporal:7233
-    image: temporalio/admin-tools:1.12.3
+    image: temporalio/admin-tools:1.15.0
     # networks:
     # - temporal-network
     stdin_open: true
     tty: true
+  # the old UI, on 8088
   temporal-web:
     container_name: temporal-web
     depends_on:
@@ -75,6 +76,19 @@ services:
     # - temporal-network
     ports:
       - 8088:8088
+  # the experimental new UI version, on 8080
+  temporal-ui:
+    container_name: temporal-ui
+    depends_on:
+      - temporal
+    environment:
+      - TEMPORAL_ADDRESS=temporal:7233
+      - TEMPORAL_CORS_ORIGINS=http://localhost:3000
+    image: temporalio/ui:0.2.0
+    networks:
+      - temporal-network
+    ports:
+      - 8080:8080
 
   ## uncomment only if you need these features, eg you are Johannes
   ## Collector
