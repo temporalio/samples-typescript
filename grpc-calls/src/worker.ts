@@ -7,7 +7,7 @@ async function run() {
   const worker = await Worker.create({
     workflowsPath: require.resolve('./workflows'),
     activities,
-    taskQueue: 'tutorial',
+    taskQueue: 'grpc-calls',
   });
   // Worker connects to localhost by default and uses console.error for logging.
   // Customize the Worker by passing more options to create():

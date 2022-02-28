@@ -7,7 +7,7 @@ async function run() {
   const client = new WorkflowClient(connection.service, {});
 
   const handle = await client.start(calculator, {
-    taskQueue: 'tutorial',
+    taskQueue: 'replay-history',
     workflowId: 'calc',
   });
   await handle.signal(signals.add, 2);

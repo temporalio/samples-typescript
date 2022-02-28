@@ -16,7 +16,7 @@ async function run() {
     namespace: 'default',
     workflowId,
     requestId,
-    taskQueue: { name: 'tutorial' },
+    taskQueue: { name: 'grpc-calls' },
     workflowType: { name: 'example' },
     input: {
       // the client passes every payload through Data Converter; with gRPC calls have to do it yourself

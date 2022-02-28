@@ -9,7 +9,7 @@ async function run() {
     workflowsPath: require.resolve('../temporal-workflows/lib/all-workflows.js'),
     activities,
     nodeModulesPaths: [path.join(__dirname, '../../node_modules')],
-    taskQueue: 'tutorial',
+    taskQueue: 'monorepo',
   });
   // Worker connects to localhost by default and uses console.error for logging.
   // Customize the Worker by passing more options to create():
