@@ -25,5 +25,4 @@ Hello, Temporal!
   status: { code: 1 },
   events: []
 }
-
 ```
