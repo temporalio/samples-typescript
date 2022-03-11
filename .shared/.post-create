@@ -1,10 +1,18 @@
-To begin development, start Temporal Server:
+To begin development, install Docker:
 
-  {cyan cd} ~/path/to/temporal/docker-compose/
+  {cyan brew cask install docker}
+  {cyan open} /Applications/Docker.app
+  {cyan brew install docker-compose}
+
+And start Temporal Server:
+
+  {cyan git clone} https://github.com/temporalio/docker-compose.git ~/temporal-server
+  {cyan cd} ~/temporal-server
   {cyan docker-compose up}
 
-{dim.italic If you haven’t run Temporal Server before, visit:
-https://docs.temporal.io/docs/typescript/getting-started/}
+Make sure you're using Node version 14+:
+
+  {cyan brew install node@16}
 
 Then, in the project directory, using two other shells, run these commands:
 
