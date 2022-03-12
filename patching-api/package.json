@@ -2,6 +2,14 @@
   "name": "temporal-patching-api",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
+    "start": "ts-node src/worker.ts",
+    "start.watch": "nodemon src/worker.ts",
+    "workflow": "ts-node src/client.ts"
+  },
   "nodemonConfig": {
     "execMap": {
       "ts": "ts-node"
@@ -15,7 +23,7 @@
     "axios": "0.21.1",
     "eslint": "7",
     "node-fetch": "2.x",
-    "temporalio": "0.19.x"
+    "temporalio": "0.18.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
@@ -24,6 +32,7 @@
     "@types/sinon": "^10.0.4",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-deprecation": "^1.2.1",
     "mocha": "8.x",

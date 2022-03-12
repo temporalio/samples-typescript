@@ -2,6 +2,14 @@
   "name": "temporal-instrumentation",
   "version": "0.1.0",
   "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
+    "start": "ts-node src/worker.ts",
+    "start.watch": "nodemon src/worker.ts",
+    "workflow": "ts-node src/client.ts"
+  },
   "nodemonConfig": {
     "execMap": {
       "ts": "ts-node"
@@ -12,7 +20,7 @@
     ]
   },
   "dependencies": {
-    "temporalio": "0.19.x",
+    "temporalio": "0.18.x",
     "triple-beam": "^1.3.0",
     "winston": "^3.3.3"
   },
