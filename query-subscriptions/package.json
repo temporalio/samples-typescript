@@ -22,7 +22,7 @@
   "dependencies": {
     "immer": "^9.0.6",
     "ioredis": "^4.28.0",
-    "temporalio": "0.18.x"
+    "temporalio": "0.19.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
