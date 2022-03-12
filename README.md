@@ -122,6 +122,8 @@ npm run lint
 ```sh
 shopt -s extglob
 for f in !(monorepo-folders)/package.json; do jq '.dependencies.temporalio = "NEW_VERSION_HERE"' $f | sponge $f; done
+jq '.devDependencies."@temporalio/client" = "NEW_VERSION_HERE"' package.json | sponge package.json;
+jq '.dependencies."@temporalio/interceptors-opentelemetry" = "NEW_VERSION_HERE"' interceptors-opentelemetry/package.json | sponge interceptors-opentelemetry/package.json;
 for f in monorepo-folders/packages/!(frontend-ui)/package.json; do jq '.dependencies.temporalio = "NEW_VERSION_HERE"' $f | sponge $f; done
 ```
 
