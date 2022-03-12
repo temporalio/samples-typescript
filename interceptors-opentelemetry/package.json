@@ -2,14 +2,6 @@
   "name": "interceptors-opentelemetry-sample",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "build": "tsc --build",
-    "build.watch": "tsc --build --watch",
-    "lint": "eslint .",
-    "start": "ts-node src/worker.ts",
-    "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/client.ts"
-  },
   "nodemonConfig": {
     "execMap": {
       "ts": "ts-node"
@@ -24,8 +16,8 @@
     "@opentelemetry/resources": "^1.0.0",
     "@opentelemetry/sdk-node": "^0.26.0",
     "@opentelemetry/sdk-trace-base": "^1.0.0",
-    "@temporalio/interceptors-opentelemetry": "0.18.x",
-    "temporalio": "0.18.x"
+    "@temporalio/interceptors-opentelemetry": "0.19.x",
+    "temporalio": "0.19.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

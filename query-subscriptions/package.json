@@ -2,14 +2,6 @@
   "name": "temporal-query-subscriptions",
   "version": "0.1.0",
   "private": true,
-  "scripts": {
-    "build": "tsc --build",
-    "build.watch": "tsc --build --watch",
-    "lint": "eslint .",
-    "start": "ts-node src/worker.ts",
-    "start.watch": "nodemon src/worker.ts",
-    "subscribe": "ts-node src/subscribe.ts"
-  },
   "nodemonConfig": {
     "execMap": {
       "ts": "ts-node"
@@ -22,7 +14,7 @@
   "dependencies": {
     "immer": "^9.0.6",
     "ioredis": "^4.28.0",
-    "temporalio": "0.18.x"
+    "temporalio": "0.19.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
