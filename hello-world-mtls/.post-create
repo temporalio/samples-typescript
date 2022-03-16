@@ -1,6 +1,22 @@
-To begin development, follow the mTLS setup instructions:
+To begin development, install Docker:
 
-{bold https://docs.temporal.io/docs/typescript/security/#mtls-tutorial}
+  Mac: {cyan brew cask install docker; open} /Applications/Docker.app
+  Other: https://www.docker.com/products/docker-desktop
+
+Start Temporal Server:
+
+  {cyan git clone} https://github.com/temporalio/docker-compose.git temporal-server
+  {cyan cd} temporal-server/
+  {cyan docker-compose up}
+
+Use Node version 14+:
+
+  Mac: {cyan brew install node@16}
+  Other: https://nodejs.org/en/download/
+
+Then follow the mTLS setup instructions:
+
+  {bold https://docs.temporal.io/docs/typescript/security/#mtls-tutorial}
 
 For step 8, run:
 
