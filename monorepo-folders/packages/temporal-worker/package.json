@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
+    "start": "nodemon worker.ts --watch ./worker.ts --watch ../temporal-workflows",
     "build": "tsc --build",
-    "start": "nodemon worker.ts --watch ./worker.ts --watch ../temporal-workflows"
+    "lint": "eslint ."
   },
   "dependencies": {
     "temporal-workflows": "*",

@@ -3,8 +3,9 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "build": "tsc --build",
-    "start": "nodemon server.ts --watch . --watch ../temporal-workflows"
+    "start": "nodemon server.ts --watch . --watch ../temporal-workflows",
+    "lint": "eslint .",
+    "build": "tsc --build"
   },
   "dependencies": {
     "express": "~4.16.1",
