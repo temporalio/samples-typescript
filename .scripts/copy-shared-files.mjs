@@ -7,8 +7,8 @@ const ADDITIONAL_SAMPLES = [];
 // that we don't want to overwrite
 const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'production', 'hello-world-js'];
 const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'production', 'hello-world-js'];
-const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js'];
-const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js'];
+const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js', 'protobufs'];
+const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs'];
 
 const POST_CREATE_EXCLUDE = [
   'timer-examples',
