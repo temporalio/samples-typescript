@@ -71,6 +71,7 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 - [**Patching**](https://docs.temporal.io/docs/typescript/patching/): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
 - [**Logging**](https://github.com/temporalio/samples-typescript/tree/main/logging-sinks): Use Sinks to extract data out of Workflows for logging/metrics/tracing purposes.
 - [**Instrumentation**](https://github.com/temporalio/samples-typescript/tree/main/instrumentation): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components and get metrics and traces out of Rust Core.
+- [**Custom Payload Converter**](https://github.com/temporalio/samples-typescript/tree/main/ejson): Customize data serialization by creating a `PayloadConverter` that uses EJSON to convert Dates, binary, and regexes.
 
 #### Advanced APIs
 
