@@ -24,7 +24,7 @@ export class EjsonPayloadConverter implements PayloadConverterWithEncoding {
       ejson = EJSON.stringify(value);
     } catch (e) {
       throw new UnsupportedEjsonTypeError(
-        `Can't run EJSON.stringify on this value: ${value}. Either convert it (or its properties) to EJSON-serializable values (see https://docs.meteor.com/api/ejson.html ), or use EJSON.addType: https://docs.meteor.com/api/ejson.html#EJSON-addType . EJSON.stringify error message: ${errorMessage(
+        `Can't run EJSON.stringify on this value: ${value}. Either convert it (or its properties) to EJSON-serializable values (see https://docs.meteor.com/api/ejson.html ), or create a custom data converter. EJSON.stringify error message: ${errorMessage(
           e
         )}`,
         e as Error
