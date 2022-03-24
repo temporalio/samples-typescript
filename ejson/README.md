@@ -1,6 +1,13 @@
 # EJSON
 
-Create a [custom payload converter](https://docs.temporal.io/docs/typescript/data-converters#payloadconverter).
+Create a [custom payload converter](https://docs.temporal.io/docs/typescript/data-converters#payloadconverter) using [EJSON](https://docs.meteor.com/api/ejson.html), which supports:
+
+- `Date`
+- Binary (`Uint8Array`)
+- Special numbers (`NaN`, `Infinity`, and `-Infinity`)
+- Regular expressions (`RegExp`)
+
+## Code
 
 - Implementation: [ejson-payload-converter.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/ejson-payload-converter.ts)
 - Payload Converter file: [payload-converter.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/payload-converter.ts)
