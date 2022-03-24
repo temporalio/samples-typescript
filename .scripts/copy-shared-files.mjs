@@ -8,7 +8,7 @@ const ADDITIONAL_SAMPLES = [];
 const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'production', 'hello-world-js'];
 const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'production', 'hello-world-js'];
 const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js'];
-const ESLINTIGNORE_EXCLUDE = ['production', 'monorepo-folders', 'hello-world-js'];
+const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js'];
 
 const POST_CREATE_EXCLUDE = [
   'timer-examples',
@@ -28,7 +28,7 @@ $.verbose = false;
 
 let [answer] = await question(
   `Running pre-commit hook.
-This will overwrite any changes made to config files in samples (like ${chalk.bold('hello-world/tsconfig.json')}).
+This will overwrite any changes made to most config files in samples (like ${chalk.bold('hello-world/tsconfig.json')}).
 Proceed? [Y/n] `
 );
 
