@@ -1,4 +1,4 @@
-// @@@SNIPSTART typescript-ejson-converter
+// @@@SNIPSTART typescript-ejson-converter-impl
 import {
   EncodingType,
   errorMessage,
