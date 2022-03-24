@@ -1,8 +1,15 @@
-# Hello World
+# Protobufs
 
-This is the default project that is scaffolded out when you run `npx @temporalio/create@latest ./myfolder`.
+Use [Protobufs](https://docs.temporal.io/docs/typescript/data-converters#protobufs).
 
-The [Hello World Tutorial](https://docs.temporal.io/docs/typescript/hello-world/) walks through the code in this sample.
+- Example proto files:
+  - [protos/messages.proto](protos/messages.proto)
+  - [protos/namespaced-messages.proto](protos/namespaced-messages.proto)
+- Scripts for compiling protos: [package.json](package.json)
+- Root file: [protos/root.js](protos/root.js)
+- Payload Converter: [src/payload-converter.ts](src/payload-converter.ts)
+
+We provide the Payload Converter to the Client ([src/client.ts](src/client.ts)) and Worker ([src/worker.ts](src/worker.ts)), and then we can use Protobufs in the Client, Workflow ([src/workflows.ts](src/workflows.ts)), and Activity ([src/activities.ts](src/activities.ts)).
 
 ### Running this sample
 
@@ -16,5 +23,6 @@ The client should log the Workflow ID that is started, and you should see it ref
 Optionally, you can also uncomment the `await handle.result()`, rerun, and see the client script return:
 
 ```bash
-Hello, Temporal!
+Started workflow my-business-id-b6155489-920f-41a8-9e88-c17c24d47ee9
+{ sentence: 'Proto is 2 years old.' }
 ```
