@@ -1,6 +1,5 @@
 import { Worker } from '@temporalio/worker';
 import * as activities from '../temporal-workflows/src/all-activities';
-import path from 'path';
 
 async function run() {
   // Step 1: Register Workflows and Activities with the Worker and connect to
@@ -8,7 +7,6 @@ async function run() {
   const worker = await Worker.create({
     workflowsPath: require.resolve('../temporal-workflows/lib/all-workflows.js'),
     activities,
-    nodeModulesPaths: [path.join(__dirname, '../../node_modules')],
     taskQueue: 'monorepo',
   });
   // Worker connects to localhost by default and uses console.error for logging.

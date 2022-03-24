@@ -20,7 +20,7 @@
     ]
   },
   "dependencies": {
-    "temporalio": "0.18.x"
+    "temporalio": "0.19.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

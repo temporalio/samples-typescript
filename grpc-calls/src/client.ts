@@ -1,5 +1,5 @@
 import { Connection } from '@temporalio/client';
-import { defaultDataConverter } from '@temporalio/common';
+import { defaultPayloadConverter, toPayloads } from '@temporalio/common';
 
 async function run() {
   const workflowId = 'wf-id-' + Math.floor(Math.random() * 1000);
@@ -19,9 +19,9 @@ async function run() {
     taskQueue: { name: 'grpc-calls' },
     workflowType: { name: 'example' },
     input: {
-      // the client passes every payload through Data Converter; with gRPC calls have to do it yourself
-      // import { defaultDataConverter } from '@temporalio/common';
-      payloads: await defaultDataConverter.toPayloads('Temporal'),
+      // WorkflowClient passes data through Data Converter to convert to Payloads; with gRPC calls have to do it yourself
+      // import { defaultPayloadConverter, toPayloads } from '@temporalio/common';
+      payloads: toPayloads(defaultPayloadConverter, 'Temporal'),
     },
   });
   // @@@SNIPEND
