@@ -2,17 +2,17 @@
 
 Create a [custom payload converter](https://docs.temporal.io/docs/typescript/data-converters#payloadconverter) using [EJSON](https://docs.meteor.com/api/ejson.html), which supports:
 
-- `Date`
+- Dates (`Date`)
 - Binary (`Uint8Array`)
 - Special numbers (`NaN`, `Infinity`, and `-Infinity`)
 - Regular expressions (`RegExp`)
 
 ## Code
 
-- Implementation: [ejson-payload-converter.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/ejson-payload-converter.ts)
-- Payload Converter file: [payload-converter.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/payload-converter.ts)
+- `EjsonPayloadConverter`: [ejson-payload-converter.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/ejson-payload-converter.ts)
+- `payloadConverter`: [payload-converter.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/payload-converter.ts)
 
-The Payload Converter is supplied to the [client.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/client.ts) and [worker.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/worker.ts), and when the client sends a `User` argument, [`workflow.ts`](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/workflow.ts) can receive it.
+The `payload-converter.ts` file is supplied to the [client.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/client.ts) and [worker.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/worker.ts), and when the client sends a `User` argument, [workflow.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/workflow.ts) can receive it.
 
 ### Running this sample
 
