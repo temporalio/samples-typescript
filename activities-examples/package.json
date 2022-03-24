@@ -24,13 +24,15 @@
   "dependencies": {
     "axios": "0.21.1",
     "node-fetch": "2.x",
-    "temporalio": "0.18.x"
+    "temporalio": "0.18.x",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
     "@types/mocha": "8.x",
     "@types/node-fetch": "^2.5.12",
     "@types/sinon": "^10.0.4",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",

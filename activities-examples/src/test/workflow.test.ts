@@ -1,11 +1,12 @@
-import { WorkflowClient, WorkflowFailedError, ActivityFailure, ApplicationFailure } from '@temporalio/client';
-import { Core, Worker, DefaultLogger } from '@temporalio/worker';
-import { describe, before, after, afterEach, it } from 'mocha';
+import { ActivityFailure, ApplicationFailure, WorkflowClient, WorkflowFailedError } from '@temporalio/client';
+import { Core, DefaultLogger, Worker } from '@temporalio/worker';
 import assert from 'assert';
 import axios from 'axios';
+import { after, afterEach, before, describe, it } from 'mocha';
 import sinon from 'sinon';
-import { httpWorkflow } from '../workflows';
+import { v4 as uuid } from 'uuid';
 import * as activities from '../activities';
+import { httpWorkflow } from '../workflows';
 
 describe('example workflow', function () {
   let shutdown: () => Promise<void>;
@@ -38,7 +39,7 @@ describe('example workflow', function () {
         taskQueue: 'test-activities',
         workflowExecutionTimeout: 1000,
         // Use random ID because ID is meaningless for this test
-        workflowId: `test-${Date.now()}`,
+        workflowId: `test-${uuid()}`,
       });
   });
 
