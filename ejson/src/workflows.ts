@@ -1,4 +1,4 @@
-// @@@SNIPSTART typescript-ejson-converter-workflow
+// @@@SNIPSTART typescript-ejson-workflow
 import type { Result, User } from './types';
 
 export async function example(user: User): Promise<Result> {

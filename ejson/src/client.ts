@@ -4,11 +4,13 @@ import type { Result, User } from './types';
 import { example } from './workflows';
 
 async function run() {
+  // @@@SNIPSTART typescript-ejson-client-setup
   const client = new WorkflowClient(new Connection().service, {
     dataConverter: { payloadConverterPath: require.resolve('./payload-converter') },
   });
+  // @@@SNIPEND
 
-  // @@@SNIPSTART typescript-ejson-converter-client
+  // @@@SNIPSTART typescript-ejson-client
   const user: User = {
     id: uuid(),
     // age: 1000n, BigInt isn't supported
