@@ -1,0 +1,9 @@
+syntax = "proto3";
+
+message ProtoResult {
+  string sentence = 1;
+}
+
+message BinaryMessage {
+  bytes data = 1;
+}
