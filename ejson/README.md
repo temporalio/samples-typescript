@@ -21,9 +21,7 @@ The `payload-converter.ts` file is supplied to the [client.ts](https://github.co
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run workflow` to run the Workflow Client.
 
-The client should log the Workflow ID that is started, and you should see it reflected in Temporal Web UI.
-
-Optionally, you can also uncomment the `await handle.result()`, rerun, and see the client script return:
+The client script should log:
 
 ```bash
 Started workflow example-user-67904764-18eb-4011-93b0-85cb04880a69

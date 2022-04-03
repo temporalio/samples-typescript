@@ -11,9 +11,7 @@ The [Hello World Tutorial](https://docs.temporal.io/docs/typescript/hello-world/
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run workflow` to run the Workflow Client.
 
-The client should log the Workflow ID that is started, and you should see it reflected in Temporal Web UI.
-
-Optionally, you can also uncomment the `await handle.result()`, rerun, and see the client script return:
+The Workflow should return:
 
 ```bash
 Hello, Temporal!
