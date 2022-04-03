@@ -7,7 +7,7 @@ Create a custom data converter that encrypts data with AES. See [encryption docs
 - `EncryptionCodec`: [encryption-codec.ts](https://github.com/temporalio/samples-typescript/blob/main/encryption/src/encryption-codec.ts)
 - Data Converter: [data-converter.ts](https://github.com/temporalio/samples-typescript/blob/main/encryption/src/data-converter.ts)
 
-The Payload Converter is supplied to the [client.ts](https://github.com/temporalio/samples-typescript/blob/main/encryption/src/client.ts) and [worker.ts](https://github.com/temporalio/samples-typescript/blob/main/encryption/src/worker.ts). When the Client sends `'Alice: Private message for Bob.'` to the Workflow, it gets encrypted on the Client and decrypted in the Worker. [`workflow.ts`](https://github.com/temporalio/samples-typescript/blob/main/encryption/src/workflow.ts) receives the decrypted message and appends another message. When it returns the longer string, it gets encrypted by the Worker and decrypted by the Client.
+The Payload Converter is supplied to the [client.ts](https://github.com/temporalio/samples-typescript/blob/main/encryption/src/client.ts) and [worker.ts](https://github.com/temporalio/samples-typescript/blob/main/encryption/src/worker.ts). When the Client sends `'Alice: Private message for Bob.'` to the Workflow, it gets encrypted on the Client and decrypted in the Worker. [`workflow.ts`](https://github.com/temporalio/samples-typescript/blob/main/encryption/src/workflow.ts) receives the decrypted message and appends another message. When it returns that longer string, the string gets encrypted by the Worker and decrypted by the Client.
 
 ## Running this sample
 
