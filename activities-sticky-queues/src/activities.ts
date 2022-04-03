@@ -1,7 +1,7 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
-import * as fs from 'fs/promises';
-import { createHash } from 'crypto';
 import { Context } from '@temporalio/activity';
+import { createHash } from 'crypto';
+import * as fs from 'fs/promises';
 
 export function createNonStickyActivities(uniqueWorkerTaskQueue: string) {
   return {
