@@ -71,6 +71,7 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 - [**Patching**](https://docs.temporal.io/docs/typescript/patching/): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
 - [**Logging**](https://github.com/temporalio/samples-typescript/tree/main/logging-sinks): Use Sinks to extract data out of Workflows for logging/metrics/tracing purposes.
 - [**Instrumentation**](https://github.com/temporalio/samples-typescript/tree/main/instrumentation): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components and get metrics and traces out of Rust Core.
+- [**Custom Payload Converter**](https://github.com/temporalio/samples-typescript/tree/main/ejson): Customize data serialization by creating a `PayloadConverter` that uses EJSON to convert Dates, binary, and regexes.
 
 #### Advanced APIs
 
@@ -86,7 +87,6 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
   - [**XState Interpreter**](https://github.com/Devessier/temporal-electronic-signature): demonstrates how to write a workflow that interprets XState state charts. Presented at [the November 2021 meetup](https://youtu.be/GpbOkDjpeYU?t=1616).
 - **Next.js**:
   - [**One-click e-commerce**](https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
-  - Food Delivery: https://github.com/lorensr/food-delivery
 - **GraphQL**:
   - [**Temporal + GraphQL**](https://github.com/vkarpov15/temporal-graphql): Expose Temporal Workflows in an Apollo GraphQL API
 - **Example Apps**:
