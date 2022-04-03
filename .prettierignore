@@ -5,3 +5,5 @@ build
 lib
 .next
 .vscode
+protobufs/protos/json-module.js
+protobufs/protos/root.d.ts

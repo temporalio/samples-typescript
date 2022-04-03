@@ -1,2 +1,5 @@
 lib
 node_modules
+protos/json-module.js
+protos/root.d.ts
+

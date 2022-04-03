@@ -6,9 +6,15 @@ const ADDITIONAL_SAMPLES = [];
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
 const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'production', 'hello-world-js'];
-const GITIGNORE_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'production', 'hello-world-js'];
-const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js'];
-const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js'];
+const GITIGNORE_EXCLUDE = [
+  'nextjs-ecommerce-oneclick',
+  'monorepo-folders',
+  'production',
+  'hello-world-js',
+  'protobufs',
+];
+const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js', 'protobufs'];
+const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs'];
 
 const POST_CREATE_EXCLUDE = [
   'timer-examples',
@@ -28,7 +34,7 @@ $.verbose = false;
 
 let [answer] = await question(
   `Running pre-commit hook.
-This will overwrite any changes made to most config files in samples (like ${chalk.bold('hello-world/tsconfig.json')}).
+This will overwrite changes made to most config files in samples (like ${chalk.bold('hello-world/tsconfig.json')}).
 Proceed? [Y/n] `
 );
 
