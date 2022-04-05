@@ -18,7 +18,7 @@ The Payload Converter is supplied to the [client.ts](https://github.com/temporal
 
 The client script should log:
 
-```bash
+```
 Started workflow my-business-id-840774ec-f934-4bca-89ad-472b6b117dae
 Decrypting payload.data: <Buffer f6 71 42 4c 9f d3 97 bc e5 62 23 dd ea 9c 88 d0 cc 43 8e 69 70 08 f1 fb 33 be 76 b1 e4 b5 04 ac f9 62 a9 d3 b4 a1 80 0a 0f 66 dc c4 b1 90 44 6f 3b 47 ... 44 more bytes>
 Alice: Private message for Bob.
