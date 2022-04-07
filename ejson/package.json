@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "ejson": "^2.2.2",
-    "temporalio": "0.19.x",
+    "temporalio": "0.20.x",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

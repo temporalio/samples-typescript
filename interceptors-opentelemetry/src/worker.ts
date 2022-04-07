@@ -1,4 +1,4 @@
-import { DefaultLogger, Worker, Core } from '@temporalio/worker';
+import { DefaultLogger, Worker, Runtime } from '@temporalio/worker';
 import { Resource } from '@opentelemetry/resources';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
@@ -20,7 +20,7 @@ async function main() {
   await otel.start();
 
   // Silence the Worker logs to better see the span output in this sample
-  await Core.install({ logger: new DefaultLogger('WARN') });
+  Runtime.install({ logger: new DefaultLogger('WARN') });
 
   const worker = await Worker.create({
     workflowsPath: require.resolve('./workflows'),

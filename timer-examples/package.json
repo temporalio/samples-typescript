@@ -24,7 +24,7 @@
   "dependencies": {
     "dotenv": "^10.0.0",
     "mailgun-js": "^0.22.0",
-    "temporalio": "0.19.x"
+    "temporalio": "0.20.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

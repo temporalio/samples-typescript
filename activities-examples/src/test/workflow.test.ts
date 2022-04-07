@@ -1,5 +1,5 @@
 import { ActivityFailure, ApplicationFailure, WorkflowClient, WorkflowFailedError } from '@temporalio/client';
-import { Core, DefaultLogger, Worker } from '@temporalio/worker';
+import { Runtime, DefaultLogger, Worker } from '@temporalio/worker';
 import assert from 'assert';
 import axios from 'axios';
 import { after, afterEach, before, describe, it } from 'mocha';
@@ -17,7 +17,7 @@ describe('example workflow', function () {
   before(async function () {
     this.timeout(10 * 1000);
     // Filter INFO log messages for clearer test output
-    await Core.install({ logger: new DefaultLogger('WARN') });
+    Runtime.install({ logger: new DefaultLogger('WARN') });
     const worker = await Worker.create({
       taskQueue: 'test-activities',
       workflowsPath: require.resolve('../workflows'),
