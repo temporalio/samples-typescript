@@ -1,9 +1,10 @@
 import { Connection } from '@temporalio/client';
 import { defaultPayloadConverter, toPayloads } from '@temporalio/common';
+import { nanoid } from 'nanoid';
 
 async function run() {
-  const workflowId = 'wf-id-' + Math.floor(Math.random() * 1000);
-  const requestId = 'request-id-' + Math.floor(Math.random() * 1000);
+  const workflowId = 'workflow-' + nanoid();
+  const requestId = 'request-' + nanoid();
   // @@@SNIPSTART typescript-grpc-call-basic
   const connection = new Connection();
 
