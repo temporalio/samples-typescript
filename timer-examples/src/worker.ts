@@ -7,10 +7,13 @@ dotenv.config();
 const { MAILGUN_API: apiKey, MAILGUN_DOMAIN: domain, ADMIN_EMAIL: to } = process.env;
 
 async function run(): Promise<void> {
-  const activities = createActivities({ apiKey, domain }, {
-    to,
-    from: `Temporal Bot <temporal@${domain}>`,
-  });
+  const activities = createActivities(
+    { apiKey, domain },
+    {
+      to,
+      from: `Temporal Bot <temporal@${domain}>`,
+    }
+  );
 
   const worker = await Worker.create({
     taskQueue: 'timer-examples',

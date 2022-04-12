@@ -10,7 +10,10 @@ export interface EmailSettings {
 const subject = 'Order processing taking longer than expected';
 const html = `Order processing is taking longer than expected, but don't worry—the job is still running!`;
 
-export const createActivities = ({ apiKey, domain }: { apiKey?: string, domain?: string }, { to, from }: EmailSettings) => ({
+export const createActivities = (
+  { apiKey, domain }: { apiKey?: string; domain?: string },
+  { to, from }: EmailSettings
+) => ({
   async processOrder(sleepMS = 1000): Promise<void> {
     await Context.current().sleep(sleepMS);
   },
@@ -25,8 +28,8 @@ export const createActivities = ({ apiKey, domain }: { apiKey?: string, domain?:
         params: { to, from, subject, html },
         auth: {
           username: 'api',
-          password: apiKey
-        }
+          password: apiKey,
+        },
       });
     }
   },
