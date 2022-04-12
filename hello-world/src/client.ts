@@ -1,6 +1,7 @@
 // @@@SNIPSTART typescript-hello-client
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { example } from './workflows';
+import { nanoid } from 'nanoid';
 
 async function run() {
   const connection = new Connection({
@@ -18,7 +19,7 @@ async function run() {
     args: ['Temporal'], // type inference works! args: [name: string]
     taskQueue: 'hello-world',
     // in practice, use a meaningful business id, eg customerId or transactionId
-    workflowId: 'wf-id-' + Math.floor(Math.random() * 1000),
+    workflowId: 'workflow-' + nanoid(),
   });
   console.log(`Started workflow ${handle.workflowId}`);
 
