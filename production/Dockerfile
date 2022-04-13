@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
 
-FROM node:16.14.2-bullseye
+FROM node:16-bullseye-slim
 
 RUN apt update && apt install -y ca-certificates
 
