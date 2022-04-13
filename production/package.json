@@ -21,7 +21,8 @@
     ]
   },
   "dependencies": {
-    "temporalio": "0.20.x"
+    "micri": "^4.5.0",
+    "temporalio": "^0.20.1"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

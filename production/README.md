@@ -30,7 +30,7 @@ If you use Docker in production, replace step 3 with:
 
 ```
 docker build . --tag my-temporal-worker --build-arg TEMPORAL_SERVER=host.docker.internal:7233
-docker run my-temporal-worker
+docker run -p 3000:3000 my-temporal-worker
 ```
 
 ### Connecting to deployed Temporal Server

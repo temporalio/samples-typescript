@@ -1,4 +1,5 @@
 import { NativeConnection, Worker } from '@temporalio/worker';
+import { serve } from 'micri';
 import * as activities from './activities';
 import { connectionOptions, namespace } from './connection';
 
@@ -18,6 +19,20 @@ async function run() {
     activities,
     taskQueue: 'production-sample',
   });
+
+  const server = serve(async () => {
+    return worker.getStatus();
+  });
+
+  server.listen(process.env.PORT || 3000);
+
+  server.on('error', (err) => {
+    console.error(err);
+  });
+
+  for (const signal of ['SIGINT', 'SIGTERM', 'SIGQUIT', 'SIGUSR2']) {
+    process.on(signal, () => server.close());
+  }
 
   await worker.run();
 }
