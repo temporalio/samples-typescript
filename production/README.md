@@ -37,7 +37,15 @@ docker run -p 3000:3000 my-temporal-worker
 
 We use [`src/connection.ts`](./src/connection.ts) for connecting to Temporal Server from both the Client and Worker. When connecting to Temporal Server running on our local machine, the defaults (`localhost:7233` for `node lib/worker.js` and `host.docker.internal:7233` for Docker) work. When connecting to a production Temporal Server, we need to:
 
-- Put the TLS certificate in `certs/server.pem`
-- Put the TLS private key in `certs/server.key`
 - Provide the GRPC endpoint, like `TEMPORAL_SERVER=loren.temporal-dev.tmprl.cloud:7233`
 - Provide the namespace, like `NAMESPACE=loren.temporal-dev`
+- Put the TLS certificate in `certs/server.pem`
+- Put the TLS private key in `certs/server.key`
+- If using Docker, mount `certs/` into the container by adding `--mount type=bind,source="$(pwd)"/certs,target=/app/certs` to `docker run`
+
+With Docker, the full commands would be:
+
+```
+docker build . --tag my-temporal-worker --build-arg TEMPORAL_SERVER=loren.temporal-dev.tmprl.cloud:7233 --build-arg NAMESPACE=loren.temporal-dev
+docker run -p 3000:3000 --mount type=bind,source="$(pwd)"/certs,target=/app/certs my-temporal-worker
+```
