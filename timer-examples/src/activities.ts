@@ -27,8 +27,8 @@ export const createActivities = ({ apiKey, domain, to, from }: MailgunSettings) 
         params: { to, from, subject, html },
         auth: {
           username: 'api',
-          password: apiKey
-        }
+          password: apiKey,
+        },
       });
     } else {
       console.log('Skipping sending email:', html);
