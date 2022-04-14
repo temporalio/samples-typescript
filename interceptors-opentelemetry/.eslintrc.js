@@ -86,7 +86,7 @@ module.exports = {
           'worker_threads',
           'zlib',
         ],
-      }
-    }
-  ]
+      },
+    },
+  ],
 };
