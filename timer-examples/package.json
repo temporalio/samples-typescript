@@ -22,13 +22,12 @@
     ]
   },
   "dependencies": {
+    "axios": "0.26.1",
     "dotenv": "^10.0.0",
-    "mailgun-js": "^0.22.0",
     "temporalio": "0.20.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
-    "@types/mailgun-js": "0.22.12",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",

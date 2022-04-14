@@ -9,7 +9,7 @@ This example shows how to use [`sleep`](https://typescript.temporal.io/api/names
 
 1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
 1. `npm install` to install dependencies.
-1. _Optional_: Set up an account with [Mailgun](https://www.mailgun.com/) and create a `.env` file with the following environment variables: `MAILGUN_API`, `MAILGUN_DOMAIN`, and `ADMIN_EMAIL`
+1. _Optional_: Set up an account with [Mailgun](https://www.mailgun.com/) and create a `.env` file with the following environment variables: `MAILGUN_API`, `MAILGUN_DOMAIN`, and `ADMIN_EMAIL`. `ADMIN_EMAIL` is the email address your Mailgun emails will be sent to. You can use the `.env.example` file as a template.
 1. `npm run start.watch` to start the Worker.
 
 ### Email notification
