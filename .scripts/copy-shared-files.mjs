@@ -1,4 +1,5 @@
 // Run with https://github.com/google/zx
+const STORED_SAMPLES = new Set(require('./list-of-samples.json').samples);
 
 const NON_SAMPLES = ['node_modules'];
 const ADDITIONAL_SAMPLES = [];
@@ -29,8 +30,36 @@ const POST_CREATE_EXCLUDE = [
   'activities-cancellation-heartbeating',
 ];
 
+const FILES = [
+  '.shared/tsconfig.json',
+  '.shared/.gitignore',
+  '.shared/.eslintrc.js',
+  '.shared/.post-create',
+  '.shared/.eslintignore',
+  '.shared/.npmrc',
+  '.shared/.nvmrc'
+];
 // By default, zx logs all commands spawned
 $.verbose = false;
+let numSharedFilesChanged = 0;
+for (let i = 0; i < FILES.length; i++) {
+  const checkForFiles = await $`git diff --shortstat ${FILES[i]}`;
+  if (checkForFiles.stdout) {
+    ++numSharedFilesChanged;
+  }
+}
+
+const dirents = await fs.readdir('.', { withFileTypes: true });
+const samples = dirents
+  .filter((dirent) => dirent.isDirectory() && !NON_SAMPLES.includes(dirent.name) && dirent.name[0] !== '.')
+  .map(({ name }) => name)
+  .concat(ADDITIONAL_SAMPLES);
+
+const hasNewSamples = samples.find(sample => !STORED_SAMPLES.has(sample));
+await fs.writeFile('./.scripts/list-of-samples.json', JSON.stringify({ samples }, null, '  '));
+if (numSharedFilesChanged === 0 && !hasNewSamples) {
+  process.exit(0);
+}
 
 let [answer] = await question(
   `Running pre-commit hook.
@@ -42,12 +71,6 @@ if ((answer ?? 'y').toUpperCase() !== 'Y') {
   console.log(`To change config files, edit them in the ${chalk.bold('.shared/')} directory.\nAborting commit.`);
   process.exit(1);
 }
-
-const dirents = await fs.readdir('.', { withFileTypes: true });
-const samples = dirents
-  .filter((dirent) => dirent.isDirectory() && !NON_SAMPLES.includes(dirent.name) && dirent.name[0] !== '.')
-  .map(({ name }) => name)
-  .concat(ADDITIONAL_SAMPLES);
 
 process.stdout.write('Copying config files from .shared/ to samples...');
 
