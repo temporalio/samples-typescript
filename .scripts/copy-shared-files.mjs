@@ -37,7 +37,7 @@ const FILES = [
   '.shared/.post-create',
   '.shared/.eslintignore',
   '.shared/.npmrc',
-  '.shared/.nvmrc'
+  '.shared/.nvmrc',
 ];
 // By default, zx logs all commands spawned
 $.verbose = false;
@@ -55,7 +55,7 @@ const samples = dirents
   .map(({ name }) => name)
   .concat(ADDITIONAL_SAMPLES);
 
-const hasNewSamples = samples.find(sample => !STORED_SAMPLES.has(sample));
+const hasNewSamples = samples.find((sample) => !STORED_SAMPLES.has(sample));
 await fs.writeFile('./.scripts/list-of-samples.json', JSON.stringify({ samples }, null, '  '));
 if (numSharedFilesChanged === 0 && !hasNewSamples) {
   process.exit(0);

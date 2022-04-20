@@ -40,7 +40,7 @@ module.exports = {
       rules: {
         'no-restricted-imports': [
           'error',
-          ...builtinModules.filter(m => !ALLOWED_NODE_BUILTINS.has(m)).flatMap(m => [m, `node:${m}`])
+          ...builtinModules.filter((m) => !ALLOWED_NODE_BUILTINS.has(m)).flatMap((m) => [m, `node:${m}`]),
         ],
       },
     },
