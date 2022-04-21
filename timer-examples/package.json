@@ -24,7 +24,7 @@
   "dependencies": {
     "axios": "0.26.1",
     "dotenv": "^10.0.0",
-    "temporalio": "0.20.x"
+    "temporalio": "0.21.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
