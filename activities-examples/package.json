@@ -24,7 +24,7 @@
   "dependencies": {
     "axios": "0.21.1",
     "node-fetch": "2.x",
-    "temporalio": "0.20.x",
+    "temporalio": "0.21.x",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

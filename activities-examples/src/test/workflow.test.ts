@@ -12,7 +12,7 @@ describe('example workflow', function () {
   let shutdown: () => Promise<void>;
   let execute: () => ReturnType<typeof httpWorkflow>;
 
-  this.slow(1000);
+  this.slow(5000);
 
   before(async function () {
     this.timeout(10 * 1000);
@@ -37,7 +37,7 @@ describe('example workflow', function () {
     execute = () =>
       client.execute(httpWorkflow, {
         taskQueue: 'test-activities',
-        workflowExecutionTimeout: 1000,
+        workflowExecutionTimeout: 10_000,
         // Use random ID because ID is meaningless for this test
         workflowId: `test-${uuid()}`,
       });
