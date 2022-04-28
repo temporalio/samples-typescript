@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "nanoid": "3.x",
-    "temporalio": "0.20.x"
+    "temporalio": "0.21.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

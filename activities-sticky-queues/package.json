@@ -20,7 +20,7 @@
     ]
   },
   "dependencies": {
-    "temporalio": "0.20.x",
+    "temporalio": "0.21.x",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

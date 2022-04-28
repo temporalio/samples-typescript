@@ -45,6 +45,7 @@ async function run({
   console.log('Worker connection successfully established');
 
   await worker.run();
+  await connection.close();
 }
 
 run(getEnv()).catch((err) => {
