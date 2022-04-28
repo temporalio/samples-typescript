@@ -25,6 +25,7 @@
     "production",
     "protobufs",
     "query-subscriptions",
+    "remote-codec",
     "replay-history",
     "search-attributes",
     "signals-queries",
