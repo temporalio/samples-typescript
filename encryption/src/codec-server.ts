@@ -15,7 +15,7 @@ interface Body {
 }
 
 /**
- * Helper function to converta valid proto JSON to a payload object.
+ * Helper function to convert a valid proto JSON to a payload object.
  *
  * This method will be part of the SDK when it supports proto JSON serialization.
  */
@@ -45,7 +45,7 @@ function toJSON({ metadata, data }: proto.temporal.api.common.v1.IPayload): JSON
 }
 
 async function main(port = 8888) {
-  const converter = await EncryptionCodec.create('test-key-id');
+  const codec = await EncryptionCodec.create('test-key-id');
 
   const app = express();
   app.use(cors({ origin: 'http://localhost:8088', allowedHeaders: ['x-namespace', 'content-type'] }));
@@ -55,7 +55,7 @@ async function main(port = 8888) {
     try {
       const { payloads: raw } = req.body as Body;
       const encoded = raw.map(fromJSON);
-      const decoded = await converter.decode(encoded);
+      const decoded = await codec.decode(encoded);
       const payloads = decoded.map(toJSON);
       res.json({ payloads }).end();
     } catch (err) {
@@ -68,7 +68,7 @@ async function main(port = 8888) {
     try {
       const { payloads: raw } = req.body as Body;
       const decoded = raw.map(fromJSON);
-      const encoded = await converter.encode(decoded);
+      const encoded = await codec.encode(decoded);
       const payloads = encoded.map(toJSON);
       res.json({ payloads }).end();
     } catch (err) {
