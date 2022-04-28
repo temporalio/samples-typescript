@@ -38,6 +38,7 @@ jobs:
       - name: Install sample deps
         run: npm install
         working-directory: activities-examples
+        if: ${{ startsWith(matrix.os, 'ubuntu') }}
       - name: Wait for Temporal Server
         run: node .scripts/wait-on-temporal.mjs
         if: ${{ startsWith(matrix.os, 'ubuntu') }}
