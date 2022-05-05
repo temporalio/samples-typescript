@@ -26,6 +26,7 @@
     "protobufs",
     "query-subscriptions",
     "replay-history",
+    "saga",
     "search-attributes",
     "signals-queries",
     "timer-examples",
