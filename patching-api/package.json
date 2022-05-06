@@ -20,7 +20,7 @@
     ]
   },
   "dependencies": {
-    "axios": "0.21.1",
+    "axios": "0.26.0",
     "eslint": "7",
     "node-fetch": "2.x",
     "temporalio": "0.21.x"
