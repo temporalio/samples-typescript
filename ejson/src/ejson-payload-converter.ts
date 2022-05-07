@@ -35,6 +35,7 @@ export class EjsonPayloadConverter implements PayloadConverterWithEncoding {
     return {
       metadata: {
         [METADATA_ENCODING_KEY]: u8('json/plain'),
+        // Include an additional metadata field to indicate that this is an EJSON payload
         format: u8('extended'),
       },
       data: u8(ejson),
