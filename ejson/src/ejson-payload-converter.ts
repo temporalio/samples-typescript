@@ -15,7 +15,8 @@ import EJSON from 'ejson';
  * Converts between values and [EJSON](https://docs.meteor.com/api/ejson.html) Payloads.
  */
 export class EjsonPayloadConverter implements PayloadConverterWithEncoding {
-  public encodingType = 'ejson/plain' as EncodingType;
+  // Use 'json/plain' so that Payloads are displayed in the UI
+  public encodingType = 'json/plain' as EncodingType;
 
   public toPayload(value: unknown): Payload | undefined {
     if (value === undefined) return undefined;
@@ -33,7 +34,8 @@ export class EjsonPayloadConverter implements PayloadConverterWithEncoding {
 
     return {
       metadata: {
-        [METADATA_ENCODING_KEY]: u8('ejson/plain'),
+        [METADATA_ENCODING_KEY]: u8('json/plain'),
+        format: u8('extended'),
       },
       data: u8(ejson),
     };
