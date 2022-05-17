@@ -1,4 +1,4 @@
-import { proxyActivities, proxySinks, TemporalFailure, Sinks } from '@temporalio/workflow';
+import { proxyActivities, proxySinks, TemporalFailure, Sinks, ApplicationFailure } from '@temporalio/workflow';
 import { createActivities } from './activities';
 import { Workflows } from '@typings/commands';
 
@@ -56,7 +56,7 @@ export async function openAccount(params: OpenAccount): Promise<void> {
     });
     // successfully called, so clear if a failure occurs later
     compensations.unshift({
-      message: prettyErrorMessage('add postal address failed'),
+      message: prettyErrorMessage('reversing add address'),
       fn: () => clearPostalAddresses({ accountId: params.accountId }),
     });
 
@@ -67,7 +67,7 @@ export async function openAccount(params: OpenAccount): Promise<void> {
     });
     // successfully called, so clear if a failure occurs later
     compensations.unshift({
-      message: prettyErrorMessage('add client failed'),
+      message: prettyErrorMessage('reversing add client'),
       fn: () => removeClient({ accountId: params.accountId }),
     });
 
@@ -79,10 +79,15 @@ export async function openAccount(params: OpenAccount): Promise<void> {
     });
     // successfully called, so clear if a failure occurs later
     compensations.unshift({
-      message: prettyErrorMessage('add bank account failed'),
+      message: prettyErrorMessage('reversing add bank account'),
       fn: () => disconnectBankAccounts({ accountId: params.accountId }),
     });
   } catch (err) {
+    if (err instanceof TemporalFailure && err.cause instanceof ApplicationFailure) {
+      logger.err(err.cause.message);
+    } else {
+      logger.err('error while opening account');
+    }
     // an error occurred so call compensations
     await compensate(compensations);
     throw err;
