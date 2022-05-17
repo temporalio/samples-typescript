@@ -4,7 +4,7 @@ This sample demonstrates orchestrating microservices using a very simplistic Sag
 
 ## Use Case
 
-The act of `OpenAccount` for a company shows coordinating between Clients, Accounts, Banking, and
+The `openAccount` Workflow opens a new bank account. It coordinates between the Clients, Accounts, Banking, and
 PostOffice services. In this example, the service clients _are_ Activities being orchestrated.
 
 When one of the Activities fails, the Workflow will "compensate" by calling Activities configured
