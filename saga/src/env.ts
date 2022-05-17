@@ -8,26 +8,41 @@ function requiredEnv(name: string): string {
   return value;
 }
 
-export interface Env {
+export type Env = LocalEnv | RemoteEnv;
+
+interface LocalEnv {
+  taskQueue: string;
+}
+
+interface RemoteEnv {
+  taskQueue: string;
   address: string;
   namespace: string;
   clientCertPath: string;
   clientKeyPath: string;
   serverNameOverride?: string;
   serverRootCACertificatePath?: string;
-  taskQueue: string;
-  local?: boolean;
+}
+
+export function isRemoteEnv(env: Env): env is RemoteEnv {
+  return !!(env as any).address;
 }
 
 export function getEnv(): Env {
+  const taskQueue = process.env.TEMPORAL_TASK_QUEUE || 'saga-demo';
+
+  const local = (process.env.LOCAL || '').toLowerCase() === 'true';
+  if (local) {
+    return { taskQueue };
+  }
+
   return {
-    local: (process.env.LOCAL || '').toLowerCase() == 'true',
+    taskQueue,
     address: requiredEnv('TEMPORAL_ADDRESS'),
     namespace: requiredEnv('TEMPORAL_NAMESPACE'),
     clientCertPath: requiredEnv('TEMPORAL_CLIENT_CERT_PATH'),
     clientKeyPath: requiredEnv('TEMPORAL_CLIENT_KEY_PATH'),
     serverNameOverride: process.env.TEMPORAL_SERVER_NAME_OVERRIDE,
     serverRootCACertificatePath: process.env.TEMPORAL_SERVER_ROOT_CA_CERT_PATH,
-    taskQueue: process.env.TEMPORAL_TASK_QUEUE || 'demo',
   };
 }

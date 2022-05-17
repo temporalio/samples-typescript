@@ -1,14 +1,14 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { openAccount as openAccountWorkflow } from './workflows';
 import cuid from 'cuid';
-import { Workflows } from './types/commands';
-import { Env, getEnv } from './env';
 import fs from 'fs';
+import { Env, getEnv, isRemoteEnv } from './env';
+import { Workflows } from './types/commands';
+import { openAccount as openAccountWorkflow } from './workflows';
 async function run(env: Env) {
   const connection = await createClientConnection(env);
   await connection.untilReady();
 
-  const client = new WorkflowClient(connection.service, { namespace: env.namespace });
+  const client = new WorkflowClient(connection.service, isRemoteEnv(env) ? { namespace: env.namespace } : {});
 
   // workflow params
   const openAccount: Workflows.OpenAccount = {
@@ -32,7 +32,7 @@ async function run(env: Env) {
 
   // Here is how we start our workflow
   const handle = await client.start(openAccountWorkflow, {
-    taskQueue: 'demo',
+    taskQueue: 'saga-demo',
     workflowId: 'saga-' + openAccount.accountId,
     args: [openAccount],
   });
@@ -44,10 +44,12 @@ run(getEnv()).catch((err) => {
   process.exit(1);
 });
 
-export default async function createClientConnection({ local, clientCertPath, clientKeyPath, address }: Env) {
-  if (local) {
+export default async function createClientConnection(env: Env) {
+  if (!isRemoteEnv(env)) {
     return new Connection();
   }
+
+  const { clientCertPath, clientKeyPath, address } = env;
 
   const crtBytes = fs.readFileSync(clientCertPath);
   const keyBytes = fs.readFileSync(clientKeyPath);

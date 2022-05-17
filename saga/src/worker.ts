@@ -1,12 +1,12 @@
-import { Worker, NativeConnection, WorkerOptions, InjectedSinks } from '@temporalio/worker';
-import { createClients } from './clients';
-import { createActivities } from './activities';
+import { InjectedSinks, NativeConnection, Worker, WorkerOptions } from '@temporalio/worker';
 import * as fs from 'fs';
+import { createActivities } from './activities';
+import { createClients } from './clients';
+import { Env, getEnv, isRemoteEnv } from './env';
 import { LoggerSinks } from './workflows';
-import { Env, getEnv } from './env';
 
 // worker
-async function run({ local, address, namespace, clientCertPath, clientKeyPath, taskQueue }: Env) {
+async function run(env: Env) {
   const sinks: InjectedSinks<LoggerSinks> = {
     logger: {
       info: {
@@ -31,11 +31,12 @@ async function run({ local, address, namespace, clientCertPath, clientKeyPath, t
   const opts: WorkerOptions = {
     workflowsPath: require.resolve('./workflows'),
     activities,
-    taskQueue,
+    taskQueue: env.taskQueue,
     sinks,
   };
 
-  if (!local) {
+  if (isRemoteEnv(env)) {
+    const { address, namespace, clientCertPath, clientKeyPath } = env;
     const crtBytes = fs.readFileSync(clientCertPath);
     const keyBytes = fs.readFileSync(clientKeyPath);
 
@@ -62,7 +63,7 @@ run(getEnv()).catch((err) => {
 });
 
 export default async function createWorkerClient(env: Env) {
-  if (!env.local) {
+  if (isRemoteEnv(env)) {
     const crtBytes = fs.readFileSync(env.clientCertPath);
     const keyBytes = fs.readFileSync(env.clientKeyPath);
 
