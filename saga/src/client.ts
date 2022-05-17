@@ -1,7 +1,7 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { openAccount as openAccountWorkflow } from './workflows';
 import cuid from 'cuid';
-import { Workflows } from '@typings/commands';
+import { Workflows } from './types/commands';
 import { Env, getEnv } from './env';
 import fs from 'fs';
 async function run(env: Env) {

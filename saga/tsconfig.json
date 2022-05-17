@@ -6,10 +6,7 @@
     "declarationMap": true,
     "sourceMap": true,
     "rootDir": "./src",
-    "outDir": "./lib",
-    "paths": {
-      "@typings/*": ["./typings/*"]
-    }
+    "outDir": "./lib"
   },
   "include": ["src/**/*.ts"]
 }

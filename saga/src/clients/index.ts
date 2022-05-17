@@ -1,5 +1,5 @@
-import { Accounts, Banking, BoundedContextClients, Clients, PostOffice } from '@typings/clients';
-import { Commands } from '@typings/commands';
+import { Accounts, Banking, BoundedContextClients, Clients, PostOffice } from '../types/clients';
+import { Commands } from '../types/commands';
 
 class ClientsServiceClient implements Clients.Client {
   removeClient(params: Commands.RemoveClient): Promise<void> {
