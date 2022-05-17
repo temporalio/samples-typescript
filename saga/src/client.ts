@@ -1,19 +1,17 @@
-import { Connection, WorkflowClient,  } from '@temporalio/client';
-import {
-  openAccount as openAccountWorkflow,
-} from './workflows';
+import { Connection, WorkflowClient } from '@temporalio/client';
+import { openAccount as openAccountWorkflow } from './workflows';
 import cuid from 'cuid';
-import {Workflows} from "@typings/commands";
-import {Env, getEnv} from "./env";
-import fs from "fs";
+import { Workflows } from '@typings/commands';
+import { Env, getEnv } from './env';
+import fs from 'fs';
 async function run(env: Env) {
-  const connection = await createClientConnection(env)
+  const connection = await createClientConnection(env);
   await connection.untilReady();
 
   const client = new WorkflowClient(connection.service, { namespace: env.namespace });
 
   // workflow params
-  const openAccount:Workflows.OpenAccount = {
+  const openAccount: Workflows.OpenAccount = {
     accountId: cuid(),
     address: {
       address1: '123 Temporal Street',
@@ -25,12 +23,12 @@ async function run(env: Env) {
       accountType: 'Checking',
       personalOwner: {
         firstName: 'Bart',
-        lastName: 'Simpson'
-      }
+        lastName: 'Simpson',
+      },
     },
     bankId: 'Foo Bar Savings and Loan',
-    clientEmail: 'bart@simpson.io'
-  }
+    clientEmail: 'bart@simpson.io',
+  };
 
   // Here is how we start our workflow
   const handle = await client.start(openAccountWorkflow, {
@@ -38,7 +36,7 @@ async function run(env: Env) {
     workflowId: 'saga-' + openAccount.accountId,
     args: [openAccount],
   });
-  await handle.result()
+  await handle.result();
 }
 
 run(getEnv()).catch((err) => {
@@ -46,13 +44,13 @@ run(getEnv()).catch((err) => {
   process.exit(1);
 });
 
-export default async function createClientConnection({local,clientCertPath,clientKeyPath, address}: Env) {
+export default async function createClientConnection({ local, clientCertPath, clientKeyPath, address }: Env) {
   if (local) {
     return new Connection();
   }
 
-  const crtBytes = fs.readFileSync(clientCertPath)
-  const keyBytes = fs.readFileSync(clientKeyPath)
+  const crtBytes = fs.readFileSync(clientCertPath);
+  const keyBytes = fs.readFileSync(clientKeyPath);
 
   return await new Connection({
     address: `${address}:7233`,
