@@ -24,10 +24,11 @@
   "dependencies": {
     "axios": "^0.26.0",
     "node-fetch": "2.x",
-    "temporalio": "0.21.x",
+    "temporalio": "0.23.x",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@temporalio/testing": "^0.23.3",
     "@tsconfig/node16": "^1.0.0",
     "@types/mocha": "8.x",
     "@types/node-fetch": "^2.5.12",

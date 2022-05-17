@@ -12,6 +12,6 @@ export async function getDataConverter(): Promise<DataConverter> {
 
 async function createDataConverter(): Promise<DataConverter> {
   return {
-    payloadCodec: await EncryptionCodec.create('test-key-id'),
+    payloadCodecs: [await EncryptionCodec.create('test-key-id')],
   };
 }

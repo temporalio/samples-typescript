@@ -12,6 +12,11 @@ async function run() {
   // const client = new WorkflowClient(connection.service);
   // await client.start(/* etc */);
 
+  const payload = defaultPayloadConverter.toPayload('Temporal');
+  if (payload == null) {
+    // This should not happen with standard inputs and the defaultPayloadConverter.
+    throw new TypeError('Could not convert string to payload');
+  }
   // equivalent grpc call to client.start()
   await connection.service.startWorkflowExecution({
     namespace: 'default',
@@ -22,7 +27,7 @@ async function run() {
     input: {
       // WorkflowClient passes data through Data Converter to convert to Payloads; with gRPC calls have to do it yourself
       // import { defaultPayloadConverter, toPayloads } from '@temporalio/common';
-      payloads: toPayloads(defaultPayloadConverter, 'Temporal'),
+      payloads: [payload],
     },
   });
   // @@@SNIPEND
