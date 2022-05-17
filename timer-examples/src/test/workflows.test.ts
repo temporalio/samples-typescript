@@ -70,7 +70,9 @@ describe('countdownWorkflow', async function () {
   it("doesn't send reminder email if processing completes in time", async () => {
     let emailSent = false;
     const activities: ReturnType<typeof createActivities> = {
-      async processOrder() {},
+      async processOrder() {
+        // Haha eslint, no empty body
+      },
       async sendNotificationEmail() {
         emailSent = true;
       },

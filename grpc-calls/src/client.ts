@@ -1,5 +1,5 @@
 import { Connection } from '@temporalio/client';
-import { defaultPayloadConverter, toPayloads } from '@temporalio/common';
+import { defaultPayloadConverter } from '@temporalio/common';
 import { nanoid } from 'nanoid';
 
 async function run() {
