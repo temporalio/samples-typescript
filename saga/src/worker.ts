@@ -60,7 +60,6 @@ run(getEnv()).catch((err) => {
   console.error(err);
   process.exit(1);
 });
-// @@@SNIPEND
 
 export default async function createWorkerClient(env: Env) {
   if (!env.local) {
