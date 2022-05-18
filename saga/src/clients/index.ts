@@ -1,5 +1,15 @@
-import { Accounts, Banking, BoundedContextClients, Clients, PostOffice } from '../types/clients';
-import { Commands } from '../types/commands';
+import * as Accounts from '../types/accounts-client';
+import * as Banking from '../types/banking-client';
+import * as Clients from '../types/clients-client';
+import * as PostOffice from '../types/post-office-client';
+import * as Commands from '../types/commands';
+
+export interface BoundedContextClients {
+  accounts: Accounts.Client;
+  banking: Banking.Client;
+  clients: Clients.Client;
+  postOffice: PostOffice.Client;
+}
 
 class ClientsServiceClient implements Clients.Client {
   async removeClient(params: Commands.RemoveClient): Promise<void> {

@@ -2,7 +2,7 @@ import { Connection, WorkflowClient } from '@temporalio/client';
 import cuid from 'cuid';
 import fs from 'fs';
 import { Env, getEnv, isRemoteEnv } from './env';
-import { Workflows } from './types/commands';
+import * as Workflows from './types/workflow-commands';
 import { openAccount as openAccountWorkflow } from './workflows';
 async function run(env: Env) {
   const connection = await createClientConnection(env);

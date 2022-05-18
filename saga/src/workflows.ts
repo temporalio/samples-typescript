@@ -1,6 +1,6 @@
 import { proxyActivities, proxySinks, ActivityFailure, Sinks, ApplicationFailure } from '@temporalio/workflow';
 import { createActivities } from './activities';
-import { Workflows } from './types/commands';
+import * as Workflows from './types/workflow-commands';
 
 import OpenAccount = Workflows.OpenAccount;
 

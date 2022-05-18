@@ -1,4 +1,4 @@
-import { BoundedContextClients } from './types/clients';
+import { BoundedContextClients } from './clients';
 
 // createActivities just returns client implementations directly right now, but later might decorate
 export function createActivities(clients: BoundedContextClients) {
