@@ -61,21 +61,3 @@ run(getEnv()).catch((err) => {
   console.error(err);
   process.exit(1);
 });
-
-export default async function createWorkerClient(env: Env) {
-  if (isRemoteEnv(env)) {
-    const crtBytes = fs.readFileSync(env.clientCertPath);
-    const keyBytes = fs.readFileSync(env.clientKeyPath);
-
-    return await NativeConnection.create({
-      address: env.address,
-      tls: {
-        // See docs for other TLS options
-        clientCertPair: {
-          crt: crtBytes,
-          key: keyBytes,
-        },
-      },
-    });
-  }
-}

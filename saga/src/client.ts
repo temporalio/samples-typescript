@@ -44,7 +44,7 @@ run(getEnv()).catch((err) => {
   process.exit(1);
 });
 
-export default async function createClientConnection(env: Env) {
+async function createClientConnection(env: Env) {
   if (!isRemoteEnv(env)) {
     return new Connection();
   }
