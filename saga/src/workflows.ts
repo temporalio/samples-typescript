@@ -1,4 +1,4 @@
-import { proxyActivities, proxySinks, TemporalFailure, Sinks, ApplicationFailure } from '@temporalio/workflow';
+import { proxyActivities, proxySinks, ActivityFailure, Sinks, ApplicationFailure } from '@temporalio/workflow';
 import { createActivities } from './activities';
 import { Workflows } from './types/commands';
 
@@ -83,10 +83,10 @@ export async function openAccount(params: OpenAccount): Promise<void> {
       fn: () => disconnectBankAccounts({ accountId: params.accountId }),
     });
   } catch (err) {
-    if (err instanceof TemporalFailure && err.cause instanceof ApplicationFailure) {
+    if (err instanceof ActivityFailure && err.cause instanceof ApplicationFailure) {
       logger.err(err.cause.message);
     } else {
-      logger.err('error while opening account');
+      logger.err('error while opening account:' + err);
     }
     // an error occurred so call compensations
     await compensate(compensations);
@@ -110,10 +110,9 @@ async function compensate(compensations: Compensation[] = []) {
 }
 
 function prettyErrorMessage(message: string, err?: any) {
-  let errMessage = '';
-  if (err && err instanceof TemporalFailure) {
+  let errMessage = err && err.message ? err.message : '';
+  if (err && err instanceof ActivityFailure) {
     errMessage = `${err.cause?.message}`;
   }
-  if (err && err instanceof Error) errMessage = err.message;
   return `${message}: ${errMessage}`;
 }
