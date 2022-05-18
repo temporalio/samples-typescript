@@ -15,7 +15,8 @@ jobs:
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest] # add windows-latest when supported by SDK
+        # TODO: add macos-latest after figuring out why tests timeout in GH CI
+        os: [ubuntu-latest, windows-latest]
         node: [16]
 
     steps:
