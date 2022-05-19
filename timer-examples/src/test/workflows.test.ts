@@ -28,7 +28,7 @@ describe('countdownWorkflow', async function () {
     this.timeout(10 * 1000);
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    env = await TestWorkflowEnvironment.create();
+    env = await TestWorkflowEnvironment.create({ testServer: { stdio: 'inherit' } });
   });
 
   after(async () => {
