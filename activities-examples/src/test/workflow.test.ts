@@ -1,5 +1,6 @@
 import { ActivityFailure, ApplicationFailure, WorkflowClient, WorkflowFailedError } from '@temporalio/client';
 import { Runtime, DefaultLogger, Worker } from '@temporalio/worker';
+import { TestWorkflowEnvironment } from '@temporalio/testing';
 import assert from 'assert';
 import axios from 'axios';
 import { after, afterEach, before, describe, it } from 'mocha';
@@ -8,17 +9,20 @@ import { v4 as uuid } from 'uuid';
 import * as activities from '../activities';
 import { httpWorkflow } from '../workflows';
 
-describe('example workflow', function () {
+describe('example workflow', async function () {
   let shutdown: () => Promise<void>;
   let execute: () => ReturnType<typeof httpWorkflow>;
+  let getClient: () => WorkflowClient;
 
-  this.slow(5000);
+  this.slow(10_000);
+  this.timeout(20_000);
 
   before(async function () {
-    this.timeout(10 * 1000);
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
+    const env = await TestWorkflowEnvironment.create();
     const worker = await Worker.create({
+      connection: env.nativeConnection,
       taskQueue: 'test-activities',
       workflowsPath: require.resolve('../workflows'),
       activities,
@@ -28,11 +32,15 @@ describe('example workflow', function () {
     shutdown = async () => {
       worker.shutdown();
       await runPromise;
+      // TODO: Remove this once TestWorkflowEnvironment.teardown() closes the connection
+      await env.nativeConnection.close();
+      await env.teardown();
     };
+    getClient = () => env.workflowClient;
   });
 
   beforeEach(() => {
-    const client = new WorkflowClient();
+    const client = getClient();
 
     execute = () =>
       client.execute(httpWorkflow, {
@@ -68,6 +76,7 @@ describe('example workflow', function () {
 
     const result = await execute();
     assert.equal(result, 'The answer is 88');
+    assert.equal(numCalls, 2);
   });
 
   it('bubbles up activity errors', async () => {
