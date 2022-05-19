@@ -22,13 +22,13 @@ async function withWorker<R>(worker: Worker, fn: () => Promise<R>): Promise<R> {
 describe('countdownWorkflow', async function () {
   let env: TestWorkflowEnvironment;
 
-  this.slow(5000);
+  this.slow(10_000);
+  this.timeout(20_000);
 
   before(async function () {
-    this.timeout(10 * 1000);
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    env = await TestWorkflowEnvironment.create({ testServer: { stdio: 'inherit' } });
+    env = await TestWorkflowEnvironment.create();
   });
 
   after(async () => {

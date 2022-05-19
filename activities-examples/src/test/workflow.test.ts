@@ -14,13 +14,13 @@ describe('example workflow', async function () {
   let execute: () => ReturnType<typeof httpWorkflow>;
   let getClient: () => WorkflowClient;
 
-  this.slow(5000);
+  this.slow(10_000);
+  this.timeout(20_000);
 
   before(async function () {
-    this.timeout(10 * 1000);
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    const env = await TestWorkflowEnvironment.create({ testServer: { stdio: 'inherit' } });
+    const env = await TestWorkflowEnvironment.create();
     const worker = await Worker.create({
       connection: env.nativeConnection,
       taskQueue: 'test-activities',
