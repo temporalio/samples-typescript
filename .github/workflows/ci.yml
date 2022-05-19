@@ -15,9 +15,8 @@ jobs:
 
     strategy:
       matrix:
-        # TODO: add macos-latest after figuring out why tests timeout in GH CI
-        os: [ubuntu-latest, windows-latest]
-        node: [16]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [14, 16]
 
     steps:
       - uses: actions/checkout@v2
