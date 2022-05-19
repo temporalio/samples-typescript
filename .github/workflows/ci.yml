@@ -10,7 +10,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  build-lint-test:
+  test:
     runs-on: ${{ matrix.os }}
 
     strategy:
@@ -30,6 +30,21 @@ jobs:
       - run: npm ci
       - run: npm run bootstrap
       - run: npm run build
+      - run: npm test
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          # Comment out cache line when testing with act:
+          # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run bootstrap
+      - run: npm run build
       - run: npx prettier . --check
       - run: npm run lint
-      - run: npm test
