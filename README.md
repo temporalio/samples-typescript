@@ -19,12 +19,12 @@
 
 ## Samples
 
-Each directory in this repo is a sample Temporal project built with the [TypeScript SDK](https://docs.temporal.io/docs/typescript/introduction/).
+Each directory in this repo is a sample Temporal project built with the [TypeScript SDK](https://docs.temporal.io/typescript/introduction/).
 
 - The fastest way to try these out is starting Temporal and running these samples in the browser:
   - Gitpod: [One click to try](https://gitpod.io/#https://github.com/temporalio/samples-typescript/) (there is a good free tier)
   - [GitHub Codespaces](https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace#creating-a-codespace) (if your org admin has enabled this) - [90 second video demo](https://youtu.be/FdEQQC9EdfU)
-- To run these samples locally, go through the prerequisites listed in our [Getting Started docs](https://docs.temporal.io/docs/typescript/introduction#getting-started).
+- To run these samples locally, go through the prerequisites listed in our [Getting Started docs](https://docs.temporal.io/typescript/introduction#getting-started).
 - To scaffold a new project from one of these samples, run:
   ```sh
   npx @temporalio/create@latest my-project-name
@@ -67,11 +67,11 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 #### Production APIs
 
 - [**Production Build**](https://github.com/temporalio/samples-typescript/tree/main/production): Build code in advance for faster Worker startup times.
-- [**Debugging**](https://docs.temporal.io/docs/typescript/troubleshooting): The [replay-history](https://github.com/temporalio/samples-typescript/tree/main/replay-history) sample shows how to retrieve Workflow Event History and debug it using the `runReplayHistory` Worker API ([video](https://youtu.be/fN5bIL7wc5M)).
-- [**Patching**](https://docs.temporal.io/docs/typescript/patching/): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
+- [**Debugging**](https://docs.temporal.io/typescript/troubleshooting): The [replay-history](https://github.com/temporalio/samples-typescript/tree/main/replay-history) sample shows how to retrieve Workflow Event History and debug it using the `runReplayHistory` Worker API ([video](https://youtu.be/fN5bIL7wc5M)).
+- [**Patching**](https://docs.temporal.io/typescript/patching/): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
 - [**Logging**](https://github.com/temporalio/samples-typescript/tree/main/logging-sinks): Use Sinks to extract data out of Workflows for logging/metrics/tracing purposes.
 - [**Instrumentation**](https://github.com/temporalio/samples-typescript/tree/main/instrumentation): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components and get metrics and traces out of Rust Core.
-- [**Protobufs**](https://github.com/temporalio/samples-typescript/tree/main/protobufs): Use [Protobufs](https://docs.temporal.io/docs/typescript/data-converters#protobufs).
+- [**Protobufs**](https://github.com/temporalio/samples-typescript/tree/main/protobufs): Use [Protobufs](https://docs.temporal.io/typescript/data-converters#protobufs).
 - [**Custom Payload Converter**](https://github.com/temporalio/samples-typescript/tree/main/ejson): Customize data serialization by creating a `PayloadConverter` that uses EJSON to convert Dates, binary, and regexes.
 
 #### Advanced APIs
@@ -93,7 +93,7 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 - **Example Apps**:
   - Subscription Workflow example: https://github.com/temporalio/subscription-workflow-project-template-typescript/ (useful to compare with other SDKs)
   - E-commerce example: https://github.com/vkarpov15/temporal-ecommerce-ts
-  - Chatbot example with Slack/Discord: [Walkthrough](https://docs.temporal.io/docs/typescript/chatbot-tutorial), [Video](https://www.youtube.com/watch?v=hGIhc6m2keQ), [Code](https://github.com/JoshuaKGoldberg/temporal-adventure-bot)
+  - Chatbot example with Slack/Discord: [Walkthrough](https://docs.temporal.io/typescript/chatbot-tutorial), [Video](https://www.youtube.com/watch?v=hGIhc6m2keQ), [Code](https://github.com/JoshuaKGoldberg/temporal-adventure-bot)
   - Temporal + Remix Survey app: https://github.com/gustavofsantos/temporal-survey
   - URL Batch Scraping demo: https://github.com/andreasasprou/temporal-url-batch-scraping
 
@@ -132,4 +132,4 @@ for f in monorepo-folders/packages/!(frontend-ui)/package.json; do jq '.dependen
 
 Also on each commit, config files from [`.shared/`](https://github.com/temporalio/samples-typescript/tree/main/.shared) are copied into each sample directory, overwriting the sample directory's config files (with a few exceptions listed in [`.scripts/copy-shared-files.mjs`](./.scripts/copy-shared-files.mjs)). So if you're editing config files, you usually want to be editing the versions in `.shared/`.
 
-The [`.post-create`](./.shared/.post-create) file is a [chalk template](https://github.com/chalk/chalk-cli#template-syntax) that is displayed in the command line after someone uses [`npx @temporalio/create`](https://docs.temporal.io/docs/typescript/package-initializer). If you're adding a sample that requires different instructions from the default message, then add your sample name to [`POST_CREATE_EXCLUDE`](./.scripts/copy-shared-files.mjs) and your message template to `your-sample/.post-create`.
+The [`.post-create`](./.shared/.post-create) file is a [chalk template](https://github.com/chalk/chalk-cli#template-syntax) that is displayed in the command line after someone uses [`npx @temporalio/create`](https://docs.temporal.io/typescript/package-initializer). If you're adding a sample that requires different instructions from the default message, then add your sample name to [`POST_CREATE_EXCLUDE`](./.scripts/copy-shared-files.mjs) and your message template to `your-sample/.post-create`.
