@@ -2,7 +2,7 @@
 
 This example shows how to use [Temporal](https://docs.temporal.io/) with Next.js.
 
-- Tutorial on writing this: https://docs.temporal.io/docs/typescript/nextjs-tutorial
+- Tutorial on writing this: https://docs.temporal.io/typescript/nextjs-tutorial
 - Lightning talk on React + Temporal: https://www.youtube.com/watch?v=WRYozSljSpw
 
 ## Instructions
