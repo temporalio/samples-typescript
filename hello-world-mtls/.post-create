@@ -16,7 +16,7 @@ Use Node version 14+:
 
 Then follow the mTLS setup instructions:
 
-  {bold https://docs.temporal.io/docs/typescript/security/#mtls-tutorial}
+  {bold https://docs.temporal.io/typescript/security/#mtls-tutorial}
 
 For step 8, run:
 

@@ -4,7 +4,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap --npm-client=yarn",
     "build": "lerna run build",
-    "test": "lerna run test",
+    "test": "lerna run --stream test",
     "format": "prettier --write .",
     "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
     "lint": "lerna run lint",

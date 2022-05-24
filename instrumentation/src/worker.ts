@@ -29,19 +29,22 @@ async function main() {
     }),
     // Telemetry options control how logs, metrics and traces are exported out of Rust Core
     telemetryOptions: {
-      // To export metrics and traces using the OpenTelemetry Collector, use `oTelCollectorUrl`.
+      // To export metrics and traces using the OpenTelemetry Collector, set `tracing.otel` or `metrics.otel`.
       // see https://opentelemetry.io/docs/collector/getting-started/ for more information.
       //
-      // To expose a port for Prometheus to collect metrics from Core, use `prometheusMetricsBindAddress`
-      // You can verify metrics are exported with `curl -fail localhost:9464/metrics`
-      prometheusMetricsBindAddress: '0.0.0.0:9464',
+      // Expose a port for Prometheus to collect metrics from Core.
+      // You can verify metrics are exported with `curl -fail localhost:9464/metrics`.
+      metrics: {
+        prometheus: { bindAddress: '0.0.0.0:9464' },
+      },
       // A string in the env filter format specified here:
       // https://docs.rs/tracing-subscriber/0.2.20/tracing_subscriber/struct.EnvFilter.html
       //
       // Which determines what tracing data is collected in the Core SDK
       tracingFilter: 'temporal_sdk_core=DEBUG',
-      // What level, if any, logs should be forwarded from Rust Core to the Node.js logger
-      logForwardingLevel: 'DEBUG',
+      // What level, if any, logs should be forwarded from Rust Core to the Node.js logger.
+      // By default, Core logs go directly to console.
+      logging: { forward: { level: 'DEBUG' } },
     },
   });
   // @@@SNIPEND

@@ -14,8 +14,9 @@ const subject = 'Order processing taking longer than expected';
 const html = `Order processing is taking longer than expected, but don't worry—the job is still running!`;
 
 export const createActivities = ({ apiKey, domain, to, from }: MailgunSettings) => ({
-  async processOrder(sleepMS = 1000): Promise<void> {
-    await Context.current().sleep(sleepMS);
+  async processOrder(): Promise<void> {
+    const cx = Context.current();
+    await cx.sleep(cx.info.startToCloseTimeoutMs);
   },
 
   async sendNotificationEmail(): Promise<void> {
