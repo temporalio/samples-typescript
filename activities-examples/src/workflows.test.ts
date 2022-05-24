@@ -55,16 +55,3 @@ test('httpWorkflow with mock activity', async () => {
     expect(result).toEqual('The answer is 99');
   });
 });
-
-// Mocking '@temporalio/workflow' doesn't work
-//
-// const mockRequest = jest.fn<Promise<string>, []>();
-// mockRequest.mockResolvedValue('42');
-//
-// test('httpWorkflow with mocked proxyActivities', () => {
-//   jest.mock('@temporalio/workflow', () => ({
-//     proxyActivities: mockRequest,
-//   }));
-//
-//   expect(httpWorkflow()).toBe(3);
-// });
