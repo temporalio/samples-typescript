@@ -81,6 +81,11 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
   - [**Query Subscriptions**](https://github.com/temporalio/samples-typescript/tree/main/query-subscriptions): Use Redis Streams, Immer, and SDK Interceptors to subscribe to Workflow state.
 - [gRPC calls](https://github.com/temporalio/samples-typescript/tree/main/grpc-calls): Make raw gRPC calls for advanced queries not covered by the WorkflowClient API.
 
+#### Test APIs
+
+- [**Mocha and Jest**](https://github.com/temporalio/samples-typescript/tree/main/activities-examples#testing)
+- [**Time skipping**](https://github.com/temporalio/samples-typescript/tree/main/timer-examples#testing)
+
 ### Fullstack Apps
 
 - **DSL Control Flows**:

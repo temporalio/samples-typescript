@@ -5,6 +5,10 @@ This example shows how to use [`sleep`](https://typescript.temporal.io/api/names
 - Send a notification to the customer if their order is taking longer than expected: [`src/workflows.ts`](./src/workflows.ts)
 - Create an `UpdatableTimer` that can be slept on, and at the same time, have its duration updated via Signals: [`src/updatable-timer.ts`](./src/updatable-timer.ts)
 
+## Testing
+
+Test with time skipping: `npm test` runs [`src/test/workflows.test.ts`](./src/test/workflows.test.ts).
+
 ## Running the sample
 
 1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).

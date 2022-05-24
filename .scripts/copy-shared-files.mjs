@@ -15,7 +15,7 @@ const GITIGNORE_EXCLUDE = [
   'protobufs',
 ];
 const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js', 'protobufs'];
-const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs'];
+const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples'];
 
 const POST_CREATE_EXCLUDE = [
   'timer-examples',
