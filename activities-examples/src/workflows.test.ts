@@ -1,5 +1,5 @@
 import { TestWorkflowEnvironment } from '@temporalio/testing';
-import { Worker } from '@temporalio/worker';
+import { Worker, Runtime, DefaultLogger, LogEntry } from '@temporalio/worker';
 import { v4 as uuid4 } from 'uuid';
 import { httpWorkflow } from './workflows';
 
@@ -16,6 +16,12 @@ async function withWorker<R>(worker: Worker, fn: () => Promise<R>): Promise<R> {
 }
 
 let testEnv: TestWorkflowEnvironment;
+
+beforeAll(async () => {
+  Runtime.install({
+    logger: new DefaultLogger('INFO', (entry: LogEntry) => console.log(`[${entry.level}]`, entry.message)),
+  });
+});
 
 beforeEach(async () => {
   testEnv = await TestWorkflowEnvironment.create({
