@@ -18,12 +18,12 @@ async function withWorker<R>(worker: Worker, fn: () => Promise<R>): Promise<R> {
 let testEnv: TestWorkflowEnvironment;
 
 beforeAll(async () => {
+  // Use console.log instead of console.error to avoid red output
+  // Filter INFO log messages for clearer test output
   Runtime.install({
-    logger: new DefaultLogger('INFO', (entry: LogEntry) => console.log(`[${entry.level}]`, entry.message)),
+    logger: new DefaultLogger('WARN', (entry: LogEntry) => console.log(`[${entry.level}]`, entry.message)),
   });
-});
 
-beforeEach(async () => {
   testEnv = await TestWorkflowEnvironment.create({
     testServer: {
       stdio: 'inherit',
@@ -31,7 +31,9 @@ beforeEach(async () => {
   });
 });
 
-afterEach(async () => {
+afterAll(async () => {
+  // TODO: Remove this once TestWorkflowEnvironment.teardown() closes the connection
+  await testEnv?.nativeConnection.close();
   await testEnv?.teardown();
 });
 
