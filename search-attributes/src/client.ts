@@ -5,23 +5,25 @@ async function run() {
   const connection = new Connection();
   const client = new WorkflowClient(connection.service);
 
-  // @@@SNIPSTART typescript-search-attributes-at-creation
-  const result = await client.execute(example, {
+  // @@@SNIPSTART typescript-search-attributes-client
+  const handle = await client.start(example, {
     taskQueue: 'search-attributes',
     workflowId: 'search-attributes-example-0',
     searchAttributes: {
-      CustomIntField: 2, // update CustomIntField from 1 to 2, then insert other fields
-      CustomKeywordField: 'Update1',
-      CustomBoolField: true,
-      CustomDoubleField: 3.14,
-      CustomDatetimeField: new Date().toISOString(),
-      CustomStringField:
+      CustomIntField: [2],
+      CustomKeywordField: ['keywordA', 'keywordB'],
+      CustomBoolField: [true],
+      CustomDatetimeField: [new Date()],
+      CustomStringField: [
         'String field is for text. When query, it will be tokenized for partial match. StringTypeField cannot be used in Order By',
+      ],
     },
   });
+
+  const { searchAttributes } = await handle.describe();
   // @@@SNIPEND
 
-  console.log(result);
+  console.log('searchAttributes:', searchAttributes);
 }
 
 run().catch((err) => {
