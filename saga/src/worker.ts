@@ -26,7 +26,7 @@ async function run() {
 
   // registrations
   const singletonClients = await createClients();
-  const activities = createActivities(singletonClients) as any;
+  const activities = createActivities(singletonClients);
 
   const opts: WorkerOptions = {
     workflowsPath: require.resolve('./workflows'),
