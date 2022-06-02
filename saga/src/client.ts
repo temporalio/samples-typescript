@@ -1,15 +1,13 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
 import cuid from 'cuid';
-import fs from 'fs';
-import { Env, getEnv, isRemoteEnv } from './env';
 import * as Workflows from './types/workflow-commands';
 import { openAccount as openAccountWorkflow } from './workflows';
-async function run(env: Env) {
-  const connection = await createClientConnection(env);
+async function run() {
+  const connection = await new Connection();
   await connection.untilReady();
-
-  const client = new WorkflowClient(connection.service, isRemoteEnv(env) ? { namespace: env.namespace } : {});
-
+  const client = new WorkflowClient(connection.service, {
+    // In production you will likely specify `namespace` here; it is 'default' if omitted
+  });
   // workflow params
   const openAccount: Workflows.OpenAccount = {
     accountId: cuid(),
@@ -39,29 +37,7 @@ async function run(env: Env) {
   await handle.result();
 }
 
-run(getEnv()).catch((err) => {
+run().catch((err) => {
   console.error('account failed to open', err);
   process.exit(1);
 });
-
-async function createClientConnection(env: Env) {
-  if (!isRemoteEnv(env)) {
-    return new Connection();
-  }
-
-  const { clientCertPath, clientKeyPath, address } = env;
-
-  const crtBytes = fs.readFileSync(clientCertPath);
-  const keyBytes = fs.readFileSync(clientKeyPath);
-
-  return await new Connection({
-    address: `${address}:7233`,
-    tls: {
-      // See docs for other TLS options
-      clientCertPair: {
-        crt: crtBytes,
-        key: keyBytes,
-      },
-    },
-  });
-}

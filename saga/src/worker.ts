@@ -1,12 +1,12 @@
-import { InjectedSinks, NativeConnection, Worker, WorkerOptions } from '@temporalio/worker';
-import * as fs from 'fs';
+import { InjectedSinks, Worker, WorkerOptions } from '@temporalio/worker';
 import { createActivities } from './activities';
 import { createClients } from './clients';
-import { Env, getEnv, isRemoteEnv } from './env';
 import { LoggerSinks } from './workflows';
 
 // worker
-async function run(env: Env) {
+async function run() {
+  const taskQueue = process.env.TEMPORAL_TASK_QUEUE || 'saga-demo';
+
   const sinks: InjectedSinks<LoggerSinks> = {
     logger: {
       info: {
@@ -31,33 +31,16 @@ async function run(env: Env) {
   const opts: WorkerOptions = {
     workflowsPath: require.resolve('./workflows'),
     activities,
-    taskQueue: env.taskQueue,
+    taskQueue,
     sinks,
   };
 
-  if (isRemoteEnv(env)) {
-    const { address, namespace, clientCertPath, clientKeyPath } = env;
-    const crtBytes = fs.readFileSync(clientCertPath);
-    const keyBytes = fs.readFileSync(clientKeyPath);
-
-    opts.connection = await NativeConnection.create({
-      address,
-      tls: {
-        // See docs for other TLS options
-        clientCertPair: {
-          crt: crtBytes,
-          key: keyBytes,
-        },
-      },
-    });
-    opts.namespace = namespace;
-  }
   const worker = await Worker.create(opts);
 
   await worker.run();
 }
 
-run(getEnv()).catch((err) => {
+run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
