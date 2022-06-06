@@ -23,7 +23,7 @@ async function run({
     serverRootCACertificate = fs.readFileSync(serverRootCACertificatePath);
   }
 
-  const connection = new Connection({
+  const connection = await Connection.connect({
     address,
     tls: {
       serverNameOverride,
@@ -34,8 +34,7 @@ async function run({
       },
     },
   });
-  await connection.untilReady();
-  const client = new WorkflowClient(connection.service, { namespace });
+  const client = new WorkflowClient({ connection, namespace });
   // Run example workflow and await its completion
   const result = await client.execute(example, {
     taskQueue,

@@ -1,9 +1,8 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { WorkflowClient } from '@temporalio/client';
 import { example } from './workflows';
 
 async function run() {
-  const connection = new Connection();
-  const client = new WorkflowClient(connection.service);
+  const client = new WorkflowClient();
 
   // @@@SNIPSTART typescript-search-attributes-at-creation
   const result = await client.execute(example, {

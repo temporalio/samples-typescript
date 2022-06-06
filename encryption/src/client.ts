@@ -5,7 +5,7 @@ import { example } from './workflows';
 
 async function run() {
   // @@@SNIPSTART typescript-encryption-client
-  const client = new WorkflowClient(new Connection().service, {
+  const client = new WorkflowClient({
     dataConverter: await getDataConverter(),
   });
 
