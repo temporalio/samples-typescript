@@ -9,7 +9,7 @@ tasks:
       cd hello-world # this cd doesnt persist in postbuild
       npm install
     command: |
-      gp open .gitpod.readme.md
+      gp open ../.gitpod.readme.md
       sleep 40
       cd hello-world
       npm run start.watch
