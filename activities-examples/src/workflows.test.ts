@@ -32,8 +32,6 @@ beforeAll(async () => {
 });
 
 afterAll(async () => {
-  // TODO: Remove this once TestWorkflowEnvironment.teardown() closes the connection
-  await testEnv?.nativeConnection.close();
   await testEnv?.teardown();
 });
 

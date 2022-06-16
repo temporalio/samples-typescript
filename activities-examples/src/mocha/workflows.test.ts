@@ -32,8 +32,6 @@ describe('example workflow', async function () {
     shutdown = async () => {
       worker.shutdown();
       await runPromise;
-      // TODO: Remove this once TestWorkflowEnvironment.teardown() closes the connection
-      await env.nativeConnection.close();
       await env.teardown();
     };
     getClient = () => env.workflowClient;
