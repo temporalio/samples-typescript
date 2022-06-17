@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "cuid": "^2.1.8",
-    "temporalio": "0.22.x"
+    "temporalio": "1.0.0-rc.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

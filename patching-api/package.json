@@ -23,7 +23,7 @@
     "axios": "0.26.0",
     "eslint": "7",
     "node-fetch": "2.x",
-    "temporalio": "0.23.x"
+    "temporalio": "1.0.0-rc.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
