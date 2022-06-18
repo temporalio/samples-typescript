@@ -3,8 +3,8 @@ import { Connection } from '@temporalio/client';
 
 async function run() {
   // @@@SNIPSTART typescript-history-get-workflowhistory
-  const conn = new Connection(/* address: 'temporal.prod.company.com' */);
-  const { history } = await conn.service.getWorkflowExecutionHistory({
+  const conn = await Connection.connect(/* { address: 'temporal.prod.company.com' } */);
+  const { history } = await conn.workflowService.getWorkflowExecutionHistory({
     namespace: 'default',
     execution: {
       workflowId: 'calc',

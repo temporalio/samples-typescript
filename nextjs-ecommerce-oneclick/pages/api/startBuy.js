@@ -14,10 +14,10 @@ export default async function startBuy(req, res) {
   }
   // Connect to localhost with default ConnectionOptions,
   // pass options to the Connection constructor to configure TLS and other settings.
-  const connection = new Connection();
+  const connection = await Connection.connect();
   // Workflows will be started in the "default" namespace unless specified otherwise
   // via options passed the WorkflowClient constructor.
-  const client = new WorkflowClient(connection.service);
+  const client = new WorkflowClient({ connection });
   // kick off the purchase async
   await client.start(OneClickBuy, {
     taskQueue: 'ecommerce-oneclick',

@@ -15,7 +15,7 @@
     ]
   },
   "dependencies": {
-    "temporalio": "0.23.x"
+    "temporalio": "1.0.0-rc.0"
   },
   "devDependencies": {
     "eslint": "^7.32.0",

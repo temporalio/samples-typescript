@@ -5,7 +5,7 @@ import { example } from './workflows';
 
 async function run() {
   // @@@SNIPSTART typescript-ejson-client-setup
-  const client = new WorkflowClient(new Connection().service, {
+  const client = new WorkflowClient({
     dataConverter: { payloadConverterPath: require.resolve('./payload-converter') },
   });
   // @@@SNIPEND

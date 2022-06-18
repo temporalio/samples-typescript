@@ -6,10 +6,10 @@ async function run() {
   const workflowId = 'workflow-' + nanoid();
   const requestId = 'request-' + nanoid();
   // @@@SNIPSTART typescript-grpc-call-basic
-  const connection = new Connection();
+  const connection = await Connection.connect();
 
   // // normal way of starting a Workflow, with a WorkflowClient
-  // const client = new WorkflowClient(connection.service);
+  // const client = new WorkflowClient({ connection });
   // await client.start(/* etc */);
 
   const payload = defaultPayloadConverter.toPayload('Temporal');
@@ -18,7 +18,7 @@ async function run() {
     throw new TypeError('Could not convert string to payload');
   }
   // equivalent grpc call to client.start()
-  await connection.service.startWorkflowExecution({
+  await connection.workflowService.startWorkflowExecution({
     namespace: 'default',
     workflowId,
     requestId,
@@ -36,7 +36,7 @@ async function run() {
 
   // @@@SNIPSTART typescript-grpc-call-getWorkflowExecutionHistory
   // no equivalent call in client, this is only available as an SDK call
-  const res = await connection.service.getWorkflowExecutionHistory({
+  const res = await connection.workflowService.getWorkflowExecutionHistory({
     execution: { workflowId },
     namespace: 'default',
   });
@@ -48,7 +48,7 @@ async function run() {
   // @@@SNIPSTART typescript-grpc-call-listWorkflowExecutions
   // no equivalent call in client, this is only available as an SDK call
   // requires ElasticSearch
-  const results = await connection.service.listWorkflowExecutions({
+  const results = await connection.workflowService.listWorkflowExecutions({
     namespace: 'default',
   });
   console.table(results.executions);
