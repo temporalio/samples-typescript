@@ -47,7 +47,7 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
   - `cancellableFetch`: Make a cancellable HTTP request with [`cancellationSignal`](https://typescript.temporal.io/api/classes/activity.context/#cancellationsignal).
 - [**Activity Cancellation and Heartbeating**](https://github.com/temporalio/samples-typescript/tree/main/activities-cancellation-heartbeating): Heartbeat progress for long running activities and cancel them.
 - [**Dependency Injection**](https://github.com/temporalio/samples-typescript/tree/main/activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities).
-- [**Sticky Activities**](https://github.com/temporalio/samples-typescript/tree/main/activities-sticky-queues): Dynamically assign task queue names to ensure activities execute sequentially on the same machine (eg for CI/CD, file processing workflows).
+- [**Sticky Activities**](https://github.com/temporalio/samples-typescript/tree/main/activities-sticky-queues): Use a unique task queue per Worker to have certain Activities only run on that specific Worker. For instance for a file processing Workflow, where the first Activity is downloading a file, and subsequent Activities need to operate on that file. (And if multiple Workers are on the same queue, subsequent Activities may be run on a different machine that doesn't have the downloaded file.)
 
 #### Workflow APIs
 
