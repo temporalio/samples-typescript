@@ -1,6 +1,6 @@
 // @@@SNIPSTART typescript-encryption-codec
 import { METADATA_ENCODING_KEY, Payload, PayloadCodec, str, u8, ValueError } from '@temporalio/common';
-import { coresdk } from '@temporalio/proto/lib/coresdk';
+import { temporal } from '@temporalio/proto';
 import { decrypt, encrypt } from './crypto';
 
 const ENCODING = 'binary/encrypted';
@@ -24,7 +24,7 @@ export class EncryptionCodec implements PayloadCodec {
         },
         // Encrypt entire payload, preserving metadata
         data: await encrypt(
-          coresdk.common.Payload.encodeDelimited(payload).finish(),
+          temporal.api.common.v1.Payload.encodeDelimited(payload).finish(),
           this.keys.get(this.defaultKeyId)! // eslint-disable-line @typescript-eslint/no-non-null-assertion
         ),
       }))
@@ -54,7 +54,7 @@ export class EncryptionCodec implements PayloadCodec {
         }
         const decryptedPayloadBytes = await decrypt(payload.data, key);
         console.log('Decrypting payload.data:', payload.data);
-        return coresdk.common.Payload.decodeDelimited(decryptedPayloadBytes);
+        return temporal.api.common.v1.Payload.decodeDelimited(decryptedPayloadBytes);
       })
     );
   }
