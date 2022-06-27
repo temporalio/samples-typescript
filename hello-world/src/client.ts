@@ -1,6 +1,6 @@
 // @@@SNIPSTART typescript-hello-client
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { example } from './workflows';
+import { weirdWorkflowLoop } from './workflows';
 import { nanoid } from 'nanoid';
 
 async function run() {
@@ -16,8 +16,8 @@ async function run() {
     // namespace: 'default', // change if you have a different namespace
   });
 
-  const handle = await client.start(example, {
-    args: ['Temporal'], // type inference works! args: [name: string]
+  const handle = await client.start(weirdWorkflowLoop, {
+    // args: ['Temporal'], // type inference works! args: [name: string]
     taskQueue: 'hello-world',
     // in practice, use a meaningful business id, eg customerId or transactionId
     workflowId: 'workflow-' + nanoid(),
