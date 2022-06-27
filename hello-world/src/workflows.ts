@@ -24,10 +24,6 @@ export async function weirdWorkflowLoop() {
   let token: any = {};
   let refreshAccessTokenPromise: any;
 
-  function hasPendingTasks() {
-    return tasks.length > 0;
-  }
-
   function refreshAccessToken() {
     if (refreshAccessTokenPromise === undefined) {
       refreshAccessTokenPromise = (async () => {
@@ -42,15 +38,6 @@ export async function weirdWorkflowLoop() {
           //this is just so the condition at the end of the main forloop unlocks
         });
       })();
-
-      refreshAccessTokenPromise.catch(() => {
-        // FIXME: Make sure client has been notified
-        // FIXME: Handle error
-      });
-
-      refreshAccessTokenPromise.finally(() => {
-        refreshAccessTokenPromise = undefined;
-      });
     }
   }
 
@@ -61,7 +48,7 @@ export async function weirdWorkflowLoop() {
     }
     refreshAccessToken(); // intentionally not awaited
     // if (!token) refreshAccessToken();
-    await condition(hasPendingTasks, '1m');
+    await condition(() => tasks.length > 0, '30s');
   }
 }
 
