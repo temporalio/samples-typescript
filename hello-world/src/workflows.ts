@@ -19,8 +19,6 @@ const { refreshAccessTokenLocalActivity } = proxyLocalActivities<typeof activiti
   startToCloseTimeout: '1 minute',
 });
 
-export const newTaskSignal = defineSignal<[string]>('newTaskSignal');
-
 export async function weirdWorkflowLoop() {
   const tasks: any = [];
   let token: any = {};
@@ -55,10 +53,6 @@ export async function weirdWorkflowLoop() {
       });
     }
   }
-
-  setHandler(newTaskSignal, (task) => {
-    tasks.push(task);
-  });
 
   for (;;) {
     while (tasks.length) {
