@@ -27,11 +27,6 @@ export async function weirdWorkflowLoop() {
   function refreshAccessToken() {
     if (refreshAccessTokenPromise === undefined) {
       refreshAccessTokenPromise = (async () => {
-        if (token.status === 'unconfigured') {
-          // FIXME: Make sure client has been notified
-          return;
-        }
-
         token = await refreshAccessTokenLocalActivity(); //NOTE: In the real Workflow this function is called with proxyLocalActivity
 
         tasks.push(() => {
