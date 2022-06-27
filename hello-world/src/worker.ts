@@ -2,6 +2,8 @@
 import { Worker } from '@temporalio/worker';
 import * as activities from './activities';
 
+console.log('workflowsPath: ', require.resolve('./workflows'));
+
 async function run() {
   // Step 1: Register Workflows and Activities with the Worker and connect to
   // the Temporal server.
