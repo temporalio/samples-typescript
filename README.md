@@ -44,6 +44,13 @@ cd temporal
 docker-compose up -d
 ```
 
+Use Node version 14+:
+
+- Install Node 16:
+  - Mac: `brew install node@16`
+  - Other: [nodejs.org/en/download/](https://nodejs.org/en/download/)
+- Or use a Node version manager: [`fnm`](https://github.com/Schniz/fnm#readme)
+
 Run the [`hello-world`](hello-world/) sample:
 
 ```sh
