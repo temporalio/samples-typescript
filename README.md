@@ -15,7 +15,7 @@
     - [Production APIs](#production-apis)
     - [Advanced APIs](#advanced-apis)
     - [Test APIs](#test-apis)
-  - [Fullstack Apps](#fullstack-apps)
+  - [Full-stack apps & libraries](#full-stack-apps--libraries)
   - [Other](#other)
 - [Contributing](#contributing)
   - [Upgrading the SDK version](#upgrading-the-sdk-version)
@@ -131,7 +131,7 @@ npx @temporalio/create@latest my-project --sample sample-name
 - [**Mocha and Jest**](https://github.com/temporalio/samples-typescript/tree/main/activities-examples#testing)
 - [**Time skipping**](https://github.com/temporalio/samples-typescript/tree/main/timer-examples#testing)
 
-### Fullstack Apps
+### Full-stack apps & libraries
 
 - **Next.js**:
   - [**One-click e-commerce**](https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
@@ -140,6 +140,8 @@ npx @temporalio/create@latest my-project --sample sample-name
   - [`temporal-rest`](https://www.npmjs.com/package/temporal-rest): Express middleware router that automatically exposes endpoints for Workflows, Signals, and Queries.
 - **Remix**:
   - [`gustavofsantos/temporal-survey`](https://github.com/gustavofsantos/temporal-survey)
+- **NestJS**:
+  - [`nestjs-temporal`](https://www.npmjs.com/package/nestjs-temporal)
 
 ### Other
 
