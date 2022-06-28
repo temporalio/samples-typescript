@@ -147,9 +147,11 @@ npx @temporalio/create@latest my-project --sample sample-name
 
 - **Chatbots**:
   - [`JoshuaKGoldberg/temporal-adventure-bot`](https://github.com/JoshuaKGoldberg/temporal-adventure-bot): Choose-your-own-adventure Slack/Discord chatbot (see [tutorial](https://docs.temporal.io/typescript/chatbot-tutorial) and [video](https://www.youtube.com/watch?v=hGIhc6m2keQ))
+- **Caching**:
+  - [`vkarpov15/temporal-api-caching-example`](https://github.com/vkarpov15/temporal-api-caching-example/): Cache data from a third-party API (see [blog post](https://docs.temporal.io/blog/caching-api-requests-with-long-lived-workflows))
 - **DSL Control Flows**:
-  - [**YAML DSL Interpreter**](https://github.com/temporalio/samples-typescript/tree/main/dsl-interpreter): demonstrates how to make workflows interpret a custom YAML based Domain Specific Language of your design.
-  - [**XState Interpreter**](https://github.com/Devessier/temporal-electronic-signature): demonstrates how to write a workflow that interprets XState state charts. Presented at [the November 2021 meetup](https://youtu.be/GpbOkDjpeYU?t=1616).
+  - [**YAML DSL Interpreter**](https://github.com/temporalio/samples-typescript/tree/main/dsl-interpreter): Make Workflows interpret a custom YAML-based Domain Specific Language of your design.
+  - [**XState Interpreter**](https://github.com/Devessier/temporal-electronic-signature): Interpret XState state charts in a Workflow. Presented at [the November 2021 meetup](https://youtu.be/GpbOkDjpeYU?t=1616).
 - **URL Scraping**
   - [`andreasasprou/temporal-url-batch-scraping`](https://github.com/andreasasprou/temporal-url-batch-scraping)
 - **GraphQL**:
