@@ -3,33 +3,77 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
+- [Running](#running)
+  - [In browser](#in-browser)
+  - [Locally](#locally)
+  - [Scaffold](#scaffold)
 - [Samples](#samples)
   - [Basic](#basic)
   - [API demos](#api-demos)
-    - [Activity APIs and Design Patterns](#activity-apis-and-design-patterns)
+    - [Activity APIs and design patterns](#activity-apis-and-design-patterns)
     - [Workflow APIs](#workflow-apis)
     - [Production APIs](#production-apis)
     - [Advanced APIs](#advanced-apis)
+    - [Test APIs](#test-apis)
   - [Fullstack Apps](#fullstack-apps)
+  - [Other](#other)
 - [Contributing](#contributing)
   - [Upgrading the SDK version](#upgrading-the-sdk-version)
   - [Config files](#config-files)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
+Each directory in this repo is a sample Temporal project built with the [TypeScript SDK](https://github.com/temporalio/sdk-typescript/) (see [docs](https://docs.temporal.io/typescript/introduction/) and [API reference](https://typescript.temporal.io/)).
+
+## Running
+
+### In browser
+
+The fastest way to try out these samples is running them in the browser:
+
+- Gitpod: [One click to try](https://gitpod.io/#https://github.com/temporalio/samples-typescript/) (there is a good free tier)
+- [GitHub Codespaces](https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace#creating-a-codespace) (if your org admin has enabled this) - [90 second video demo](https://youtu.be/FdEQQC9EdfU)
+
+### Locally
+
+Run Temporal Server:
+
+```sh
+git clone https://github.com/temporalio/docker-compose.git temporal
+cd temporal
+docker-compose up -d
+```
+
+Run the [`hello-world`](hello-world/) sample:
+
+```sh
+git clone https://github.com/temporalio/samples-typescript.git
+cd samples-typescript/hello-world
+npm i
+npm start
+```
+
+and in another terminal:
+
+```sh
+npm run workflow
+```
+
+### Scaffold
+
+To scaffold a new project from one of these samples, run:
+
+```sh
+npx @temporalio/create@latest my-project
+```
+
+or:
+
+```sh
+npx @temporalio/create@latest my-project --sample sample-name
+```
+
 ## Samples
-
-Each directory in this repo is a sample Temporal project built with the [TypeScript SDK](https://docs.temporal.io/typescript/introduction/).
-
-- The fastest way to try these out is starting Temporal and running these samples in the browser:
-  - Gitpod: [One click to try](https://gitpod.io/#https://github.com/temporalio/samples-typescript/) (there is a good free tier)
-  - [GitHub Codespaces](https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace#creating-a-codespace) (if your org admin has enabled this) - [90 second video demo](https://youtu.be/FdEQQC9EdfU)
-- To run these samples locally, go through the prerequisites listed in our [Getting Started docs](https://docs.temporal.io/typescript/introduction#getting-started).
-- To scaffold a new project from one of these samples, run:
-  ```sh
-  npx @temporalio/create@latest my-project-name
-  # or npx @temporalio/create@latest my-project-name --sample sample-name
-  ```
 
 ### Basic
 
@@ -40,7 +84,7 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 
 ### API demos
 
-#### Activity APIs and Design Patterns
+#### Activity APIs and design patterns
 
 - [**Activities Examples**](https://github.com/temporalio/samples-typescript/tree/main/activities-examples):
   - `makeHTTPRequest`: Make an external HTTP request in an Activity (using `axios`)
@@ -63,6 +107,7 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 - [**Child Workflows**](https://github.com/temporalio/samples-typescript/tree/main/child-workflows): Start and control Child Workflows.
 - [**Infinite Workflows**](https://github.com/temporalio/samples-typescript/tree/main/continue-as-new): Use the `continueAsNew` API for indefinitely long running Workflows.
 - [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): Set up Search Attributes (an experimental feature for now).
+- [**Subscriptions**](https://github.com/temporalio/subscription-workflow-project-template-typescript/)
 
 #### Production APIs
 
@@ -88,19 +133,27 @@ Each directory in this repo is a sample Temporal project built with the [TypeScr
 
 ### Fullstack Apps
 
+- **Next.js**:
+  - [**One-click e-commerce**](https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
+- **Express**:
+  - [`vkarpov15/temporal-ecommerce-ts`](https://github.com/vkarpov15/temporal-ecommerce-ts): The `cartWorkflow` used in [this blog series](https://docs.temporal.io/blog/build-an-ecommerce-app-with-temporal-part-1/)
+  - [`temporal-rest`](https://www.npmjs.com/package/temporal-rest): Express middleware router that automatically exposes endpoints for Workflows, Signals, and Queries.
+- **Remix**:
+  - [`gustavofsantos/temporal-survey`](https://github.com/gustavofsantos/temporal-survey)
+
+### Other
+
+- **Chatbots**:
+  - [`JoshuaKGoldberg/temporal-adventure-bot`](https://github.com/JoshuaKGoldberg/temporal-adventure-bot): Choose-your-own-adventure Slack/Discord chatbot (see [tutorial](https://docs.temporal.io/typescript/chatbot-tutorial) and [video](https://www.youtube.com/watch?v=hGIhc6m2keQ))
 - **DSL Control Flows**:
   - [**YAML DSL Interpreter**](https://github.com/temporalio/samples-typescript/tree/main/dsl-interpreter): demonstrates how to make workflows interpret a custom YAML based Domain Specific Language of your design.
   - [**XState Interpreter**](https://github.com/Devessier/temporal-electronic-signature): demonstrates how to write a workflow that interprets XState state charts. Presented at [the November 2021 meetup](https://youtu.be/GpbOkDjpeYU?t=1616).
-- **Next.js**:
-  - [**One-click e-commerce**](https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
+- **URL Scraping**
+  - [`andreasasprou/temporal-url-batch-scraping`](https://github.com/andreasasprou/temporal-url-batch-scraping)
 - **GraphQL**:
-  - [**Temporal + GraphQL**](https://github.com/vkarpov15/temporal-graphql): Expose Temporal Workflows in an Apollo GraphQL API
-- **Example Apps**:
-  - Subscription Workflow example: https://github.com/temporalio/subscription-workflow-project-template-typescript/ (useful to compare with other SDKs)
-  - E-commerce example: https://github.com/vkarpov15/temporal-ecommerce-ts
-  - Chatbot example with Slack/Discord: [Walkthrough](https://docs.temporal.io/typescript/chatbot-tutorial), [Video](https://www.youtube.com/watch?v=hGIhc6m2keQ), [Code](https://github.com/JoshuaKGoldberg/temporal-adventure-bot)
-  - Temporal + Remix Survey app: https://github.com/gustavofsantos/temporal-survey
-  - URL Batch Scraping demo: https://github.com/andreasasprou/temporal-url-batch-scraping
+  - [`vkarpov15/temporal-graphql`](https://github.com/vkarpov15/temporal-graphql): Generate a GraphQL schema from Workflow code (see also [`temporalio/graphql`](https://github.com/temporalio/graphql))
+- **Polyglot**:
+  - [`temporalio/temporal-pendulum`](https://github.com/temporalio/temporal-pendulum): Use TS alongside other languages
 
 ## Contributing
 
@@ -108,9 +161,11 @@ External contributions are very welcome! 🤗 (Big thank you to those who have [
 
 Before submitting a major PR, please find consensus on it in [Issues](https://github.com/temporalio/samples-typescript/issues).
 
-To start, run these commands in the root directory:
+To get started developing, run:
 
 ```bash
+git clone https://github.com/temporalio/samples-typescript.git
+cd samples-typescript
 npm install
 npm run prepare
 npm run bootstrap
