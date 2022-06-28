@@ -71,14 +71,16 @@ npm run workflow
 To scaffold a new project from one of these samples, run:
 
 ```sh
-npx @temporalio/create@latest my-project
+npx @temporalio/create@latest my-project --sample sample-name
 ```
 
 or:
 
 ```sh
-npx @temporalio/create@latest my-project --sample sample-name
+npx @temporalio/create@latest my-project
 ```
+
+and you'll be given the list of sample options.
 
 ## Samples
 
