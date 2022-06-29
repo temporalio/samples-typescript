@@ -21,7 +21,7 @@
   },
   "dependencies": {
     "nanoid": "3.x",
-    "temporalio": "0.23.x"
+    "temporalio": "1.0.0-rc.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
@@ -31,7 +31,6 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-deprecation": "^1.2.1",
     "nodemon": "^2.0.12",
-    "ts-node": "^10.2.1",
     "typescript": "^4.4.2"
   }
 }

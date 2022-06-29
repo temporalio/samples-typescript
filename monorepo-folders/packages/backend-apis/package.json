@@ -10,7 +10,7 @@
   "dependencies": {
     "express": "~4.16.1",
     "temporal-workflows": "*",
-    "temporalio": "0.19.x",
+    "temporalio": "1.0.0-rc.0",
     "ts-node": "^10.4.0"
   },
   "devDependencies": {

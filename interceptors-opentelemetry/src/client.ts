@@ -17,9 +17,10 @@ async function run() {
   await otel.start();
   // Connect to localhost with default ConnectionOptions,
   // pass options to the Connection constructor to configure TLS and other settings.
-  const connection = new Connection({});
+  const connection = await Connection.connect();
   // Attach the OpenTelemetryWorkflowClientCallsInterceptor to the client.
-  const client = new WorkflowClient(connection.service, {
+  const client = new WorkflowClient({
+    connection,
     interceptors: {
       calls: [() => new OpenTelemetryWorkflowClientCallsInterceptor()],
     },

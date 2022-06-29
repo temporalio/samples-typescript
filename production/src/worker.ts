@@ -4,7 +4,12 @@ import * as activities from './activities';
 // @@@SNIPSTART typescript-production-worker
 const workflowOption = () =>
   process.env.NODE_ENV === 'production'
-    ? { workflowBundle: { path: require.resolve('../workflow-bundle.js') } }
+    ? {
+        workflowBundle: {
+          codePath: require.resolve('../workflow-bundle.js'),
+          sourceMapPath: require.resolve('../workflow-bundle.js.map'),
+        },
+      }
     : { workflowsPath: require.resolve('./workflows') };
 
 async function run() {

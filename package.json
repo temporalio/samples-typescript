@@ -8,7 +8,8 @@
     "format": "prettier --write .",
     "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
     "lint": "lerna run lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "update-toc": "doctoc README.md"
   },
   "devDependencies": {
     "@temporalio/client": "^0.13.0",

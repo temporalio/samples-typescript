@@ -36,7 +36,6 @@ const FILES = [
   '.shared/.eslintrc.js',
   '.shared/.post-create',
   '.shared/.eslintignore',
-  '.shared/.npmrc',
   '.shared/.nvmrc',
 ];
 // By default, zx logs all commands spawned
