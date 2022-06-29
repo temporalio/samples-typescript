@@ -15,8 +15,8 @@
     - [Production APIs](#production-apis)
     - [Advanced APIs](#advanced-apis)
     - [Test APIs](#test-apis)
-  - [Full-stack apps & libraries](#full-stack-apps--libraries)
-  - [Other](#other)
+  - [Full-stack apps](#full-stack-apps)
+- [External apps & libraries](#external-apps--libraries)
 - [Contributing](#contributing)
   - [Upgrading the SDK version](#upgrading-the-sdk-version)
   - [Config files](#config-files)
@@ -140,10 +140,13 @@ and you'll be given the list of sample options.
 - [**Mocha and Jest**](https://github.com/temporalio/samples-typescript/tree/main/activities-examples#testing)
 - [**Time skipping**](https://github.com/temporalio/samples-typescript/tree/main/timer-examples#testing)
 
-### Full-stack apps & libraries
+### Full-stack apps
 
 - **Next.js**:
   - [**One-click e-commerce**](https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
+
+## External apps & libraries
+
 - **Express**:
   - [`vkarpov15/temporal-ecommerce-ts`](https://github.com/vkarpov15/temporal-ecommerce-ts): The `cartWorkflow` used in [this blog series](https://docs.temporal.io/blog/build-an-ecommerce-app-with-temporal-part-1/)
   - [`temporal-rest`](https://www.npmjs.com/package/temporal-rest): Express middleware router that automatically exposes endpoints for Workflows, Signals, and Queries.
@@ -151,9 +154,6 @@ and you'll be given the list of sample options.
   - [`gustavofsantos/temporal-survey`](https://github.com/gustavofsantos/temporal-survey)
 - **NestJS**:
   - [`nestjs-temporal`](https://www.npmjs.com/package/nestjs-temporal)
-
-### Other
-
 - **Chatbots**:
   - [`JoshuaKGoldberg/temporal-adventure-bot`](https://github.com/JoshuaKGoldberg/temporal-adventure-bot): Choose-your-own-adventure Slack/Discord chatbot (see [tutorial](https://docs.temporal.io/typescript/chatbot-tutorial) and [video](https://www.youtube.com/watch?v=hGIhc6m2keQ))
 - **Caching**:
@@ -163,8 +163,6 @@ and you'll be given the list of sample options.
   - [**XState Interpreter**](https://github.com/Devessier/temporal-electronic-signature): Interpret XState state charts in a Workflow. Presented at [the November 2021 meetup](https://youtu.be/GpbOkDjpeYU?t=1616).
 - **URL Scraping**
   - [`andreasasprou/temporal-url-batch-scraping`](https://github.com/andreasasprou/temporal-url-batch-scraping)
-- **GraphQL**:
-  - [`vkarpov15/temporal-graphql`](https://github.com/vkarpov15/temporal-graphql): Generate a GraphQL schema from Workflow code (see also [`temporalio/graphql`](https://github.com/temporalio/graphql))
 - **Polyglot**:
   - [`temporalio/temporal-pendulum`](https://github.com/temporalio/temporal-pendulum): Use TS alongside other languages
 
