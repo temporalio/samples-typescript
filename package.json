@@ -2,7 +2,7 @@
   "name": "samples-typescript",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap --npm-client=yarn; cd monorepo-folders; yarn",
+    "bootstrap": "lerna bootstrap --npm-client=yarn && cd monorepo-folders && yarn",
     "build": "lerna run build",
     "test": "lerna run --stream test",
     "format": "prettier --write .",
