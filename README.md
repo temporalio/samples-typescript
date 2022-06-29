@@ -147,6 +147,8 @@ and you'll be given the list of sample options.
 
 ## External apps & libraries
 
+_The below projects are maintained outside this repo and may not be up to date._
+
 - **Express**:
   - [`vkarpov15/temporal-ecommerce-ts`](https://github.com/vkarpov15/temporal-ecommerce-ts): The `cartWorkflow` used in [this blog series](https://docs.temporal.io/blog/build-an-ecommerce-app-with-temporal-part-1/)
   - [`temporal-rest`](https://www.npmjs.com/package/temporal-rest): Express middleware router that automatically exposes endpoints for Workflows, Signals, and Queries.
