@@ -36,7 +36,6 @@ const FILES = [
   '.shared/.eslintrc.js',
   '.shared/.post-create',
   '.shared/.eslintignore',
-  '.shared/.npmrc',
   '.shared/.nvmrc',
 ];
 // By default, zx logs all commands spawned
@@ -60,6 +59,8 @@ await fs.writeFile('./.scripts/list-of-samples.json', JSON.stringify({ samples }
 if (numSharedFilesChanged === 0 && !hasNewSamples) {
   process.exit(0);
 }
+
+await $`git add ${'./.scripts/list-of-samples.json'}`;
 
 let [answer] = await question(
   `Running pre-commit hook.

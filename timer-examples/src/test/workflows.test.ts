@@ -32,8 +32,6 @@ describe('countdownWorkflow', async function () {
   });
 
   after(async () => {
-    // TODO: Remove this once TestWorkflowEnvironment.teardown() closes the connection
-    await env.nativeConnection.close();
     await env.teardown();
   });
 
