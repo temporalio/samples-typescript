@@ -1,4 +1,4 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { WorkflowClient } from '@temporalio/client';
 import { v4 as uuid } from 'uuid';
 import type { Result, User } from './types';
 import { example } from './workflows';
