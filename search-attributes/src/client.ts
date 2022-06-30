@@ -22,7 +22,8 @@ async function run() {
   const { searchAttributes } = await handle.describe();
   // @@@SNIPEND
 
-  console.log('searchAttributes:', searchAttributes);
+  console.log('searchAttributes at start:', searchAttributes);
+  console.log('result:', await handle.result());
 }
 
 run().catch((err) => {
