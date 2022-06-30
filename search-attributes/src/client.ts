@@ -14,7 +14,7 @@ async function run() {
       CustomBoolField: [true],
       CustomDatetimeField: [new Date()],
       CustomStringField: [
-        'String field is for text. When query, it will be tokenized for partial match. StringTypeField cannot be used in Order By',
+        'String field is for text. When queried, it will be tokenized for partial match. StringTypeField cannot be used in Order By',
       ],
     },
   });
