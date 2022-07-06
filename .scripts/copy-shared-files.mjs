@@ -37,6 +37,7 @@ const FILES = [
   '.shared/.post-create',
   '.shared/.eslintignore',
   '.shared/.nvmrc',
+  '.shared/.npmrc',
 ];
 // By default, zx logs all commands spawned
 $.verbose = false;
@@ -98,6 +99,7 @@ for (const sample of samples) {
 
   await copyAndAdd(sample, '.npmrc');
   await copyAndAdd(sample, '.nvmrc');
+  await copyAndAdd(sample, '.npmrc');
 }
 
 console.log(' done.');
