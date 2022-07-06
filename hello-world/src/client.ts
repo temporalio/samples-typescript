@@ -24,6 +24,8 @@ async function run() {
   });
   console.log(`Started workflow ${handle.workflowId}`);
 
+  setTimeout(() => handle.signal('test'), 5000);
+
   // optional: wait for client result
   console.log(await handle.result()); // Hello, Temporal!
 }
