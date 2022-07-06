@@ -10,7 +10,7 @@
     "build.watch": "npm-run-all build:protos build:ts-watch",
     "build:ts": "tsc --build",
     "build:ts-watch": "tsc --build --watch",
-    "build:protos": "pbjs -t json-module -w commonjs -r protobuf-sample -o protos/json-module.js protos/*.proto & pbjs -t static-module protos/*.proto | pbts -o protos/root.d.ts -",
+    "build:protos": "pbjs -t json-module -w commonjs -r protobuf-sample -o protos/json-module.js protos/*.proto && pbjs -t static-module protos/*.proto | pbts -o protos/root.d.ts -",
     "lint": "eslint ."
   },
   "nodemonConfig": {
