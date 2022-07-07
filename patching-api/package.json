@@ -20,10 +20,13 @@
     ]
   },
   "dependencies": {
+    "@temporalio/activity": "^1.0.0-rc.0",
+    "@temporalio/client": "^1.0.0-rc.0",
+    "@temporalio/worker": "^1.0.0-rc.0",
+    "@temporalio/workflow": "^1.0.0-rc.0",
     "axios": "0.26.0",
     "eslint": "7",
-    "node-fetch": "2.x",
-    "temporalio": "1.0.0-rc.0"
+    "node-fetch": "2.x"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
