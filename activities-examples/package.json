@@ -32,6 +32,7 @@
     "@tsconfig/node16": "^1.0.0",
     "@types/jest": "^27.5.1",
     "@types/mocha": "8.x",
+    "@types/node": "^16.11.43",
     "@types/node-fetch": "^2.5.12",
     "@types/sinon": "^10.0.4",
     "@types/uuid": "^8.3.4",
