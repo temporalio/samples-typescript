@@ -18,6 +18,7 @@
     "temporalio": "1.0.0-rc.0"
   },
   "devDependencies": {
+    "@types/node": "^16.11.43",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "nodemon": "^2.0.12"
