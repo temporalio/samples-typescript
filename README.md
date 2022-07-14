@@ -115,7 +115,7 @@ and you'll be given the list of sample options.
 - [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): Schedule a cron job.
 - [**Child Workflows**](https://github.com/temporalio/samples-typescript/tree/main/child-workflows): Start and control Child Workflows.
 - [**Infinite Workflows**](https://github.com/temporalio/samples-typescript/tree/main/continue-as-new): Use the `continueAsNew` API for indefinitely long running Workflows.
-- [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): Set up Search Attributes (an experimental feature for now).
+- [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): Create, set, upsert, and read Search Attributes.
 - [**Subscriptions**](https://github.com/temporalio/subscription-workflow-project-template-typescript/)
 
 #### Production APIs
