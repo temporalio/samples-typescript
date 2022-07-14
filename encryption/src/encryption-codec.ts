@@ -24,7 +24,7 @@ export class EncryptionCodec implements PayloadCodec {
         },
         // Encrypt entire payload, preserving metadata
         data: await encrypt(
-          temporal.api.common.v1.Payload.encodeDelimited(payload).finish(),
+          temporal.api.common.v1.Payload.encode(payload).finish(),
           this.keys.get(this.defaultKeyId)! // eslint-disable-line @typescript-eslint/no-non-null-assertion
         ),
       }))
@@ -54,7 +54,7 @@ export class EncryptionCodec implements PayloadCodec {
         }
         const decryptedPayloadBytes = await decrypt(payload.data, key);
         console.log('Decrypting payload.data:', payload.data);
-        return temporal.api.common.v1.Payload.decodeDelimited(decryptedPayloadBytes);
+        return temporal.api.common.v1.Payload.decode(decryptedPayloadBytes);
       })
     );
   }

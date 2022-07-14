@@ -1,53 +1,27 @@
-import crypto from '@ronomon/crypto-async';
+import crypto from 'crypto';
 
 const CIPHER = 'aes-256-gcm';
+const IV_LENGTH = 12;
+const TAG_LENGTH = 16;
 
 export function encrypt(data: Uint8Array, key: Buffer): Promise<Uint8Array> {
-  return new Promise(function (resolve, reject) {
-    const iv = Buffer.alloc(12);
-    const aad = Buffer.alloc(256);
-    const tag = Buffer.alloc(16);
-    // eslint-disable-next-line
-    // @ts-ignore
-    crypto.cipher(
-      CIPHER,
-      crypto.CipherDirection.Encrypt,
-      key,
-      iv,
-      Buffer.from(data),
-      aad,
-      tag,
-      function (error: Error, encryptedData: Buffer) {
-        if (error) {
-          reject(error);
-        }
-        resolve(encryptedData);
-      }
-    );
+  return new Promise(function (resolve) {
+    const iv = crypto.randomBytes(IV_LENGTH);
+    const cipher = crypto.createCipheriv(CIPHER, key, iv, { authTagLength: TAG_LENGTH });
+
+    resolve(Buffer.concat([iv, cipher.update(data), cipher.final(), cipher.getAuthTag()]))
   });
 }
 
 export function decrypt(encryptedData: Uint8Array, key: Buffer): Promise<Uint8Array> {
-  return new Promise(function (resolve, reject) {
-    const iv = Buffer.alloc(12);
-    const aad = Buffer.alloc(256);
-    const tag = Buffer.alloc(16);
-    // eslint-disable-next-line
-    // @ts-ignore
-    crypto.cipher(
-      CIPHER,
-      crypto.CipherDirection.Encrypt,
-      key,
-      iv,
-      Buffer.from(encryptedData),
-      aad,
-      tag,
-      function (error: Error, decryptedData: Buffer) {
-        if (error) {
-          reject(error);
-        }
-        resolve(decryptedData);
-      }
-    );
+  return new Promise(function (resolve) {
+    const iv = encryptedData.subarray(0, IV_LENGTH);
+    const ciphertext = encryptedData.subarray(IV_LENGTH, -TAG_LENGTH);
+    const authTag = encryptedData.subarray(-TAG_LENGTH);
+
+    const cipher = crypto.createDecipheriv(CIPHER, key, iv, { authTagLength: TAG_LENGTH });
+    cipher.setAuthTag(authTag)
+
+    resolve(Buffer.concat([cipher.update(ciphertext), cipher.final()]))
   });
 }

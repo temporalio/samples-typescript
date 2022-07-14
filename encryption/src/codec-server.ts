@@ -44,11 +44,11 @@ function toJSON({ metadata, data }: proto.temporal.api.common.v1.IPayload): JSON
   };
 }
 
-async function main(port = 8888) {
+async function main({ port = 8888, origin = 'http://localhost:8080' }: any) {
   const codec = await EncryptionCodec.create('test-key-id');
 
   const app = express();
-  app.use(cors({ origin: 'http://localhost:8088', allowedHeaders: ['x-namespace', 'content-type'] }));
+  app.use(cors({ origin: origin, allowedHeaders: ['x-namespace', 'content-type'] }));
   app.use(express.json());
 
   app.post('/decode', async (req, res) => {
@@ -82,10 +82,12 @@ async function main(port = 8888) {
     app.on('error', reject);
   });
 
-  console.log('Codec server listening on port 8888');
+  console.log(`Codec server listening on port ${port}`);
 }
 
-main().catch((err) => {
+const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
+
+main(argv).catch((err) => {
   console.error(err);
   process.exit(1);
 });

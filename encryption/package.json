@@ -9,7 +9,8 @@
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow": "ts-node src/client.ts",
-    "codec-server": "ts-node src/codec-server.ts"
+    "codec-server": "ts-node src/codec-server.ts",
+    "sample": "ts-node src/sample.ts"
   },
   "nodemonConfig": {
     "execMap": {
@@ -26,7 +27,8 @@
     "ejson": "^2.2.2",
     "express": "^4.18.0",
     "temporalio": "1.0.0-rc.0",
-    "uuid": "^8.3.2"
+    "uuid": "^8.3.2",
+    "yargs": "^16.2.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
