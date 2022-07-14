@@ -38,6 +38,7 @@
     "@types/node": "^16.11.43",
     "@types/ronomon__crypto-async": "^2.0.0",
     "@types/uuid": "^8.3.4",
+    "@types/yargs": "^17.0.10",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",

@@ -2,6 +2,7 @@ import express from 'express';
 import cors from 'cors';
 import * as proto from '@temporalio/proto';
 import { EncryptionCodec } from './encryption-codec';
+import yargs from 'yargs/yargs';
 
 type Payload = proto.temporal.api.common.v1.IPayload;
 
@@ -48,7 +49,7 @@ async function main({ port = 8888, origin = 'http://localhost:8080' }: any) {
   const codec = await EncryptionCodec.create('test-key-id');
 
   const app = express();
-  app.use(cors({ origin: origin, allowedHeaders: ['x-namespace', 'content-type'] }));
+  app.use(cors({ origin, allowedHeaders: ['x-namespace', 'content-type'] }));
   app.use(express.json());
 
   app.post('/decode', async (req, res) => {
@@ -85,7 +86,7 @@ async function main({ port = 8888, origin = 'http://localhost:8080' }: any) {
   console.log(`Codec server listening on port ${port}`);
 }
 
-const argv = require('yargs/yargs')(process.argv.slice(2)).argv;
+const argv = yargs(process.argv.slice(2)).argv;
 
 main(argv).catch((err) => {
   console.error(err);
