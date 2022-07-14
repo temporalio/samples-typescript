@@ -23,7 +23,7 @@ async function run() {
   // @@@SNIPEND
 
   console.log('searchAttributes at start:', searchAttributes);
-  console.log('result:', await handle.result());
+  console.log('searchAttributes at end:', await handle.result());
 }
 
 run().catch((err) => {
