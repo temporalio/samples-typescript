@@ -2,7 +2,7 @@ import { upsertSearchAttributes, workflowInfo } from '@temporalio/workflow';
 
 // @@@SNIPSTART typescript-search-attributes-workflow
 export async function example(): Promise<number> {
-  const customInt = (workflowInfo().searchAttributes?.CustomIntField[0] as number) || 0;
+  const customInt = (workflowInfo().searchAttributes.CustomIntField?.[0] as number) || 0;
   upsertSearchAttributes({
     // overwrite the existing CustomIntField: [2]
     CustomIntField: [customInt + 1],
@@ -13,6 +13,6 @@ export async function example(): Promise<number> {
     // add a new value
     CustomDoubleField: [3.14],
   });
-  return workflowInfo().searchAttributes?.CustomDoubleField[0] as number;
+  return workflowInfo().searchAttributes.CustomDoubleField?.[0] as number;
 }
 // @@@SNIPEND
