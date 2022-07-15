@@ -10,7 +10,8 @@
   "dependencies": {
     "@temporalio/worker": "^1.0.0-rc.0",
     "temporal-workflows": "*",
-    "ts-node": "^10.4.0"
+    "ts-node": "^10.4.0",
+    "temporalio": "^1.0.0-rc.1"
   },
   "devDependencies": {
     "nodemon": "^2.0.15"
