@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/client.ts"
+    "workflow": "ts-node src/client.ts",
+    "create-attributes": "ts-node src/client-operator-service.ts"
   },
   "nodemonConfig": {
     "execMap": {
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
+    "@types/node": "^16.11.43",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",
