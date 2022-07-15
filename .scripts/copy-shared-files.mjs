@@ -6,16 +6,17 @@ const ADDITIONAL_SAMPLES = [];
 
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
-const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'production', 'hello-world-js'];
+const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'production', 'hello-world-js', 'nestjs-counter'];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'production',
   'hello-world-js',
   'protobufs',
+  'nestjs-counter',
 ];
-const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js', 'protobufs'];
-const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples'];
+const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js', 'protobufs', 'nestjs-counter'];
+const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples', 'nestjs-counter'];
 
 const POST_CREATE_EXCLUDE = [
   'timer-examples',
@@ -28,6 +29,7 @@ const POST_CREATE_EXCLUDE = [
   'patching-api',
   'signals-queries',
   'activities-cancellation-heartbeating',
+  'nestjs-counter',
 ];
 
 const FILES = [
