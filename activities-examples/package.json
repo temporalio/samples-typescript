@@ -5,12 +5,12 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
+    "jest": "NODE_OPTIONS=--experimental-vm-modules jest",
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "test": "ts-mocha src/mocha/*.test.ts",
     "test.watch": "ts-mocha src/mocha/*.test.ts -w --watch-files src",
-    "jest": "NODE_OPTIONS=--experimental-vm-modules jest",
     "workflow": "ts-node src/client.ts"
   },
   "nodemonConfig": {
@@ -23,9 +23,13 @@
     ]
   },
   "dependencies": {
+    "@temporalio/activity": "^1.0.0-rc.1",
+    "@temporalio/client": "^1.0.0-rc.1",
+    "@temporalio/worker": "^1.0.0-rc.1",
+    "@temporalio/workflow": "^1.0.0-rc.1",
     "axios": "^0.26.0",
     "node-fetch": "2.x",
-    "temporalio": "1.0.0-rc.0"
+    "@temporalio/common": "^1.0.0-rc.1"
   },
   "devDependencies": {
     "@temporalio/testing": "1.0.0-rc.0",

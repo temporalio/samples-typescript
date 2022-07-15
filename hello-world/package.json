@@ -20,8 +20,12 @@
     ]
   },
   "dependencies": {
+    "@temporalio/activity": "^1.0.0-rc.1",
+    "@temporalio/client": "^1.0.0-rc.1",
+    "@temporalio/worker": "^1.0.0-rc.1",
+    "@temporalio/workflow": "^1.0.0-rc.1",
     "nanoid": "3.x",
-    "temporalio": "1.0.0-rc.0"
+    "@temporalio/common": "^1.0.0-rc.1"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
