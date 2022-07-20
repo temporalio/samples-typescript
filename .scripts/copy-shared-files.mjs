@@ -28,7 +28,7 @@ const POST_CREATE_EXCLUDE = [
   'patching-api',
   'signals-queries',
   'activities-cancellation-heartbeating',
-  'replay-history'
+  'replay-history',
 ];
 
 const FILES = [
