@@ -1,4 +1,4 @@
-import { Worker } from '@temporalio/worker';
+import { Worker, Runtime, DefaultLogger, LogEntry } from '@temporalio/worker';
 import { Connection } from '@temporalio/client';
 
 async function run() {
@@ -15,6 +15,12 @@ async function run() {
     throw new Error('Empty history');
   }
   // @@@SNIPSTART typescript-history-get-workflowhistory
+
+  // Filter INFO log messages for clearer test output
+  Runtime.install({
+    logger: new DefaultLogger('WARN', (entry: LogEntry) => console.log(`[${entry.level}]`, entry.message)),
+  });
+
   await Worker.runReplayHistory(
     {
       workflowsPath: require.resolve('./workflows'),
