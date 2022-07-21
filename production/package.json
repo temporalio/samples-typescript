@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "micri": "^4.5.0",
     "@temporalio/activity": "^1.0.0-rc.1",
     "@temporalio/client": "^1.0.0-rc.1",
     "@temporalio/worker": "^1.0.0-rc.1",

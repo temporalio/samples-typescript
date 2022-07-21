@@ -1,5 +1,7 @@
-import { Worker } from '@temporalio/worker';
+import { NativeConnection, Worker } from '@temporalio/worker';
+import { serve } from 'micri';
 import * as activities from './activities';
+import { connectionOptions, namespace } from './connection';
 
 // @@@SNIPSTART typescript-production-worker
 const workflowOption = () =>
@@ -13,11 +15,29 @@ const workflowOption = () =>
     : { workflowsPath: require.resolve('./workflows') };
 
 async function run() {
+  const connection = await NativeConnection.create(connectionOptions);
+
   const worker = await Worker.create({
+    connection,
+    namespace,
     ...workflowOption(),
     activities,
     taskQueue: 'production-sample',
   });
+
+  const server = serve(async () => {
+    return worker.getStatus();
+  });
+
+  server.listen(process.env.PORT || 3000);
+
+  server.on('error', (err) => {
+    console.error(err);
+  });
+
+  for (const signal of ['SIGINT', 'SIGTERM', 'SIGQUIT', 'SIGUSR2']) {
+    process.on(signal, () => server.close());
+  }
 
   await worker.run();
 }
