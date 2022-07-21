@@ -1,17 +1,27 @@
 # Encryption
 
-Create a custom data converter that encrypts data with AES. See [encryption docs](https://docs.temporal.io/docs/typescript/data-converters#encryption).
+Create a custom data converter that encrypts data with AES. See [encryption docs](https://docs.temporal.io/typescript/data-converters#encryption).
 
 ## Code
 
 - `EncryptionCodec`: [encryption-codec.ts](./src/encryption-codec.ts)
 - Data Converter: [data-converter.ts](./src/data-converter.ts)
+- Codec Server: [codec-server.ts](./src/codec-server.ts)
+
+  In order to view the decrypted payloads in the web UI:
+
+  - Run the Codec Server with `npm run codec-server`, it will listen to port 8888.
+  - Add this environment variable to the web UI server: `TEMPORAL_CODEC_ENDPOINT=http://localhost:8888`
+
+  In order to encrypt payloads with `tctl`, pass the following option when running the CLI:
+
+  - `tctl --codec_endpoint 'http://localhost:8888' ...`
 
 The Payload Converter is supplied to the [client.ts](./src/client.ts) and [worker.ts](./src/worker.ts). When the Client sends `'Alice: Private message for Bob.'` to the Workflow, it gets encrypted on the Client and decrypted in the Worker. [`workflow.ts`](./src/workflow.ts) receives the decrypted message and appends another message. When it returns that longer string, the string gets encrypted by the Worker and decrypted by the Client.
 
 ## Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run workflow` to run the Workflow Client.

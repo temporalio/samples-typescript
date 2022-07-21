@@ -1,31 +1,38 @@
 /* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import { Context } from '@temporalio/activity';
-import mailgun from 'mailgun-js';
+import axios from 'axios';
 
-export interface EmailSettings {
-  to: string | undefined;
+interface MailgunSettings {
+  apiKey?: string;
+  domain?: string;
+  to?: string;
   from: string;
 }
 
+const mailgunAPI = 'https://api.mailgun.net/v3';
+const subject = 'Order processing taking longer than expected';
 const html = `Order processing is taking longer than expected, but don't worry—the job is still running!`;
 
-export const createActivities = (mg: mailgun.Mailgun | undefined, { to, from }: EmailSettings) => ({
-  async processOrder(sleepMS = 1000): Promise<void> {
-    await Context.current().sleep(sleepMS);
+export const createActivities = ({ apiKey, domain, to, from }: MailgunSettings) => ({
+  async processOrder(): Promise<void> {
+    const cx = Context.current();
+    await cx.sleep(cx.info.startToCloseTimeoutMs);
   },
 
   async sendNotificationEmail(): Promise<void> {
-    console.log('Sending email:', html);
-
-    if (mg && to) {
-      const data = {
-        to,
-        from,
-        subject: 'Order processing taking longer than expected',
-        html,
-      };
-
-      await mg.messages().send(data);
+    if (apiKey && domain && to) {
+      console.log('Sending email:', html);
+      await axios({
+        url: `${mailgunAPI}/${domain}/messages`,
+        method: 'post',
+        params: { to, from, subject, html },
+        auth: {
+          username: 'api',
+          password: apiKey,
+        },
+      });
+    } else {
+      console.log('Skipping sending email:', html);
     }
   },
 });

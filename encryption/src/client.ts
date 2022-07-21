@@ -1,11 +1,11 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { WorkflowClient } from '@temporalio/client';
 import { v4 as uuid } from 'uuid';
 import { getDataConverter } from './data-converter';
 import { example } from './workflows';
 
 async function run() {
   // @@@SNIPSTART typescript-encryption-client
-  const client = new WorkflowClient(new Connection().service, {
+  const client = new WorkflowClient({
     dataConverter: await getDataConverter(),
   });
 

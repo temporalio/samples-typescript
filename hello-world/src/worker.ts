@@ -14,9 +14,9 @@ async function run() {
   // Customize the Worker by passing more options to create():
   // https://typescript.temporal.io/api/classes/worker.Worker
   // If you need to configure server connection parameters, see docs:
-  // https://docs.temporal.io/docs/typescript/security#encryption-in-transit-with-mtls
+  // https://docs.temporal.io/typescript/security#encryption-in-transit-with-mtls
 
-  // Step 2: Start accepting tasks on the `tutorial` queue
+  // Step 2: Start accepting tasks on the `hello-world` queue
   await worker.run();
 }
 

@@ -47,7 +47,7 @@ We built this with `yarn` Workspaces. We expect this structure to work with most
 
 ## Steps to run this example
 
-1. Make sure the Temporal Server is running locally. Follow the [Quick install guide](https://docs.temporal.io/docs/server/quick-install) to do that.
+1. Make sure the Temporal Server is running locally. Follow the [Quick install guide](https://docs.temporal.io/server/quick-install) to do that.
 2. Run `yarn` to install dependencies.
 3. Run `yarn start` to compile the project, and concurrently start the worker, frontend, and backend server
 4. Open up the UI `localhost:3000` and click the button:

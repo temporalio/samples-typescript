@@ -8,6 +8,8 @@
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
+    "test": "ts-mocha src/test/*.test.ts",
+    "test.watch": "ts-mocha src/test/*.test.ts -w --watch-files src",
     "workflow-fast": "ts-node src/clients/fast.ts",
     "workflow-slow": "ts-node src/clients/slow.ts",
     "workflow-updating": "ts-node src/clients/updating-timer.ts"
@@ -22,20 +24,32 @@
     ]
   },
   "dependencies": {
+    "@temporalio/activity": "^1.0.0-rc.1",
+    "@temporalio/client": "^1.0.0-rc.1",
+    "@temporalio/worker": "^1.0.0-rc.1",
+    "@temporalio/workflow": "^1.0.0-rc.1",
+    "axios": "0.26.1",
     "dotenv": "^10.0.0",
-    "mailgun-js": "^0.22.0",
-    "temporalio": "0.20.x"
+    "@temporalio/common": "^1.0.0-rc.1"
   },
   "devDependencies": {
+    "@temporalio/testing": "1.0.0-rc.0",
     "@tsconfig/node16": "^1.0.0",
-    "@types/mailgun-js": "0.22.12",
+    "@types/mocha": "^9.1.1",
+    "@types/ms": "^0.7.31",
+    "@types/node": "^16.11.43",
+    "@types/uuid": "^8.3.4",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-deprecation": "^1.2.1",
+    "mocha": "^10.0.0",
+    "ms": "^2.1.3",
     "nodemon": "^2.0.12",
+    "ts-mocha": "^10.0.0",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.2",
+    "uuid": "^8.3.2"
   }
 }

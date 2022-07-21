@@ -1,16 +1,18 @@
 // @@@SNIPSTART typescript-hello-client
 import { Connection, WorkflowClient } from '@temporalio/client';
 import { example } from './workflows';
+import { nanoid } from 'nanoid';
 
 async function run() {
-  const connection = new Connection({
+  const connection = await Connection.connect({
     // // Connect to localhost with default ConnectionOptions.
     // // In production, pass options to the Connection constructor to configure TLS and other settings:
     // address: 'foo.bar.tmprl.cloud', // as provisioned
     // tls: {} // as provisioned
   });
 
-  const client = new WorkflowClient(connection.service, {
+  const client = new WorkflowClient({
+    connection,
     // namespace: 'default', // change if you have a different namespace
   });
 
@@ -18,7 +20,7 @@ async function run() {
     args: ['Temporal'], // type inference works! args: [name: string]
     taskQueue: 'hello-world',
     // in practice, use a meaningful business id, eg customerId or transactionId
-    workflowId: 'wf-id-' + Math.floor(Math.random() * 1000),
+    workflowId: 'workflow-' + nanoid(),
   });
   console.log(`Started workflow ${handle.workflowId}`);
 

@@ -3,14 +3,14 @@ import { proxyActivities, sleep } from '@temporalio/workflow';
 import type { createActivities } from './activities';
 export * from './updatable-timer';
 
-const { processOrder, sendNotificationEmail } = proxyActivities<ReturnType<typeof createActivities>>({
-  startToCloseTimeout: '5 minutes',
-});
-
 export interface ProcessOrderOptions {
   orderProcessingMS: number;
   sendDelayedEmailTimeoutMS: number;
 }
+
+const { sendNotificationEmail } = proxyActivities<ReturnType<typeof createActivities>>({
+  startToCloseTimeout: '5m',
+});
 
 // @@@SNIPSTART typescript-timer-reminder-workflow
 export async function processOrderWorkflow({
@@ -18,7 +18,12 @@ export async function processOrderWorkflow({
   sendDelayedEmailTimeoutMS,
 }: ProcessOrderOptions): Promise<string> {
   let processing = true;
-  const processOrderPromise = processOrder(orderProcessingMS).then(() => {
+  // Dynamically define the timeout based on given input
+  const { processOrder } = proxyActivities<ReturnType<typeof createActivities>>({
+    startToCloseTimeout: orderProcessingMS,
+  });
+
+  const processOrderPromise = processOrder().then(() => {
     processing = false;
   });
 

@@ -1,14 +1,29 @@
 # Search Attributes
 
-This sample demonstrates how to add [custom search attributes](https://docs.temporal.io/docs/typescript/search-attributes/) to your Workflow Executions:
+> Background: [Search Attribute docs](https://docs.temporal.io/next/application-development/observability/?lang=ts#visibility)
 
-[src/client.ts](./src/client.ts)
+### Adding to Server
+
+```
+npm run create-attributes
+```
+
+This runs [`src/client-operator-service.ts`](./src/client-operator-service.ts), which adds two custom Search Attributes to Temporal Server.
+
+### Adding to Workflow and using
+
+- Client: [`src/client.ts`](./src/client.ts)
+  - Add [custom search attributes](https://docs.temporal.io/typescript/search-attributes/) to your Workflow Executions on start
+  - Use `describe()` to read search attributes
+- Workflow: [`src/workflows.ts`](./src/workflows.ts)
+  - Read search attributes from `WorkflowInfo`
+  - Upsert search attributes
 
 This requires an Elasticsearch instance, which is included in the default `docker-compose`.
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run workflow` to run the Workflow.

@@ -6,10 +6,10 @@
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
     "lint": "eslint .",
+    "replayer": "ts-node src/replayer.ts",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/client.ts",
-    "replayer": "ts-node src/replayer.ts"
+    "workflow": "ts-node src/client.ts"
   },
   "nodemonConfig": {
     "execMap": {
@@ -21,10 +21,15 @@
     ]
   },
   "dependencies": {
-    "temporalio": "0.20.x"
+    "@temporalio/activity": "^1.0.0-rc.1",
+    "@temporalio/client": "^1.0.0-rc.1",
+    "@temporalio/worker": "^1.0.0-rc.1",
+    "@temporalio/workflow": "^1.0.0-rc.1",
+    "@temporalio/common": "^1.0.0-rc.1"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
+    "@types/node": "^16.11.43",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",

@@ -6,13 +6,16 @@ on:
       - main
   pull_request:
 
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
-  build-lint-test:
+  test:
     runs-on: ${{ matrix.os }}
 
     strategy:
       matrix:
-        os: [ubuntu-latest, macos-latest] # add windows-latest when supported by SDK
+        os: [ubuntu-latest, windows-latest, macos-latest]
         node: [16]
 
     steps:
@@ -24,23 +27,23 @@ jobs:
           # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
           cache: 'npm'
       - run: npm ci
-      - run: npx lerna bootstrap --no-ci --npm-client=yarn
+      - run: npm run bootstrap
+      - run: npm run build
+      - run: npm test
+
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 16
+          # Comment out cache line when testing with act:
+          # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
+          cache: 'npm'
+      - run: npm ci
+      - run: npm run bootstrap
       - run: npm run build
       - run: npx prettier . --check
       - run: npm run lint
-      - name: Get Temporal docker-compose.yml
-        run: wget https://raw.githubusercontent.com/temporalio/docker-compose/main/docker-compose.yml
-        # TODO: Test on MacOS once we get docker-compose running on the GH actions Mac instance
-        if: ${{ startsWith(matrix.os, 'ubuntu') }}
-      - name: Start Temporal Server
-        run: docker-compose up -d
-        if: ${{ startsWith(matrix.os, 'ubuntu') }}
-      - name: Install sample deps
-        run: npm install
-        working-directory: activities-examples
-      - name: Wait for Temporal Server
-        run: node .scripts/wait-on-temporal.mjs
-        if: ${{ startsWith(matrix.os, 'ubuntu') }}
-      - run: npm test
-        working-directory: activities-examples
-        if: ${{ startsWith(matrix.os, 'ubuntu') }}

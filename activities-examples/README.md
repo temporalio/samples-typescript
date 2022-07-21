@@ -7,12 +7,19 @@ This sample shows use cases for Activities:
 
 More Activity samples are [listed here](https://github.com/temporalio/samples-typescript/#activity-apis-and-design-patterns).
 
+### Testing
+
+- Mocha: `npm test` and `npm run test.watch` run these tests: [`src/mocha/workflows.test.ts`](./src/mocha/workflows.test.ts)
+- Jest: `npm run jest` runs tests outside the `mocha/` directory:
+  - [`src/workflows.test.ts`](./src/workflows.test.ts)
+  - [`src/activities/make-http-request.test.ts`](./src/activities/make-http-request.test.ts)
+
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
-1. `npm install` to install dependencies.
-1. `npm run start.watch` to start the Worker.
-1. In another shell, `npm run workflow` to run the Workflow.
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+2. `npm install` to install dependencies.
+3. `npm run start.watch` to start the Worker.
+4. In another shell, `npm run workflow` to run the Workflow.
 
 The Workflow should make an HTTP request to [httpbin.org](https://httpbin.org/) and then return:
 

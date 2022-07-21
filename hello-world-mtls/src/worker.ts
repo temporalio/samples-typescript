@@ -22,7 +22,7 @@ async function run({
     serverRootCACertificate = fs.readFileSync(serverRootCACertificatePath);
   }
 
-  const connection = await NativeConnection.create({
+  const connection = await NativeConnection.connect({
     address,
     tls: {
       serverNameOverride,
@@ -45,6 +45,7 @@ async function run({
   console.log('Worker connection successfully established');
 
   await worker.run();
+  await connection.close();
 }
 
 run(getEnv()).catch((err) => {

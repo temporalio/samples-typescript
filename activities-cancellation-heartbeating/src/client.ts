@@ -2,8 +2,8 @@ import { Connection, WorkflowClient, WorkflowFailedError, CancelledFailure } fro
 import { runCancellableActivity } from './workflows';
 
 async function run() {
-  const connection = new Connection();
-  const client = new WorkflowClient(connection.service);
+  const connection = await Connection.connect();
+  const client = new WorkflowClient({ connection });
 
   const handle = await client.start(runCancellableActivity, {
     taskQueue: 'cancellation-heartbeating',

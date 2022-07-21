@@ -1,10 +1,10 @@
 # Patching API
 
-This sample shows how to use the [patching/versioning API](https://docs.temporal.io/docs/typescript/patching/) to update the code of a Workflow that has executions in progress in production.
+This sample shows how to use the [patching/versioning API](https://docs.temporal.io/typescript/patching/) to update the code of a Workflow that has executions in progress in production.
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/docs/server/quick-install/)).
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
 2. `npm install` to install dependencies.
 3. `npm run start.watch` to start the Worker.
 4. In another shell, `npm run workflow` to run the v1 Workflow.

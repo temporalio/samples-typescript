@@ -2,16 +2,17 @@
   "name": "samples-typescript",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap --npm-client=yarn",
+    "bootstrap": "lerna bootstrap --npm-client=yarn && cd monorepo-folders && yarn",
     "build": "lerna run build",
-    "test": "lerna run test",
+    "test": "lerna run --stream test",
     "format": "prettier --write .",
     "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
     "lint": "lerna run lint",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "update-toc": "doctoc README.md"
   },
   "devDependencies": {
-    "@temporalio/client": "^0.13.0",
+    "@temporalio/client": "^1.0.0-rc.1",
     "@tsconfig/node16": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
@@ -24,7 +25,7 @@
     "next": "^12.0.0",
     "prettier": "^2.3.2",
     "typescript": "^4.4.3",
-    "zx": "^4.2.0"
+    "zx": "^6.0.7"
   },
   "lint-staged": {
     "*.{js,ts,json,md}": "prettier --write",
@@ -32,6 +33,6 @@
   },
   "dependencies": {
     "doctoc": "^2.1.0",
-    "lerna": "^4.0.0"
+    "lerna": "^5.0.0"
   }
 }

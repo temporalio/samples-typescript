@@ -5,11 +5,12 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
+    "jest": "NODE_OPTIONS=--experimental-vm-modules jest",
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "test": "ts-mocha src/test/*.test.ts",
-    "test.watch": "ts-mocha src/test/*.test.ts -w --watch-files src",
+    "test": "ts-mocha src/mocha/*.test.ts",
+    "test.watch": "ts-mocha src/mocha/*.test.ts -w --watch-files src",
     "workflow": "ts-node src/client.ts"
   },
   "nodemonConfig": {
@@ -22,14 +23,20 @@
     ]
   },
   "dependencies": {
-    "axios": "0.21.1",
+    "@temporalio/activity": "^1.0.0-rc.1",
+    "@temporalio/client": "^1.0.0-rc.1",
+    "@temporalio/worker": "^1.0.0-rc.1",
+    "@temporalio/workflow": "^1.0.0-rc.1",
+    "axios": "^0.26.0",
     "node-fetch": "2.x",
-    "temporalio": "0.20.x",
-    "uuid": "^8.3.2"
+    "@temporalio/common": "^1.0.0-rc.1"
   },
   "devDependencies": {
+    "@temporalio/testing": "1.0.0-rc.0",
     "@tsconfig/node16": "^1.0.0",
+    "@types/jest": "^27.5.1",
     "@types/mocha": "8.x",
+    "@types/node": "^16.11.43",
     "@types/node-fetch": "^2.5.12",
     "@types/sinon": "^10.0.4",
     "@types/uuid": "^8.3.4",
@@ -38,11 +45,14 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-deprecation": "^1.2.1",
+    "jest": "^28.1.0",
     "mocha": "8.x",
     "nodemon": "^2.0.12",
     "sinon": "^11.1.2",
+    "ts-jest": "^28.0.2",
     "ts-mocha": "^8.0.0",
     "ts-node": "^10.2.1",
-    "typescript": "^4.2.2"
+    "typescript": "^4.2.2",
+    "uuid": "^8.3.2"
   }
 }
