@@ -1,5 +1,5 @@
 // @@@SNIPSTART typescript-activity-fake-progress
-import { Context, CancelledFailure } from '@temporalio/activity';
+import { CancelledFailure, Context } from '@temporalio/activity';
 
 export async function fakeProgress(sleepIntervalMs = 1000): Promise<void> {
   try {
