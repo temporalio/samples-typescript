@@ -24,12 +24,11 @@
     "@opentelemetry/resources": "1.2.0",
     "@opentelemetry/sdk-node": "^0.28.0",
     "@opentelemetry/sdk-trace-base": "1.2.0",
-    "@temporalio/activity": "^1.0.0-rc.1",
-    "@temporalio/client": "^1.0.0-rc.1",
-    "@temporalio/interceptors-opentelemetry": "^1.0.0-rc.1",
-    "@temporalio/worker": "^1.0.0-rc.1",
-    "@temporalio/workflow": "^1.0.0-rc.1",
-    "@temporalio/common": "^1.0.0-rc.1"
+    "@temporalio/activity": "1.0.0",
+    "@temporalio/client": "1.0.0",
+    "@temporalio/interceptors-opentelemetry": "1.0.0",
+    "@temporalio/worker": "1.0.0",
+    "@temporalio/workflow": "1.0.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

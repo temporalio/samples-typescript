@@ -199,8 +199,12 @@ for f in !(monorepo-folders)/package.json; do jq '.dependencies."@temporalio/cli
 for f in !(monorepo-folders)/package.json; do jq '.dependencies."@temporalio/worker" = "NEW_VERSION_HERE"' $f | sponge $f; done
 for f in !(monorepo-folders)/package.json; do jq '.dependencies."@temporalio/workflow" = "NEW_VERSION_HERE"' $f | sponge $f; done
 for f in !(monorepo-folders)/package.json; do jq '.dependencies."@temporalio/activity" = "NEW_VERSION_HERE"' $f | sponge $f; done
-for f in !(monorepo-folders)/package.json; do jq '.dependencies."@temporalio/common" = "NEW_VERSION_HERE"' $f | sponge $f; done
+jq '.dependencies."@temporalio/common" = "NEW_VERSION_HERE"' ejson/package.json | sponge ejson/package.json;
+jq '.dependencies."@temporalio/common" = "NEW_VERSION_HERE"' encryption/package.json | sponge encryption/package.json;
+jq '.dependencies."@temporalio/common" = "NEW_VERSION_HERE"' grpc-calls/package.json | sponge grpc-calls/package.json;
 jq '.devDependencies."@temporalio/client" = "NEW_VERSION_HERE"' package.json | sponge package.json;
+jq '.devDependencies."@temporalio/testing" = "NEW_VERSION_HERE"' activities-examples/package.json | sponge activities-examples/package.json;
+jq '.devDependencies."@temporalio/testing" = "NEW_VERSION_HERE"' timer-examples/package.json | sponge timer-examples/package.json;
 jq '.dependencies."@temporalio/interceptors-opentelemetry" = "NEW_VERSION_HERE"' interceptors-opentelemetry/package.json | sponge interceptors-opentelemetry/package.json;
 jq '.dependencies."@temporalio/client" = "NEW_VERSION_HERE"' monorepo-folders/packages/backend-apis/package.json | sponge monorepo-folders/packages/backend-apis/package.json;
 jq '.dependencies."@temporalio/worker" = "NEW_VERSION_HERE"' monorepo-folders/packages/temporal-worker/package.json | sponge monorepo-folders/packages/temporal-worker/package.json;

@@ -17,17 +17,16 @@
     "@heroicons/react": "^1.0.4",
     "@tailwindcss/aspect-ratio": "^0.2.1",
     "@tailwindcss/forms": "^0.3.3",
-    "@temporalio/activity": "^1.0.0-rc.1",
-    "@temporalio/client": "^1.0.0-rc.1",
-    "@temporalio/worker": "^1.0.0-rc.1",
-    "@temporalio/workflow": "^1.0.0-rc.1",
+    "@temporalio/activity": "1.0.0",
+    "@temporalio/client": "1.0.0",
+    "@temporalio/worker": "1.0.0",
+    "@temporalio/workflow": "1.0.0",
     "next": "latest",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-toastify": "^8.0.3",
     "swr": "^1.0.1",
-    "uuid": "^8.3.2",
-    "@temporalio/common": "^1.0.0-rc.1"
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
