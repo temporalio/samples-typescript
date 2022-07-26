@@ -8,7 +8,8 @@
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/client.ts"
+    "workflow": "ts-node src/client.ts",
+    "create-attributes": "ts-node src/client-operator-service.ts"
   },
   "nodemonConfig": {
     "execMap": {
@@ -20,10 +21,14 @@
     ]
   },
   "dependencies": {
-    "temporalio": "1.0.0-rc.0"
+    "@temporalio/activity": "1.0.0",
+    "@temporalio/client": "1.0.0",
+    "@temporalio/worker": "1.0.0",
+    "@temporalio/workflow": "1.0.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
+    "@types/node": "^16.11.43",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",

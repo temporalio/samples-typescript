@@ -7,18 +7,6 @@ import { v4 as uuid } from 'uuid';
 import type { createActivities } from '../activities';
 import { processOrderWorkflow } from '../workflows';
 
-async function withWorker<R>(worker: Worker, fn: () => Promise<R>): Promise<R> {
-  const runAndShutdown = async () => {
-    try {
-      return await fn();
-    } finally {
-      worker.shutdown();
-    }
-  };
-  const [_, ret] = await Promise.all([worker.run(), runAndShutdown()]);
-  return ret;
-}
-
 describe('countdownWorkflow', async function () {
   let env: TestWorkflowEnvironment;
 
@@ -55,13 +43,13 @@ describe('countdownWorkflow', async function () {
       workflowsPath: require.resolve('../workflows'),
       activities,
     });
-    await withWorker(worker, async () => {
-      await env.workflowClient.execute(processOrderWorkflow, {
+    await worker.runUntil(
+      env.workflowClient.execute(processOrderWorkflow, {
         workflowId: uuid(),
         taskQueue: 'test',
         args: [{ orderProcessingMS: ms('3 days'), sendDelayedEmailTimeoutMS: ms('1 day') }],
-      });
-    });
+      })
+    );
     assert.ok(emailSent);
   });
 
@@ -81,13 +69,13 @@ describe('countdownWorkflow', async function () {
       workflowsPath: require.resolve('../workflows'),
       activities,
     });
-    await withWorker(worker, async () => {
-      await env.workflowClient.execute(processOrderWorkflow, {
+    await worker.runUntil(
+      env.workflowClient.execute(processOrderWorkflow, {
         workflowId: uuid(),
         taskQueue: 'test',
         args: [{ orderProcessingMS: ms('3 days'), sendDelayedEmailTimeoutMS: ms('1 day') }],
-      });
-    });
+      })
+    );
     assert.equal(emailSent, false);
   });
 });

@@ -3,18 +3,6 @@ import { Worker, Runtime, DefaultLogger, LogEntry } from '@temporalio/worker';
 import { v4 as uuid4 } from 'uuid';
 import { httpWorkflow } from './workflows';
 
-async function withWorker<R>(worker: Worker, fn: () => Promise<R>): Promise<R> {
-  const runAndShutdown = async () => {
-    try {
-      return await fn();
-    } finally {
-      worker.shutdown();
-    }
-  };
-  const [_, ret] = await Promise.all([worker.run(), runAndShutdown()]);
-  return ret;
-}
-
 let testEnv: TestWorkflowEnvironment;
 
 beforeAll(async () => {
@@ -45,7 +33,7 @@ test('httpWorkflow with mock activity', async () => {
       makeHTTPRequest: async () => '99',
     },
   });
-  await withWorker(worker, async () => {
+  await worker.runUntil(async () => {
     const result = await workflowClient.execute(httpWorkflow, {
       workflowId: uuid4(),
       taskQueue: 'test',

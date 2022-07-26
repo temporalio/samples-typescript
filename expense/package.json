@@ -23,14 +23,18 @@
     ]
   },
   "dependencies": {
+    "@temporalio/activity": "1.0.0",
+    "@temporalio/client": "1.0.0",
+    "@temporalio/worker": "1.0.0",
+    "@temporalio/workflow": "1.0.0",
     "axios": "^0.26.0",
     "express": "~4.17.1",
-    "temporalio": "1.0.0-rc.0",
     "uuid": "8.3.2"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
     "@types/express": "4.17.13",
+    "@types/node": "^16.11.43",
     "@types/uuid": "8.3.1",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
