@@ -23,11 +23,11 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.0.0-rc.1",
-    "@temporalio/client": "^1.0.0-rc.1",
-    "@temporalio/common": "^1.0.0-rc.1",
-    "@temporalio/worker": "^1.0.0-rc.1",
-    "@temporalio/workflow": "^1.0.0-rc.1",
+    "@temporalio/activity": "1.0.0",
+    "@temporalio/client": "1.0.0",
+    "@temporalio/common": "1.0.0",
+    "@temporalio/worker": "1.0.0",
+    "@temporalio/workflow": "1.0.0",
     "uuid": "^8.3.2"
   },
   "devDependencies": {
@@ -45,6 +45,7 @@
     "npm-run-all": "^4.1.5",
     "protobufjs": "6.11.2",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.2",
+    "@temporalio/testing": "1.0.0"
   }
 }

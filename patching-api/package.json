@@ -20,14 +20,14 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.0.0-rc.1",
-    "@temporalio/client": "^1.0.0-rc.1",
-    "@temporalio/worker": "^1.0.0-rc.1",
-    "@temporalio/workflow": "^1.0.0-rc.1",
+    "@temporalio/activity": "1.0.0",
+    "@temporalio/client": "1.0.0",
+    "@temporalio/worker": "1.0.0",
+    "@temporalio/workflow": "1.0.0",
     "axios": "0.26.0",
     "eslint": "7",
     "node-fetch": "2.x",
-    "@temporalio/common": "^1.0.0-rc.1"
+    "@temporalio/common": "1.0.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
@@ -44,6 +44,7 @@
     "sinon": "^11.1.2",
     "ts-mocha": "^8.0.0",
     "ts-node": "^10.2.1",
-    "typescript": "^4.2.2"
+    "typescript": "^4.2.2",
+    "@temporalio/testing": "1.0.0"
   }
 }

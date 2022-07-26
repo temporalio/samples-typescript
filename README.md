@@ -200,6 +200,7 @@ for f in !(monorepo-folders)/package.json; do jq '.dependencies."@temporalio/wor
 for f in !(monorepo-folders)/package.json; do jq '.dependencies."@temporalio/workflow" = "NEW_VERSION_HERE"' $f | sponge $f; done
 for f in !(monorepo-folders)/package.json; do jq '.dependencies."@temporalio/activity" = "NEW_VERSION_HERE"' $f | sponge $f; done
 for f in !(monorepo-folders)/package.json; do jq '.dependencies."@temporalio/common" = "NEW_VERSION_HERE"' $f | sponge $f; done
+for f in !(monorepo-folders)/package.json; do jq '.devDependencies."@temporalio/testing" = "NEW_VERSION_HERE"' $f | sponge $f; done
 jq '.devDependencies."@temporalio/client" = "NEW_VERSION_HERE"' package.json | sponge package.json;
 jq '.dependencies."@temporalio/interceptors-opentelemetry" = "NEW_VERSION_HERE"' interceptors-opentelemetry/package.json | sponge interceptors-opentelemetry/package.json;
 jq '.dependencies."@temporalio/client" = "NEW_VERSION_HERE"' monorepo-folders/packages/backend-apis/package.json | sponge monorepo-folders/packages/backend-apis/package.json;

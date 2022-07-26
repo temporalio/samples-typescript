@@ -22,11 +22,11 @@
   },
   "dependencies": {
     "@ronomon/crypto-async": "^5.0.1",
-    "@temporalio/activity": "^1.0.0-rc.1",
-    "@temporalio/client": "^1.0.0-rc.1",
-    "@temporalio/common": "^1.0.0-rc.1",
-    "@temporalio/worker": "^1.0.0-rc.1",
-    "@temporalio/workflow": "^1.0.0-rc.1",
+    "@temporalio/activity": "1.0.0",
+    "@temporalio/client": "1.0.0",
+    "@temporalio/common": "1.0.0",
+    "@temporalio/worker": "1.0.0",
+    "@temporalio/workflow": "1.0.0",
     "cors": "^2.8.5",
     "ejson": "^2.2.2",
     "express": "^4.18.0",
@@ -47,6 +47,7 @@
     "eslint-plugin-deprecation": "^1.2.1",
     "nodemon": "^2.0.12",
     "ts-node": "^10.2.1",
-    "typescript": "^4.4.2"
+    "typescript": "^4.4.2",
+    "@temporalio/testing": "1.0.0"
   }
 }
