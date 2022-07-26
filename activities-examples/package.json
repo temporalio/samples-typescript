@@ -32,7 +32,6 @@
     "@temporalio/common": "1.0.0"
   },
   "devDependencies": {
-    "@temporalio/testing": "1.0.0",
     "@tsconfig/node16": "^1.0.0",
     "@types/jest": "^27.5.1",
     "@types/mocha": "8.x",
