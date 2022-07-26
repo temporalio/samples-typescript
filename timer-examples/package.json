@@ -29,8 +29,7 @@
     "@temporalio/worker": "1.0.0",
     "@temporalio/workflow": "1.0.0",
     "axios": "0.26.1",
-    "dotenv": "^10.0.0",
-    "@temporalio/common": "1.0.0"
+    "dotenv": "^10.0.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

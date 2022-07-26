@@ -18,8 +18,7 @@
     "@temporalio/activity": "1.0.0",
     "@temporalio/client": "1.0.0",
     "@temporalio/worker": "1.0.0",
-    "@temporalio/workflow": "1.0.0",
-    "@temporalio/common": "1.0.0"
+    "@temporalio/workflow": "1.0.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.43",

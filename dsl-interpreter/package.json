@@ -25,8 +25,7 @@
     "@temporalio/client": "1.0.0",
     "@temporalio/worker": "1.0.0",
     "@temporalio/workflow": "1.0.0",
-    "js-yaml": "^4.1.0",
-    "@temporalio/common": "1.0.0"
+    "js-yaml": "^4.1.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
