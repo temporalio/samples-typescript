@@ -44,6 +44,7 @@ const POST_CREATE_EXCLUDE = [
   'signals-queries',
   'activities-cancellation-heartbeating',
   'nestjs-counter',
+  'replay-history',
 ];
 
 const FILES = [

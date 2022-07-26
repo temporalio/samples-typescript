@@ -9,5 +9,5 @@ See the associated video for instructions: https://youtu.be/fN5bIL7wc5M
 1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
-1. In another shell, `npm run workflow` to run the Workflow and you can see the unexpected `null` value
-1. Then run `npm run replayer` (or, if using VS Code, run the debugger script set up for you in `launch.json`) to step through the code.
+1. In another shell, `npm run workflow` to run the Workflow.
+1. Once `npm run workflow` completes, run `npm run replayer` (or, if using VS Code, run the debugger script set up for you in `launch.json`) to step through the code.
