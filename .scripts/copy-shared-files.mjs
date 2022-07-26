@@ -6,7 +6,14 @@ const ADDITIONAL_SAMPLES = [];
 
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
-const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'production', 'hello-world-js', 'nestjs-counter'];
+const TSCONFIG_EXCLUDE = [
+  'nextjs-ecommerce-oneclick',
+  'monorepo-folders',
+  'fetch-esm',
+  'production',
+  'hello-world-js',
+  'nestjs-counter',
+];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
@@ -15,7 +22,14 @@ const GITIGNORE_EXCLUDE = [
   'protobufs',
   'nestjs-counter',
 ];
-const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js', 'protobufs', 'nestjs-counter'];
+const ESLINTRC_EXCLUDE = [
+  'nextjs-ecommerce-oneclick',
+  'monorepo-folders',
+  'fetch-esm',
+  'hello-world-js',
+  'protobufs',
+  'nestjs-counter',
+];
 const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples', 'nestjs-counter'];
 
 const POST_CREATE_EXCLUDE = [
