@@ -32,6 +32,7 @@
     "dotenv": "^10.0.0"
   },
   "devDependencies": {
+    "@temporalio/testing": "1.0.0",
     "@tsconfig/node16": "^1.0.0",
     "@types/mocha": "^9.1.1",
     "@types/ms": "^0.7.31",
@@ -48,7 +49,6 @@
     "ts-mocha": "^10.0.0",
     "ts-node": "^10.2.1",
     "typescript": "^4.4.2",
-    "uuid": "^8.3.2",
-    "@temporalio/testing": "1.0.0"
+    "uuid": "^8.3.2"
   }
 }
