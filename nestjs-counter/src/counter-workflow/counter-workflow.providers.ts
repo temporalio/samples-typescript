@@ -2,21 +2,22 @@ import {
   WorkflowClient,
   WorkflowExecutionAlreadyStartedError,
 } from '@temporalio/client';
-import { counterWorkflow } from '../workflows';
+import { counterWorkflow } from '../temporal/workflows';
+import { taskQueue } from '../temporal/shared';
 
-export const temporalProviders = [
+export const counterWorkflowProviders = [
   {
     provide: 'COUNTER_WORKFLOW',
     useFactory: async () => {
       const client = new WorkflowClient();
 
-      console.log('Start counter workflow');
+      console.log('Starting counter workflow!');
 
       let handle;
       try {
         handle = await client.start(counterWorkflow, {
           args: [0],
-          taskQueue: 'nest-test',
+          taskQueue,
           workflowId: 'counter',
         });
       } catch (err) {

@@ -1,8 +1,10 @@
 import { Module } from '@nestjs/common';
-import { CounterModule } from './counter/counter.module';
+import { ActivitiesModule } from './activities/activities.module';
+import { CounterWorkflowModule } from './counter-workflow/counter-workflow.module';
+import { CounterWorkerModule } from './counter-worker/counter-worker.module';
 
 @Module({
-  imports: [CounterModule],
+  imports: [ActivitiesModule, CounterWorkflowModule, CounterWorkerModule],
   controllers: [],
   providers: [],
 })
