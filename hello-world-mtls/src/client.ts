@@ -22,7 +22,7 @@ async function run({
   if (serverRootCACertificatePath) {
     serverRootCACertificate = fs.readFileSync(serverRootCACertificatePath);
   }
-
+  // @@@SNIPSTART typescript-mtls-configuration
   const connection = await Connection.connect({
     address,
     tls: {
@@ -34,6 +34,7 @@ async function run({
       },
     },
   });
+  // @@@SNIPSTOP typescript-mtls-configuration
   const client = new WorkflowClient({ connection, namespace });
   // Run example workflow and await its completion
   const result = await client.execute(example, {
