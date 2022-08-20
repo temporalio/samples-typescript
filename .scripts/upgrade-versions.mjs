@@ -21,6 +21,15 @@ for (const sample of STORED_SAMPLES) {
       }
     }
   }
+  for (const [dep, version] of Object.entries(content.devDependencies)) {
+    if (dep.startsWith('@temporalio/')) {
+      if (version !== versionToSet) {
+        content.devDependencies[dep] = versionToSet;
+        console.log(`Updated version for ${sample} devDependency ${dep} from ${version} to ${versionToSet}`);
+        changed = true;
+      }
+    }
+  }
   if (changed) {
     await fs.writeFile(packagePath, JSON.stringify(content));
   } else {

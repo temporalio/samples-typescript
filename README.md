@@ -195,6 +195,7 @@ npm run lint
 
 ```sh
 npx zx .scripts/upgrade-versions.mjs 'VERSION_STRING_HERE'
+npm run format
 ```
 
 ### Config files
