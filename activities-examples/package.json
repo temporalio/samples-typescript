@@ -31,7 +31,7 @@
     "node-fetch": "2.x"
   },
   "devDependencies": {
-    "@temporalio/testing": "1.0.0",
+    "@temporalio/testing": "^1.0.0",
     "@tsconfig/node16": "^1.0.0",
     "@types/jest": "^27.5.1",
     "@types/mocha": "8.x",
