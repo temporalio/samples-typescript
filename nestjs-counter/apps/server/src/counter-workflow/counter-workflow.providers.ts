@@ -2,8 +2,7 @@ import {
   WorkflowClient,
   WorkflowExecutionAlreadyStartedError,
 } from '@temporalio/client';
-import { counterWorkflow } from '../temporal/workflows';
-import { taskQueue } from '../temporal/shared';
+import { taskQueue } from '@app/shared';
 
 export const counterWorkflowProviders = [
   {
@@ -15,7 +14,7 @@ export const counterWorkflowProviders = [
 
       let handle;
       try {
-        handle = await client.start(counterWorkflow, {
+        handle = await client.start('counterWorkflow', {
           args: [0],
           taskQueue,
           workflowId: 'counter',

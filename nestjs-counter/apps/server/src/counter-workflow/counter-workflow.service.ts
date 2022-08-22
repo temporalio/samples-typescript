@@ -1,6 +1,6 @@
 import { Injectable, Inject } from '@nestjs/common';
 import { WorkflowHandle } from '@temporalio/client';
-import { getValueQuery, incrementSignal } from '../temporal/workflows';
+import { getValueQuery, incrementSignal } from '@app/shared';
 
 @Injectable()
 export class CounterWorkflowService {
