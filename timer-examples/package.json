@@ -24,10 +24,10 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "1.0.0",
-    "@temporalio/client": "1.0.0",
-    "@temporalio/worker": "1.0.0",
-    "@temporalio/workflow": "1.0.0",
+    "@temporalio/activity": "^1.0.0",
+    "@temporalio/client": "^1.0.0",
+    "@temporalio/worker": "^1.0.0",
+    "@temporalio/workflow": "^1.0.0",
     "axios": "0.26.1",
     "dotenv": "^10.0.0"
   },
