@@ -1,7 +1,10 @@
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { Worker, Runtime, DefaultLogger, LogEntry } from '@temporalio/worker';
 import { v4 as uuid4 } from 'uuid';
-import { httpWorkflow } from './workflows';
+import { httpWorkflow, testWorkflow } from './workflows';
+import { ApplicationFailure } from '@temporalio/workflow';
+import { fnThatThrows } from './helpers';
+import * as activities from './activities';
 
 let testEnv: TestWorkflowEnvironment;
 
@@ -23,7 +26,7 @@ afterAll(async () => {
   await testEnv?.teardown();
 });
 
-test('httpWorkflow with mock activity', async () => {
+test('thrown from workflow', async () => {
   const { workflowClient, nativeConnection } = testEnv;
   const worker = await Worker.create({
     connection: nativeConnection,
@@ -34,10 +37,38 @@ test('httpWorkflow with mock activity', async () => {
     },
   });
   await worker.runUntil(async () => {
-    const result = await workflowClient.execute(httpWorkflow, {
+    try {
+      await workflowClient.execute(httpWorkflow, {
+        workflowId: uuid4(),
+        taskQueue: 'test',
+      });
+    } catch (e: any) {
+      expect(e.cause instanceof ApplicationFailure).toBe(true);
+    }
+  });
+});
+
+test('thrown from activity, instanceof in workflow', async () => {
+  const { workflowClient, nativeConnection } = testEnv;
+  const worker = await Worker.create({
+    connection: nativeConnection,
+    taskQueue: 'test',
+    workflowsPath: require.resolve('./workflows'),
+    activities,
+  });
+  await worker.runUntil(async () => {
+    const result = await workflowClient.execute(testWorkflow, {
       workflowId: uuid4(),
       taskQueue: 'test',
     });
-    expect(result).toEqual('The answer is 99');
+    expect(result).toBe(true);
   });
+});
+
+test('instanceof', () => {
+  try {
+    fnThatThrows();
+  } catch (e) {
+    expect(e instanceof ApplicationFailure).toBe(true);
+  }
 });
