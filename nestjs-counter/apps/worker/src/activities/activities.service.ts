@@ -1,10 +1,14 @@
+import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
-import axios from 'axios';
+
+const url = 'https://cdn.moneyconvert.net/api/latest.json';
 
 @Injectable()
 export class ActivitiesService {
+  constructor(private readonly httpService: HttpService) {}
+
   async getExchangeRates(): Promise<any> {
-    const res = await axios.get('https://cdn.moneyconvert.net/api/latest.json');
+    const res = await this.httpService.axiosRef.get(url);
     return res.data.rates;
   }
 }

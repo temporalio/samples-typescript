@@ -6,10 +6,12 @@ import { taskQueue } from '@app/shared';
 
 export const exchangeRatesProviders = [
   {
+    provide: 'WORKFLOW_CLIENT',
+    useValue: new WorkflowClient(),
+  },
+  {
     provide: 'EXCHANGE_RATES_WORKFLOW',
-    useFactory: async () => {
-      const client = new WorkflowClient();
-
+    useFactory: async (client: WorkflowClient) => {
       console.log('Starting exchange rates workflow!');
 
       let handle;
@@ -30,5 +32,6 @@ export const exchangeRatesProviders = [
       console.log('Started exchange rates workflow');
       return handle;
     },
+    inject: ['WORKFLOW_CLIENT'],
   },
 ];

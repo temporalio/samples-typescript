@@ -1,7 +1,6 @@
 import { ActivitiesService } from '../activities/activities.service';
 import { DefaultLogger, LogEntry, Runtime, Worker } from '@temporalio/worker';
 import { taskQueue } from '@app/shared';
-import { ActivityInterface } from '@temporalio/workflow';
 
 export const exchangeRatesWorkerProviders = [
   {
@@ -14,7 +13,10 @@ export const exchangeRatesWorkerProviders = [
         ),
       });
 
-      const activities = activitiesService as unknown as ActivityInterface;
+      const activities = {
+        getExchangeRates:
+          activitiesService.getExchangeRates.bind(activitiesService),
+      };
 
       const worker = await Worker.create({
         workflowsPath: require.resolve('../temporal/workflows'),

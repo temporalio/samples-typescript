@@ -4,10 +4,10 @@ import {
   setHandler,
   sleep,
 } from '@temporalio/workflow';
-import { IActivities } from './activities';
+import { ActivitiesService } from '../activities/activities.service';
 import { getExchangeRatesQuery } from '@app/shared';
 
-const { getExchangeRates } = proxyActivities<IActivities>({
+const { getExchangeRates } = proxyActivities<ActivitiesService>({
   startToCloseTimeout: '1 minute',
 });
 

@@ -1,5 +1,5 @@
 import { Injectable, Inject } from '@nestjs/common';
-import { WorkflowHandle } from '@temporalio/client';
+import { WorkflowClient, WorkflowHandle } from '@temporalio/client';
 import { getExchangeRatesQuery } from '@app/shared';
 
 @Injectable()
@@ -12,3 +12,6 @@ export class ExchangeRatesService {
     return this.handle.query(getExchangeRatesQuery);
   }
 }
+
+@Injectable()
+export class ExchangeRatesWorkflowClient extends WorkflowClient {}
