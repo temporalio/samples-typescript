@@ -3,9 +3,8 @@ import axios from 'axios';
 
 @Injectable()
 export class ActivitiesService {
-  async persist(value: number): Promise<unknown> {
-    const res = await axios.post('http://httpbin.org/post', { value });
-
-    return res.data;
+  async getExchangeRates(): Promise<any> {
+    const res = await axios.get('https://cdn.moneyconvert.net/api/latest.json');
+    return res.data.rates;
   }
 }

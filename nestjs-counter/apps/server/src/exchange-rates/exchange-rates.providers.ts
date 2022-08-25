@@ -4,30 +4,30 @@ import {
 } from '@temporalio/client';
 import { taskQueue } from '@app/shared';
 
-export const counterWorkflowProviders = [
+export const exchangeRatesProviders = [
   {
-    provide: 'COUNTER_WORKFLOW',
+    provide: 'EXCHANGE_RATES_WORKFLOW',
     useFactory: async () => {
       const client = new WorkflowClient();
 
-      console.log('Starting counter workflow!');
+      console.log('Starting exchange rates workflow!');
 
       let handle;
       try {
-        handle = await client.start('counterWorkflow', {
-          args: [0],
+        handle = await client.start('exchangeRatesWorkflow', {
           taskQueue,
-          workflowId: 'counter',
+          workflowId: 'exchange-rates',
         });
       } catch (err) {
         if (err instanceof WorkflowExecutionAlreadyStartedError) {
-          handle = await client.getHandle('counter');
+          console.log('Reusing existing exchange rates workflow');
+          handle = await client.getHandle('exchange-rates');
         } else {
           throw err;
         }
       }
 
-      console.log('Started counter ', handle);
+      console.log('Started exchange rates workflow');
       return handle;
     },
   },

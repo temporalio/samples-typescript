@@ -1,3 +1,3 @@
 export type IActivities = {
-  persist(value: number): Promise<unknown>;
+  getExchangeRates(): Promise<any>;
 };

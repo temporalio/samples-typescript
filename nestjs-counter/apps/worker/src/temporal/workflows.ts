@@ -1,25 +1,38 @@
-import { condition, proxyActivities, setHandler } from '@temporalio/workflow';
+import {
+  continueAsNew,
+  proxyActivities,
+  setHandler,
+  sleep,
+} from '@temporalio/workflow';
 import { IActivities } from './activities';
-import { incrementSignal, getValueQuery } from '@app/shared';
+import { getExchangeRatesQuery } from '@app/shared';
 
-const { persist } = proxyActivities<IActivities>({
-  startToCloseTimeout: '30 seconds',
+const { getExchangeRates } = proxyActivities<IActivities>({
+  startToCloseTimeout: '1 minute',
 });
 
-export async function counterWorkflow(initial: number): Promise<void> {
-  let value = initial;
+const maxIterations = 10000;
 
-  setHandler(incrementSignal, async (val: number) => {
-    if (!val) {
-      return;
-    }
-    value += val;
+export async function exchangeRatesWorkflow(
+  storedRates: any = null,
+): Promise<any> {
+  let rates: any = storedRates;
 
-    await persist(value);
-  });
-  setHandler(getValueQuery, () => {
-    return value;
-  });
+  // Register a query handler that allows querying for the current rates
+  setHandler(getExchangeRatesQuery, () => rates);
 
-  await condition(() => false);
+  for (let i = 0; i < maxIterations; ++i) {
+    // Get the latest rates
+    rates = await getExchangeRates();
+
+    // Sleep until tomorrow at 12pm server time, and then get the rates again
+    const today = new Date();
+    const tomorrow = new Date(today);
+    tomorrow.setHours(12, 0, 0, 0);
+    tomorrow.setDate(tomorrow.getDate() + 1);
+
+    await sleep(tomorrow.valueOf() - today.valueOf());
+  }
+
+  await continueAsNew<typeof exchangeRatesWorkflow>(rates);
 }

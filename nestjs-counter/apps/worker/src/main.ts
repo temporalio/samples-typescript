@@ -1,8 +1,8 @@
 import { NestFactory } from '@nestjs/core';
-import { CounterWorkerModule } from './counter-worker/counter-worker.module';
+import { ExchangeRatesWorkerModule } from './exchange-rates-worker/exchange-rates-worker.module';
 
 async function bootstrap() {
-  const app = await NestFactory.create(CounterWorkerModule);
+  const app = await NestFactory.create(ExchangeRatesWorkerModule);
   await app.listen(3001);
 }
 bootstrap();

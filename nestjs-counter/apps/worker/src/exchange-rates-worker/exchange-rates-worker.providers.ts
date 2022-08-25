@@ -3,9 +3,9 @@ import { DefaultLogger, LogEntry, Runtime, Worker } from '@temporalio/worker';
 import { taskQueue } from '@app/shared';
 import { ActivityInterface } from '@temporalio/workflow';
 
-export const counterWorkerProviders = [
+export const exchangeRatesWorkerProviders = [
   {
-    provide: 'COUNTER_WORKER',
+    provide: 'EXCHANGE_RATES_WORKER',
     inject: [ActivitiesService],
     useFactory: async (activitiesService: ActivitiesService) => {
       Runtime.install({
