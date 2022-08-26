@@ -2,7 +2,7 @@
 import { CompleteAsyncError, Context } from '@temporalio/activity';
 import { AsyncCompletionClient } from '@temporalio/client';
 
-export async function completeSomethingAsync(): Promise<string> {
+export async function doSomethingAsync(): Promise<string> {
   const taskToken = Context.current().info.taskToken;
   setTimeout(() => doSomeWork(taskToken), 1000);
   throw new CompleteAsyncError();

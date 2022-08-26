@@ -1,8 +1,9 @@
-# Hello World
+# Snippets
 
-This is the default project that is scaffolded out when you run `npx @temporalio/create@latest ./myfolder`.
+This project is for making sure code snippets we use in the docs that don't fit in other samples compile and run.
 
-The [Hello World Tutorial](https://docs.temporal.io/typescript/hello-world/) walks through the code in this sample.
+- [`client.ts`](./src/client.ts) sets a Workflow Retry Policy
+- [`workflows.ts](./src/workflows.ts) sometimes fails by throwing an `ApplicationFailure`
 
 ### Running this sample
 
@@ -11,8 +12,18 @@ The [Hello World Tutorial](https://docs.temporal.io/typescript/hello-world/) wal
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run workflow` to run the Workflow Client.
 
-The Workflow should return:
+If the Workflow fails 3 times, you'll see:
 
 ```bash
-Hello, Temporal!
+WorkflowFailedError: Workflow execution failed
+  ...
+  retryState: 4
+```
+
+`retryState: 4` corresponds to [`RETRY_STATE_MAXIMUM_ATTEMPTS_REACHED`](https://typescript.temporal.io/api/enums/common.retrystate/#retry_state_maximum_attempts_reached).
+
+Otherwise, you'll see:
+
+```bash
+Completed successfully
 ```

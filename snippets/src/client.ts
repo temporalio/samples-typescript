@@ -1,37 +1,58 @@
-// @@@SNIPSTART typescript-hello-client
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { WorkflowClient } from '@temporalio/client';
 import { example } from './workflows';
 import { nanoid } from 'nanoid';
 
 async function run() {
-  // Connect to the default Server location (localhost:7233)
-  const connection = await Connection.connect();
-  // In production, pass options to configure TLS and other settings:
-  // {
-  //   address: 'foo.bar.tmprl.cloud',
-  //   tls: {}
-  // }
+  const client = new WorkflowClient();
+  const workflowId = 'workflow-' + nanoid();
+  const taskQueue = 'snippets';
 
-  const client = new WorkflowClient({
-    connection,
-    // namespace: 'foo.bar', // connects to 'default' namespace if not specified
-  });
-
+  // @@@SNIPSTART typescript-retry-workflow
   const handle = await client.start(example, {
-    // type inference works! args: [name: string]
-    args: ['Temporal'],
-    taskQueue: 'hello-world',
-    // in practice, use a meaningful business id, eg customerId or transactionId
-    workflowId: 'workflow-' + nanoid(),
+    taskQueue,
+    workflowId,
+    retry: {
+      maximumAttempts: 3,
+    },
   });
+  // @@@SNIPEND
   console.log(`Started workflow ${handle.workflowId}`);
 
-  // optional: wait for client result
-  console.log(await handle.result()); // Hello, Temporal!
+  await handle.result();
+  console.log('Completed successfully');
 }
 
 run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-// @@@SNIPEND
+
+async function _snippets() {
+  const client = new WorkflowClient();
+  const workflowId = 'workflow-' + nanoid();
+  const taskQueue = 'snippets';
+
+  // @@@SNIPSTART typescript-task-timeout
+  await client.start(example, {
+    taskQueue,
+    workflowId,
+    workflowTaskTimeout: '1 minute',
+  });
+  // @@@SNIPEND
+
+  // @@@SNIPSTART typescript-run-timeout
+  await client.start(example, {
+    taskQueue,
+    workflowId,
+    workflowRunTimeout: '1 minute',
+  });
+  // @@@SNIPEND
+
+  // @@@SNIPSTART typescript-execution-timeout
+  await client.start(example, {
+    taskQueue,
+    workflowId,
+    workflowExecutionTimeout: '1 day',
+  });
+  // @@@SNIPEND
+}
