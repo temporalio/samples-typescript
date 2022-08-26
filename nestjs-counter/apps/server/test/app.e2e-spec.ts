@@ -30,7 +30,6 @@ describe('AppController (e2e)', () => {
 
     const client = env.workflowClient;
     const handle = await client.start(counterWorkflow, {
-      args: [0],
       taskQueue,
       workflowId: 'counter',
     });
@@ -39,6 +38,8 @@ describe('AppController (e2e)', () => {
       controllers: [CounterController],
       providers: [...temporalProviders, CounterService],
     })
+      .overrideProvider('WORKFLOW_CLIENT')
+      .useValue(client)
       .overrideProvider('COUNTER_WORKFLOW')
       .useValue(handle)
       .compile();
@@ -55,7 +56,10 @@ describe('AppController (e2e)', () => {
   });
 
   it('/counter (GET)', () => {
-    return request(app.getHttpServer()).get('/counter').expect(200).expect('0');
+    return request(app.getHttpServer())
+      .get('/exchange-rates/AUD')
+      .expect(200)
+      .expect('0');
   });
 
   it('/counter (PUT)', async () => {

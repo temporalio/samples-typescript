@@ -11,6 +11,10 @@ export class ExchangeRatesController {
   ): Promise<number | undefined> {
     const rates = await this.exchangeRatesService.getExchangeRates();
 
+    if (rates === null) {
+      return undefined;
+    }
+
     return rates[currency];
   }
 }

@@ -8,7 +8,7 @@ export class ExchangeRatesService {
     @Inject('EXCHANGE_RATES_WORKFLOW') private handle: WorkflowHandle,
   ) {}
 
-  async getExchangeRates(): Promise<any> {
+  async getExchangeRates() {
     return this.handle.query(getExchangeRatesQuery);
   }
 }

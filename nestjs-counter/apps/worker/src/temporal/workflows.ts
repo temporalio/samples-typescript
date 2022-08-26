@@ -5,7 +5,7 @@ import {
   sleep,
 } from '@temporalio/workflow';
 import { ActivitiesService } from '../activities/activities.service';
-import { getExchangeRatesQuery } from '@app/shared';
+import { getExchangeRatesQuery, ExchangeRates } from '@app/shared';
 
 const { getExchangeRates } = proxyActivities<ActivitiesService>({
   startToCloseTimeout: '1 minute',
@@ -14,9 +14,9 @@ const { getExchangeRates } = proxyActivities<ActivitiesService>({
 const maxIterations = 10000;
 
 export async function exchangeRatesWorkflow(
-  storedRates: any = null,
-): Promise<any> {
-  let rates: any = storedRates;
+  storedRates: ExchangeRates | null = null,
+): Promise<void> {
+  let rates: ExchangeRates | null = storedRates;
 
   // Register a query handler that allows querying for the current rates
   setHandler(getExchangeRatesQuery, () => rates);
