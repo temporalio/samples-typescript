@@ -6,7 +6,7 @@ const url = 'https://cdn.moneyconvert.net/api/latest.json';
 
 @Injectable()
 export class ActivitiesService {
-  constructor(private readonly httpService: HttpService) {}
+  constructor(public readonly httpService: HttpService) {}
 
   async getExchangeRates(): Promise<ExchangeRates> {
     const res = await this.httpService.axiosRef.get(url);
