@@ -5,7 +5,12 @@ import {
   sleep,
 } from '@temporalio/workflow';
 import { ActivitiesService } from '../activities/activities.service';
-import { getExchangeRatesQuery, ExchangeRates } from '@app/shared';
+// Can't use `@app/shared` here because for some reason Temporal's Webpack
+// build complains that "node_modules/@app/shared" doesn't exist in Jest.
+import {
+  getExchangeRatesQuery,
+  ExchangeRates,
+} from '../../../../libs/shared/src';
 
 const { getExchangeRates } = proxyActivities<ActivitiesService>({
   startToCloseTimeout: '1 minute',
