@@ -1,8 +1,8 @@
 /** @type {import('ts-jest/dist/types').InitialOptionsTsJest} */
 module.exports = {
-  preset: 'ts-jest',
+  // preset: 'ts-jest',
   testEnvironment: 'node',
-  modulePathIgnorePatterns: ['lib', 'mocha'],
+  modulePathIgnorePatterns: ['mocha'],
   clearMocks: true,
   collectCoverage: true,
   coverageDirectory: 'coverage',
