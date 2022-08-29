@@ -8,6 +8,9 @@ import sinon from 'sinon';
 import { v4 as uuid } from 'uuid';
 import * as activities from '../activities';
 import { httpWorkflow } from '../workflows';
+import { WorkflowCoverage } from '@temporalio/nyc-test-coverage';
+
+const workflowCoverage = new WorkflowCoverage();
 
 describe('example workflow', async function () {
   let shutdown: () => Promise<void>;
@@ -26,6 +29,10 @@ describe('example workflow', async function () {
       taskQueue: 'test-activities',
       workflowsPath: require.resolve('../workflows'),
       activities,
+      interceptors: {
+        workflowModules: [workflowCoverage.interceptorModule],
+      },
+      sinks: workflowCoverage.sinks,
     });
 
     const runPromise = worker.run();
@@ -54,6 +61,7 @@ describe('example workflow', async function () {
   });
 
   afterEach(() => {
+    workflowCoverage.mergeIntoGlobalCoverage();
     sinon.restore();
   });
 
