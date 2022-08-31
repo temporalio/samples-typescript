@@ -8,6 +8,9 @@ import sinon from 'sinon';
 import { v4 as uuid } from 'uuid';
 import * as activities from '../activities';
 import { httpWorkflow } from '../workflows';
+import { WorkflowCoverage } from '@temporalio/nyc-test-coverage';
+
+const workflowCoverage = new WorkflowCoverage();
 
 describe('example workflow', async function () {
   let shutdown: () => Promise<void>;
@@ -21,12 +24,14 @@ describe('example workflow', async function () {
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
     const env = await TestWorkflowEnvironment.create();
-    const worker = await Worker.create({
-      connection: env.nativeConnection,
-      taskQueue: 'test-activities',
-      workflowsPath: require.resolve('../workflows'),
-      activities,
-    });
+    const worker = await Worker.create(
+      workflowCoverage.augmentWorkerOptions({
+        connection: env.nativeConnection,
+        taskQueue: 'test-activities',
+        workflowsPath: require.resolve('../workflows'),
+        activities,
+      })
+    );
 
     const runPromise = worker.run();
     shutdown = async () => {
@@ -51,6 +56,10 @@ describe('example workflow', async function () {
 
   after(async () => {
     await shutdown();
+  });
+
+  after(() => {
+    workflowCoverage.mergeIntoGlobalCoverage();
   });
 
   afterEach(() => {

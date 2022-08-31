@@ -7,5 +7,5 @@ module.exports = {
   collectCoverage: true,
   coverageDirectory: 'coverage',
   coveragePathIgnorePatterns: ['/node_modules/', '/lib/'],
-  coverageProvider: 'v8',
+  coverageProvider: 'babel',
 };
