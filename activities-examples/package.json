@@ -5,7 +5,7 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
-    "jest": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "jest": "jest",
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
