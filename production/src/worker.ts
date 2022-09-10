@@ -15,7 +15,8 @@ const workflowOption = () =>
     : { workflowsPath: require.resolve('./workflows') };
 
 async function run() {
-  const connection = await NativeConnection.create(connectionOptions);
+  console.log('connectionOptions:', connectionOptions);
+  const connection = await NativeConnection.connect(connectionOptions);
 
   const worker = await Worker.create({
     connection,

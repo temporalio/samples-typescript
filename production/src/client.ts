@@ -3,9 +3,10 @@ import { connectionOptions, namespace } from './connection';
 import { example } from './workflows';
 
 async function run() {
-  const connection = new Connection(connectionOptions);
+  const connection = await Connection.connect(connectionOptions);
 
-  const client = new WorkflowClient(connection.service, {
+  const client = new WorkflowClient({
+    connection,
     namespace,
   });
 
