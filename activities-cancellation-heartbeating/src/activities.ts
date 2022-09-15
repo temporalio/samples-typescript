@@ -15,7 +15,7 @@ export async function fakeProgress(sleepIntervalMs = 1000): Promise<void> {
     }
   } catch (err) {
     if (err instanceof CancelledFailure) {
-      console.log('Fake progress activity cancelled');
+      console.log('Fake progress activity cancelled', err.message);
       // Cleanup
     }
     throw err;

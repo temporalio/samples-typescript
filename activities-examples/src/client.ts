@@ -1,14 +1,20 @@
 import { WorkflowClient } from '@temporalio/client';
-import { httpWorkflow } from './workflows';
+import { asyncActivityWorkflow, httpWorkflow } from './workflows';
 
 async function run(): Promise<void> {
   const client = new WorkflowClient();
 
-  const result = await client.execute(httpWorkflow, {
+  let result = await client.execute(httpWorkflow, {
     taskQueue: 'activities-examples',
     workflowId: 'activities-examples',
   });
   console.log(result); // 'The answer is 42'
+
+  result = await client.execute(asyncActivityWorkflow, {
+    taskQueue: 'activities-examples',
+    workflowId: 'activities-examples',
+  });
+  console.log(result);
 }
 
 run().catch((err) => {

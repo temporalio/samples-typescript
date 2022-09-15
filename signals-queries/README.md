@@ -4,7 +4,10 @@ This example demonstrates the usage of [Signals, Queries](https://docs.temporal.
 
 Signals, Queries, and cancellation messages are sent through the `WorkflowClient`:
 
-[`src/client.ts`](./src/client.ts)
+- [`src/start-workflow.ts`](./src/start-workflow.ts)
+- [`src/query-workflow.ts`](./src/query-workflow.ts)
+- [`src/signal-workflow.ts`](./src/signal-workflow.ts)
+- [`src/cancel-workflow.ts`](./src/cancel-workflow.ts)
 
 and are handled in the Workflow:
 
@@ -19,3 +22,4 @@ and are handled in the Workflow:
 1. Run `npm run workflow.query` to query the Workflow. Should print `blocked? true`
 1. Run `npm run workflow.signal` to unblock the Workflow. Should print `unblockSignal sent`
 1. Run `npm run workflow.query` to query the Workflow. Should print `blocked? false`
+1. Run `npm run workflow.cancel` to cancel the Workflow. Should print `workflow canceled`

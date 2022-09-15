@@ -14,7 +14,7 @@ async function run() {
   if (!history) {
     throw new Error('Empty history');
   }
-  // @@@SNIPSTART typescript-history-get-workflowhistory
+  // @@@SNIPSTART typescript-history-replay
   await Worker.runReplayHistory(
     {
       workflowsPath: require.resolve('./workflows'),
