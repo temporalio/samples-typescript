@@ -30,7 +30,7 @@ describe('example workflow', async function () {
       workflowsPath: require.resolve('../workflows'),
       activities,
       interceptors: {
-        workflowModules: [workflowCoverage.interceptorModule]
+        workflowModules: [workflowCoverage.interceptorModule],
       },
       sinks: workflowCoverage.sinks,
     });
