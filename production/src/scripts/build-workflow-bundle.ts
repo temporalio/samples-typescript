@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-bundle-workflow
 import { bundleWorkflowCode } from '@temporalio/worker';
 import { writeFile } from 'fs/promises';
 import path from 'path';
@@ -9,9 +10,9 @@ async function bundle() {
   const codePath = path.join(__dirname, '../../workflow-bundle.js');
 
   await writeFile(codePath, code);
-
   console.log(`Bundle written to ${codePath}`);
 }
+// @@@SNIPEND
 
 bundle().catch((err) => {
   console.error(err);

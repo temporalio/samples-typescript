@@ -1,12 +1,14 @@
-// @@@SNIPSTART typescript-worker-create
+// @@@SNIPSTART typescript-custom-activity-type
 import { Worker } from '@temporalio/worker';
-import * as activities from './activities';
+import { greet } from './activities';
 
 async function run() {
   const worker = await Worker.create({
     workflowsPath: require.resolve('./workflows'),
     taskQueue: 'snippets',
-    activities,
+    activities: {
+      activityFoo: greet,
+    },
   });
 
   await worker.run();
