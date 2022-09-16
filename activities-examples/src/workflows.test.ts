@@ -33,6 +33,7 @@ test('httpWorkflow with mock activity', async () => {
       makeHTTPRequest: async () => '99',
     },
   });
+
   await worker.runUntil(async () => {
     const result = await workflowClient.execute(httpWorkflow, {
       workflowId: uuid4(),
