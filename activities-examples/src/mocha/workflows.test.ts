@@ -11,7 +11,6 @@ import { httpWorkflow } from '../workflows';
 import { WorkflowCoverage } from '@temporalio/nyc-test-coverage';
 
 const workflowCoverage = new WorkflowCoverage();
-const isCoverage = '__coverage__' in global;
 
 describe('example workflow', async function () {
   let shutdown: () => Promise<void>;
@@ -26,21 +25,14 @@ describe('example workflow', async function () {
     Runtime.install({ logger: new DefaultLogger('WARN') });
     const env = await TestWorkflowEnvironment.create();
 
-    const additionalWorkerOptions = isCoverage
-      ? {
-          interceptors: {
-            workflowModules: [workflowCoverage.interceptorModule],
-          },
-          sinks: workflowCoverage.sinks,
-        }
-      : {};
-    const worker = await Worker.create({
-      connection: env.nativeConnection,
-      taskQueue: 'test-activities',
-      workflowsPath: require.resolve('../workflows'),
-      activities,
-      ...additionalWorkerOptions,
-    });
+    const worker = await Worker.create(
+      workflowCoverage.augmentWorkerOptions({
+        connection: env.nativeConnection,
+        taskQueue: 'test-activities',
+        workflowsPath: require.resolve('../workflows'),
+        activities,
+      })
+    );
 
     const runPromise = worker.run();
     shutdown = async () => {
@@ -68,9 +60,7 @@ describe('example workflow', async function () {
   });
 
   after(() => {
-    if (isCoverage) {
-      workflowCoverage.mergeIntoGlobalCoverage();
-    }
+    workflowCoverage.mergeIntoGlobalCoverage();
   });
 
   afterEach(() => {
