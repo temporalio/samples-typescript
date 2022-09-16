@@ -26,12 +26,14 @@ describe('example workflow', async function () {
     Runtime.install({ logger: new DefaultLogger('WARN') });
     const env = await TestWorkflowEnvironment.create();
 
-    const additionalWorkerOptions = isCoverage ? {
-      interceptors: {
-        workflowModules: [workflowCoverage.interceptorModule],
-      },
-      sinks: workflowCoverage.sinks,
-    } : {};
+    const additionalWorkerOptions = isCoverage
+      ? {
+          interceptors: {
+            workflowModules: [workflowCoverage.interceptorModule],
+          },
+          sinks: workflowCoverage.sinks,
+        }
+      : {};
     const worker = await Worker.create({
       connection: env.nativeConnection,
       taskQueue: 'test-activities',
