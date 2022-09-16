@@ -11,7 +11,7 @@
     "start.watch": "nodemon src/worker.ts",
     "test": "ts-mocha src/mocha/*.test.ts",
     "test.watch": "ts-mocha src/mocha/*.test.ts -w --watch-files src",
-    "test.coverage": "npm run build && nyc --reporter=lcov --reporter=text-summary mocha lib/mocha/*.test.js",
+    "test.coverage": "npm run build && nyc instrument lib lib --in-place && nyc --reporter=lcov --reporter=text-summary mocha lib/mocha/*.test.js",
     "workflow": "ts-node src/client.ts"
   },
   "nodemonConfig": {

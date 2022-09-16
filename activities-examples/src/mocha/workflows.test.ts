@@ -24,14 +24,16 @@ describe('example workflow', async function () {
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
     const env = await TestWorkflowEnvironment.create();
-    const worker = await Worker.create(
-      workflowCoverage.augmentWorkerOptions({
-        connection: env.nativeConnection,
-        taskQueue: 'test-activities',
-        workflowsPath: require.resolve('../workflows'),
-        activities,
-      })
-    );
+    const worker = await Worker.create({
+      connection: env.nativeConnection,
+      taskQueue: 'test-activities',
+      workflowsPath: require.resolve('../workflows'),
+      activities,
+      interceptors: {
+        workflowModules: [workflowCoverage.interceptorModule]
+      },
+      sinks: workflowCoverage.sinks,
+    });
 
     const runPromise = worker.run();
     shutdown = async () => {
