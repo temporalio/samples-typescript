@@ -1,7 +1,7 @@
 // @@@SNIPSTART typescript-logger-sink-interface
 import { proxySinks, Sinks } from '@temporalio/workflow';
 
-export interface LoggerSinks extends Sinks {
+export interface CustomLoggerSinks extends Sinks {
   logger: {
     info(message: string): void;
   };
@@ -9,7 +9,7 @@ export interface LoggerSinks extends Sinks {
 // @@@SNIPEND
 
 // @@@SNIPSTART typescript-logger-sink-workflow
-const { logger } = proxySinks<LoggerSinks>();
+const { logger } = proxySinks<CustomLoggerSinks>();
 
 export async function logSampleWorkflow(): Promise<string> {
   logger.info('Workflow execution started');

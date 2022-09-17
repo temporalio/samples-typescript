@@ -1,9 +1,9 @@
 // @@@SNIPSTART typescript-logger-sink-worker
-import { defaultSinks, InjectedSinks, Worker } from '@temporalio/worker';
-import { LoggerSinks } from './workflows';
+import { defaultSinks, InjectedSinks, LoggerSinks, Worker } from '@temporalio/worker';
+import { CustomLoggerSinks } from './workflows';
 
 async function main() {
-  const sinks: InjectedSinks<LoggerSinks> = {
+  const sinks: InjectedSinks<LoggerSinks & CustomLoggerSinks> = {
     ...defaultSinks(),
     logger: {
       info: {
