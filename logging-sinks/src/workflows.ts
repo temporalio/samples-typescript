@@ -1,15 +1,15 @@
 // @@@SNIPSTART typescript-logger-sink-interface
-import * as wf from '@temporalio/workflow';
+import { proxySinks, Sinks } from '@temporalio/workflow';
 
-export interface LoggerSinks extends wf.Sinks {
+export interface LoggerSinks extends Sinks {
   logger: {
     info(message: string): void;
   };
 }
 // @@@SNIPEND
-// @@@SNIPSTART typescript-logger-sink-workflow
 
-const { logger } = wf.proxySinks<LoggerSinks>();
+// @@@SNIPSTART typescript-logger-sink-workflow
+const { logger } = proxySinks<LoggerSinks>();
 
 export async function logSampleWorkflow(): Promise<string> {
   logger.info('Workflow execution started');
