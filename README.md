@@ -193,7 +193,13 @@ npm run format
 npm run lint
 ```
 
-### Upgrading the SDK version
+### Updating to latest SDK version
+
+```sh
+lerna exec -- npm update
+```
+
+### Upgrading the SDK version in `package.json`s
 
 ```sh
 npx zx .scripts/upgrade-versions.mjs 'VERSION_STRING_HERE'
