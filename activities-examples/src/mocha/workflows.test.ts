@@ -24,7 +24,7 @@ describe('example workflow', async function () {
   before(async function () {
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    const env = await TestWorkflowEnvironment.create();
+    const env = await TestWorkflowEnvironment.createTimeSkipping();
 
     const additionalWorkerOptions = isCoverage
       ? {
@@ -48,7 +48,7 @@ describe('example workflow', async function () {
       await runPromise;
       await env.teardown();
     };
-    getClient = () => env.workflowClient;
+    getClient = () => env.client.workflow;
   });
 
   beforeEach(() => {

@@ -1,9 +1,4 @@
-import { ApplicationFailure, proxyActivities } from '@temporalio/workflow';
-import type * as activities from './activities';
-
-const { greet } = proxyActivities<typeof activities>({
-  startToCloseTimeout: '1 minute',
-});
+import { ApplicationFailure } from '@temporalio/workflow';
 
 export async function example(): Promise<void> {
   const random = Math.random();
