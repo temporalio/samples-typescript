@@ -1,13 +1,7 @@
 // @@@SNIPSTART typescript-ejson-converter-impl
-import {
-  EncodingType,
-  errorMessage,
-  METADATA_ENCODING_KEY,
-  Payload,
-  PayloadConverterWithEncoding,
-  str,
-  u8,
-} from '@temporalio/common';
+import { EncodingType, METADATA_ENCODING_KEY, Payload, PayloadConverterWithEncoding } from '@temporalio/common';
+import { errorMessage } from '@temporalio/common/lib/type-helpers';
+import { decode, encode } from '@temporalio/common/lib/encoding';
 import { PayloadConverterError } from '@temporalio/internal-workflow-common';
 import EJSON from 'ejson';
 
@@ -34,16 +28,16 @@ export class EjsonPayloadConverter implements PayloadConverterWithEncoding {
 
     return {
       metadata: {
-        [METADATA_ENCODING_KEY]: u8('json/plain'),
+        [METADATA_ENCODING_KEY]: encode('json/plain'),
         // Include an additional metadata field to indicate that this is an EJSON payload
-        format: u8('extended'),
+        format: encode('extended'),
       },
-      data: u8(ejson),
+      data: encode(ejson),
     };
   }
 
   public fromPayload<T>(content: Payload): T {
-    return content.data ? EJSON.parse(str(content.data)) : content.data;
+    return content.data ? EJSON.parse(decode(content.data)) : content.data;
   }
 }
 
