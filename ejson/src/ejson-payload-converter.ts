@@ -1,9 +1,8 @@
 // @@@SNIPSTART typescript-ejson-converter-impl
 import { EncodingType, METADATA_ENCODING_KEY, Payload, PayloadConverterWithEncoding } from '@temporalio/common';
-import { errorMessage } from '@temporalio/common/lib/type-helpers';
-import { decode, encode } from '@temporalio/common/lib/encoding';
 import { PayloadConverterError } from '@temporalio/internal-workflow-common';
 import EJSON from 'ejson';
+import { decode, encode } from 'fastestsmallesttextencoderdecoder';
 
 /**
  * Converts between values and [EJSON](https://docs.meteor.com/api/ejson.html) Payloads.
@@ -49,3 +48,13 @@ export class UnsupportedEjsonTypeError extends PayloadConverterError {
   }
 }
 // @@@SNIPEND
+
+export function errorMessage(error: unknown): string | undefined {
+  if (typeof error === 'string') {
+    return error;
+  }
+  if (error instanceof Error) {
+    return error.message;
+  }
+  return undefined;
+}
