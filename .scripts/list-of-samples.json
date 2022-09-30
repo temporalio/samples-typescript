@@ -18,7 +18,7 @@
     "hello-world-mtls",
     "instrumentation",
     "interceptors-opentelemetry",
-    "logging-sinks",
+    "sinks",
     "monorepo-folders",
     "nextjs-ecommerce-oneclick",
     "patching-api",

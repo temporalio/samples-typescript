@@ -1,5 +1,5 @@
 import { Connection, WorkflowClient } from '@temporalio/client';
-import { logSampleWorkflow } from './workflows';
+import { sinkWorkflow } from './workflows';
 
 async function run() {
   const connection = await Connection.connect(); // Connect to localhost with default ConnectionOptions.
@@ -12,8 +12,8 @@ async function run() {
   });
 
   // Invoke the `example` Workflow, only resolved when the workflow completes
-  const result = await client.execute(logSampleWorkflow, {
-    taskQueue: 'logging-sinks',
+  const result = await client.execute(sinkWorkflow, {
+    taskQueue: 'sinks',
     workflowId: 'log-sample-0',
   });
   console.log(result); // Hello, Temporal!

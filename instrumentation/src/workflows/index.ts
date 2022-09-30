@@ -1,8 +1,10 @@
-import * as wf from '@temporalio/workflow';
-import { logger } from './logger';
+import { LoggerSinks, proxyActivities, proxySinks } from '@temporalio/workflow';
 import type * as activities from '../activities';
+import { logger } from './logger';
 
-const { greet } = wf.proxyActivities<typeof activities>({
+const { defaultWorkerLogger: logger } = proxySinks<LoggerSinks>();
+
+const { greet } = proxyActivities<typeof activities>({
   startToCloseTimeout: '5 minutes',
 });
 

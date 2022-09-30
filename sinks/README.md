@@ -1,6 +1,6 @@
-# Logging Sinks demo
+# Sinks
 
-This project demonstrates the Sinks API for logging.
+This project demonstrates the Sinks API for alerting.
 
 The [Logging docs](https://docs.temporal.io/typescript/logging/) explains some of the code in this sample.
 
