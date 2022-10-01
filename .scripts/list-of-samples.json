@@ -30,7 +30,8 @@
     "saga",
     "search-attributes",
     "signals-queries",
-    "sync-update",
+    "snippets",
+    "state",
     "timer-examples",
     "timer-progress"
   ]

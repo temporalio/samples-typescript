@@ -8,6 +8,10 @@ import sinon from 'sinon';
 import { v4 as uuid } from 'uuid';
 import * as activities from '../activities';
 import { httpWorkflow } from '../workflows';
+import { WorkflowCoverage } from '@temporalio/nyc-test-coverage';
+
+const workflowCoverage = new WorkflowCoverage();
+const isCoverage = '__coverage__' in global;
 
 describe('example workflow', async function () {
   let shutdown: () => Promise<void>;
@@ -20,12 +24,22 @@ describe('example workflow', async function () {
   before(async function () {
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    const env = await TestWorkflowEnvironment.create();
+    const env = await TestWorkflowEnvironment.createTimeSkipping();
+
+    const additionalWorkerOptions = isCoverage
+      ? {
+          interceptors: {
+            workflowModules: [workflowCoverage.interceptorModule],
+          },
+          sinks: workflowCoverage.sinks,
+        }
+      : {};
     const worker = await Worker.create({
       connection: env.nativeConnection,
       taskQueue: 'test-activities',
       workflowsPath: require.resolve('../workflows'),
       activities,
+      ...additionalWorkerOptions,
     });
 
     const runPromise = worker.run();
@@ -34,7 +48,7 @@ describe('example workflow', async function () {
       await runPromise;
       await env.teardown();
     };
-    getClient = () => env.workflowClient;
+    getClient = () => env.client.workflow;
   });
 
   beforeEach(() => {
@@ -51,6 +65,12 @@ describe('example workflow', async function () {
 
   after(async () => {
     await shutdown();
+  });
+
+  after(() => {
+    if (isCoverage) {
+      workflowCoverage.mergeIntoGlobalCoverage();
+    }
   });
 
   afterEach(() => {

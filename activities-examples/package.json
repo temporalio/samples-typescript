@@ -5,12 +5,13 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
-    "jest": "NODE_OPTIONS=--experimental-vm-modules jest",
+    "jest": "jest",
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "test": "ts-mocha src/mocha/*.test.ts",
     "test.watch": "ts-mocha src/mocha/*.test.ts -w --watch-files src",
+    "test.coverage": "npm run build && nyc instrument lib lib --in-place && nyc --reporter=lcov --reporter=text-summary mocha lib/mocha/*.test.js",
     "workflow": "ts-node src/client.ts"
   },
   "nodemonConfig": {
@@ -23,15 +24,16 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.0.0",
-    "@temporalio/client": "^1.0.0",
-    "@temporalio/worker": "^1.0.0",
-    "@temporalio/workflow": "^1.0.0",
+    "@temporalio/activity": "^1.1.0",
+    "@temporalio/client": "^1.2.0",
+    "@temporalio/worker": "^1.2.0",
+    "@temporalio/workflow": "^1.2.0",
     "axios": "^0.26.0",
     "node-fetch": "2.x"
   },
   "devDependencies": {
-    "@temporalio/testing": "1.0.0",
+    "@temporalio/nyc-test-coverage": "^1.2.0",
+    "@temporalio/testing": "^1.2.0",
     "@tsconfig/node16": "^1.0.0",
     "@types/jest": "^27.5.1",
     "@types/mocha": "8.x",
@@ -47,6 +49,7 @@
     "jest": "^28.1.0",
     "mocha": "8.x",
     "nodemon": "^2.0.12",
+    "nyc": "15.1.0",
     "sinon": "^11.1.2",
     "ts-jest": "^28.0.2",
     "ts-mocha": "^8.0.0",
