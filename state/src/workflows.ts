@@ -1,4 +1,3 @@
-import * as wf from '@temporalio/workflow';
 import { CancellationScope, defineSignal, setHandler } from '@temporalio/workflow';
 
 export const setValueSignal = defineSignal<[string, number]>('setValue');

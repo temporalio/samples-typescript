@@ -15,11 +15,7 @@ beforeAll(async () => {
     logger: new DefaultLogger('WARN', (entry: LogEntry) => console.log(`[${entry.level}]`, entry.message)),
   });
 
-  testEnv = await TestWorkflowEnvironment.create({
-    testServer: {
-      stdio: 'inherit',
-    },
-  });
+  testEnv = await TestWorkflowEnvironment.createTimeSkipping();
 });
 
 afterAll(async () => {
@@ -31,7 +27,7 @@ afterAll(() => {
 });
 
 test('httpWorkflow with mock activity', async () => {
-  const { workflowClient, nativeConnection } = testEnv;
+  const { client, nativeConnection } = testEnv;
   const worker = await Worker.create(
     workflowCoverage.augmentWorkerOptions({
       connection: nativeConnection,
@@ -44,7 +40,7 @@ test('httpWorkflow with mock activity', async () => {
   );
 
   await worker.runUntil(async () => {
-    const result = await workflowClient.execute(httpWorkflow, {
+    const result = await client.workflow.execute(httpWorkflow, {
       workflowId: uuid4(),
       taskQueue: 'test',
     });

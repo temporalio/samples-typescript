@@ -16,7 +16,7 @@ describe('countdownWorkflow', async function () {
   before(async function () {
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    env = await TestWorkflowEnvironment.create();
+    env = await TestWorkflowEnvironment.createTimeSkipping();
   });
 
   after(async () => {
@@ -46,7 +46,7 @@ describe('countdownWorkflow', async function () {
       activities: mockActivities,
     });
     await worker.runUntil(
-      env.workflowClient.execute(processOrderWorkflow, {
+      env.client.workflow.execute(processOrderWorkflow, {
         workflowId: uuid(),
         taskQueue: 'test',
         args: [{ orderProcessingMS: ms('3 days'), sendDelayedEmailTimeoutMS: ms('1 day') }],
@@ -73,7 +73,7 @@ describe('countdownWorkflow', async function () {
       activities,
     });
     await worker.runUntil(
-      env.workflowClient.execute(processOrderWorkflow, {
+      env.client.workflow.execute(processOrderWorkflow, {
         workflowId: uuid(),
         taskQueue: 'test',
         args: [{ orderProcessingMS: ms('3 days'), sendDelayedEmailTimeoutMS: ms('1 day') }],
