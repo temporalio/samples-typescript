@@ -20,7 +20,6 @@
     "interceptors-opentelemetry",
     "logging-sinks",
     "monorepo-folders",
-    "nestjs-counter",
     "nextjs-ecommerce-oneclick",
     "patching-api",
     "production",
