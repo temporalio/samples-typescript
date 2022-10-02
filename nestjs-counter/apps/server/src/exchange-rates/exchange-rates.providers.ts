@@ -1,13 +1,32 @@
 import {
   WorkflowClient,
   WorkflowExecutionAlreadyStartedError,
+  Connection,
+  ConnectionOptions,
 } from '@temporalio/client';
 import { taskQueue } from '@app/shared';
 
 export const exchangeRatesProviders = [
   {
+    provide: 'CONNECTION_CONFIG',
+    useValue: {
+      address: 'localhost',
+    } as ConnectionOptions,
+  },
+  {
+    provide: 'CONNECTION',
+    useFactory: async (config: ConnectionOptions) => {
+      const connection = await Connection.connect(config);
+      return connection;
+    },
+    inject: ['CONNECTION_CONFIG'],
+  },
+  {
     provide: 'WORKFLOW_CLIENT',
-    useValue: new WorkflowClient(),
+    useFactory: (connection: Connection) => {
+      return new WorkflowClient({ connection });
+    },
+    inject: ['CONNECTION'],
   },
   {
     provide: 'EXCHANGE_RATES_WORKFLOW_HANDLE',
