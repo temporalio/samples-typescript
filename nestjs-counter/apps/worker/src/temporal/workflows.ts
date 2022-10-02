@@ -3,8 +3,9 @@ import {
   proxyActivities,
   setHandler,
   sleep,
+  workflowInfo,
 } from '@temporalio/workflow';
-import { ActivitiesService } from '../activities/activities.service';
+import type { ActivitiesService } from '../activities/activities.service';
 // Can't use `@app/shared` here because for some reason Temporal's Webpack
 // build complains that "node_modules/@app/shared" doesn't exist in Jest.
 import {
@@ -16,17 +17,17 @@ const { getExchangeRates } = proxyActivities<ActivitiesService>({
   startToCloseTimeout: '1 minute',
 });
 
-const maxIterations = 10000;
+const maxNumEvents = 10000;
 
 export async function exchangeRatesWorkflow(
-  storedRates: ExchangeRates | null = null,
+  storedRates?: ExchangeRates,
 ): Promise<void> {
-  let rates: ExchangeRates | null = storedRates;
+  let rates = storedRates;
 
   // Register a query handler that allows querying for the current rates
   setHandler(getExchangeRatesQuery, () => rates);
 
-  for (let i = 0; i < maxIterations; ++i) {
+  while (workflowInfo().historyLength < maxNumEvents) {
     // Get the latest rates
     rates = await getExchangeRates();
 

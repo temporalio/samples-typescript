@@ -10,16 +10,15 @@ export const exchangeRatesProviders = [
     useValue: new WorkflowClient(),
   },
   {
-    provide: 'EXCHANGE_RATES_WORKFLOW',
+    provide: 'EXCHANGE_RATES_WORKFLOW_HANDLE',
     useFactory: async (client: WorkflowClient) => {
-      console.log('Starting exchange rates workflow!');
-
       let handle;
       try {
         handle = await client.start('exchangeRatesWorkflow', {
           taskQueue,
           workflowId: 'exchange-rates',
         });
+        console.log('Started new exchange rates workflow');
       } catch (err) {
         if (err instanceof WorkflowExecutionAlreadyStartedError) {
           console.log('Reusing existing exchange rates workflow');
@@ -29,7 +28,6 @@ export const exchangeRatesProviders = [
         }
       }
 
-      console.log('Started exchange rates workflow');
       return handle;
     },
     inject: ['WORKFLOW_CLIENT'],

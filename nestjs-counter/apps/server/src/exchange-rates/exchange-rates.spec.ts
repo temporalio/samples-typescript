@@ -14,7 +14,7 @@ describe('ExchangeRatesService', () => {
     app = await Test.createTestingModule({
       providers: [...exchangeRatesProviders, ExchangeRatesService],
     })
-      .overrideProvider('EXCHANGE_RATES_WORKFLOW')
+      .overrideProvider('EXCHANGE_RATES_WORKFLOW_HANDLE')
       .useValue(handleMock)
       .compile();
   });
