@@ -1,13 +1,16 @@
-import { WorkflowClient } from '@temporalio/client';
-import { unblockSignal } from './workflows';
+import { WorkflowSignalWithStartOptions } from '@temporalio/client';
+
+function getOptions<MySignalArgs extends [any, ...any[]]>(): WorkflowSignalWithStartOptions<MySignalArgs> {
+  return {
+    workflowId: 'test',
+    taskQueue: 'test',
+    signal: 'test',
+    signalArgs: ['interrupted from signalWithStart'],
+  };
+}
 
 async function run(): Promise<void> {
-  const client = new WorkflowClient();
-
-  const handle = client.getHandle('unblock-or-cancel-0');
-
-  await handle.signal(unblockSignal);
-  console.log('unblockSignal sent');
+  const _opts = getOptions<[string]>();
 }
 
 run().catch((err) => {
