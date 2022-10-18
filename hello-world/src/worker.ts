@@ -1,6 +1,8 @@
 // @@@SNIPSTART typescript-hello-worker
 import { Worker } from '@temporalio/worker';
 import * as activities from './activities';
+import { ActivityInboundInterceptor } from './interceptors/activity';
+import { getMetricsSink } from './sinks/metrics';
 
 async function run() {
   // Step 1: Register Workflows and Activities with the Worker and connect to
@@ -9,6 +11,11 @@ async function run() {
     workflowsPath: require.resolve('./workflows'),
     activities,
     taskQueue: 'hello-world',
+    sinks: { ...getMetricsSink(metricsConfig)},
+    interceptors: {
+      activityInbound: [ctx => new ActivityInboundInterceptor(ctx, metrics)],
+      workflowModules: [require.resolve('./interceptors/workflow')],
+    }
   });
   // Worker connects to localhost by default and uses console.error for logging.
   // Customize the Worker by passing more options to create():
