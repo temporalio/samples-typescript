@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "react-scripts start",
+    "start": "DANGEROUSLY_DISABLE_HOST_CHECK=true react-scripts start",
     "test": "react-scripts test",
     "build": "react-scripts build",
     "lint": "react-scripts build",
