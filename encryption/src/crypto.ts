@@ -1,53 +1,36 @@
-import crypto from '@ronomon/crypto-async';
+import { webcrypto as crypto } from 'node:crypto';
 
-const CIPHER = 'aes-256-gcm';
+const CIPHER = 'AES-GCM';
+const IV_LENGTH_BYTES = 12;
+const TAG_LENGTH_BYTES = 16;
 
-export function encrypt(data: Uint8Array, key: Buffer): Promise<Uint8Array> {
-  return new Promise(function (resolve, reject) {
-    const iv = Buffer.alloc(12);
-    const aad = Buffer.alloc(256);
-    const tag = Buffer.alloc(16);
-    // eslint-disable-next-line
-    // @ts-ignore
-    crypto.cipher(
-      CIPHER,
-      crypto.CipherDirection.Encrypt,
-      key,
+export async function encrypt(data: Uint8Array, key: crypto.CryptoKey): Promise<Uint8Array> {
+  const iv = crypto.getRandomValues(new Uint8Array(IV_LENGTH_BYTES));
+  const encrypted = await crypto.subtle.encrypt(
+    {
+      name: CIPHER,
       iv,
-      Buffer.from(data),
-      aad,
-      tag,
-      function (error: Error, encryptedData: Buffer) {
-        if (error) {
-          reject(error);
-        }
-        resolve(encryptedData);
-      }
-    );
-  });
+      tagLength: TAG_LENGTH_BYTES * 8,
+    },
+    key,
+    data
+  );
+
+  return Buffer.concat([iv, new Uint8Array(encrypted)]);
 }
 
-export function decrypt(encryptedData: Uint8Array, key: Buffer): Promise<Uint8Array> {
-  return new Promise(function (resolve, reject) {
-    const iv = Buffer.alloc(12);
-    const aad = Buffer.alloc(256);
-    const tag = Buffer.alloc(16);
-    // eslint-disable-next-line
-    // @ts-ignore
-    crypto.cipher(
-      CIPHER,
-      crypto.CipherDirection.Encrypt,
-      key,
+export async function decrypt(encryptedData: Uint8Array, key: crypto.CryptoKey): Promise<Uint8Array> {
+  const iv = encryptedData.subarray(0, IV_LENGTH_BYTES);
+  const ciphertext = encryptedData.subarray(IV_LENGTH_BYTES);
+  const decrypted = await crypto.subtle.decrypt(
+    {
+      name: CIPHER,
       iv,
-      Buffer.from(encryptedData),
-      aad,
-      tag,
-      function (error: Error, decryptedData: Buffer) {
-        if (error) {
-          reject(error);
-        }
-        resolve(decryptedData);
-      }
-    );
-  });
+      tagLength: TAG_LENGTH_BYTES * 8,
+    },
+    key,
+    ciphertext
+  );
+
+  return new Uint8Array(decrypted);
 }
