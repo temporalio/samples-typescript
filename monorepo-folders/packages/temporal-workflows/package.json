@@ -8,7 +8,8 @@
     "lint": "eslint ."
   },
   "dependencies": {
-    "temporalio": "1.0.0-rc.0"
+    "@temporalio/activity": "^1.0.0",
+    "@temporalio/workflow": "^1.0.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

@@ -7,7 +7,6 @@ const workflowOption = () =>
     ? {
         workflowBundle: {
           codePath: require.resolve('../workflow-bundle.js'),
-          sourceMapPath: require.resolve('../workflow-bundle.js.map'),
         },
       }
     : { workflowsPath: require.resolve('./workflows') };

@@ -5,12 +5,12 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
+    "codec-server": "ts-node src/codec-server.ts",
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow": "ts-node src/client.ts",
-    "codec-server": "ts-node src/codec-server.ts",
-    "sample": "ts-node src/sample.ts"
+    "codec-server": "ts-node src/codec-server.ts"
   },
   "nodemonConfig": {
     "execMap": {
@@ -23,10 +23,14 @@
   },
   "dependencies": {
     "@ronomon/crypto-async": "^5.0.1",
+    "@temporalio/activity": "^1.0.0",
+    "@temporalio/client": "^1.0.0",
+    "@temporalio/worker": "^1.0.0",
+    "@temporalio/workflow": "^1.0.0",
+    "@temporalio/common": "^1.0.0",
     "cors": "^2.8.5",
     "ejson": "^2.2.2",
     "express": "^4.18.0",
-    "temporalio": "1.0.0-rc.0",
     "uuid": "^8.3.2",
     "yargs": "^16.2.0"
   },

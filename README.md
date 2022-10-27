@@ -96,8 +96,9 @@ and you'll be given the list of sample options.
 #### Activity APIs and design patterns
 
 - [**Activities Examples**](https://github.com/temporalio/samples-typescript/tree/main/activities-examples):
-  - `makeHTTPRequest`: Make an external HTTP request in an Activity (using `axios`)
+  - `makeHTTPRequest`: Make an external HTTP request in an Activity (using `axios`).
   - `cancellableFetch`: Make a cancellable HTTP request with [`cancellationSignal`](https://typescript.temporal.io/api/classes/activity.context/#cancellationsignal).
+  - `doSomethingAsync`: Complete an Activity async with [`AsyncCompletionClient`](https://typescript.temporal.io/api/classes/client.AsyncCompletionClient#complete).
 - [**Activity Cancellation and Heartbeating**](https://github.com/temporalio/samples-typescript/tree/main/activities-cancellation-heartbeating): Heartbeat progress for long running activities and cancel them.
 - [**Dependency Injection**](https://github.com/temporalio/samples-typescript/tree/main/activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities).
 - [**Sticky Activities**](https://github.com/temporalio/samples-typescript/tree/main/activities-sticky-queues): Use a unique task queue per Worker to have certain Activities only run on that specific Worker. For instance for a file processing Workflow, where the first Activity is downloading a file, and subsequent Activities need to operate on that file. (And if multiple Workers are on the same queue, subsequent Activities may be run on a different machine that doesn't have the downloaded file.)
@@ -111,11 +112,12 @@ and you'll be given the list of sample options.
     - Create an `UpdatableTimer` that can be slept on, and at the same time, have its duration updated via Signals.
 - **Signals and Triggers**:
   - The [**Signals and Queries example**](https://github.com/temporalio/samples-typescript/tree/main/signals-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
+  - [**State**](https://github.com/temporalio/samples-typescript/tree/main/state): The Workflow maintains state in a `Map<string, number>`, and the state can be updated and read via a Signal and a Query.
   - **Async activity completion**: Example of an [**Expense reporting**](https://github.com/temporalio/samples-typescript/tree/main/expense) Workflow that communicates with a server API. Shows how to kick off a Workflow and manually complete it at an arbitrarily later date.
 - [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): Schedule a cron job.
 - [**Child Workflows**](https://github.com/temporalio/samples-typescript/tree/main/child-workflows): Start and control Child Workflows.
 - [**Infinite Workflows**](https://github.com/temporalio/samples-typescript/tree/main/continue-as-new): Use the `continueAsNew` API for indefinitely long running Workflows.
-- [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): Set up Search Attributes (an experimental feature for now).
+- [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): Create, set, upsert, and read Search Attributes.
 - [**Subscriptions**](https://github.com/temporalio/subscription-workflow-project-template-typescript/)
 
 #### Production APIs
@@ -191,14 +193,17 @@ npm run format
 npm run lint
 ```
 
-### Upgrading the SDK version
+### Updating to latest SDK version
 
 ```sh
-shopt -s extglob
-for f in !(monorepo-folders)/package.json; do jq '.dependencies.temporalio = "NEW_VERSION_HERE"' $f | sponge $f; done
-jq '.devDependencies."@temporalio/client" = "NEW_VERSION_HERE"' package.json | sponge package.json;
-jq '.dependencies."@temporalio/interceptors-opentelemetry" = "NEW_VERSION_HERE"' interceptors-opentelemetry/package.json | sponge interceptors-opentelemetry/package.json;
-for f in monorepo-folders/packages/!(frontend-ui)/package.json; do jq '.dependencies.temporalio = "NEW_VERSION_HERE"' $f | sponge $f; done
+lerna exec -- npm update
+```
+
+### Upgrading the SDK version in `package.json`s
+
+```sh
+npx zx .scripts/upgrade-versions.mjs 'VERSION_STRING_HERE'
+npm run format
 ```
 
 ### Config files

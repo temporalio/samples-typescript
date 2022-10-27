@@ -7,18 +7,6 @@ import { v4 as uuid } from 'uuid';
 import type { createActivities } from '../activities';
 import { processOrderWorkflow } from '../workflows';
 
-async function withWorker<R>(worker: Worker, fn: () => Promise<R>): Promise<R> {
-  const runAndShutdown = async () => {
-    try {
-      return await fn();
-    } finally {
-      worker.shutdown();
-    }
-  };
-  const [_, ret] = await Promise.all([worker.run(), runAndShutdown()]);
-  return ret;
-}
-
 describe('countdownWorkflow', async function () {
   let env: TestWorkflowEnvironment;
 
@@ -28,21 +16,23 @@ describe('countdownWorkflow', async function () {
   before(async function () {
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    env = await TestWorkflowEnvironment.create();
+    env = await TestWorkflowEnvironment.createTimeSkipping();
   });
 
   after(async () => {
     await env.teardown();
   });
 
-  it('sends reminder email if processing does not complete in time', async () => {
-    // NOTE: this tests doesn't actually take days to complete, the test environment starts a test
-    // server that automatically skips time when there are no running activities.
+  // @@@SNIPSTART typescript-timer-reminder-test
+  it('sends reminder email if processOrder does not complete in time', async () => {
+    // This test doesn't actually take days to complete: the TestWorkflowEnvironment starts the
+    // Test Server, which automatically skips time when there are no running Activities.
     let emailSent = false;
-    const activities: ReturnType<typeof createActivities> = {
+    const mockActivities: ReturnType<typeof createActivities> = {
       async processOrder() {
-        // Test server switches to "normal" time while an activity is executing.
-        // Call `sleep` to skip time by "2 days".
+        // Test server switches to "normal" time while an Activity is executing.
+        // Call `env.sleep` to skip ahead 2 days, by which time sendNotificationEmail
+        // should have been called.
         await env.sleep('2 days');
       },
       async sendNotificationEmail() {
@@ -53,17 +43,18 @@ describe('countdownWorkflow', async function () {
       connection: env.nativeConnection,
       taskQueue: 'test',
       workflowsPath: require.resolve('../workflows'),
-      activities,
+      activities: mockActivities,
     });
-    await withWorker(worker, async () => {
-      await env.workflowClient.execute(processOrderWorkflow, {
+    await worker.runUntil(
+      env.client.workflow.execute(processOrderWorkflow, {
         workflowId: uuid(),
         taskQueue: 'test',
         args: [{ orderProcessingMS: ms('3 days'), sendDelayedEmailTimeoutMS: ms('1 day') }],
-      });
-    });
+      })
+    );
     assert.ok(emailSent);
   });
+  // @@@SNIPEND
 
   it("doesn't send reminder email if processing completes in time", async () => {
     let emailSent = false;
@@ -81,13 +72,13 @@ describe('countdownWorkflow', async function () {
       workflowsPath: require.resolve('../workflows'),
       activities,
     });
-    await withWorker(worker, async () => {
-      await env.workflowClient.execute(processOrderWorkflow, {
+    await worker.runUntil(
+      env.client.workflow.execute(processOrderWorkflow, {
         workflowId: uuid(),
         taskQueue: 'test',
         args: [{ orderProcessingMS: ms('3 days'), sendDelayedEmailTimeoutMS: ms('1 day') }],
-      });
-    });
+      })
+    );
     assert.equal(emailSent, false);
   });
 });
