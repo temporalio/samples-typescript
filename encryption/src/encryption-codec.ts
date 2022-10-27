@@ -1,4 +1,5 @@
 // @@@SNIPSTART typescript-encryption-codec
+import { webcrypto as crypto } from 'node:crypto';
 import { METADATA_ENCODING_KEY, Payload, PayloadCodec, str, u8, ValueError } from '@temporalio/common';
 import { temporal } from '@temporalio/proto';
 import { decrypt, encrypt } from './crypto';
@@ -7,10 +8,10 @@ const ENCODING = 'binary/encrypted';
 const METADATA_ENCRYPTION_KEY_ID = 'encryption-key-id';
 
 export class EncryptionCodec implements PayloadCodec {
-  constructor(protected readonly keys: Map<string, Buffer>, protected readonly defaultKeyId: string) {}
+  constructor(protected readonly keys: Map<string, crypto.CryptoKey>, protected readonly defaultKeyId: string) {}
 
   static async create(keyId: string): Promise<EncryptionCodec> {
-    const keys = new Map<string, Buffer>();
+    const keys = new Map<string, crypto.CryptoKey>();
     keys.set(keyId, await fetchKey(keyId));
     return new this(keys, keyId);
   }
@@ -60,9 +61,20 @@ export class EncryptionCodec implements PayloadCodec {
   }
 }
 
-async function fetchKey(_keyId: string): Promise<Buffer> {
+async function fetchKey(_keyId: string): Promise<crypto.CryptoKey> {
   // In production, fetch key from a key management system (KMS). You may want to memoize requests if you'll be decoding
   // Payloads that were encrypted using keys other than defaultKeyId.
-  return Buffer.from('test-key-test-key-test-key-test!');
+  const key = Buffer.from('test-key-test-key-test-key-test!');
+  const cryptoKey = await crypto.subtle.importKey(
+    'raw',
+    key,
+    {
+      name: 'AES-GCM',
+    },
+    true,
+    ['encrypt', 'decrypt']
+  );
+
+  return cryptoKey;
 }
 // @@@SNIPEND
