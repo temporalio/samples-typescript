@@ -45,11 +45,11 @@ function toJSON({ metadata, data }: proto.temporal.api.common.v1.IPayload): JSON
   };
 }
 
-async function main({ port = 8888, origin = 'http://localhost:8080' }: any) {
+async function main({ port = 8888 }: any) {
   const codec = await EncryptionCodec.create('test-key-id');
 
   const app = express();
-  app.use(cors({ origin, allowedHeaders: ['x-namespace', 'content-type'] }));
+  app.use(cors({ allowedHeaders: ['x-namespace', 'content-type'] }));
   app.use(express.json());
 
   app.post('/decode', async (req, res) => {
