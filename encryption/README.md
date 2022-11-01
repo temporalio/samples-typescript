@@ -8,12 +8,14 @@ Create a custom data converter that encrypts data with AES. See [encryption docs
 - Data Converter: [data-converter.ts](./src/data-converter.ts)
 - Codec Server: [codec-server.ts](./src/codec-server.ts)
 
-  In order to view the decrypted payloads in the web UI:
-
   - Run the Codec Server with `npm run codec-server`, it will listen to port 8888.
-  - Add this environment variable to the web UI server: `TEMPORAL_CODEC_ENDPOINT=http://localhost:8888`
 
-  In order to encrypt payloads with `tctl`, pass the following option when running the CLI:
+  To view the decrypted payloads in the web UI:
+
+  - Click the `Configure data encoder` icon on the bottom left, and set `http://localhost:8888` as the `Remote Codec Endpoint`.
+  - Or add this environment variable to the web UI server: `TEMPORAL_CODEC_ENDPOINT=http://localhost:8888`.
+
+  To encrypt payloads with `tctl`, pass the following option:
 
   - `tctl --codec_endpoint 'http://localhost:8888' ...`
 
