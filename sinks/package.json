@@ -1,5 +1,5 @@
 {
-  "name": "temporal-logging-sinks",
+  "name": "temporal-sinks",
   "version": "0.1.0",
   "private": true,
   "scripts": {

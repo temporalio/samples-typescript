@@ -1,11 +1,14 @@
 // @@@SNIPSTART typescript-workflow-logging-interceptor
 import {
-  WorkflowInterceptorsFactory,
-  WorkflowInboundCallsInterceptor,
-  WorkflowExecuteInput,
+  LoggerSinks,
   Next,
+  proxySinks,
+  WorkflowExecuteInput,
+  WorkflowInboundCallsInterceptor,
+  WorkflowInterceptorsFactory,
 } from '@temporalio/workflow';
-import { logger } from './logger';
+
+const { defaultWorkerLogger: logger } = proxySinks<LoggerSinks>();
 
 /** Logs Workflow executions and their duration */
 class WorkflowInboundLogInterceptor implements WorkflowInboundCallsInterceptor {
