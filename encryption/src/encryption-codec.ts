@@ -1,16 +1,20 @@
+// TODO switch to this once this is merged: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/63028
+// import { decode, encode } from 'fastestsmallesttextencoderdecoder';
 // @@@SNIPSTART typescript-encryption-codec
-import { METADATA_ENCODING_KEY, Payload, PayloadCodec, str, u8, ValueError } from '@temporalio/common';
+import { webcrypto as crypto } from 'node:crypto';
+import { METADATA_ENCODING_KEY, Payload, PayloadCodec, ValueError } from '@temporalio/common';
 import { temporal } from '@temporalio/proto';
+import { decode, encode } from '@temporalio/common/lib/encoding';
 import { decrypt, encrypt } from './crypto';
 
 const ENCODING = 'binary/encrypted';
 const METADATA_ENCRYPTION_KEY_ID = 'encryption-key-id';
 
 export class EncryptionCodec implements PayloadCodec {
-  constructor(protected readonly keys: Map<string, Buffer>, protected readonly defaultKeyId: string) {}
+  constructor(protected readonly keys: Map<string, crypto.CryptoKey>, protected readonly defaultKeyId: string) {}
 
   static async create(keyId: string): Promise<EncryptionCodec> {
-    const keys = new Map<string, Buffer>();
+    const keys = new Map<string, crypto.CryptoKey>();
     keys.set(keyId, await fetchKey(keyId));
     return new this(keys, keyId);
   }
@@ -19,12 +23,12 @@ export class EncryptionCodec implements PayloadCodec {
     return Promise.all(
       payloads.map(async (payload) => ({
         metadata: {
-          [METADATA_ENCODING_KEY]: u8(ENCODING),
-          [METADATA_ENCRYPTION_KEY_ID]: u8(this.defaultKeyId),
+          [METADATA_ENCODING_KEY]: encode(ENCODING),
+          [METADATA_ENCRYPTION_KEY_ID]: encode(this.defaultKeyId),
         },
         // Encrypt entire payload, preserving metadata
         data: await encrypt(
-          temporal.api.common.v1.Payload.encodeDelimited(payload).finish(),
+          temporal.api.common.v1.Payload.encode(payload).finish(),
           this.keys.get(this.defaultKeyId)! // eslint-disable-line @typescript-eslint/no-non-null-assertion
         ),
       }))
@@ -34,7 +38,7 @@ export class EncryptionCodec implements PayloadCodec {
   async decode(payloads: Payload[]): Promise<Payload[]> {
     return Promise.all(
       payloads.map(async (payload) => {
-        if (!payload.metadata || str(payload.metadata[METADATA_ENCODING_KEY]) !== ENCODING) {
+        if (!payload.metadata || decode(payload.metadata[METADATA_ENCODING_KEY]) !== ENCODING) {
           return payload;
         }
         if (!payload.data) {
@@ -46,7 +50,7 @@ export class EncryptionCodec implements PayloadCodec {
           throw new ValueError('Unable to decrypt Payload without encryption key id');
         }
 
-        const keyId = str(keyIdBytes);
+        const keyId = decode(keyIdBytes);
         let key = this.keys.get(keyId);
         if (!key) {
           key = await fetchKey(keyId);
@@ -54,15 +58,26 @@ export class EncryptionCodec implements PayloadCodec {
         }
         const decryptedPayloadBytes = await decrypt(payload.data, key);
         console.log('Decrypting payload.data:', payload.data);
-        return temporal.api.common.v1.Payload.decodeDelimited(decryptedPayloadBytes);
+        return temporal.api.common.v1.Payload.decode(decryptedPayloadBytes);
       })
     );
   }
 }
 
-async function fetchKey(_keyId: string): Promise<Buffer> {
+async function fetchKey(_keyId: string): Promise<crypto.CryptoKey> {
   // In production, fetch key from a key management system (KMS). You may want to memoize requests if you'll be decoding
   // Payloads that were encrypted using keys other than defaultKeyId.
-  return Buffer.from('test-key-test-key-test-key-test!');
+  const key = Buffer.from('test-key-test-key-test-key-test!');
+  const cryptoKey = await crypto.subtle.importKey(
+    'raw',
+    key,
+    {
+      name: 'AES-GCM',
+    },
+    true,
+    ['encrypt', 'decrypt']
+  );
+
+  return cryptoKey;
 }
 // @@@SNIPEND
