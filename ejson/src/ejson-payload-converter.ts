@@ -1,10 +1,14 @@
-// TODO switch to this once this is merged: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/63028
-// import { decode, encode } from 'fastestsmallesttextencoderdecoder';
 // @@@SNIPSTART typescript-ejson-converter-impl
-import { EncodingType, METADATA_ENCODING_KEY, Payload, PayloadConverterWithEncoding } from '@temporalio/common';
-import { PayloadConverterError } from '@temporalio/internal-workflow-common';
+import {
+  EncodingType,
+  METADATA_ENCODING_KEY,
+  Payload,
+  PayloadConverterError,
+  PayloadConverterWithEncoding,
+} from '@temporalio/common';
 import EJSON from 'ejson';
-import { decode, encode } from '@temporalio/common/lib/encoding';
+import * as encoder from 'fastestsmallesttextencoderdecoder';
+console.log('encoder:', encoder);
 
 /**
  * Converts between values and [EJSON](https://docs.meteor.com/api/ejson.html) Payloads.
@@ -29,16 +33,16 @@ export class EjsonPayloadConverter implements PayloadConverterWithEncoding {
 
     return {
       metadata: {
-        [METADATA_ENCODING_KEY]: encode('json/plain'),
+        [METADATA_ENCODING_KEY]: encoder.encode('json/plain'),
         // Include an additional metadata field to indicate that this is an EJSON payload
-        format: encode('extended'),
+        format: encoder.encode('extended'),
       },
-      data: encode(ejson),
+      data: encoder.encode(ejson),
     };
   }
 
   public fromPayload<T>(content: Payload): T {
-    return content.data ? EJSON.parse(decode(content.data)) : content.data;
+    return content.data ? EJSON.parse(encoder.decode(content.data)) : content.data;
   }
 }
 
