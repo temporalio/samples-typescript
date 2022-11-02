@@ -1,7 +1,10 @@
+// TODO switch to this once this is merged: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/63028
+// import { decode, encode } from 'fastestsmallesttextencoderdecoder';
 // @@@SNIPSTART typescript-encryption-codec
 import { webcrypto as crypto } from 'node:crypto';
-import { METADATA_ENCODING_KEY, Payload, PayloadCodec, str, u8, ValueError } from '@temporalio/common';
+import { METADATA_ENCODING_KEY, Payload, PayloadCodec, ValueError } from '@temporalio/common';
 import { temporal } from '@temporalio/proto';
+import { decode, encode } from '@temporalio/common/lib/encoding';
 import { decrypt, encrypt } from './crypto';
 
 const ENCODING = 'binary/encrypted';
@@ -20,8 +23,8 @@ export class EncryptionCodec implements PayloadCodec {
     return Promise.all(
       payloads.map(async (payload) => ({
         metadata: {
-          [METADATA_ENCODING_KEY]: u8(ENCODING),
-          [METADATA_ENCRYPTION_KEY_ID]: u8(this.defaultKeyId),
+          [METADATA_ENCODING_KEY]: encode(ENCODING),
+          [METADATA_ENCRYPTION_KEY_ID]: encode(this.defaultKeyId),
         },
         // Encrypt entire payload, preserving metadata
         data: await encrypt(
@@ -35,7 +38,7 @@ export class EncryptionCodec implements PayloadCodec {
   async decode(payloads: Payload[]): Promise<Payload[]> {
     return Promise.all(
       payloads.map(async (payload) => {
-        if (!payload.metadata || str(payload.metadata[METADATA_ENCODING_KEY]) !== ENCODING) {
+        if (!payload.metadata || decode(payload.metadata[METADATA_ENCODING_KEY]) !== ENCODING) {
           return payload;
         }
         if (!payload.data) {
@@ -47,7 +50,7 @@ export class EncryptionCodec implements PayloadCodec {
           throw new ValueError('Unable to decrypt Payload without encryption key id');
         }
 
-        const keyId = str(keyIdBytes);
+        const keyId = decode(keyIdBytes);
         let key = this.keys.get(keyId);
         if (!key) {
           key = await fetchKey(keyId);
