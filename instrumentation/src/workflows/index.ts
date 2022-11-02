@@ -1,6 +1,5 @@
 import { LoggerSinks, proxyActivities, proxySinks } from '@temporalio/workflow';
 import type * as activities from '../activities';
-import { logger } from './logger';
 
 const { defaultWorkerLogger: logger } = proxySinks<LoggerSinks>();
 

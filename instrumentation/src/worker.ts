@@ -1,13 +1,12 @@
 import {
-  Runtime,
+  appendDefaultInterceptors,
   DefaultLogger,
   defaultSinks,
-  Worker,
   Logger,
-  InjectedSinks,
   LogLevel,
   LogMetadata,
-  appendDefaultInterceptors,
+  Runtime,
+  Worker,
 } from '@temporalio/worker';
 import * as activities from './activities';
 import { ActivityInboundLogInterceptor } from './activities/interceptors';
