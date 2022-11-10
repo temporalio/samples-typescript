@@ -33,6 +33,6 @@
   },
   "dependencies": {
     "doctoc": "^2.1.0",
-    "lerna": "^5.0.0"
+    "lerna": "^6.0.0"
   }
 }
