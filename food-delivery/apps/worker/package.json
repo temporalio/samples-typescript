@@ -1,0 +1,36 @@
+{
+  "name": "worker",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "dev": "nodemon src/worker.ts",
+    "lint": "eslint .",
+    "start": "node lib/worker.js"
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
+  "dependencies": {
+    "@temporalio/activity": "^1.0.0",
+    "@temporalio/worker": "^1.0.0",
+    "@temporalio/workflow": "^1.0.0",
+    "common": "*",
+    "workflows": "*"
+  },
+  "devDependencies": {
+    "@types/node": "^16.11.43",
+    "eslint-config-custom": "*",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.8.1",
+    "tsconfig": "*",
+    "typescript": "^4.4.2"
+  }
+}
