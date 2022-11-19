@@ -16,6 +16,7 @@
     "@temporalio/proto": "^1.4.4",
     "@trpc/client": "^10.0.0-rc.8",
     "@trpc/next": "^10.0.0-rc.8",
+    "@trpc/react-query": "^10.0.0-rc.8",
     "@trpc/server": "^10.0.0-rc.8",
     "common": "*",
     "next": "^13.0.0",
