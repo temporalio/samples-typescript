@@ -1,44 +1,15 @@
 import Image from 'next/image'
-import { Order, Product as ProductType, products } from 'common'
-import { useState } from 'react'
-import { Product } from 'ui'
-import { v4 as uuid } from 'uuid'
-import { trpc } from '../utils/trpc'
-import { OrderList } from '../components/OrderList'
+import { OrderTable } from '../components/OrderTable'
 
-const navigation = [
-  { name: 'Solutions', href: '#' },
-  { name: 'Pricing', href: '#' },
-  { name: 'Docs', href: '#' },
-  { name: 'Company', href: '#' },
-]
-
-export default function CustomerApp() {
-  const [orders, setOrders] = useState<Order[]>([])
-  const [lastProductOrdered, setLastProductOrdered] = useState<ProductType>()
-
-  const order = trpc.order.useMutation()
-
-  async function onOrder(product: ProductType) {
-    setLastProductOrdered(product)
-    const orderId = uuid()
-    order.mutate(
-      { productId: product.id, orderId },
-      {
-        onSuccess: () => {
-          setOrders([{ id: orderId, product, createdAt: new Date() }, ...orders])
-        },
-      }
-    )
-  }
-
+export default function DriverApp() {
   return (
-    <div className="bg-slate-100">
+    <div className="bg-white">
       <header className="bg-green-600 text-white">
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
           <div className="flex w-full items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
             <div className="flex items-center">
               <Image
+                priority
                 src="/logo.png"
                 alt="Durable Delivery logo"
                 width="512"
@@ -61,33 +32,14 @@ export default function CustomerApp() {
               the durable execution system
             </div>
           </div>
-          <div className="flex flex-wrap justify-center space-x-6 py-4 lg:hidden">
-            {navigation.map((link) => (
-              <a key={link.name} href={link.href} className="text-base font-medium text-white hover:text-indigo-50">
-                {link.name}
-              </a>
-            ))}
-          </div>
         </nav>
       </header>
       <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
-        <h2 className="text-center text-4xl font-bold text-gray-900" id="app-name">
-          Today’s Menu
+        <h2 className="mb-24 text-center text-4xl font-bold text-gray-900" id="app-name">
+          Driver Portal
         </h2>
 
-        <div className="mt-24 grid grid-cols-1 gap-y-12 sm:grid-cols-2 sm:gap-x-6 lg:grid-cols-4 xl:gap-x-8">
-          {products.map((product) => (
-            <Product
-              key={product.id}
-              product={product}
-              onOrder={onOrder}
-              disabled={order.isLoading}
-              loading={order.isLoading && lastProductOrdered?.id === product.id}
-            />
-          ))}
-        </div>
-
-        <OrderList orders={orders} onOrder={onOrder} />
+        <OrderTable />
       </div>
     </div>
   )

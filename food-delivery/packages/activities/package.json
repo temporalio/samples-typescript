@@ -7,7 +7,9 @@
   "scripts": {
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
-  "dependencies": {},
+  "dependencies": {
+    "common": "*"
+  },
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",

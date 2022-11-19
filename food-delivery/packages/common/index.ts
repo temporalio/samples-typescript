@@ -75,3 +75,21 @@ export const products = [
 export function getProductById(id: number): Product | undefined {
   return products.find((product) => product.id === id)
 }
+
+export function errorMessage(error: unknown): string | undefined {
+  if (typeof error === 'string') {
+    return error
+  }
+  if (error instanceof Error) {
+    return error.message
+  }
+  return undefined
+}
+
+export const statusColors: Record<string, string> = {
+  'Charging card': 'gray',
+  Paid: 'indigo',
+  'Picked up': 'yellow',
+  Delivered: 'green',
+  Failed: 'red',
+}

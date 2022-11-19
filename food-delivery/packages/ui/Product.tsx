@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import type { Product as ProductType } from 'common'
-import Loading from './Loading'
+import { Loading } from './Loading'
 
 interface ProductProps {
   product: ProductType

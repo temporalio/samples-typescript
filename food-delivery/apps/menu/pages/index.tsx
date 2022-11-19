@@ -6,13 +6,6 @@ import { v4 as uuid } from 'uuid'
 import { trpc } from '../utils/trpc'
 import { OrderList } from '../components/OrderList'
 
-const navigation = [
-  { name: 'Solutions', href: '#' },
-  { name: 'Pricing', href: '#' },
-  { name: 'Docs', href: '#' },
-  { name: 'Company', href: '#' },
-]
-
 export default function CustomerApp() {
   const [orders, setOrders] = useState<Order[]>([])
   const [lastProductOrdered, setLastProductOrdered] = useState<ProductType>()
@@ -33,7 +26,7 @@ export default function CustomerApp() {
   }
 
   return (
-    <div className="bg-slate-100">
+    <div className="bg-white">
       <header className="bg-green-600 text-white">
         <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
           <div className="flex w-full items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
@@ -60,13 +53,6 @@ export default function CustomerApp() {
               <br />
               the durable execution system
             </div>
-          </div>
-          <div className="flex flex-wrap justify-center space-x-6 py-4 lg:hidden">
-            {navigation.map((link) => (
-              <a key={link.name} href={link.href} className="text-base font-medium text-white hover:text-indigo-50">
-                {link.name}
-              </a>
-            ))}
           </div>
         </nav>
       </header>

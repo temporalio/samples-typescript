@@ -1,7 +1,6 @@
 import { CheckCircleIcon } from '@heroicons/react/20/solid'
 import { Order as OrderType, Product } from 'common'
 import Image from 'next/image'
-import { Fragment } from 'react'
 import { trpc } from '../utils/trpc'
 
 export function Order({ order, onOrder }: { order: OrderType; onOrder: (product: Product) => void }) {
@@ -62,8 +61,8 @@ export function Order({ order, onOrder }: { order: OrderType; onOrder: (product:
                     <CheckCircleIcon className="h-5 w-5 text-green-500" aria-hidden="true" />
                     <p className="ml-2 text-sm font-medium text-gray-500">
                       Delivered at{' '}
-                      <time dateTime={orderStatus.data?.deliveredAt.toString()}>
-                        {orderStatus.data?.deliveredAt.toLocaleTimeString('en-US')}
+                      <time dateTime={orderStatus.data?.deliveredAt as unknown as string}>
+                        {new Date(orderStatus.data?.deliveredAt).toLocaleTimeString('en-US')}
                       </time>
                     </p>
                   </>
