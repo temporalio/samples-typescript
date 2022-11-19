@@ -146,6 +146,7 @@ and you'll be given the list of sample options.
 
 - **Next.js**:
   - [**One-click e-commerce**](https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
+  - [**Food delivery**](https://github.com/temporalio/samples-typescript/tree/main/food-delivery): Multi-step business process with Signals, Queries, Activities, and timeouts. Turborepo monorepo with 2 Next.js apps and a tRPC API.
 
 ## External apps & libraries
 

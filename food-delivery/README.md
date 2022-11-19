@@ -1,7 +1,14 @@
 # Food Delivery App
 
-- Worker code: [`src/worker.ts`](./src/worker.ts)
-- Workflow build script: [`src/scripts/build-workflow-bundle.ts`](./src/scripts/build-workflow-bundle.ts)
+This sample demonstrates:
+
+- [`packages/workflows/order.ts`](./packages/workflows/order.ts): A food delivery Workflow.
+  - Activity retries and non-retryable failures
+  - Signals and a Query
+  - Timeouts on state changes
+- Turborepo monorepo, with shared packages in [`packages/`](./packages) and 3 apps in [`apps/`](./apps):
+  - [`apps/menu/`](./apps/menu): Customer app with menu and serverless API. Next.js, Tailwind, tRPC.
+  - [`apps/driver/`](./apps/driver): Driver portal for picking up and delivering meals.
 
 ### Running this sample
 
