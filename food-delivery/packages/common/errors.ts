@@ -1,4 +1,4 @@
-type ErrorWithCode = {
+interface ErrorWithCode {
   code: string
 }
 
