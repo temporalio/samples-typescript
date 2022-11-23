@@ -1,9 +1,9 @@
 module.exports = {
   root: true,
-  extends: ["food"],
+  extends: ['food'],
   settings: {
     next: {
-      rootDir: ["apps/*/"],
+      rootDir: ['apps/*/'],
     },
   },
-};
+}

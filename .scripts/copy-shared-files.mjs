@@ -6,16 +6,30 @@ const ADDITIONAL_SAMPLES = [];
 
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
-const TSCONFIG_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'production', 'hello-world-js', 'food-delivery'];
+const TSCONFIG_EXCLUDE = [
+  'nextjs-ecommerce-oneclick',
+  'monorepo-folders',
+  'fetch-esm',
+  'production',
+  'hello-world-js',
+  'food-delivery',
+];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'production',
   'hello-world-js',
   'protobufs',
-  'food-delivery'
+  'food-delivery',
 ];
-const ESLINTRC_EXCLUDE = ['nextjs-ecommerce-oneclick', 'monorepo-folders', 'fetch-esm', 'hello-world-js', 'protobufs', 'food-delivery'];
+const ESLINTRC_EXCLUDE = [
+  'nextjs-ecommerce-oneclick',
+  'monorepo-folders',
+  'fetch-esm',
+  'hello-world-js',
+  'protobufs',
+  'food-delivery',
+];
 const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples', 'food-delivery'];
 
 const POST_CREATE_EXCLUDE = [
@@ -30,10 +44,10 @@ const POST_CREATE_EXCLUDE = [
   'signals-queries',
   'activities-cancellation-heartbeating',
   'replay-history',
-  'food-delivery'
+  'food-delivery',
 ];
 
-const NPMRC_EXCLUDE = [ 'food-delivery' ];
+const NPMRC_EXCLUDE = ['food-delivery'];
 
 const FILES = [
   '.shared/tsconfig.json',
@@ -105,7 +119,7 @@ for (const sample of samples) {
   if (!NPMRC_EXCLUDE.includes(sample)) {
     await copyAndAdd(sample, '.npmrc');
   }
-  
+
   await copyAndAdd(sample, '.nvmrc');
 }
 

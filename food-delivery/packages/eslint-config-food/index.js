@@ -19,7 +19,7 @@ module.exports = {
     'deprecation/deprecation': 'warn',
 
     // forgetting to await Activities and Workflow APIs is bad
-    '@typescript-eslint/no-floating-promises': 'error', 
+    '@typescript-eslint/no-floating-promises': 'error',
 
     // code style preference
     'object-shorthand': ['error', 'always'],

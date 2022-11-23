@@ -1,10 +1,10 @@
-const { builtinModules } = require('module');
+const { builtinModules } = require('module')
 
-const ALLOWED_NODE_BUILTINS = new Set(['assert']);
+const ALLOWED_NODE_BUILTINS = new Set(['assert'])
 
 module.exports = {
   root: true,
-  extends: ["food"],
+  extends: ['food'],
   overrides: [
     {
       files: ['src/workflows.ts', 'src/workflows-*.ts', 'src/workflows/*.ts'],
@@ -16,4 +16,4 @@ module.exports = {
       },
     },
   ],
-};
+}
