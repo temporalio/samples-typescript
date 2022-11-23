@@ -1,37 +1,42 @@
 import { readFileSync } from 'fs'
 import { fileNotFound } from './errors'
 
-const { TEMPORAL_SERVER = 'localhost:7233', NODE_ENV = 'development', NAMESPACE = 'default' } = process.env
-
-export { NAMESPACE as namespace }
-
-const isDeployed = ['production', 'staging'].includes(NODE_ENV)
+export const namespace = process.env.NAMESPACE || 'default'
 
 interface ConnectionOptions {
   address: string
   tls?: { clientCertPair: { crt: Buffer; key: Buffer } }
 }
 
-export const connectionOptions: ConnectionOptions = {
-  address: TEMPORAL_SERVER,
-}
+export function getConnectionOptions(): ConnectionOptions {
+  const { TEMPORAL_SERVER = 'localhost:7233', NODE_ENV = 'development' } = process.env
 
-if (isDeployed) {
-  try {
-    const crt = readFileSync('./certs/server.pem')
-    const key = readFileSync('./certs/server.key')
+  const isDeployed = ['production', 'staging'].includes(NODE_ENV)
 
-    if (crt && key) {
-      connectionOptions.tls = {
-        clientCertPair: {
-          crt,
-          key,
-        },
+  if (isDeployed) {
+    try {
+      const crt = readFileSync('./certs/server.pem')
+      const key = readFileSync('./certs/server.key')
+
+      if (crt && key) {
+        return {
+          address: TEMPORAL_SERVER,
+          tls: {
+            clientCertPair: {
+              crt,
+              key,
+            },
+          },
+        }
+      }
+    } catch (e) {
+      if (!fileNotFound(e)) {
+        throw e
       }
     }
-  } catch (e) {
-    if (!fileNotFound(e)) {
-      throw e
-    }
+  }
+
+  return {
+    address: TEMPORAL_SERVER,
   }
 }

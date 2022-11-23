@@ -10,7 +10,7 @@ import {
 import { errorMessage, getProductById, Product } from 'common'
 import type * as activities from 'activities'
 
-type OrderState = 'Charging card' | 'Paid' | 'Picked up' | 'Delivered'
+type OrderState = 'Charging card' | 'Paid' | 'Picked up' | 'Delivered' | 'Refunding'
 
 export interface OrderStatus {
   productId: number
@@ -25,7 +25,7 @@ export const getStatus = defineQuery<OrderStatus>('getStatus')
 const { chargeCustomer, refundOrder, sendPushNotification } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1m',
   retry: {
-    maximumInterval: '5s',
+    maximumInterval: '5s', // Just for demo purposes. Usually this should be larger.
   },
 })
 
@@ -71,6 +71,7 @@ export async function order(productId: number): Promise<void> {
 
   const notPickedUpInTime = !(await condition(() => state === 'Picked up', '1 min'))
   if (notPickedUpInTime) {
+    state = 'Refunding'
     await refundAndNotify(
       product,
       '⚠️ No drivers were available to pick up your order. Your payment has been refunded.'
@@ -81,6 +82,7 @@ export async function order(productId: number): Promise<void> {
 
   const notDeliveredInTime = !(await condition(() => state === 'Delivered', '1 min'))
   if (notDeliveredInTime) {
+    state = 'Refunding'
     await refundAndNotify(product, '⚠️ Your driver was unable to deliver your order. Your payment has been refunded.')
   }
 

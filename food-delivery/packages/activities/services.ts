@@ -1,4 +1,4 @@
-import { ApplicationFailure } from '@temporalio/activity'
+import { ApplicationFailure, Context } from '@temporalio/activity'
 
 export const notificationService = {
   sendNotification({ type, message }: { type: string; message: string }) {
@@ -12,6 +12,8 @@ export const notificationService = {
 
 export const paymentService = {
   charge(amount: number) {
+    // In a real app, we would pass an idempotency token to the downstream service
+    const _idempotencyToken = Context.current().info.workflowExecution.workflowId
     if (amount >= 35) {
       throw ApplicationFailure.create({ nonRetryable: true, message: 'Card declined: insufficient funds' })
     }
@@ -22,6 +24,8 @@ export const paymentService = {
   },
 
   refund(amount: number) {
+    // In a real app, we would pass an idempotency token to the downstream service
+    const _idempotencyToken = Context.current().info.workflowExecution.workflowId
     if (Math.random() < 0.7) {
       throw new Error('Failed to refund. Unable to reach payment service.')
     }
