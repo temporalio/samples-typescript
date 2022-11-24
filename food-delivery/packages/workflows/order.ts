@@ -90,7 +90,7 @@ export async function order(productId: number): Promise<void> {
 
   await sleep('1 hour')
 
-  await sendPushNotification(`✍️ Rate your meal. How was ${product.name}?`)
+  await sendPushNotification(`✍️ Rate your meal. How was the ${product.name}?`)
 }
 
 async function refundAndNotify(product: Product, message: string) {

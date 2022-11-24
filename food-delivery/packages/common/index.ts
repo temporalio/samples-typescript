@@ -48,7 +48,7 @@ export const products = [
   },
   {
     id: 3,
-    name: 'Potatoes',
+    name: 'Potato',
     description: 'Hasselback potatoes, bell pepper salad',
     image: {
       src: '/potatoes.jpg',
