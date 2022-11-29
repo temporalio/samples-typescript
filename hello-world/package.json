@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-package-json
 {
   "name": "temporal-hello-world",
   "version": "0.1.0",
@@ -39,3 +40,4 @@
     "typescript": "^4.4.2"
   }
 }
+// @@@SNIPEND
