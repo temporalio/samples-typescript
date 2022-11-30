@@ -32,7 +32,7 @@ export const products = [
       width: 1920,
       height: 1920,
     },
-    price: 35,
+    cents: 3500,
   },
   {
     id: 2,
@@ -44,7 +44,7 @@ export const products = [
       width: 1920,
       height: 1920,
     },
-    price: 20,
+    cents: 2000,
   },
   {
     id: 3,
@@ -56,7 +56,7 @@ export const products = [
       width: 1920,
       height: 2400,
     },
-    price: 15,
+    cents: 1500,
   },
   {
     id: 4,
@@ -68,7 +68,7 @@ export const products = [
       width: 1920,
       height: 1920,
     },
-    price: 20,
+    cents: 2000,
   },
 ]
 
