@@ -29,7 +29,7 @@ export const Product = ({ product, disabled, loading, onOrder }: ProductProps) =
         </div>
         <div className="absolute inset-x-0 top-0 flex h-72 items-end justify-end overflow-hidden rounded-lg p-4">
           <div aria-hidden="true" className="absolute inset-x-0 bottom-0 h-36 bg-gradient-to-t from-black opacity-50" />
-          <p className="relative text-lg font-semibold text-white">${product.price}</p>
+          <p className="relative text-lg font-semibold text-white">${product.cents / 100}</p>
         </div>
       </div>
       <div className="mt-6">

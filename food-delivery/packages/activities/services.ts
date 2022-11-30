@@ -11,25 +11,25 @@ export const notificationService = {
 }
 
 export const paymentService = {
-  charge(amount: number) {
+  charge(cents: number) {
     // In a real app, we would pass an idempotency token to the downstream service
     const _idempotencyToken = Context.current().info.workflowExecution.workflowId
-    if (amount >= 35) {
+    if (cents >= 3500) {
       throw ApplicationFailure.create({ nonRetryable: true, message: 'Card declined: insufficient funds' })
     }
     if (Math.random() < 0.7) {
       throw new Error('Failed to charge. Unable to reach payment service.')
     }
-    console.log(`Refunded $${amount}`)
+    console.log(`Refunded $${cents / 100}`)
   },
 
-  refund(amount: number) {
+  refund(cents: number) {
     // In a real app, we would pass an idempotency token to the downstream service
     const _idempotencyToken = Context.current().info.workflowExecution.workflowId
     if (Math.random() < 0.7) {
       throw new Error('Failed to refund. Unable to reach payment service.')
     }
 
-    console.log(`Refunded $${amount}`)
+    console.log(`Refunded $${cents / 100}`)
   },
 }

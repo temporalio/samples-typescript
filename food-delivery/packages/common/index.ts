@@ -12,7 +12,7 @@ export interface Product {
   name: string
   description: string
   image: Image
-  price: number
+  cents: number
 }
 
 export interface Order {

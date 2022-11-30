@@ -6,9 +6,9 @@ export async function sendPushNotification(message: string): Promise<void> {
 }
 
 export async function refundOrder(product: Product): Promise<void> {
-  paymentService.refund(product.price)
+  paymentService.refund(product.cents)
 }
 
 export async function chargeCustomer(product: Product): Promise<void> {
-  paymentService.charge(product.price)
+  paymentService.charge(product.cents)
 }

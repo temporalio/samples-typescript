@@ -48,7 +48,7 @@ export function Order({ order, onOrder }: { order: OrderType; onOrder: (product:
               <div className="ml-6 flex-1 text-sm">
                 <div className="font-medium text-gray-900 sm:flex sm:justify-between">
                   <h5>{product.name}</h5>
-                  <p className="mt-2 sm:mt-0">${product.price}</p>
+                  <p className="mt-2 sm:mt-0">${product.cents / 100}</p>
                 </div>
                 <p className="hidden text-gray-500 sm:mt-2 sm:block">{product.description}</p>
               </div>
