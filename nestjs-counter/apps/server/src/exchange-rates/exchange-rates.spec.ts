@@ -23,6 +23,8 @@ describe('ExchangeRatesService', () => {
 
   describe('ExchangeRatesService', () => {
     it('should return exchange rates', async () => {
+      jest.setTimeout(15_000);
+
       const exchangeRatesService = app.get(ExchangeRatesService);
 
       const rates = await exchangeRatesService.getExchangeRates();
