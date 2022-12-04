@@ -7,6 +7,8 @@ describe('ExchangeRatesService', () => {
   const rates = { AUD: 1.5 };
 
   beforeAll(async () => {
+    jest.setTimeout(15_000);
+
     const handleMock = {
       query: jest.fn(() => rates),
     };
