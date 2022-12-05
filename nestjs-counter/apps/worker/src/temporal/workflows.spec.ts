@@ -14,8 +14,6 @@ describe('example workflow', function () {
   let env: TestWorkflowEnvironment;
 
   beforeAll(async function () {
-    jest.setTimeout(15_000);
-
     const activities = {
       getExchangeRates: () => Promise.resolve({ AUD: 1.27 }),
     };
