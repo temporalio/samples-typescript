@@ -14,6 +14,10 @@ describe('ExchangeRatesService', () => {
     app = await Test.createTestingModule({
       providers: [...exchangeRatesProviders, ExchangeRatesService],
     })
+      .overrideProvider('CONNECTION')
+      .useValue(null)
+      .overrideProvider('WORKFLOW_CLIENT')
+      .useValue(null)
       .overrideProvider('EXCHANGE_RATES_WORKFLOW_HANDLE')
       .useValue(handleMock)
       .compile();
