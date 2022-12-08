@@ -8,9 +8,9 @@ async function run() {
   // @@@SNIPSTART typescript-grpc-call-basic
   const connection = await Connection.connect();
 
-  // // normal way of starting a Workflow, with a WorkflowClient
-  // const client = new WorkflowClient({ connection });
-  // await client.start(/* etc */);
+  // // normal way of starting a Workflow, with a Client
+  // const client = new Client({ connection });
+  // await client.workflow.start(/* etc */);
 
   const payload = defaultPayloadConverter.toPayload('Temporal');
   if (payload == null) {
@@ -25,7 +25,7 @@ async function run() {
     taskQueue: { name: 'grpc-calls' },
     workflowType: { name: 'example' },
     input: {
-      // WorkflowClient passes data through Data Converter to convert to Payloads; with gRPC calls have to do it yourself
+      // Client passes data through Data Converter to convert to Payloads; with gRPC calls have to do it yourself
       // import { defaultPayloadConverter, toPayloads } from '@temporalio/common';
       payloads: [payload],
     },

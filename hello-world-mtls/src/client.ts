@@ -1,7 +1,7 @@
 import fs from 'fs';
 
 // @@@SNIPSTART typescript-mtls-worker
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { Connection, Client } from '@temporalio/client';
 import { example } from './workflows';
 
 /**
@@ -34,9 +34,9 @@ async function run({
       },
     },
   });
-  const client = new WorkflowClient({ connection, namespace });
+  const client = new Client({ connection, namespace });
   // Run example workflow and await its completion
-  const result = await client.execute(example, {
+  const result = await client.workflow.execute(example, {
     taskQueue,
     workflowId: `my-business-id-${Date.now()}`,
     args: ['Temporal'],

@@ -1,10 +1,10 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { calculator, getValueQuery, signals } from './workflows';
 
 async function run() {
-  const client = new WorkflowClient();
+  const client = new Client();
 
-  const handle = await client.start(calculator, {
+  const handle = await client.workflow.start(calculator, {
     taskQueue: 'replay-history',
     workflowId: 'calc',
   });

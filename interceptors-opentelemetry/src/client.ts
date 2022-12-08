@@ -1,9 +1,9 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { Connection, Client } from '@temporalio/client';
 import { Resource } from '@opentelemetry/resources';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
 import { NodeSDK } from '@opentelemetry/sdk-node';
-import { OpenTelemetryWorkflowClientCallsInterceptor } from '@temporalio/interceptors-opentelemetry/lib/client';
+import { OpenTelemetryWorkflowClientInterceptor } from '@temporalio/interceptors-opentelemetry';
 import { example } from './workflows';
 
 async function run() {
@@ -18,15 +18,15 @@ async function run() {
   // Connect to localhost with default ConnectionOptions,
   // pass options to the Connection constructor to configure TLS and other settings.
   const connection = await Connection.connect();
-  // Attach the OpenTelemetryWorkflowClientCallsInterceptor to the client.
-  const client = new WorkflowClient({
+  // Attach the OpenTelemetryClientCallsInterceptor to the client.
+  const client = new Client({
     connection,
     interceptors: {
-      calls: [() => new OpenTelemetryWorkflowClientCallsInterceptor()],
+      workflow: [new OpenTelemetryWorkflowClientInterceptor()],
     },
   });
   try {
-    const result = await client.execute(example, {
+    const result = await client.workflow.execute(example, {
       taskQueue: 'interceptors-opentelemetry-example',
       workflowId: 'otel-example-0',
       args: ['Temporal'],

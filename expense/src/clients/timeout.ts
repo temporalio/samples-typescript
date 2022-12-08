@@ -1,11 +1,11 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { expense } from '../workflows';
 
 async function run() {
-  const client = new WorkflowClient();
+  const client = new Client();
 
   const expenseId = 'my-business-id';
-  const result = await client.execute(expense, {
+  const result = await client.workflow.execute(expense, {
     taskQueue: 'expense',
     workflowId: expenseId,
     args: [expenseId, '1s'],

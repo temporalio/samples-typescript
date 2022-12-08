@@ -1,10 +1,10 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { progress, getProgress } from './workflows';
 
 async function run() {
-  const client = new WorkflowClient();
+  const client = new Client();
 
-  const handle = await client.start(progress, { taskQueue: 'timer-progress', workflowId: 'progress-0' });
+  const handle = await client.workflow.start(progress, { taskQueue: 'timer-progress', workflowId: 'progress-0' });
 
   await new Promise((resolve) => setTimeout(resolve, 2000));
   const val = await handle.query(getProgress);

@@ -1,10 +1,10 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { unblockSignal } from './workflows';
 
 async function run(): Promise<void> {
-  const client = new WorkflowClient();
+  const client = new Client();
 
-  const handle = client.getHandle('unblock-or-cancel-0');
+  const handle = client.workflow.getHandle('unblock-or-cancel-0');
 
   await handle.signal(unblockSignal);
   console.log('unblockSignal sent');
