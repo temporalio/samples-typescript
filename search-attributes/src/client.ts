@@ -1,11 +1,11 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { example } from './workflows';
 
 async function run() {
-  const client = new WorkflowClient();
+  const client = new Client();
 
   // @@@SNIPSTART typescript-search-attributes-client
-  const handle = await client.start(example, {
+  const handle = await client.workflow.start(example, {
     taskQueue: 'search-attributes',
     workflowId: 'search-attributes-example-0',
     searchAttributes: {

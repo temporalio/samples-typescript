@@ -1,11 +1,11 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { v4 as uuid } from 'uuid';
 import type { Result, User } from './types';
 import { example } from './workflows';
 
 async function run() {
   // @@@SNIPSTART typescript-ejson-client-setup
-  const client = new WorkflowClient({
+  const client = new Client({
     dataConverter: { payloadConverterPath: require.resolve('./payload-converter') },
   });
   // @@@SNIPEND
@@ -20,7 +20,7 @@ async function run() {
     createdAt: new Date(),
   };
 
-  const handle = await client.start(example, {
+  const handle = await client.workflow.start(example, {
     args: [user],
     taskQueue: 'ejson',
     workflowId: `example-user-${user.id}`,

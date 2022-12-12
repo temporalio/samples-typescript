@@ -1,15 +1,15 @@
 // @@@SNIPSTART typescript-protobuf-client
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { v4 as uuid } from 'uuid';
 import { foo, ProtoResult } from '../protos/root';
 import { example } from './workflows';
 
 async function run() {
-  const client = new WorkflowClient({
+  const client = new Client({
     dataConverter: { payloadConverterPath: require.resolve('./payload-converter') },
   });
 
-  const handle = await client.start(example, {
+  const handle = await client.workflow.start(example, {
     args: [foo.bar.ProtoInput.create({ name: 'Proto', age: 2 })],
     // can't do:
     // args: [new foo.bar.ProtoInput({ name: 'Proto', age: 2 })],

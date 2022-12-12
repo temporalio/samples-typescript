@@ -1,10 +1,10 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { setValueSignal } from './workflows';
 
 async function run(): Promise<void> {
-  const client = new WorkflowClient();
+  const client = new Client();
 
-  const handle = client.getHandle('state-id-0');
+  const handle = client.workflow.getHandle('state-id-0');
 
   await handle.signal(setValueSignal, 'meaning-of-life', 42);
   console.log('setValueSignal sent');

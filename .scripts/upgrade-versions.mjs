@@ -11,10 +11,12 @@ if (!versionToSet) {
 for (const sample of STORED_SAMPLES) {
   const packagePath = path.join(sample, 'package.json');
   const content = JSON.parse(await fs.readFile(packagePath));
-  const changedDeps = replaceDeps({ content, sample, field: 'dependencies' });
-  const changedDevDeps = replaceDeps({ content, field: 'devDependencies' });
-  if (changedDeps || changedDevDeps) {
-    await fs.writeFile(packagePath, JSON.stringify(content));
+  const changed =
+    replaceDeps({ content, sample, field: 'dependencies' }) ||
+    replaceDeps({ content, sample, field: 'devDependencies' }) ||
+    replaceDeps({ content, sample, field: 'resolutions' });
+  if (changed) {
+    await fs.writeFile(packagePath, JSON.stringify(content, null, 2));
   } else {
     console.log(`Version up to date for ${sample}`);
   }
@@ -22,7 +24,7 @@ for (const sample of STORED_SAMPLES) {
 
 function replaceDeps({ content, sample, field }) {
   let changed = false;
-  for (const [dep, version] of Object.entries(content[field])) {
+  for (const [dep, version] of Object.entries(content[field] ?? {})) {
     if (dep.startsWith('@temporalio/')) {
       if (version !== versionToSet) {
         content[field][dep] = versionToSet;

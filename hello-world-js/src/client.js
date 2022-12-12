@@ -1,4 +1,4 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { Connection, Client } from '@temporalio/client';
 import { example } from './workflows.js';
 
 async function run() {
@@ -9,13 +9,13 @@ async function run() {
     // tls: {} // as provisioned
   });
 
-  const client = new WorkflowClient({
+  const client = new Client({
     connection,
     // namespace: 'default', // change if you have a different namespace
   });
 
   // Invoke the `example` Workflow, only resolved when the workflow completes
-  const result = await client.execute(example, {
+  const result = await client.workflow.execute(example, {
     taskQueue: 'hello-javascript',
     workflowId: 'my-business-id',
     args: ['Temporal'],

@@ -5,6 +5,7 @@ import {
   Logger,
   LogLevel,
   LogMetadata,
+  makeTelemetryFilterString,
   Runtime,
   Worker,
 } from '@temporalio/worker';
@@ -45,14 +46,12 @@ async function main() {
       metrics: {
         prometheus: { bindAddress: '0.0.0.0:9464' },
       },
-      // A string in the env filter format specified here:
-      // https://docs.rs/tracing-subscriber/0.2.20/tracing_subscriber/struct.EnvFilter.html
-      //
-      // Which determines what tracing data is collected in the Core SDK
-      tracingFilter: 'temporal_sdk_core=DEBUG',
-      // What level, if any, logs should be forwarded from Rust Core to the Node.js logger.
       // By default, Core logs go directly to console.
-      logging: { forward: { level: 'DEBUG' } },
+      logging: {
+        // What level, if any, logs should be forwarded from Rust Core to the Node.js logger.
+        filter: makeTelemetryFilterString({ core: 'DEBUG' }),
+        forward: {},
+      },
     },
   });
   // @@@SNIPEND

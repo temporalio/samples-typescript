@@ -1,14 +1,14 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { example } from './workflows';
 import { nanoid } from 'nanoid';
 
 async function run() {
-  const client = new WorkflowClient();
+  const client = new Client();
   const workflowId = 'workflow-' + nanoid();
   const taskQueue = 'snippets';
 
   // @@@SNIPSTART typescript-retry-workflow
-  const handle = await client.start(example, {
+  const handle = await client.workflow.start(example, {
     taskQueue,
     workflowId,
     retry: {
@@ -28,12 +28,12 @@ run().catch((err) => {
 });
 
 async function _snippets() {
-  const client = new WorkflowClient();
+  const client = new Client();
   const workflowId = 'workflow-' + nanoid();
   const taskQueue = 'snippets';
 
   // @@@SNIPSTART typescript-task-timeout
-  await client.start(example, {
+  await client.workflow.start(example, {
     taskQueue,
     workflowId,
     workflowTaskTimeout: '1 minute',
@@ -41,7 +41,7 @@ async function _snippets() {
   // @@@SNIPEND
 
   // @@@SNIPSTART typescript-run-timeout
-  await client.start(example, {
+  await client.workflow.start(example, {
     taskQueue,
     workflowId,
     workflowRunTimeout: '1 minute',
@@ -49,7 +49,7 @@ async function _snippets() {
   // @@@SNIPEND
 
   // @@@SNIPSTART typescript-execution-timeout
-  await client.start(example, {
+  await client.workflow.start(example, {
     taskQueue,
     workflowId,
     workflowExecutionTimeout: '1 day',

@@ -9,8 +9,7 @@
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/client.ts",
-    "codec-server": "ts-node src/codec-server.ts"
+    "workflow": "ts-node src/client.ts"
   },
   "nodemonConfig": {
     "execMap": {
@@ -23,11 +22,11 @@
   },
   "dependencies": {
     "@ronomon/crypto-async": "^5.0.1",
-    "@temporalio/activity": "^1.0.0",
-    "@temporalio/client": "^1.0.0",
-    "@temporalio/common": "^1.0.0",
-    "@temporalio/worker": "^1.0.0",
-    "@temporalio/workflow": "^1.0.0",
+    "@temporalio/activity": "^1.5.2",
+    "@temporalio/client": "^1.5.2",
+    "@temporalio/common": "^1.5.2",
+    "@temporalio/worker": "^1.5.2",
+    "@temporalio/workflow": "^1.5.2",
     "cors": "^2.8.5",
     "ejson": "^2.2.2",
     "express": "^4.18.0",
