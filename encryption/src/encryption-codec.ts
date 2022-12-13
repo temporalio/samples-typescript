@@ -1,5 +1,3 @@
-// TODO switch to this once this is merged: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/63028
-// import { decode, encode } from 'fastestsmallesttextencoderdecoder';
 // @@@SNIPSTART typescript-encryption-codec
 import { webcrypto as crypto } from 'node:crypto';
 import { METADATA_ENCODING_KEY, Payload, PayloadCodec, ValueError } from '@temporalio/common';

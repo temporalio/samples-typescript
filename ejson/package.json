@@ -26,7 +26,6 @@
     "@temporalio/worker": "^1.5.2",
     "@temporalio/workflow": "^1.5.2",
     "ejson": "^2.2.2",
-    "fastestsmallesttextencoderdecoder": "^1.0.22",
     "uuid": "^8.3.2"
   },
   "devDependencies": {

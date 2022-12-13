@@ -1,5 +1,3 @@
-// TODO switch to this once this is merged: https://github.com/DefinitelyTyped/DefinitelyTyped/pull/63028
-// import { decode, encode } from 'fastestsmallesttextencoderdecoder';
 // @@@SNIPSTART typescript-ejson-converter-impl
 import {
   EncodingType,
