@@ -64,15 +64,19 @@ jobs:
           # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
           cache: 'npm'
       - run: npm ci
-      - run: npm install
+      - run: yarn
         working-directory: ${{ matrix.project }}
       - run: npm run build
         working-directory: ${{ matrix.project }}
       - run: npm test
         working-directory: ${{ matrix.project }}
 
-  monorepo-folders-lint:
+  lint-individual:
     runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        project: ['nestjs-counter', 'monorepo-folders']
 
     steps:
       - uses: actions/checkout@v2
@@ -84,8 +88,9 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: yarn
-        working-directory: monorepo-folders
+        working-directory: ${{ project }}
       - run: npm run build
-        working-directory: monorepo-folders
+        working-directory: ${{ project }}
       - run: npm run lint
-        working-directory: monorepo-folders
+        working-directory: ${{ project }}
+    
