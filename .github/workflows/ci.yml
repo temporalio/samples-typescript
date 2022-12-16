@@ -62,7 +62,5 @@ jobs:
         working-directory: monorepo-folders
       - run: npm run build
         working-directory: monorepo-folders
-      - run: npx prettier . --check
-        working-directory: monorepo-folders
-      - run: npm test
+      - run: npm run lint
         working-directory: monorepo-folders
