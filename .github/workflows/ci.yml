@@ -64,8 +64,6 @@ jobs:
           # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
           cache: 'npm'
       - run: npm ci
-      - run: npm run bootstrap
-        working-directory: ${{ matrix.project }}
       - run: npm run build
         working-directory: ${{ matrix.project }}
       - run: npm test
