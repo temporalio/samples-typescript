@@ -88,9 +88,9 @@ jobs:
           cache: 'npm'
       - run: npm ci
       - run: yarn
-        working-directory: ${{ project }}
+        working-directory: ${{ matrix.project }}
       - run: npm run build
-        working-directory: ${{ project }}
+        working-directory: ${{ matrix.project }}
       - run: npm run lint
-        working-directory: ${{ project }}
+        working-directory: ${{ matrix.project }}
     
