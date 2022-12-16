@@ -9,3 +9,5 @@ protobufs/protos/json-module.js
 protobufs/protos/root.d.ts
 .scripts/list-of-samples.json
 package-lock.json
+
+nestjs-counter/dist
