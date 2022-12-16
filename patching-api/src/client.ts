@@ -1,9 +1,9 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { myWorkflow, workflowId } from './workflows';
 
 async function run(): Promise<void> {
-  const client = new WorkflowClient();
-  await client.start(myWorkflow, { taskQueue: 'patching', workflowId });
+  const client = new Client();
+  await client.workflow.start(myWorkflow, { taskQueue: 'patching', workflowId });
 }
 
 run().catch((err) => {

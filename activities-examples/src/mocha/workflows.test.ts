@@ -1,4 +1,4 @@
-import { ActivityFailure, ApplicationFailure, WorkflowClient, WorkflowFailedError } from '@temporalio/client';
+import { ActivityFailure, ApplicationFailure, Client, WorkflowFailedError } from '@temporalio/client';
 import { Runtime, DefaultLogger, Worker } from '@temporalio/worker';
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import assert from 'assert';
@@ -15,7 +15,7 @@ const workflowCoverage = new WorkflowCoverage();
 describe('example workflow', async function () {
   let shutdown: () => Promise<void>;
   let execute: () => ReturnType<typeof httpWorkflow>;
-  let getClient: () => WorkflowClient;
+  let getClient: () => Client;
 
   this.slow(10_000);
   this.timeout(20_000);
@@ -40,14 +40,14 @@ describe('example workflow', async function () {
       await runPromise;
       await env.teardown();
     };
-    getClient = () => env.client.workflow;
+    getClient = () => env.client;
   });
 
   beforeEach(() => {
     const client = getClient();
 
     execute = () =>
-      client.execute(httpWorkflow, {
+      client.workflow.execute(httpWorkflow, {
         taskQueue: 'test-activities',
         workflowExecutionTimeout: 10_000,
         // Use random ID because ID is meaningless for this test

@@ -1,10 +1,10 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { trackState } from './workflows';
 
 async function run(): Promise<void> {
-  const client = new WorkflowClient();
+  const client = new Client();
 
-  const _handle = await client.start(trackState, {
+  const _handle = await client.workflow.start(trackState, {
     taskQueue: 'state',
     workflowId: 'state-id-0',
   });

@@ -1,11 +1,11 @@
-import { Connection, WorkflowClient, WorkflowFailedError, CancelledFailure } from '@temporalio/client';
+import { Connection, Client, WorkflowFailedError, CancelledFailure } from '@temporalio/client';
 import { runCancellableActivity } from './workflows';
 
 async function run() {
   const connection = await Connection.connect();
-  const client = new WorkflowClient({ connection });
+  const client = new Client({ connection });
 
-  const handle = await client.start(runCancellableActivity, {
+  const handle = await client.workflow.start(runCancellableActivity, {
     taskQueue: 'cancellation-heartbeating',
     workflowId: 'cancellation-heartbeating-0',
   });

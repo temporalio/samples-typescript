@@ -1,10 +1,10 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { parentWorkflow } from './workflows';
 
 async function run() {
-  const client = new WorkflowClient();
+  const client = new Client();
 
-  const result = await client.execute(parentWorkflow, {
+  const result = await client.workflow.execute(parentWorkflow, {
     taskQueue: 'child-workflows',
     workflowId: 'parent-sample-0',
     args: ['Alice', 'Bob', 'Charlie'],

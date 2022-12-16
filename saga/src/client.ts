@@ -1,10 +1,10 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { Connection, Client } from '@temporalio/client';
 import cuid from 'cuid';
 import * as Workflows from './types/workflow-commands';
 import { openAccount as openAccountWorkflow } from './workflows';
 async function run() {
   const connection = await Connection.connect();
-  const client = new WorkflowClient({
+  const client = new Client({
     connection,
     // In production you will likely specify `namespace` here; it is 'default' if omitted
   });
@@ -29,7 +29,7 @@ async function run() {
   };
 
   // Here is how we start our workflow
-  const handle = await client.start(openAccountWorkflow, {
+  const handle = await client.workflow.start(openAccountWorkflow, {
     taskQueue: 'saga-demo',
     workflowId: 'saga-' + openAccount.accountId,
     args: [openAccount],

@@ -12,15 +12,18 @@
     "update-toc": "doctoc README.md"
   },
   "devDependencies": {
-    "@temporalio/client": "1.0.0",
+    "@temporalio/client": "1.5.2",
     "@tsconfig/node16": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
+    "doctoc": "^2.1.0",
     "eslint": "^7.32.0",
     "eslint-config-next": "^12.0.3",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-deprecation": "^1.2.1",
+    "glob": "^8.0.3",
     "husky": "^7.0.2",
+    "lerna": "^6.1.0",
     "lint-staged": "^11.2.3",
     "next": "^12.0.0",
     "prettier": "^2.3.2",
@@ -30,9 +33,5 @@
   "lint-staged": {
     "*.{js,ts,json,md}": "prettier --write",
     "*.{js,ts}": "eslint --fix --cache"
-  },
-  "dependencies": {
-    "doctoc": "^2.1.0",
-    "lerna": "^5.0.0"
   }
 }

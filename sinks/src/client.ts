@@ -1,4 +1,4 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { Connection, Client } from '@temporalio/client';
 import { sinkWorkflow } from './workflows';
 
 async function run() {
@@ -6,13 +6,13 @@ async function run() {
   // In production, pass options to the Connection constructor to configure TLS and other settings.
   // This is optional but we leave this here to remind you there is a gRPC connection being established.
 
-  const client = new WorkflowClient({
+  const client = new Client({
     connection,
     // In production you will likely specify `namespace` here; it is 'default' if omitted
   });
 
   // Invoke the `example` Workflow, only resolved when the workflow completes
-  const result = await client.execute(sinkWorkflow, {
+  const result = await client.workflow.execute(sinkWorkflow, {
     taskQueue: 'sinks',
     workflowId: 'log-sample-0',
   });

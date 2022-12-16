@@ -1,10 +1,10 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { dependencyWF } from './workflows';
 
 async function run(): Promise<void> {
-  const client = new WorkflowClient();
+  const client = new Client();
 
-  const result = await client.execute(dependencyWF, {
+  const result = await client.workflow.execute(dependencyWF, {
     taskQueue: 'dependency-injection',
     workflowId: 'dependency-injection',
   });
