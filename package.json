@@ -2,12 +2,12 @@
   "name": "samples-typescript",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap --npm-client=yarn --ignore=monorepo-folders --ignore=nestjs-counter && cd monorepo-folders && yarn",
-    "build": "lerna run build --ignore=nestjs-counter",
+    "bootstrap": "lerna bootstrap --npm-client=yarn --ignore=monorepo-folders --ignore=nestjs-counter",
+    "build": "lerna run build --ignore=monorepo-folders --ignore=nestjs-counter",
     "test": "lerna run --stream test",
     "format": "prettier --write .",
     "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
-    "lint": "lerna run lint --ignore=nestjs-counter",
+    "lint": "lerna run lint --ignore=monorepo-folders --ignore=nestjs-counter",
     "prepare": "husky install",
     "update-toc": "doctoc README.md"
   },
