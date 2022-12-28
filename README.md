@@ -143,7 +143,7 @@ and you'll be given the list of sample options.
 
 #### Test APIs
 
-- [**Mocha and Jest**](https://github.com/temporalio/samples-typescript/tree/main/activities-examples#testing)
+- [**Mocha with code coverage or Jest**](https://github.com/temporalio/samples-typescript/tree/main/activities-examples#testing)
 - [**Time skipping**](https://github.com/temporalio/samples-typescript/tree/main/timer-examples#testing)
 
 ### Full-stack apps
