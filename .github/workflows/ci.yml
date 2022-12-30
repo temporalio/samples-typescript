@@ -78,7 +78,7 @@ jobs:
 
     strategy:
       matrix:
-        project: ['nestjs-counter', 'monorepo-folders']
+        project: ['nestjs-counter', 'monorepo-folders', 'food-delivery']
 
     steps:
       - uses: actions/checkout@v2
