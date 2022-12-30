@@ -33,7 +33,14 @@ const ESLINTRC_EXCLUDE = [
   'food-delivery',
   'nestjs-counter',
 ];
-const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples', 'food-delivery', 'nestjs-counter'];
+const ESLINTIGNORE_EXCLUDE = [
+  'production',
+  'hello-world-js',
+  'protobufs',
+  'activities-examples',
+  'food-delivery',
+  'nestjs-counter',
+];
 
 const POST_CREATE_EXCLUDE = [
   'timer-examples',
