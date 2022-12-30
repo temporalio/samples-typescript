@@ -129,13 +129,17 @@ and you'll be given the list of sample options.
 - [**Instrumentation**](https://github.com/temporalio/samples-typescript/tree/main/instrumentation): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components and get metrics and traces out of Rust Core.
 - [**Protobufs**](https://github.com/temporalio/samples-typescript/tree/main/protobufs): Use [Protobufs](https://docs.temporal.io/typescript/data-converters#protobufs).
 - [**Custom Payload Converter**](https://github.com/temporalio/samples-typescript/tree/main/ejson): Customize data serialization by creating a `PayloadConverter` that uses EJSON to convert Dates, binary, and regexes.
+- **Monorepos**:
+  - [`/monorepos-folders`](https://github.com/temporalio/samples-typescript/tree/main/ejson): yarn workspace with packages for a web frontend, API server, Worker, and Workflows/Activities.
+  - [`psigen/temporal-ts-example`](https://github.com/psigen/temporal-ts-example): yarn workspace containerized with [tilt](https://tilt.dev/). Includes `temporalite`, `parcel`, and different packages for Workflows and Activities.
+- [**Polyglot**](https://github.com/temporalio/temporal-pendulum): Use TS alongside other languages
 
 #### Advanced APIs
 
-- Interceptors
+- **Interceptors**:
   - [**OpenTelemetry**](https://github.com/temporalio/samples-typescript/tree/main/interceptors-opentelemetry): Use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows.
   - [**Query Subscriptions**](https://github.com/temporalio/samples-typescript/tree/main/query-subscriptions): Use Redis Streams, Immer, and SDK Interceptors to subscribe to Workflow state.
-- [gRPC calls](https://github.com/temporalio/samples-typescript/tree/main/grpc-calls): Make raw gRPC calls for advanced queries not covered by the WorkflowClient API.
+- [**gRPC calls**](https://github.com/temporalio/samples-typescript/tree/main/grpc-calls): Make raw gRPC calls for advanced queries not covered by the WorkflowClient API.
 
 #### Test APIs
 
@@ -168,8 +172,6 @@ _The below projects are maintained outside this repo and may not be up to date._
   - [**XState Interpreter**](https://github.com/Devessier/temporal-electronic-signature): Interpret XState state charts in a Workflow. Presented at [the November 2021 meetup](https://youtu.be/GpbOkDjpeYU?t=1616).
 - **URL Scraping**
   - [`andreasasprou/temporal-url-batch-scraping`](https://github.com/andreasasprou/temporal-url-batch-scraping)
-- **Polyglot**:
-  - [`temporalio/temporal-pendulum`](https://github.com/temporalio/temporal-pendulum): Use TS alongside other languages
 
 ## Contributing
 

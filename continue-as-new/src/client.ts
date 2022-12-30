@@ -1,10 +1,10 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { loopingWorkflow } from './workflows';
 
 async function run() {
-  const client = new WorkflowClient();
+  const client = new Client();
 
-  const result = await client.execute(loopingWorkflow, { taskQueue: 'continue-as-new', workflowId: 'loop-0' });
+  const result = await client.workflow.execute(loopingWorkflow, { taskQueue: 'continue-as-new', workflowId: 'loop-0' });
   console.log(result); // Hello, Temporal!
 }
 

@@ -1,6 +1,6 @@
 import Redis from 'ioredis';
 import { applyPatches } from 'immer';
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { State, counter } from './workflows';
 import { Versioned } from './workflows/subscriptions';
 import { taskQueue } from './env';
@@ -53,7 +53,7 @@ async function poll(redis: Redis.Redis, workflowId: string, version: number, opt
 }
 
 export class SubscriptionClient {
-  constructor(readonly workflowClient: WorkflowClient) {}
+  constructor(readonly client: Client) {}
 
   /**
    * An async iterator that subscribes to Workflow state updates
@@ -61,7 +61,7 @@ export class SubscriptionClient {
   async *subscribe<T>(workflowId: string): AsyncIterable<T> {
     // Create a new Redis connection as opposed to reusing a shared one because the xread API blocks.
     const redis = new Redis();
-    const handle = this.workflowClient.getHandle(workflowId);
+    const handle = this.client.workflow.getHandle(workflowId);
     const resultPromise = handle.result();
     let { version, value } = await handle.query<Versioned<T>>('getValue');
     yield value;
@@ -85,9 +85,9 @@ export class SubscriptionClient {
 }
 
 export async function run(): Promise<void> {
-  const workflowClient = new WorkflowClient();
-  const subsClient = new SubscriptionClient(workflowClient);
-  const { workflowId } = await workflowClient.start(counter, {
+  const client = new Client();
+  const subsClient = new SubscriptionClient(client);
+  const { workflowId } = await client.workflow.start(counter, {
     taskQueue,
     workflowId: `counter-${Date.now()}`,
     args: [0 /* initialValue */],

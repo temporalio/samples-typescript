@@ -1,10 +1,10 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { Connection, Client } from '@temporalio/client';
 import { fileProcessingWorkflow } from './workflows';
 
 async function run() {
   const connection = await Connection.connect();
-  const client = new WorkflowClient({ connection });
-  await client.execute(fileProcessingWorkflow, {
+  const client = new Client({ connection });
+  await client.workflow.execute(fileProcessingWorkflow, {
     taskQueue: 'sticky-activity-tutorial',
     workflowId: 'file-processing-0',
   });

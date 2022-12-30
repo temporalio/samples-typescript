@@ -1,15 +1,15 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { v4 as uuid } from 'uuid';
 import { getDataConverter } from './data-converter';
 import { example } from './workflows';
 
 async function run() {
   // @@@SNIPSTART typescript-encryption-client
-  const client = new WorkflowClient({
+  const client = new Client({
     dataConverter: await getDataConverter(),
   });
 
-  const handle = await client.start(example, {
+  const handle = await client.workflow.start(example, {
     args: ['Alice: Private message for Bob.'],
     taskQueue: 'encryption',
     workflowId: `my-business-id-${uuid()}`,

@@ -1,13 +1,13 @@
-import { WorkflowClient } from '@temporalio/client';
+import { Client } from '@temporalio/client';
 import { scheduledWorkflow } from './workflows';
 
 // Save this to later terminate or cancel this schedule
 const workflowId = 'my-schedule';
 
 async function run() {
-  const client = new WorkflowClient();
+  const client = new Client();
 
-  const handle = await client.start(scheduledWorkflow, {
+  const handle = await client.workflow.start(scheduledWorkflow, {
     taskQueue: 'cron-workflows',
     workflowId: 'my-schedule', // Save this to later terminate or cancel this schedule
     cronSchedule: '* * * * *', // start every minute
@@ -24,9 +24,9 @@ async function run() {
 
 // just for this demo - cancel the workflow on Ctrl+C
 process.on('SIGINT', async () => {
-  const client = new WorkflowClient();
+  const client = new Client();
 
-  const handle = client.getHandle(workflowId);
+  const handle = client.workflow.getHandle(workflowId);
   await handle.cancel();
   console.log(`\nCanceled Workflow ${handle.workflowId}`);
   process.exit(0);

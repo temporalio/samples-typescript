@@ -1,6 +1,6 @@
 # grpc calls
 
-Under the hood of a `WorkflowClient`, the `Connection` is actually powered by a `WorkflowService` driver that makes the raw gRPC calls to Temporal Server.
+Under the hood of a `Client`, the `Connection` is actually powered by a `WorkflowService` driver that makes the raw gRPC calls to Temporal Server.
 
 This Service is capable of making a wider range of introspection calls (as per [the API reference](https://typescript.temporal.io/api/classes/proto.temporal.api.workflowservice.v1.WorkflowService-1#methods)).
 

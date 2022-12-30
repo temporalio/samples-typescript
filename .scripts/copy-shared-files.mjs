@@ -13,6 +13,7 @@ const TSCONFIG_EXCLUDE = [
   'production',
   'hello-world-js',
   'food-delivery',
+  'nestjs-counter',
 ];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -21,6 +22,7 @@ const GITIGNORE_EXCLUDE = [
   'hello-world-js',
   'protobufs',
   'food-delivery',
+  'nestjs-counter',
 ];
 const ESLINTRC_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -29,8 +31,9 @@ const ESLINTRC_EXCLUDE = [
   'hello-world-js',
   'protobufs',
   'food-delivery',
+  'nestjs-counter',
 ];
-const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples', 'food-delivery'];
+const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples', 'food-delivery', 'nestjs-counter'];
 
 const POST_CREATE_EXCLUDE = [
   'timer-examples',
@@ -43,6 +46,7 @@ const POST_CREATE_EXCLUDE = [
   'patching-api',
   'signals-queries',
   'activities-cancellation-heartbeating',
+  'nestjs-counter',
   'replay-history',
   'food-delivery',
 ];

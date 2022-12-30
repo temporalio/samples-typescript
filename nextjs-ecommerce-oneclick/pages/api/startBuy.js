@@ -1,4 +1,4 @@
-import { Connection, WorkflowClient } from '@temporalio/client';
+import { Connection, Client } from '@temporalio/client';
 import { OneClickBuy } from '../../temporal/lib/workflows.js';
 
 export default async function startBuy(req, res) {
@@ -16,10 +16,10 @@ export default async function startBuy(req, res) {
   // pass options to the Connection constructor to configure TLS and other settings.
   const connection = await Connection.connect();
   // Workflows will be started in the "default" namespace unless specified otherwise
-  // via options passed the WorkflowClient constructor.
-  const client = new WorkflowClient({ connection });
+  // via options passed the Client constructor.
+  const client = new Client({ connection });
   // kick off the purchase async
-  await client.start(OneClickBuy, {
+  await client.workflow.start(OneClickBuy, {
     taskQueue: 'ecommerce-oneclick',
     workflowId: transactionId,
     args: [itemId],
