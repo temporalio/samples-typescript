@@ -9,7 +9,7 @@ See also:
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
 1. In another terminal, `npm run workflow1` or `npm run workflow2` to run the Workflows accordingly

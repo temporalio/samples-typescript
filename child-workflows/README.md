@@ -6,7 +6,7 @@ This sample shows how to use [child workflows](https://docs.temporal.io/typescri
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
 2. `npm install` to install dependencies.
 3. `npm run start.watch` to start the Worker.
 4. In another shell, `npm run workflow` to run the Workflow.
