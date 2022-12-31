@@ -1,0 +1,46 @@
+{
+  "name": "temporal-mutex",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
+    "start": "ts-node src/worker.ts",
+    "start.watch": "nodemon src/worker.ts",
+    "test": "mocha ./lib/*.test.js",
+    "workflow": "ts-node src/client.ts"
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
+  "dependencies": {
+    "@temporalio/activity": "^1.5.2",
+    "@temporalio/client": "^1.5.2",
+    "@temporalio/worker": "^1.5.2",
+    "@temporalio/workflow": "^1.5.2",
+    "uuid": "8.x"
+  },
+  "devDependencies": {
+    "@temporalio/testing": "^1.5.2",
+    "@tsconfig/node16": "^1.0.0",
+    "@types/mocha": "10.0.1",
+    "@types/node": "^16.11.43",
+    "@types/uuid": "8.x",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-deprecation": "^1.2.1",
+    "mocha": "10.2.0",
+    "nodemon": "^2.0.12",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.4.2"
+  }
+}
