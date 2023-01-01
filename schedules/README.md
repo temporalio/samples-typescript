@@ -11,7 +11,7 @@ In this sample, a reminder Workflow ([`src/workflows.ts`](src/workflows.ts)) is 
 
 You can see each Workflow Execution [in the UI](http://localhost:8233/namespaces/default/workflows?search=basic&query=WorkflowType%3D%22reminder%22):
 
-![Screenshot of the Workflows page of the Temporal Web UI](https://capture.dropbox.com/N4aOLdMhRK7cmI1j?raw=1)
+![Screenshot of the Workflows page of the Temporal Web UI](https://user-images.githubusercontent.com/251288/210159469-12911191-f4be-4da1-9845-1bcaed48304b.png)
 
 You can interact with the running Schedule using these scripts:
 
