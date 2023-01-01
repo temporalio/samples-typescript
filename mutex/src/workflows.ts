@@ -10,6 +10,7 @@ interface LockResponse {
 }
 
 export const currentWorkflowIdQuery = workflow.defineQuery<string | null>('current-workflow-id');
+export const hasLockQuery = workflow.defineQuery<boolean>('hasLock');
 export const lockRequestSignal = workflow.defineSignal<[LockRequest]>('lock-requested');
 export const lockAcquiredSignal = workflow.defineSignal<[LockResponse]>('lock-acquired');
 
@@ -38,4 +39,28 @@ export async function lockWorkflow(requests = Array<LockRequest>()) {
   }
   // carry over any pending requests to the next execution
   await workflow.continueAsNew<typeof lockWorkflow>(requests);
+}
+
+export async function testLockWorkflow(lockWorkflowId: string, sleepForMs = 500, lockTimeoutMs = 1000) {
+  const handle = workflow.getExternalWorkflowHandle(lockWorkflowId);
+
+  const { workflowId } = workflow.workflowInfo();
+
+  let releaseSignalName: string | null = null;
+  workflow.setHandler(lockAcquiredSignal, (lockResponse: LockResponse) => {
+    releaseSignalName = lockResponse.releaseSignalName;
+  });
+  workflow.setHandler(hasLockQuery, () => !!releaseSignalName);
+
+  await handle.signal(lockRequestSignal, { timeoutMs: lockTimeoutMs, initiatorId: workflowId });
+  await workflow.condition(() => !!releaseSignalName);
+
+  await workflow.sleep(sleepForMs);
+
+  if (!releaseSignalName) {
+    return;
+  }
+
+  await handle.signal(releaseSignalName);
+  releaseSignalName = null;
 }
