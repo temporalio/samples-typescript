@@ -1,5 +1,12 @@
 # Mutex
 
+This sample has a `lockWorkflow` that receives `lock-requested` Signals from other Workflows. It handles the Signals one at a time, first sending a `lock-acquired` Signal to the sending Workflow, and then waiting for a Signal from that Workflow indicating that the Workflow is ready to release the lock. Then the `lockWorkflow` goes on to the next `lock-requested` Signal. In this way, you're able to make sure that only one Workflow Execution is performing a certain type of work at a time.
+
+- [`src/workflows.ts`](src/workflows.ts): `lockWorkflow` and `testLockWorkflow`, which Signals `lockWorkflow` to request a lock.
+- [`src/start-lock-workflow.ts`](src/start-lock-workflow.ts): `npm run lock-workflow`
+- [`src/start-test-workflow.ts`](src/start-test-workflow.ts): `npm run test-workflow`
+- [`src/test/workflows.test.ts`](src/test/workflows.test.ts): Tests
+
 ### Running this sample
 
 1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
