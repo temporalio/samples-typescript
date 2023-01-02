@@ -41,7 +41,7 @@ export async function lockWorkflow(requests = Array<LockRequest>()): Promise<voi
   await workflow.continueAsNew<typeof lockWorkflow>(requests);
 }
 
-export async function testLockWorkflow(lockWorkflowId: string, sleepForMs = 500, lockTimeoutMs = 1000) {
+export async function testLockWorkflow(lockWorkflowId: string, sleepForMs = 500, lockTimeoutMs = 1000): Promise<void> {
   const handle = workflow.getExternalWorkflowHandle(lockWorkflowId);
 
   const { workflowId } = workflow.workflowInfo();
