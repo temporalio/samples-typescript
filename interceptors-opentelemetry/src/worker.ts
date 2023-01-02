@@ -1,4 +1,4 @@
-import { DefaultLogger, Worker, Runtime } from '@temporalio/worker';
+import { DefaultLogger, Worker, Runtime, defaultSinks } from '@temporalio/worker';
 import { Resource } from '@opentelemetry/resources';
 import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
 import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
@@ -27,6 +27,7 @@ async function main() {
     activities,
     taskQueue: 'interceptors-opentelemetry-example',
     sinks: {
+      ...defaultSinks,
       exporter: makeWorkflowExporter(exporter, resource),
     },
     // Registers opentelemetry interceptors for Workflow and Activity calls
