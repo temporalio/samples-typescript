@@ -50,10 +50,11 @@ export async function testLockWorkflow(lockWorkflowId: string, sleepForMs = 500,
   workflow.setHandler(lockAcquiredSignal, (lockResponse: LockResponse) => {
     releaseSignalName = lockResponse.releaseSignalName;
   });
-  workflow.setHandler(hasLockQuery, () => !!releaseSignalName);
+  const hasLock = () => !!releaseSignalName
+  workflow.setHandler(hasLockQuery, hasLock);
 
   await handle.signal(lockRequestSignal, { timeoutMs: lockTimeoutMs, initiatorId: workflowId });
-  await workflow.condition(() => !!releaseSignalName);
+  await workflow.condition(hasLock);
 
   await workflow.sleep(sleepForMs);
 
