@@ -14,7 +14,7 @@ export const hasLockQuery = workflow.defineQuery<boolean>('hasLock');
 export const lockRequestSignal = workflow.defineSignal<[LockRequest]>('lock-requested');
 export const lockAcquiredSignal = workflow.defineSignal<[LockResponse]>('lock-acquired');
 
-export async function lockWorkflow(requests = Array<LockRequest>()) {
+export async function lockWorkflow(requests = Array<LockRequest>()): Promise<void> {
   let currentWorkflowId: string | null = null;
   workflow.setHandler(lockRequestSignal, (req: LockRequest) => {
     requests.push(req);
