@@ -1,4 +1,14 @@
-import * as workflow from '@temporalio/workflow';
+import {
+  condition,
+  continueAsNew,
+  defineQuery,
+  defineSignal,
+  getExternalWorkflowHandle,
+  setHandler,
+  sleep,
+  workflowInfo,
+  uuid4,
+} from '@temporalio/workflow';
 
 interface LockRequest {
   initiatorId: string;
@@ -9,54 +19,54 @@ interface LockResponse {
   releaseSignalName: string;
 }
 
-export const currentWorkflowIdQuery = workflow.defineQuery<string | null>('current-workflow-id');
-export const hasLockQuery = workflow.defineQuery<boolean>('hasLock');
-export const lockRequestSignal = workflow.defineSignal<[LockRequest]>('lock-requested');
-export const lockAcquiredSignal = workflow.defineSignal<[LockResponse]>('lock-acquired');
+export const currentWorkflowIdQuery = defineQuery<string | null>('current-workflow-id');
+export const hasLockQuery = defineQuery<boolean>('hasLock');
+export const lockRequestSignal = defineSignal<[LockRequest]>('lock-requested');
+export const lockAcquiredSignal = defineSignal<[LockResponse]>('lock-acquired');
 
 export async function lockWorkflow(requests = Array<LockRequest>()): Promise<void> {
   let currentWorkflowId: string | null = null;
-  workflow.setHandler(lockRequestSignal, (req: LockRequest) => {
+  setHandler(lockRequestSignal, (req: LockRequest) => {
     requests.push(req);
   });
-  workflow.setHandler(currentWorkflowIdQuery, () => currentWorkflowId);
-  while (workflow.workflowInfo().historyLength < 2000) {
-    await workflow.condition(() => requests.length > 0);
+  setHandler(currentWorkflowIdQuery, () => currentWorkflowId);
+  while (workflowInfo().historyLength < 2000) {
+    await condition(() => requests.length > 0);
     const req = requests.shift();
     if (req === undefined) {
       continue;
     }
     currentWorkflowId = req.initiatorId;
-    const workflowRequestingLock = workflow.getExternalWorkflowHandle(req.initiatorId);
-    const releaseSignalName = workflow.uuid4();
+    const workflowRequestingLock = getExternalWorkflowHandle(req.initiatorId);
+    const releaseSignalName = uuid4();
     await workflowRequestingLock.signal(lockAcquiredSignal, { releaseSignalName });
     let released = false;
-    workflow.setHandler(workflow.defineSignal(releaseSignalName), () => {
+    setHandler(defineSignal(releaseSignalName), () => {
       released = true;
     });
-    await workflow.condition(() => released, req.timeoutMs);
+    await condition(() => released, req.timeoutMs);
     currentWorkflowId = null;
   }
   // carry over any pending requests to the next execution
-  await workflow.continueAsNew<typeof lockWorkflow>(requests);
+  await continueAsNew<typeof lockWorkflow>(requests);
 }
 
 export async function testLockWorkflow(lockWorkflowId: string, sleepForMs = 500, lockTimeoutMs = 1000): Promise<void> {
-  const handle = workflow.getExternalWorkflowHandle(lockWorkflowId);
+  const handle = getExternalWorkflowHandle(lockWorkflowId);
 
-  const { workflowId } = workflow.workflowInfo();
+  const { workflowId } = workflowInfo();
 
   let releaseSignalName: string | null = null;
-  workflow.setHandler(lockAcquiredSignal, (lockResponse: LockResponse) => {
+  setHandler(lockAcquiredSignal, (lockResponse: LockResponse) => {
     releaseSignalName = lockResponse.releaseSignalName;
   });
-  const hasLock = () => !!releaseSignalName
-  workflow.setHandler(hasLockQuery, hasLock);
+  const hasLock = () => !!releaseSignalName;
+  setHandler(hasLockQuery, hasLock);
 
   await handle.signal(lockRequestSignal, { timeoutMs: lockTimeoutMs, initiatorId: workflowId });
-  await workflow.condition(hasLock);
+  await condition(hasLock);
 
-  await workflow.sleep(sleepForMs);
+  await sleep(sleepForMs);
 
   if (!releaseSignalName) {
     return;
