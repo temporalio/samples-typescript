@@ -56,22 +56,21 @@ export async function testLockWorkflow(lockWorkflowId: string, sleepForMs = 500,
 
   const { workflowId } = workflowInfo();
 
-  let releaseSignalName: string | null = null;
+  let releaseSignalName = '';
   setHandler(lockAcquiredSignal, (lockResponse: LockResponse) => {
     releaseSignalName = lockResponse.releaseSignalName;
   });
   const hasLock = () => !!releaseSignalName;
   setHandler(hasLockQuery, hasLock);
 
+  // Acquire the lock
   await handle.signal(lockRequestSignal, { timeoutMs: lockTimeoutMs, initiatorId: workflowId });
   await condition(hasLock);
 
+  // Critical path
   await sleep(sleepForMs);
 
-  if (!releaseSignalName) {
-    return;
-  }
-
+  // Release the lock
   await handle.signal(releaseSignalName);
-  releaseSignalName = null;
+  releaseSignalName = '';
 }
