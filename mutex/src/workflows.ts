@@ -27,9 +27,9 @@ export async function lockWorkflow(requests = Array<LockRequest>()) {
       continue;
     }
     currentWorkflowId = req.initiatorId;
-    const handle = workflow.getExternalWorkflowHandle(req.initiatorId);
+    const workflowRequestingLock = workflow.getExternalWorkflowHandle(req.initiatorId);
     const releaseSignalName = workflow.uuid4();
-    await handle.signal(lockAcquiredSignal, { releaseSignalName });
+    await workflowRequestingLock.signal(lockAcquiredSignal, { releaseSignalName });
     let released = false;
     workflow.setHandler(workflow.defineSignal(releaseSignalName), () => {
       released = true;
