@@ -29,3 +29,7 @@ Test workflow finished after 5149 ms
 Starting test workflow with id test-66771b99-a5c8-4481-a97f-419318f9802b connecting to lock workflow lock-42167c2d-9357-4043-9974-8d7d2d943596
 Test workflow finished after 6773 ms
 ```
+
+### Testing
+
+`npm run build && npm test`

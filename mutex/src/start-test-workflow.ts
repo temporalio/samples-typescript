@@ -1,6 +1,6 @@
 import { Connection, Client } from '@temporalio/client';
-import { testLockWorkflow } from './workflows';
-import { v4 as uuidv4 } from 'uuid';
+import { oneAtATimeWorkflow } from './workflows';
+import { nanoid } from 'nanoid';
 
 const lockWorkflowId = process.argv[2];
 if (!lockWorkflowId) {
@@ -12,11 +12,11 @@ async function run() {
 
   const client = new Client({ connection });
 
-  const workflowId = 'test-' + uuidv4();
+  const workflowId = 'test-' + nanoid();
 
   console.log('Starting test workflow with id', workflowId, 'connecting to lock workflow', lockWorkflowId);
   const start = Date.now();
-  await client.workflow.execute(testLockWorkflow, {
+  await client.workflow.execute(oneAtATimeWorkflow, {
     taskQueue: 'mutex',
     workflowId,
     args: [lockWorkflowId, 5000, 7500],

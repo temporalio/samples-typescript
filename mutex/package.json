@@ -26,7 +26,7 @@
     "@temporalio/client": "^1.5.2",
     "@temporalio/worker": "^1.5.2",
     "@temporalio/workflow": "^1.5.2",
-    "uuid": "8.x"
+    "nanoid": "3.x"
   },
   "devDependencies": {
     "@temporalio/testing": "^1.5.2",
@@ -42,6 +42,6 @@
     "mocha": "10.2.0",
     "nodemon": "^2.0.12",
     "ts-node": "^10.8.1",
-    "typescript": "^4.4.2"
+    "typescript": "^4.9.4"
   }
 }

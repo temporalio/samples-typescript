@@ -1,13 +1,13 @@
 import { Connection, Client } from '@temporalio/client';
 import { lockWorkflow } from './workflows';
-import { v4 as uuidv4 } from 'uuid';
+import { nanoid } from 'nanoid';
 
 async function run() {
   const connection = await Connection.connect();
 
   const client = new Client({ connection });
 
-  const workflowId = 'lock-' + uuidv4();
+  const workflowId = 'lock-' + nanoid();
   await client.workflow.start(lockWorkflow, {
     taskQueue: 'mutex',
     workflowId,

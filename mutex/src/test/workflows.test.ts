@@ -2,9 +2,10 @@ import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { WorkflowHandle } from '@temporalio/client';
 import { Runtime, DefaultLogger, Worker } from '@temporalio/worker';
 import { describe, before, after, it } from 'mocha';
-import { currentWorkflowIdQuery, hasLockQuery, lockWorkflow, testLockWorkflow } from '../workflows';
+import { currentWorkflowIdQuery, lockWorkflow, oneAtATimeWorkflow } from '../workflows';
+import * as activities from '../activities';
 import assert from 'assert';
-import { v4 as uuidv4 } from 'uuid';
+import { nanoid } from 'nanoid';
 
 const taskQueue = 'test' + new Date().toLocaleDateString('en-US');
 
@@ -22,6 +23,7 @@ describe('lock workflow', function () {
     worker = await Worker.create({
       connection: env.nativeConnection,
       workflowsPath: require.resolve('../workflows'),
+      activities,
       taskQueue,
     });
 
@@ -31,7 +33,7 @@ describe('lock workflow', function () {
   beforeEach(async function () {
     lockWorkflowHandle = await env.workflowClient.start(lockWorkflow, {
       taskQueue,
-      workflowId: 'lock-' + uuidv4(),
+      workflowId: 'lock-' + nanoid(),
     });
   });
 
@@ -43,65 +45,48 @@ describe('lock workflow', function () {
   });
 
   it('handles locking and unlocking', async function () {
-    const testWorkflowId = 'test-' + uuidv4();
-    const testWorkflowHandle = await env.workflowClient.start(testLockWorkflow, {
+    const testWorkflowId = 'test-' + nanoid();
+    const testWorkflowHandle = await env.workflowClient.start(oneAtATimeWorkflow, {
       taskQueue,
       workflowId: testWorkflowId,
       args: [lockWorkflowHandle.workflowId],
     });
 
-    let hasLock = await testWorkflowHandle.query(hasLockQuery);
-    assert.ok(!hasLock);
-
     await env.sleep('100ms');
 
-    hasLock = await testWorkflowHandle.query(hasLockQuery);
-    assert.ok(hasLock);
-
-    const currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
+    let currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
     assert.equal(currentWorkflowId, testWorkflowId);
 
     await testWorkflowHandle.result();
 
-    hasLock = await testWorkflowHandle.query(hasLockQuery);
-    assert.ok(!hasLock);
+    currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
+    assert.equal(currentWorkflowId, null);
   });
 
-  it('errors out if waiting for lock times out', async function () {
-    const testWorkflowId1 = 'test-' + uuidv4();
-    const testWorkflowHandle1 = await env.workflowClient.start(testLockWorkflow, {
+  it('automatically releases the lock after timeout', async function () {
+    const testWorkflowId1 = 'test-' + nanoid();
+    await env.workflowClient.start(oneAtATimeWorkflow, {
       taskQueue,
       workflowId: testWorkflowId1,
       args: [lockWorkflowHandle.workflowId, 10000 /* 10s */],
     });
 
-    let hasLock = await testWorkflowHandle1.query(hasLockQuery);
-    assert.ok(!hasLock);
-
     await env.sleep('100ms');
-    hasLock = await testWorkflowHandle1.query(hasLockQuery);
-    assert.ok(hasLock);
     let currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
     assert.equal(currentWorkflowId, testWorkflowId1);
 
-    const testWorkflowId2 = 'test-' + uuidv4();
-    const testWorkflowHandle2 = await env.workflowClient.start(testLockWorkflow, {
+    const testWorkflowId2 = 'test-' + nanoid();
+    await env.workflowClient.start(oneAtATimeWorkflow, {
       taskQueue,
       workflowId: testWorkflowId2,
       args: [lockWorkflowHandle.workflowId, 10000 /* 10s */],
     });
 
     await env.sleep('100ms');
-    hasLock = await testWorkflowHandle1.query(hasLockQuery);
-    assert.ok(hasLock);
-    hasLock = await testWorkflowHandle2.query(hasLockQuery);
-    assert.ok(!hasLock);
     currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
     assert.equal(currentWorkflowId, testWorkflowId1);
 
     await env.sleep('1300ms');
-    hasLock = await testWorkflowHandle2.query(hasLockQuery);
-    assert.ok(hasLock);
     currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
     assert.equal(currentWorkflowId, testWorkflowId2);
   });

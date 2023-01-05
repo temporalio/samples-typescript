@@ -17,4 +17,5 @@ Use Node version 14+:
 Then, in the project directory, using two other shells, run these commands:
 
   {cyan npm run start.watch}
-  {cyan npm run workflow}
+  {cyan npm run lock-workflow}
+  {cyan npm run test-workflow <lock workflow id>}
