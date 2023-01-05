@@ -9,8 +9,7 @@
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "test": "mocha ./lib/test/*.test.js",
-    "lock-workflow": "ts-node src/start-lock-workflow.ts",
-    "test-workflow": "ts-node src/start-test-workflow.ts"
+    "workflow": "ts-node src/start-test-workflow.ts"
   },
   "nodemonConfig": {
     "execMap": {

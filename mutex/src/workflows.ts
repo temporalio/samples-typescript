@@ -66,12 +66,8 @@ export async function lockWorkflow(requests = Array<LockRequest>()): Promise<voi
   await continueAsNew<typeof lockWorkflow>(requests);
 }
 
-export async function oneAtATimeWorkflow(
-  lockWorkflowId: string,
-  sleepForMs = 500,
-  lockTimeoutMs = 1000
-): Promise<void> {
-  const handle = getExternalWorkflowHandle(lockWorkflowId);
+export async function oneAtATimeWorkflow(resourceId: string, sleepForMs = 500, lockTimeoutMs = 1000): Promise<void> {
+  const handle = getExternalWorkflowHandle(resourceId);
 
   const { workflowId } = workflowInfo();
 
@@ -85,7 +81,7 @@ export async function oneAtATimeWorkflow(
   await handle.signal(lockRequestSignal, { timeoutMs: lockTimeoutMs, initiatorId: workflowId });
   await condition(hasLock);
 
-  console.log(`Locked using workflowId "${lockWorkflowId}", releaseSignalName: "${releaseSignalName}"`);
+  console.log(`Locked using resource "${resourceId}", releaseSignalName: "${releaseSignalName}"`);
 
   // Simulate a potentially long-running critical path that can't be run
   // in parallel.
@@ -95,5 +91,5 @@ export async function oneAtATimeWorkflow(
   await handle.signal(releaseSignalName);
   releaseSignalName = '';
 
-  console.log(`Released lock for workflowId "${lockWorkflowId}"`);
+  console.log(`Released lock for resource "${resourceId}"`);
 }
