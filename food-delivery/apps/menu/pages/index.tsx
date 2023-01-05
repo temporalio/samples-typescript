@@ -10,7 +10,7 @@ export default function CustomerApp() {
   const [orders, setOrders] = useState<Order[]>([])
   const [lastProductOrdered, setLastProductOrdered] = useState<ProductType>()
 
-  const order = trpc.order.useMutation()
+  const order = trpc.createOrder.useMutation()
 
   async function onOrder(product: ProductType) {
     setLastProductOrdered(product)

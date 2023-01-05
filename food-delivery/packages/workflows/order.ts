@@ -18,9 +18,9 @@ export interface OrderStatus {
   deliveredAt?: Date
 }
 
-export const pickedUp = defineSignal('pickedUp')
-export const delivered = defineSignal('delivered')
-export const getStatus = defineQuery<OrderStatus>('getStatus')
+export const pickedUpSignal = defineSignal('pickedUp')
+export const deliveredSignal = defineSignal('delivered')
+export const getStatusQuery = defineQuery<OrderStatus>('getStatus')
 
 const { chargeCustomer, refundOrder, sendPushNotification } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1m',
@@ -30,31 +30,29 @@ const { chargeCustomer, refundOrder, sendPushNotification } = proxyActivities<ty
 })
 
 export async function order(productId: number): Promise<void> {
-  // validate input
   const product = getProductById(productId)
   if (!product) {
     throw ApplicationFailure.create({ message: `Product ${productId} not found` })
   }
 
-  // declare variables
   let state: OrderState = 'Charging card'
   let deliveredAt: Date
 
   // setup Signal and Query handlers
-  setHandler(pickedUp, () => {
+  setHandler(pickedUpSignal, () => {
     if (state === 'Paid') {
       state = 'Picked up'
     }
   })
 
-  setHandler(delivered, () => {
+  setHandler(deliveredSignal, () => {
     if (state === 'Picked up') {
       state = 'Delivered'
       deliveredAt = new Date()
     }
   })
 
-  setHandler(getStatus, () => {
+  setHandler(getStatusQuery, () => {
     return { state, deliveredAt, productId }
   })
 
@@ -76,6 +74,7 @@ export async function order(productId: number): Promise<void> {
       product,
       '⚠️ No drivers were available to pick up your order. Your payment has been refunded.'
     )
+    throw ApplicationFailure.create({ message: 'Not picked up in time' })
   }
 
   await sendPushNotification('🚗 Order picked up')
@@ -84,11 +83,12 @@ export async function order(productId: number): Promise<void> {
   if (notDeliveredInTime) {
     state = 'Refunding'
     await refundAndNotify(product, '⚠️ Your driver was unable to deliver your order. Your payment has been refunded.')
+    throw ApplicationFailure.create({ message: 'Not delivered in time' })
   }
 
   await sendPushNotification('✅ Order delivered!')
 
-  await sleep('1 hour')
+  await sleep('1 min') // this could also be hours or even months
 
   await sendPushNotification(`✍️ Rate your meal. How was the ${product.name.toLowerCase()}?`)
 }
@@ -96,5 +96,4 @@ export async function order(productId: number): Promise<void> {
 async function refundAndNotify(product: Product, message: string) {
   await refundOrder(product)
   await sendPushNotification(message)
-  throw ApplicationFailure.create({ message })
 }

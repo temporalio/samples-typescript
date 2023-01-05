@@ -9,8 +9,6 @@ module.exports = () => {
   }
   return {
     rewrites,
-    experimental: {
-      transpilePackages: ['ui'],
-    },
+    transpilePackages: ['ui'],
   }
 }
