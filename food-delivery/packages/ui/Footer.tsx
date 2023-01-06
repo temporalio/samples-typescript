@@ -78,7 +78,9 @@ export const Footer = ({ showDriverPortal = false }: { showDriverPortal: boolean
             </a>
           ))}
         </div>
-        <p className="mt-8 text-center text-base text-gray-400">&copy; 2020 Your Company, Inc. All rights reserved.</p>
+        <p className="mt-8 text-center text-base text-gray-400">
+          &copy; 2023 Temporal Technologies Inc. All rights reserved.
+        </p>
       </div>
     </footer>
   )

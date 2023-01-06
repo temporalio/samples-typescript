@@ -75,7 +75,7 @@ export default function CustomerApp() {
 
         <OrderList orders={orders} onOrder={onOrder} />
       </div>
-      {/* <Footer showDriverPortal /> */}
+      <Footer showDriverPortal />
     </div>
   )
 }
