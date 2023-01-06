@@ -5,7 +5,7 @@ This sample demonstrates:
 - How a retried Activity Task can resume from the last Activity Task's heartbeat.
 - How to handle canceling a long-running Activity when its associated Workflow is canceled.
 
-Docs: [Activity heartbeating](https://docs.temporal.io/typescript/activities#heartbeating) and [cancellation](https://docs.temporal.io/typescript/activities#activity-cancellation)
+Docs: [Activity heartbeating](https://docs.temporal.io/application-development/features?lang=typescript/#activity-heartbeats) and [cancellation](https://docs.temporal.io/application-development/testing/#cancel-an-activity)
 
 Running [`src/client.ts`](./src/client.ts) does this:
 
@@ -24,7 +24,7 @@ Running [`src/client.ts`](./src/client.ts) does this:
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/clusters/quick-install)).
 2. `npm install` to install dependencies.
 3. `npm run start` to start the Worker.
 4. In another shell, `npm run workflow` to run the Workflow.

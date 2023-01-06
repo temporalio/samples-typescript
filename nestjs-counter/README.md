@@ -16,7 +16,7 @@ $ npm install
 
 ## Running the app
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/application-development/foundations#run-a-development-cluster)).
 1. `npm run worker` to start the Worker.
 1. `npm run start` to start the NestJS server.
 1. Visit `http://localhost:3000/exchange-rates/AUD` to see the most recent exchange rate for AUD (Australian Dollar)
