@@ -24,7 +24,7 @@ Running [`src/client.ts`](./src/client.ts) does this:
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/clusters/quick-install)).
+1. Make sure Temporal Server is running locally (see the [Dev guide](https://docs.temporal.io/application-development/foundations#run-a-development-cluster)).
 2. `npm install` to install dependencies.
 3. `npm run start` to start the Worker.
 4. In another shell, `npm run workflow` to run the Workflow.
