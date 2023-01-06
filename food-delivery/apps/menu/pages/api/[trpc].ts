@@ -1,7 +1,7 @@
 import { temporal } from '@temporalio/proto'
 import { initTRPC } from '@trpc/server'
 import * as trpcNext from '@trpc/server/adapters/next'
-import { getProductById, taskQueue } from 'common'
+import { taskQueue } from 'common'
 import { Context, createContext } from 'common/trpc-context'
 import { order, pickedUpSignal, deliveredSignal, getStatusQuery } from 'workflows'
 import { z } from 'zod'
@@ -63,4 +63,11 @@ export type AppRouter = typeof appRouter
 export default trpcNext.createNextApiHandler({
   router: appRouter,
   createContext,
+  onError({ error, type, path, input, ctx, req }) {
+    console.error('Error:', error)
+    console.log('type:', type)
+    console.log('path:', path)
+    console.log('input:', input)
+    console.log('req:', req.url)
+  },
 })

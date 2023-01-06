@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { Order, Product as ProductType, products } from 'common'
 import { useState } from 'react'
-import { Product } from 'ui'
+import { Product, Footer } from 'ui'
 import { v4 as uuid } from 'uuid'
 import { trpc } from '../utils/trpc'
 import { OrderList } from '../components/OrderList'
@@ -75,6 +75,7 @@ export default function CustomerApp() {
 
         <OrderList orders={orders} onOrder={onOrder} />
       </div>
+      {/* <Footer showDriverPortal /> */}
     </div>
   )
 }
