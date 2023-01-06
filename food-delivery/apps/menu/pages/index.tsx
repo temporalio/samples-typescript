@@ -56,7 +56,8 @@ export default function CustomerApp() {
           </div>
         </nav>
       </header>
-      <div className="mx-auto max-w-2xl py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
+
+      <div className="mx-auto max-w-2xl px-4 pt-16 sm:px-6 sm:pt-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-center text-4xl font-bold text-gray-900" id="app-name">
           Today’s Menu
         </h2>

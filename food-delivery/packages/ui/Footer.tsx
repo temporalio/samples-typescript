@@ -1,4 +1,4 @@
-export const Footer = ({ showDriverPortal = false }: { showDriverPortal: boolean }) => {
+export const Footer = ({ showDriverPortal = false }: { showDriverPortal?: boolean }) => {
   const navigation = {
     main: [
       showDriverPortal
@@ -59,8 +59,8 @@ export const Footer = ({ showDriverPortal = false }: { showDriverPortal: boolean
   }
 
   return (
-    <footer className="bg-white">
-      <div className="mx-auto max-w-7xl overflow-hidden py-12 px-6 lg:px-8">
+    <footer className="max-w-container mx-auto w-full bg-white pt-8">
+      <div className="mx-auto max-w-7xl overflow-hidden border-t border-gray-200 py-12 px-6 lg:px-8 ">
         <nav className="-mx-5 -my-2 flex flex-wrap justify-center" aria-label="Footer">
           {navigation.main.map((item) => (
             <div key={item.name} className="px-5 py-2">
