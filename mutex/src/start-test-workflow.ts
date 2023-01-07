@@ -1,5 +1,5 @@
-import { Connection, Client, WorkflowExecutionAlreadyStartedError } from '@temporalio/client';
-import { lockWorkflow, oneAtATimeWorkflow } from './workflows';
+import { Connection, Client } from '@temporalio/client';
+import { oneAtATimeWorkflow } from './workflows';
 import { nanoid } from 'nanoid';
 
 const resourceId = process.argv[2];
@@ -13,21 +13,6 @@ async function run() {
   const client = new Client({ connection });
 
   const workflowId = 'test-' + nanoid();
-
-  try {
-    await client.workflow.start(lockWorkflow, {
-      taskQueue: 'mutex',
-      workflowId: resourceId,
-    });
-
-    console.log('Started new lock Workflow for resourceId', resourceId);
-  } catch (err) {
-    if (err instanceof WorkflowExecutionAlreadyStartedError) {
-      console.log('Reusing existing lock Workflow for resourceId', resourceId);
-    } else {
-      throw err;
-    }
-  }
 
   console.log('Starting test workflow with id', workflowId, 'connecting to lock workflow', resourceId);
   const start = Date.now();

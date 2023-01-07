@@ -2,7 +2,8 @@ import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { WorkflowHandle } from '@temporalio/client';
 import { Runtime, DefaultLogger, Worker } from '@temporalio/worker';
 import { describe, before, after, it } from 'mocha';
-import { currentWorkflowIdQuery, lockWorkflow, oneAtATimeWorkflow } from '../workflows';
+import { lockWorkflow, oneAtATimeWorkflow } from '../workflows';
+import { currentWorkflowIdQuery } from '../shared';
 import * as activities from '../activities';
 import assert from 'assert';
 import { nanoid } from 'nanoid';
@@ -23,7 +24,7 @@ describe('lock workflow', function () {
     worker = await Worker.create({
       connection: env.nativeConnection,
       workflowsPath: require.resolve('../workflows'),
-      activities,
+      activities: activities.createActivities(env.client),
       taskQueue,
     });
 

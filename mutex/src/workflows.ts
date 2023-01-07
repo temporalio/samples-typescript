@@ -1,7 +1,6 @@
 import {
   condition,
   continueAsNew,
-  defineQuery,
   defineSignal,
   getExternalWorkflowHandle,
   proxyActivities,
@@ -10,25 +9,19 @@ import {
   uuid4,
 } from '@temporalio/workflow';
 import type * as activities from './activities';
+import { LockRequest, currentWorkflowIdQuery, lockRequestSignal, lockAcquiredSignal } from './shared';
 
-const { useAPIThatCantBeCalledInParallel } = proxyActivities<typeof activities>({
+const { signalWithStartLockWorkflow, useAPIThatCantBeCalledInParallel } = proxyActivities<
+  ReturnType<typeof activities['createActivities']>
+>({
   startToCloseTimeout: '1 minute',
 });
 
 const MAX_WORKFLOW_HISTORY_LENGTH = 2000;
 
-interface LockRequest {
-  initiatorId: string;
-  timeoutMs: number;
-}
-
 interface LockResponse {
   releaseSignalName: string;
 }
-
-export const currentWorkflowIdQuery = defineQuery<string | null>('current-workflow-id');
-export const lockRequestSignal = defineSignal<[LockRequest]>('lock-requested');
-export const lockAcquiredSignal = defineSignal<[LockResponse]>('lock-acquired');
 
 export async function lockWorkflow(requests = Array<LockRequest>()): Promise<void> {
   let currentWorkflowId: string | null = null;
@@ -67,10 +60,6 @@ export async function lockWorkflow(requests = Array<LockRequest>()): Promise<voi
 }
 
 export async function oneAtATimeWorkflow(resourceId: string, sleepForMs = 500, lockTimeoutMs = 1000): Promise<void> {
-  const handle = getExternalWorkflowHandle(resourceId);
-
-  const { workflowId } = workflowInfo();
-
   let releaseSignalName = '';
   setHandler(lockAcquiredSignal, (lockResponse: LockResponse) => {
     releaseSignalName = lockResponse.releaseSignalName;
@@ -78,7 +67,7 @@ export async function oneAtATimeWorkflow(resourceId: string, sleepForMs = 500, l
   const hasLock = () => !!releaseSignalName;
 
   // Send a signal to the given lock Workflow to acquire the lock
-  await handle.signal(lockRequestSignal, { timeoutMs: lockTimeoutMs, initiatorId: workflowId });
+  await signalWithStartLockWorkflow(resourceId, lockTimeoutMs);
   await condition(hasLock);
 
   console.log(`Locked using resource "${resourceId}", releaseSignalName: "${releaseSignalName}"`);
@@ -88,6 +77,7 @@ export async function oneAtATimeWorkflow(resourceId: string, sleepForMs = 500, l
   await useAPIThatCantBeCalledInParallel(sleepForMs);
 
   // Send a signal to the given lock Workflow to release the lock
+  const handle = getExternalWorkflowHandle(resourceId);
   await handle.signal(releaseSignalName);
   releaseSignalName = '';
 
