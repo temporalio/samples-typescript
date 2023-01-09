@@ -6,7 +6,7 @@ import { currentWorkflowIdQuery } from '../shared';
 import * as activities from '../activities';
 import assert from 'assert';
 import { nanoid } from 'nanoid';
-import { EventEmitter } from 'node:events';
+import { EventEmitter, once } from 'node:events';
 
 const taskQueue = 'test' + new Date().toLocaleDateString('en-US');
 
@@ -58,18 +58,14 @@ describe('lock workflow', function () {
         args: [lockWorkflowId, 1000, 1500],
       });
 
-      await new Promise<void>((resolve) => {
-        lockedEvents.once('locked', resolve);
-      });
+      await once(lockedEvents, 'locked');
 
       const lockWorkflowHandle = env.client.workflow.getHandle(lockWorkflowId);
 
       let currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
       assert.equal(currentWorkflowId, testWorkflowId);
 
-      await new Promise<void>((resolve) => {
-        lockedEvents.once('unlocked', resolve);
-      });
+      await once(lockedEvents, 'unlocked');
 
       currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
       assert.equal(currentWorkflowId, null);
@@ -86,9 +82,7 @@ describe('lock workflow', function () {
         args: [lockWorkflowId, 10000 /* 10s */],
       });
 
-      await new Promise<void>((resolve) => {
-        lockedEvents.once('locked', resolve);
-      });
+      await once(lockedEvents, 'locked');
 
       const lockWorkflowHandle = env.client.workflow.getHandle(lockWorkflowId);
       let currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
