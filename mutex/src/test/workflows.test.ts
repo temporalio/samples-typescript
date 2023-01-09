@@ -11,14 +11,12 @@ import { nanoid } from 'nanoid';
 const taskQueue = 'test' + new Date().toLocaleDateString('en-US');
 
 describe('lock workflow', function () {
-  let runPromise: Promise<void>;
+  this.timeout(10000);
   let worker: Worker;
-  let lockWorkflowHandle: WorkflowHandle<typeof lockWorkflow>;
   let env: TestWorkflowEnvironment;
   let workflowBundle: WorkflowBundleWithSourceMap;
 
   before(async function () {
-    this.timeout(10000);
     Runtime.install({ logger: new DefaultLogger('WARN') });
     env = await TestWorkflowEnvironment.create();
 
@@ -35,11 +33,6 @@ describe('lock workflow', function () {
       activities: activities.createActivities(env.client),
       taskQueue,
     });
-
-    lockWorkflowHandle = await env.workflowClient.start(lockWorkflow, {
-      taskQueue,
-      workflowId: 'lock-' + nanoid(),
-    });
   });
 
   after(async function () {
@@ -49,18 +42,21 @@ describe('lock workflow', function () {
   it('handles locking and unlocking', async function () {
     await worker.runUntil(async function () {
       const testWorkflowId = 'test-' + nanoid();
-      const testWorkflowHandle = await env.workflowClient.start(oneAtATimeWorkflow, {
+      const lockWorkflowId = 'lock-' + nanoid();
+      await env.client.workflow.start(oneAtATimeWorkflow, {
         taskQueue,
         workflowId: testWorkflowId,
-        args: [lockWorkflowHandle.workflowId, 10000 /* 10s */],
+        args: [lockWorkflowId, 1000, 1000],
       });
 
-      await env.sleep('100ms');
+      await env.sleep('50ms');
+
+      const lockWorkflowHandle = env.client.workflow.getHandle(lockWorkflowId);
 
       let currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
       assert.equal(currentWorkflowId, testWorkflowId);
 
-      await testWorkflowHandle.result();
+      await env.sleep('2000ms');
 
       currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
       assert.equal(currentWorkflowId, null);
@@ -70,18 +66,21 @@ describe('lock workflow', function () {
   it('automatically releases the lock after timeout', async function () {
     await worker.runUntil(async function () {
       const testWorkflowId1 = 'test-' + nanoid();
-      await env.workflowClient.start(oneAtATimeWorkflow, {
+      const lockWorkflowId = 'lock-' + nanoid();
+      await env.client.workflow.start(oneAtATimeWorkflow, {
         taskQueue,
         workflowId: testWorkflowId1,
-        args: [lockWorkflowHandle.workflowId, 10000 /* 10s */],
+        args: [lockWorkflowId, 10000 /* 10s */],
       });
 
       await env.sleep('100ms');
+
+      const lockWorkflowHandle = env.client.workflow.getHandle(lockWorkflowId);
       let currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
       assert.equal(currentWorkflowId, testWorkflowId1);
 
       const testWorkflowId2 = 'test-' + nanoid();
-      await env.workflowClient.start(oneAtATimeWorkflow, {
+      await env.client.workflow.start(oneAtATimeWorkflow, {
         taskQueue,
         workflowId: testWorkflowId2,
         args: [lockWorkflowHandle.workflowId, 10000 /* 10s */],

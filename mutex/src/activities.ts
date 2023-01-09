@@ -10,7 +10,7 @@ export function createActivities(client: Client) {
         timeoutMs,
       };
       await client.workflow.signalWithStart('lockWorkflow', {
-        taskQueue: 'mutex',
+        taskQueue: Context.current().info.taskQueue,
         workflowId: resourceId,
         signal: lockRequestSignal,
         signalArgs: [req],
