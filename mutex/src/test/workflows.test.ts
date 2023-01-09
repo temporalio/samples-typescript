@@ -52,7 +52,7 @@ describe('lock workflow', function () {
       const testWorkflowHandle = await env.workflowClient.start(oneAtATimeWorkflow, {
         taskQueue,
         workflowId: testWorkflowId,
-        args: [lockWorkflowHandle.workflowId],
+        args: [lockWorkflowHandle.workflowId, 10000 /* 10s */],
       });
 
       await env.sleep('100ms');
