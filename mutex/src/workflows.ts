@@ -56,7 +56,9 @@ export async function lockWorkflow(requests = Array<LockRequest>()): Promise<voi
     currentWorkflowId = null;
   }
   // carry over any pending requests to the next execution
-  await continueAsNew<typeof lockWorkflow>(requests);
+  if (requests.length > 0) {
+    await continueAsNew<typeof lockWorkflow>(requests);
+  }
 }
 
 export async function oneAtATimeWorkflow(resourceId: string, sleepForMs = 500, lockTimeoutMs = 1000): Promise<void> {
