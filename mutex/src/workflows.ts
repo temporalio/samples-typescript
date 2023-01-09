@@ -11,7 +11,7 @@ import {
 import type * as activities from './activities';
 import { LockRequest, currentWorkflowIdQuery, lockRequestSignal, lockAcquiredSignal } from './shared';
 
-const { signalWithStartLockWorkflow, useAPIThatCantBeCalledInParallel } = proxyActivities<
+const { signalWithStartLockWorkflow, useAPIThatCantBeCalledInParallel, notifyLocked, notifyUnlocked } = proxyActivities<
   ReturnType<typeof activities['createActivities']>
 >({
   startToCloseTimeout: '1 minute',
@@ -72,7 +72,7 @@ export async function oneAtATimeWorkflow(resourceId: string, sleepForMs = 500, l
   await signalWithStartLockWorkflow(resourceId, lockTimeoutMs);
   await condition(hasLock);
 
-  console.log(`Locked using resource "${resourceId}", releaseSignalName: "${releaseSignalName}"`);
+  await notifyLocked(resourceId, releaseSignalName);
 
   // Simulate a potentially long-running critical path that can't be run
   // in parallel.
@@ -83,5 +83,5 @@ export async function oneAtATimeWorkflow(resourceId: string, sleepForMs = 500, l
   await handle.signal(releaseSignalName);
   releaseSignalName = '';
 
-  console.log(`Released lock for resource "${resourceId}"`);
+  await notifyUnlocked(resourceId);
 }

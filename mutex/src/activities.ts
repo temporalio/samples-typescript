@@ -20,5 +20,11 @@ export function createActivities(client: Client) {
       // Fake an activity with a critical path that can't run in parallel
       await Context.current().sleep(sleepForMs);
     },
+    async notifyLocked(resourceId: string, releaseSignalName: string) {
+      console.log(`Locked using resource "${resourceId}", releaseSignalName: "${releaseSignalName}"`);
+    },
+    async notifyUnlocked(resourceId: string) {
+      console.log(`Released lock for resource "${resourceId}"`);
+    },
   };
 }
