@@ -112,6 +112,7 @@ and you'll be given the list of sample options.
     - Create an `UpdatableTimer` that can be slept on, and at the same time, have its duration updated via Signals.
 - **Signals and Triggers**:
   - The [**Signals and Queries example**](https://github.com/temporalio/samples-typescript/tree/main/signals-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
+  - [**Mutex**](https://github.com/temporalio/samples-typescript/tree/main/mutex): Workflows send Signals to each other in this example of `lockWorkflow` acting as a mutex.
   - [**State**](https://github.com/temporalio/samples-typescript/tree/main/state): The Workflow maintains state in a `Map<string, number>`, and the state can be updated and read via a Signal and a Query.
   - **Async activity completion**: Example of an [**Expense reporting**](https://github.com/temporalio/samples-typescript/tree/main/expense) Workflow that communicates with a server API. Shows how to kick off a Workflow and manually complete it at an arbitrarily later date.
 - [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): Schedule a cron job.
