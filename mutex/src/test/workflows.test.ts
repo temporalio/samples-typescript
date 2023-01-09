@@ -46,7 +46,7 @@ describe('lock workflow', function () {
       await env.client.workflow.start(oneAtATimeWorkflow, {
         taskQueue,
         workflowId: testWorkflowId,
-        args: [lockWorkflowId, 1000, 1000],
+        args: [lockWorkflowId, 1000, 1500],
       });
 
       await env.sleep('50ms');
@@ -56,7 +56,7 @@ describe('lock workflow', function () {
       let currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
       assert.equal(currentWorkflowId, testWorkflowId);
 
-      await env.sleep('2000ms');
+      await env.sleep('1200ms');
 
       currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
       assert.equal(currentWorkflowId, null);
