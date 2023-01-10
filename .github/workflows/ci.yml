@@ -114,7 +114,7 @@ jobs:
       - run: npm ci
       - run: yarn
         working-directory: ${{ matrix.project }}
-      - run: ${{ matrix.project }}  npm run build
+      - run: npm run build
         working-directory: ${{ matrix.project }}
         if: ${{ matrix.project != 'hello-world-js' }}
       - run: npm run lint
