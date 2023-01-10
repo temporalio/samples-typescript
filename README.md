@@ -111,13 +111,15 @@ and you'll be given the list of sample options.
     - Send a notification to the customer if their order is taking longer than expected (using a `Promise.race` between the order activity and `sleep`).
     - Create an `UpdatableTimer` that can be slept on, and at the same time, have its duration updated via Signals.
 - **Signals and Triggers**:
-  - The [**Signals and Queries example**](./signals-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
-  - [**State**](./state): The Workflow maintains state in a `Map<string, number>`, and the state can be updated and read via a Signal and a Query.
-  - **Async activity completion**: Example of an [**Expense reporting**](./expense) Workflow that communicates with a server API. Shows how to kick off a Workflow and manually complete it at an arbitrarily later date.
-- [**Cron Workflows**](./cron-workflows): Schedule a cron job.
-- [**Child Workflows**](./child-workflows): Start and control Child Workflows.
-- [**Infinite Workflows**](./continue-as-new): Use the `continueAsNew` API for indefinitely long running Workflows.
-- [**Search Attributes**](./search-attributes): Create, set, upsert, and read Search Attributes.
+  - The [**Signals and Queries example**](https://github.com/temporalio/samples-typescript/tree/main/signals-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
+  - [**Mutex**](https://github.com/temporalio/samples-typescript/tree/main/mutex): Workflows send Signals to each other in this example of `lockWorkflow` acting as a mutex.
+  - [**State**](https://github.com/temporalio/samples-typescript/tree/main/state): The Workflow maintains state in a `Map<string, number>`, and the state can be updated and read via a Signal and a Query.
+  - **Async activity completion**: Example of an [**Expense reporting**](https://github.com/temporalio/samples-typescript/tree/main/expense) Workflow that communicates with a server API. Shows how to kick off a Workflow and manually complete it at an arbitrarily later date.
+- [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): Schedule a cron job.
+- [**Child Workflows**](https://github.com/temporalio/samples-typescript/tree/main/child-workflows): Start and control Child Workflows.
+- [**Infinite Workflows**](https://github.com/temporalio/samples-typescript/tree/main/continue-as-new): Use the `continueAsNew` API for indefinitely long running Workflows.
+- [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): Create, set, upsert, and read Search Attributes.
+
 - [**Subscriptions**](https://github.com/temporalio/subscription-workflow-project-template-typescript/)
 
 #### Production APIs
