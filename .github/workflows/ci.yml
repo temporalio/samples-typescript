@@ -32,15 +32,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-        node: [ 16 ]
-        project:
-          [
-            activities-examples,
-            mutex,
-            nestjs-counter,
-            timer-examples
-          ]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [16]
+        project: [activities-examples, mutex, nestjs-counter, timer-examples]
 
     steps:
       - uses: actions/checkout@v2

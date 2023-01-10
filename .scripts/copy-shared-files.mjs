@@ -124,17 +124,17 @@ for (const sample of samples) {
 process.stdout.write('Updating GitHub workflows...');
 
 const ciConfig = yaml.parseDocument(await fs.readFile('.github/workflows/ci.yml', 'utf8'));
-const jobsNode = ciConfig.contents.items.find(i => i.key.value === 'jobs');
-const testNode = jobsNode.value.items.find(i => i.key.value === 'test-individual');
-const testProjectsNode = testNode
-  .value.items.find(i => i.key.value === 'strategy')
-  .value.items.find(i => i.key.value === 'matrix')
-  .value.items.find(i => i.key.value === 'project');
-const lintNode = jobsNode.value.items.find(i => i.key.value === 'lint-individual');
-const lintProjectsNode = lintNode
-  .value.items.find(i => i.key.value === 'strategy')
-  .value.items.find(i => i.key.value === 'matrix')
-  .value.items.find(i => i.key.value === 'project');
+const jobsNode = ciConfig.contents.items.find((i) => i.key.value === 'jobs');
+const testNode = jobsNode.value.items.find((i) => i.key.value === 'test-individual');
+const testProjectsNode = testNode.value.items
+  .find((i) => i.key.value === 'strategy')
+  .value.items.find((i) => i.key.value === 'matrix')
+  .value.items.find((i) => i.key.value === 'project');
+const lintNode = jobsNode.value.items.find((i) => i.key.value === 'lint-individual');
+const lintProjectsNode = lintNode.value.items
+  .find((i) => i.key.value === 'strategy')
+  .value.items.find((i) => i.key.value === 'matrix')
+  .value.items.find((i) => i.key.value === 'project');
 
 testProjectsNode.value.items = [];
 lintProjectsNode.value.items = [];
