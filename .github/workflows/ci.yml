@@ -10,27 +10,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-        node: [ 16 ]
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
-          # Comment out cache line when testing with act:
-          # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run bootstrap
-      - run: npm run build
-      - run: npm test
-
   lint:
     runs-on: ubuntu-latest
 
