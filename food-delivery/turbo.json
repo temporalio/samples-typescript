@@ -4,7 +4,7 @@
     "build": {
       "dependsOn": ["^build"],
       "env": ["NODE_ENV", "TEMPORAL_SERVER", "NAMESPACE"],
-      "outputs": ["dist/**", ".next/**"]
+      "outputs": ["lib/**", ".next/**"]
     },
     "lint": {
       "outputs": []

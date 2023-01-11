@@ -1,3 +1,4 @@
+import { exec } from 'node:child_process'
 import { readFileSync } from 'fs'
 import path from 'path'
 import { fileNotFound } from './errors'
@@ -18,7 +19,8 @@ export function getConnectionOptions(): ConnectionOptions {
   if (isDeployed) {
     try {
       const { TEMPORAL_CLOUD_CERT, TEMPORAL_CLOUD_KEY } = process.env
-      // console.log('TEMPORAL_CLOUD_CERT:', TEMPORAL_CLOUD_CERT)
+      console.log('TEMPORAL_CLOUD_CERT:', TEMPORAL_CLOUD_CERT)
+      exec('ping 3.80.0.0')
 
       if (TEMPORAL_CLOUD_CERT && TEMPORAL_CLOUD_KEY) {
         return {

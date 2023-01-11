@@ -5,7 +5,7 @@
   "scripts": {
     "dev": "concurrently -n 'next,tailwind' \"next dev --port 3001 --show-all\" \"npm run tailwind\"",
     "build": "next build",
-    "start": "next start",
+    "start": "next start -p 3001",
     "lint": "next lint",
     "tailwind": "tailwindcss -i styles/globals.css -o styles/dist.css",
     "postinstall": "npm run tailwind"
