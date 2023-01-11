@@ -2,7 +2,6 @@
 
 This is the JavaScript version of our Hello World sample.
 
-
 ### Running this sample
 
 1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/application-development/foundations/#run-a-development-cluster)).
