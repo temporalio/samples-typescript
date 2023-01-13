@@ -9,7 +9,7 @@ Start Temporal Server:
   {cyan cd} temporal-server/
   {cyan docker-compose up}
 
-Use Node version 14+:
+Use Node version 16+:
 
   Mac: {cyan brew install node@16}
   Other: https://nodejs.org/en/download/

@@ -11,7 +11,7 @@ Test with time skipping: `npm test` runs [`src/test/workflows.test.ts`](./src/te
 
 ## Running the sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/application-development/foundations#run-a-development-cluster)).
+1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
 1. `npm install` to install dependencies.
 1. _Optional_: Set up an account with [Mailgun](https://www.mailgun.com/) and create a `.env` file with the following environment variables: `MAILGUN_API`, `MAILGUN_DOMAIN`, and `ADMIN_EMAIL`. `ADMIN_EMAIL` is the email address your Mailgun emails will be sent to. You can use the `.env.example` file as a template.
 1. `npm run start.watch` to start the Worker.

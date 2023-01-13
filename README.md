@@ -44,7 +44,7 @@ cd temporal
 docker-compose up -d
 ```
 
-Use Node version 14+:
+Use Node version 16+:
 
 - Install Node 16:
   - Mac: `brew install node@16`
@@ -115,7 +115,8 @@ and you'll be given the list of sample options.
   - [**Mutex**](https://github.com/temporalio/samples-typescript/tree/main/mutex): Workflows send Signals to each other in this example of `lockWorkflow` acting as a mutex.
   - [**State**](https://github.com/temporalio/samples-typescript/tree/main/state): The Workflow maintains state in a `Map<string, number>`, and the state can be updated and read via a Signal and a Query.
   - **Async activity completion**: Example of an [**Expense reporting**](https://github.com/temporalio/samples-typescript/tree/main/expense) Workflow that communicates with a server API. Shows how to kick off a Workflow and manually complete it at an arbitrarily later date.
-- [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): Schedule a cron job.
+- [**Schedules**](https://github.com/temporalio/samples-typescript/tree/main/schedules): Schedule Workflows.
+- [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): Schedule a cron job. _DEPRECATED: use [Schedules](https://github.com/temporalio/samples-typescript/tree/main/schedules) instead._
 - [**Child Workflows**](https://github.com/temporalio/samples-typescript/tree/main/child-workflows): Start and control Child Workflows.
 - [**Infinite Workflows**](https://github.com/temporalio/samples-typescript/tree/main/continue-as-new): Use the `continueAsNew` API for indefinitely long running Workflows.
 - [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): Create, set, upsert, and read Search Attributes.
