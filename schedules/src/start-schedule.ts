@@ -54,11 +54,11 @@ You can now run:
   npm run schedule.unpause
   npm run schedule.delete
   `);
+
+  await client.connection.close();
 }
 
-run()
-  .then(() => process.exit(0))
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+run().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});

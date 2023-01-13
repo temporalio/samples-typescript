@@ -44,7 +44,7 @@ cd temporal
 docker-compose up -d
 ```
 
-Use Node version 14+:
+Use Node version 16+:
 
 - Install Node 16:
   - Mac: `brew install node@16`

@@ -25,11 +25,8 @@ message: ${message}`);
   console.log('Worker gracefully shutdown');
 }
 
-main().then(
-  () => void process.exit(0),
-  (err) => {
-    console.error(err);
-    process.exit(1);
-  }
-);
+main().then((err) => {
+  console.error(err);
+  process.exit(1);
+});
 // @@@SNIPEND

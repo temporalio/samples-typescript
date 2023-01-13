@@ -11,9 +11,7 @@ async function run() {
   console.log(`Schedule is now deleted.`);
 }
 
-run()
-  .then(() => process.exit(0))
-  .catch((err) => {
-    console.error(err);
-    process.exit(1);
-  });
+run().catch((err) => {
+  console.error(err);
+  process.exit(1);
+});
