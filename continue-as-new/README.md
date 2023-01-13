@@ -1,10 +1,10 @@
 # Continue as New
 
-This sample demonstrates the [continueAsNew API](https://docs.temporal.io/typescript/workflows/#the-continueasnew-api). We still need to make these examples more relatable and realistic. If you are planning to write an infinitely long-running Workflow, please get in touch to validate the design and cutoff points.
+This sample demonstrates the [continueAsNew API](https://docs.temporal.io/application-development/features/#continue-as-new). We still need to make these examples more relatable and realistic. If you are planning to write an infinitely long-running Workflow, please get in touch to validate the design and cutoff points.
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/application-development/foundations#run-a-development-cluster)).
 2. `npm install` to install dependencies.
 3. `npm run start.watch` to start the Worker.
 4. In another shell, `npm run workflow` to run the Workflow.

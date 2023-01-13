@@ -1,6 +1,6 @@
 # Protobufs
 
-Use [Protobufs](https://docs.temporal.io/typescript/data-converters#protobufs).
+Use [Protobufs](https://docs.temporal.io/application-development/observability?lang=typescript#tracing).
 
 - Example proto files:
   - [protos/messages.proto](protos/messages.proto)
@@ -13,7 +13,7 @@ We provide the Payload Converter to the Client ([src/client.ts](src/client.ts)) 
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/application-development/foundations#run-a-development-cluster)).
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run workflow` to run the Workflow Client.

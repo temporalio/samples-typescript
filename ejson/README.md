@@ -1,6 +1,6 @@
 # EJSON
 
-Create a [custom payload converter](https://docs.temporal.io/typescript/data-converters#payloadconverter) using [EJSON](https://docs.meteor.com/api/ejson.html), which supports:
+Create a [custom payload converter](https://docs.temporal.io/security/#payload-converter) using [EJSON](https://docs.meteor.com/api/ejson.html), which supports:
 
 - Dates (`Date`)
 - Binary (`Uint8Array`)
@@ -9,10 +9,10 @@ Create a [custom payload converter](https://docs.temporal.io/typescript/data-con
 
 ## Code
 
-- `EjsonPayloadConverter`: [ejson-payload-converter.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/ejson-payload-converter.ts)
-- `payloadConverter`: [payload-converter.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/payload-converter.ts)
+- `EjsonPayloadConverter`: [ejson-payload-converter.ts](./ejson-payload-converter.ts)
+- `payloadConverter`: [payload-converter.ts](./src/payload-converter.ts)
 
-The `payload-converter.ts` file is supplied to the [client.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/client.ts) and [worker.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/worker.ts), and when the client sends a `User` argument, [workflow.ts](https://github.com/temporalio/samples-typescript/blob/main/ejson/src/workflow.ts) can receive it.
+The `payload-converter.ts` file is supplied to the [client.ts](./src/client.ts) and [worker.ts](./src/worker.ts), and when the client sends a `User` argument, [workflow.ts](./src/workflow.ts) can receive it.
 
 ## Migrating
 
@@ -38,7 +38,7 @@ export const payloadConverter = new CompositePayloadConverter(
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/application-development/foundations#run-a-development-cluster)).
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run workflow` to run the Workflow Client.

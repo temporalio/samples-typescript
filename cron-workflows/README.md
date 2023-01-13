@@ -1,6 +1,6 @@
 # Cron Workflows
 
-This example demonstrates a working Cron workflow. Note the limitations and caveats listed in the [docs](https://docs.temporal.io/content/what-is-a-temporal-cron-job/).
+This example demonstrates a working Cron workflow. Note the limitations and caveats listed in the [docs](https://docs.temporal.io/workflows/#temporal-cron-job).
 
 Differences from the hello world demo:
 
@@ -17,7 +17,7 @@ Note that when we're changing code and restarting Workers, unless we cancel all 
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/application-development/foundations#run-a-development-cluster)).
 2. `npm install` to install dependencies.
 3. `npm run start.watch` to start the Worker.
 4. In another shell, `npm run workflow` to run the Workflow.
