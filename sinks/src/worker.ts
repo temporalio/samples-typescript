@@ -25,7 +25,7 @@ message: ${message}`);
   console.log('Worker gracefully shutdown');
 }
 
-main().then((err) => {
+main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
