@@ -1,6 +1,6 @@
 # Sticky Activity Queues
 
-This sample shows how to have [Sticky Activities](https://docs.temporal.io/typescript/workers#example-sticky-activities): using a unique task queue per Worker to have certain activities only run on that specific Worker.
+This sample shows how to have [Sticky Execution](https://docs.temporal.io/tasks/#sticky-execution): using a unique task queue per Worker to have certain activities only run on that specific Worker.
 
 The strategy is:
 

@@ -2,9 +2,9 @@
 
 This project demonstrates how to add a [winston](https://github.com/winstonjs/winston) logger to your project and get metrics, logs and traces out of the SDK.
 
-The [Logging docs](https://docs.temporal.io/typescript/logging/) and [Core docs](https://docs.temporal.io/typescript/core/) explain some of the code in this sample.
+The [Logging docs](https://docs.temporal.io/application-development/observability/#logging) and [Core docs](https://docs.temporal.io/clusters/#monitoring-and-observation) explain some of the code in this sample.
 
-See the [opentelemetry interceptors sample](https://github.com/temporalio/samples-typescript/tree/main/interceptors-opentelemetry) for adding tracing to your own Activities and Workflows.
+See the [opentelemetry interceptors sample](../interceptors-opentelemetry) for adding tracing to your own Activities and Workflows.
 
 ### Running this sample
 

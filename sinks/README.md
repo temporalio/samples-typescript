@@ -2,7 +2,7 @@
 
 This project demonstrates the Sinks API for alerting.
 
-The [Logging docs](https://docs.temporal.io/typescript/logging/) explains some of the code in this sample.
+The [Logging docs](https://docs.temporal.io/application-development/observability/#logging) explains some of the code in this sample.
 
 ### Running this sample
 

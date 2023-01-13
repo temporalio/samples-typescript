@@ -1,6 +1,6 @@
 # Expense Reporting
 
-In this sample, the `expense` Workflow creates the expense (via an activity that POSTs to `localhost:3000/create`) and then waits for a [Signal](https://docs.temporal.io/typescript/workflows#signals-and-queries) to say whether the expense is approved or rejected:
+In this sample, the `expense` Workflow creates the expense (via an activity that POSTs to `localhost:3000/create`) and then waits for a [Signal](https://docs.temporal.io/workflows/#signal) to say whether the expense is approved or rejected:
 
 [`src/workflows.ts`](./src/workflows.ts)
 

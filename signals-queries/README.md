@@ -1,6 +1,6 @@
 # Signals and Queries
 
-This example demonstrates the usage of [Signals, Queries](https://docs.temporal.io/typescript/workflows#signals-and-queries), and [Workflow Cancellation](https://docs.temporal.io/typescript/cancellation-scopes).
+This example demonstrates the usage of [Signals](https://docs.temporal.io/workflows/#signal), [Queries](https://docs.temporal.io/workflows/#query), and [Workflow Cancellation](https://learn.temporal.io/tutorials/typescript/subscriptions/#receive-cancellations-with-a-signal).
 
 Signals, Queries, and cancellation messages are sent through `Client.workflow`:
 

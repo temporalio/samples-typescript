@@ -1,11 +1,11 @@
 # Production
 
-An example of building your Workflow code bundle at build time and giving that [prebuilt bundle](https://docs.temporal.io/typescript/production-deploy#prebuild-the-worker) to the Worker (in order to reduce Worker startup time).
+An example of building your Workflow code bundle at build time and giving that [prebuilt bundle](https://docs.temporal.io/application-development/foundations?lang=typescript#register-types) to the Worker (in order to reduce Worker startup time).
 
 - Worker code: [`src/worker.ts`](./src/worker.ts)
 - Workflow build script: [`src/scripts/build-workflow-bundle.ts`](./src/scripts/build-workflow-bundle.ts)
 
-For more production topics, see our [Production & Deployment](https://docs.temporal.io/typescript/production-deploy) docs page.
+For more production topics, see our [Production & Deployment](https://docs.temporal.io/server/production-deployment) docs page.
 
 ### Running this sample in development
 

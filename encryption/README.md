@@ -1,6 +1,6 @@
 # Encryption
 
-Create a custom data converter that encrypts data with AES. See [encryption docs](https://docs.temporal.io/typescript/data-converters#encryption).
+Create a custom data converter that encrypts data with AES. See [encryption docs](https://docs.temporal.io/security/#encryption).
 
 ## Code
 

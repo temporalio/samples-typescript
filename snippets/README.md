@@ -3,7 +3,7 @@
 This project is for making sure code snippets we use in the docs that don't fit in other samples compile and run.
 
 - [`client.ts`](./src/client.ts) sets a Workflow Retry Policy
-- [`workflows.ts](./src/workflows.ts) sometimes fails by throwing an `ApplicationFailure`
+- [`workflows.ts`](./src/workflows.ts) sometimes fails by throwing an `ApplicationFailure`
 
 ### Running this sample
 
@@ -20,7 +20,7 @@ WorkflowFailedError: Workflow execution failed
   retryState: 4
 ```
 
-`retryState: 4` corresponds to [`RETRY_STATE_MAXIMUM_ATTEMPTS_REACHED`](https://typescript.temporal.io/api/enums/common.retrystate/#retry_state_maximum_attempts_reached).
+`retryState: 4` corresponds to [`RETRY_STATE_MAXIMUM_ATTEMPTS_REACHED`](https://typescript.temporal.io/api/enums/common.RetryState/#retry_state_maximum_attempts_reached).
 
 Otherwise, you'll see:
 

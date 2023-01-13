@@ -1,6 +1,6 @@
 # Patching API
 
-This sample shows how to use the [patching/versioning API](https://docs.temporal.io/typescript/patching/) to update the code of a Workflow that has executions in progress in production.
+This sample shows how to use the [patching/versioning API](https://docs.temporal.io/workflows/#workflow-versioning) to update the code of a Workflow that has executions in progress in production.
 
 ### Running this sample
 

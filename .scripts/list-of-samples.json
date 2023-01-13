@@ -19,6 +19,7 @@
     "instrumentation",
     "interceptors-opentelemetry",
     "monorepo-folders",
+    "mutex",
     "nestjs-counter",
     "nextjs-ecommerce-oneclick",
     "patching-api",

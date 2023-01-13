@@ -2,8 +2,6 @@
 
 This is the JavaScript version of our Hello World sample.
 
-The [Hello World Tutorial](https://docs.temporal.io/typescript/hello-world/) walks through the TypeScript version of this sample.
-
 ### Running this sample
 
 1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).

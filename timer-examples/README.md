@@ -38,7 +38,7 @@ Run `npm run workflow-updating` to demonstrate the Updatable Timer.
 
 This example shows how to write reusable libraries that encompass Workflow APIs.
 
-[`countdownWorkflow`](./src/updatable-timer.ts) is originally set to resolve after 1 day; however, the Workflow sends in a `setDeadlineSignal` that updates it to resolve in 1 second, and it does. You can see each step in the Worker log output, as well as the [Temporal Web](https://docs.temporal.io/system-tools/web-ui/#using-temporal-web-for-development) Timer settings.
+[`countdownWorkflow`](./src/updatable-timer.ts) is originally set to resolve after 1 day; however, the Workflow sends in a `setDeadlineSignal` that updates it to resolve in 1 second, and it does. You can see each step in the Worker log output, as well as the [Temporal Web](https://docs.temporal.io/web-ui/#using-temporal-web-for-development) Timer settings.
 
 ```bash
 [countdownWorkflow(6c0c152b-aead-4b1a-acf0-17e809acf0fc)] timer set for: Tue Nov 02 2021 03:03:57 GMT-0700 (Pacific Daylight Time)

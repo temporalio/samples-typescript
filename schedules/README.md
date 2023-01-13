@@ -22,7 +22,7 @@ You can interact with the running Schedule using these scripts:
 
 ### Running this sample
 
-1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
+1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#getting-started).
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run schedule.start` to start the Schedule.
