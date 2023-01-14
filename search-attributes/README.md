@@ -1,6 +1,6 @@
 # Search Attributes
 
-> Background: [Search Attribute docs](https://docs.temporal.io/next/application-development/observability/?lang=ts#visibility)
+> Background: [Search Attribute docs](https://docs.temporal.io/application-development/observability/?lang=ts#visibility)
 
 ### Adding to Server
 
@@ -13,7 +13,7 @@ This runs [`src/client-operator-service.ts`](./src/client-operator-service.ts), 
 ### Adding to Workflow and using
 
 - Client: [`src/client.ts`](./src/client.ts)
-  - Add [custom search attributes](https://docs.temporal.io/typescript/search-attributes/) to your Workflow Executions on start
+  - Add [custom search attributes](https://docs.temporal.io/application-development/observability/#search-attributes) to your Workflow Executions on start
   - Use `describe()` to read search attributes
 - Workflow: [`src/workflows.ts`](./src/workflows.ts)
   - Read search attributes from `WorkflowInfo`
@@ -23,7 +23,7 @@ This requires an Elasticsearch instance, which is included in the default `docke
 
 ### Running this sample
 
-1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
+1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
 1. In another shell, `npm run workflow` to run the Workflow.

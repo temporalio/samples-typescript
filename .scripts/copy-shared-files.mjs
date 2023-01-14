@@ -35,6 +35,7 @@ const ESLINTRC_EXCLUDE = [
 const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples', 'nestjs-counter'];
 
 const POST_CREATE_EXCLUDE = [
+  'schedules',
   'timer-examples',
   'query-subscriptions',
   'nextjs-ecommerce-oneclick',
@@ -47,6 +48,7 @@ const POST_CREATE_EXCLUDE = [
   'activities-cancellation-heartbeating',
   'nestjs-counter',
   'replay-history',
+  'search-attributes',
 ];
 
 const FILES = [
