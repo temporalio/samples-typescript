@@ -1,5 +1,5 @@
 import {
-  WorkflowClient,
+  Client,
   WorkflowExecutionAlreadyStartedError,
   Connection,
   ConnectionOptions,
@@ -24,16 +24,16 @@ export const exchangeRatesProviders = [
   {
     provide: 'WORKFLOW_CLIENT',
     useFactory: (connection: Connection) => {
-      return new WorkflowClient({ connection });
+      return new Client({ connection });
     },
     inject: ['CONNECTION'],
   },
   {
     provide: 'EXCHANGE_RATES_WORKFLOW_HANDLE',
-    useFactory: async (client: WorkflowClient) => {
+    useFactory: async (client: Client) => {
       let handle;
       try {
-        handle = await client.start('exchangeRatesWorkflow', {
+        handle = await client.workflow.start('exchangeRatesWorkflow', {
           taskQueue,
           workflowId: 'exchange-rates',
         });
@@ -41,7 +41,7 @@ export const exchangeRatesProviders = [
       } catch (err) {
         if (err instanceof WorkflowExecutionAlreadyStartedError) {
           console.log('Reusing existing exchange rates workflow');
-          handle = await client.getHandle('exchange-rates');
+          handle = await client.workflow.getHandle('exchange-rates');
         } else {
           throw err;
         }
