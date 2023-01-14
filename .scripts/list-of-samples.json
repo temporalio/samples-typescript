@@ -18,7 +18,6 @@
     "hello-world-mtls",
     "instrumentation",
     "interceptors-opentelemetry",
-    "logger-shared",
     "monorepo-folders",
     "mutex",
     "nestjs-counter",
