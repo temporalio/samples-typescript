@@ -23,7 +23,7 @@
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
-Each directory in this repo is a sample Temporal project built with the [TypeScript SDK](https://github.com/temporalio/sdk-typescript/) (see [docs](https://docs.temporal.io/typescript/introduction/) and [API reference](https://typescript.temporal.io/)).
+Each directory in this repo is a sample Temporal project built with the [TypeScript SDK](https://github.com/temporalio/sdk-typescript/) (see [docs](https://docs.temporal.io/application-development?lang=typescript#supported-sdks) and [API reference](https://typescript.temporal.io/)).
 
 ## Running
 
@@ -44,14 +44,14 @@ cd temporal
 docker-compose up -d
 ```
 
-Use Node version 14+:
+Use Node version 16+:
 
 - Install Node 16:
   - Mac: `brew install node@16`
   - Other: [nodejs.org/en/download/](https://nodejs.org/en/download/)
 - Or use a Node version manager: [`fnm`](https://github.com/Schniz/fnm#readme)
 
-Run the [`hello-world`](hello-world/) sample:
+Run the [`hello-world`](./hello-world) sample:
 
 ```sh
 git clone https://github.com/temporalio/samples-typescript.git
@@ -86,60 +86,63 @@ and you'll be given the list of sample options.
 
 ### Basic
 
-- [**Basic hello world**](https://github.com/temporalio/samples-typescript/tree/main/hello-world): Simple example of a Workflow Definition and an Activity Definition.
-  - Variant: [Basic hello world with mTLS](https://github.com/temporalio/samples-typescript/tree/main/hello-world-mtls) shows how to connect to your Temporal Cloud namespace with mTLS authentication.
-- [**Pure ES Modules**](https://github.com/temporalio/samples-typescript/tree/main/fetch-esm): Configure Temporal with TypeScript and Pure ESM.
-- [**JavaScript**](https://github.com/temporalio/samples-typescript/tree/main/hello-world-js): The Hello World sample in JavaScript instead of TypeScript.
+- [**Basic hello world**](./hello-world): Simple example of a Workflow Definition and an Activity Definition.
+  - Variant: [Basic hello world with mTLS](./hello-world-mtls) shows how to connect to your Temporal Cloud namespace with mTLS authentication.
+- [**Pure ES Modules**](./fetch-esm): Configure Temporal with TypeScript and Pure ESM.
+- [**JavaScript**](./hello-world-js): The Hello World sample in JavaScript instead of TypeScript.
 
 ### API demos
 
 #### Activity APIs and design patterns
 
-- [**Activities Examples**](https://github.com/temporalio/samples-typescript/tree/main/activities-examples):
+- [**Activities Examples**](./activities-examples):
   - `makeHTTPRequest`: Make an external HTTP request in an Activity (using `axios`).
-  - `cancellableFetch`: Make a cancellable HTTP request with [`cancellationSignal`](https://typescript.temporal.io/api/classes/activity.context/#cancellationsignal).
-  - `doSomethingAsync`: Complete an Activity async with [`AsyncCompletionClient`](https://typescript.temporal.io/api/classes/client.AsyncCompletionClient#complete).
-- [**Activity Cancellation and Heartbeating**](https://github.com/temporalio/samples-typescript/tree/main/activities-cancellation-heartbeating): Heartbeat progress for long running activities and cancel them.
-- [**Dependency Injection**](https://github.com/temporalio/samples-typescript/tree/main/activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities).
-- [**Sticky Activities**](https://github.com/temporalio/samples-typescript/tree/main/activities-sticky-queues): Use a unique task queue per Worker to have certain Activities only run on that specific Worker. For instance for a file processing Workflow, where the first Activity is downloading a file, and subsequent Activities need to operate on that file. (And if multiple Workers are on the same queue, subsequent Activities may be run on a different machine that doesn't have the downloaded file.)
+  - `cancellableFetch`: Make a cancellable HTTP request with [`cancellationSignal`](https://typescript.temporal.io/api/namespaces/activity/#cancellation).
+  - `doSomethingAsync`: Complete an Activity async with [`AsyncCompletionClient`](https://typescript.temporal.io/api/classes/client.AsyncCompletionClient/#complete).
+- [**Activity Cancellation and Heartbeating**](./activities-cancellation-heartbeating): Heartbeat progress for long running activities and cancel them.
+- [**Dependency Injection**](./activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities).
+- [**Sticky Activities**](./activities-sticky-queues): Use a unique task queue per Worker to have certain Activities only run on that specific Worker. For instance for a file processing Workflow, where the first Activity is downloading a file, and subsequent Activities need to operate on that file. (And if multiple Workers are on the same queue, subsequent Activities may be run on a different machine that doesn't have the downloaded file.)
 
 #### Workflow APIs
 
 - **Timers**:
-  - The [**progress example**](https://github.com/temporalio/samples-typescript/tree/main/timer-progress) demonstrates how to use the `sleep` function from `@temporalio/workflow`.
-  - [**Timer Examples**](https://github.com/temporalio/samples-typescript/tree/main/timer-examples):
+  - The [**progress example**](./timer-progress) demonstrates how to use the `sleep` function from `@temporalio/workflow`.
+  - [**Timer Examples**](./timer-examples):
     - Send a notification to the customer if their order is taking longer than expected (using a `Promise.race` between the order activity and `sleep`).
     - Create an `UpdatableTimer` that can be slept on, and at the same time, have its duration updated via Signals.
 - **Signals and Triggers**:
   - The [**Signals and Queries example**](https://github.com/temporalio/samples-typescript/tree/main/signals-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
+  - [**Mutex**](https://github.com/temporalio/samples-typescript/tree/main/mutex): Workflows send Signals to each other in this example of `lockWorkflow` acting as a mutex.
   - [**State**](https://github.com/temporalio/samples-typescript/tree/main/state): The Workflow maintains state in a `Map<string, number>`, and the state can be updated and read via a Signal and a Query.
   - **Async activity completion**: Example of an [**Expense reporting**](https://github.com/temporalio/samples-typescript/tree/main/expense) Workflow that communicates with a server API. Shows how to kick off a Workflow and manually complete it at an arbitrarily later date.
-- [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): Schedule a cron job.
+- [**Schedules**](https://github.com/temporalio/samples-typescript/tree/main/schedules): Schedule Workflows.
+- [**Cron Workflows**](https://github.com/temporalio/samples-typescript/tree/main/cron-workflows): Schedule a cron job. _DEPRECATED: use [Schedules](https://github.com/temporalio/samples-typescript/tree/main/schedules) instead._
 - [**Child Workflows**](https://github.com/temporalio/samples-typescript/tree/main/child-workflows): Start and control Child Workflows.
 - [**Infinite Workflows**](https://github.com/temporalio/samples-typescript/tree/main/continue-as-new): Use the `continueAsNew` API for indefinitely long running Workflows.
 - [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): Create, set, upsert, and read Search Attributes.
+
 - [**Subscriptions**](https://github.com/temporalio/subscription-workflow-project-template-typescript/)
 
 #### Production APIs
 
-- [**Production Build**](https://github.com/temporalio/samples-typescript/tree/main/production): Build code in advance for faster Worker startup times.
-- [**Debugging**](https://docs.temporal.io/typescript/troubleshooting): The [replay-history](https://github.com/temporalio/samples-typescript/tree/main/replay-history) sample shows how to retrieve Workflow Event History and debug it using the `runReplayHistory` Worker API ([video](https://youtu.be/fN5bIL7wc5M)).
-- [**Patching**](https://docs.temporal.io/typescript/patching/): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
-- [**Sinks**](https://github.com/temporalio/samples-typescript/tree/main/sinks): Use Sinks to extract data out of Workflows for alerting/logging/metrics/tracing purposes.
-- [**Instrumentation**](https://github.com/temporalio/samples-typescript/tree/main/instrumentation): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components and get metrics and traces out of Rust Core.
-- [**Protobufs**](https://github.com/temporalio/samples-typescript/tree/main/protobufs): Use [Protobufs](https://docs.temporal.io/typescript/data-converters#protobufs).
-- [**Custom Payload Converter**](https://github.com/temporalio/samples-typescript/tree/main/ejson): Customize data serialization by creating a `PayloadConverter` that uses EJSON to convert Dates, binary, and regexes.
+- [**Production Build**](./production): Build code in advance for faster Worker startup times.
+- [**Debugging**](https://docs.temporal.io/application-development/debugging#debug): The [replay-history](./replay-history) sample shows how to retrieve Workflow Event History and debug it using the `runReplayHistory` Worker API ([video](https://youtu.be/fN5bIL7wc5M)).
+- [**Patching**](https://docs.temporal.io/workflows/#workflow-versioning): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
+- [**Sinks**](./sinks): Use Sinks to extract data out of Workflows for alerting/logging/metrics/tracing purposes.
+- [**Instrumentation**](./instrumentation): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components and get metrics and traces out of Rust Core.
+- [**Protobufs**](./protobufs): Use [Protobufs](https://docs.temporal.io/security/#default-data-converter).
+- [**Custom Payload Converter**](./ejson): Customize data serialization by creating a `PayloadConverter` that uses EJSON to convert Dates, binary, and regexes.
 - **Monorepos**:
-  - [`/monorepos-folders`](https://github.com/temporalio/samples-typescript/tree/main/ejson): yarn workspace with packages for a web frontend, API server, Worker, and Workflows/Activities.
+  - [`/monorepos-folders`](./ejson): yarn workspace with packages for a web frontend, API server, Worker, and Workflows/Activities.
   - [`psigen/temporal-ts-example`](https://github.com/psigen/temporal-ts-example): yarn workspace containerized with [tilt](https://tilt.dev/). Includes `temporalite`, `parcel`, and different packages for Workflows and Activities.
 - [**Polyglot**](https://github.com/temporalio/temporal-pendulum): Use TS alongside other languages
 
 #### Advanced APIs
 
 - **Interceptors**:
-  - [**OpenTelemetry**](https://github.com/temporalio/samples-typescript/tree/main/interceptors-opentelemetry): Use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows.
-  - [**Query Subscriptions**](https://github.com/temporalio/samples-typescript/tree/main/query-subscriptions): Use Redis Streams, Immer, and SDK Interceptors to subscribe to Workflow state.
-- [**gRPC calls**](https://github.com/temporalio/samples-typescript/tree/main/grpc-calls): Make raw gRPC calls for advanced queries not covered by the WorkflowClient API.
+  - [**OpenTelemetry**](./interceptors-opentelemetry): Use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows.
+  - [**Query Subscriptions**](./query-subscriptions): Use Redis Streams, Immer, and SDK Interceptors to subscribe to Workflow state.
+- [**gRPC calls**](./grpc-calls): Make raw gRPC calls for advanced queries not covered by the WorkflowClient API.
 
 #### Test APIs
 
@@ -157,18 +160,18 @@ and you'll be given the list of sample options.
 _The below projects are maintained outside this repo and may not be up to date._
 
 - **Express**:
-  - [`vkarpov15/temporal-ecommerce-ts`](https://github.com/vkarpov15/temporal-ecommerce-ts): The `cartWorkflow` used in [this blog series](https://docs.temporal.io/blog/build-an-ecommerce-app-with-temporal-part-1/)
+  - [`vkarpov15/temporal-ecommerce-ts`](https://github.com/vkarpov15/temporal-ecommerce-ts): The `cartWorkflow` used in [this blog series](https://learn.temporal.io/tutorials/go/ecommerce/)
   - [`temporal-rest`](https://www.npmjs.com/package/temporal-rest): Express middleware router that automatically exposes endpoints for Workflows, Signals, and Queries.
 - **Remix**:
   - [`gustavofsantos/temporal-survey`](https://github.com/gustavofsantos/temporal-survey)
 - **NestJS**:
   - [`nestjs-temporal`](https://www.npmjs.com/package/nestjs-temporal)
 - **Chatbots**:
-  - [`JoshuaKGoldberg/temporal-adventure-bot`](https://github.com/JoshuaKGoldberg/temporal-adventure-bot): Choose-your-own-adventure Slack/Discord chatbot (see [tutorial](https://docs.temporal.io/typescript/chatbot-tutorial) and [video](https://www.youtube.com/watch?v=hGIhc6m2keQ))
+  - [`JoshuaKGoldberg/temporal-adventure-bot`](https://github.com/JoshuaKGoldberg/temporal-adventure-bot): Choose-your-own-adventure Slack/Discord chatbot (see [tutorial](https://learn.temporal.io/tutorials/typescript/chatbot/) and [video](https://www.youtube.com/watch?v=hGIhc6m2keQ))
 - **Caching**:
-  - [`vkarpov15/temporal-api-caching-example`](https://github.com/vkarpov15/temporal-api-caching-example/): Cache data from a third-party API (see [blog post](https://docs.temporal.io/blog/caching-api-requests-with-long-lived-workflows))
+  - [`vkarpov15/temporal-api-caching-example`](https://github.com/vkarpov15/temporal-api-caching-example/): Cache data from a third-party API (see [blog post](https://temporal.io/blog/caching-api-requests-with-long-lived-workflows))
 - **DSL Control Flows**:
-  - [**YAML DSL Interpreter**](https://github.com/temporalio/samples-typescript/tree/main/dsl-interpreter): Make Workflows interpret a custom YAML-based Domain Specific Language of your design.
+  - [**YAML DSL Interpreter**](./dsl-interpreter): Make Workflows interpret a custom YAML-based Domain Specific Language of your design.
   - [**XState Interpreter**](https://github.com/Devessier/temporal-electronic-signature): Interpret XState state charts in a Workflow. Presented at [the November 2021 meetup](https://youtu.be/GpbOkDjpeYU?t=1616).
 - **URL Scraping**
   - [`andreasasprou/temporal-url-batch-scraping`](https://github.com/andreasasprou/temporal-url-batch-scraping)
@@ -211,6 +214,6 @@ npm run format
 
 ### Config files
 
-Also on each commit, config files from [`.shared/`](https://github.com/temporalio/samples-typescript/tree/main/.shared) are copied into each sample directory, overwriting the sample directory's config files (with a few exceptions listed in [`.scripts/copy-shared-files.mjs`](./.scripts/copy-shared-files.mjs)). So if you're editing config files, you usually want to be editing the versions in `.shared/`.
+Also on each commit, config files from [`.shared/`](./.shared) are copied into each sample directory, overwriting the sample directory's config files (with a few exceptions listed in [`.scripts/copy-shared-files.mjs`](./.scripts/copy-shared-files.mjs)). So if you're editing config files, you usually want to be editing the versions in `.shared/`.
 
-The [`.post-create`](./.shared/.post-create) file is a [chalk template](https://github.com/chalk/chalk-cli#template-syntax) that is displayed in the command line after someone uses [`npx @temporalio/create`](https://docs.temporal.io/typescript/package-initializer). If you're adding a sample that requires different instructions from the default message, then add your sample name to [`POST_CREATE_EXCLUDE`](./.scripts/copy-shared-files.mjs) and your message template to `your-sample/.post-create`.
+The [`.post-create`](./.shared/.post-create) file is a [chalk template](https://github.com/chalk/chalk-cli#template-syntax) that is displayed in the command line after someone uses [`npx @temporalio/create`](https://learn.temporal.io/tutorials/typescript/subscriptions/#create-the-project). If you're adding a sample that requires different instructions from the default message, then add your sample name to [`POST_CREATE_EXCLUDE`](./.scripts/copy-shared-files.mjs) and your message template to `your-sample/.post-create`.

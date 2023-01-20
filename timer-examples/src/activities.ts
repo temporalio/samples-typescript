@@ -15,8 +15,10 @@ const html = `Order processing is taking longer than expected, but don't worryâ€
 
 export const createActivities = ({ apiKey, domain, to, from }: MailgunSettings) => ({
   async processOrder(): Promise<void> {
+    // Delay completion to simulate work and show how to race an activity and a timer.
     const cx = Context.current();
-    await cx.sleep(cx.info.startToCloseTimeoutMs);
+    await cx.sleep(cx.info.startToCloseTimeoutMs / 2);
+    console.log('Order processed');
   },
 
   async sendNotificationEmail(): Promise<void> {

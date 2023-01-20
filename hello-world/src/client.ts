@@ -23,7 +23,7 @@ async function run() {
     // type inference works! args: [name: string]
     args: ['Temporal'],
     taskQueue: 'hello-world',
-    // in practice, use a meaningful business id, eg customerId or transactionId
+    // in practice, use a meaningful business ID, like customerId or transactionId
     workflowId: 'workflow-' + nanoid(),
   });
   await handle.result();

@@ -11,3 +11,5 @@ protobufs/protos/root.d.ts
 package-lock.json
 
 nestjs-counter/dist
+
+.github/workflows/ci.yml

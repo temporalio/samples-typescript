@@ -1,7 +1,7 @@
 import { Connection, Client } from '@temporalio/client';
 import { WorkflowA, WorkflowB } from 'temporal-workflows/src/all-workflows';
 
-export async function runWorkflow() {
+export async function runWorkflow(): Promise<string> {
   const connection = await Connection.connect(); // Connect to localhost with default ConnectionOptions.
   // In production, pass options to the Connection constructor to configure TLS and other settings.
   // This is optional but we leave this here to remind you there is a gRPC connection being established.

@@ -1,6 +1,8 @@
 // Run with https://github.com/google/zx
 const STORED_SAMPLES = new Set(require('./list-of-samples.json').samples);
 
+const yaml = require('yaml');
+
 const NON_SAMPLES = ['node_modules'];
 const ADDITIONAL_SAMPLES = [];
 
@@ -43,6 +45,7 @@ const ESLINTIGNORE_EXCLUDE = [
 ];
 
 const POST_CREATE_EXCLUDE = [
+  'schedules',
   'timer-examples',
   'query-subscriptions',
   'nextjs-ecommerce-oneclick',
@@ -56,6 +59,7 @@ const POST_CREATE_EXCLUDE = [
   'nestjs-counter',
   'replay-history',
   'food-delivery',
+  'search-attributes',
 ];
 
 const NPMRC_EXCLUDE = ['food-delivery'];
@@ -133,6 +137,38 @@ for (const sample of samples) {
 
   await copyAndAdd(sample, '.nvmrc');
 }
+
+process.stdout.write('Updating GitHub workflows...');
+
+const ciConfig = yaml.parseDocument(await fs.readFile('.github/workflows/ci.yml', 'utf8'));
+const jobsNode = ciConfig.contents.items.find((i) => i.key.value === 'jobs');
+const testNode = jobsNode.value.items.find((i) => i.key.value === 'test-individual');
+const testProjectsNode = testNode.value.items
+  .find((i) => i.key.value === 'strategy')
+  .value.items.find((i) => i.key.value === 'matrix')
+  .value.items.find((i) => i.key.value === 'project');
+const lintNode = jobsNode.value.items.find((i) => i.key.value === 'lint-individual');
+const lintProjectsNode = lintNode.value.items
+  .find((i) => i.key.value === 'strategy')
+  .value.items.find((i) => i.key.value === 'matrix')
+  .value.items.find((i) => i.key.value === 'project');
+
+testProjectsNode.value.items = [];
+lintProjectsNode.value.items = [];
+
+for (const sample of STORED_SAMPLES) {
+  const hasTestScript = !!require(`../${sample}/package.json`).scripts.test;
+  const hasLintScript = !!require(`../${sample}/package.json`).scripts.lint;
+
+  if (hasTestScript) {
+    testProjectsNode.value.items.push(yaml.createNode(sample));
+  }
+  if (hasLintScript) {
+    lintProjectsNode.value.items.push(yaml.createNode(sample));
+  }
+}
+
+await fs.writeFile('.github/workflows/ci.yml', ciConfig.toString());
 
 console.log(' done.');
 
