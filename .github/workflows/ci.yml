@@ -34,7 +34,7 @@ jobs:
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node: [16]
-        project: [activities-examples, food-delivery, mutex, nestjs-counter, timer-examples]
+        project: [activities-examples, mutex, nestjs-counter, timer-examples]
 
     steps:
       - uses: actions/checkout@v2
@@ -109,6 +109,10 @@ jobs:
       - run: npm ci
       - run: yarn
         working-directory: ${{ matrix.project }}
+        if: ${{ matrix.project != 'food-delivery' }}
+      - run: npm install
+        working-directory: ${{ matrix.project }}
+        if: ${{ matrix.project == 'food-delivery' }}
       - run: npm run build
         working-directory: ${{ matrix.project }}
         if: ${{ matrix.project != 'hello-world-js' }}
