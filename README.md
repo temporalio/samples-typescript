@@ -146,13 +146,14 @@ and you'll be given the list of sample options.
 
 #### Test APIs
 
-- [**Mocha and Jest**](./activities-examples#testing)
-- [**Time skipping**](./timer-examples#testing)
+- [**Mocha with code coverage or Jest**](https://github.com/temporalio/samples-typescript/tree/main/activities-examples#testing)
+- [**Time skipping**](https://github.com/temporalio/samples-typescript/tree/main/timer-examples#testing)
 
 ### Full-stack apps
 
 - **Next.js**:
-  - [**One-click e-commerce**](./nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
+  - [**One-click e-commerce**](https://github.com/temporalio/samples-typescript/tree/main/nextjs-ecommerce-oneclick): Buy an item with one click, and the Workflow will wait 5 seconds to see if the user cancels before it executes the order.
+  - [**Food delivery**](https://github.com/temporalio/samples-typescript/tree/main/food-delivery): Multi-step business process with Signals, Queries, Activities, and timeouts. Turborepo monorepo with 2 Next.js apps and a tRPC API.
 
 ## External apps & libraries
 

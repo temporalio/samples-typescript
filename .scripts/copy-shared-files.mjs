@@ -14,6 +14,7 @@ const TSCONFIG_EXCLUDE = [
   'fetch-esm',
   'production',
   'hello-world-js',
+  'food-delivery',
   'nestjs-counter',
 ];
 const GITIGNORE_EXCLUDE = [
@@ -22,6 +23,7 @@ const GITIGNORE_EXCLUDE = [
   'production',
   'hello-world-js',
   'protobufs',
+  'food-delivery',
   'nestjs-counter',
 ];
 const ESLINTRC_EXCLUDE = [
@@ -30,9 +32,17 @@ const ESLINTRC_EXCLUDE = [
   'fetch-esm',
   'hello-world-js',
   'protobufs',
+  'food-delivery',
   'nestjs-counter',
 ];
-const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples', 'nestjs-counter'];
+const ESLINTIGNORE_EXCLUDE = [
+  'production',
+  'hello-world-js',
+  'protobufs',
+  'activities-examples',
+  'food-delivery',
+  'nestjs-counter',
+];
 
 const POST_CREATE_EXCLUDE = [
   'schedules',
@@ -48,8 +58,11 @@ const POST_CREATE_EXCLUDE = [
   'activities-cancellation-heartbeating',
   'nestjs-counter',
   'replay-history',
+  'food-delivery',
   'search-attributes',
 ];
+
+const NPMRC_EXCLUDE = ['food-delivery'];
 
 const FILES = [
   '.shared/tsconfig.json',
@@ -118,9 +131,11 @@ for (const sample of samples) {
     await copyAndAdd(sample, '.eslintignore');
   }
 
-  await copyAndAdd(sample, '.npmrc');
+  if (!NPMRC_EXCLUDE.includes(sample)) {
+    await copyAndAdd(sample, '.npmrc');
+  }
+
   await copyAndAdd(sample, '.nvmrc');
-  await copyAndAdd(sample, '.npmrc');
 }
 
 process.stdout.write('Updating GitHub workflows...');

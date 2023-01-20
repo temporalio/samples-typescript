@@ -10,7 +10,10 @@ More Activity samples are [listed here](https://github.com/temporalio/samples-ty
 
 ### Testing
 
-- Mocha: `npm test` and `npm run test.watch` run these tests: [`src/mocha/workflows.test.ts`](./src/mocha/workflows.test.ts)
+- Mocha: Run the tests in [`src/mocha/`](./src/mocha/) with:
+  - `npm test`: run once
+  - `npm run test.watch`: run when files change
+  - `npm run test.coverage`: run with coverage report
 - Jest: `npm run jest` runs tests outside the `mocha/` directory:
   - [`src/workflows.test.ts`](./src/workflows.test.ts)
   - [`src/activities/make-http-request.test.ts`](./src/activities/make-http-request.test.ts)
