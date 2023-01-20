@@ -72,6 +72,7 @@ const FILES = [
   '.shared/.eslintignore',
   '.shared/.nvmrc',
   '.shared/.npmrc',
+  '.shared/.prettierrc.json',
 ];
 // By default, zx logs all commands spawned
 $.verbose = false;
@@ -136,6 +137,7 @@ for (const sample of samples) {
   }
 
   await copyAndAdd(sample, '.nvmrc');
+  await copyAndAdd(sample, '.prettierrc.json');
 }
 
 process.stdout.write('Updating GitHub workflows...');
