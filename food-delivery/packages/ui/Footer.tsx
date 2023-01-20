@@ -106,7 +106,11 @@ export const Footer = ({ showDriverPortal = false }: { showDriverPortal?: boolea
           ))}
         </div>
         <p className="mt-8 text-center text-base text-gray-400">
+<<<<<<< HEAD
           &copy; {new Date().getFullYear()} Temporal Technologies Inc. All rights reserved.
+=======
+          &copy; 2023 Temporal Technologies Inc. All rights reserved.
+>>>>>>> main
         </p>
       </div>
     </footer>

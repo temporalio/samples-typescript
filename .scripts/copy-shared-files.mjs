@@ -156,15 +156,15 @@ const lintProjectsNode = lintNode.value.items
 testProjectsNode.value.items = [];
 lintProjectsNode.value.items = [];
 
-for (const sample of STORED_SAMPLES) {
+for (const sample of samples) {
   const hasTestScript = !!require(`../${sample}/package.json`).scripts.test;
   const hasLintScript = !!require(`../${sample}/package.json`).scripts.lint;
 
   if (hasTestScript) {
-    testProjectsNode.value.items.push(yaml.createNode(sample));
+    testProjectsNode.value.items.push(sample);
   }
   if (hasLintScript) {
-    lintProjectsNode.value.items.push(yaml.createNode(sample));
+    lintProjectsNode.value.items.push(sample);
   }
 }
 
