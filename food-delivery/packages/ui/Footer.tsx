@@ -4,7 +4,7 @@ export const Footer = ({ showDriverPortal = false }: { showDriverPortal?: boolea
       showDriverPortal
         ? { name: 'Driver portal', href: 'https://drive.temporal.menu' }
         : { name: 'Customer site', href: 'https://temporal.menu' },
-      { name: 'Blog post', href: '#' },
+      { name: 'Blog post', href: 'https://temporal.io/blog/building-reliable-distributed-systems-in-node' },
     ],
     social: [
       // {
@@ -106,7 +106,7 @@ export const Footer = ({ showDriverPortal = false }: { showDriverPortal?: boolea
           ))}
         </div>
         <p className="mt-8 text-center text-base text-gray-400">
-          &copy; 2023 Temporal Technologies Inc. All rights reserved.
+          &copy; {new Date().getFullYear()} Temporal Technologies Inc. All rights reserved.
         </p>
       </div>
     </footer>
