@@ -65,6 +65,7 @@ const POST_CREATE_EXCLUDE = [
 const PRETTIERIGNORE_EXCLUDE = [
   'food-delivery',
   'monorepo-folders',
+  'nextjs-ecommerce-oneclick',
   'protobufs',
   'nestjs-counter'
 ];
