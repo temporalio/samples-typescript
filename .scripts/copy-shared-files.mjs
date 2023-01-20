@@ -63,6 +63,8 @@ const POST_CREATE_EXCLUDE = [
 ];
 
 const PRETTIERIGNORE_EXCLUDE = [
+  'food-delivery',
+  'monorepo-folders',
   'protobufs',
   'nestjs-counter'
 ];
