@@ -161,10 +161,10 @@ for (const sample of samples) {
   const hasLintScript = !!require(`../${sample}/package.json`).scripts.lint;
 
   if (hasTestScript) {
-    testProjectsNode.value.items.push(yaml.createNode(sample));
+    testProjectsNode.value.items.push(sample);
   }
   if (hasLintScript) {
-    lintProjectsNode.value.items.push(yaml.createNode(sample));
+    lintProjectsNode.value.items.push(sample);
   }
 }
 
