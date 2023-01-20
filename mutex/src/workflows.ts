@@ -12,7 +12,7 @@ import type * as activities from './activities';
 import { LockRequest, currentWorkflowIdQuery, lockRequestSignal, lockAcquiredSignal } from './shared';
 
 const { signalWithStartLockWorkflow, useAPIThatCantBeCalledInParallel, notifyLocked, notifyUnlocked } = proxyActivities<
-  ReturnType<typeof activities['createActivities']>
+  ReturnType<(typeof activities)['createActivities']>
 >({
   startToCloseTimeout: '1 minute',
 });
