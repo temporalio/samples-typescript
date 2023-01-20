@@ -1,0 +1,27 @@
+{
+  "name": "food-delivery",
+  "version": "0.1.0",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo run build --parallel",
+    "dev": "turbo run dev --parallel",
+    "start": "turbo run start --parallel",
+    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "lint": "turbo run lint"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "eslint-config-food": "*",
+    "prettier": "latest",
+    "prettier-plugin-tailwindcss": "^0.1.12",
+    "turbo": "latest"
+  },
+  "packageManager": "npm@8.19.1",
+  "engines": {
+    "node": ">=14.0.0"
+  }
+}

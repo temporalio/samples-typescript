@@ -1,0 +1,21 @@
+{
+  "name": "common",
+  "version": "0.0.1",
+  "license": "MIT",
+  "main": "./lib/index.js",
+  "types": "./index.ts",
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "lint": "TIMING=1 eslint \"**/*.ts*\""
+  },
+  "dependencies": {
+    "@temporalio/client": "^1.4.4"
+  },
+  "devDependencies": {
+    "eslint": "^7.32.0",
+    "eslint-config-custom": "*",
+    "tsconfig": "*",
+    "typescript": "^4.5.2"
+  }
+}

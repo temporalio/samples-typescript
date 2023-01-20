@@ -19,7 +19,7 @@ describe('lock workflow', function () {
 
   before(async function () {
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    env = await TestWorkflowEnvironment.create();
+    env = await TestWorkflowEnvironment.createTimeSkipping();
 
     workflowBundle = await bundleWorkflowCode({
       workflowsPath: require.resolve('../workflows'),

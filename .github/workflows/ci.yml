@@ -10,28 +10,7 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  test:
-    runs-on: ${{ matrix.os }}
-
-    strategy:
-      matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
-        node: [16]
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
-          # Comment out cache line when testing with act:
-          # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run bootstrap
-      - run: npm run build
-      - run: npm test
-
-  lint:
+  prettier:
     runs-on: ubuntu-latest
 
     steps:
@@ -46,16 +25,16 @@ jobs:
       - run: npm run bootstrap
       - run: npm run build
       - run: npx prettier . --check
-      - run: npm run lint
 
   test-individual:
     runs-on: ${{ matrix.os }}
 
     strategy:
+      fail-fast: false
       matrix:
         os: [ubuntu-latest, windows-latest, macos-latest]
         node: [16]
-        project: ['nestjs-counter']
+        project: [activities-examples, mutex, nestjs-counter, timer-examples]
 
     steps:
       - uses: actions/checkout@v2
@@ -77,8 +56,47 @@ jobs:
     runs-on: ubuntu-latest
 
     strategy:
+      fail-fast: false
       matrix:
-        project: ['nestjs-counter', 'monorepo-folders']
+        project:
+          [
+            activities-cancellation-heartbeating,
+            activities-dependency-injection,
+            activities-examples,
+            activities-sticky-queues,
+            child-workflows,
+            continue-as-new,
+            cron-workflows,
+            dsl-interpreter,
+            ejson,
+            encryption,
+            expense,
+            fetch-esm,
+            food-delivery,
+            grpc-calls,
+            hello-world,
+            hello-world-js,
+            hello-world-mtls,
+            instrumentation,
+            interceptors-opentelemetry,
+            monorepo-folders,
+            mutex,
+            nestjs-counter,
+            nextjs-ecommerce-oneclick,
+            patching-api,
+            production,
+            protobufs,
+            query-subscriptions,
+            replay-history,
+            saga,
+            search-attributes,
+            signals-queries,
+            sinks,
+            snippets,
+            state,
+            timer-examples,
+            timer-progress
+          ]
 
     steps:
       - uses: actions/checkout@v2
@@ -93,5 +111,6 @@ jobs:
         working-directory: ${{ matrix.project }}
       - run: npm run build
         working-directory: ${{ matrix.project }}
+        if: ${{ matrix.project != 'hello-world-js' }}
       - run: npm run lint
         working-directory: ${{ matrix.project }}

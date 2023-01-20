@@ -1,0 +1,5 @@
+# fly.toml file generated for food-delivery-worker on 2023-01-08T17:18:43-05:00
+
+app = "food-delivery-worker"
+kill_signal = "SIGINT"
+kill_timeout = 15

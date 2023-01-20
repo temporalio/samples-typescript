@@ -1,6 +1,8 @@
 // Run with https://github.com/google/zx
 const STORED_SAMPLES = new Set(require('./list-of-samples.json').samples);
 
+const yaml = require('yaml');
+
 const NON_SAMPLES = ['node_modules'];
 const ADDITIONAL_SAMPLES = [];
 
@@ -12,6 +14,7 @@ const TSCONFIG_EXCLUDE = [
   'fetch-esm',
   'production',
   'hello-world-js',
+  'food-delivery',
   'nestjs-counter',
 ];
 const GITIGNORE_EXCLUDE = [
@@ -20,6 +23,7 @@ const GITIGNORE_EXCLUDE = [
   'production',
   'hello-world-js',
   'protobufs',
+  'food-delivery',
   'nestjs-counter',
 ];
 const ESLINTRC_EXCLUDE = [
@@ -28,9 +32,17 @@ const ESLINTRC_EXCLUDE = [
   'fetch-esm',
   'hello-world-js',
   'protobufs',
+  'food-delivery',
   'nestjs-counter',
 ];
-const ESLINTIGNORE_EXCLUDE = ['production', 'hello-world-js', 'protobufs', 'activities-examples', 'nestjs-counter'];
+const ESLINTIGNORE_EXCLUDE = [
+  'production',
+  'hello-world-js',
+  'protobufs',
+  'activities-examples',
+  'food-delivery',
+  'nestjs-counter',
+];
 
 const POST_CREATE_EXCLUDE = [
   'schedules',
@@ -46,8 +58,11 @@ const POST_CREATE_EXCLUDE = [
   'activities-cancellation-heartbeating',
   'nestjs-counter',
   'replay-history',
+  'food-delivery',
   'search-attributes',
 ];
+
+const NPMRC_EXCLUDE = ['food-delivery'];
 
 const FILES = [
   '.shared/tsconfig.json',
@@ -116,10 +131,44 @@ for (const sample of samples) {
     await copyAndAdd(sample, '.eslintignore');
   }
 
-  await copyAndAdd(sample, '.npmrc');
+  if (!NPMRC_EXCLUDE.includes(sample)) {
+    await copyAndAdd(sample, '.npmrc');
+  }
+
   await copyAndAdd(sample, '.nvmrc');
-  await copyAndAdd(sample, '.npmrc');
 }
+
+process.stdout.write('Updating GitHub workflows...');
+
+const ciConfig = yaml.parseDocument(await fs.readFile('.github/workflows/ci.yml', 'utf8'));
+const jobsNode = ciConfig.contents.items.find((i) => i.key.value === 'jobs');
+const testNode = jobsNode.value.items.find((i) => i.key.value === 'test-individual');
+const testProjectsNode = testNode.value.items
+  .find((i) => i.key.value === 'strategy')
+  .value.items.find((i) => i.key.value === 'matrix')
+  .value.items.find((i) => i.key.value === 'project');
+const lintNode = jobsNode.value.items.find((i) => i.key.value === 'lint-individual');
+const lintProjectsNode = lintNode.value.items
+  .find((i) => i.key.value === 'strategy')
+  .value.items.find((i) => i.key.value === 'matrix')
+  .value.items.find((i) => i.key.value === 'project');
+
+testProjectsNode.value.items = [];
+lintProjectsNode.value.items = [];
+
+for (const sample of STORED_SAMPLES) {
+  const hasTestScript = !!require(`../${sample}/package.json`).scripts.test;
+  const hasLintScript = !!require(`../${sample}/package.json`).scripts.lint;
+
+  if (hasTestScript) {
+    testProjectsNode.value.items.push(yaml.createNode(sample));
+  }
+  if (hasLintScript) {
+    lintProjectsNode.value.items.push(yaml.createNode(sample));
+  }
+}
+
+await fs.writeFile('.github/workflows/ci.yml', ciConfig.toString());
 
 console.log(' done.');
 

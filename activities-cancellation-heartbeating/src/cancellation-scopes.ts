@@ -1,5 +1,3 @@
-// TODO: put this into the activities-cancellation-heartbeating repo
-
 /**
  * Demonstrates the basics of cancellation scopes.
  */

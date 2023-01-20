@@ -1,0 +1,10 @@
+{
+  "extends": "tsconfig/base.json",
+  "version": "4.5.3",
+  "compilerOptions": {
+    "sourceMap": true,
+    "rootDir": "./src",
+    "outDir": "./lib"
+  },
+  "include": ["src/**/*.ts"]
+}

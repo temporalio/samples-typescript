@@ -1,0 +1,20 @@
+{
+  "$schema": "https://turbo.build/schema.json",
+  "pipeline": {
+    "build": {
+      "dependsOn": ["^build"],
+      "env": ["NODE_ENV", "TEMPORAL_SERVER", "NAMESPACE", "TEMPORAL_CLOUD_CERT", "TEMPORAL_CLOUD_KEY"],
+      "outputs": ["lib/**", ".next/**"]
+    },
+    "lint": {
+      "outputs": []
+    },
+    "dev": {
+      "cache": false
+    },
+    "start": {},
+    "worker#build": {
+      "dependsOn": ["common#build", "workflows#build"]
+    }
+  }
+}
