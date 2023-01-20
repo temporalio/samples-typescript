@@ -3,7 +3,7 @@
   "pipeline": {
     "build": {
       "dependsOn": ["^build"],
-      "env": ["NODE_ENV", "TEMPORAL_SERVER", "NAMESPACE"],
+      "env": ["NODE_ENV", "TEMPORAL_SERVER", "NAMESPACE", "TEMPORAL_CLOUD_CERT", "TEMPORAL_CLOUD_KEY"],
       "outputs": ["lib/**", ".next/**"]
     },
     "lint": {

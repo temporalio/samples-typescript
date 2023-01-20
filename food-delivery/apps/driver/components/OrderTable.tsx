@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { useState } from 'react'
 import { getProductById, statusColors } from 'common'
-import { trpc } from 'menu/utils/trpc'
+import { trpc } from '../utils/trpc'
 import { Loading } from 'ui'
 
 export function OrderTable() {
@@ -18,6 +18,7 @@ export function OrderTable() {
   }
 
   const orders = trpc.getOrders.useQuery(undefined, { refetchInterval: 1000 })
+  console.log('orders:', orders)
   const pickUp = trpc.pickUp.useMutation()
   const deliver = trpc.deliver.useMutation()
 

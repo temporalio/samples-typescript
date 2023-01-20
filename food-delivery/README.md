@@ -5,10 +5,11 @@ This sample demonstrates:
 - [`packages/workflows/order.ts`](./packages/workflows/order.ts): A food delivery Workflow.
   - Activity retries and non-retryable failures
   - Signals and a Query
-  - Timeouts on state changes
+  - Timeouts on state changes using `condition()`
 - Turborepo monorepo, with shared packages in [`packages/`](./packages) and 3 apps in [`apps/`](./apps):
   - [`apps/menu/`](./apps/menu): Customer app with menu and serverless API. Next.js, Tailwind, tRPC.
   - [`apps/driver/`](./apps/driver): Driver portal for picking up and delivering meals.
+  - [`apps/worker/`](./apps/worker): The Worker.
 
 ### Running this sample
 

@@ -16,15 +16,16 @@
     "@trpc/next": "^10.0.0-rc.8",
     "@trpc/server": "^10.0.0-rc.8",
     "common": "*",
+    "menu": "*",
     "next": "^13.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "sharp": "^0.31.2",
     "tailwind-config": "*",
     "ui": "*",
+    "vercel": "^28.12.7",
     "workflows": "*",
-    "zod": "^3.19.1",
-    "menu": "*"
+    "zod": "^3.19.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",

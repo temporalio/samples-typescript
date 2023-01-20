@@ -9,7 +9,3 @@ function isErrorWithCode(error: unknown): error is ErrorWithCode {
 export function getErrorCode(error: unknown) {
   if (isErrorWithCode(error)) return error.code
 }
-
-export function fileNotFound(error: unknown) {
-  return getErrorCode(error) === 'ENOENT'
-}

@@ -1,5 +1,5 @@
 import { AppType } from 'next/dist/shared/lib/utils'
-import { trpc } from 'menu/utils/trpc'
+import { trpc } from '../utils/trpc'
 import '../styles/dist.css'
 
 const MyApp: AppType = ({ Component, pageProps }) => {
