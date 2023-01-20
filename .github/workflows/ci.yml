@@ -109,10 +109,6 @@ jobs:
       - run: npm ci
       - run: yarn
         working-directory: ${{ matrix.project }}
-        if: ${{ matrix.project != 'food-delivery' }}
-      - run: npm install
-        working-directory: ${{ matrix.project }}
-        if: ${{ matrix.project == 'food-delivery' }}
       - run: npm run build
         working-directory: ${{ matrix.project }}
         if: ${{ matrix.project != 'hello-world-js' }}
