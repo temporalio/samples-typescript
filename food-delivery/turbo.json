@@ -12,6 +12,9 @@
     "dev": {
       "cache": false
     },
-    "start": {}
+    "start": {},
+    "worker#build": {
+      "dependsOn": ["common#build", "workflows#build"]
+    }
   }
 }
