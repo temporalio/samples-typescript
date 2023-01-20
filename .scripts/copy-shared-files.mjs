@@ -156,7 +156,7 @@ const lintProjectsNode = lintNode.value.items
 testProjectsNode.value.items = [];
 lintProjectsNode.value.items = [];
 
-for (const sample of STORED_SAMPLES) {
+for (const sample of samples) {
   const hasTestScript = !!require(`../${sample}/package.json`).scripts.test;
   const hasLintScript = !!require(`../${sample}/package.json`).scripts.lint;
 
