@@ -62,6 +62,11 @@ const POST_CREATE_EXCLUDE = [
   'search-attributes',
 ];
 
+const PRETTIERIGNORE_EXCLUDE = [
+  'protobufs',
+  'nestjs-counter'
+];
+
 const NPMRC_EXCLUDE = ['food-delivery'];
 
 const FILES = [
@@ -73,6 +78,7 @@ const FILES = [
   '.shared/.nvmrc',
   '.shared/.npmrc',
   '.shared/.prettierrc.json',
+  '.shared/.prettierignore',
 ];
 // By default, zx logs all commands spawned
 $.verbose = false;
@@ -134,6 +140,10 @@ for (const sample of samples) {
 
   if (!NPMRC_EXCLUDE.includes(sample)) {
     await copyAndAdd(sample, '.npmrc');
+  }
+
+  if (!PRETTIERIGNORE_EXCLUDE.includes(sample)) {
+    await copyAndAdd(sample, '.prettierignore');
   }
 
   await copyAndAdd(sample, '.nvmrc');
