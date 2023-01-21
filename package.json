@@ -2,8 +2,8 @@
   "name": "samples-typescript",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap --npm-client=yarn --ignore=monorepo-folders --ignore=nestjs-counter --ignore=food-delivery",
-    "build": "lerna run build --ignore=monorepo-folders --ignore=nestjs-counter --ignore=food-delivery",
+    "bootstrap": "lerna bootstrap",
+    "build": "lerna run build",
     "test": "lerna run --stream test",
     "format": "prettier --write .",
     "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
