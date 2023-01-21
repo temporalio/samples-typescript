@@ -15,7 +15,7 @@ const TSCONFIG_EXCLUDE = [
   'production',
   'hello-world-js',
   'food-delivery',
-  'nestjs-counter',
+  'nestjs-exchange-rates',
 ];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -24,7 +24,7 @@ const GITIGNORE_EXCLUDE = [
   'hello-world-js',
   'protobufs',
   'food-delivery',
-  'nestjs-counter',
+  'nestjs-exchange-rates',
 ];
 const ESLINTRC_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -33,7 +33,7 @@ const ESLINTRC_EXCLUDE = [
   'hello-world-js',
   'protobufs',
   'food-delivery',
-  'nestjs-counter',
+  'nestjs-exchange-rates',
 ];
 const ESLINTIGNORE_EXCLUDE = [
   'production',
@@ -41,7 +41,7 @@ const ESLINTIGNORE_EXCLUDE = [
   'protobufs',
   'activities-examples',
   'food-delivery',
-  'nestjs-counter',
+  'nestjs-exchange-rates',
 ];
 
 const POST_CREATE_EXCLUDE = [
@@ -56,7 +56,7 @@ const POST_CREATE_EXCLUDE = [
   'patching-api',
   'signals-queries',
   'activities-cancellation-heartbeating',
-  'nestjs-counter',
+  'nestjs-exchange-rates',
   'replay-history',
   'food-delivery',
   'search-attributes',

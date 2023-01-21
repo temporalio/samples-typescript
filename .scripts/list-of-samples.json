@@ -22,7 +22,7 @@
     "logger-shared",
     "monorepo-folders",
     "mutex",
-    "nestjs-counter",
+    "nestjs-exchange-rates",
     "nextjs-ecommerce-oneclick",
     "patching-api",
     "production",
