@@ -80,7 +80,7 @@ const FILES = [
   '.shared/.eslintignore',
   '.shared/.nvmrc',
   '.shared/.npmrc',
-  '.shared/.prettierrc.json',
+  '.shared/.prettierrc',
   '.shared/.prettierignore',
 ];
 // By default, zx logs all commands spawned
@@ -150,7 +150,7 @@ for (const sample of samples) {
   }
 
   await copyAndAdd(sample, '.nvmrc');
-  await copyAndAdd(sample, '.prettierrc.json');
+  await copyAndAdd(sample, '.prettierrc');
 }
 
 process.stdout.write('Updating GitHub workflows...');
