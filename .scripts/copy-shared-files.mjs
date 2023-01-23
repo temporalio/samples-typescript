@@ -67,7 +67,7 @@ const PRETTIERIGNORE_EXCLUDE = [
   'monorepo-folders',
   'nextjs-ecommerce-oneclick',
   'protobufs',
-  'nestjs-counter'
+  'nestjs-exchange-rates'
 ];
 
 const NPMRC_EXCLUDE = ['food-delivery'];
