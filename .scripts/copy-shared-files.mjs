@@ -62,6 +62,10 @@ const POST_CREATE_EXCLUDE = [
   'search-attributes',
 ];
 
+const PRETTIERRC_EXCLUDE = [
+  'food-delivery'
+];
+
 const PRETTIERIGNORE_EXCLUDE = [
   'food-delivery',
   'monorepo-folders',
@@ -145,12 +149,15 @@ for (const sample of samples) {
     await copyAndAdd(sample, '.npmrc');
   }
 
+  if (!PRETTIERRC_EXCLUDE.includes(sample)) {
+    await copyAndAdd(sample, '.prettierrc');
+  }
+
   if (!PRETTIERIGNORE_EXCLUDE.includes(sample)) {
     await copyAndAdd(sample, '.prettierignore');
   }
 
   await copyAndAdd(sample, '.nvmrc');
-  await copyAndAdd(sample, '.prettierrc');
 }
 
 process.stdout.write('Updating GitHub workflows...');
