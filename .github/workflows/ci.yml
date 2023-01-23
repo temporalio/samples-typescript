@@ -23,7 +23,7 @@ jobs:
           [
             activities-examples,
             mutex,
-            nestjs-counter,
+            nestjs-exchange-rates,
             timer-examples
           ]
 
@@ -73,7 +73,7 @@ jobs:
             logger-shared,
             monorepo-folders,
             mutex,
-            nestjs-counter,
+            nestjs-exchange-rates,
             nextjs-ecommerce-oneclick,
             patching-api,
             production,

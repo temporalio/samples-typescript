@@ -18,7 +18,6 @@ export function OrderTable() {
   }
 
   const orders = trpc.getOrders.useQuery(undefined, { refetchInterval: 1000 })
-  console.log('orders:', orders)
   const pickUp = trpc.pickUp.useMutation()
   const deliver = trpc.deliver.useMutation()
 
