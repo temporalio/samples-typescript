@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-shared-logger-workflow
 import { proxyActivities } from '@temporalio/workflow';
 import logger from '../sharedLogger';
 import type * as activities from '../activities';
@@ -10,3 +11,4 @@ export async function logSampleWorkflow(): Promise<void> {
   const greeting = await greet('Temporal');
   logger.info('Log from Workflow', { greeting });
 }
+// @@@SNIPEND
