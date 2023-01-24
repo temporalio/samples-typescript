@@ -10,6 +10,14 @@ This sample demonstrates:
   - [`apps/menu/`](./apps/menu): Customer app with menu and serverless API. Next.js, Tailwind, tRPC.
   - [`apps/driver/`](./apps/driver): Driver portal for picking up and delivering meals.
   - [`apps/worker/`](./apps/worker): The Worker.
+- [`apps/driver/pages/api/[trpc].ts`](./apps/driver/pages/api/[trpc].ts): The [client.workflow.list](https://typescript.temporal.io/api/classes/client.WorkflowClient#list) API.
+
+This sample is deployed to:
+
+- [temporal.menu](https://temporal.menu/)
+- [drive.temporal.menu](https://drive.temporal.menu/)
+- [`apps/worker/`](./apps/worker) is deployed to Render as a [Background Worker](https://render.com/docs/background-workers)
+- The API routes and Worker connect to [Temporal Cloud](https://temporal.io/cloud)
 
 ### Running this sample
 
