@@ -11,22 +11,6 @@ env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 jobs:
-  prettier:
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 16
-          # Comment out cache line when testing with act:
-          # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
-          cache: 'npm'
-      - run: npm ci
-      - run: npm run bootstrap
-      - run: npm run build
-      - run: npx prettier . --check
-
   test-individual:
     runs-on: ${{ matrix.os }}
 
@@ -122,4 +106,6 @@ jobs:
         working-directory: ${{ matrix.project }}
         if: ${{ matrix.project != 'hello-world-js' }}
       - run: npm run lint
+        working-directory: ${{ matrix.project }}
+      - run: npx prettier . --check
         working-directory: ${{ matrix.project }}
