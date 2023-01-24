@@ -15,7 +15,7 @@ const TSCONFIG_EXCLUDE = [
   'production',
   'hello-world-js',
   'food-delivery',
-  'nestjs-counter',
+  'nestjs-exchange-rates',
 ];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -24,7 +24,7 @@ const GITIGNORE_EXCLUDE = [
   'hello-world-js',
   'protobufs',
   'food-delivery',
-  'nestjs-counter',
+  'nestjs-exchange-rates',
 ];
 const ESLINTRC_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -33,7 +33,7 @@ const ESLINTRC_EXCLUDE = [
   'hello-world-js',
   'protobufs',
   'food-delivery',
-  'nestjs-counter',
+  'nestjs-exchange-rates',
 ];
 const ESLINTIGNORE_EXCLUDE = [
   'production',
@@ -41,7 +41,7 @@ const ESLINTIGNORE_EXCLUDE = [
   'protobufs',
   'activities-examples',
   'food-delivery',
-  'nestjs-counter',
+  'nestjs-exchange-rates',
 ];
 
 const POST_CREATE_EXCLUDE = [
@@ -56,10 +56,22 @@ const POST_CREATE_EXCLUDE = [
   'patching-api',
   'signals-queries',
   'activities-cancellation-heartbeating',
-  'nestjs-counter',
+  'nestjs-exchange-rates',
   'replay-history',
   'food-delivery',
   'search-attributes',
+];
+
+const PRETTIERRC_EXCLUDE = [
+  'food-delivery'
+];
+
+const PRETTIERIGNORE_EXCLUDE = [
+  'food-delivery',
+  'monorepo-folders',
+  'nextjs-ecommerce-oneclick',
+  'protobufs',
+  'nestjs-exchange-rates'
 ];
 
 const NPMRC_EXCLUDE = ['food-delivery'];
@@ -72,6 +84,8 @@ const FILES = [
   '.shared/.eslintignore',
   '.shared/.nvmrc',
   '.shared/.npmrc',
+  '.shared/.prettierrc',
+  '.shared/.prettierignore',
 ];
 // By default, zx logs all commands spawned
 $.verbose = false;
@@ -133,6 +147,14 @@ for (const sample of samples) {
 
   if (!NPMRC_EXCLUDE.includes(sample)) {
     await copyAndAdd(sample, '.npmrc');
+  }
+
+  if (!PRETTIERRC_EXCLUDE.includes(sample)) {
+    await copyAndAdd(sample, '.prettierrc');
+  }
+
+  if (!PRETTIERIGNORE_EXCLUDE.includes(sample)) {
+    await copyAndAdd(sample, '.prettierignore');
   }
 
   await copyAndAdd(sample, '.nvmrc');

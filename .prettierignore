@@ -10,6 +10,6 @@ protobufs/protos/root.d.ts
 .scripts/list-of-samples.json
 package-lock.json
 
-nestjs-counter/dist
+nestjs-exchange-rates/dist
 
 .github/workflows/ci.yml
