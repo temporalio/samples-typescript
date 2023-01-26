@@ -62,16 +62,14 @@ const POST_CREATE_EXCLUDE = [
   'search-attributes',
 ];
 
-const PRETTIERRC_EXCLUDE = [
-  'food-delivery'
-];
+const PRETTIERRC_EXCLUDE = ['food-delivery'];
 
 const PRETTIERIGNORE_EXCLUDE = [
   'food-delivery',
   'monorepo-folders',
   'nextjs-ecommerce-oneclick',
   'protobufs',
-  'nestjs-exchange-rates'
+  'nestjs-exchange-rates',
 ];
 
 const NPMRC_EXCLUDE = ['food-delivery'];

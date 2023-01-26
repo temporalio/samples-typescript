@@ -21,6 +21,7 @@
     "eslint-config-next": "^12.0.3",
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-deprecation": "^1.2.1",
+    "eslint-plugin-prettier": "^4.2.1",
     "glob": "^8.0.3",
     "husky": "^7.0.2",
     "lerna": "^6.1.0",

@@ -8,8 +8,7 @@ export const exchangeRatesWorkerProviders = [
     inject: [ActivitiesService],
     useFactory: async (activitiesService: ActivitiesService) => {
       const activities = {
-        getExchangeRates:
-          activitiesService.getExchangeRates.bind(activitiesService),
+        getExchangeRates: activitiesService.getExchangeRates.bind(activitiesService),
       };
 
       const worker = await Worker.create({

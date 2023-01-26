@@ -6,9 +6,7 @@ export class ExchangeRatesController {
   constructor(private readonly exchangeRatesService: ExchangeRatesService) {}
 
   @Get(':currency')
-  async getExchangeRates(
-    @Param('currency') currency: string,
-  ): Promise<number | undefined> {
+  async getExchangeRates(@Param('currency') currency: string): Promise<number | undefined> {
     const rates = await this.exchangeRatesService.getExchangeRates();
 
     if (rates === null) {

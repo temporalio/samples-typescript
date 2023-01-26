@@ -4,9 +4,7 @@ import { getExchangeRatesQuery } from '@app/shared';
 
 @Injectable()
 export class ExchangeRatesService {
-  constructor(
-    @Inject('EXCHANGE_RATES_WORKFLOW_HANDLE') private handle: WorkflowHandle,
-  ) {}
+  constructor(@Inject('EXCHANGE_RATES_WORKFLOW_HANDLE') private handle: WorkflowHandle) {}
 
   async getExchangeRates() {
     return this.handle.query(getExchangeRatesQuery);

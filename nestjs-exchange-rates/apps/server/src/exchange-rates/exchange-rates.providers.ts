@@ -1,9 +1,4 @@
-import {
-  Client,
-  WorkflowExecutionAlreadyStartedError,
-  Connection,
-  ConnectionOptions,
-} from '@temporalio/client';
+import { Client, WorkflowExecutionAlreadyStartedError, Connection, ConnectionOptions } from '@temporalio/client';
 import { taskQueue } from '@app/shared';
 
 export const exchangeRatesProviders = [
