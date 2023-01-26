@@ -14,7 +14,6 @@ Use Node version 16+:
 
 Then, in the project directory, run:
 
-  {cyan npm run build}
   {cyan npm run dev}
 
 And visit:
