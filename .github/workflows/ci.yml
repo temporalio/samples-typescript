@@ -35,7 +35,6 @@ jobs:
           # Comment out cache line when testing with act:
           # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
           cache: 'npm'
-      - run: npm ci
       - run: yarn
         working-directory: ${{ matrix.project }}
       - run: npm run build
@@ -99,7 +98,6 @@ jobs:
           # Comment out cache line when testing with act:
           # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
           cache: 'npm'
-      - run: npm ci
       - run: yarn
         working-directory: ${{ matrix.project }}
       - run: npm run build
@@ -109,3 +107,4 @@ jobs:
         working-directory: ${{ matrix.project }}
       - run: npx prettier . --check
         working-directory: ${{ matrix.project }}
+ 
