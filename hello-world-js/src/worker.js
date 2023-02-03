@@ -1,12 +1,13 @@
 import { Worker } from '@temporalio/worker';
-import { URL } from 'url';
+import { fileURLToPath, URL } from 'url';
 import * as activities from './activities.js';
 
 async function run() {
   // Step 1: Register Workflows and Activities with the Worker and connect to
   // the Temporal server.
+  const workflowsPathUrl = new URL('./workflows.js', import.meta.url);
   const worker = await Worker.create({
-    workflowsPath: new URL('./workflows.js', import.meta.url).pathname,
+    workflowsPath: fileURLToPath(workflowsPathUrl),
     activities,
     taskQueue: 'hello-javascript',
   });
