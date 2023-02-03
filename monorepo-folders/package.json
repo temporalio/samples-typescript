@@ -22,7 +22,6 @@
     "@temporalio/client": "^1.6.0",
     "@temporalio/activity": "^1.6.0",
     "@temporalio/common": "^1.6.0",
-    "@temporalio/internal-workflow-common": "^1.6.0",
     "@temporalio/proto": "^1.6.0",
     "mini-css-extract-plugin": "2.4.5"
   },
