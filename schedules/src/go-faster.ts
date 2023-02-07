@@ -7,7 +7,7 @@ async function run() {
 
   const handle = client.schedule.getHandle('sample-schedule');
   await handle.update((schedule: ScheduleUpdateOptions) => {
-    schedule.spec.intervals = [{ every: '5m' }];
+    schedule.spec.intervals = [{ every: '5s' }];
     return schedule;
   });
   // Alternatively:
