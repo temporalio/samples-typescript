@@ -6,18 +6,19 @@ This sample demonstrates:
   - Activity retries and non-retryable failures
   - Signals and a Query
   - Timeouts on state changes using `condition()`
+- List Workflow API in the [`getOrders`](./apps/driver/pages/api/%5Btrpc%5D.ts) API route handler.
 - Turborepo monorepo, with shared packages in [`packages/`](./packages) and 3 apps in [`apps/`](./apps):
   - [`apps/menu/`](./apps/menu): Customer app with menu and serverless API. Next.js, Tailwind, tRPC.
   - [`apps/driver/`](./apps/driver): Driver portal for picking up and delivering meals.
   - [`apps/worker/`](./apps/worker): The Worker.
-- [`apps/driver/pages/api/[trpc].ts`](./apps/driver/pages/api/[trpc].ts): The [client.workflow.list](https://typescript.temporal.io/api/classes/client.WorkflowClient#list) API.
 
 This sample is deployed to:
 
-- [temporal.menu](https://temporal.menu/)
-- [drive.temporal.menu](https://drive.temporal.menu/)
+- Vercel:
+  - [temporal.menu](https://temporal.menu/)
+  - [drive.temporal.menu](https://drive.temporal.menu/)
 - [`apps/worker/`](./apps/worker) is deployed to Render as a [Background Worker](https://render.com/docs/background-workers)
-- The API routes and Worker connect to [Temporal Cloud](https://temporal.io/cloud)
+- The Next.js API routes and Worker connect to [Temporal Cloud](https://temporal.io/cloud)
 
 ### Running this sample
 
