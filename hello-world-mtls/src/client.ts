@@ -7,6 +7,9 @@ import { example } from './workflows';
 /**
  * Schedule a Workflow connecting with mTLS, configuration is provided via environment variables.
  * Note that serverNameOverride and serverRootCACertificate are optional.
+ *
+ * If using Temporal Cloud, omit the serverRootCACertificate so that Node.js defaults to using
+ * Mozilla's publicly trusted list of CAs when verifying the server certificate.
  */
 async function run({
   address,
@@ -17,7 +20,8 @@ async function run({
   serverRootCACertificatePath,
   taskQueue,
 }: Env) {
-  // not needed if connecting to temporal cloud
+  // Note that the serverRootCACertificate is NOT needed if connecting to Temporal Cloud because
+  // the server certificate is issued by a publicly trusted CA.
   let serverRootCACertificate: Buffer | undefined = undefined;
   if (serverRootCACertificatePath) {
     serverRootCACertificate = fs.readFileSync(serverRootCACertificatePath);
