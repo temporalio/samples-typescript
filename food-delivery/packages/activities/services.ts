@@ -20,7 +20,7 @@ export const paymentService = {
     if (Math.random() < 0.7) {
       throw new Error('Failed to charge. Unable to reach payment service.')
     }
-    console.log(`Refunded $${cents / 100}`)
+    console.log(`Charged $${cents / 100}`)
   },
 
   refund(cents: number) {
