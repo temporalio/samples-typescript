@@ -9,6 +9,7 @@ const { greet } = proxyActivities<typeof activities>({
 
 /** A workflow that simply calls an activity */
 export async function example(name: string): Promise<string> {
+  throw new Error('loren is failing this WFT');
   return await greet(name);
 }
 // @@@SNIPEND
