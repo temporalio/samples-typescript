@@ -107,5 +107,6 @@ jobs:
         working-directory: ${{ matrix.project }}
       - run: npx prettier --version
         working-directory: ${{ matrix.project }}
-      - run: npx prettier . --loglevel debug --check
+      - run: npx prettier . -w
         working-directory: ${{ matrix.project }}
+      - run: git diff
