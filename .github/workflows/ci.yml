@@ -105,6 +105,7 @@ jobs:
         if: ${{ matrix.project != 'hello-world-js' }}
       - run: npm run lint
         working-directory: ${{ matrix.project }}
-      - run: npx prettier . --check
+      - run: npx prettier --version
         working-directory: ${{ matrix.project }}
- 
+      - run: npx prettier . --loglevel debug --check
+        working-directory: ${{ matrix.project }}
