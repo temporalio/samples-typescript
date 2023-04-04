@@ -21,7 +21,7 @@ describe('example workflow', function () {
 
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    env = await TestWorkflowEnvironment.create();
+    env = await TestWorkflowEnvironment.createLocal();
     const worker = await Worker.create({
       connection: env.nativeConnection,
       taskQueue,
