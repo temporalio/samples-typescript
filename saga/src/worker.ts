@@ -1,4 +1,4 @@
-import { InjectedSinks, Worker, WorkerOptions } from '@temporalio/worker';
+import { defaultSinks, InjectedSinks, Worker, WorkerOptions } from '@temporalio/worker';
 import { createActivities } from './activities';
 import { createClients } from './clients';
 import { LoggerSinks } from './workflows';
@@ -32,7 +32,7 @@ async function run() {
     workflowsPath: require.resolve('./workflows'),
     activities,
     taskQueue,
-    sinks,
+    sinks: { ...defaultSinks(), ...sinks },
   };
 
   const worker = await Worker.create(opts);
