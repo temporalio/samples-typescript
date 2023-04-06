@@ -20,15 +20,15 @@
     ]
   },
   "dependencies": {
-    "@opentelemetry/core": "1.2.0",
-    "@opentelemetry/resources": "1.2.0",
-    "@opentelemetry/sdk-node": "^0.28.0",
-    "@opentelemetry/sdk-trace-base": "1.2.0",
-    "@temporalio/activity": "^1.6.0",
-    "@temporalio/client": "^1.6.0",
-    "@temporalio/interceptors-opentelemetry": "^1.6.0",
-    "@temporalio/worker": "^1.6.0",
-    "@temporalio/workflow": "^1.6.0"
+    "@opentelemetry/core": "^1.8.0",
+    "@opentelemetry/resources": "^1.8.0",
+    "@opentelemetry/sdk-node": "^0.33.0",
+    "@opentelemetry/sdk-trace-base": "^1.8.0",
+    "@temporalio/activity": "1.7.0",
+    "@temporalio/client": "1.7.0",
+    "@temporalio/interceptors-opentelemetry": "1.7.0",
+    "@temporalio/worker": "1.7.0",
+    "@temporalio/workflow": "1.7.0"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",

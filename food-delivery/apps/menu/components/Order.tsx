@@ -7,7 +7,7 @@ export function Order({ order, onOrder }: { order: OrderType; onOrder: (product:
   const orderStatus = trpc.getOrderStatus.useQuery(order.id, { refetchInterval: 1000 })
 
   return (
-    <div key={order.id} className="border-t border-b border-gray-200 bg-white shadow-sm sm:rounded-lg sm:border">
+    <div key={order.id} className="border-b border-t border-gray-200 bg-white shadow-sm sm:rounded-lg sm:border">
       <h3 className="sr-only">
         Order placed on <time dateTime={order.createdAt.toString()}>{order.createdAt.toLocaleTimeString('en-US')}</time>
       </h3>
@@ -69,7 +69,7 @@ export function Order({ order, onOrder }: { order: OrderType; onOrder: (product:
                 )}
               </div>
 
-              <div className="mt-6 flex items-center space-x-4 divide-x divide-gray-200 border-t border-gray-200 pt-4 text-sm font-medium sm:mt-0 sm:ml-4 sm:border-none sm:pt-0">
+              <div className="mt-6 flex items-center space-x-4 divide-x divide-gray-200 border-t border-gray-200 pt-4 text-sm font-medium sm:ml-4 sm:mt-0 sm:border-none sm:pt-0">
                 <div className="flex flex-1 justify-center">
                   <a href="#app-name" className="whitespace-nowrap text-indigo-600 hover:text-indigo-500">
                     View product
