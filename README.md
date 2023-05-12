@@ -126,7 +126,9 @@ and you'll be given the list of sample options.
 #### Production APIs
 
 - [**Production Build**](./production): Build code in advance for faster Worker startup times.
-- [**Debugging**](https://docs.temporal.io/application-development/debugging#debug): The [replay-history](./replay-history) sample shows how to retrieve Workflow Event History and debug it using the `runReplayHistory` Worker API ([video](https://youtu.be/fN5bIL7wc5M)).
+- [**Debugging**](https://docs.temporal.io/application-development/debugging#debug):
+  - The [replay-history](./replay-history) sample shows how to retrieve Workflow Event History and debug it using the `runReplayHistory` Worker API ([video](https://youtu.be/fN5bIL7wc5M)).
+  - The [vscode-debugger](./vscode-debugger) sample shows how to use the Temporal VS Code plugin to debug a running or completed Workflow Execution.
 - [**Patching**](https://docs.temporal.io/workflows/#workflow-versioning): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
 - [**Sinks**](./sinks): Use Sinks to extract data out of Workflows for alerting/logging/metrics/tracing purposes.
 - [**Instrumentation**](./instrumentation): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components and get metrics and traces out of Rust Core.

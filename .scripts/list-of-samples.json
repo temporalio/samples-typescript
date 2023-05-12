@@ -37,6 +37,7 @@
     "snippets",
     "state",
     "timer-examples",
-    "timer-progress"
+    "timer-progress",
+    "vscode-debugger"
   ]
 }
