@@ -1,5 +1,5 @@
 import { Client } from '@temporalio/client';
-import { nanoid } from 'nanoid';
+import crypto from 'node:crypto';
 import wait from 'waait';
 import { humanVerificationWorkflow, verifySignal } from './workflows';
 
@@ -9,7 +9,7 @@ async function run() {
   const handle = await client.workflow.start(humanVerificationWorkflow, {
     args: ['4 + 20 = 420'],
     taskQueue: 'replay-demo',
-    workflowId: 'workflow-' + nanoid(),
+    workflowId: 'workflow-' + crypto.randomUUID(),
   });
   console.log(`Started workflow ${handle.workflowId}`);
 
