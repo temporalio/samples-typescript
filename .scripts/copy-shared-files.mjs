@@ -57,7 +57,6 @@ const POST_CREATE_EXCLUDE = [
   'signals-queries',
   'activities-cancellation-heartbeating',
   'nestjs-exchange-rates',
-  'replay-history',
   'food-delivery',
   'search-attributes',
 ];
