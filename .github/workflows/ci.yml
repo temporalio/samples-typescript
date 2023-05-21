@@ -87,7 +87,8 @@ jobs:
             snippets,
             state,
             timer-examples,
-            timer-progress
+            timer-progress,
+            vscode-debugger
           ]
 
     steps:
@@ -107,4 +108,3 @@ jobs:
         working-directory: ${{ matrix.project }}
       - run: npx prettier . --check
         working-directory: ${{ matrix.project }}
- 

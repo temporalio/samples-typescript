@@ -1,15 +1,13 @@
 import { Worker } from '@temporalio/worker';
-import { Connection } from '@temporalio/client';
+import { Connection, Client } from '@temporalio/client';
 
 async function run() {
   // @@@SNIPSTART typescript-history-get-workflowhistory
-  const conn = await Connection.connect(/* { address: 'temporal.prod.company.com' } */);
-  const { history } = await conn.workflowService.getWorkflowExecutionHistory({
-    namespace: 'default',
-    execution: {
-      workflowId: 'calc',
-    },
-  });
+  const connection = await Connection.connect(/* { address: 'temporal.prod.company.com' } */);
+  const client = new Client({ connection, namespace: 'default' });
+  const workflowId = 'calc';
+  const handle = client.workflow.getHandle(workflowId);
+  const history = await handle.fetchHistory();
   // @@@SNIPEND
   if (!history) {
     throw new Error('Empty history');
