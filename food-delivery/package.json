@@ -11,14 +11,15 @@
     "dev": "turbo run dev --parallel",
     "start": "turbo run start --parallel",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "lint": "turbo run lint"
+    "lint": "turbo run lint",
+    "deploy": "vercel --prod"
   },
-  "dependencies": {},
   "devDependencies": {
     "eslint-config-food": "*",
     "prettier": "latest",
     "prettier-plugin-tailwindcss": "^0.1.12",
-    "turbo": "latest"
+    "turbo": "latest",
+    "vercel": "^29.0.3"
   },
   "packageManager": "npm@8.19.1",
   "engines": {
