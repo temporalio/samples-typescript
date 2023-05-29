@@ -1,5 +1,5 @@
 import { Worker } from '@temporalio/worker';
-import { createStickyActivities, createNonStickyActivities } from './activities';
+import { createActivitiesForSameWorker, createNormalActivities } from './activities';
 import { v4 as uuid } from 'uuid';
 
 // @@@SNIPSTART typescript-sticky-queues-worker
@@ -9,12 +9,12 @@ async function run() {
   const workers = await Promise.all([
     Worker.create({
       workflowsPath: require.resolve('./workflows'),
-      activities: createNonStickyActivities(uniqueWorkerTaskQueue),
-      taskQueue: 'sticky-activity-tutorial',
+      activities: createNormalActivities(uniqueWorkerTaskQueue),
+      taskQueue: 'normal-task-queue',
     }),
     Worker.create({
       // No workflows for this queue
-      activities: createStickyActivities(),
+      activities: createActivitiesForSameWorker(),
       taskQueue: uniqueWorkerTaskQueue,
     }),
   ]);

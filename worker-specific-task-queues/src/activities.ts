@@ -3,7 +3,7 @@ import { Context } from '@temporalio/activity';
 import { createHash } from 'crypto';
 import * as fs from 'fs/promises';
 
-export function createNonStickyActivities(uniqueWorkerTaskQueue: string) {
+export function createNormalActivities(uniqueWorkerTaskQueue: string) {
   return {
     async getUniqueTaskQueue(): Promise<string> {
       return uniqueWorkerTaskQueue;
@@ -11,7 +11,7 @@ export function createNonStickyActivities(uniqueWorkerTaskQueue: string) {
   };
 }
 
-export function createStickyActivities() {
+export function createActivitiesForSameWorker() {
   return {
     async downloadFileToWorkerFileSystem(url: string, path: string): Promise<void> {
       console.log(`Downloading ${url} and saving to ${path}`);

@@ -5,7 +5,7 @@ async function run() {
   const connection = await Connection.connect();
   const client = new Client({ connection });
   await client.workflow.execute(fileProcessingWorkflow, {
-    taskQueue: 'sticky-activity-tutorial',
+    taskQueue: 'normal-task-queue',
     workflowId: 'file-processing-0',
   });
 }
