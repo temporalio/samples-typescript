@@ -1,5 +1,5 @@
 {
-  "name": "activities-sticky-queues",
+  "name": "worker-specific-task-queues",
   "version": "0.1.0",
   "private": true,
   "scripts": {
