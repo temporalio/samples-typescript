@@ -1,5 +1,18 @@
 # Food Delivery App
 
+Sample application introduced in these blog posts:
+
+- [Building Reliable Distributed Systems in Node.js](https://temporal.io/blog/building-reliable-distributed-systems-in-node)
+- [How Durable Execution Works](https://temporal.io/blog/building-reliable-distributed-systems-in-node-js-part-2)
+
+This sample is deployed to:
+
+- Vercel:
+  - [temporal.menu](https://temporal.menu/)
+  - [drive.temporal.menu](https://drive.temporal.menu/)
+- [`apps/worker/`](./apps/worker) is deployed to Render as a [Background Worker](https://render.com/docs/background-workers)
+- The Next.js API routes and Worker connect to [Temporal Cloud](https://temporal.io/cloud)
+
 This sample demonstrates:
 
 - [`packages/workflows/order.ts`](./packages/workflows/order.ts): A food delivery Workflow.
@@ -11,14 +24,6 @@ This sample demonstrates:
   - [`apps/menu/`](./apps/menu): Customer app with menu and serverless API. Next.js, Tailwind, tRPC.
   - [`apps/driver/`](./apps/driver): Driver portal for picking up and delivering meals.
   - [`apps/worker/`](./apps/worker): The Worker.
-
-This sample is deployed to:
-
-- Vercel:
-  - [temporal.menu](https://temporal.menu/)
-  - [drive.temporal.menu](https://drive.temporal.menu/)
-- [`apps/worker/`](./apps/worker) is deployed to Render as a [Background Worker](https://render.com/docs/background-workers)
-- The Next.js API routes and Worker connect to [Temporal Cloud](https://temporal.io/cloud)
 
 ### Running this sample
 
