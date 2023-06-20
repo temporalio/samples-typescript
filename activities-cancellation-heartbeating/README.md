@@ -5,7 +5,7 @@ This sample demonstrates:
 - How a retried Activity Task can resume from the last Activity Task's heartbeat.
 - How to handle canceling a long-running Activity when its associated Workflow is canceled.
 
-Docs: [Activity heartbeating](https://docs.temporal.io/application-development/features?lang=typescript/#activity-heartbeats) and [cancellation](https://docs.temporal.io/application-development/testing/#cancel-an-activity)
+Docs: [Activity heartbeating](https://docs.temporal.io/dev-guide/typescript/features#activity-heartbeats) and [cancellation](https://typescript.temporal.io/api/namespaces/activity#cancellation)
 
 Running [`src/client.ts`](./src/client.ts) does this:
 
