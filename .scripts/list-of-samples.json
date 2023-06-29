@@ -3,7 +3,6 @@
     "activities-cancellation-heartbeating",
     "activities-dependency-injection",
     "activities-examples",
-    "activities-sticky-queues",
     "child-workflows",
     "continue-as-new",
     "cron-workflows",
@@ -37,6 +36,7 @@
     "state",
     "timer-examples",
     "timer-progress",
-    "vscode-debugger"
+    "vscode-debugger",
+    "worker-specific-task-queues"
   ]
 }

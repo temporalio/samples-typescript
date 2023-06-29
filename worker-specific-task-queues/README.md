@@ -1,14 +1,14 @@
-# Sticky Activity Queues
+# Worker-Specific Task Queues
 
-This sample shows how to have [Sticky Execution](https://docs.temporal.io/tasks/#sticky-execution): using a unique task queue per Worker to have certain activities only run on that specific Worker.
+Use a unique Task Queue for each Worker in order to have certain Activities run on a specific Worker.
 
 The strategy is:
 
-- Create a `getUniqueTaskQueue` activity that generates a unique task queue name, `uniqueWorkerTaskQueue`.
-- It doesn't matter where this activity is run, so it can be "non sticky" as per Temporal default behavior.
+- Create a `getUniqueTaskQueue` Activity that generates a unique Task Queue name, `uniqueWorkerTaskQueue`.
+- It doesn't matter where this Activity is run, so it can be on any Worker on a shared Task Queue.
 - In this demo, `uniqueWorkerTaskQueue` is simply a `uuid` initialized in the Worker, but you can inject smart logic here to uniquely identify the Worker, [as Netflix did](https://community.temporal.io/t/using-dynamic-task-queues-for-traffic-routing/3045).
-- For activities intended to be "sticky", only register them in one Worker, and have that be the only Worker listening on that `uniqueWorkerTaskQueue`.
-- Execute workflows from the Client like normal.
+- For Activities that need to run on the same Worker, run them on `uniqueWorkerTaskQueue`, and have only a single Worker listening on `uniqueWorkerTaskQueue`.
+- Execute Workflows from the Client like normal.
 
 Activities have been artificially slowed with `activity.Context().sleep(3000)` to simulate slow activities.
 
