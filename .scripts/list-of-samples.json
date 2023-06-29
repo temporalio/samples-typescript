@@ -3,6 +3,7 @@
     "activities-cancellation-heartbeating",
     "activities-dependency-injection",
     "activities-examples",
+    "activities-sticky-queues",
     "child-workflows",
     "continue-as-new",
     "cron-workflows",
@@ -19,6 +20,7 @@
     "instrumentation",
     "interceptors-opentelemetry",
     "logger-shared",
+    "logging-sinks",
     "monorepo-folders",
     "mutex",
     "nestjs-exchange-rates",
@@ -27,6 +29,7 @@
     "production",
     "protobufs",
     "query-subscriptions",
+    "replay-history",
     "saga",
     "schedules",
     "search-attributes",
@@ -37,6 +40,7 @@
     "timer-examples",
     "timer-progress",
     "vscode-debugger",
-    "worker-specific-task-queues"
+    "worker-specific-task-queues",
+    "worker-versioning"
   ]
 }
