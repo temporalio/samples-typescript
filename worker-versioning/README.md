@@ -27,5 +27,10 @@
 # Add version 2.1
 
 ```bash
-V./temporal task-queue update-build-ids add-new-compatible --task-queue versioned-queue --build-id "2.1" --existing-compatible-build-id "2.0"
+./temporal task-queue update-build-ids add-new-compatible --task-queue versioned-queue --build-id "2.1" --existing-compatible-build-id "2.0"
+```
+
+# Demonstrate reachability
+```bash
+./temporal task-queue get-build-id-reachability --task-queue versioned-queue --build-id "1.0" --build-id "2.0" --build-id "2.1"
 ```
