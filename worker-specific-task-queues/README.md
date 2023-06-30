@@ -1,6 +1,6 @@
 # Worker-Specific Task Queues
 
-Use a unique Task Queue for each Worker in order to have certain Activities run on a specific Worker. 
+Use a unique Task Queue for each Worker in order to have certain Activities run on a specific Worker.
 
 This is useful in scenarios where multiple Activities need to run in the same process or on the same host, for example to share memory or disk. This sample has a file processing Workflow, where one Activity downloads the file to disk and other Activities process it and clean it up.
 
