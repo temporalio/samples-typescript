@@ -18,7 +18,7 @@
     "eslint-config-food": "*",
     "prettier": "latest",
     "prettier-plugin-tailwindcss": "^0.1.12",
-    "turbo": "latest",
+    "turbo": "1.10.4",
     "vercel": "^29.0.3"
   },
   "packageManager": "npm@8.19.1",
