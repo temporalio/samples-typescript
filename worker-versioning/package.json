@@ -4,11 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc --build",
-    "worker1": "ts-node src/workerV1.ts",
-    "worker2": "ts-node src/workerV2.ts",
-    "worker21": "ts-node src/workerV21.ts",
-    "sender": "ts-node src/client.ts",
-    "finisher": "ts-node src/client-finish.ts"
+    "example": "ts-node src/client.ts"
   },
   "nodemonConfig": {
     "execMap": {

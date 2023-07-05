@@ -1,4 +1,4 @@
-import { condition, defineSignal, proxyActivities, setHandler, sleep } from '@temporalio/workflow';
+import { condition, defineSignal, proxyActivities, setHandler, log } from '@temporalio/workflow';
 import type * as activities from './activities';
 
 const { greet } = proxyActivities<typeof activities>({
@@ -7,11 +7,14 @@ const { greet } = proxyActivities<typeof activities>({
 
 export const proceeder = defineSignal<[string]>('proceed');
 
+/**
+ * The 1.0 version of the workflow we'll be making changes to
+ */
 export async function versioningExample(): Promise<string> {
+  log.info('Workflow V1 started!', {});
   let shouldFinish = false;
   setHandler(proceeder, async (input: string) => {
     await greet('from V1 worker!');
-    await sleep('1 second');
     if (input == 'finish') {
       shouldFinish = true;
     }

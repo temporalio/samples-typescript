@@ -1,31 +1,18 @@
-# Add version 1
+# Build ID Based Versioning
 
-```bash
-./temporal task-queue update-build-ids add-new-default --task-queue versioned-queue --build-id "1.0"
-```
+This sample illustrates how to use Build ID based versioning to help you appropriately roll out
+incompatible and compatible changes to workflow and activity code for the same task queue.
 
-# Start a couple
+## Description
 
-```bash
-./temporal workflow start --task-queue versioned-queue --type versioningExample --workflow-id wf-1
-./temporal workflow start --task-queue versioned-queue --type versioningExample --workflow-id wf-2
-```
+The sample shows you how to roll out both a compatible change and an incompatible change to a
+workflow.
 
-# Add version 2
+## Running
 
-```bash
-./temporal task-queue update-build-ids add-new-default --task-queue versioned-queue --build-id "2.0"
-```
-
-# Start some more
-
-```bash
-./temporal workflow start --task-queue versioned-queue --type versioningExample --workflow-id wf-3
-./temporal workflow start --task-queue versioned-queue --type versioningExample --workflow-id wf-4
-```
-
-# Add version 2.1
-
-```bash
-V./temporal task-queue update-build-ids add-new-compatible --task-queue versioned-queue --build-id "2.1" --existing-compatible-build-id "2.0"
-```
+1. Run a [Temporal service](https://github.com/temporalio/samples-go/tree/main/#how-to-use).
+2. Run
+   ```
+   npm run example
+   ```
+   to run the example. It starts multiple workers and workflows and demonstrates their interaction.
