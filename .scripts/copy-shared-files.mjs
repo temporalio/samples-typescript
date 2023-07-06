@@ -59,6 +59,7 @@ const POST_CREATE_EXCLUDE = [
   'nestjs-exchange-rates',
   'food-delivery',
   'search-attributes',
+  'worker-versioning',
 ];
 
 const PRETTIERRC_EXCLUDE = ['food-delivery'];

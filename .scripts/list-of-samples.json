@@ -19,7 +19,6 @@
     "instrumentation",
     "interceptors-opentelemetry",
     "logger-shared",
-    "logging-sinks",
     "monorepo-folders",
     "mutex",
     "nestjs-exchange-rates",
