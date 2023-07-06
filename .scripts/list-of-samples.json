@@ -37,6 +37,7 @@
     "timer-examples",
     "timer-progress",
     "vscode-debugger",
-    "worker-specific-task-queues"
+    "worker-specific-task-queues",
+    "worker-versioning"
   ]
 }
