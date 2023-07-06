@@ -134,7 +134,7 @@ and you'll be given the list of sample options.
 - [**Protobufs**](./protobufs): Use [Protobufs](https://docs.temporal.io/security/#default-data-converter).
 - [**Custom Payload Converter**](./ejson): Customize data serialization by creating a `PayloadConverter` that uses EJSON to convert Dates, binary, and regexes.
 - **Monorepos**:
-  - [`/monorepos-folders`](./ejson): yarn workspace with packages for a web frontend, API server, Worker, and Workflows/Activities.
+  - [`/monorepo-folders`](./monorepo-folders): yarn workspace with packages for a web frontend, API server, Worker, and Workflows/Activities.
   - [`psigen/temporal-ts-example`](https://github.com/psigen/temporal-ts-example): yarn workspace containerized with [tilt](https://tilt.dev/). Includes `temporalite`, `parcel`, and different packages for Workflows and Activities.
 - [**Polyglot**](https://github.com/temporalio/temporal-pendulum): Use TS alongside other languages
 

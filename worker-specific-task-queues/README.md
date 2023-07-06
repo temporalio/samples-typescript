@@ -2,15 +2,18 @@
 
 Use a unique Task Queue for each Worker in order to have certain Activities run on a specific Worker.
 
+This is useful in scenarios where multiple Activities need to run in the same process or on the same host, for example to share memory or disk. This sample has a file processing Workflow, where one Activity downloads the file to disk and other Activities process it and clean it up.
+
 The strategy is:
 
-- Create a `getUniqueTaskQueue` Activity that generates a unique Task Queue name, `uniqueWorkerTaskQueue`.
-- It doesn't matter where this Activity is run, so it can be on any Worker on a shared Task Queue.
-- In this demo, `uniqueWorkerTaskQueue` is simply a `uuid` initialized in the Worker, but you can inject smart logic here to uniquely identify the Worker, [as Netflix did](https://community.temporal.io/t/using-dynamic-task-queues-for-traffic-routing/3045).
-- For Activities that need to run on the same Worker, run them on `uniqueWorkerTaskQueue`, and have only a single Worker listening on `uniqueWorkerTaskQueue`.
-- Execute Workflows from the Client like normal.
+- Each Worker process creates two `Worker` instances:
+  - One instance listens on the `normal-task-queue` Task Queue.
+  - Another instance listens on a uniquely generated Task Queue (in this case, `uuid` is used, but you can inject smart logic here to uniquely identify the Worker, [as Netflix did](https://community.temporal.io/t/using-dynamic-task-queues-for-traffic-routing/3045)).
+- The Workflow and the first Activity are run on `normal-task-queue`.
+- The first Activity returns one of the uniquely generated Task Queues (that only one Worker is listening on—i.e. the **Worker-specific Task Queue**).
+- The rest of the Activities do the file processing and are run on the Worker-specific Task Queue.
 
-Activities have been artificially slowed with `activity.Context().sleep(3000)` to simulate slow activities.
+Activities have been artificially slowed with `activity.Context().sleep(3000)` to simulate doing more work.
 
 ### Running this sample
 
