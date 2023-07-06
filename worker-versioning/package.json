@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "build": "tsc --build",
-    "example": "ts-node src/client.ts"
+    "example": "ts-node src/example.ts"
   },
   "nodemonConfig": {
     "execMap": {

@@ -28,7 +28,7 @@ async function run() {
   });
   const worker1Run = worker1.run();
 
-  // Start a workflow which will run on the 1.0 worker
+  // Start a workflow that will run on the 1.0 worker
   const firstWorkflowID = 'worker-versioning-first_' + uuid4();
   const firstWorkflow = await client.workflow.start(versioningExample, {
     workflowId: firstWorkflowID,
@@ -83,7 +83,7 @@ async function run() {
   });
   const worker2Run = worker2.run();
 
-  // Start a new workflow, note that it will run on the new 2.0 version, without the client
+  // Start a new workflow. Note that it will run on the new 2.0 version, without the client
   // invocation changing at all!
   const secondWorkflowID = 'worker-versioning-second_' + uuid4();
   const secondWorkflow = await client.workflow.start(versioningExample, {
@@ -93,22 +93,27 @@ async function run() {
   });
 
   // Drive both workflows once more before concluding them
+  // firstWorkflow will continue to be run on the 1.1 Worker.
   await firstWorkflow.signal(proceeder, 'go');
   await secondWorkflow.signal(proceeder, 'go');
   await firstWorkflow.signal(proceeder, 'finish');
   await secondWorkflow.signal(proceeder, 'finish');
 
+  // Wait for workflows to finish
+  await Promise.all([firstWorkflow.result(), secondWorkflow.result()]);
+
   // Lastly we'll demonstrate how you can use the gRPC api to determine if certain build IDs are
-  // ready to be retied. There's more information in the documentation, but here's a quick example
+  // ready to be retired. There's more information in the documentation, but here's a quick example
   // that will show us that we can retire the 1.0 worker:
   const reachability = await client.taskQueue.getReachability({
     buildIds: ['1.0'],
   });
   console.log('Reachability:', reachability);
-  // if (reachability.buildIdReachability['1.0'].taskQueueReachability)
+  if (reachability.buildIdReachability['1.0'].taskQueueReachability[taskQueue].length === 0) {
+    console.log('Confirmed that 1.0 is ready to be retired!');
+  }
 
-  // Wait for workflows to finish & stop all workers
-  await Promise.all([firstWorkflow.result(), secondWorkflow.result()]);
+  // Stop all workers
   worker11.shutdown();
   worker2.shutdown();
   await Promise.all([worker11Run, worker2Run]);
