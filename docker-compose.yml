@@ -59,6 +59,7 @@ services:
       - temporal
     environment:
       - TEMPORAL_CLI_ADDRESS=temporal:7233
+      - TEMPORAL_ADDRESS=temporal:7233
     # https://github.com/temporalio/temporal/issues/2539
     image: temporalio/admin-tools:1.13.4
     # networks:
@@ -86,7 +87,7 @@ services:
     environment:
       - TEMPORAL_ADDRESS=temporal:7233
       - TEMPORAL_CORS_ORIGINS=http://localhost:3000
-    image: temporalio/ui:0.3.0
+    image: temporalio/ui:2.16.2
     #     networks:
     #       - temporal-network
     ports:
