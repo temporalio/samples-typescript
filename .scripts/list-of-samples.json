@@ -27,6 +27,8 @@
     "production",
     "protobufs",
     "query-subscriptions",
+    "replay-history",
+    "request-response-activity",
     "saga",
     "schedules",
     "search-attributes",

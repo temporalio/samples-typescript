@@ -1,8 +1,10 @@
+import { Context } from '@temporalio/activity';
+
 export async function addReminderToDatabase(_text: string): Promise<void> {
-  console.log('Adding reminder record to the database');
+  Context.current().log.info('Adding reminder record to the database');
 }
 
 export async function notifyUser(text: string): Promise<void> {
-  console.log(`Notifying user
+  Context.current().log.info(`Notifying user
 Reminder: ${text}`);
 }

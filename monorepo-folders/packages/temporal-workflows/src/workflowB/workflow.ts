@@ -1,4 +1,4 @@
-import { proxyActivities, sleep } from '@temporalio/workflow';
+import { proxyActivities, sleep, log } from '@temporalio/workflow';
 // Only import the activity types
 import type * as activities from './activities';
 
@@ -7,7 +7,7 @@ const { activityC, activityD } = proxyActivities<typeof activities>({
 });
 
 export async function WorkflowB(name = 'WorkflowB'): Promise<string> {
-  console.log('Hello from WorkflowB');
+  log.info('Hello from WorkflowB');
   const res1 = await activityC(name);
   await sleep(100);
   const res2 = await activityD(name);

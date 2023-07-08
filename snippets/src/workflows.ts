@@ -1,10 +1,10 @@
-import { ApplicationFailure } from '@temporalio/workflow';
+import { ApplicationFailure, log } from '@temporalio/workflow';
 
 export async function example(): Promise<void> {
   const random = Math.random();
-  console.log('random:', random);
+  log.info('random: ${random}');
   if (random > 0.4) {
-    console.log('failing workflow run');
+    log.info('failing workflow run');
     throw new ApplicationFailure('failing workflow run');
   }
 }

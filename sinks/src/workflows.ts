@@ -14,7 +14,7 @@ export type MySinks = AlertSinks & LoggerSinks;
 const { alerter, defaultWorkerLogger } = proxySinks<MySinks>();
 
 export async function sinkWorkflow(): Promise<string> {
-  defaultWorkerLogger.info('default logger: Workflow Execution started', {});
+  defaultWorkerLogger.info('default logger: Workflow Execution started');
   alerter.alert('alerter: Workflow Execution started');
   return 'Hello, Temporal!';
 }

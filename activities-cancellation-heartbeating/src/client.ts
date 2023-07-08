@@ -18,7 +18,7 @@ async function run() {
   try {
     await handle.result();
   } catch (err: unknown) {
-    if (err instanceof WorkflowFailedError && err.cause instanceof CancelledFailure) {
+    if (err instanceof WorkflowFailedError && CancelledFailure.is(err.cause)) {
       console.log('handle.result() threw because Workflow was cancelled');
     } else {
       throw err;

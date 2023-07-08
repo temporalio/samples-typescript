@@ -2,20 +2,21 @@
 import { CancelledFailure, Context } from '@temporalio/activity';
 
 export async function fakeProgress(sleepIntervalMs = 1000): Promise<void> {
+  const { log, info, sleep, heartbeat } = Context.current();
   try {
     // allow for resuming from heartbeat
-    const startingPoint = Context.current().info.heartbeatDetails || 1;
-    console.log('Starting activity at progress:', startingPoint);
+    const startingPoint = info.heartbeatDetails || 1;
+    log.info(`Starting activity at progress: ${startingPoint}`);
     for (let progress = startingPoint; progress <= 100; ++progress) {
       // simple utility to sleep in activity for given interval or throw if Activity is cancelled
       // don't confuse with Workflow.sleep which is only used in Workflow functions!
-      console.log('Progress:', progress);
-      await Context.current().sleep(sleepIntervalMs);
-      Context.current().heartbeat(progress);
+      log.info(`Progress: ${progress}`);
+      await sleep(sleepIntervalMs);
+      heartbeat(progress);
     }
   } catch (err) {
-    if (err instanceof CancelledFailure) {
-      console.log('Fake progress activity cancelled', err.message);
+    if (CancelledFailure.is(err)) {
+      log.warn(`Fake progress activity cancelled: ${(err as Error).message}`);
       // Cleanup
     }
     throw err;
