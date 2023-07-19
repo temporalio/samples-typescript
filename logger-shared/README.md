@@ -6,7 +6,7 @@ You should not use winston directly in Workflow code.
 The only potential exception is if you are only using winston's [Console transport](https://github.com/winstonjs/winston/blob/master/docs/transports.md#console-transport).
 That is because Workflow code runs in a sandbox, so transports that [write to the file system](https://github.com/winstonjs/winston/blob/master/docs/transports.md#file-transport) or [make HTTP requests](https://github.com/winstonjs/winston/blob/master/docs/transports.md#http-transport) will not work.
 
-The [Logging docs](https://docs.temporal.io/application-development/observability/#logging) explain some of the code in this sample.
+The [Logging docs](https://docs.temporal.io/dev-guide/typescript/observability#logging) explain some of the code in this sample.
 
 This sample is similar to the [instrumentation sample](../instrumentation/README.md).
 The key difference is the instrumentation sample doesn't use the logger directly from Workflow logic.

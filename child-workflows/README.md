@@ -1,6 +1,6 @@
 # Child Workflows
 
-This sample shows how to use [Child Workflows](https://docs.temporal.io/application-development/features/#child-workflows):
+This sample shows how to use [Child Workflows](https://docs.temporal.io/dev-guide/typescript/features#child-workflows):
 
 [`src/workflows.ts`](./src/workflows.ts)
 
