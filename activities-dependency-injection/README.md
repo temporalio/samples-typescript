@@ -1,6 +1,6 @@
 # Activities Dependency Injection
 
-This sample shows how to [share dependencies](https://docs.temporal.io/application-development/foundations?lang=typescript/#develop-activities) between Activities: for example, when you need to initialize a database connection once and then pass it to multiple Activities.
+This sample shows how to [share dependencies](https://docs.temporal.io/dev-guide/typescript/foundations#share-dependencies-in-activity-functions-dependency-injection) between Activities: for example, when you need to initialize a database connection once and then pass it to multiple Activities.
 
 [`src/worker.ts`](./src/worker.ts)
 

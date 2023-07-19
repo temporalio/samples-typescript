@@ -1,6 +1,6 @@
 # Continue as New
 
-This sample demonstrates the [continueAsNew API](https://docs.temporal.io/application-development/features/#continue-as-new). We still need to make these examples more relatable and realistic. If you are planning to write an infinitely long-running Workflow, please get in touch to validate the design and cutoff points.
+This sample demonstrates the [continueAsNew API](https://docs.temporal.io/dev-guide/typescript/features#continue-as-new). We still need to make these examples more relatable and realistic. If you are planning to write an infinitely long-running Workflow, please get in touch to validate the design and cutoff points.
 
 ### Running this sample
 

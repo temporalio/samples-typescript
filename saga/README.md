@@ -12,7 +12,7 @@ as reversals of successful calls to that point. Note that compensation is done i
 
 ### Running this sample
 
-1. Either use Temporal Cloud with environment variables specified [here](https://docs.temporal.io/security/#encryption-in-transit-with-mtls) or make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/application-development/foundations#run-a-development-cluster)) and add `LOCAL=true`.
+1. Either use Temporal Cloud with environment variables specified [here](https://docs.temporal.io/security/#encryption-in-transit-with-mtls) or make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/dev-guide/typescript/foundations#run-a-development-server)) and add `LOCAL=true`.
 1. `npm install` to install dependencies.
 1. `LOCAL=true npm run start` to start the Worker.
 1. In another shell, `LOCAL=true npm run workflow` to run the Workflow.

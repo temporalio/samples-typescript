@@ -1,6 +1,6 @@
 # Protobufs
 
-Use [Protobufs](https://docs.temporal.io/application-development/observability?lang=typescript#tracing).
+Use [Protobufs](https://docs.temporal.io/dev-guide/typescript/features#protobufs).
 
 - Example proto files:
   - [protos/messages.proto](protos/messages.proto)
