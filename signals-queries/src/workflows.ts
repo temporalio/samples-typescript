@@ -13,7 +13,7 @@ export async function unblockOrCancel(): Promise<void> {
     await wf.condition(() => !isBlocked);
     wf.log.info('Unblocked');
   } catch (err) {
-    if (wf.CancelledFailure.is(err)) {
+    if (err instanceof wf.CancelledFailure) {
       wf.log.info('Cancelled');
     }
     throw err;

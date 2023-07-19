@@ -15,8 +15,8 @@ export async function fakeProgress(sleepIntervalMs = 1000): Promise<void> {
       heartbeat(progress);
     }
   } catch (err) {
-    if (CancelledFailure.is(err)) {
-      log.warn(`Fake progress activity cancelled: ${(err as Error).message}`);
+    if (err instanceof CancelledFailure) {
+      log.warn(`Fake progress activity cancelled: ${err.message}`);
       // Cleanup
     }
     throw err;
