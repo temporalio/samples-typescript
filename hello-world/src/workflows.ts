@@ -5,6 +5,7 @@ import type * as activities from './activities';
 
 const { greet } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
+  heartbeatTimeout: '10 seconds',
 });
 
 /** A workflow that simply calls an activity */
