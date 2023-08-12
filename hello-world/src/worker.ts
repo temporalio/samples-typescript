@@ -4,6 +4,9 @@ import * as activities from './activities';
 
 async function run() {
   // Step 1: Establish a connection with Temporal server.
+  //
+  // Worker code uses `@temporalio/worker.NativeConnection`.
+  // (But in your application code it's `@temporalio/client.Connection`.)
   const connection = await NativeConnection.connect({
     address: 'localhost:7233',
     // TLS and gRPC metadata configuration goes here.
