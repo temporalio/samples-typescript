@@ -4,8 +4,8 @@ import { example } from './workflows';
 import { nanoid } from 'nanoid';
 
 async function run() {
-  // Connect to the default Server location (localhost:7233)
-  const connection = await Connection.connect();
+  // Connect to the default Server location
+  const connection = await Connection.connect({ address: 'localhost:7233' });
   // In production, pass options to configure TLS and other settings:
   // {
   //   address: 'foo.bar.tmprl.cloud',
@@ -18,9 +18,9 @@ async function run() {
   });
 
   const handle = await client.workflow.start(example, {
+    taskQueue: 'hello-world',
     // type inference works! args: [name: string]
     args: ['Temporal'],
-    taskQueue: 'hello-world',
     // in practice, use a meaningful business ID, like customerId or transactionId
     workflowId: 'workflow-' + nanoid(),
   });
