@@ -13,7 +13,7 @@ export async function encrypt(data: Uint8Array, key: crypto.CryptoKey): Promise<
       tagLength: TAG_LENGTH_BYTES * 8,
     },
     key,
-    data,
+    data
   );
 
   return Buffer.concat([iv, new Uint8Array(encrypted)]);
@@ -29,7 +29,7 @@ export async function decrypt(encryptedData: Uint8Array, key: crypto.CryptoKey):
       tagLength: TAG_LENGTH_BYTES * 8,
     },
     key,
-    ciphertext,
+    ciphertext
   );
 
   return new Uint8Array(decrypted);

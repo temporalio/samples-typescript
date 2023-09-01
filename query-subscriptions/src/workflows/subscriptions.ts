@@ -77,13 +77,13 @@ export const interceptors = (): WorkflowInterceptors => ({
           const { lastPublishPromise } = state;
           state.lastPublishPromise = lastPublishPromise.then(() =>
             // Ignore errors for simplicity
-            publish(state.version, patches).catch(() => undefined),
+            publish(state.version, patches).catch(() => undefined)
           );
         });
         if (state.workflowComplete) {
           state.lastPublishPromise.then(
             () => (state.syncComplete = true),
-            () => undefined,
+            () => undefined
           );
         }
         try {

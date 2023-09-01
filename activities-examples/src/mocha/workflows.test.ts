@@ -31,7 +31,7 @@ describe('example workflow', async function () {
         taskQueue: 'test-activities',
         workflowsPath: require.resolve('../workflows'),
         activities,
-      }),
+      })
     );
 
     const runPromise = worker.run();
@@ -96,7 +96,7 @@ describe('example workflow', async function () {
         err instanceof WorkflowFailedError &&
         err.cause instanceof ActivityFailure &&
         err.cause.cause instanceof ApplicationFailure &&
-        err.cause.cause.message === 'example error',
+        err.cause.cause.message === 'example error'
     );
   });
 });

@@ -90,7 +90,7 @@ async function main() {
         activityInbound: [(ctx) => new ActivityInboundLogInterceptor(ctx, activityWinstonLogger)],
         // workflowModules: [require.resolve('./workflows/interceptors')],
       },
-      workflowLogger,
+      workflowLogger
     ),
     // Inject sinks
     sinks: defaultSinks(workflowLogger),
@@ -104,5 +104,5 @@ main().then(
   (err) => {
     logger.error('Process failed', err);
     process.exit(1);
-  },
+  }
 );

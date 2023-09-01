@@ -50,7 +50,7 @@ describe('countdownWorkflow', async function () {
         workflowId: uuid(),
         taskQueue: 'test',
         args: [{ orderProcessingMS: ms('3 days'), sendDelayedEmailTimeoutMS: ms('1 day') }],
-      }),
+      })
     );
     assert.ok(emailSent);
   });
@@ -77,7 +77,7 @@ describe('countdownWorkflow', async function () {
         workflowId: uuid(),
         taskQueue: 'test',
         args: [{ orderProcessingMS: ms('3 days'), sendDelayedEmailTimeoutMS: ms('1 day') }],
-      }),
+      })
     );
     assert.equal(emailSent, false);
   });

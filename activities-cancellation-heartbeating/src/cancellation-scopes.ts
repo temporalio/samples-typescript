@@ -52,7 +52,7 @@ export async function cancelTimerAltImpl(): Promise<void> {
 // @@@SNIPSTART typescript-handle-external-workflow-cancellation-while-activity-running
 export async function handleExternalWorkflowCancellationWhileActivityRunning(
   url: string,
-  data: unknown,
+  data: unknown
 ): Promise<void> {
   try {
     await httpPostJSON(url, data);

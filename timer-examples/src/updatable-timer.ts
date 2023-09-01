@@ -46,7 +46,7 @@ export class UpdatableTimer implements PromiseLike<void> {
 
   then<TResult1 = void, TResult2 = never>(
     onfulfilled?: (value: void) => TResult1 | PromiseLike<TResult1>,
-    onrejected?: (reason: any) => TResult2 | PromiseLike<TResult2>,
+    onrejected?: (reason: any) => TResult2 | PromiseLike<TResult2>
   ): PromiseLike<TResult1 | TResult2> {
     return this.promise.then(onfulfilled, onrejected);
   }
