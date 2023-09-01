@@ -25,6 +25,6 @@
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "nodemon": "^2.0.12",
-    "prettier": "^3.0.3"
+    "prettier": "^2.8.8"
   }
 }
