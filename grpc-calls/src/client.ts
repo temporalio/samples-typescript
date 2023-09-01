@@ -1,6 +1,7 @@
 import { Connection } from '@temporalio/client';
 import { defaultPayloadConverter } from '@temporalio/common';
 import { nanoid } from 'nanoid';
+import { setTimeout } from 'timers/promises';
 
 async function run() {
   const workflowId = 'workflow-' + nanoid();
@@ -32,7 +33,7 @@ async function run() {
   });
   // @@@SNIPEND
 
-  await sleep();
+  await setTimeout(1000);
 
   // @@@SNIPSTART typescript-grpc-call-getWorkflowExecutionHistory
   // no equivalent call in client, this is only available as an SDK call
@@ -43,7 +44,7 @@ async function run() {
   console.log(res.history);
   // @@@SNIPEND
 
-  await sleep();
+  await setTimeout(1000);
 
   // @@@SNIPSTART typescript-grpc-call-listWorkflowExecutions
   // no equivalent call in client, this is only available as an SDK call
@@ -59,7 +60,3 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
-
-async function sleep() {
-  return new Promise((resolve) => setTimeout(resolve, 1000));
-}

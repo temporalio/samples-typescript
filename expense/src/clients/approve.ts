@@ -1,5 +1,6 @@
 import { Client } from '@temporalio/client';
 import { expense, approveSignal } from '../workflows';
+import { setTimeout } from 'timers/promises';
 
 async function run() {
   const client = new Client();
@@ -12,7 +13,7 @@ async function run() {
   });
 
   // At a "later time" send signal for approval
-  await new Promise((resolve) => setTimeout(resolve, 50));
+  await setTimeout(50);
   await handle.signal(approveSignal);
 
   console.log('Done:', await handle.result()); // Done: { status: 'COMPLETED' }
