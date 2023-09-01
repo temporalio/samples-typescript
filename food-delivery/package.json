@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "eslint-config-food": "*",
-    "prettier": "latest",
+    "prettier": "^3.0.3",
     "prettier-plugin-tailwindcss": "^0.1.12",
     "turbo": "1.10.4",
     "vercel": "^29.0.3"
