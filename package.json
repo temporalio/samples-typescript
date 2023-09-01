@@ -12,7 +12,7 @@
     "update-toc": "doctoc README.md"
   },
   "devDependencies": {
-    "@temporalio/client": "^1.8.1",
+    "@temporalio/client": "^1.8.4",
     "@tsconfig/node16": "^1.0.2",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
@@ -35,5 +35,8 @@
   "lint-staged": {
     "*.{js,ts,json,md}": "prettier --write",
     "*.{js,ts}": "eslint --fix --cache"
+  },
+  "volta": {
+    "node": "20.5.1"
   }
 }

@@ -19,9 +19,9 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.8.1",
-    "@temporalio/worker": "^1.8.1",
-    "@temporalio/workflow": "^1.8.1",
+    "@temporalio/activity": "^1.8.4",
+    "@temporalio/worker": "^1.8.4",
+    "@temporalio/workflow": "^1.8.4",
     "common": "*",
     "workflows": "*"
   },
