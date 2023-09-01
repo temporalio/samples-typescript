@@ -112,7 +112,7 @@ await $`git add ${'./.scripts/list-of-samples.json'}`;
 let [answer] = await question(
   `Running pre-commit hook.
 This will overwrite changes made to most config files in samples (like ${chalk.bold('hello-world/tsconfig.json')}).
-Proceed? [Y/n] `
+Proceed? [Y/n] `,
 );
 
 if ((answer ?? 'y').toUpperCase() !== 'Y') {

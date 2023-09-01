@@ -9,7 +9,10 @@ const ENCODING = 'binary/encrypted';
 const METADATA_ENCRYPTION_KEY_ID = 'encryption-key-id';
 
 export class EncryptionCodec implements PayloadCodec {
-  constructor(protected readonly keys: Map<string, crypto.CryptoKey>, protected readonly defaultKeyId: string) {}
+  constructor(
+    protected readonly keys: Map<string, crypto.CryptoKey>,
+    protected readonly defaultKeyId: string,
+  ) {}
 
   static async create(keyId: string): Promise<EncryptionCodec> {
     const keys = new Map<string, crypto.CryptoKey>();
@@ -27,9 +30,9 @@ export class EncryptionCodec implements PayloadCodec {
         // Encrypt entire payload, preserving metadata
         data: await encrypt(
           temporal.api.common.v1.Payload.encode(payload).finish(),
-          this.keys.get(this.defaultKeyId)! // eslint-disable-line @typescript-eslint/no-non-null-assertion
+          this.keys.get(this.defaultKeyId)!, // eslint-disable-line @typescript-eslint/no-non-null-assertion
         ),
-      }))
+      })),
     );
   }
 
@@ -57,7 +60,7 @@ export class EncryptionCodec implements PayloadCodec {
         const decryptedPayloadBytes = await decrypt(payload.data, key);
         console.log('Decrypting payload.data:', payload.data);
         return temporal.api.common.v1.Payload.decode(decryptedPayloadBytes);
-      })
+      }),
     );
   }
 }
@@ -73,7 +76,7 @@ async function fetchKey(_keyId: string): Promise<crypto.CryptoKey> {
       name: 'AES-GCM',
     },
     true,
-    ['encrypt', 'decrypt']
+    ['encrypt', 'decrypt'],
   );
 
   return cryptoKey;

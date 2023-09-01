@@ -72,7 +72,7 @@ export async function order(productId: number): Promise<void> {
     state = 'Refunding'
     await refundAndNotify(
       product,
-      '⚠️ No drivers were available to pick up your order. Your payment has been refunded.'
+      '⚠️ No drivers were available to pick up your order. Your payment has been refunded.',
     )
     throw ApplicationFailure.create({ message: 'Not picked up in time' })
   }

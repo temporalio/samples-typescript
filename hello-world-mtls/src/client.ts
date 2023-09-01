@@ -53,7 +53,7 @@ run(getEnv()).then(
   (err) => {
     console.error(err);
     process.exit(1);
-  }
+  },
 );
 // @@@SNIPEND
 

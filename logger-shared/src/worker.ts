@@ -42,5 +42,5 @@ main().then(
   (err) => {
     logger.error('Process failed', err);
     process.exit(1);
-  }
+  },
 );
