@@ -1,6 +1,6 @@
 // @@@SNIPSTART typescript-workflow-logging-interceptor
 import {
-  logger,
+  log,
   Next,
   WorkflowExecuteInput,
   WorkflowInboundCallsInterceptor,
@@ -20,9 +20,9 @@ class WorkflowInboundLogInterceptor implements WorkflowInboundCallsInterceptor {
     } finally {
       const durationMs = Date.now() - startTime;
       if (error) {
-        logger.error('workflow failed', { error, durationMs });
+        log.error('workflow failed', { error, durationMs });
       } else {
-        logger.debug('workflow completed', { durationMs });
+        log.debug('workflow completed', { durationMs });
       }
     }
   }
