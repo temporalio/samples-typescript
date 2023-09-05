@@ -53,10 +53,10 @@ jobs:
             activities-cancellation-heartbeating,
             activities-dependency-injection,
             activities-examples,
-            worker-specific-task-queues,
             child-workflows,
             continue-as-new,
             cron-workflows,
+            custom-logger,
             dsl-interpreter,
             ejson,
             encryption,
@@ -69,7 +69,6 @@ jobs:
             hello-world-mtls,
             instrumentation,
             interceptors-opentelemetry,
-            logger-shared,
             monorepo-folders,
             mutex,
             nestjs-exchange-rates,
@@ -87,7 +86,8 @@ jobs:
             state,
             timer-examples,
             timer-progress,
-            vscode-debugger
+            vscode-debugger,
+            worker-specific-task-queues
           ]
 
     steps:
