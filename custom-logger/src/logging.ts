@@ -2,6 +2,9 @@ import winston from 'winston';
 import util from 'util';
 import { LEVEL, SPLAT, MESSAGE } from 'triple-beam';
 
+// There's nothing Temporal specific in this file.
+// It is just a helper to create a Winston logger with some reasonable settings.
+
 export interface LoggerOptions {
   isProduction: boolean;
   logFilePath: string;
@@ -22,7 +25,7 @@ const devLogFormat = winston.format.printf(({ level, message, label, timestamp, 
 });
 
 /** Create a winston logger from given options */
-function createLogger({ isProduction, logFilePath }: LoggerOptions): winston.Logger {
+export function createLogger({ isProduction, logFilePath }: LoggerOptions): winston.Logger {
   return winston.createLogger({
     level: 'debug',
     format: isProduction ? winston.format.json() : winston.format.combine(winston.format.colorize(), devLogFormat),
@@ -31,10 +34,3 @@ function createLogger({ isProduction, logFilePath }: LoggerOptions): winston.Log
     ],
   });
 }
-
-const logger = createLogger({
-  isProduction: process.env.NODE_ENV === 'production',
-  logFilePath: process.env.WORKER_LOG_PATH || '/var/log/worker.log',
-});
-
-export default logger;

@@ -1,5 +1,5 @@
 {
-  "name": "logger-shared",
+  "name": "temporal-custom-logger",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -24,6 +24,7 @@
     "@temporalio/client": "^1.8.4",
     "@temporalio/worker": "^1.8.4",
     "@temporalio/workflow": "^1.8.4",
+    "nanoid": "3.x",
     "triple-beam": "^1.3.0",
     "winston": "^3.3.3"
   },
