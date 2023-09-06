@@ -1,3 +1,4 @@
+import { nanoid } from 'nanoid';
 import { Connection, Client } from '@temporalio/client';
 import { logSampleWorkflow } from './workflows';
 
@@ -13,8 +14,8 @@ async function run() {
 
   // Invoke the `logSampleWorkflow` Workflow, only resolved when the workflow completes
   await client.workflow.execute(logSampleWorkflow, {
-    taskQueue: 'instrumentation',
-    workflowId: 'instrumentation-sample-0',
+    taskQueue: 'custom-logger',
+    workflowId: 'workflow-' + nanoid(),
   });
 }
 

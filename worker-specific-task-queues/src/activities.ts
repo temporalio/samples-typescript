@@ -14,21 +14,24 @@ export function createNormalActivities(uniqueWorkerTaskQueue: string) {
 export function createActivitiesForSameWorker() {
   return {
     async downloadFileToWorkerFileSystem(url: string, path: string): Promise<void> {
-      console.log(`Downloading ${url} and saving to ${path}`);
+      const { log, sleep } = Context.current();
+      log.info('Downloading and saving', { url, path });
       // Here's where the real download code goes
       const body = Buffer.from('downloaded body');
-      await Context.current().sleep(3000);
+      await sleep(3000);
       await fs.writeFile(path, body);
     },
     async workOnFileInWorkerFileSystem(path: string): Promise<void> {
+      const { log, sleep } = Context.current();
       const content = await fs.readFile(path);
       const checksum = createHash('md5').update(content).digest('hex');
-      await Context.current().sleep(3000);
-      console.log(`Did some work on ${path}, checksum: ${checksum}`);
+      await sleep(3000);
+      log.info('Did some work', { path, checksum });
     },
     async cleanupFileFromWorkerFileSystem(path: string): Promise<void> {
-      await Context.current().sleep(3000);
-      console.log(`Removing ${path}`);
+      const { log, sleep } = Context.current();
+      await sleep(3000);
+      log.info('Cleaning up temp file', { path });
       await fs.rm(path);
     },
   };

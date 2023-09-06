@@ -1,9 +1,13 @@
+import { CancellationScope, sleep, log, proxyActivities, isCancellation } from '@temporalio/workflow';
+
+const { httpPostJSON, httpGetJSON, cleanup } = proxyActivities({
+  startToCloseTimeout: '10m',
+});
+
 /**
  * Demonstrates the basics of cancellation scopes.
  */
 // @@@SNIPSTART typescript-cancel-a-timer-from-workflow
-import { CancelledFailure, CancellationScope, sleep } from '@temporalio/workflow';
-
 export async function cancelTimer(): Promise<void> {
   // Timers and Activities are automatically cancelled when their containing scope is cancelled.
   try {
@@ -13,8 +17,8 @@ export async function cancelTimer(): Promise<void> {
       await promise; // <-- Promise must be awaited in order for `cancellable` to throw
     });
   } catch (e) {
-    if (e instanceof CancelledFailure) {
-      console.log('Timer cancelled 👍');
+    if (isCancellation(e)) {
+      log.info('Timer cancelled 👍');
     } else {
       throw e; // <-- Fail the workflow
     }
@@ -33,8 +37,8 @@ export async function cancelTimerAltImpl(): Promise<void> {
     scope.cancel(); // <-- Cancel the timer created in scope
     await promise; // <-- Throws CancelledFailure
   } catch (e) {
-    if (e instanceof CancelledFailure) {
-      console.log('Timer cancelled 👍');
+    if (isCancellation(e)) {
+      log.info('Timer cancelled 👍');
     } else {
       throw e; // <-- Fail the workflow
     }
@@ -46,12 +50,6 @@ export async function cancelTimerAltImpl(): Promise<void> {
  * Demonstrates how to clean up after cancellation.
  */
 // @@@SNIPSTART typescript-handle-external-workflow-cancellation-while-activity-running
-import { proxyActivities, isCancellation } from '@temporalio/workflow';
-
-const { httpPostJSON, httpGetJSON, cleanup } = proxyActivities({
-  startToCloseTimeout: '10m',
-});
-
 export async function handleExternalWorkflowCancellationWhileActivityRunning(
   url: string,
   data: unknown
@@ -60,7 +58,7 @@ export async function handleExternalWorkflowCancellationWhileActivityRunning(
     await httpPostJSON(url, data);
   } catch (err) {
     if (isCancellation(err)) {
-      console.log('Workflow cancelled');
+      log.info('Workflow cancelled');
       // Cleanup logic must be in a nonCancellable scope
       // If we'd run cleanup outside of a nonCancellable scope it would've been cancelled
       // before being started because the Workflow's root scope is cancelled.
@@ -98,7 +96,7 @@ export async function resumeAfterCancellation(url: string): Promise<any> {
   try {
     result = await Promise.race([scope.cancelRequested, promise]);
   } catch (err) {
-    if (!(err instanceof CancelledFailure)) {
+    if (!isCancellation(err)) {
       throw err;
     }
     // Prevent Workflow from completing so Activity can complete

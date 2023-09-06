@@ -3,6 +3,7 @@ import { Runtime, DefaultLogger, Worker } from '@temporalio/worker';
 import { Client, WorkflowHandle } from '@temporalio/client';
 import { getExchangeRatesQuery } from '@app/shared';
 import { exchangeRatesWorkflow } from './workflows';
+import { setTimeout } from 'timers/promises';
 
 const taskQueue = 'test-exchange-rates';
 
@@ -66,7 +67,8 @@ describe('example workflow', function () {
 
   it('allows querying the latest exchange rate', async function () {
     const handle = await execute();
-    await new Promise((resolve) => setTimeout(resolve, 1000));
+    // This generally takes less than one second, but allow up to 5 seconds for slow CI environments
+    await setTimeout(5000);
     const result = await handle.query(getExchangeRatesQuery);
     expect(result).toEqual({ AUD: 1.27 });
   });

@@ -18,12 +18,13 @@ export const createActivities = ({ apiKey, domain, to, from }: MailgunSettings) 
     // Delay completion to simulate work and show how to race an activity and a timer.
     const cx = Context.current();
     await cx.sleep(cx.info.startToCloseTimeoutMs / 2);
-    console.log('Order processed');
+    cx.log.info('Order processed');
   },
 
   async sendNotificationEmail(): Promise<void> {
+    const cx = Context.current();
     if (apiKey && domain && to) {
-      console.log('Sending email:', html);
+      cx.log.info('Sending email', { html });
       await axios({
         url: `${mailgunAPI}/${domain}/messages`,
         method: 'post',
@@ -34,7 +35,7 @@ export const createActivities = ({ apiKey, domain, to, from }: MailgunSettings) 
         },
       });
     } else {
-      console.log('Skipping sending email:', html);
+      cx.log.info('Skipping sending email', { html });
     }
   },
 });

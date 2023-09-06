@@ -2,6 +2,9 @@ import winston from 'winston';
 import util from 'util';
 import { LEVEL, SPLAT, MESSAGE } from 'triple-beam';
 
+// There's nothing Temporal specific in this file.
+// It is just a helper to create a Winston logger with some reasonable settings.
+
 export interface LoggerOptions {
   isProduction: boolean;
   logFilePath: string;

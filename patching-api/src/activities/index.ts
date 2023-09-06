@@ -1,9 +1,14 @@
+import { Context } from '@temporalio/activity';
+
 export async function activityA(): Promise<void> {
-  console.log('activityA');
+  const { log } = Context.current();
+  log.info('activityA');
 }
 export async function activityB(): Promise<void> {
-  console.log('activityB');
+  const { log } = Context.current();
+  log.info('activityB');
 }
 export async function activityThatMustRunAfterA(): Promise<void> {
-  console.log('activityThatMustRunAfterA');
+  const { log } = Context.current();
+  log.info('activityThatMustRunAfterA');
 }

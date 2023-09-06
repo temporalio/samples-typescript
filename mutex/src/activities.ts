@@ -21,10 +21,12 @@ export function createActivities(client: Client) {
       await Context.current().sleep(sleepForMs);
     },
     async notifyLocked(resourceId: string, releaseSignalName: string) {
-      console.log(`Locked using resource "${resourceId}", releaseSignalName: "${releaseSignalName}"`);
+      const { log } = Context.current();
+      log.info('Locked', { resourceId, releaseSignalName });
     },
     async notifyUnlocked(resourceId: string) {
-      console.log(`Released lock for resource "${resourceId}"`);
+      const { log } = Context.current();
+      log.info('Released lock', { resourceId });
     },
   };
 }

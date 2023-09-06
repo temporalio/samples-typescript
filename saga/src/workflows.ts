@@ -1,4 +1,4 @@
-import { proxyActivities, proxySinks, ActivityFailure, Sinks, ApplicationFailure } from '@temporalio/workflow';
+import { proxyActivities, ActivityFailure, ApplicationFailure, log } from '@temporalio/workflow';
 import { createActivities } from './activities';
 import * as Workflows from './types/workflow-commands';
 
@@ -7,28 +7,17 @@ import OpenAccount = Workflows.OpenAccount;
 const defaultActivity = {
   startToCloseTimeout: '2s',
   scheduleToCloseTimeout: '3s',
-};
+} as const;
 const longRunningActivity = {
   startToCloseTimeout: '4s',
   scheduleToCloseTimeout: '8s',
-};
+} as const;
 
 // activityFunctions
 const { addBankAccount } = proxyActivities<ReturnType<typeof createActivities>>(longRunningActivity);
 
 const { createAccount, addClient, removeClient, addAddress, clearPostalAddresses, disconnectBankAccounts } =
   proxyActivities<ReturnType<typeof createActivities>>(defaultActivity);
-
-// utils
-const { logger } = proxySinks<LoggerSinks>();
-
-// interfaces
-export interface LoggerSinks extends Sinks {
-  logger: {
-    info(message: string): void;
-    err(message: string): void;
-  };
-}
 
 interface Compensation {
   message: string;
@@ -43,7 +32,7 @@ export async function openAccount(params: OpenAccount): Promise<void> {
   try {
     await createAccount({ accountId: params.accountId });
   } catch (err) {
-    logger.err('creating account failed. stopping.');
+    log.error('creating account failed. stopping.');
     // this is fatal so fails fast. no compensations are needed
     throw err;
   }
@@ -84,9 +73,9 @@ export async function openAccount(params: OpenAccount): Promise<void> {
     });
   } catch (err) {
     if (err instanceof ActivityFailure && err.cause instanceof ApplicationFailure) {
-      logger.err(err.cause.message);
+      log.error(err.cause.message);
     } else {
-      logger.err('error while opening account:' + err);
+      log.error(`error while opening account: ${err}`);
     }
     // an error occurred so call compensations
     await compensate(compensations);
@@ -96,13 +85,13 @@ export async function openAccount(params: OpenAccount): Promise<void> {
 
 async function compensate(compensations: Compensation[] = []) {
   if (compensations.length > 0) {
-    logger.info('failures encountered during account opening - compensating');
+    log.info('failures encountered during account opening - compensating');
     for (const comp of compensations) {
       try {
-        logger.err(comp.message);
+        log.error(comp.message);
         await comp.fn();
       } catch (err) {
-        logger.err(`failed to compensate: ${prettyErrorMessage('', err)}`);
+        log.error(`failed to compensate: ${prettyErrorMessage('', err)}`, { err });
         // swallow errors
       }
     }

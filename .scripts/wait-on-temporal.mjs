@@ -3,6 +3,7 @@
 
 // This is an ESM and has the mjs extension so it can be run in commonjs and ESM projects alike
 import { Connection } from '@temporalio/client';
+import { setTimeout } from 'timers/promises';
 
 const maxAttempts = 100;
 const retryIntervalSecs = 1;
@@ -27,7 +28,7 @@ try {
       if (attempt === maxAttempts) {
         throw err;
       }
-      await new Promise((resolve) => setTimeout(resolve, retryIntervalSecs * 1000));
+      await setTimeout(retryIntervalSecs * 1000);
     }
   }
 } catch (err) {

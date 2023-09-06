@@ -1,5 +1,6 @@
 // #!/usr/bin/env node
 import express from 'express';
+import { setTimeout } from 'timers/promises';
 
 const app = express();
 app.use(express.json());
@@ -21,11 +22,9 @@ app.get('/api/workflow', async function (req, res) {
   }
 });
 
-app.get('/api/data', function (req, res) {
-  setTimeout(() => {
-    // artificial server delay
-    res.json({ title: 'Express' });
-  }, 100);
+app.get('/api/data', async function (req, res) {
+  await setTimeout(100);
+  res.json({ title: 'Express' });
 });
 
 app.set('port', port);

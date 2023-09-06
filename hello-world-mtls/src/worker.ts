@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 
 // @@@SNIPSTART typescript-mtls-worker
 import { Worker, NativeConnection } from '@temporalio/worker';
@@ -19,7 +19,7 @@ async function run({
 }: Env) {
   let serverRootCACertificate: Buffer | undefined = undefined;
   if (serverRootCACertificatePath) {
-    serverRootCACertificate = fs.readFileSync(serverRootCACertificatePath);
+    serverRootCACertificate = await fs.readFile(serverRootCACertificatePath);
   }
 
   const connection = await NativeConnection.connect({
@@ -29,8 +29,8 @@ async function run({
       serverRootCACertificate,
       // See docs for other TLS options
       clientCertPair: {
-        crt: fs.readFileSync(clientCertPath),
-        key: fs.readFileSync(clientKeyPath),
+        crt: await fs.readFile(clientCertPath),
+        key: await fs.readFile(clientKeyPath),
       },
     },
   });

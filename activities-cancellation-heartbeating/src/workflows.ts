@@ -1,4 +1,4 @@
-import { proxyActivities, isCancellation, ActivityCancellationType } from '@temporalio/workflow';
+import { proxyActivities, isCancellation, ActivityCancellationType, log } from '@temporalio/workflow';
 import type * as activities from './activities';
 
 const { fakeProgress } = proxyActivities<typeof activities>({
@@ -13,7 +13,7 @@ export async function runCancellableActivity(): Promise<void> {
     await fakeProgress();
   } catch (err) {
     if (isCancellation(err)) {
-      console.log('Workflow cancelled along with its activity');
+      log.info('Workflow cancelled along with its activity');
       // To clean up use CancellationScope.nonCancellable
     }
     throw err;
