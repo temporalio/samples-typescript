@@ -130,7 +130,6 @@ and you'll be given the list of sample options.
 - [**Patching**](https://docs.temporal.io/workflows/#workflow-versioning): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
 - [**Custom Logger**](./custom-logger): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components.
 - [**Sinks**](./sinks): Use Sinks to extract data out of Workflows for alerting/logging/metrics/tracing purposes.
-- [**Instrumentation**](./instrumentation): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components and get metrics and traces out of Rust Core.
 - [**Worker Versioning**](./worker-versioning): Version Workers with Build IDs in order to deploy incompatible changes to Workflow code.
 - [**Protobufs**](./protobufs): Use [Protobufs](https://docs.temporal.io/security/#default-data-converter).
 - [**Custom Payload Converter**](./ejson): Customize data serialization by creating a `PayloadConverter` that uses EJSON to convert Dates, binary, and regexes.
