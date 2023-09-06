@@ -8,13 +8,13 @@ export async function unblockOrCancel(): Promise<void> {
   let isBlocked = true;
   wf.setHandler(unblockSignal, () => void (isBlocked = false));
   wf.setHandler(isBlockedQuery, () => isBlocked);
-  console.log('Blocked');
+  wf.log.info('Blocked');
   try {
     await wf.condition(() => !isBlocked);
-    console.log('Unblocked');
+    wf.log.info('Unblocked');
   } catch (err) {
     if (err instanceof wf.CancelledFailure) {
-      console.log('Cancelled');
+      wf.log.info('Cancelled');
     }
     throw err;
   }

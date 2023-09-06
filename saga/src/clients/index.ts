@@ -3,6 +3,7 @@ import * as Banking from '../types/banking-client';
 import * as Clients from '../types/clients-client';
 import * as PostOffice from '../types/post-office-client';
 import * as Commands from '../types/commands';
+import { Context } from '@temporalio/activity';
 
 export interface BoundedContextClients {
   accounts: Accounts.Client;
@@ -13,14 +14,14 @@ export interface BoundedContextClients {
 
 class ClientsServiceClient implements Clients.Client {
   async removeClient(params: Commands.RemoveClient): Promise<void> {
-    console.log('REMOVING CLIENT', params);
+    Context.current().log.info('REMOVING CLIENT', { params });
   }
 
   async addClient(params: Commands.AddClient): Promise<void> {
     if (params.shouldThrow) {
       throw new Error(params.shouldThrow);
     }
-    console.log('ADDING CLIENT', params);
+    Context.current().log.info('ADDING CLIENT', { params });
   }
 }
 class AccountsClient implements Accounts.Client {
@@ -28,7 +29,7 @@ class AccountsClient implements Accounts.Client {
     if (params.shouldThrow) {
       throw new Error(params.shouldThrow);
     }
-    console.log('CREATING ACCOUNT', params);
+    Context.current().log.info('CREATING ACCOUNT', { params });
   }
 }
 class BankingClient implements Banking.Client {
@@ -36,11 +37,11 @@ class BankingClient implements Banking.Client {
     if (params.shouldThrow) {
       throw new Error(params.shouldThrow);
     }
-    console.log('ADDING BANK ACCOUNT', params);
+    Context.current().log.info('ADDING BANK ACCOUNT', { params });
   }
 
   async disconnectBankAccounts(params: Commands.DisconnectBankAccounts): Promise<void> {
-    console.log('DISCONNECT BANK ACCOUNTS', params);
+    Context.current().log.info('DISCONNECT BANK ACCOUNTS', { params });
   }
 }
 class PostOfficeClient implements PostOffice.Client {
@@ -48,11 +49,11 @@ class PostOfficeClient implements PostOffice.Client {
     if (params.shouldThrow) {
       throw new Error(params.shouldThrow);
     }
-    console.log('ADDING ADDRESS', params);
+    Context.current().log.info('ADDING ADDRESS', { params });
   }
 
   async clearPostalAddresses(params: Commands.ClearPostalAddresses): Promise<void> {
-    console.log('CLEARING ADDRESSES', params);
+    Context.current().log.info('CLEARING ADDRESSES', { params });
   }
 }
 export const createClients = async (): Promise<BoundedContextClients> => {

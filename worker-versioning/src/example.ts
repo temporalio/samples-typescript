@@ -3,6 +3,7 @@ import { uuid4 } from '@temporalio/workflow';
 import { proceeder, versioningExample } from './workflowsV1';
 import { Worker } from '@temporalio/worker';
 import * as activities from './activities';
+import { setTimeout } from 'timers/promises';
 
 async function run() {
   const connection = await Connection.connect();
@@ -40,7 +41,7 @@ async function run() {
   await firstWorkflow.signal(proceeder, 'go');
 
   // Give a chance for the worker to process the signal
-  await new Promise((resolve) => setTimeout(resolve, 3000));
+  await setTimeout(3000);
 
   // Add a new compatible version to the queue
   await client.taskQueue.updateBuildIdCompatibility(taskQueue, {

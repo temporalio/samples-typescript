@@ -20,10 +20,10 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "1.7.4",
-    "@temporalio/client": "1.7.4",
-    "@temporalio/worker": "1.7.4",
-    "@temporalio/workflow": "1.7.4",
+    "@temporalio/activity": "^1.8.4",
+    "@temporalio/client": "^1.8.4",
+    "@temporalio/worker": "^1.8.4",
+    "@temporalio/workflow": "^1.8.4",
     "waait": "^1.0.5"
   },
   "devDependencies": {
@@ -35,7 +35,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-deprecation": "^1.2.1",
     "nodemon": "^2.0.12",
-    "prettier": "^2.3.2",
+    "prettier": "^2.8.8",
     "ts-node": "^10.8.1",
     "typescript": "^4.4.2"
   }

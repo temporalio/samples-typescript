@@ -1,16 +1,17 @@
 // @@@SNIPSTART typescript-logger-sink-worker
-import { defaultSinks, InjectedSinks, Worker } from '@temporalio/worker';
+import { InjectedSinks, Worker } from '@temporalio/worker';
 import { MySinks } from './workflows';
 
 async function main() {
   const sinks: InjectedSinks<MySinks> = {
-    ...defaultSinks(),
     alerter: {
       alert: {
         fn(workflowInfo, message) {
-          console.log(`sending SMS alert!
-workflow: ${workflowInfo.runId}
-message: ${message}`);
+          console.log('sending SMS alert!', {
+            workflowId: workflowInfo.workflowId,
+            workflowRunId: workflowInfo.runId,
+            message,
+          });
         },
         callDuringReplay: false, // The default
       },

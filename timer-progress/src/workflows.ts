@@ -10,6 +10,6 @@ export async function progress(): Promise<void> {
   for (let i = 1; i <= 10; ++i) {
     await wf.sleep('1s');
     currentProgress += 10;
-    console.log(`${i * 10}%`);
+    wf.log.info(`${i * 10}%`);
   }
 }

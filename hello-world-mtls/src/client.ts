@@ -1,4 +1,4 @@
-import fs from 'fs';
+import fs from 'fs/promises';
 
 // @@@SNIPSTART typescript-mtls-worker
 import { Connection, Client } from '@temporalio/client';
@@ -24,7 +24,7 @@ async function run({
   // the server certificate is issued by a publicly trusted CA.
   let serverRootCACertificate: Buffer | undefined = undefined;
   if (serverRootCACertificatePath) {
-    serverRootCACertificate = fs.readFileSync(serverRootCACertificatePath);
+    serverRootCACertificate = await fs.readFile(serverRootCACertificatePath);
   }
 
   const connection = await Connection.connect({
@@ -33,8 +33,8 @@ async function run({
       serverNameOverride,
       serverRootCACertificate,
       clientCertPair: {
-        crt: fs.readFileSync(clientCertPath),
-        key: fs.readFileSync(clientKeyPath),
+        crt: await fs.readFile(clientCertPath),
+        key: await fs.readFile(clientKeyPath),
       },
     },
   });

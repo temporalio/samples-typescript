@@ -37,7 +37,6 @@ async function main() {
       activityInbound: [(ctx) => new OpenTelemetryActivityInboundInterceptor(ctx)],
     },
     // Set to true to get SDK traces too
-    // See also the instrumentation sample on how to get traces out of Rust Core
     enableSDKTracing: false,
   });
   try {
