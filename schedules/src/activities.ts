@@ -5,6 +5,5 @@ export async function addReminderToDatabase(_text: string): Promise<void> {
 }
 
 export async function notifyUser(text: string): Promise<void> {
-  Context.current().log.info(`Notifying user
-Reminder: ${text}`);
+  Context.current().log.info('Notifying user', { text });
 }

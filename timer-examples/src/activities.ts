@@ -24,7 +24,7 @@ export const createActivities = ({ apiKey, domain, to, from }: MailgunSettings) 
   async sendNotificationEmail(): Promise<void> {
     const cx = Context.current();
     if (apiKey && domain && to) {
-      cx.log.info('Sending email:', { html });
+      cx.log.info('Sending email', { html });
       await axios({
         url: `${mailgunAPI}/${domain}/messages`,
         method: 'post',
@@ -35,7 +35,7 @@ export const createActivities = ({ apiKey, domain, to, from }: MailgunSettings) 
         },
       });
     } else {
-      cx.log.info('Skipping sending email:', { html });
+      cx.log.info('Skipping sending email', { html });
     }
   },
 });

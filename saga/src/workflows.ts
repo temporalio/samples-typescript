@@ -91,7 +91,7 @@ async function compensate(compensations: Compensation[] = []) {
         log.error(comp.message);
         await comp.fn();
       } catch (err) {
-        log.error(`failed to compensate: ${prettyErrorMessage('', err)}`);
+        log.error(`failed to compensate: ${prettyErrorMessage('', err)}`, { err });
         // swallow errors
       }
     }

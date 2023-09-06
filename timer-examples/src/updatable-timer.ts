@@ -9,11 +9,11 @@ export const timeLeftQuery = defineQuery<number>('timeLeft');
 export async function countdownWorkflow(): Promise<void> {
   const target = Date.now() + 24 * 60 * 60 * 1000; // 1 day!!!
   const timer = new UpdatableTimer(target);
-  log.info(`timer set for: ${new Date(target)}`);
+  log.info('timer set', { target: new Date(target) });
   setHandler(setDeadlineSignal, (deadline) => {
     // send in new deadlines via Signal
     timer.deadline = deadline;
-    log.info(`timer now set for: ${new Date(deadline)}`);
+    log.info('timer updated', { target: new Date(deadline) });
   });
   setHandler(timeLeftQuery, () => timer.deadline - Date.now());
   await timer; // if you send in a signal with a new time, this timer will resolve earlier!

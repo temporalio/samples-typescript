@@ -22,11 +22,11 @@ export function createActivities(client: Client) {
     },
     async notifyLocked(resourceId: string, releaseSignalName: string) {
       const { log } = Context.current();
-      log.info(`Locked using resource "${resourceId}", releaseSignalName: "${releaseSignalName}"`);
+      log.info('Locked', { resourceId, releaseSignalName });
     },
     async notifyUnlocked(resourceId: string) {
       const { log } = Context.current();
-      log.info(`Released lock for resource "${resourceId}"`);
+      log.info('Released lock', { resourceId });
     },
   };
 }

@@ -1,5 +1,5 @@
 // @@@SNIPSTART typescript-logger-sink-interface
-import { proxySinks, LoggerSinks, Sinks } from '@temporalio/workflow';
+import { log, proxySinks, Sinks } from '@temporalio/workflow';
 
 export interface AlertSinks extends Sinks {
   alerter: {
@@ -7,14 +7,14 @@ export interface AlertSinks extends Sinks {
   };
 }
 
-export type MySinks = AlertSinks & LoggerSinks;
+export type MySinks = AlertSinks;
 // @@@SNIPEND
 
 // @@@SNIPSTART typescript-logger-sink-workflow
-const { alerter, defaultWorkerLogger } = proxySinks<MySinks>();
+const { alerter } = proxySinks<MySinks>();
 
 export async function sinkWorkflow(): Promise<string> {
-  defaultWorkerLogger.info('default logger: Workflow Execution started');
+  log.info('Workflow Execution started');
   alerter.alert('alerter: Workflow Execution started');
   return 'Hello, Temporal!';
 }

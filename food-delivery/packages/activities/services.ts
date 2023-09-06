@@ -7,7 +7,7 @@ export const notificationService = {
       throw new Error(`Failed to send ${type} notification. Unable to reach notification service.`)
     }
 
-    log.info(`Sent ${type} notification: ${message}`)
+    log.info('Sent notification', { type, message })
   },
 }
 
@@ -22,7 +22,7 @@ export const paymentService = {
     if (Math.random() < 0.7) {
       throw new Error('Failed to charge. Unable to reach payment service.')
     }
-    log.info(`Charged $${cents / 100}`)
+    log.info('Charged', { cents })
   },
 
   refund(cents: number) {
@@ -33,6 +33,6 @@ export const paymentService = {
       throw new Error('Failed to refund. Unable to reach payment service.')
     }
 
-    log.info(`Refunded $${cents / 100}`)
+    log.info('Refunded', { cents })
   },
 }

@@ -15,7 +15,7 @@ export function createActivitiesForSameWorker() {
   return {
     async downloadFileToWorkerFileSystem(url: string, path: string): Promise<void> {
       const { log, sleep } = Context.current();
-      log.info(`Downloading ${url} and saving to ${path}`);
+      log.info('Downloading and saving', { url, path });
       // Here's where the real download code goes
       const body = Buffer.from('downloaded body');
       await sleep(3000);
@@ -26,12 +26,12 @@ export function createActivitiesForSameWorker() {
       const content = await fs.readFile(path);
       const checksum = createHash('md5').update(content).digest('hex');
       await sleep(3000);
-      log.info(`Did some work on ${path}, checksum: ${checksum}`);
+      log.info('Did some work', { path, checksum });
     },
     async cleanupFileFromWorkerFileSystem(path: string): Promise<void> {
       const { log, sleep } = Context.current();
       await sleep(3000);
-      log.info(`Removing ${path}`);
+      log.info('Cleaning up temp file', { path });
       await fs.rm(path);
     },
   };
