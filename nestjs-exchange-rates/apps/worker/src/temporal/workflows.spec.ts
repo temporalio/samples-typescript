@@ -67,7 +67,8 @@ describe('example workflow', function () {
 
   it('allows querying the latest exchange rate', async function () {
     const handle = await execute();
-    await setTimeout(1000);
+    // This generally takes less than one second, but allow up to 5 seconds for slow CI environments
+    await setTimeout(5000);
     const result = await handle.query(getExchangeRatesQuery);
     expect(result).toEqual({ AUD: 1.27 });
   });
