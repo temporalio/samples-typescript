@@ -2,6 +2,8 @@
   "extends": "@tsconfig/node16/tsconfig.json",
   "version": "4.4.2",
   "compilerOptions": {
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
