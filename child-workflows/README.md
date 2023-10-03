@@ -1,6 +1,7 @@
-# Child Workflows
+# Many things for UI
 
-This sample shows how to use [Child Workflows](https://docs.temporal.io/dev-guide/typescript/features#child-workflows):
+Not meant to be checked in as a real sample. For UI team to have something that shows
+lots of simultaneous things happening.
 
 [`src/workflows.ts`](./src/workflows.ts)
 
@@ -10,11 +11,3 @@ This sample shows how to use [Child Workflows](https://docs.temporal.io/dev-guid
 2. `npm install` to install dependencies.
 3. `npm run start.watch` to start the Worker.
 4. In another shell, `npm run workflow` to run the Workflow.
-
-The Workflow should return:
-
-```
-I am a child named Alice
-I am a child named Bob
-I am a child named Charlie
-```
