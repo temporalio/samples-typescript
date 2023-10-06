@@ -37,7 +37,7 @@
     "concurrently": "7.5.0",
     "eslint": "7.32.0",
     "eslint-config-food": "*",
-    "postcss": "^8.4.5",
+    "postcss": "^8.4.31",
     "tailwindcss": "^3.1.6",
     "tsconfig": "*",
     "typescript": "^4.5.3"
