@@ -46,6 +46,9 @@ async function pollQueue(): Promise<void> {
       await client.workflow.start(helloWorld, {
         args: [message],
         workflowId: nanoid(),
+        // If a duplicate event might arrive after the Workflow started by the original event has completed, 
+        // set this reuse policy to prevent duplicate Workflows:
+        // workflowIdReusePolicy: WorkflowIdReusePolicy .WORKFLOW_ID_REUSE_POLICY_REJECT_DUPLICATE,
         taskQueue: 'hello-world-queue',
       })
     }
