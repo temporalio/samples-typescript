@@ -43,7 +43,7 @@ brew install temporal
 temporal server start-dev
 ```
 
-*Or use a [different installation method](https://github.com/temporalio/cli/#-install).*
+(or use a [different installation method](https://github.com/temporalio/cli/#-install))
 
 Use Node version 16+:
 
