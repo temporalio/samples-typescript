@@ -39,10 +39,11 @@ The fastest way to try out these samples is running them in the browser:
 Run Temporal Server:
 
 ```sh
-git clone https://github.com/temporalio/docker-compose.git temporal
-cd temporal
-docker-compose up -d
+brew install temporal
+temporal server start-dev
 ```
+
+(or use a [different installation method](https://github.com/temporalio/cli/#-install))
 
 Use Node version 16+:
 
