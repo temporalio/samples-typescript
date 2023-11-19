@@ -43,7 +43,7 @@ export function createActivitiesForSameWorker() {
     },
     async cleanupFileFromWorkerFileSystem(path: string): Promise<void> {
       const { log } = Context.current();
-      log.info("cancellation aware sleep");
+      log.info("vanilla sleep");
       await delay(3000);
       log.info('Cleaning up temp file', { path });
       await fs.rm(path);
