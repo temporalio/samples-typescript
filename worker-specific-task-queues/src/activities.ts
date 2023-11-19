@@ -37,8 +37,7 @@ export function createActivitiesForSameWorker() {
       const content = await fs.readFile(path);
       const checksum = createHash('md5').update(content).digest('hex');
       const context = Context.current();
-      const cancellation = Context.current().cancelled;
-      log.info("cancellation token", cancellation)
+      log.info("this context preserved")
       await context.sleep(3000);
       log.info('Did some work', { path, checksum });
     },
