@@ -10,6 +10,7 @@ export function createNormalActivities(uniqueWorkerTaskQueue: string) {
     },
   };
 }
+//  Workflow.sleep(...) may only be used from a Workflow Execution
 function delay(ms: number) {
   return new Promise( resolve => setTimeout(resolve, ms) );
 }
@@ -35,14 +36,16 @@ export function createActivitiesForSameWorker() {
       const { log } = Context.current();
       const content = await fs.readFile(path);
       const checksum = createHash('md5').update(content).digest('hex');
-      log.info("cancellation aware sleep");
-      await tsleep(3000, Context.current().cancelled);
+      const context = Context.current();
+      const cancellation = Context.current().cancelled;
+      log.info("cancellation token", cancellation)
+      await context.sleep(3000);
       log.info('Did some work', { path, checksum });
     },
     async cleanupFileFromWorkerFileSystem(path: string): Promise<void> {
       const { log } = Context.current();
       log.info("cancellation aware sleep");
-      await tsleep(3000, Context.current().cancelled);
+      await delay(3000);
       log.info('Cleaning up temp file', { path });
       await fs.rm(path);
     },
