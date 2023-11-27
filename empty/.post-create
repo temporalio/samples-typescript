@@ -14,10 +14,11 @@ Use Node version 16+:
 
 Then, in the project directory:
 
-* Add your Activity Definitions to `src/activities.ts`.
-* Add your Workflow Definitions to `src/workflows.ts`.
-* Modify the `src/client.ts` file and replace `YOUR_WORKFLOW` with the name of your Workflow.
-* Optionally, add activity and tests to the `src/mocha` directory in files with the extension `.test.ts`.
+  * Add your Activity Definitions to `src/activities.ts`.
+  * Add your Workflow Definitions to `src/workflows.ts`.
+  * Set your task queue name in `src/shared.ts`.
+  * Modify the `src/client.ts` file and replace `YOUR_WORKFLOW` with the name of your Workflow.
+  * Optionally, add Activity and Workflow tests to the `src/mocha` directory in files with the extension `.test.ts`.
 
 Then, in the project directory, using two other shells, run these commands:
 

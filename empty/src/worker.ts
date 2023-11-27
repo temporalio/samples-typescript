@@ -22,7 +22,7 @@ async function run() {
     activities,
   });
 
-  // Step 3: Start accepting tasks on the `hello-world` queue
+  // Step 3: Start accepting tasks on the Task Queue specified in TASK_QUEUE_NAME
   //
   // The worker runs until it encounters an unexepected error or the process receives a shutdown signal registered on
   // the SDK Runtime object.
