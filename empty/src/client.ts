@@ -30,7 +30,7 @@ async function run() {
   console.log(`Started workflow ${handle.workflowId}`);
 
   // optional: wait for client result
-  console.log(await handle.result()); // Hello, Temporal!
+  console.log(await handle.result());
 }
 
 run().catch((err) => {
