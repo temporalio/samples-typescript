@@ -5,16 +5,26 @@
   "main": "./index.ts",
   "types": "./index.ts",
   "scripts": {
-    "lint": "TIMING=1 eslint \"**/*.ts*\""
+    "lint": "TIMING=1 eslint \"**/*.ts*\"",
+    "test": "mocha --require ts-node/register --require source-map-support/register mocha/*.test.ts",
+    "test.watch": "mocha --require ts-node/register --require source-map-support/register mocha/*.test.ts -w --watch-files .",
+    "test.coverage": "nyc --reporter=lcov --reporter=html mocha --require ts-node/register --require source-map-support/register mocha/*.test.ts"
   },
   "dependencies": {
-    "@temporalio/workflow": "^1.8.4",
+    "@temporalio/workflow": "^1.8.6",
     "common": "*"
   },
   "devDependencies": {
+    "@temporalio/nyc-test-coverage": "^1.8.6",
+    "@temporalio/testing": "^1.8.6",
+    "@types/mocha": "^10.0.6",
     "activities": "^0.0.1",
+    "assert": "^2.1.0",
     "eslint": "^7.32.0",
     "eslint-config-custom": "*",
+    "mocha": "^10.2.0",
+    "nyc": "^15.1.0",
+    "ts-node": "^10.9.1",
     "tsconfig": "*",
     "typescript": "^4.5.2"
   }
