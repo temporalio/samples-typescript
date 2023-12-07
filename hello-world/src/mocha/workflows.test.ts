@@ -1,3 +1,4 @@
+// @@@SNIPSTART hello-world-project-template-ts-workflow-test
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { before, describe, it } from 'mocha';
 import { Worker } from '@temporalio/worker';
@@ -37,3 +38,4 @@ describe('Example workflow', () => {
     assert.equal(result, 'Hello, Temporal!');
   });
 });
+// @@@SNIPEND
