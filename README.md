@@ -177,6 +177,8 @@ _The below projects are maintained outside this repo and may not be up to date._
   - [**XState Interpreter**](https://github.com/Devessier/temporal-electronic-signature): Interpret XState state charts in a Workflow. Presented at [the November 2021 meetup](https://youtu.be/GpbOkDjpeYU?t=1616).
 - **URL Scraping**
   - [`andreasasprou/temporal-url-batch-scraping`](https://github.com/andreasasprou/temporal-url-batch-scraping)
+- **Nx Monorepo**
+  - [`nubunto/nx-with-temporal`](https://github.com/nubunto/nx-with-temporal/tree/main)
 
 ## Contributing
 
