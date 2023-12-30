@@ -10,7 +10,6 @@ export const newEventSignal = defineSignal<[Event]>('newEvent');
 
 export type Event = {
   clientId?: string;
-  serverTaskQueue: string;
   type: string;
   data: unknown;
 };
@@ -24,6 +23,7 @@ type SSEWorkflowInput = {
 export async function chatRoomWorkflow({ roomId, events: originalEvents }: SSEWorkflowInput) {
   const { localBroadcast } = workflow.proxyActivities<Activities>({
     startToCloseTimeout: '1 minute',
+    scheduleToCloseTimeout: '1 minute',
   });
 
   const events: Event[] = originalEvents || [];
@@ -46,6 +46,7 @@ export async function chatRoomWorkflow({ roomId, events: originalEvents }: SSEWo
     }
   }
 
+  // continue as new eventually
   await continueAsNew<typeof chatRoomWorkflow>({ roomId, events });
 }
 // @@@SNIPEND

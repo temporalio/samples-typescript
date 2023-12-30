@@ -8,7 +8,7 @@ import { Hub } from './hub';
 import { chatRoomWorkflow, Event, newEventSignal } from './workflows';
 
 const temporalClient = new Client();
-const workerSpecificTaskQueue = randomUUID();
+const serverTaskQueue = randomUUID();
 const hub = new Hub();
 
 // handleEvents adds the incoming conection as a client in the Hub
@@ -46,14 +46,13 @@ function handleEvents(req: http.IncomingMessage, res: http.ServerResponse) {
       signalArgs: [
         {
           type: 'join',
-          serverTaskQueue: workerSpecificTaskQueue,
           data: {
             clientId,
           },
         },
       ],
       workflowId: `room:${roomId}`,
-      taskQueue: workerSpecificTaskQueue,
+      taskQueue: serverTaskQueue,
     })
     .catch((err) => {
       console.error(err);
@@ -84,7 +83,6 @@ function handlePushEvents(req: http.IncomingMessage, res: http.ServerResponse) {
       signalArgs: [
         {
           type: 'message',
-          serverTaskQueue: workerSpecificTaskQueue,
           data: {
             message,
             clientId,
@@ -92,7 +90,7 @@ function handlePushEvents(req: http.IncomingMessage, res: http.ServerResponse) {
         },
       ],
       workflowId: `room:${roomId}`,
-      taskQueue: workerSpecificTaskQueue,
+      taskQueue: serverTaskQueue,
     })
     .then(() => {
       res.writeHead(200, headers);
@@ -140,7 +138,7 @@ async function main() {
   const worker = await Worker.create({
     activities,
     workflowsPath: require.resolve('./workflows'),
-    taskQueue: workerSpecificTaskQueue,
+    taskQueue: serverTaskQueue,
   });
 
   const serverP = new Promise((resolve, reject) => {

@@ -6,8 +6,7 @@
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
     "lint": "eslint .",
-    "server": "ts-node src/server.ts",
-    "workflow": "ts-node src/client.ts"
+    "server": "ts-node src/server.ts"
   },
   "nodemonConfig": {
     "execMap": {
