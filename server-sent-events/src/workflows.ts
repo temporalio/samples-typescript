@@ -1,30 +1,51 @@
 // @@@SNIPSTART typescript-hello-workflow
 import * as workflow from '@temporalio/workflow';
+import { condition, continueAsNew, defineSignal, setHandler, workflowInfo } from '@temporalio/workflow';
 // Only import the activity types
 import type { Activities } from './activities';
 
-const { sendEvent, broadcastEvent } = workflow.proxyActivities<Activities>({
-  startToCloseTimeout: '1 minute',
-  taskQueue: 'sse-task-queue',
-});
+const MAX_EVENTS_SIZE = 2000;
 
-type Event = {
+export const newEventSignal = defineSignal<[Event]>('newEvent');
+
+export type Event = {
   clientId?: string;
+  serverTaskQueue: string;
   type: string;
   data: unknown;
 };
 
 type SSEWorkflowInput = {
-  event: Event;
+  roomId: string;
+  events?: Event[];
 };
 
 /** A workflow that publishes events through SSE */
-export async function sseWorkflow({ event }: SSEWorkflowInput) {
-  if (event.clientId) {
-    await sendEvent({ clientId: event.clientId, event: { data: event.data, type: event.type } });
-    return;
+export async function chatRoomWorkflow({ roomId, events: originalEvents }: SSEWorkflowInput) {
+  const { localBroadcast } = workflow.proxyActivities<Activities>({
+    startToCloseTimeout: '1 minute',
+  });
+
+  const events: Event[] = originalEvents || [];
+
+  setHandler(newEventSignal, (event) => {
+    events.push(event);
+  });
+
+  while (workflowInfo().historyLength < MAX_EVENTS_SIZE) {
+    await condition(() => events.length > 0, '1 hour');
+
+    if (events.length === 0) {
+      return;
+    }
+
+    while (events.length > 0) {
+      const event = events.shift()!;
+
+      await localBroadcast({ event: { data: event.data, type: event.type } });
+    }
   }
 
-  await broadcastEvent({ event: { data: event.data, type: event.type } });
+  await continueAsNew<typeof chatRoomWorkflow>({ roomId, events });
 }
 // @@@SNIPEND

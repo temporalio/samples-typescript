@@ -2,6 +2,7 @@ import http from 'node:http';
 
 type Client = {
   id: string;
+  roomId: string;
   res: http.ServerResponse;
 };
 
@@ -43,4 +44,4 @@ export class Hub {
   }
 }
 
-export const hubInstance = new Hub();
+export const hubInstance = new Hub(new Map());

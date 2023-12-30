@@ -1,7 +1,6 @@
 // @@@SNIPSTART typescript-hello-client
 import { Connection, Client } from '@temporalio/client';
-import { sseWorkflow } from './workflows';
-import { nanoid } from 'nanoid';
+import { chatRoomWorkflow } from './workflows';
 
 async function run() {
   // Connect to the default Server location
@@ -17,10 +16,10 @@ async function run() {
     // namespace: 'foo.bar', // connects to 'default' namespace if not specified
   });
 
-  const handle = await client.workflow.start(sseWorkflow, {
+  const handle = await client.workflow.start(chatRoomWorkflow, {
     taskQueue: 'sse-task-queue',
-    args: [{ event: { type: process.argv[2], data: { message: process.argv[3] } } }],
-    workflowId: 'publish-event:' + nanoid(),
+    args: [{ roomId: 'default' }],
+    workflowId: 'room:default',
   });
 
   console.log(`Started workflow ${handle.workflowId}`);

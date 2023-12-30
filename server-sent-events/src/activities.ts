@@ -1,18 +1,10 @@
-import { hubInstance } from './hub';
+import { Hub } from './hub';
 
 export type Activities = ReturnType<typeof createActivities>;
-export function createActivities(uniqueTaskQueue: string) {
+export function createActivities(hubInstance: Hub) {
   return {
-    async getUniqueTaskQueue() {
-      return uniqueTaskQueue;
-    },
-
-    async broadcastEvent(args: { event: unknown }) {
+    async localBroadcast(args: { event: unknown }) {
       hubInstance.broadcast(args.event);
-    },
-
-    async sendEvent(args: { clientId: string; event: unknown }) {
-      hubInstance.send(args.clientId, args.event);
     },
   };
 }
