@@ -42,7 +42,7 @@ export async function chatRoomWorkflow({ roomId, events: originalEvents }: SSEWo
     while (events.length > 0) {
       const event = events.shift()!;
 
-      await localBroadcast({ event: { data: event.data, type: event.type } });
+      await localBroadcast({ roomId, event: { data: event.data, type: event.type } });
     }
   }
 

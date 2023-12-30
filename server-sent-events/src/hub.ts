@@ -21,10 +21,12 @@ export class Hub {
     this.clients.delete(id);
   }
 
-  broadcast(data: unknown) {
+  broadcast(roomId: string, data: unknown) {
     console.log(`broadcasting to ${this.clients.size}...`);
     for (const client of this.clients.values()) {
-      this.writeToClient(client.id, data);
+      if (client.roomId === roomId) {
+        this.writeToClient(client.id, data);
+      }
     }
   }
 
