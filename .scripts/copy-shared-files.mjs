@@ -16,6 +16,8 @@ const TSCONFIG_EXCLUDE = [
   'hello-world-js',
   'food-delivery',
   'nestjs-exchange-rates',
+  'empty',
+  'hello-world',
 ];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -60,6 +62,7 @@ const POST_CREATE_EXCLUDE = [
   'food-delivery',
   'search-attributes',
   'worker-versioning',
+  'empty',
 ];
 
 const PRETTIERRC_EXCLUDE = ['food-delivery'];

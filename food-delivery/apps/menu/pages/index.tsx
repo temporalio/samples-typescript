@@ -1,10 +1,9 @@
-import Image from 'next/image'
 import { Order, Product as ProductType, products } from 'common'
 import { useState } from 'react'
-import { Product, Footer } from 'ui'
+import { Footer, Header, Product } from 'ui'
 import { v4 as uuid } from 'uuid'
-import { trpc } from '../utils/trpc'
 import { OrderList } from '../components/OrderList'
+import { trpc } from '../utils/trpc'
 
 export default function CustomerApp() {
   const [orders, setOrders] = useState<Order[]>([])
@@ -27,35 +26,7 @@ export default function CustomerApp() {
 
   return (
     <div className="bg-white">
-      <header className="bg-green-600 text-white">
-        <nav className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8" aria-label="Top">
-          <div className="flex w-full items-center justify-between border-b border-indigo-500 py-6 lg:border-none">
-            <div className="flex items-center">
-              <Image
-                src="/logo.png"
-                alt="Durable Delivery logo"
-                width="512"
-                height="512"
-                className="h-32 w-32 rounded-2xl object-cover object-center"
-              />
-              <div className="ml-10 hidden space-x-8 lg:block">
-                <span className="text-4xl font-bold" id="app-name">
-                  Durable Delivery
-                </span>
-              </div>
-            </div>
-            <div className="ml-10 space-x-4">
-              Demo app for{' '}
-              <a href="https://temporal.io" className="font-medium">
-                Temporal
-              </a>
-              ,
-              <br />
-              the durable execution system
-            </div>
-          </div>
-        </nav>
-      </header>
+      <Header />
 
       <div className="mx-auto max-w-2xl px-4 pt-16 sm:px-6 sm:pt-24 lg:max-w-7xl lg:px-8">
         <h2 className="text-center text-4xl font-bold text-gray-900" id="app-name">
