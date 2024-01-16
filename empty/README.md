@@ -2,11 +2,11 @@
 
 This is an empty project that is scaffolded out when you run `npx @temporalio/create@latest ./myfolder` and choose the `empty` option.
 
-* Add your Activity Definitions to `src/activities.ts`.
-* Add your Workflow Definitions to `src/workflows.ts`.
-* Set your task queue name in `src/shared.ts`.
-* Modify the `src/client.ts` file and replace `YOUR_WORKFLOW` with the name of your Workflow.
-* Add Activity and Workflow tests to the `src/mocha` directory in files with the extension `.test.ts`.
+- Add your Activity Definitions to `src/activities.ts`.
+- Add your Workflow Definitions to `src/workflows.ts`.
+- Set your task queue name in `src/shared.ts`.
+- Modify the `src/client.ts` file and replace `YOUR_WORKFLOW` with the name of your Workflow.
+- Add Activity and Workflow tests to the `src/mocha` directory in files with the extension `.test.ts`.
 
 ## Running the code
 

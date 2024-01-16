@@ -21,7 +21,6 @@
     "turbo": "1.10.4",
     "vercel": "^29.0.3"
   },
-  "packageManager": "npm@8.19.1",
   "engines": {
     "node": ">=14.0.0"
   }

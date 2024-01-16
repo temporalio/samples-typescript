@@ -17,7 +17,13 @@ module.exports = {
     'bg-indigo-800',
   ],
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        green: {
+          600: '#185856',
+        },
+      },
+    },
   },
   plugins: [],
 }
