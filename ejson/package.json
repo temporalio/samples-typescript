@@ -20,11 +20,11 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.8.4",
-    "@temporalio/client": "^1.8.4",
-    "@temporalio/common": "^1.8.4",
-    "@temporalio/worker": "^1.8.4",
-    "@temporalio/workflow": "^1.8.4",
+    "@temporalio/activity": "^1.9.0",
+    "@temporalio/client": "^1.9.0",
+    "@temporalio/common": "^1.9.0",
+    "@temporalio/worker": "^1.9.0",
+    "@temporalio/workflow": "^1.9.0",
     "ejson": "^2.2.2",
     "uuid": "^8.3.2"
   },

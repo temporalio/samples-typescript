@@ -23,7 +23,7 @@ describe('example workflow', async function () {
   before(async function () {
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    const env = await TestWorkflowEnvironment.createTimeSkipping();
+    const env = await TestWorkflowEnvironment.createLocal();
 
     const worker = await Worker.create(
       workflowCoverage.augmentWorkerOptions({

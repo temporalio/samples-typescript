@@ -13,7 +13,7 @@ Running [`src/client.ts`](./src/client.ts) does this:
   - The `fakeProgress` activity starts and heartbeats
 - Waits 40s
 - Uses the handle to `cancel()` the workflow
-  - The activity's `Context.current().sleep` receives the cancellation signal and throws a `CancelledFailure` for you to handle
+  - The activity's `sleep` receives the cancellation signal and throws a `CancelledFailure` for you to handle
   - Activity catches the `CancelledFailure` which you can check with `isCancellation(err)`
     - Prints `Fake progress activity cancelled` in the Worker terminal
   - Workflow prints `Workflow cancelled along with its activity` in the Worker terminal

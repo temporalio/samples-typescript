@@ -1,8 +1,6 @@
-import { Context } from '@temporalio/activity';
+import { log, activityInfo } from '@temporalio/activity';
 
 export async function logTime(name: string, wfTime: string): Promise<void> {
-  const { log } = Context.current();
-  const { workflowExecution } = Context.current().info;
-  // just demoing usage of Context... you can also pass in the workflowId from the workflow but this is another option
+  const { workflowExecution } = activityInfo();
   log.info(`Hello from ${workflowExecution.workflowId}, ${name}!`, { workflowTime: wfTime, activityTime: Date.now() });
 }

@@ -16,6 +16,7 @@
     "food-delivery",
     "grpc-calls",
     "hello-world",
+    "hello-world-esm",
     "hello-world-js",
     "hello-world-mtls",
     "interceptors-opentelemetry",
