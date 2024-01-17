@@ -13,7 +13,7 @@ The strategy is:
 - The first Activity returns one of the uniquely generated Task Queues (that only one Worker is listening on—i.e. the **Worker-specific Task Queue**).
 - The rest of the Activities do the file processing and are run on the Worker-specific Task Queue.
 
-Activities have been artificially slowed with `activity.Context().sleep(3000)` to simulate doing more work.
+Activities have been artificially slowed with `sleep(3000)` to simulate doing more work.
 
 ### Running this sample
 

@@ -1,9 +1,9 @@
 // @@@SNIPSTART typescript-activity-complete-async
-import { CompleteAsyncError, Context } from '@temporalio/activity';
+import { CompleteAsyncError, activityInfo } from '@temporalio/activity';
 import { AsyncCompletionClient } from '@temporalio/client';
 
 export async function doSomethingAsync(): Promise<string> {
-  const taskToken = Context.current().info.taskToken;
+  const taskToken = activityInfo().taskToken;
   setTimeout(() => doSomeWork(taskToken), 1000);
   throw new CompleteAsyncError();
 }

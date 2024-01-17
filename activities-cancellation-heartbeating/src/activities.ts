@@ -1,11 +1,10 @@
 // @@@SNIPSTART typescript-activity-fake-progress
-import { CancelledFailure, Context } from '@temporalio/activity';
+import { activityInfo, log, sleep, CancelledFailure, heartbeat } from '@temporalio/activity';
 
 export async function fakeProgress(sleepIntervalMs = 1000): Promise<void> {
-  const { log, info, sleep, heartbeat } = Context.current();
   try {
     // allow for resuming from heartbeat
-    const startingPoint = info.heartbeatDetails || 1;
+    const startingPoint = activityInfo().heartbeatDetails || 1;
     log.info('Starting activity at progress', { startingPoint });
     for (let progress = startingPoint; progress <= 100; ++progress) {
       // simple utility to sleep in activity for given interval or throw if Activity is cancelled

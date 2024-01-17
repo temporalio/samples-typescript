@@ -35,25 +35,8 @@ Sample worker output
     isolateExecutionTimeout: '5s',
     workflowThreadPoolSize: 2,
     maxCachedWorkflows: 914,
-    enableSDKTracing: false,
     showStackTraceSources: false,
-    reuseV8Context: false,
     debugMode: false,
-    interceptors: {
-      activityInbound: [ [Function (anonymous)] ],
-      workflowModules: [
-        '/Users/user/samples-typescript/custom-logger/node_modules/@temporalio/worker/lib/workflow-log-interceptor.js'
-      ]
-    },
-    sinks: {
-      defaultWorkerLogger: {
-        trace: { fn: [Function: fn] },
-        debug: { fn: [Function: fn] },
-        info: { fn: [Function: fn] },
-        warn: { fn: [Function: fn] },
-        error: { fn: [Function: fn] }
-      }
-    },
     workflowsPath: '/Users/user/samples-typescript/custom-logger/src/workflows/index.ts',
     activities: { greet: [AsyncFunction: greet] },
     taskQueue: 'custom-logger',

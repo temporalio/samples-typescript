@@ -1,4 +1,6 @@
 // Run with https://github.com/google/zx
+const { readFileSync } = require('fs');
+
 const STORED_SAMPLES = new Set(require('./list-of-samples.json').samples);
 
 const yaml = require('yaml');
@@ -180,8 +182,10 @@ testProjectsNode.value.items = [];
 lintProjectsNode.value.items = [];
 
 for (const sample of samples) {
-  const hasTestScript = !!require(`../${sample}/package.json`).scripts.test;
-  const hasLintScript = !!require(`../${sample}/package.json`).scripts.lint;
+  // Don't use require, because it won't work with ESM samples
+  const packageJson = JSON.parse(readFileSync(`../${sample}/package.json`));
+  const hasTestScript = !!packageJson.scripts.test;
+  const hasLintScript = !!packageJson.scripts.lint;
 
   if (hasTestScript) {
     testProjectsNode.value.items.push(sample);

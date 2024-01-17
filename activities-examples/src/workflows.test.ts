@@ -15,7 +15,7 @@ beforeAll(async () => {
     logger: new DefaultLogger('WARN', (entry: LogEntry) => console.log(`[${entry.level}]`, entry.message)),
   });
 
-  testEnv = await TestWorkflowEnvironment.createTimeSkipping();
+  testEnv = await TestWorkflowEnvironment.createLocal();
 });
 
 afterAll(async () => {

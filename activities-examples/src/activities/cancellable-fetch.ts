@@ -1,10 +1,10 @@
 // @@@SNIPSTART typescript-activity-cancellable-fetch
 import fetch from 'node-fetch';
-import { Context } from '@temporalio/activity';
+import { cancellationSignal, heartbeat } from '@temporalio/activity';
 import type { AbortSignal as FetchAbortSignal } from 'node-fetch/externals';
 
 export async function cancellableFetch(url: string): Promise<Uint8Array> {
-  const response = await fetch(url, { signal: Context.current().cancellationSignal as FetchAbortSignal });
+  const response = await fetch(url, { signal: cancellationSignal() as FetchAbortSignal });
   const contentLengthHeader = response.headers.get('Content-Length');
   if (contentLengthHeader === null) {
     throw new Error('expected Content-Length header to be set');
@@ -19,7 +19,7 @@ export async function cancellableFetch(url: string): Promise<Uint8Array> {
     }
     bytesRead += chunk.length;
     chunks.push(chunk);
-    Context.current().heartbeat(bytesRead / contentLength);
+    heartbeat(bytesRead / contentLength);
   }
   return Buffer.concat(chunks);
 }
