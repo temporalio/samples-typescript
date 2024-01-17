@@ -1,5 +1,3 @@
-import { SVGProps } from 'react'
-
 export const Footer = ({ showDriverPortal = false }: { showDriverPortal?: boolean }) => {
   const navigation = {
     main: [
