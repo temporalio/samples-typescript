@@ -203,6 +203,11 @@ npm run format
 npm run lint
 ```
 
+### Dependencies
+
+- The docs and tutorials depend on `SNIPSTART` and `SNIPEND` comments in samples. Make sure to search through the [docs](https://github.com/temporalio/documentation/) and [learn](https://github.com/temporalio/temporal-learning) repos to make sure a snippet is unused before removing it.
+- There are [blog posts](https://temporal.io/blog/building-reliable-distributed-systems-in-node) and a PDF that depend on the file structure of the `food-delivery/` sample.
+
 ### Updating to latest SDK version
 
 ```sh
