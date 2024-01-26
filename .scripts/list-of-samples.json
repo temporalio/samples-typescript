@@ -4,6 +4,7 @@
     "activities-dependency-injection",
     "activities-examples",
     "child-workflows",
+    "context-propagation",
     "continue-as-new",
     "cron-workflows",
     "custom-logger",

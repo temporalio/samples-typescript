@@ -151,6 +151,10 @@ and you'll be given the list of sample options.
 
 - **Interceptors**:
   - [**OpenTelemetry**](./interceptors-opentelemetry): Use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows.
+  - [**Context Propagation**](./context-propagation): Uses SDK interceptors to propagate contextual data from the client, to workflows, child workflows and activities, and automatically include these as metadata emitted log messages.
+    Two variants are presented:
+    - [**Traditional**](./context-propagation/traditional): Uses the `AsyncLocalStorage` API to implicitly propagate context. This is the recommended approach.
+    - [**Go-Style**](./context-propagation/go-style): Propagate context using an explicit `ctx` argument on workflow and activity functions, following the Go style. This is a less common approach, but demonstrated for the benefit of teams that have strong reasons to prefer it.
   - [**Query Subscriptions**](./query-subscriptions): Use Redis Streams, Immer, and SDK Interceptors to subscribe to Workflow state.
 - [**gRPC calls**](./grpc-calls): Make raw gRPC calls for advanced queries not covered by the WorkflowClient API.
 
