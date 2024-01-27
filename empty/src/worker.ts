@@ -24,7 +24,7 @@ async function run() {
 
   // Step 3: Start accepting tasks on the Task Queue specified in TASK_QUEUE_NAME
   //
-  // The worker runs until it encounters an unexepected error or the process receives a shutdown signal registered on
+  // The worker runs until it encounters an unexpected error or the process receives a shutdown signal registered on
   // the SDK Runtime object.
   //
   // By default, worker logs are written via the Runtime logger to STDERR at INFO level.
