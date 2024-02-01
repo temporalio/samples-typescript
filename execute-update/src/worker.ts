@@ -8,7 +8,7 @@ async function run() {
   const worker = await Worker.create({
     connection,
     namespace: 'default',
-    taskQueue: 'my-task-queue',
+    taskQueue: 'execute-update',
     workflowsPath: require.resolve('./workflows'),
   });
   await worker.run();
