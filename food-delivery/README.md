@@ -28,8 +28,8 @@ This sample demonstrates:
 ### Running this sample
 
 1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
-1. `npm install` to install dependencies.
-1. `npm run dev` to start the Next.js dev servers and the Temporal Worker.
+1. `yarn` to install dependencies (to install yarn, run `npm install --global yarn`)
+1. `yarn dev` to start the Next.js dev servers and the Temporal Worker.
 1. Interact with the sites:
 
 - Menu: http://localhost:3000
