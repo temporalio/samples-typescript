@@ -18,6 +18,7 @@
     "hello-world",
     "hello-world-js",
     "hello-world-mtls",
+    "hello-world-single-file",
     "interceptors-opentelemetry",
     "monorepo-folders",
     "mutex",
