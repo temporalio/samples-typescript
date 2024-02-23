@@ -17,8 +17,6 @@ const { signalWithStartLockWorkflow, useAPIThatCantBeCalledInParallel, notifyLoc
   startToCloseTimeout: '1 minute',
 });
 
-const MAX_WORKFLOW_HISTORY_LENGTH = 2000;
-
 interface LockResponse {
   releaseSignalName: string;
 }
@@ -29,10 +27,12 @@ export async function lockWorkflow(requests = Array<LockRequest>()): Promise<voi
     requests.push(req);
   });
   setHandler(currentWorkflowIdQuery, () => currentWorkflowId);
-  while (workflowInfo().historyLength < MAX_WORKFLOW_HISTORY_LENGTH) {
+
+  // Run workflow until workflowInfo suggests to continue as new
+  while (!workflowInfo().continueAsNewSuggested) {
     await condition(() => requests.length > 0);
     const req = requests.shift();
-    // Check for `undefined` because otherwise TypeScript complans that `req`
+    // Check for `undefined` because otherwise TypeScript complains that `req`
     // may be undefined.
     if (req === undefined) {
       continue;
