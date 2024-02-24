@@ -3,21 +3,21 @@ import { Connection, Client, WorkflowIdReusePolicy } from '@temporalio/client';
 import { Worker, DefaultLogger, Runtime } from '@temporalio/worker';
 
 const activities = {
-  async greetActivity(name: string): Promise<string> {
+  async activity(name: string): Promise<string> {
     return `Hello, ${name}!`;
   },
 };
 
-const { greetActivity } = proxyActivities<typeof activities>({
+const { activity } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
 });
 
-export async function exampleWorkflow(name: string): Promise<string> {
-  return await greetActivity(name);
+export async function workflow(name: string): Promise<string> {
+  return await activity(name);
 }
 
 async function starter(workflowId: string, taskQueue: string, client: Client): Promise<void> {
-  const result = await client.workflow.execute(exampleWorkflow, {
+  const result = await client.workflow.execute(workflow, {
     taskQueue,
     workflowId,
     args: ['Temporal'],
