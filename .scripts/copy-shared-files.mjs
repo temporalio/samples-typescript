@@ -65,6 +65,7 @@ const POST_CREATE_EXCLUDE = [
   'search-attributes',
   'worker-versioning',
   'empty',
+  'scratchpad',
 ];
 
 const PRETTIERRC_EXCLUDE = ['food-delivery'];
