@@ -14,6 +14,7 @@ temporal server start-dev
 In another terminal:
 
 ```
+npm install temporalio
 ts-node scratchpad.ts
 ```
 

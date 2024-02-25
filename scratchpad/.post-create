@@ -9,6 +9,7 @@ Start Temporal Server:
 
 Install ts-node: https://www.npmjs.com/package/ts-node
 
-Then, in the project directory, run scratchpad.ts:
+Then, in the project directory, install the Temporal SDK and run scratchpad.ts:
 
+  {cyan npm install temporalio}
   {cyan ts-node scratchpad.ts}
