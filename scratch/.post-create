@@ -7,9 +7,12 @@ Start Temporal Server:
 
   {cyan temporal server start-dev}
 
-Install ts-node: https://www.npmjs.com/package/ts-node
+Use Node version 16+:
 
-Then, in the project directory, install the Temporal SDK and run scratchpad.ts:
+  Mac: {cyan brew install node@16}
+  Other: https://nodejs.org/en/download/
 
-  {cyan npm install temporalio}
-  {cyan ts-node scratchpad.ts}
+Then, in the project directory, using two other shells, run these commands:
+
+  {cyan npm run start.watch}
+  {cyan npm run workflow}
