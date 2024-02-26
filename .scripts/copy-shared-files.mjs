@@ -20,6 +20,7 @@ const TSCONFIG_EXCLUDE = [
   'nestjs-exchange-rates',
   'empty',
   'hello-world',
+  'scratchpad',
 ];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',

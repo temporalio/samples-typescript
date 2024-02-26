@@ -29,7 +29,7 @@
     "query-subscriptions",
     "saga",
     "schedules",
-    "scratch",
+    "scratchpad",
     "search-attributes",
     "signals-queries",
     "sinks",
