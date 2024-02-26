@@ -5,18 +5,9 @@ Production code should not be arranged like this! See the other samples in this 
 
 ### Running this sample
 
-In one terminal:
-
-```
-temporal server start-dev
-```
-
-In another terminal:
-
-```
-npm install temporalio
-ts-node scratchpad.ts
-```
+1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
+1. `npm install` to install dependencies.
+1. `npm run start.watch` to run the single file, [`scratchpad.ts`](scratchpad.ts).
 
 The following will be printed out:
 
