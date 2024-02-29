@@ -25,6 +25,8 @@ This sample demonstrates:
   - [`apps/driver/`](./apps/driver): Driver portal for picking up and delivering meals.
   - [`apps/worker/`](./apps/worker): The Worker.
 
+For a Java version of the Worker, see [pvsone/food-delivery](https://github.com/pvsone/food-delivery).
+
 ### Running this sample
 
 1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
