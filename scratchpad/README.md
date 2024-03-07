@@ -8,8 +8,7 @@ Production code should not be arranged like this! See the other samples in this 
 To get started quickly without cloning:
 
 ```sh
-npm i -g temporalio
-npm i -g ts-node
+npm i ts-node temporalio
 curl -sOL https://raw.githubusercontent.com/temporalio/samples-typescript/main/scratchpad/scratchpad.ts
 ts-node scratchpad.ts
 ```
