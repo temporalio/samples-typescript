@@ -1,15 +1,22 @@
-import { Worker } from '@temporalio/worker';
+import { NativeConnection, Worker } from '@temporalio/worker';
 import * as activities from './activities';
 
 run().catch((err) => console.log(err));
 
 async function run() {
-  const worker = await Worker.create({
-    workflowsPath: require.resolve('./workflows'),
-    activities,
-    taskQueue: 'ecommerce-oneclick',
+  const connection = await NativeConnection.connect({
+    address: 'localhost:7233',
+    // In production, pass options to configure TLS and other settings.
   });
-
-  // Start accepting tasks on the `tutorial` queue
-  await worker.run();
+  try {
+    const worker = await Worker.create({
+      connection,
+      workflowsPath: require.resolve('./workflows'),
+      activities,
+      taskQueue: 'ecommerce-oneclick',
+    });
+    await worker.run();
+  } finally {
+    connection.close();
+  }
 }

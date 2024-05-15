@@ -1,4 +1,4 @@
-import { Client } from '@temporalio/client';
+import { getTemporalClient } from '../../temporal/lib/client.js';
 
 export default async function queryState(req, res) {
   const { id } = req.query;
@@ -7,9 +7,8 @@ export default async function queryState(req, res) {
     return;
   }
 
-  const client = new Workflow();
   console.log({ id });
-  const workflow = client.workflow.getHandle(id);
+  const workflow = await getTemporalClient().workflow.getHandle(id);
   try {
     const purchaseState = await workflow.query('purchaseState');
     res.status(200).json({ purchaseState });

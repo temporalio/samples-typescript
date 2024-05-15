@@ -1,4 +1,4 @@
-import { Client } from '@temporalio/client';
+import { getTemporalClient } from '../../temporal/lib/client.js';
 
 export default async function cancelBuy(req, res) {
   const { id } = req.query;
@@ -7,8 +7,7 @@ export default async function cancelBuy(req, res) {
     return;
   }
 
-  const client = new Client();
-  const workflow = client.workflow.getHandle(id);
+  const workflow = await getTemporalClient().workflow.getHandle(id);
   try {
     await workflow.signal('cancelPurchase');
     res.status(200).json({ cancelled: id });
