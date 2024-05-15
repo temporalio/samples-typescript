@@ -24,7 +24,7 @@ function fetchAPI(str, obj?: RequestInit) {
         closeOnClick: true,
         draggable: true,
       });
-      // throw err
+      throw err;
     });
 }
 
@@ -147,24 +147,28 @@ function Product({ product }) {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ itemId, transactionId }),
-    }).then(() => {
-      setState('ORDERED');
-      toastId.current = toast.success('Purchased! Cancel if you change your mind', {
-        position: 'top-right',
-        autoClose: 5000,
-        closeOnClick: true,
-        draggable: true,
-        onClose: () => {
-          console.log({ state: stateRef.current });
-          if (stateRef.current === 'ORDERED') {
-            setState('CONFIRMED');
-          } else if (stateRef.current === 'CANCELLING') {
-            setState('NEW');
-            setTransactionId(uuid4());
-          }
-        },
+    })
+      .then(() => {
+        setState('ORDERED');
+        toastId.current = toast.success('Purchased! Cancel if you change your mind', {
+          position: 'top-right',
+          autoClose: 5000,
+          closeOnClick: true,
+          draggable: true,
+          onClose: () => {
+            console.log({ state: stateRef.current });
+            if (stateRef.current === 'ORDERED') {
+              setState('CONFIRMED');
+            } else if (stateRef.current === 'CANCELLING') {
+              setState('NEW');
+              setTransactionId(uuid4());
+            }
+          },
+        });
+      })
+      .catch(() => {
+        setState('ERROR');
       });
-    });
   }
   // function getState() {
   //   if (workflowId) {

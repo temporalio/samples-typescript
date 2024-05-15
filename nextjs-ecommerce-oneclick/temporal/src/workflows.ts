@@ -1,6 +1,5 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import * as wf from '@temporalio/workflow';
-// // Only import the activity types
+// Only import the activity types
 import type * as activities from './activities';
 
 const { checkoutItem, canceledPurchase } = wf.proxyActivities<typeof activities>({
