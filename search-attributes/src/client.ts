@@ -10,10 +10,10 @@ async function run() {
     workflowId: 'search-attributes-example-0',
     searchAttributes: {
       CustomIntField: [2],
-      CustomKeywordField: ['keywordA', 'keywordB'],
+      CustomKeywordListField: ['keywordA', 'keywordB'],
       CustomBoolField: [true],
       CustomDatetimeField: [new Date()],
-      CustomStringField: [
+      CustomTextField: [
         'String field is for text. When queried, it will be tokenized for partial match. StringTypeField cannot be used in Order By',
       ],
     },
