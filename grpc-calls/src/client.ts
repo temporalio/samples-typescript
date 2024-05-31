@@ -6,7 +6,6 @@ import { setTimeout } from 'timers/promises';
 async function run() {
   const workflowId = 'workflow-' + nanoid();
   const requestId = 'request-' + nanoid();
-  // @@@SNIPSTART typescript-grpc-call-basic
   const connection = await Connection.connect();
 
   // // normal way of starting a Workflow, with a Client
@@ -31,28 +30,23 @@ async function run() {
       payloads: [payload],
     },
   });
-  // @@@SNIPEND
 
   await setTimeout(1000);
 
-  // @@@SNIPSTART typescript-grpc-call-getWorkflowExecutionHistory
   // equivalent grpc call to handle.fetchHistory()
   const res = await connection.workflowService.getWorkflowExecutionHistory({
     execution: { workflowId },
     namespace: 'default',
   });
   console.log(res.history);
-  // @@@SNIPEND
 
   await setTimeout(1000);
 
-  // @@@SNIPSTART typescript-grpc-call-listWorkflowExecutions
   // equivalent grpc call to client.workflow.list()
   const results = await connection.workflowService.listWorkflowExecutions({
     namespace: 'default',
   });
   console.table(results.executions);
-  // @@@SNIPEND
 }
 
 run().catch((err) => {
