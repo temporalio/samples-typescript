@@ -18,7 +18,7 @@ async function run() {
     // This should not happen with standard inputs and the defaultPayloadConverter.
     throw new TypeError('Could not convert string to payload');
   }
-  // equivalent grpc call to client.start()
+  // equivalent grpc call to client.workflow.start()
   await connection.workflowService.startWorkflowExecution({
     namespace: 'default',
     workflowId,
@@ -36,7 +36,7 @@ async function run() {
   await setTimeout(1000);
 
   // @@@SNIPSTART typescript-grpc-call-getWorkflowExecutionHistory
-  // no equivalent call in client, this is only available as an SDK call
+  // equivalent grpc call to handle.fetchHistory()
   const res = await connection.workflowService.getWorkflowExecutionHistory({
     execution: { workflowId },
     namespace: 'default',
@@ -47,8 +47,7 @@ async function run() {
   await setTimeout(1000);
 
   // @@@SNIPSTART typescript-grpc-call-listWorkflowExecutions
-  // no equivalent call in client, this is only available as an SDK call
-  // requires ElasticSearch
+  // equivalent grpc call to client.workflow.list()
   const results = await connection.workflowService.listWorkflowExecutions({
     namespace: 'default',
   });
