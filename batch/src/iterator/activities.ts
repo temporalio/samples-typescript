@@ -1,4 +1,5 @@
 export async function getRecords(pageSize: number, offset: number) {
+  // This always returns 2 pages, the real implementation would iterate over an existing dataset or file.
   const PAGE_COUNT = 2;
   const result = [];
   if (offset < pageSize * PAGE_COUNT) {
