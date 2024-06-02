@@ -15,7 +15,7 @@ A variation of this pattern runs activities instead of child workflows.
 ## Running this sample
 
 1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
-2. Navigate to the parent directory (`batch`), in the parent directory:
+2. Navigate to the parent directory (`batch`), and run:
    1. `npm install` to install dependencies.
    2. `npm run start-iterator.watch` to start the Worker.
    3. In another shell, `npm run workflow-iterator` to run the Workflow.

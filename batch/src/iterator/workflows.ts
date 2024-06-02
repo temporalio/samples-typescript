@@ -10,7 +10,7 @@ const { getRecords } = proxyActivities<typeof activities>({
 });
 
 export async function processBatch(batch: Batch, previousExecutionResult?: Result): Promise<Result> {
-  // load the items we want to process
+  // load the records to process in this batch
   const records: Record[] = await getRecords(batch.pageSize, batch.offset);
 
   // Starts a child per record asynchronously.
