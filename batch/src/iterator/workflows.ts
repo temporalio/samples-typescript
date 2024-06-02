@@ -27,10 +27,11 @@ export async function processBatch(batch: Batch, previousExecutionResult?: Resul
     ? previousExecutionResult.totalProcessedRecords + handles.length
     : handles.length;
   let failedRecords = previousExecutionResult ? previousExecutionResult.failedRecords : 0;
-  //wait for all child workflows to complete or fail
+
+  //wait for all child workflows to close
   for (const handle of handles) {
     await handle.result().catch(() => {
-      //intentionally failing 1/5 child workflows, track child workflows failures.
+      //intentionally failing 1/5 child workflow, track child workflows failures.
       failedRecords++;
     });
   }
@@ -40,7 +41,7 @@ export async function processBatch(batch: Batch, previousExecutionResult?: Resul
     failedRecords,
   };
 
-  //Complete the workflow if there are no more record to process
+  //Complete the workflow if there are no more records to process
   if (records.length == 0) {
     return executionResult;
   }
@@ -58,13 +59,13 @@ export async function processBatch(batch: Batch, previousExecutionResult?: Resul
 export async function recordProcessor(record: Record): Promise<void> {
   log.info(`Processing record ${JSON.stringify(record)} in child workflow  `);
 
-  //Sleep random time between 1000 and 2000 ms
   const maxSleep = 2000;
   const minSleep = 1000;
 
+  //sleep to simulate record processing
   await sleep(Math.floor(Math.random() * (maxSleep - minSleep + 1) + minSleep));
 
-  //intentionally failing 1/5 child workflows
+  //intentionally failing 1/5 child workflow
   if (record.id % 5 == 0) {
     throw ApplicationFailure.nonRetryable(
       `Intentionally failing the child workflow with input ${JSON.stringify(record)}`
