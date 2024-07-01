@@ -3,8 +3,7 @@ import path from 'path';
 
 async function run() {
   const worker = await Worker.create({
-    workflowsPath: path.join(__dirname, './workflows'),
-    activitiesPath: path.join(__dirname, './activities'),
+    workflowsPath: path.join(__dirname, './workflows.ts'),
     taskQueue: 'safe-message-handlers-task-queue',
   });
 
