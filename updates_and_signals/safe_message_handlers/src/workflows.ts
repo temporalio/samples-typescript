@@ -1,124 +1,71 @@
-// This file contains the TypeScript port of the Python workflow for managing cluster updates and signals
-
+import * as wf from '@temporalio/workflow';
+import * as _3rdPartyAsyncMutexLibrary from 'async-mutex';
+import { ClusterManager } from './cluster-manager';
 import {
-  proxyActivities,
-  defineSignal,
-  defineUpdate,
-  defineQuery,
-  setHandler,
-  condition,
-  sleep,
-} from '@temporalio/workflow';
-import type * as activities from './activities';
+  AssignNodesToJobUpdateInput,
+  ClusterManagerInput,
+  ClusterManagerStateSummary,
+  DeleteJobUpdateInput,
+} from './types';
 
-interface ClusterManagerState {
-  clusterStarted: boolean;
-  clusterShutdown: boolean;
-  nodes: { [key: string]: string | null };
-  jobsAdded: Set<string>;
-  maxAssignedNodes: number;
-}
+export const startClusterSignal = wf.defineSignal('startCluster');
+export const shutdownClusterSignal = wf.defineSignal('shutdownCluster');
+export const assignNodesToJobUpdate = wf.defineUpdate<ClusterManagerStateSummary, [AssignNodesToJobUpdateInput]>(
+  'allocateNodesToJob'
+);
+export const deleteJobUpdate = wf.defineUpdate<void, [DeleteJobUpdateInput]>('deleteJob');
+export const getClusterStatusQuery = wf.defineQuery<ClusterManagerStateSummary>('getClusterStatus');
 
-interface ClusterManagerInput {
-  state?: ClusterManagerState;
-  testContinueAsNew: boolean;
-}
+export async function clusterManagerWorkflow(input: ClusterManagerInput): Promise<ClusterManagerStateSummary> {
+  const manager = new ClusterManager(input.state);
+  //
+  // Message-handling API
+  //
+  // We do not use `bind()` since it loses the function type information.
+  wf.setHandler(startClusterSignal, (...args) => manager.startCluster(...args));
+  wf.setHandler(shutdownClusterSignal, (...args) => manager.shutDownCluster(...args));
 
-interface ClusterManagerResult {
-  maxAssignedNodes: number;
-  numCurrentlyAssignedNodes: number;
-  numBadNodes: number;
-}
-
-export interface AllocateNodesToJobInput {
-  numNodes: number;
-  jobName: string;
-}
-
-interface DeleteJobInput {
-  jobName: string;
-}
-
-export interface ClusterManagerWorkflowInput {
-  testContinueAsNew: boolean;
-}
-
-export interface ClusterManagerWorkflowResult {
-  maxAssignedNodes: number;
-  numCurrentlyAssignedNodes: number;
-  numBadNodes: number;
-}
-
-// Message-handling API
-export const startClusterSignal = defineSignal('startCluster');
-export const shutdownClusterSignal = defineSignal('shutdownCluster');
-export const allocateNodesToJobUpdate = defineUpdate<string[], [AllocateNodesToJobInput]>('allocateNodesToJob');
-export const deleteJobUpdate = defineUpdate<void, [DeleteJobInput]>('deleteJob');
-const getClusterStatusQuery = defineQuery<{}>('getClusterStatus');
-
-// Activities
-const { allocateNodesToJob, deallocateNodesForJob, findBadNodes } = proxyActivities<typeof activities>({
-  startToCloseTimeout: '1 minute',
-});
-
-export async function clusterManagerWorkflow(input: ClusterManagerWorkflowInput) {
-  let state = {
-    clusterStarted: false,
-    clusterShutdown: false,
-    nodes: {} as Record<string, string | null>,
-    jobsAdded: new Set<string>(),
-    maxAssignedNodes: 0,
-  };
-
-  // Signal handlers
-  setHandler(startClusterSignal, () => {
-    state.clusterStarted = true;
-    for (let i = 0; i < 25; i++) {
-      state.nodes[i.toString()] = null;
-    }
+  // This is an update as opposed to a signal because the client may want to wait for nodes to be
+  // allocated before sending work to those nodes. Returns the array of node names that were
+  // allocated to the job.
+  wf.setHandler(assignNodesToJobUpdate, (...args) => manager.assignNodesToJob(...args), {
+    validator: async (input: AssignNodesToJobUpdateInput): Promise<void> => {
+      if (input.numNodes <= 0) {
+        throw new Error(`numNodes must be positive (got ${input.numNodes})`);
+      }
+    },
   });
 
-  setHandler(shutdownClusterSignal, () => {
-    state.clusterShutdown = true;
-  });
+  // Even though it returns nothing, this is an update because the client may want to track it, for
+  // example to wait for nodes to be unassigned before reassigning them.
+  wf.setHandler(deleteJobUpdate, (...args) => manager.deleteJob(...args));
+  wf.setHandler(getClusterStatusQuery, (...args) => manager.getStateSummary(...args));
 
-  setHandler(allocateNodesToJobUpdate, async (input: AllocateNodesToJobInput): Promise<string[]> => {
-    if (!state.clusterStarted || state.clusterShutdown) {
-      throw new Error('Cluster is not in a valid state for node allocation');
-    }
-    // Allocate nodes to job logic
-    return [];
-  });
-
-  setHandler(deleteJobUpdate, async (input: DeleteJobInput) => {
-    if (!state.clusterStarted || state.clusterShutdown) {
-      throw new Error('Cluster is not in a valid state for node deallocation');
-    }
-    // Deallocate nodes from job logic
-  });
-
-  // Query handler
-  setHandler(getClusterStatusQuery, () => {
-    return {
-      clusterStarted: state.clusterStarted,
-      clusterShutdown: state.clusterShutdown,
-      numNodes: Object.keys(state.nodes).length,
-      numAssignedNodes: Object.values(state.nodes).filter((n) => n !== null).length,
-    };
-  });
-
+  //
   // Main workflow logic
-  await condition(() => state.clusterStarted, 'Waiting for cluster to start');
-  // Perform operations while cluster is active
-  while (!state.clusterShutdown) {
-    // Example: perform periodic health checks
-    await sleep(60000); // Sleep for 60 seconds
-  }
+  //
+  // The cluster manager workflow is a long-running workflow ("entity" workflow). Most of its logic
+  // lies in the message-processing handlers implented in the ClusterManager class. The main
+  // workflow itself is a loop that does the following:
+  // - process messages
+  // - perform health check at regular intervals
+  // - continue-as-new when suggested
+  //
+  const healthCheckIntervalSeconds = 10;
 
-  // Return workflow result
-  return {
-    maxAssignedNodes: state.maxAssignedNodes,
-    numCurrentlyAssignedNodes: Object.values(state.nodes).filter((n) => n !== null).length,
-    numBadNodes: Object.values(state.nodes).filter((n) => n === 'BAD').length,
-  };
+  await wf.condition(() => manager.state.clusterStarted);
+  for (;;) {
+    await manager.performHealthChecks();
+    await wf.condition(
+      () => manager.state.clusterShutdown || wf.workflowInfo().continueAsNewSuggested,
+      healthCheckIntervalSeconds * 1000
+    );
+    if (manager.state.clusterShutdown) {
+      break;
+    }
+    if (wf.workflowInfo().continueAsNewSuggested) {
+      await wf.continueAsNew<typeof clusterManagerWorkflow>({ state: manager.getState() });
+    }
+  }
+  return manager.getStateSummary();
 }
