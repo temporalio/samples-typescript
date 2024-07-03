@@ -14,6 +14,7 @@ export const assignNodesToJobUpdate = wf.defineUpdate<ClusterManagerStateSummary
   'allocateNodesToJob'
 );
 export const deleteJobUpdate = wf.defineUpdate<void, [DeleteJobUpdateInput]>('deleteJob');
+export const notifyBadNodesSignal = wf.defineSignal<[string[]]>('notifyBadNodes');
 export const getClusterStatusQuery = wf.defineQuery<ClusterManagerStateSummary>('getClusterStatus');
 
 export async function clusterManagerWorkflow(input: ClusterManagerInput): Promise<ClusterManagerStateSummary> {
@@ -21,14 +22,13 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput): Promis
   //
   // Message-handling API
   //
-  // We do not use `bind()` since it loses the function type information.
-  wf.setHandler(startClusterSignal, (...args) => manager.startCluster(...args));
-  wf.setHandler(shutdownClusterSignal, (...args) => manager.shutDownCluster(...args));
+  wf.setHandler(startClusterSignal, () => manager.startCluster());
+  wf.setHandler(shutdownClusterSignal, () => manager.shutDownCluster());
 
   // This is an update as opposed to a signal because the client may want to wait for nodes to be
   // allocated before sending work to those nodes. Returns the array of node names that were
   // allocated to the job.
-  wf.setHandler(assignNodesToJobUpdate, (...args) => manager.assignNodesToJob(...args), {
+  wf.setHandler(assignNodesToJobUpdate, (input) => manager.assignNodesToJob(input), {
     validator: async (input: AssignNodesToJobUpdateInput): Promise<void> => {
       if (input.numNodes <= 0) {
         throw new Error(`numNodes must be positive (got ${input.numNodes})`);
@@ -38,8 +38,9 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput): Promis
 
   // Even though it returns nothing, this is an update because the client may want to track it, for
   // example to wait for nodes to be unassigned before reassigning them.
-  wf.setHandler(deleteJobUpdate, (...args) => manager.deleteJob(...args));
-  wf.setHandler(getClusterStatusQuery, (...args) => manager.getStateSummary(...args));
+  wf.setHandler(deleteJobUpdate, (input) => manager.deleteJob(input));
+  wf.setHandler(notifyBadNodesSignal, (input) => manager.notifyBadNodes(input));
+  wf.setHandler(getClusterStatusQuery, () => manager.getStateSummary());
 
   //
   // Main workflow logic
@@ -48,18 +49,11 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput): Promis
   // lies in the message-processing handlers implented in the ClusterManager class. The main
   // workflow itself is a loop that does the following:
   // - process messages
-  // - perform health check at regular intervals
   // - continue-as-new when suggested
   //
-  const healthCheckIntervalSeconds = 10;
-
   await wf.condition(() => manager.state.clusterStarted);
   for (;;) {
-    await manager.performHealthChecks();
-    await wf.condition(
-      () => manager.state.clusterShutdown || wf.workflowInfo().continueAsNewSuggested,
-      healthCheckIntervalSeconds * 1000
-    );
+    await wf.condition(() => manager.state.clusterShutdown || wf.workflowInfo().continueAsNewSuggested);
     if (manager.state.clusterShutdown) {
       break;
     }

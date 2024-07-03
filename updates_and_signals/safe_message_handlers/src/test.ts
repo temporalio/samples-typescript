@@ -7,7 +7,6 @@ import {
 } from './workflows';
 import { startClusterManager } from './client';
 import assert from 'assert';
-import { ClusterManagerStateSummary } from './types';
 
 async function testClusterManager() {
   const workflow = await startClusterManager();

@@ -9,16 +9,7 @@ import {
 } from './types';
 
 const { assignNodesToJob, unassignNodesForJob } = wf.proxyActivities<typeof activities>({
-  startToCloseTimeout: '1 minute',
-});
-
-const { findBadNodes } = wf.proxyActivities<typeof activities>({
-  startToCloseTimeout: '1 minute',
-  retry: {
-    // This activity is called with the nodexMutex held. We do not retry, since retries would block
-    // cluster operations.
-    maximumAttempts: 1,
-  },
+  startToCloseTimeout: '1 minute', // TODO
 });
 
 // ClusterManagerWorkflow keeps track of the job assignments of a cluster of nodes. It exposes an
@@ -42,11 +33,12 @@ export class ClusterManager {
     this.nodesMutex = new _3rdPartyAsyncMutexLibrary.Mutex();
   }
 
-  startCluster(): void {
+  async startCluster(): Promise<void> {
     this.state.clusterStarted = true;
     for (let i = 0; i < 25; i++) {
       this.state.nodes.set(i.toString(), null);
     }
+    wf.scheduleActivity('performHealthChecks', [], { scheduleToCloseTimeout: 24 * 60 * 60 * 1000 });
     wf.log.info('Cluster started');
   }
 
@@ -109,10 +101,9 @@ export class ClusterManager {
     });
   }
 
-  async performHealthChecks(): Promise<void> {
-    wf.log.info('performHealthChecks');
+  async notifyBadNodes(badNodes: string[]): Promise<void> {
+    wf.log.info('handleBadNodesNotification');
     await this.nodesMutex.runExclusive(async () => {
-      const badNodes = await findBadNodes({ nodesToCheck: Array.from(this.getAssignedNodes()) });
       for (const node of badNodes) {
         this.state.nodes.set(node, 'BAD!');
       }
