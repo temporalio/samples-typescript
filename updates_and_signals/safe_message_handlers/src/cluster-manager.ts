@@ -8,7 +8,7 @@ import {
   DeleteJobUpdateInput,
 } from './types';
 
-const { assignNodesToJob, unassignNodesForJob } = wf.proxyActivities<typeof activities>({
+const { assignNodesToJob, unassignNodesForJob, startCluster } = wf.proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute', // TODO
 });
 
@@ -36,7 +36,8 @@ export class ClusterManager {
     this.nodesMutex = new _3rdPartyAsyncMutexLibrary.Mutex();
   }
 
-  startCluster(): void {
+  async startCluster(): Promise<void> {
+    await startCluster();
     this.state.clusterStarted = true;
     for (let i = 0; i < 25; i++) {
       this.state.nodes.set(i.toString(), null);

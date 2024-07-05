@@ -8,6 +8,11 @@ interface UnassignNodesForJobInput {
   jobName: string;
 }
 
+export async function startCluster(): Promise<void> {
+  console.log('Starting cluster');
+  await sleep(100); // Simulate RPC
+}
+
 export async function assignNodesToJob(input: AssignNodesToJobInput): Promise<void> {
   console.log(`Assigning nodes ${input.nodes} to job ${input.jobName}`);
   await sleep(100); // Simulate RPC
