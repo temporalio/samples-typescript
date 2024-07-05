@@ -14,7 +14,6 @@ export const assignNodesToJobUpdate = wf.defineUpdate<ClusterManagerStateSummary
   'allocateNodesToJob'
 );
 export const deleteJobUpdate = wf.defineUpdate<void, [DeleteJobUpdateInput]>('deleteJob');
-export const notifyBadNodesSignal = wf.defineSignal<[string[]]>('notifyBadNodes');
 export const getClusterStatusQuery = wf.defineQuery<ClusterManagerStateSummary>('getClusterStatus');
 
 export async function clusterManagerWorkflow(input: ClusterManagerInput): Promise<ClusterManagerStateSummary> {
@@ -39,7 +38,6 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput): Promis
   // Even though it returns nothing, this is an update because the client may want to track it, for
   // example to wait for nodes to be unassigned before reassigning them.
   wf.setHandler(deleteJobUpdate, (input) => manager.deleteJob(input));
-  wf.setHandler(notifyBadNodesSignal, (input) => manager.notifyBadNodes(input));
   wf.setHandler(getClusterStatusQuery, () => manager.getStateSummary());
 
   //
