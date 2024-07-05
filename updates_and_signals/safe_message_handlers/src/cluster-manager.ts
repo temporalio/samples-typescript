@@ -33,12 +33,11 @@ export class ClusterManager {
     this.nodesMutex = new _3rdPartyAsyncMutexLibrary.Mutex();
   }
 
-  async startCluster(): Promise<void> {
+  startCluster(): void {
     this.state.clusterStarted = true;
     for (let i = 0; i < 25; i++) {
       this.state.nodes.set(i.toString(), null);
     }
-    wf.scheduleActivity('performHealthChecks', [], { scheduleToCloseTimeout: 24 * 60 * 60 * 1000 });
     wf.log.info('Cluster started');
   }
 
@@ -67,8 +66,7 @@ export class ClusterManager {
         }
         const nodesToAssign = Array.from(unassignedNodes).slice(0, input.numNodes);
         // This await would be dangerous without the lock held because it would allow interleaving
-        // with the deleteJob and performHealthCheck operations, both of which mutate
-        // self.state.nodes.
+        // with the deleteJob operation, which mutates self.state.nodes.
         await assignNodesToJob({ nodes: nodesToAssign, jobName: input.jobName });
         for (const node of nodesToAssign) {
           this.state.nodes.set(node, input.jobName);
@@ -97,15 +95,6 @@ export class ClusterManager {
       await unassignNodesForJob({ nodes: nodesToUnassign, jobName: input.jobName });
       for (const node of nodesToUnassign) {
         this.state.nodes.set(node, null);
-      }
-    });
-  }
-
-  async notifyBadNodes(badNodes: string[]): Promise<void> {
-    wf.log.info('handleBadNodesNotification');
-    await this.nodesMutex.runExclusive(async () => {
-      for (const node of badNodes) {
-        this.state.nodes.set(node, 'BAD!');
       }
     });
   }

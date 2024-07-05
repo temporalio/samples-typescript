@@ -18,15 +18,6 @@ export async function unassignNodesForJob(input: UnassignNodesForJobInput): Prom
   await sleep(100); // Simulate RPC
 }
 
-export async function performHealthChecks(): Promise<void> {
-  const healthCheckInterval = 10 * 1000;
-  for (;;) {
-    console.log(`performing health check`);
-    await sleep(100); // Simulate RPC
-    await sleep(healthCheckInterval);
-  }
-}
-
 async function sleep(ms: number): Promise<void> {
   await new Promise((resolve) => setTimeout(resolve, ms));
 }
