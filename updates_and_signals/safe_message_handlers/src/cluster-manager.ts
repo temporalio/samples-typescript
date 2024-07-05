@@ -13,10 +13,13 @@ const { assignNodesToJob, unassignNodesForJob } = wf.proxyActivities<typeof acti
 });
 
 // ClusterManagerWorkflow keeps track of the job assignments of a cluster of nodes. It exposes an
-// API to started and shutdown the cluster, to assign jobs to nodes, and to delete jobs. The
-// workflow maps this API to signals and updates. Operations altering node assignments must not
-// interleave (must be serialized), and a standard (non-Temporal-specific) async mutex from a 3rd
-// party library is used to ensure this.
+// API to started and shutdown the cluster, to assign jobs to nodes, to delete jobs, and to query
+// cluster status. The workflow maps this API to Signals, Updates, and Queries. The assign and
+// delete operations issue an RPC changing the state of the remote cluster, and then mutate workflow
+// state reflecting the change made. In order that workflow state remains in sync with the true
+// cluster state, assign/delete operations must not be performed concurrently (i.e. they must not
+// "interleave" with each other; they must be "serialized"; they must be "atomic"). An async mutex
+// from a 3rd party library is used to ensure this.
 export class ClusterManager {
   state: ClusterManagerState;
   jobsWithNodesAssigned: Set<string>;
