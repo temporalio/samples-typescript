@@ -1,6 +1,6 @@
 import * as wf from '@temporalio/workflow';
 import type * as activities from './activities';
-import * as _3rdPartyAsyncMutexLibrary from 'async-mutex';
+import { Mutex } from 'async-mutex';
 import {
   AssignNodesToJobUpdateInput,
   ClusterManagerState,
@@ -23,7 +23,7 @@ const { assignNodesToJob, unassignNodesForJob, startCluster } = wf.proxyActiviti
 export class ClusterManager {
   state: ClusterManagerState;
   jobsWithNodesAssigned: Set<string>;
-  nodesMutex: _3rdPartyAsyncMutexLibrary.Mutex;
+  nodesMutex: Mutex;
 
   constructor(state?: ClusterManagerState) {
     this.state = state ?? {
@@ -33,7 +33,7 @@ export class ClusterManager {
       maxAssignedNodes: 0,
     };
     this.jobsWithNodesAssigned = new Set<string>();
-    this.nodesMutex = new _3rdPartyAsyncMutexLibrary.Mutex();
+    this.nodesMutex = new Mutex();
   }
 
   async startCluster(): Promise<void> {
