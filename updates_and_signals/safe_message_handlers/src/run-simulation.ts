@@ -2,6 +2,7 @@ import { WorkflowHandle } from '@temporalio/client';
 
 import { assignNodesToJobUpdate, startClusterSignal, deleteJobUpdate, shutdownClusterSignal } from './workflows';
 import { startClusterManager } from './client';
+import { setTimeout } from 'timers/promises';
 
 async function runSimulation(wf: WorkflowHandle, delaySeconds?: number): Promise<void> {
   await wf.signal(startClusterSignal);
@@ -13,7 +14,7 @@ async function runSimulation(wf: WorkflowHandle, delaySeconds?: number): Promise
   await Promise.all(allocationUpdates);
 
   if (delaySeconds) {
-    await new Promise((resolve) => setTimeout(resolve, delaySeconds * 1000));
+    await setTimeout(delaySeconds * 1000);
   }
 
   const deletionUpdates: Promise<any>[] = [];
