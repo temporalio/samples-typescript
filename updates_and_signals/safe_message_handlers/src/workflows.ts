@@ -1,5 +1,4 @@
 import * as wf from '@temporalio/workflow';
-import * as _3rdPartyAsyncMutexLibrary from 'async-mutex';
 import { ClusterManager } from './cluster-manager';
 import {
   AssignNodesToJobUpdateInput,
