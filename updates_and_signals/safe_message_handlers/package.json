@@ -10,7 +10,7 @@
     "start.watch": "nodemon src/worker.ts",
     "simulation": "ts-node src/run-simulation.ts",
     "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
-    "test": "ts-node src/test.ts"
+    "test": "mocha --exit --require ts-node/register src/test/*.test.ts"
   },
   "nodemonConfig": {
     "execMap": {
