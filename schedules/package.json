@@ -24,10 +24,10 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.9.0",
-    "@temporalio/client": "^1.9.0",
-    "@temporalio/worker": "^1.9.0",
-    "@temporalio/workflow": "^1.9.0"
+    "@temporalio/activity": "^1.10.3",
+    "@temporalio/client": "^1.10.3",
+    "@temporalio/worker": "^1.10.3",
+    "@temporalio/workflow": "^1.10.3"
   },
   "devDependencies": {
     "@tsconfig/node16": "^1.0.0",
