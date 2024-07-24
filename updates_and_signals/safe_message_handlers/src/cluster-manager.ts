@@ -116,16 +116,11 @@ export class ClusterManager {
     return {
       maxAssignedNodes: this.state.maxAssignedNodes,
       assignedNodes: this.getAssignedNodes().size,
-      badNodes: this.getBadNodes().size,
     };
   }
 
   getUnassignedNodes(): Set<string> {
     return new Set(Array.from(this.state.nodes.keys()).filter((key) => this.state.nodes.get(key) === null));
-  }
-
-  getBadNodes(): Set<string> {
-    return new Set(Array.from(this.state.nodes.keys()).filter((key) => this.state.nodes.get(key) === 'BAD!'));
   }
 
   getAssignedNodes(jobName?: string): Set<string> {

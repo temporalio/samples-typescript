@@ -12,7 +12,6 @@ export interface ClusterManagerInput {
 export interface ClusterManagerStateSummary {
   maxAssignedNodes: number;
   assignedNodes: number;
-  badNodes: number;
 }
 
 export interface AssignNodesToJobUpdateInput {
