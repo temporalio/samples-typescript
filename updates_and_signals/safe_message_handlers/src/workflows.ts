@@ -44,19 +44,13 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput): Promis
   //
   // The cluster manager workflow is a long-running workflow ("entity" workflow). Most of its logic
   // lies in the message-processing handlers implented in the ClusterManager class. The main
-  // workflow itself is a loop that does the following:
-  // - process messages
-  // - continue-as-new when suggested
-  //
-  await wf.condition(() => manager.state.clusterStarted);
-  for (;;) {
-    await wf.condition(() => manager.state.clusterShutdown || wf.workflowInfo().continueAsNewSuggested);
-    if (manager.state.clusterShutdown) {
-      break;
-    }
-    if (wf.workflowInfo().continueAsNewSuggested) {
-      await wf.continueAsNew<typeof clusterManagerWorkflow>({ state: manager.getState() });
-    }
+  // workflow itself simply waits until the cluster is shutdown, or the workflow needs to
+  // continue-as-new.
+  await wf.condition(() => manager.state.clusterShutdown || wf.workflowInfo().continueAsNewSuggested);
+  if (wf.workflowInfo().continueAsNewSuggested) {
+    await wf.continueAsNew<typeof clusterManagerWorkflow>({ state: manager.getState() });
+    return undefined as never;
+  } else {
+    return manager.getStateSummary();
   }
-  return manager.getStateSummary();
 }
