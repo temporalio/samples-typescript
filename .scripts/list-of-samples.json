@@ -38,6 +38,7 @@
     "timer-examples",
     "timer-progress",
     "update",
+    "updates_and_signals",
     "vscode-debugger",
     "worker-specific-task-queues",
     "worker-versioning"
