@@ -1,5 +1,6 @@
 import { Client, WorkflowExecutionAlreadyStartedError, Connection, ConnectionOptions } from '@temporalio/client';
 import { taskQueue } from '@app/shared';
+import { Provider } from '@nestjs/common';
 
 export const exchangeRatesProviders = [
   {
@@ -46,4 +47,4 @@ export const exchangeRatesProviders = [
     },
     inject: ['WORKFLOW_CLIENT'],
   },
-];
+] as Provider[];
