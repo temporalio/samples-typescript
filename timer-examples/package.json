@@ -28,7 +28,7 @@
     "@temporalio/client": "^1.10.3",
     "@temporalio/worker": "^1.10.3",
     "@temporalio/workflow": "^1.10.3",
-    "axios": "0.26.1",
+    "axios": "0.28.0",
     "dotenv": "^10.0.0"
   },
   "devDependencies": {
