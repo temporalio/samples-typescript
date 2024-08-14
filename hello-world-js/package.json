@@ -15,10 +15,10 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.10.3",
-    "@temporalio/client": "^1.10.3",
-    "@temporalio/worker": "^1.10.3",
-    "@temporalio/workflow": "^1.10.3"
+    "@temporalio/activity": "^1.11.0",
+    "@temporalio/client": "^1.11.0",
+    "@temporalio/worker": "^1.11.0",
+    "@temporalio/workflow": "^1.11.0"
   },
   "devDependencies": {
     "@types/node": "^16.11.43",
