@@ -17,12 +17,12 @@
     "concurrently": "^6.3.0"
   },
   "resolutions": {
-    "@temporalio/worker": "^1.10.3",
-    "@temporalio/workflow": "^1.10.3",
-    "@temporalio/client": "^1.10.3",
-    "@temporalio/activity": "^1.10.3",
-    "@temporalio/common": "^1.10.3",
-    "@temporalio/proto": "^1.10.3",
+    "@temporalio/worker": "^1.11.1",
+    "@temporalio/workflow": "^1.11.1",
+    "@temporalio/client": "^1.11.1",
+    "@temporalio/activity": "^1.11.1",
+    "@temporalio/common": "^1.11.1",
+    "@temporalio/proto": "^1.11.1",
     "mini-css-extract-plugin": "2.4.5"
   },
   "devDependencies": {

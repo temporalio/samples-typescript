@@ -21,14 +21,14 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.10.3",
-    "@temporalio/client": "^1.10.3",
-    "@temporalio/worker": "^1.10.3",
-    "@temporalio/workflow": "^1.10.3",
+    "@temporalio/activity": "^1.11.1",
+    "@temporalio/client": "^1.11.1",
+    "@temporalio/worker": "^1.11.1",
+    "@temporalio/workflow": "^1.11.1",
     "nanoid": "3.x"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.10.3",
+    "@temporalio/testing": "^1.11.1",
     "@tsconfig/node16": "^1.0.0",
     "@types/mocha": "10.0.1",
     "@types/node": "^16.11.43",
