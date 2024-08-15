@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@temporalio/client": "^1.11.1",
-    "express": "~4.16.1",
+    "express": "~4.19.2",
     "temporal-workflows": "*",
     "ts-node": "^10.4.0"
   },
