@@ -48,6 +48,12 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput): Promis
   // continue-as-new.
   await wf.condition(() => manager.state.clusterShutdown || wf.workflowInfo().continueAsNewSuggested);
   if (wf.workflowInfo().continueAsNewSuggested) {
+    // You should typically wait for all async handlers to finish before
+    // completing a workflow or continuing as new. If the main workflow method
+    // is scheduling activities or child workflows, then you should typically
+    // also arrange that they are completed before completing or continuing as
+    // new. This sample does not schedule any activities or child workflows, so
+    // it is sufficient just to wait for handlers to finish.
     await wf.condition(wf.allHandlersFinished);
     await wf.continueAsNew<typeof clusterManagerWorkflow>({ state: manager.getState() });
     return undefined as never;
