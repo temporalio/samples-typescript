@@ -9,6 +9,6 @@ export async function startClusterManager(): Promise<WorkflowHandle<typeof clust
   return client.workflow.start(clusterManagerWorkflow, {
     args: [{}],
     taskQueue: 'safe-message-handlers-task-queue',
-    workflowId: `cluster-manager-${uuid()}`,
+    workflowId: `cm-${uuid().slice(0, 8)}`,
   });
 }
