@@ -48,6 +48,7 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput): Promis
   // continue-as-new.
   await wf.condition(() => manager.state.clusterShutdown || wf.workflowInfo().continueAsNewSuggested);
   if (wf.workflowInfo().continueAsNewSuggested) {
+    await wf.condition(wf.allHandlersFinished);
     await wf.continueAsNew<typeof clusterManagerWorkflow>({ state: manager.getState() });
     return undefined as never;
   } else {
