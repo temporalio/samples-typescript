@@ -1,0 +1,48 @@
+{
+  "name": "temporal-update",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
+    "start": "ts-node src/worker.ts",
+    "start.watch": "nodemon src/worker.ts",
+    "simulation": "ts-node src/run-simulation.ts",
+    "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
+    "test": "mocha --exit --require ts-node/register src/test/*.test.ts"
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
+  "dependencies": {
+    "@temporalio/activity": "^1.11.1",
+    "@temporalio/client": "^1.11.1",
+    "@temporalio/worker": "^1.11.1",
+    "@temporalio/workflow": "^1.11.1",
+    "async-mutex": "^0.5.0",
+    "nanoid": "3.x"
+  },
+  "devDependencies": {
+    "@temporalio/testing": "^1.11.1",
+    "@tsconfig/node16": "^1.0.0",
+    "@types/mocha": "8.x",
+    "@types/node": "^16.11.43",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-deprecation": "^1.2.1",
+    "mocha": "8.x",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.4.2"
+  }
+}
