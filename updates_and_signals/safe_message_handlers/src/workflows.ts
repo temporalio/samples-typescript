@@ -15,7 +15,7 @@ export const assignNodesToJobUpdate = wf.defineUpdate<ClusterManagerStateSummary
 export const deleteJobUpdate = wf.defineUpdate<void, [DeleteJobUpdateInput]>('deleteJob');
 export const getClusterStatusQuery = wf.defineQuery<ClusterManagerStateSummary>('getClusterStatus');
 
-export async function clusterManagerWorkflow(input: ClusterManagerInput): Promise<ClusterManagerStateSummary> {
+export async function clusterManagerWorkflow(input: ClusterManagerInput = {}): Promise<ClusterManagerStateSummary> {
   const manager = new ClusterManager(input.state);
   //
   // Message-handling API
@@ -30,6 +30,9 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput): Promis
     validator: async (input: AssignNodesToJobUpdateInput): Promise<void> => {
       if (input.numNodes <= 0) {
         throw new Error(`numNodes must be positive (got ${input.numNodes})`);
+      }
+      if (input.jobName === '') {
+        throw new Error('jobName cannot be empty');
       }
     },
   });
@@ -47,7 +50,7 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput): Promis
   // workflow itself simply waits until the cluster is shutdown, or the workflow needs to
   // continue-as-new.
   await wf.condition(() => manager.state.clusterShutdown || wf.workflowInfo().continueAsNewSuggested);
-  if (wf.workflowInfo().continueAsNewSuggested) {
+  if (!manager.state.clusterShutdown) {
     // You should typically wait for all async handlers to finish before
     // completing a workflow or continuing as new. If the main workflow method
     // is scheduling activities or child workflows, then you should typically
@@ -55,8 +58,7 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput): Promis
     // new. This sample does not schedule any activities or child workflows, so
     // it is sufficient just to wait for handlers to finish.
     await wf.condition(wf.allHandlersFinished);
-    await wf.continueAsNew<typeof clusterManagerWorkflow>({ state: manager.getState() });
-    return undefined as never;
+    return await wf.continueAsNew<typeof clusterManagerWorkflow>({ state: manager.getState() });
   } else {
     return manager.getStateSummary();
   }

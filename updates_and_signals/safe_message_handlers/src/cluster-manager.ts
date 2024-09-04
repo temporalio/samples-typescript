@@ -9,7 +9,7 @@ import {
 } from './types';
 
 const { assignNodesToJob, unassignNodesForJob, startCluster } = wf.proxyActivities<typeof activities>({
-  startToCloseTimeout: '1 minute', // TODO
+  startToCloseTimeout: '1 minute',
 });
 
 // ClusterManagerWorkflow keeps track of the job assignments of a cluster of nodes. It exposes an
@@ -22,7 +22,7 @@ const { assignNodesToJob, unassignNodesForJob, startCluster } = wf.proxyActiviti
 // from a 3rd party library is used to ensure this.
 export class ClusterManager {
   state: ClusterManagerState;
-  jobsWithNodesAssigned: Set<string>;
+  seenJobs: Set<string>;
   nodesMutex: Mutex;
 
   constructor(state?: ClusterManagerState) {
@@ -32,8 +32,8 @@ export class ClusterManager {
       nodes: new Map<string, string | null>(),
       maxAssignedNodes: 0,
     };
-    this.jobsWithNodesAssigned = new Set<string>();
     this.nodesMutex = new Mutex();
+    this.seenJobs = new Set<string>();
   }
 
   async startCluster(): Promise<void> {
@@ -61,7 +61,7 @@ export class ClusterManager {
     }
     return await this.nodesMutex.runExclusive(async (): Promise<ClusterManagerStateSummary> => {
       // Idempotency guard: do nothing if the job already has nodes assigned.
-      if (!new Set(this.state.nodes.values()).has(input.jobName)) {
+      if (!this.seenJobs.has(input.jobName)) {
         const unassignedNodes = this.getUnassignedNodes();
         if (input.numNodes > unassignedNodes.size) {
           throw new wf.ApplicationFailure(
@@ -75,6 +75,7 @@ export class ClusterManager {
         for (const node of nodesToAssign) {
           this.state.nodes.set(node, input.jobName);
         }
+        this.seenJobs.add(input.jobName);
         this.state.maxAssignedNodes = Math.max(this.state.maxAssignedNodes, this.getAssignedNodes().size);
       }
       return this.getStateSummary();
@@ -94,8 +95,7 @@ export class ClusterManager {
         .filter(([_, v]) => v === input.jobName)
         .map(([k, _]) => k);
       // This await would be dangerous without the lock held because it would allow interleaving
-      // with the assignNodesToJob and performHealthCheck operations, both of which mutate
-      // self.state.nodes.
+      // with the assignNodesToJob operation, which mutates self.state.nodes.
       await unassignNodesForJob({ nodes: nodesToUnassign, jobName: input.jobName });
       for (const node of nodesToUnassign) {
         this.state.nodes.set(node, null);
@@ -127,7 +127,10 @@ export class ClusterManager {
     return new Set(
       Array.from(this.state.nodes.keys()).filter((key) => {
         const value = this.state.nodes.get(key);
-        return jobName ? value === jobName : value !== null && value !== 'BAD!';
+        if (jobName === undefined) {
+          return value !== null && value !== 'BAD!';
+        }
+        return value === jobName;
       })
     );
   }

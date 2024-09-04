@@ -27,15 +27,13 @@
     "@temporalio/worker": "^1.11.1",
     "@temporalio/workflow": "^1.11.1",
     "async-mutex": "^0.5.0",
-    "nanoid": "3.x",
-    "uuid": "^10.0.0"
+    "nanoid": "3.x"
   },
   "devDependencies": {
     "@temporalio/testing": "^1.11.1",
     "@tsconfig/node16": "^1.0.0",
     "@types/mocha": "8.x",
     "@types/node": "^16.11.43",
-    "@types/uuid": "^10.0.0",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
     "@typescript-eslint/parser": "^5.0.0",
     "eslint": "^7.32.0",

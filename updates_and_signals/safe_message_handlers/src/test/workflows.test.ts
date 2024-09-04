@@ -47,9 +47,8 @@ describe('cluster manager', function () {
   it('successfully completes a session', async function () {
     await worker.runUntil(async function () {
       const workflow = await env.client.workflow.start(clusterManagerWorkflow, {
-        args: [{}],
         taskQueue,
-        workflowId: 'cluster-manager-' + nanoid(),
+        workflowId: `cluster-manager-${nanoid()}`,
       });
       await workflow.signal(startClusterSignal);
       const request1 = {
