@@ -33,7 +33,7 @@ async function main() {
     interceptors: {
       // example contains both workflow and interceptors
       workflowModules: [require.resolve('./workflows')],
-      activityInbound: [(ctx) => new OpenTelemetryActivityInboundInterceptor(ctx)],
+      activity: [(ctx) => ({ inbound: new OpenTelemetryActivityInboundInterceptor(ctx) })],
     },
   });
   try {
