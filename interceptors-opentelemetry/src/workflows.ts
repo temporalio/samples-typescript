@@ -2,6 +2,7 @@ import { proxyActivities, WorkflowInterceptorsFactory } from '@temporalio/workfl
 import {
   OpenTelemetryInboundInterceptor,
   OpenTelemetryOutboundInterceptor,
+  OpenTelemetryInternalsInterceptor,
 } from '@temporalio/interceptors-opentelemetry/lib/workflow';
 import type * as activities from './activities';
 
@@ -18,4 +19,5 @@ export async function example(name: string): Promise<string> {
 export const interceptors: WorkflowInterceptorsFactory = () => ({
   inbound: [new OpenTelemetryInboundInterceptor()],
   outbound: [new OpenTelemetryOutboundInterceptor()],
+  internals: [new OpenTelemetryInternalsInterceptor()],
 });
