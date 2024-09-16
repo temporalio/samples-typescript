@@ -4,9 +4,10 @@ import * as wo from '@temporalio/worker';
 import * as greetingWorkflow from '../workflows';
 import { Language } from '../workflows';
 import assert from 'assert';
-const taskQueue = 'test' + new Date().toLocaleDateString('en-US');
 import { nanoid } from 'nanoid';
 import { WorkflowUpdateFailedError } from '@temporalio/client';
+
+const taskQueue = 'message-passing-introduction';
 
 describe('greeting workflow', function () {
   this.timeout(10000);
