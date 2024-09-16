@@ -6,6 +6,7 @@ import { Language } from '../workflows';
 import assert from 'assert';
 const taskQueue = 'test' + new Date().toLocaleDateString('en-US');
 import { nanoid } from 'nanoid';
+import { WorkflowUpdateFailedError } from '@temporalio/client';
 
 describe('greeting workflow', function () {
   this.timeout(10000);
@@ -97,6 +98,34 @@ describe('greeting workflow', function () {
       return await wfHandle.result();
     });
     assert.equal(wfResult, '你好，世界');
+  });
+
+  it('rejects an invalid language', async function () {
+    const wfResult = await worker.runUntil(async () => {
+      const wfHandle = await env.client.workflow.start(greetingWorkflow.greetingWorkflow, {
+        taskQueue,
+        workflowId: nanoid(),
+      });
+
+      const currentLanguage = await wfHandle.query(greetingWorkflow.getLanguage);
+      assert.equal(currentLanguage, Language.ENGLISH);
+
+      try {
+        await wfHandle.executeUpdate(greetingWorkflow.setLanguage, {
+          args: [Language.PORTUGUESE],
+        });
+        assert.fail('Expected an error to be thrown');
+      } catch (err) {
+        assert(err instanceof WorkflowUpdateFailedError, 'Expected WorkflowUpdateFailedError');
+      }
+
+      const updatedLanguage = await wfHandle.query(greetingWorkflow.getLanguage);
+      assert.equal(updatedLanguage, Language.ENGLISH);
+
+      await wfHandle.signal(greetingWorkflow.approve, { name: 'test-approver' });
+      return await wfHandle.result();
+    });
+    assert.equal(wfResult, 'Hello, world');
   });
 
   it('can be updated to change the language using an activity', async function () {
