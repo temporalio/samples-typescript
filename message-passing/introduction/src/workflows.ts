@@ -55,15 +55,23 @@ export async function greetingWorkflow(): Promise<string> {
     approverName = input.name;
   });
 
-  wf.setHandler(setLanguage, (newLanguage) => {
-    // 👉 An Update handler can mutate the Workflow state and return a value.
-    if (!(newLanguage in greetings)) {
-      throw new Error(`${newLanguage} is not supported`);
+  wf.setHandler(
+    setLanguage,
+    (newLanguage: Language) => {
+      // 👉 An Update handler can mutate the Workflow state and return a value.
+      const previousLanguage = language;
+      language = newLanguage;
+      return previousLanguage;
+    },
+    {
+      validator: (newLanguage: Language) => {
+        // 👉 Update validators are optional
+        if (!(newLanguage in greetings)) {
+          throw new wf.ApplicationFailure(`${newLanguage} is not supported`);
+        }
+      },
     }
-    const previousLanguage = language;
-    language = newLanguage;
-    return previousLanguage;
-  });
+  );
 
   wf.setHandler(getLanguage, () => {
     return language;
