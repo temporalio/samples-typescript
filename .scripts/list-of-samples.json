@@ -19,6 +19,7 @@
     "hello-world-js",
     "hello-world-mtls",
     "interceptors-opentelemetry",
+    "message-passing",
     "monorepo-folders",
     "mutex",
     "nestjs-exchange-rates",
@@ -37,7 +38,6 @@
     "state",
     "timer-examples",
     "timer-progress",
-    "updates-and-signals",
     "vscode-debugger",
     "worker-specific-task-queues",
     "worker-versioning"
