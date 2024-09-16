@@ -107,12 +107,13 @@ and you'll be given the list of sample options.
 #### Workflow APIs
 
 - **Timers**:
-  - The [**progress example**](./timer-progress) demonstrates how to use the `sleep` function from `@temporalio/workflow`.
-  - [**Timer Examples**](./timer-examples):
+  - [**Timer**](./timer-examples):
     - Send a notification to the customer if their order is taking longer than expected (using a `Promise.race` between the order activity and `sleep`).
     - Create an `UpdatableTimer` that can be slept on, and at the same time, have its duration updated via Signals.
-- **Signals and Triggers**:
-  - The [**Signals and Queries example**](https://github.com/temporalio/samples-typescript/tree/main/signals-queries) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
+  - [**Timer Progress**](./timer-progress): demonstrates how to use the `sleep` function from `@temporalio/workflow`.
+- **Message-passing**:
+  - [**Introduction**](https://github.com/temporalio/samples-typescript/tree/main/message-passing/introduction): an introduction to Query, Signal, and Update.
+  - [**Cancellation**](https://github.com/temporalio/samples-typescript/tree/main/message-passing/signals-queries-cancellation) demonstrates the usage of Signals, Queries, and Workflow Cancellation.
   - [**Mutex**](https://github.com/temporalio/samples-typescript/tree/main/mutex): Workflows send Signals to each other in this example of `lockWorkflow` acting as a mutex.
   - [**State**](https://github.com/temporalio/samples-typescript/tree/main/state): The Workflow maintains state in a `Map<string, number>`, and the state can be updated and read via a Signal and a Query.
   - **Async activity completion**: Example of an [**Expense reporting**](https://github.com/temporalio/samples-typescript/tree/main/expense) Workflow that communicates with a server API. Shows how to kick off a Workflow and manually complete it at an arbitrarily later date.
