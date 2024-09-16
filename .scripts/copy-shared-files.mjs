@@ -59,7 +59,7 @@ const POST_CREATE_EXCLUDE = [
   'expense',
   'production',
   'patching-api',
-  'signals-queries',
+  'message-passing/signals-queries-cancellation',
   'activities-cancellation-heartbeating',
   'nestjs-exchange-rates',
   'food-delivery',
