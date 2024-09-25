@@ -10,7 +10,7 @@
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
   "dependencies": {
-    "@temporalio/activity": "^1.11.1",
+    "@temporalio/activity": "^1.11.2",
     "common": "*"
   },
   "devDependencies": {
