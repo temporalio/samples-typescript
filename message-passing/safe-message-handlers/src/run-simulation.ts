@@ -1,6 +1,6 @@
 import { WorkflowHandle } from '@temporalio/client';
 
-import { assignNodesToJobUpdate, startClusterSignal, deleteJobUpdate, shutdownClusterSignal } from './workflows';
+import { assignNodesToJobUpdate, startClusterSignal, deleteJobUpdate, shutdownClusterUpdate } from './workflows';
 import { startClusterManager } from './client';
 import { setTimeout } from 'timers/promises';
 
@@ -23,7 +23,9 @@ async function runSimulation(wf: WorkflowHandle, delaySeconds?: number): Promise
   }
   await Promise.all(deletionUpdates);
 
-  await wf.signal(shutdownClusterSignal);
+  if (!(await wf.executeUpdate(shutdownClusterUpdate))) {
+    throw new Error('Failed to shutdown cluster');
+  }
 }
 
 async function main() {

@@ -4,11 +4,12 @@ import {
   AssignNodesToJobUpdateInput,
   ClusterManagerInput,
   ClusterManagerStateSummary,
+  ClusterState,
   DeleteJobUpdateInput,
 } from './types';
 
 export const startClusterSignal = wf.defineSignal('startCluster');
-export const shutdownClusterSignal = wf.defineSignal('shutdownCluster');
+export const shutdownClusterUpdate = wf.defineUpdate('shutdownCluster');
 export const assignNodesToJobUpdate = wf.defineUpdate<ClusterManagerStateSummary, [AssignNodesToJobUpdateInput]>(
   'allocateNodesToJob'
 );
@@ -21,7 +22,7 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput = {}): P
   // Message-handling API
   //
   wf.setHandler(startClusterSignal, () => manager.startCluster());
-  wf.setHandler(shutdownClusterSignal, () => manager.shutDownCluster());
+  wf.setHandler(shutdownClusterUpdate, () => manager.shutDownCluster());
 
   // This is an update as opposed to a signal because the client may want to wait for nodes to be
   // allocated before sending work to those nodes. Returns the array of node names that were
@@ -49,8 +50,11 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput = {}): P
   // lies in the message-processing handlers implented in the ClusterManager class. The main
   // workflow itself simply waits until the cluster is shutdown, or the workflow needs to
   // continue-as-new.
-  await wf.condition(() => manager.state.clusterShutdown || wf.workflowInfo().continueAsNewSuggested);
-  if (!manager.state.clusterShutdown) {
+  await wf.condition(() => manager.state.clusterState === ClusterState.UP);
+  await wf.condition(
+    () => manager.state.clusterState === ClusterState.DOWN || wf.workflowInfo().continueAsNewSuggested
+  );
+  if (manager.state.clusterState !== ClusterState.DOWN) {
     // You should typically wait for all async handlers to finish before
     // completing a workflow or continuing as new. If the main workflow method
     // is scheduling activities or child workflows, then you should typically

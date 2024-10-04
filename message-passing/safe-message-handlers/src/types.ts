@@ -1,6 +1,5 @@
 export interface ClusterManagerState {
-  clusterStarted: boolean;
-  clusterShutdown: boolean;
+  clusterState: ClusterState;
   nodes: Map<string, string | null>;
   maxAssignedNodes: number;
 }
@@ -27,4 +26,9 @@ export interface ClusterManagerWorkflowResult {
   maxAssignedNodes: number;
   numCurrentlyAssignedNodes: number;
   numBadNodes: number;
+}
+
+export enum ClusterState {
+  UP = 'UP',
+  DOWN = 'DOWN',
 }

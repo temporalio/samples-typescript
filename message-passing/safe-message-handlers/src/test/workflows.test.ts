@@ -2,11 +2,12 @@ import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { before, describe, it } from 'mocha';
 import { bundleWorkflowCode, WorkflowBundleWithSourceMap, DefaultLogger, Runtime, Worker } from '@temporalio/worker';
 import * as activities from '../activities';
+import * as client from '@temporalio/client';
 import {
   clusterManagerWorkflow,
   assignNodesToJobUpdate,
   startClusterSignal,
-  shutdownClusterSignal,
+  shutdownClusterUpdate,
   deleteJobUpdate,
   getClusterStatusQuery,
 } from '../workflows';
@@ -81,7 +82,7 @@ describe('cluster manager', function () {
       );
       assert.equal(queryResult.maxAssignedNodes, request1.numNodes + request2.numNodes);
       // Terminate the workflow and check that workflow returns same value as obtained from last query.
-      await workflow.signal(shutdownClusterSignal);
+      assert.equal(await workflow.executeUpdate(shutdownClusterUpdate), true);
       const wfResult = await workflow.result();
       assert.deepEqual(wfResult, queryResult);
     });
