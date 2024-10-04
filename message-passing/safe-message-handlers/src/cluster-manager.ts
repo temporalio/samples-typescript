@@ -40,11 +40,13 @@ export class ClusterManager {
     if (this.state.clusterState === ClusterState.UP) {
       return;
     }
-    await startCluster();
-    this.state.clusterState = ClusterState.UP;
-    for (let i = 0; i < 25; i++) {
-      this.state.nodes.set(i.toString(), null);
-    }
+    await this.nodesMutex.runExclusive(async () => {
+      await startCluster();
+      this.state.clusterState = ClusterState.UP;
+      for (let i = 0; i < 25; i++) {
+        this.state.nodes.set(i.toString(), null);
+      }
+    });
     wf.log.info('Cluster started');
   }
 
