@@ -22,7 +22,7 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput = {}): P
   // Message-handling API
   //
   wf.setHandler(startClusterSignal, () => manager.startCluster());
-  wf.setHandler(shutdownClusterUpdate, () => manager.shutDownCluster());
+  wf.setHandler(shutdownClusterUpdate, () => manager.shutdownCluster());
 
   // This is an update as opposed to a signal because the client may want to wait for nodes to be
   // allocated before sending work to those nodes. Returns the array of node names that were

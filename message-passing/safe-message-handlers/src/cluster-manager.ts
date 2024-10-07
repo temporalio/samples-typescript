@@ -50,7 +50,7 @@ export class ClusterManager {
     wf.log.info('Cluster started');
   }
 
-  async shutDownCluster(): Promise<true> {
+  async shutdownCluster(): Promise<true> {
     if (this.state.clusterState === ClusterState.DOWN) {
       throw new wf.ApplicationFailure('Cluster is already down');
     }
