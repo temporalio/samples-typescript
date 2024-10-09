@@ -15,6 +15,11 @@ export async function startCluster(): Promise<void> {
   await activities.sleep(100); // Simulate RPC
 }
 
+export async function shutdownCluster(): Promise<void> {
+  activities.log.info('Shutting down cluster');
+  await activities.sleep(100); // Simulate RPC
+}
+
 export async function assignNodesToJob(input: AssignNodesToJobInput): Promise<void> {
   activities.log.info(`Assigning nodes ${input.nodes} to job ${input.jobName}`);
   await activities.sleep(100); // Simulate RPC
