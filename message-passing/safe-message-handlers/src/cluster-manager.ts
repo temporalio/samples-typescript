@@ -28,7 +28,7 @@ export class ClusterManager {
 
   constructor(state?: ClusterManagerState) {
     this.state = state ?? {
-      clusterState: ClusterState.DOWN,
+      clusterState: ClusterState.NOT_STARTED,
       nodes: new Map<string, string | null>(),
       maxAssignedNodes: 0,
     };
@@ -37,12 +37,14 @@ export class ClusterManager {
   }
 
   async startCluster(): Promise<void> {
-    if (this.state.clusterState === ClusterState.UP) {
+    if (this.state.clusterState !== ClusterState.NOT_STARTED) {
+      // This is used as a Signal handler so we log a warning but cannot return an error.
+      wf.log.warn(`Cannot start cluster in state ${this.state.clusterState}`);
       return;
     }
     await this.nodesMutex.runExclusive(async () => {
       await startCluster();
-      this.state.clusterState = ClusterState.UP;
+      this.state.clusterState = ClusterState.STARTED;
       for (let i = 0; i < 25; i++) {
         this.state.nodes.set(i.toString(), null);
       }
@@ -51,22 +53,23 @@ export class ClusterManager {
   }
 
   async shutdownCluster(): Promise<true> {
-    if (this.state.clusterState === ClusterState.DOWN) {
-      throw new wf.ApplicationFailure('Cluster is already down');
+    if (this.state.clusterState !== ClusterState.STARTED) {
+      // This is used as an Update handler we return an error to the caller.
+      throw new wf.ApplicationFailure(`Cannot shutdown cluster in state ${this.state.clusterState}`);
     }
     await shutdownCluster();
-    this.state.clusterState = ClusterState.DOWN;
+    this.state.clusterState = ClusterState.SHUTTING_DOWN;
     wf.log.info('Cluster shutdown');
     return true;
   }
 
   async assignNodesToJob(input: AssignNodesToJobUpdateInput): Promise<ClusterManagerStateSummary> {
-    await wf.condition(() => this.state.clusterState === ClusterState.UP);
-    if (this.state.clusterState === ClusterState.DOWN) {
+    await wf.condition(() => this.state.clusterState === ClusterState.STARTED);
+    if (this.state.clusterState === ClusterState.SHUTTING_DOWN) {
       // If you want the client to receive a failure, either add an update validator and throw the
       // exception from there, or raise an ApplicationError. Other exceptions in the handler will
       // cause the workflow to keep retrying and get it stuck.
-      throw new wf.ApplicationFailure('Cannot assign nodes to a job: Cluster is already shut down');
+      throw new wf.ApplicationFailure('Cannot assign nodes to a job: Cluster is shutting down');
     }
     return await this.nodesMutex.runExclusive(async (): Promise<ClusterManagerStateSummary> => {
       // Idempotency guard: do nothing if the job already has nodes assigned.
@@ -92,8 +95,8 @@ export class ClusterManager {
   }
 
   async deleteJob(input: DeleteJobUpdateInput) {
-    await wf.condition(() => this.state.clusterState === ClusterState.UP);
-    if (this.state.clusterState === ClusterState.DOWN) {
+    await wf.condition(() => this.state.clusterState === ClusterState.STARTED);
+    if (this.state.clusterState === ClusterState.SHUTTING_DOWN) {
       // If you want the client to receive a failure, either add an update validator and throw the
       // exception from there, or raise an ApplicationError. Other exceptions in the handler will
       // cause the workflow to keep retrying and get it stuck.

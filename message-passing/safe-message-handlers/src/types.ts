@@ -29,6 +29,7 @@ export interface ClusterManagerWorkflowResult {
 }
 
 export enum ClusterState {
-  UP = 'UP',
-  DOWN = 'DOWN',
+  NOT_STARTED = 'NOT_STARTED',
+  STARTED = 'STARTED',
+  SHUTTING_DOWN = 'SHUTTING_DOWN',
 }

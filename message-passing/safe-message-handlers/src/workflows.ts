@@ -50,11 +50,11 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput = {}): P
   // lies in the message-processing handlers implented in the ClusterManager class. The main
   // workflow itself simply waits until the cluster is shutdown, or the workflow needs to
   // continue-as-new.
-  await wf.condition(() => manager.state.clusterState === ClusterState.UP);
+  await wf.condition(() => manager.state.clusterState === ClusterState.STARTED);
   await wf.condition(
-    () => manager.state.clusterState === ClusterState.DOWN || wf.workflowInfo().continueAsNewSuggested
+    () => manager.state.clusterState === ClusterState.SHUTTING_DOWN || wf.workflowInfo().continueAsNewSuggested
   );
-  if (manager.state.clusterState !== ClusterState.DOWN) {
+  if (manager.state.clusterState !== ClusterState.SHUTTING_DOWN) {
     // You should typically wait for all async handlers to finish before
     // completing a workflow or continuing as new. If the main workflow method
     // is scheduling activities or child workflows, then you should typically
