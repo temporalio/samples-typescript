@@ -21,13 +21,22 @@ function replaceDeps({ content, fields }) {
   for (const field of fields) {
     for (const [dep, version] of Object.entries(content[field] ?? {})) {
       if (dep.startsWith('@temporalio/')) {
-        if (version !== versionToSet) {
-          content[field][dep] = versionToSet;
-          console.log(`....Updated version for ${field} ${dep} from ${version} to ${versionToSet}`);
+        const repl = replaceDep(dep, versionToSet);
+        if (version !== repl) {
+          content[field][dep] = repl;
+          console.log(`....Updated version for ${field} ${dep} from ${version} to ${repl}`);
           changed = true;
         }
       }
     }
   }
   return changed;
+}
+
+function replaceDep(dep, versionToSet) {
+  if (versionToSet.startsWith('file:')) {
+    const packageName = dep.split('/')[1];
+    return versionToSet + '/packages/' + packageName;
+  }
+  return versionToSet;
 }
