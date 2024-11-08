@@ -1,6 +1,5 @@
 import fs from 'fs/promises';
 
-// @@@SNIPSTART typescript-mtls-worker
 import { Connection, Client } from '@temporalio/client';
 import { example } from './workflows';
 
@@ -55,7 +54,6 @@ run(getEnv()).then(
     process.exit(1);
   }
 );
-// @@@SNIPEND
 
 // Helpers for configuring the mTLS client and worker samples
 
