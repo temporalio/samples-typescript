@@ -62,16 +62,14 @@ async function main() {
     interceptors: {
       // example contains both workflow and interceptors
       workflowModules: [require.resolve('./workflows')],
+      // FIXME: Add OpenTelemetryActivityOutboundInterceptor once 1.11.4 is out
       activity: [(ctx) => ({ inbound: new OpenTelemetryActivityInboundInterceptor(ctx) })],
     },
   });
   try {
     await worker.run();
   } finally {
-    await exporter.forceFlush();
     await otel.shutdown();
-    await exporter.forceFlush();
-    console.log('OpenTelemetry trace exporter flushed');
   }
 }
 
