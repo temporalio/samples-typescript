@@ -20,8 +20,13 @@ const devLogFormat = winston.format.printf(({ level, message, label, timestamp, 
   // The type signature in winston is wrong
   const { [LEVEL]: _lvl, [SPLAT]: _splt, [MESSAGE]: _msg, ...restNoSymbols } = rest as Record<string | symbol, any>;
   return Object.keys(restNoSymbols).length === 0
-    ? `${getDateStr(timestamp)} [${label}] ${level}: ${message}`
-    : `${getDateStr(timestamp)} [${label}] ${level}: ${message} ${util.inspect(restNoSymbols, false, 4, true)}`;
+    ? `${getDateStr(timestamp as number)} [${label}] ${level}: ${message}`
+    : `${getDateStr(timestamp as number)} [${label}] ${level}: ${message} ${util.inspect(
+        restNoSymbols,
+        false,
+        4,
+        true
+      )}`;
 });
 
 /** Create a winston logger from given options */

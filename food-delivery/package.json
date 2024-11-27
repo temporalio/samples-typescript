@@ -22,7 +22,7 @@
     "vercel": "^29.0.3"
   },
   "engines": {
-    "node": ">=14.0.0"
+    "node": ">=22.0.0"
   },
   "packageManager": "yarn@1.22.19"
 }
