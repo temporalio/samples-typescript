@@ -5,15 +5,20 @@ import { namespace, getConnectionOptions } from 'common/lib/temporal-connection'
 
 async function run() {
   const connection = await NativeConnection.connect(getConnectionOptions())
-  const worker = await Worker.create({
-    workflowsPath: require.resolve('../../../packages/workflows/'),
-    activities,
-    connection,
-    namespace,
-    taskQueue,
-  })
+  try {
+    const worker = await Worker.create({
+      workflowsPath: require.resolve('../../../packages/workflows/'),
+      activities,
+      connection,
+      namespace,
+      taskQueue,
+    })
 
-  await worker.run()
+    await worker.run()
+  } finally {
+    // Close the connection once the worker has stopped
+    await connection.close()
+  }
 }
 
 run().catch((err) => {
