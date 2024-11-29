@@ -34,18 +34,21 @@ async function run({
       },
     },
   });
+  try {
+    const worker = await Worker.create({
+      connection,
+      namespace,
+      workflowsPath: require.resolve('./workflows'),
+      activities,
+      taskQueue,
+    });
+    console.log('Worker connection successfully established');
 
-  const worker = await Worker.create({
-    connection,
-    namespace,
-    workflowsPath: require.resolve('./workflows'),
-    activities,
-    taskQueue,
-  });
-  console.log('Worker connection successfully established');
-
-  await worker.run();
-  await connection.close();
+    await worker.run();
+  } finally {
+    // Close the connection once the worker has stopped
+    await connection.close();
+  }
 }
 
 run(getEnv()).catch((err) => {
