@@ -29,7 +29,7 @@
     "node-fetch": "2.x"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.4",
+    "@tsconfig/node18": "^1.0.3",
     "@types/mocha": "8.x",
     "@types/node": "^22.9.1",
     "@types/node-fetch": "^2.5.12",

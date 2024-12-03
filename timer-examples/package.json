@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@temporalio/testing": "^1.11.5",
-    "@tsconfig/node18": "^18.2.4",
+    "@tsconfig/node18": "^1.0.3",
     "@types/mocha": "^9.1.1",
     "@types/ms": "^0.7.31",
     "@types/node": "^22.9.1",

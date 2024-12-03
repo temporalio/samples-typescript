@@ -34,7 +34,7 @@
   "devDependencies": {
     "@temporalio/nyc-test-coverage": "^1.11.5",
     "@temporalio/testing": "^1.11.5",
-    "@tsconfig/node18": "^18.2.4",
+    "@tsconfig/node18": "^1.0.3",
     "@types/jest": "^27.5.1",
     "@types/mocha": "8.x",
     "@types/node": "^22.9.1",

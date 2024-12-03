@@ -29,7 +29,7 @@
   },
   "devDependencies": {
     "@temporalio/testing": "^1.11.5",
-    "@tsconfig/node18": "^18.2.4",
+    "@tsconfig/node18": "^1.0.3",
     "@types/mocha": "10.0.1",
     "@types/node": "^22.9.1",
     "@types/uuid": "8.x",

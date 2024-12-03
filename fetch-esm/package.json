@@ -27,7 +27,7 @@
     "@temporalio/workflow": "^1.11.5"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^18.2.4",
+    "@tsconfig/node18": "^1.0.3",
     "@types/node": "^22.9.1",
     "@types/node-fetch": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
