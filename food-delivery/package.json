@@ -15,7 +15,7 @@
     "deploy": "vercel --prod"
   },
   "devDependencies": {
-    "eslint-config-food": "*",
+    "eslint-config-food": "workspace:*",
     "prettier": "^2.8.8",
     "prettier-plugin-tailwindcss": "^0.1.12",
     "turbo": "^1.11.3",
