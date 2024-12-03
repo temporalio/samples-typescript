@@ -50,5 +50,5 @@ main().then(
   (err) => {
     winstonLogger.error('Process failed', err);
     process.exit(1);
-  }
+  },
 );

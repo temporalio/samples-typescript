@@ -36,7 +36,7 @@ test('httpWorkflow with mock activity', async () => {
       activities: {
         makeHTTPRequest: async () => '99',
       },
-    })
+    }),
   );
 
   await worker.runUntil(async () => {

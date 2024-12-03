@@ -39,7 +39,7 @@ function toJSON({ metadata, data }: proto.temporal.api.common.v1.IPayload): JSON
     metadata:
       metadata &&
       Object.fromEntries(
-        Object.entries(metadata).map(([k, v]): [string, string] => [k, Buffer.from(v).toString('base64')])
+        Object.entries(metadata).map(([k, v]): [string, string] => [k, Buffer.from(v).toString('base64')]),
       ),
     data: data ? Buffer.from(data).toString('base64') : undefined,
   };

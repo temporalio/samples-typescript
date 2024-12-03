@@ -10,8 +10,8 @@ export async function parentWorkflow(...names: string[]): Promise<string> {
         // // regular workflow options apply here, with two additions (defaults shown):
         // cancellationType: ChildWorkflowCancellationType.WAIT_CANCELLATION_COMPLETED,
         // parentClosePolicy: ParentClosePolicy.PARENT_CLOSE_POLICY_TERMINATE
-      })
-    )
+      }),
+    ),
   );
   return responseArray.join('\n');
 }

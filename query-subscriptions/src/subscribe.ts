@@ -39,7 +39,7 @@ async function poll(redis: Redis.Redis, workflowId: string, version: number, opt
       ...(readBlockTimeMs ? ['BLOCK', readBlockTimeMs] : []),
       'STREAMS',
       workflowId,
-      version
+      version,
     );
     if (result === null) {
       continue;
@@ -67,8 +67,8 @@ export class SubscriptionClient {
     yield value;
     for (;;) {
       const result = await Promise.race([
-        poll(redis, workflowId, version).then((updates) => ({ type: 'updates', updates } as const)),
-        resultPromise.then(() => ({ type: 'complete' } as const)),
+        poll(redis, workflowId, version).then((updates) => ({ type: 'updates', updates }) as const),
+        resultPromise.then(() => ({ type: 'complete' }) as const),
       ]);
       if (result.type === 'complete') {
         await redis.quit();

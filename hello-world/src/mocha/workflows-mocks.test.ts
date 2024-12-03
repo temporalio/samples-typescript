@@ -33,7 +33,7 @@ describe('Example workflow with mocks', () => {
         args: ['Temporal'],
         workflowId: 'test',
         taskQueue,
-      })
+      }),
     );
     assert.equal(result, 'Hello, Temporal!');
   });

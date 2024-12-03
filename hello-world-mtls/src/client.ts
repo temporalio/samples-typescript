@@ -52,7 +52,7 @@ run(getEnv()).then(
   (err) => {
     console.error(err);
     process.exit(1);
-  }
+  },
 );
 
 // Helpers for configuring the mTLS client and worker samples

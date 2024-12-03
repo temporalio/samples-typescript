@@ -70,7 +70,7 @@ export async function greetingWorkflow(): Promise<string> {
           throw new wf.ApplicationFailure(`${newLanguage} is not supported`);
         }
       },
-    }
+    },
   );
 
   wf.setHandler(getLanguage, () => {

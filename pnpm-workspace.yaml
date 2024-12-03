@@ -1,0 +1,11 @@
+# Technically speaking, this repo is not really meant to be a monorepo. That is, each directory is
+# really a separate workspace, with no dependency between them, and each directory is meant to be
+# used as a template for a new project, completely unrelated from the rest of this repository.
+# But loading them all as a single workspace makes it easier to execute commands across packages,
+# and gives an incredible speed boost when running `pnpm install` or `pnpm update`.
+packages:
+  - '*'
+  - 'message-passing/*'
+  - 'monorepo-folders/packages/*'
+  - 'food-delivery/apps/*'
+  - 'food-delivery/packages/*'

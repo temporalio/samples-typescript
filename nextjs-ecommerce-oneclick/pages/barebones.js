@@ -59,7 +59,7 @@ export default function Bones() {
                     workflowId,
                   },
                   null,
-                  2
+                  2,
                 )}
               </pre>
               <button

@@ -4,6 +4,6 @@ import { EjsonPayloadConverter } from './ejson-payload-converter';
 
 export const payloadConverter = new CompositePayloadConverter(
   new UndefinedPayloadConverter(),
-  new EjsonPayloadConverter()
+  new EjsonPayloadConverter(),
 );
 // @@@SNIPEND
