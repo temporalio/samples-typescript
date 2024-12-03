@@ -2,6 +2,7 @@
   "extends": "@tsconfig/node18/tsconfig.json",
   "version": "4.4.2",
   "compilerOptions": {
+    "lib": ["es2021"],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,

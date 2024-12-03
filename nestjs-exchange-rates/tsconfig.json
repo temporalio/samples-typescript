@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "lib": ["es2021"],
     "module": "commonjs",
     "declaration": true,
     "removeComments": true,

@@ -1,7 +1,7 @@
 {
-  "extends": "tsconfig/base.json",
   "version": "4.5.3",
   "compilerOptions": {
+    "lib": ["es2021"],
     "sourceMap": true,
     "rootDir": "./src",
     "outDir": "./lib"
