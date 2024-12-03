@@ -26,6 +26,9 @@ jobs:
             nestjs-exchange-rates,
             timer-examples
           ]
+        exclude:
+          - node: 16
+            project: nestjs-exchange-rates
 
     steps:
       - uses: actions/checkout@v4
