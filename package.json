@@ -12,8 +12,8 @@
     "update-toc": "doctoc README.md"
   },
   "devDependencies": {
-    "@temporalio/client": "^1.11.3",
-    "@tsconfig/node16": "^1.0.2",
+    "@temporalio/client": "^1.11.5",
+    "@tsconfig/node18": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
     "doctoc": "^2.1.0",
@@ -35,5 +35,6 @@
   "lint-staged": {
     "*.{js,ts,json,md}": "prettier --write",
     "*.{js,ts}": "eslint --fix --cache"
-  }
+  },
+  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
 }

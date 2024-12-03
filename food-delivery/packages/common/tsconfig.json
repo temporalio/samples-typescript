@@ -1,6 +1,7 @@
 {
   "extends": "tsconfig/base.json",
   "compilerOptions": {
+    "lib": ["es2021"],
     "outDir": "lib"
   },
   "include": ["*.ts"]

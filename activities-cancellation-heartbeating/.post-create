@@ -1,15 +1,15 @@
 To begin development, install the Temporal CLI:
 
-  Mac: {cyan brew install temporal}
-  Other: Download and extract the latest release from https://github.com/temporalio/cli/releases/latest
+Mac: {cyan brew install temporal}
+Other: Download and extract the latest release from https://github.com/temporalio/cli/releases/latest
 
 Start Temporal Server:
 
-  {cyan temporal server start-dev}
+{cyan temporal server start-dev}
 
-Use Node version 16+:
+Use Node version 18+ (v22.x is recommended):
 
-  Mac: {cyan brew install node@16}
-  Other: https://nodejs.org/en/download/
+Mac: {cyan brew install node@22}
+Other: https://nodejs.org/en/download/
 
 Then, in the project directory, follow instructions in the {cyan README.md}

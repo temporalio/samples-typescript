@@ -15,13 +15,13 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.11.3",
-    "@temporalio/client": "^1.11.3",
-    "@temporalio/worker": "^1.11.3",
-    "@temporalio/workflow": "^1.11.3"
+    "@temporalio/activity": "^1.11.5",
+    "@temporalio/client": "^1.11.5",
+    "@temporalio/worker": "^1.11.5",
+    "@temporalio/workflow": "^1.11.5"
   },
   "devDependencies": {
-    "@types/node": "^16.11.43",
+    "@types/node": "^22.9.1",
     "eslint": "^7.32.0",
     "eslint-config-prettier": "^8.3.0",
     "nodemon": "^2.0.12",

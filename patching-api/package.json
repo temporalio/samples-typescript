@@ -20,18 +20,18 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.11.3",
-    "@temporalio/client": "^1.11.3",
-    "@temporalio/worker": "^1.11.3",
-    "@temporalio/workflow": "^1.11.3",
+    "@temporalio/activity": "^1.11.5",
+    "@temporalio/client": "^1.11.5",
+    "@temporalio/worker": "^1.11.5",
+    "@temporalio/workflow": "^1.11.5",
     "axios": "0.26.0",
     "eslint": "7",
     "node-fetch": "2.x"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.0",
+    "@tsconfig/node18": "^1.0.3",
     "@types/mocha": "8.x",
-    "@types/node": "^16.11.43",
+    "@types/node": "^22.9.1",
     "@types/node-fetch": "^2.5.12",
     "@types/sinon": "^10.0.4",
     "@typescript-eslint/eslint-plugin": "^5.0.0",
