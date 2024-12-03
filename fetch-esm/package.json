@@ -21,14 +21,14 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.11.3",
-    "@temporalio/client": "^1.11.3",
-    "@temporalio/worker": "^1.11.3",
-    "@temporalio/workflow": "^1.11.3"
+    "@temporalio/activity": "^1.11.5",
+    "@temporalio/client": "^1.11.5",
+    "@temporalio/worker": "^1.11.5",
+    "@temporalio/workflow": "^1.11.5"
   },
   "devDependencies": {
-    "@tsconfig/node16": "^1.0.0",
-    "@types/node": "^16.11.43",
+    "@tsconfig/node18": "^18.2.4",
+    "@types/node": "^22.9.1",
     "@types/node-fetch": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^5.3.0",
     "@typescript-eslint/parser": "^5.3.0",

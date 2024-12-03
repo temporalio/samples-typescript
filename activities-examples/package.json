@@ -24,20 +24,20 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.11.3",
-    "@temporalio/client": "^1.11.3",
-    "@temporalio/worker": "^1.11.3",
-    "@temporalio/workflow": "^1.11.3",
+    "@temporalio/activity": "^1.11.5",
+    "@temporalio/client": "^1.11.5",
+    "@temporalio/worker": "^1.11.5",
+    "@temporalio/workflow": "^1.11.5",
     "axios": "^0.26.0",
     "node-fetch": "2.x"
   },
   "devDependencies": {
-    "@temporalio/nyc-test-coverage": "^1.11.3",
-    "@temporalio/testing": "^1.11.3",
-    "@tsconfig/node16": "^1.0.0",
+    "@temporalio/nyc-test-coverage": "^1.11.5",
+    "@temporalio/testing": "^1.11.5",
+    "@tsconfig/node18": "^18.2.4",
     "@types/jest": "^27.5.1",
     "@types/mocha": "8.x",
-    "@types/node": "^16.11.43",
+    "@types/node": "^22.9.1",
     "@types/node-fetch": "^2.5.12",
     "@types/sinon": "^10.0.4",
     "@types/uuid": "^8.3.4",

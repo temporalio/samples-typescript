@@ -12,8 +12,8 @@
     "update-toc": "doctoc README.md"
   },
   "devDependencies": {
-    "@temporalio/client": "^1.11.3",
-    "@tsconfig/node16": "^1.0.2",
+    "@temporalio/client": "^1.11.5",
+    "@tsconfig/node18": "^18.2.4",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
     "doctoc": "^2.1.0",

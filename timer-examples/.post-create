@@ -7,9 +7,9 @@ Start Temporal Server:
 
   {cyan temporal server start-dev}
 
-Use Node version 16+:
+Use Node version 18+ (v22.x is recommended):
 
-  Mac: {cyan brew install node@16}
+  Mac: {cyan brew install node@22}
   Other: https://nodejs.org/en/download/
 
 Then, in the project directory:

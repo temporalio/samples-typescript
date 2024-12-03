@@ -45,11 +45,10 @@ temporal server start-dev
 
 (or use a [different installation method](https://github.com/temporalio/cli/#-install))
 
-Use Node version 16+:
+Use Node version 18+ (v22.x is recommended):
 
-- Install Node 16:
-  - Mac: `brew install node@16`
-  - Other: [nodejs.org/en/download/](https://nodejs.org/en/download/)
+- Mac: `brew install node@22`
+- Other: [nodejs.org/en/download/](https://nodejs.org/en/download/)
 - Or use a Node version manager: [`fnm`](https://github.com/Schniz/fnm#readme)
 
 Run the [`hello-world`](./hello-world) sample:
