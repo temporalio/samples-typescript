@@ -78,7 +78,7 @@ describe('cluster manager', function () {
       assert.equal(
         queryResult.assignedNodes,
         request1.numNodes,
-        `expected ${request1.numNodes} left after deleting ${request2.numNodes}`
+        `expected ${request1.numNodes} left after deleting ${request2.numNodes}`,
       );
       assert.equal(queryResult.maxAssignedNodes, request1.numNodes + request2.numNodes);
       // Terminate the workflow and check that workflow returns same value as obtained from last query.

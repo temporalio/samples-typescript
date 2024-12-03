@@ -11,7 +11,7 @@ import {
 export const startClusterSignal = wf.defineSignal('startCluster');
 export const shutdownClusterUpdate = wf.defineUpdate('shutdownCluster');
 export const assignNodesToJobUpdate = wf.defineUpdate<ClusterManagerStateSummary, [AssignNodesToJobUpdateInput]>(
-  'allocateNodesToJob'
+  'allocateNodesToJob',
 );
 export const deleteJobUpdate = wf.defineUpdate<void, [DeleteJobUpdateInput]>('deleteJob');
 export const getClusterStatusQuery = wf.defineQuery<ClusterManagerStateSummary>('getClusterStatus');
@@ -52,7 +52,7 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput = {}): P
   // continue-as-new.
   await wf.condition(() => manager.state.clusterState === ClusterState.STARTED);
   await wf.condition(
-    () => manager.state.clusterState === ClusterState.SHUTTING_DOWN || wf.workflowInfo().continueAsNewSuggested
+    () => manager.state.clusterState === ClusterState.SHUTTING_DOWN || wf.workflowInfo().continueAsNewSuggested,
   );
   if (manager.state.clusterState !== ClusterState.SHUTTING_DOWN) {
     // You should typically wait for all async handlers to finish before

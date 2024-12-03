@@ -38,7 +38,7 @@ export const appRouter = t.router({
             state: workflow.status.name === 'FAILED' ? 'Failed' : status.state,
             orderId,
           }
-        })()
+        })(),
       )
     }
 

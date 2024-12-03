@@ -77,7 +77,7 @@ export class ClusterManager {
         const unassignedNodes = this.getUnassignedNodes();
         if (input.numNodes > unassignedNodes.size) {
           throw new wf.ApplicationFailure(
-            `Cannot assign ${input.numNodes} nodes; have only ${unassignedNodes.size} available`
+            `Cannot assign ${input.numNodes} nodes; have only ${unassignedNodes.size} available`,
           );
         }
         const nodesToAssign = Array.from(unassignedNodes).slice(0, input.numNodes);
@@ -142,7 +142,7 @@ export class ClusterManager {
           return value !== null && value !== 'BAD!';
         }
         return value === jobName;
-      })
+      }),
     );
   }
 }
