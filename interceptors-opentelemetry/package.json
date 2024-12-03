@@ -24,6 +24,7 @@
     "@opentelemetry/resources": "^1.26.0",
     "@opentelemetry/sdk-node": "^0.53.0",
     "@opentelemetry/sdk-trace-base": "^1.26.0",
+    "@opentelemetry/semantic-conventions": "^1.26.0",
     "@temporalio/activity": "^1.11.5",
     "@temporalio/client": "^1.11.5",
     "@temporalio/interceptors-opentelemetry": "^1.11.5",

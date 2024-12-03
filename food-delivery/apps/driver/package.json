@@ -12,8 +12,10 @@
   },
   "dependencies": {
     "@tanstack/react-query": "^4.16.1",
+    "@temporalio/client": "^1.11.5",
     "@trpc/client": "^10.0.0-rc.8",
     "@trpc/next": "^10.0.0-rc.8",
+    "@trpc/react-query": "^10.0.0-rc.8",
     "@trpc/server": "^10.0.0-rc.8",
     "common": "*",
     "menu": "*",

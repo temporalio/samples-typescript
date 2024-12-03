@@ -190,9 +190,8 @@ To get started developing, run:
 ```bash
 git clone https://github.com/temporalio/samples-typescript.git
 cd samples-typescript
-npm install
+pnpm install
 npm run prepare
-npm run bootstrap
 ```
 
 Prettier and ESLint are run on each commit, but you can also run them manually:
@@ -206,12 +205,6 @@ npm run lint
 
 - The docs and tutorials depend on `SNIPSTART` and `SNIPEND` comments in samples. Make sure to search through the [docs](https://github.com/temporalio/documentation/) and [learn](https://github.com/temporalio/temporal-learning) repos to make sure a snippet is unused before removing it.
 - There are [blog posts](https://temporal.io/blog/building-reliable-distributed-systems-in-node) and a PDF that depend on the file structure of the `food-delivery/` sample.
-
-### Updating to latest SDK version
-
-```sh
-lerna exec -- npm update
-```
 
 ### Upgrading the SDK version in `package.json`s
 
