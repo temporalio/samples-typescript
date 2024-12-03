@@ -161,6 +161,8 @@ and you'll be given the list of sample options.
 
 _The below projects are maintained outside this repo and may not be up to date._
 
+- **LLM**:
+  - [`lorensr/ai-group-chat`](https://github.com/lorensr/ai-group-chat): `groupChat` workflow that maintains chat state and gets chat messages from OpenAI's API. Turborepo monorepo with Next.js and GraphQL federation.
 - **Express**:
   - [`vkarpov15/temporal-ecommerce-ts`](https://github.com/vkarpov15/temporal-ecommerce-ts): The `cartWorkflow` used in [this blog series](https://learn.temporal.io/tutorials/go/ecommerce/)
   - [`temporal-rest`](https://www.npmjs.com/package/temporal-rest): Express middleware router that automatically exposes endpoints for Workflows, Signals, and Queries.
