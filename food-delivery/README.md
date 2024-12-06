@@ -30,8 +30,8 @@ For a Java version of the Worker, see [pvsone/food-delivery](https://github.com/
 ### Running this sample
 
 1. Make sure Temporal Server is running locally (see the [quick install guide](https://docs.temporal.io/server/quick-install/)).
-1. `yarn` to install dependencies (to install yarn, run `npm install --global yarn`)
-1. `yarn dev` to start the Next.js dev servers and the Temporal Worker.
+1. `pnpm install` (to install pnpm, run `npm install --global pnpm`)
+1. `pnpm dev` to start the Next.js dev servers and the Temporal Worker.
 1. Interact with the sites:
 
 - Menu: http://localhost:3000

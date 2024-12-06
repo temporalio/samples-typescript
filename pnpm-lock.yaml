@@ -1148,9 +1148,6 @@ importers:
       eslint-config-prettier:
         specifier: ^8.3.0
         version: 8.10.0(eslint@8.57.1)
-      eslint-config-turbo:
-        specifier: latest
-        version: 2.3.3(eslint@8.57.1)
       eslint-plugin-deprecation:
         specifier: ^1.2.1
         version: 1.6.0(eslint@8.57.1)(typescript@4.9.5)
@@ -7577,10 +7574,6 @@ packages:
     resolution: {integrity: sha512-rlBi9d8jpv9Sf1klPjNfFAuWDjKLwTIJJ/VxtoTwIR6hnZxcEOQCZg2oIL3MWBYw5GpUDKOEnND7LXTbIpQ03Q==}
     engines: {node: '>=10'}
 
-  dotenv@16.0.3:
-    resolution: {integrity: sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ==}
-    engines: {node: '>=12'}
-
   dotenv@16.4.5:
     resolution: {integrity: sha512-ZmdL2rui+eB2YwhsWzjInR8LldtZHGDoQ1ugH85ppHKwpUHL7j7rN0Ti9NCnGiQbhaZ11FpR+7ao1dNsmduNUg==}
     engines: {node: '>=12'}
@@ -7932,11 +7925,6 @@ packages:
       typescript:
         optional: true
 
-  eslint-config-turbo@2.3.3:
-    resolution: {integrity: sha512-cM9wSBYowQIrjx2MPCzFE6jTnG4vpTPJKZ/O+Ps3CqrmGK/wtNOsY6WHGMwLtKY/nNbgRahAJH6jGVF6k2coOg==}
-    peerDependencies:
-      eslint: '>6.6.0'
-
   eslint-import-resolver-node@0.3.9:
     resolution: {integrity: sha512-WFj2isz22JahUv+B788TlO3N6zL3nNJGU8CcZbPZvVEkBPaJdCV4vy5wyghty5ROFbCRnm132v8BScu5/1BQ8g==}
 
@@ -8040,11 +8028,6 @@ packages:
     engines: {node: ^12.22.0 || ^14.17.0 || >=16.0.0, npm: '>=6'}
     peerDependencies:
       eslint: ^7.5.0 || ^8.0.0
-
-  eslint-plugin-turbo@2.3.3:
-    resolution: {integrity: sha512-j8UEA0Z+NNCsjZep9G5u5soDQHcXq/x4amrwulk6eHF1U91H2qAjp5I4jQcvJewmccCJbVp734PkHHTRnosjpg==}
-    peerDependencies:
-      eslint: '>6.6.0'
 
   eslint-scope@5.1.1:
     resolution: {integrity: sha512-2NxwbF/hZ0KpepYN0cNbo+FN6XoK7GaHlQhgx/hIZl6Va0bF45RQOOwhLIy8lQDbuCiadSLCBnH2CFYquit5bw==}
@@ -17493,7 +17476,7 @@ snapshots:
       lodash: 4.17.21
       lodash.debounce: 4.0.8
       lru-cache: 7.18.3
-      minimatch: 9.0.3
+      minimatch: 9.0.5
       node-fetch: 2.7.0
       ora: 5.4.1
       postcss: 8.4.49
@@ -17564,7 +17547,7 @@ snapshots:
       lodash: 4.17.21
       lodash.debounce: 4.0.8
       lru-cache: 7.18.3
-      minimatch: 9.0.3
+      minimatch: 9.0.5
       node-fetch: 2.7.0
       ora: 5.4.1
       postcss: 8.4.49
@@ -19256,8 +19239,6 @@ snapshots:
 
   dotenv@10.0.0: {}
 
-  dotenv@16.0.3: {}
-
   dotenv@16.4.5: {}
 
   dotenv@16.4.7: {}
@@ -19693,11 +19674,6 @@ snapshots:
       - jest
       - supports-color
 
-  eslint-config-turbo@2.3.3(eslint@8.57.1):
-    dependencies:
-      eslint: 8.57.1
-      eslint-plugin-turbo: 2.3.3(eslint@8.57.1)
-
   eslint-import-resolver-node@0.3.9:
     dependencies:
       debug: 3.2.7(supports-color@5.5.0)
@@ -20033,11 +20009,6 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
       - typescript
-
-  eslint-plugin-turbo@2.3.3(eslint@8.57.1):
-    dependencies:
-      dotenv: 16.0.3
-      eslint: 8.57.1
 
   eslint-scope@5.1.1:
     dependencies:
