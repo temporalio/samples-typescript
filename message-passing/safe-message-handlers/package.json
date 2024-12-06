@@ -1,5 +1,5 @@
 {
-  "name": "temporal-update",
+  "name": "temporal-safe-message-handlers",
   "version": "0.1.0",
   "private": true,
   "scripts": {

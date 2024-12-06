@@ -30,6 +30,13 @@
     "yaml": "^2.2.1",
     "zx": "^6.0.7"
   },
+  "workspaces": [
+    "*",
+    "message-passing/*",
+    "monorepo-folders/packages/*",
+    "food-delivery/packages/*",
+    "food-delivery/apps/*"
+  ],
   "lint-staged": {
     "*.{js,ts,json,md}": "prettier --write",
     "*.{js,ts}": "eslint --fix --cache"
