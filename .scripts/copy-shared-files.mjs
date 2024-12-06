@@ -174,26 +174,16 @@ const testProjectsNode = testNode.value.items
   .find((i) => i.key.value === 'strategy')
   .value.items.find((i) => i.key.value === 'matrix')
   .value.items.find((i) => i.key.value === 'project');
-const lintNode = jobsNode.value.items.find((i) => i.key.value === 'lint-individual');
-const lintProjectsNode = lintNode.value.items
-  .find((i) => i.key.value === 'strategy')
-  .value.items.find((i) => i.key.value === 'matrix')
-  .value.items.find((i) => i.key.value === 'project');
 
 testProjectsNode.value.items = [];
-lintProjectsNode.value.items = [];
 
 for (const sample of samples) {
   // Don't use require, because it won't work with ESM samples
   const packageJson = JSON.parse(readFileSync(`../${sample}/package.json`));
   const hasTestScript = !!packageJson.scripts.test;
-  const hasLintScript = !!packageJson.scripts.lint;
 
   if (hasTestScript) {
     testProjectsNode.value.items.push(sample);
-  }
-  if (hasLintScript) {
-    lintProjectsNode.value.items.push(sample);
   }
 }
 
