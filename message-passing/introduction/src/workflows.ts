@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import * as wf from '@temporalio/workflow';
 import { Mutex } from 'async-mutex';
 
@@ -110,7 +111,7 @@ export async function greetingWorkflow(): Promise<string> {
   });
 
   await wf.condition(() => approvedForRelease);
-  return greetings[language]!;
+  return greetings[language]!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
 }
 
 export const activities = {

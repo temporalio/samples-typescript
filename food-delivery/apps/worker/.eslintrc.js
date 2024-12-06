@@ -4,7 +4,7 @@ const ALLOWED_NODE_BUILTINS = new Set(['assert'])
 
 module.exports = {
   root: true,
-  extends: ['food'],
+  extends: ['@fooddelivery/food'],
   overrides: [
     {
       files: ['src/workflows.ts', 'src/workflows-*.ts', 'src/workflows/*.ts'],

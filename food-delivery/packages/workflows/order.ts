@@ -7,8 +7,8 @@ import {
   sleep,
   proxyActivities,
 } from '@temporalio/workflow'
-import { errorMessage, getProductById, Product } from 'common'
-import type * as activities from 'activities'
+import { errorMessage, getProductById, Product } from '@fooddelivery/common'
+import type * as activities from '@fooddelivery/activities'
 
 type OrderState = 'Charging card' | 'Paid' | 'Picked up' | 'Delivered' | 'Refunding'
 

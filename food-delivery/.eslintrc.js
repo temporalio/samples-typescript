@@ -1,6 +1,6 @@
 module.exports = {
   root: true,
-  extends: ['food'],
+  extends: ['@fooddelivery/food'],
   settings: {
     next: {
       rootDir: ['apps/*/'],

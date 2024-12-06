@@ -29,80 +29,47 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+          version: 9
+
       - uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node }}
           # Comment out cache line when testing with act:
           # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
-          cache: 'npm'
-      - run: yarn
+          cache: 'pnpm'
+
+      - run: pnpm install
         working-directory: ${{ matrix.project }}
+
       - run: npm run build
         working-directory: ${{ matrix.project }}
+
       - run: npm test
         working-directory: ${{ matrix.project }}
 
-  lint-individual:
+  lint-format-build:
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        project:
-          [
-            activities-cancellation-heartbeating,
-            activities-dependency-injection,
-            activities-examples,
-            child-workflows,
-            continue-as-new,
-            cron-workflows,
-            custom-logger,
-            dsl-interpreter,
-            ejson,
-            encryption,
-            expense,
-            fetch-esm,
-            food-delivery,
-            grpc-calls,
-            hello-world,
-            hello-world-js,
-            hello-world-mtls,
-            interceptors-opentelemetry,
-            monorepo-folders,
-            mutex,
-            nestjs-exchange-rates,
-            nextjs-ecommerce-oneclick,
-            patching-api,
-            production,
-            protobufs,
-            query-subscriptions,
-            saga,
-            schedules,
-            search-attributes,
-            signals-queries,
-            sinks,
-            snippets,
-            state,
-            timer-examples,
-            timer-progress,
-            vscode-debugger,
-            worker-specific-task-queues
-          ]
-
     steps:
       - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+          version: 9
+
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          # Comment out cache line when testing with act:
-          # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
-          cache: 'npm'
-      - run: yarn
-        working-directory: ${{ matrix.project }}
-      - run: npm run build
-        working-directory: ${{ matrix.project }}
-        if: ${{ matrix.project != 'hello-world-js' }}
-      - run: npm run lint
-        working-directory: ${{ matrix.project }}
-      - run: npx prettier . --check
-        working-directory: ${{ matrix.project }}
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - run: pnpm lint
+      - run: pnpm format:check
+      - run: pnpm build

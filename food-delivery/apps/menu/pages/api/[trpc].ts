@@ -1,9 +1,10 @@
 import { initTRPC } from '@trpc/server'
 import * as trpcNext from '@trpc/server/adapters/next'
 import { z } from 'zod'
-import { taskQueue } from 'common'
-import { Context, createContext } from 'common/trpc-context'
-import { getStatusQuery, order } from 'workflows'
+import { taskQueue } from '@fooddelivery/common'
+import { Context, createContext } from '@fooddelivery/common/trpc-context'
+import { getStatusQuery, order } from '@fooddelivery/workflows'
+import type {} from '@temporalio/client'
 
 const t = initTRPC.context<Context>().create()
 

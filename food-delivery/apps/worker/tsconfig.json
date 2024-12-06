@@ -1,10 +1,26 @@
 {
-  "version": "4.5.3",
+  "version": "4.9.5",
   "compilerOptions": {
+    "target": "es2021",
     "lib": ["es2021"],
+    "composite": true,
+    "module": "commonjs",
+    "moduleResolution": "node16",
+    "allowSyntheticDefaultImports": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
     "sourceMap": true,
     "rootDir": "./src",
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "baseUrl": ".",
+    "paths": {
+      "@fooddelivery/activities": ["../../packages/activities/index"]
+    }
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts"],
+  "references": [
+    {
+      "path": "../../packages/activities"
+    }
+  ]
 }

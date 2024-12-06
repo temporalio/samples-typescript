@@ -1,3 +1,3 @@
 module.exports = {
-  transpilePackages: ['ui'],
+  transpilePackages: ['@fooddelivery/ui'],
 }

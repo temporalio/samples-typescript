@@ -1,5 +1,5 @@
 import { proxyActivities, inWorkflowContext } from '@temporalio/workflow';
-import { Connection, Client, WorkflowIdReusePolicy } from '@temporalio/client';
+import { Connection, Client } from '@temporalio/client';
 import { Worker, DefaultLogger, Runtime } from '@temporalio/worker';
 
 const workflowId = 'scratchpad';
@@ -24,7 +24,7 @@ async function starter(client: Client): Promise<void> {
     taskQueue,
     workflowId,
     args: ['Temporal'],
-    workflowIdReusePolicy: WorkflowIdReusePolicy.WORKFLOW_ID_REUSE_POLICY_TERMINATE_IF_RUNNING,
+    workflowIdReusePolicy: 'TERMINATE_IF_RUNNING',
   });
   console.log(result);
 }

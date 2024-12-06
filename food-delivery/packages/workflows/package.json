@@ -1,5 +1,5 @@
 {
-  "name": "workflows",
+  "name": "@fooddelivery/workflows",
   "version": "0.0.1",
   "license": "MIT",
   "main": "./index.ts",
@@ -8,14 +8,13 @@
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
   "dependencies": {
-    "@temporalio/workflow": "^1.11.5",
-    "common": "*"
+    "@fooddelivery/common": "*",
+    "@temporalio/workflow": "^1.11.5"
   },
   "devDependencies": {
-    "activities": "^0.0.1",
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "*",
-    "tsconfig": "*",
-    "typescript": "^4.5.2"
+    "@fooddelivery/activities": "*",
+    "@fooddelivery/tsconfig": "*",
+    "eslint": "^8.57.0",
+    "typescript": "^4.9.5"
   }
 }

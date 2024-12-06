@@ -4,6 +4,8 @@
 node_modules
 .pnp
 .pnp.js
+pnpm-lock.yaml
+package-lock.json
 
 # testing
 coverage
@@ -28,9 +30,6 @@ yarn-error.log*
 .env.development.local
 .env.test.local
 .env.production.local
-
-# turbo
-.turbo
 
 dist.css
 

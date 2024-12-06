@@ -25,7 +25,7 @@ Running [`src/client.ts`](./src/client.ts) does this:
 ### Running this sample
 
 1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
-2. `npm install` to install dependencies.
+2. `npm install` to install dependencies (or `pnpm` or `yarn`).
 3. `npm run start` to start the Worker.
 4. In another shell, `npm run workflow` to run the Workflow.
 5. In the first shell, watch the Worker output for a few seconds:

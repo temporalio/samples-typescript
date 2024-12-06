@@ -1,5 +1,5 @@
 module.exports = () => {
   return {
-    transpilePackages: ['ui'],
+    transpilePackages: ['@fooddelivery/ui'],
   }
 }

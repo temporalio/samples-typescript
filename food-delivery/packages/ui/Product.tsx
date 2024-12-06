@@ -1,5 +1,5 @@
 import Image from 'next/image'
-import type { Product as ProductType } from 'common'
+import type { Product as ProductType } from '@fooddelivery/common'
 import { Loading } from './Loading'
 
 interface ProductProps {

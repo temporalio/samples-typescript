@@ -105,4 +105,7 @@ dist
 
 lib/
 
-*/**/yarn.lock
+# We only keep PNPM's lockfile in the root directory. Ignore all other lock files.
+yarn.lock
+package-lock.json
+*/**/pnpm-lock.yaml

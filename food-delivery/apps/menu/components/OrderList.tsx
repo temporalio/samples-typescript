@@ -1,4 +1,4 @@
-import { Order as OrderType, Product } from 'common'
+import { Order as OrderType, Product } from '@fooddelivery/common'
 import { Order } from './Order'
 
 export function OrderList({ orders, onOrder }: { orders: OrderType[]; onOrder: (product: Product) => void }) {

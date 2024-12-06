@@ -1,6 +1,6 @@
 import { Connection, Client } from '@temporalio/client';
 import { Resource } from '@opentelemetry/resources';
-import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
+import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import { OpenTelemetryWorkflowClientInterceptor } from '@temporalio/interceptors-opentelemetry';
@@ -8,7 +8,7 @@ import { example } from './workflows';
 
 async function run() {
   const resource = new Resource({
-    [SemanticResourceAttributes.SERVICE_NAME]: 'interceptors-sample-client',
+    [ATTR_SERVICE_NAME]: 'interceptors-sample-client',
   });
   // Export spans to console for simplicity
   const exporter = new ConsoleSpanExporter();

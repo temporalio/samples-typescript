@@ -1,8 +1,8 @@
 import Image from 'next/image'
 import { useState } from 'react'
-import { getProductById, statusColors } from 'common'
+import { getProductById, statusColors } from '@fooddelivery/common'
 import { trpc } from '../utils/trpc'
-import { Loading } from 'ui'
+import { Loading } from '@fooddelivery/ui'
 
 export function OrderTable() {
   const [pickedUpOrders, setPickedUpOrders] = useState(() => new Set())

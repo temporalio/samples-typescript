@@ -2,7 +2,6 @@ import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { before, describe, it } from 'mocha';
 import { bundleWorkflowCode, WorkflowBundleWithSourceMap, DefaultLogger, Runtime, Worker } from '@temporalio/worker';
 import * as activities from '../activities';
-import * as client from '@temporalio/client';
 import {
   clusterManagerWorkflow,
   assignNodesToJobUpdate,

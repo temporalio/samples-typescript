@@ -1,5 +1,5 @@
 import { CheckCircleIcon } from '@heroicons/react/20/solid'
-import { Order as OrderType, Product } from 'common'
+import { Order as OrderType, Product } from '@fooddelivery/common'
 import Image from 'next/image'
 import { trpc } from '../utils/trpc'
 

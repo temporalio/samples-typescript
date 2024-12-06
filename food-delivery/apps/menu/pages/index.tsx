@@ -1,6 +1,6 @@
-import { Order, Product as ProductType, products } from 'common'
+import { Order, Product as ProductType, products } from '@fooddelivery/common'
 import { useState } from 'react'
-import { Footer, Header, Product } from 'ui'
+import { Footer, Header, Product } from '@fooddelivery/ui'
 import { v4 as uuid } from 'uuid'
 import { OrderList } from '../components/OrderList'
 import { trpc } from '../utils/trpc'
