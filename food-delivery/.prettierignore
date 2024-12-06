@@ -3,3 +3,4 @@ lib
 *.css
 
 pnpm-lock.yaml
+dist.css

@@ -5,7 +5,7 @@
     "build": "pnpm run -r --filter './*' build",
     "test": "pnpm run -r --filter './*' test",
     "format": "prettier --write .",
-    "format:check": "prettier --check",
+    "format:check": "prettier --check .",
     "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
     "upgrade-versions": "zx .scripts/upgrade-versions.mjs",
     "lint": "pnpm run -r --filter './*' lint",

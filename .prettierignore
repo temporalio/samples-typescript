@@ -14,3 +14,4 @@ pnpm-lock.yaml
 nestjs-exchange-rates/dist
 
 .github/workflows/ci.yml
+dist.css
