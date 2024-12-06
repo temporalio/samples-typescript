@@ -2,11 +2,12 @@
   "name": "samples-typescript",
   "private": true,
   "scripts": {
-    "build": "pnpm run -r build",
-    "test": "lerna run --stream test",
+    "build": "pnpm run -r --filter './*' build",
+    "test": "pnpm run -r --filter './*' test",
     "format": "prettier --write .",
     "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
-    "lint": "lerna run lint",
+    "upgrade-versions": "zx .scripts/upgrade-versions.mjs",
+    "lint": "pnpm run -r --filter './*' lint",
     "prepare": "husky install",
     "update-toc": "doctoc README.md"
   },
@@ -24,13 +25,12 @@
     "husky": "^7.0.2",
     "lint-staged": "^11.2.3",
     "prettier": "^2.8.8",
-    "typescript": "^4.4.3",
+    "typescript": "^4.9.5",
     "yaml": "^2.2.1",
     "zx": "^6.0.7"
   },
   "lint-staged": {
     "*.{js,ts,json,md}": "prettier --write",
     "*.{js,ts}": "eslint --fix --cache"
-  },
-  "packageManager": "pnpm@9.14.2+sha512.6e2baf77d06b9362294152c851c4f278ede37ab1eba3a55fda317a4a17b209f4dbb973fb250a77abc463a341fcb1f17f17cfa24091c4eb319cda0d9b84278387"
+  }
 }

@@ -1,11 +1,12 @@
 {
-  "name": "eslint-config-food",
-  "version": "0.0.0",
+  "name": "@fooddelivery/eslint-config-food",
+  "version": "0.0.1",
   "license": "MIT",
   "main": "index.js",
   "dependencies": {
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "eslint": "^7.23.0",
+    "@typescript-eslint/eslint-plugin": "^8.15.0",
+    "@typescript-eslint/parser": "^8.15.0",
+    "eslint": "^8.57.0",
     "eslint-config-next": "13.0.0",
     "eslint-config-prettier": "^8.3.0",
     "eslint-config-turbo": "latest",
@@ -13,7 +14,7 @@
     "eslint-plugin-react": "7.31.8"
   },
   "devDependencies": {
-    "typescript": "^4.7.4"
+    "typescript": "^4.9.5"
   },
   "publishConfig": {
     "access": "public"

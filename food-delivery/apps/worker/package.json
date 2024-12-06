@@ -1,5 +1,5 @@
 {
-  "name": "worker",
+  "name": "@fooddelivery/worker",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -19,17 +19,18 @@
     ]
   },
   "dependencies": {
+    "@fooddelivery/common": "*",
+    "@fooddelivery/workflows": "*",
     "@temporalio/activity": "^1.11.5",
+    "@temporalio/common": "^1.11.5",
     "@temporalio/worker": "^1.11.5",
-    "@temporalio/workflow": "^1.11.5",
-    "common": "*",
-    "workflows": "*"
+    "@temporalio/workflow": "^1.11.5"
   },
   "devDependencies": {
+    "@fooddelivery/tsconfig": "*",
     "@types/node": "^22.9.1",
     "nodemon": "^2.0.12",
     "ts-node": "^10.8.1",
-    "tsconfig": "*",
-    "typescript": "^4.4.2"
+    "typescript": "^4.9.5"
   }
 }

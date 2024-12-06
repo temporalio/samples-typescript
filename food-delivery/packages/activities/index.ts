@@ -1,4 +1,4 @@
-import { Product } from 'common'
+import { Product } from '@fooddelivery/common'
 import { notificationService, paymentService } from './services'
 
 export async function sendPushNotification(message: string): Promise<void> {

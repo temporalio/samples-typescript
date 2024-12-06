@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@temporalio/worker": "^1.11.5",
-    "temporal-workflows": "workspace:*",
+    "temporal-workflows": "*",
     "ts-node": "^10.4.0"
   },
   "devDependencies": {

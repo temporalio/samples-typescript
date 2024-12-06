@@ -16,7 +16,7 @@
     },
     "start": {},
     "worker#build": {
-      "dependsOn": ["common#build", "workflows#build"]
+      "dependsOn": ["@fooddelivery/common#build", "@fooddelivery/workflows#build"]
     }
   }
 }
