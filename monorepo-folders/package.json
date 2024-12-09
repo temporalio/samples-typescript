@@ -16,19 +16,11 @@
   "dependencies": {
     "concurrently": "^6.3.0"
   },
-  "resolutions": {
-    "@temporalio/worker": "^1.11.5",
-    "@temporalio/workflow": "^1.11.5",
-    "@temporalio/client": "^1.11.5",
-    "@temporalio/activity": "^1.11.5",
-    "@temporalio/common": "^1.11.5",
-    "@temporalio/proto": "^1.11.5",
-    "mini-css-extract-plugin": "2.4.5"
-  },
   "devDependencies": {
     "@types/node": "^22.9.1",
     "eslint": "^7.32.0",
     "prettier": "^2.8.8",
     "ts-loader": "^9.2.6"
-  }
+  },
+  "packageManager": "yarn@1.22.17"
 }

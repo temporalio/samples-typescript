@@ -9,7 +9,9 @@ protobufs/protos/json-module.js
 protobufs/protos/root.d.ts
 .scripts/list-of-samples.json
 package-lock.json
+pnpm-lock.yaml
 
 nestjs-exchange-rates/dist
 
 .github/workflows/ci.yml
+dist.css

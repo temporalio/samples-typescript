@@ -1,3 +1,5 @@
+import type {} from 'react'
+
 export const Footer = ({ showDriverPortal = false }: { showDriverPortal?: boolean }) => {
   const navigation = {
     main: [

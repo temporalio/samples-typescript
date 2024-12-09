@@ -1,4 +1,4 @@
 {
-  "extends": "tsconfig/base.json",
+  "extends": "@fooddelivery/tsconfig/base.json",
   "include": ["."]
 }

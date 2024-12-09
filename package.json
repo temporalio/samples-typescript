@@ -2,17 +2,17 @@
   "name": "samples-typescript",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap --npm-client=yarn --ignore=monorepo-folders --ignore=nestjs-exchange-rates --ignore=food-delivery",
-    "build": "lerna run build --ignore=monorepo-folders --ignore=nestjs-exchange-rates --ignore=food-delivery",
-    "test": "lerna run --stream test",
+    "build": "pnpm run -r --filter './*' build",
+    "test": "pnpm run -r --filter './*' test",
     "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
-    "lint": "lerna run lint",
+    "upgrade-versions": "zx .scripts/upgrade-versions.mjs",
+    "lint": "pnpm run -r --filter './*' lint",
     "prepare": "husky install",
     "update-toc": "doctoc README.md"
   },
   "devDependencies": {
-    "@temporalio/client": "^1.11.5",
     "@tsconfig/node18": "^1.0.3",
     "@typescript-eslint/eslint-plugin": "^4.30.0",
     "@typescript-eslint/parser": "^4.30.0",
@@ -24,17 +24,21 @@
     "eslint-plugin-prettier": "^4.2.1",
     "glob": "^9.3.4",
     "husky": "^7.0.2",
-    "lerna": "^6.1.0",
     "lint-staged": "^11.2.3",
-    "next": "^12.0.0",
     "prettier": "^2.8.8",
-    "typescript": "^4.4.3",
+    "typescript": "^4.9.5",
     "yaml": "^2.2.1",
     "zx": "^6.0.7"
   },
+  "workspaces": [
+    "*",
+    "message-passing/*",
+    "monorepo-folders/packages/*",
+    "food-delivery/packages/*",
+    "food-delivery/apps/*"
+  ],
   "lint-staged": {
     "*.{js,ts,json,md}": "prettier --write",
     "*.{js,ts}": "eslint --fix --cache"
-  },
-  "packageManager": "yarn@1.22.22+sha512.a6b2f7906b721bba3d67d4aff083df04dad64c399707841b7acf00f6b133b7ac24255f2652fa22ae3534329dc6180534e98d17432037ff6fd140556e2bb3137e"
+  }
 }

@@ -1,6 +1,6 @@
 import { DefaultLogger, Worker, Runtime } from '@temporalio/worker';
 import { Resource } from '@opentelemetry/resources';
-import { SemanticResourceAttributes } from '@opentelemetry/semantic-conventions';
+import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
 import { NodeSDK } from '@opentelemetry/sdk-node';
 import {
@@ -11,7 +11,7 @@ import * as activities from './activities';
 
 async function main() {
   const resource = new Resource({
-    [SemanticResourceAttributes.SERVICE_NAME]: 'interceptors-sample-worker',
+    [ATTR_SERVICE_NAME]: 'interceptors-sample-worker',
   });
   // Export spans to console for simplicity
   const exporter = new ConsoleSpanExporter();

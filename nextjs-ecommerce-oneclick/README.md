@@ -9,7 +9,7 @@ This example shows how to use [Temporal](https://docs.temporal.io/) with Next.js
 
 ```bash
 cd nextjs-ecommerce-oneclick # navigate into this folder
-npm i
+npm install
 npm run dev
 ```
 

@@ -18,7 +18,8 @@
   - [Full-stack apps](#full-stack-apps)
 - [External apps & libraries](#external-apps--libraries)
 - [Contributing](#contributing)
-  - [Upgrading the SDK version](#upgrading-the-sdk-version)
+  - [Dependencies](#dependencies)
+  - [Upgrading the SDK version in `package.json`s](#upgrading-the-sdk-version-in-packagejsons)
   - [Config files](#config-files)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
@@ -56,8 +57,8 @@ Run the [`hello-world`](./hello-world) sample:
 ```sh
 git clone https://github.com/temporalio/samples-typescript.git
 cd samples-typescript/hello-world
-npm i
-npm start
+npm install  # or `pnpm` or `yarn`
+npm run start
 ```
 
 and in another terminal:
@@ -65,6 +66,14 @@ and in another terminal:
 ```sh
 npm run workflow
 ```
+
+> [!NOTE]
+> Except when indicated otherwise, samples can be run using any package manager, e.g. `npm`,
+> `yarn` or `pnpm`. Refer to individual README.md files for specific instructions.
+>
+> The root project itself is optimized for work with `pnpm`. Installing dependencies of the root project
+> is not required, unless you plan to make contributions (see the [Contributing](#contributing) section
+> below for more details).
 
 ### Scaffold
 
@@ -190,16 +199,15 @@ To get started developing, run:
 ```bash
 git clone https://github.com/temporalio/samples-typescript.git
 cd samples-typescript
-npm install
-npm run prepare
-npm run bootstrap
+pnpm install
+pnpm run prepare
 ```
 
 Prettier and ESLint are run on each commit, but you can also run them manually:
 
 ```sh
-npm run format
-npm run lint
+pnpm run format
+pnpm run lint
 ```
 
 ### Dependencies
@@ -207,17 +215,11 @@ npm run lint
 - The docs and tutorials depend on `SNIPSTART` and `SNIPEND` comments in samples. Make sure to search through the [docs](https://github.com/temporalio/documentation/) and [learn](https://github.com/temporalio/temporal-learning) repos to make sure a snippet is unused before removing it.
 - There are [blog posts](https://temporal.io/blog/building-reliable-distributed-systems-in-node) and a PDF that depend on the file structure of the `food-delivery/` sample.
 
-### Updating to latest SDK version
-
-```sh
-lerna exec -- npm update
-```
-
 ### Upgrading the SDK version in `package.json`s
 
 ```sh
-npx zx .scripts/upgrade-versions.mjs 'VERSION_STRING_HERE'
-npm run format
+pnpm run upgrade-versions -- 'VERSION_STRING_HERE'
+pnpm run format
 ```
 
 ### Config files

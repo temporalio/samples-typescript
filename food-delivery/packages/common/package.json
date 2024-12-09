@@ -1,5 +1,5 @@
 {
-  "name": "common",
+  "name": "@fooddelivery/common",
   "version": "0.0.1",
   "license": "MIT",
   "main": "./lib/index.js",
@@ -10,12 +10,13 @@
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
   "dependencies": {
-    "@temporalio/client": "^1.11.5"
+    "@temporalio/client": "^1.11.5",
+    "@trpc/server": "^10.0.0-rc.8",
+    "@trpc/react-query": "^10.0.0-rc.8"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-custom": "*",
-    "tsconfig": "*",
-    "typescript": "^4.5.2"
+    "@fooddelivery/tsconfig": "*",
+    "eslint": "^8.57.0",
+    "typescript": "^4.9.5"
   }
 }
