@@ -1,0 +1,47 @@
+{
+  "name": "early-return",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
+    "start": "ts-node src/worker.ts",
+    "start.watch": "nodemon src/worker.ts",
+    "test": "mocha ./lib/test/*.test.js",
+    "workflow": "ts-node src/start-test-workflow.ts"
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
+  "dependencies": {
+    "@temporalio/activity": "file:~/src/temporalio/sdk-typescript/packages/activity",
+    "@temporalio/client": "file:~/src/temporalio/sdk-typescript/packages/client",
+    "@temporalio/worker": "file:~/src/temporalio/sdk-typescript/packages/worker",
+    "@temporalio/workflow": "file:~/src/temporalio/sdk-typescript/packages/workflow",
+    "nanoid": "3.x"
+  },
+  "devDependencies": {
+    "@temporalio/testing": "^1.11.2",
+    "@tsconfig/node16": "^1.0.0",
+    "@types/mocha": "10.0.1",
+    "@types/node": "^16.11.43",
+    "@types/uuid": "8.x",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-deprecation": "^1.2.1",
+    "mocha": "10.2.0",
+    "nodemon": "^2.0.12",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.8.1",
+    "typescript": "^4.9.4"
+  }
+}
