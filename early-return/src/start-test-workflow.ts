@@ -1,14 +1,15 @@
-import { Connection, Client, StartWorkflowOperation } from '@temporalio/client';
+import { Connection, Client, WithStartWorkflowOperation } from '@temporalio/client';
 import { transactionWorkflow } from './workflows';
 import { getTransactionConfirmation } from './shared';
 
 async function runTransactionWorkflow(transactionID: string, client: Client) {
   const workflowId = 'transaction-' + transactionID;
 
-  const startWorkflowOperation = new StartWorkflowOperation(transactionWorkflow, {
+  const startWorkflowOperation = new WithStartWorkflowOperation(transactionWorkflow, {
     workflowId,
     args: [transactionID],
     taskQueue: 'early-return',
+    workflowIdConflictPolicy: 'FAIL',
   });
 
   const earlyConfirmation = await client.workflow.executeUpdateWithStart(getTransactionConfirmation, {
