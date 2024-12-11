@@ -9,6 +9,7 @@
     "custom-logger",
     "dsl-interpreter",
     "ejson",
+    "early-return",
     "empty",
     "encryption",
     "expense",
