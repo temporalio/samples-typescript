@@ -1,10 +1,10 @@
 {
-  "version": "4.9.5",
+  "version": "5.6.3",
   "compilerOptions": {
     "target": "es2021",
     "lib": ["es2021"],
     "composite": true,
-    "module": "commonjs",
+    "module": "Node16",
     "moduleResolution": "node16",
     "allowSyntheticDefaultImports": true,
     "esModuleInterop": true,

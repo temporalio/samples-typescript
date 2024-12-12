@@ -1,102 +1,81 @@
-import { ActivityFailure, ApplicationFailure, Client, WorkflowFailedError } from '@temporalio/client';
-import { Runtime, DefaultLogger, Worker } from '@temporalio/worker';
+import { ActivityFailure, ApplicationFailure, WorkflowFailedError } from '@temporalio/client';
+import { Runtime, DefaultLogger, Worker, WorkerOptions } from '@temporalio/worker';
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import assert from 'assert';
-import axios from 'axios';
-import { after, afterEach, before, describe, it } from 'mocha';
+import { after, before, describe, it } from 'mocha';
 import sinon from 'sinon';
 import { v4 as uuid } from 'uuid';
-import * as activities from '../activities';
 import { httpWorkflow } from '../workflows';
+import * as activities from '../activities';
 import { WorkflowCoverage } from '@temporalio/nyc-test-coverage';
 
 const workflowCoverage = new WorkflowCoverage();
 
 describe('example workflow', async function () {
-  let shutdown: () => Promise<void>;
-  let execute: () => ReturnType<typeof httpWorkflow>;
-  let getClient: () => Client;
-
   this.slow(10_000);
   this.timeout(20_000);
+
+  let env: TestWorkflowEnvironment;
 
   before(async function () {
     // Filter INFO log messages for clearer test output
     Runtime.install({ logger: new DefaultLogger('WARN') });
-    const env = await TestWorkflowEnvironment.createLocal();
-
-    const worker = await Worker.create(
-      workflowCoverage.augmentWorkerOptions({
-        connection: env.nativeConnection,
-        taskQueue: 'test-activities',
-        workflowsPath: require.resolve('../workflows'),
-        activities,
-      })
-    );
-
-    const runPromise = worker.run();
-    shutdown = async () => {
-      worker.shutdown();
-      await runPromise;
-      await env.teardown();
-    };
-    getClient = () => env.client;
-  });
-
-  beforeEach(() => {
-    const client = getClient();
-
-    execute = () =>
-      client.workflow.execute(httpWorkflow, {
-        taskQueue: 'test-activities',
-        workflowExecutionTimeout: 10_000,
-        // Use random ID because ID is meaningless for this test
-        workflowId: `test-${uuid()}`,
-      });
+    env = await TestWorkflowEnvironment.createLocal();
   });
 
   after(async () => {
-    await shutdown();
-  });
-
-  after(() => {
+    await env.teardown();
     workflowCoverage.mergeIntoGlobalCoverage();
   });
 
-  afterEach(() => {
-    sinon.restore();
-  });
+  async function executeWithWorker(workerOptions: Pick<WorkerOptions, 'activities'>) {
+    const taskQueue = `test-activities-${uuid()}`;
+
+    const worker = await Worker.create(
+      workflowCoverage.augmentWorkerOptions({
+        ...workerOptions,
+        activities: { ...activities, ...workerOptions.activities },
+        connection: env.nativeConnection,
+        taskQueue,
+        workflowsPath: require.resolve('../workflows'),
+      }),
+    );
+    return await worker.runUntil(async () =>
+      env.client.workflow.execute(httpWorkflow, {
+        taskQueue,
+        workflowExecutionTimeout: 10_000,
+        // Use random ID because ID is meaningless for this test
+        workflowId: `test-${uuid()}`,
+      }),
+    );
+  }
 
   it('returns correct result', async () => {
-    const result = await execute();
+    const result = await executeWithWorker({});
     assert.equal(result, 'The answer is 42');
   });
 
   it('retries one failure', async () => {
-    // Make the first request fail, but subsequent requests succeed
-    let numCalls = 0;
-    sinon.stub(axios, 'get').callsFake(() => {
-      if (numCalls++ === 0) {
-        return Promise.reject(new Error('first error'));
-      }
-      return Promise.resolve({ data: { args: { answer: '88' } } });
-    });
+    const fakeMakeHTTPRequest = sinon.stub();
+    fakeMakeHTTPRequest.onFirstCall().rejects(new Error('example error'));
+    fakeMakeHTTPRequest.resolves('88');
 
-    const result = await execute();
+    const result = await executeWithWorker({ activities: { makeHTTPRequest: fakeMakeHTTPRequest } });
+
     assert.equal(result, 'The answer is 88');
-    assert.equal(numCalls, 2);
+    assert.equal(fakeMakeHTTPRequest.callCount, 2);
   });
 
   it('bubbles up activity errors', async () => {
-    sinon.stub(axios, 'get').callsFake(() => Promise.reject(new Error('example error')));
+    const fakeMakeHTTPRequest = sinon.stub().rejects(new Error('example error'));
 
     await assert.rejects(
-      execute,
+      executeWithWorker({ activities: { makeHTTPRequest: fakeMakeHTTPRequest } }),
       (err: unknown) =>
         err instanceof WorkflowFailedError &&
         err.cause instanceof ActivityFailure &&
         err.cause.cause instanceof ApplicationFailure &&
-        err.cause.cause.message === 'example error'
+        err.cause.cause.message === 'example error',
     );
   });
 });

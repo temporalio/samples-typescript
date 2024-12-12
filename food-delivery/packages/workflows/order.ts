@@ -10,12 +10,23 @@ import {
 import { errorMessage, getProductById, Product } from '@fooddelivery/common'
 import type * as activities from '@fooddelivery/activities'
 
-type OrderState = 'Charging card' | 'Paid' | 'Picked up' | 'Delivered' | 'Refunding'
+export type OrderState = 'Charging card' | 'Paid' | 'Picked up' | 'Delivered' | 'Refunding' | 'Failed'
 
 export interface OrderStatus {
   productId: number
   state: OrderState
   deliveredAt?: Date
+}
+
+export interface OrderStatusWithOrderId extends OrderStatus {
+  orderId: string
+}
+
+export interface OrderStatusWithOrderIdDao {
+  orderId: string
+  productId: number
+  state: OrderState
+  deliveredAt?: string
 }
 
 export const pickedUpSignal = defineSignal('pickedUp')
@@ -72,7 +83,7 @@ export async function order(productId: number): Promise<void> {
     state = 'Refunding'
     await refundAndNotify(
       product,
-      '⚠️ No drivers were available to pick up your order. Your payment has been refunded.'
+      '⚠️ No drivers were available to pick up your order. Your payment has been refunded.',
     )
     throw ApplicationFailure.create({ message: 'Not picked up in time' })
   }

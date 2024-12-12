@@ -12,12 +12,12 @@
     "@temporalio/workflow": "^1.11.5"
   },
   "devDependencies": {
-    "@tsconfig/node18": "^1.0.3",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.0.0",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-deprecation": "^1.2.1",
-    "typescript": "^4.9.5"
+    "@tsconfig/node18": "^18.2.4",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "typescript": "^5.6.3"
   }
 }

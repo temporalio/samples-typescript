@@ -8,11 +8,12 @@
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
+    "noImplicitAny": false,
     "forceConsistentCasingInFileNames": true,
     "noEmit": true,
     "incremental": true,
     "esModuleInterop": true,
-    "module": "esnext",
+    "module": "Node16",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "jsx": "preserve"
