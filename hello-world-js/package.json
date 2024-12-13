@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "start": "node src/worker.js",
     "start.watch": "nodemon src/worker.js",
@@ -22,9 +24,9 @@
   },
   "devDependencies": {
     "@types/node": "^22.9.1",
-    "eslint": "^7.32.0",
-    "eslint-config-prettier": "^8.3.0",
-    "nodemon": "^2.0.12",
-    "prettier": "^2.8.8"
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.4.2"
   }
 }

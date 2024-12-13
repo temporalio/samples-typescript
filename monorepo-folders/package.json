@@ -11,16 +11,24 @@
     "worker": "yarn workspace temporal-worker start",
     "build": "yarn workspaces run build",
     "build.workflows": "yarn workspace temporal-workflows build.watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "yarn workspaces run lint"
   },
   "dependencies": {
     "concurrently": "^6.3.0"
   },
   "devDependencies": {
+    "@tsconfig/node18": "^18.2.4",
     "@types/node": "^22.9.1",
-    "eslint": "^7.32.0",
-    "prettier": "^2.8.8",
-    "ts-loader": "^9.2.6"
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "prettier": "^3.4.2",
+    "ts-loader": "^9.2.6",
+    "typescript": "^5.6.3"
   },
   "packageManager": "yarn@1.22.17"
 }

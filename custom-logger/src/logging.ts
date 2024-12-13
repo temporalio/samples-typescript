@@ -25,7 +25,7 @@ const devLogFormat = winston.format.printf(({ level, message, label, timestamp, 
         restNoSymbols,
         false,
         4,
-        true
+        true,
       )}`;
 });
 
