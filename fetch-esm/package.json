@@ -6,6 +6,8 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "start": "node --loader ts-node/esm src/worker.ts",
     "start.watch": "nodemon src/worker.ts",

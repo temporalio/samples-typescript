@@ -5,6 +5,8 @@
   "scripts": {
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "server": "ts-node src/server",
     "server.watch": "nodemon src/server/index",

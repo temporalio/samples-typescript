@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "build": "tsc --build",
-    "example": "ts-node src/example.ts"
+    "example": "ts-node src/example.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint ."
   },
   "nodemonConfig": {
     "execMap": {

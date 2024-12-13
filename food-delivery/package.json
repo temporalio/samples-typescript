@@ -17,6 +17,7 @@
     "start:npm": "npm run --workspaces --if-present start",
     "start:yarn": "yarn workspaces run start",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
+    "format:check": "prettier --check .",
     "lint": "pnpm run -r lint",
     "lint:npm": "npm run --workspaces --if-present lint",
     "lint:yarn": "yarn workspaces run lint",

@@ -1,17 +1,10 @@
-.prettierignore
-.husky/
-node_modules
-build
-lib
-.next
-.vscode
-protobufs/protos/json-module.js
-protobufs/protos/root.d.ts
+# Ignore everything by default, except for the files and folders listed below
+*
+
+!.devcontainer/
+!.github/
+
+!.scripts/
 .scripts/list-of-samples.json
-package-lock.json
-pnpm-lock.yaml
 
-nestjs-exchange-rates/dist
-
-.github/workflows/ci.yml
-dist.css
+!./package.json

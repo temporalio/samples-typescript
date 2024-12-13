@@ -4,6 +4,8 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "start": "node src/worker.js",
     "start.watch": "nodemon src/worker.js",

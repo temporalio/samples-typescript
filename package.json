@@ -4,8 +4,10 @@
   "scripts": {
     "build": "pnpm run -r --filter './*' build",
     "test": "pnpm run -r --filter './*' test",
-    "format": "prettier --write .",
-    "format:check": "prettier --check .",
+    "format": "pnpm format:self ; pnpm run -r --filter './*' format",
+    "format:self": "prettier --write .",
+    "format:check": "pnpm format:check:self ; pnpm run -r --filter './*' format:check",
+    "format:check:self": "prettier --check .",
     "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
     "upgrade-versions": "zx .scripts/upgrade-versions.mjs",
     "lint": "pnpm run -r --filter './*' lint",

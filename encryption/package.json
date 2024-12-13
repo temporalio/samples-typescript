@@ -6,6 +6,8 @@
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
     "codec-server": "ts-node src/codec-server.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",

@@ -5,6 +5,8 @@
   "scripts": {
     "build": "tsc --build ./tsconfig.json",
     "build.once": "tsc --build --watch ./tsconfig.json",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",

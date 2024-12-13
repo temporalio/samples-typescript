@@ -11,6 +11,8 @@
     "worker": "yarn workspace temporal-worker start",
     "build": "yarn workspaces run build",
     "build.workflows": "yarn workspace temporal-workflows build.watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "yarn workspaces run lint"
   },
   "dependencies": {

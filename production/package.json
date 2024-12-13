@@ -6,6 +6,8 @@
     "build": "tsc --build",
     "build.watch": "tsc --build --watch",
     "build:workflow": "ts-node src/scripts/build-workflow-bundle.ts",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
