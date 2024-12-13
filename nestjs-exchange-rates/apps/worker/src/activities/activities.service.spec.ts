@@ -21,7 +21,7 @@ describe('ActivitiesService', () => {
           data: {
             rates: { AUD: 1.14 },
           },
-        })
+        }),
       );
 
       const rates = await activitiesService.getExchangeRates();

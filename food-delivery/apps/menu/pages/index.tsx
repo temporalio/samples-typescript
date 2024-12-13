@@ -20,7 +20,7 @@ export default function CustomerApp() {
         onSuccess: () => {
           setOrders([{ id: orderId, product, createdAt: new Date() }, ...orders])
         },
-      }
+      },
     )
   }
 
