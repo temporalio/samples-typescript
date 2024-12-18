@@ -6,8 +6,8 @@
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow": "ts-node src/client.ts",
-    "build": "npm-run-all build:protos build:ts",
-    "build.watch": "npm-run-all build:protos build:ts-watch",
+    "build": "pnpm run build:protos && pnpm run build:ts",
+    "build.watch": "pnpm run build:protos ; pnpm run build:ts-watch",
     "build:ts": "tsc --build",
     "build:ts-watch": "tsc --build --watch",
     "build:protos": "pbjs -t json-module -w commonjs -r protobuf-sample -o protos/json-module.js protos/*.proto && pbjs -t static-module protos/*.proto | pbts -o protos/root.d.ts -",
@@ -46,7 +46,9 @@
     "nodemon": "^3.1.7",
     "npm-run-all": "^4.1.5",
     "prettier": "^3.4.2",
-    "protobufjs": "6.11.2",
+    "protobufjs": "^7.4.0",
+    "protobufjs-cli": "^1.1.3",
+    "semver": "7.6.3",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }

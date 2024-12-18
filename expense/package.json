@@ -30,8 +30,8 @@
     "@temporalio/worker": "^1.11.5",
     "@temporalio/workflow": "^1.11.5",
     "@temporalio/common": "^1.11.5",
-    "axios": "^0.26.0",
-    "express": "~4.17.1",
+    "axios": "^0.28.0",
+    "express": "~4.20.0",
     "uuid": "8.3.2"
   },
   "devDependencies": {
