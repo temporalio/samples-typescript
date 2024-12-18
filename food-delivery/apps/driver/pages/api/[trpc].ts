@@ -1,8 +1,9 @@
 import { initTRPC } from '@trpc/server'
 import * as trpcNext from '@trpc/server/adapters/next'
 import { z } from 'zod'
-import { Context, createContext } from 'common/trpc-context'
-import { deliveredSignal, getStatusQuery, pickedUpSignal } from 'workflows'
+import { Context, createContext } from '@fooddelivery/common/trpc-context'
+import { deliveredSignal, getStatusQuery, pickedUpSignal, OrderStatusWithOrderId } from '@fooddelivery/workflows'
+import {} from '@temporalio/client'
 
 const t = initTRPC.context<Context>().create()
 
@@ -20,7 +21,7 @@ export const appRouter = t.router({
       query: 'WorkflowType = "order"',
     })
 
-    const promises = []
+    const promises: Promise<OrderStatusWithOrderId>[] = []
     for await (const workflow of list) {
       if (workflow.status.name === 'TERMINATED') {
         continue
@@ -38,7 +39,7 @@ export const appRouter = t.router({
             state: workflow.status.name === 'FAILED' ? 'Failed' : status.state,
             orderId,
           }
-        })()
+        })(),
       )
     }
 

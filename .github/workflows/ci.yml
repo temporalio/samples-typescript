@@ -18,7 +18,7 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
-        node: [ 16, 18, 20 ]
+        node: [ 18, 20, 22 ]
         project:
           [
             activities-examples,
@@ -26,83 +26,58 @@ jobs:
             nestjs-exchange-rates,
             timer-examples
           ]
+        include:
+          - os: windows-latest
+            node: 22
+            node-release-override: 22.11.0
 
     steps:
       - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+          version: 9
+
       - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          # Node 22.12.0 on Windows incorrectly resolves `localhost` to `::1`, rather than both `::1` and `127.0.0.1`.
+          # THis causes errors when executing tests. So until this gets fixed upstream, we force the last known good
+          # version of Node on Windows.
+          # See https://github.com/nodejs/node/issues/56137 (_resolved_ already, but not yet released).
+          node-version: ${{ matrix.node-release-override || matrix.node }}
           # Comment out cache line when testing with act:
           # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
-          cache: 'npm'
-      - run: yarn
+          cache: 'pnpm'
+
+      - run: pnpm install
         working-directory: ${{ matrix.project }}
+
       - run: npm run build
         working-directory: ${{ matrix.project }}
+
       - run: npm test
         working-directory: ${{ matrix.project }}
 
-  lint-individual:
+  lint-format-build:
     runs-on: ubuntu-latest
-
-    strategy:
-      fail-fast: false
-      matrix:
-        project:
-          [
-            activities-cancellation-heartbeating,
-            activities-dependency-injection,
-            activities-examples,
-            child-workflows,
-            continue-as-new,
-            cron-workflows,
-            custom-logger,
-            dsl-interpreter,
-            ejson,
-            encryption,
-            expense,
-            fetch-esm,
-            food-delivery,
-            grpc-calls,
-            hello-world,
-            hello-world-js,
-            hello-world-mtls,
-            interceptors-opentelemetry,
-            monorepo-folders,
-            mutex,
-            nestjs-exchange-rates,
-            nextjs-ecommerce-oneclick,
-            patching-api,
-            production,
-            protobufs,
-            query-subscriptions,
-            saga,
-            schedules,
-            search-attributes,
-            signals-queries,
-            sinks,
-            snippets,
-            state,
-            timer-examples,
-            timer-progress,
-            vscode-debugger,
-            worker-specific-task-queues
-          ]
-
     steps:
       - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+        name: Install pnpm
+        with:
+          run_install: false
+          version: 9
+
       - uses: actions/setup-node@v4
         with:
-          node-version: 20
-          # Comment out cache line when testing with act:
-          # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
-          cache: 'npm'
-      - run: yarn
-        working-directory: ${{ matrix.project }}
-      - run: npm run build
-        working-directory: ${{ matrix.project }}
-        if: ${{ matrix.project != 'hello-world-js' }}
-      - run: npm run lint
-        working-directory: ${{ matrix.project }}
-      - run: npx prettier . --check
-        working-directory: ${{ matrix.project }}
+          node-version: 22
+          cache: 'pnpm'
+
+      - run: pnpm install
+
+      - run: pnpm lint
+      - run: pnpm format:check
+      - run: pnpm build

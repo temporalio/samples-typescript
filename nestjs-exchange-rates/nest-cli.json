@@ -5,6 +5,7 @@
   "monorepo": true,
   "root": "apps/server",
   "compilerOptions": {
+    "deleteOutDir": true,
     "webpack": false,
     "tsConfigPath": "apps/server/tsconfig.app.json"
   },

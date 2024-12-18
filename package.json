@@ -2,38 +2,45 @@
   "name": "samples-typescript",
   "private": true,
   "scripts": {
-    "bootstrap": "lerna bootstrap --npm-client=yarn --ignore=monorepo-folders --ignore=nestjs-exchange-rates --ignore=food-delivery",
-    "build": "lerna run build --ignore=monorepo-folders --ignore=nestjs-exchange-rates --ignore=food-delivery",
-    "test": "lerna run --stream test",
-    "format": "prettier --write .",
+    "build": "pnpm run -r --filter './*' build",
+    "test": "pnpm run -r --filter './*' test",
+    "format": "pnpm format:self ; pnpm run -r --filter './*' format",
+    "format:self": "prettier --write .",
+    "format:check": "pnpm format:check:self ; pnpm run -r --filter './*' format:check",
+    "format:check:self": "prettier --check .",
     "copy-shared-files": "zx .scripts/copy-shared-files.mjs",
-    "lint": "lerna run lint",
+    "upgrade-versions": "zx .scripts/upgrade-versions.mjs",
+    "lint": "pnpm run -r --filter './*' lint",
     "prepare": "husky install",
     "update-toc": "doctoc README.md"
   },
   "devDependencies": {
-    "@temporalio/client": "^1.11.3",
-    "@tsconfig/node16": "^1.0.2",
-    "@typescript-eslint/eslint-plugin": "^4.30.0",
-    "@typescript-eslint/parser": "^4.30.0",
     "doctoc": "^2.1.0",
-    "eslint": "^7.32.0",
-    "eslint-config-next": "^12.0.3",
-    "eslint-config-prettier": "^8.3.0",
-    "eslint-plugin-deprecation": "^1.2.1",
-    "eslint-plugin-prettier": "^4.2.1",
-    "glob": "^9.3.4",
+    "glob": "^11.0.0",
     "husky": "^7.0.2",
-    "lerna": "^6.1.0",
-    "lint-staged": "^11.2.3",
-    "next": "^12.0.0",
-    "prettier": "^2.8.8",
-    "typescript": "^4.4.3",
+    "prettier": "^3.4.2",
     "yaml": "^2.2.1",
-    "zx": "^6.0.7"
+    "zx": "^8.2.4"
   },
-  "lint-staged": {
-    "*.{js,ts,json,md}": "prettier --write",
-    "*.{js,ts}": "eslint --fix --cache"
-  }
+  "pnpm": {
+    "packageExtensions": {
+      "eslint-config-next": {
+        "peerDependencies": {
+          "next": "*"
+        }
+      },
+      "mocha": {
+        "peerDependencies": {
+          "ts-node": "*"
+        }
+      }
+    }
+  },
+  "workspaces": [
+    "*",
+    "message-passing/*",
+    "monorepo-folders/packages/*",
+    "food-delivery/packages/*",
+    "food-delivery/apps/*"
+  ]
 }

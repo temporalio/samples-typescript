@@ -1,5 +1,5 @@
 {
-  "name": "worker",
+  "name": "@fooddelivery/worker",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -19,18 +19,18 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.11.3",
-    "@temporalio/worker": "^1.11.3",
-    "@temporalio/workflow": "^1.11.3",
-    "common": "*",
-    "workflows": "*"
+    "@fooddelivery/common": "*",
+    "@fooddelivery/workflows": "*",
+    "@temporalio/activity": "^1.11.5",
+    "@temporalio/common": "^1.11.5",
+    "@temporalio/worker": "^1.11.5",
+    "@temporalio/workflow": "^1.11.5"
   },
   "devDependencies": {
-    "@types/node": "^16.11.43",
-    "eslint-config-custom": "*",
-    "nodemon": "^2.0.12",
-    "ts-node": "^10.8.1",
-    "tsconfig": "*",
-    "typescript": "^4.4.2"
+    "@fooddelivery/tsconfig": "*",
+    "@types/node": "^22.9.1",
+    "nodemon": "^3.1.7",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
   }
 }

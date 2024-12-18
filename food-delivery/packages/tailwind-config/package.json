@@ -1,5 +1,5 @@
 {
-  "name": "tailwind-config",
+  "name": "@fooddelivery/tailwind-config",
   "version": "0.0.1",
   "license": "MIT"
 }

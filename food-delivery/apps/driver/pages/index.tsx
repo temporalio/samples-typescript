@@ -1,4 +1,4 @@
-import { Footer, Header } from 'ui'
+import { Footer, Header } from '@fooddelivery/ui'
 import { OrderTable } from '../components/OrderTable'
 
 export default function DriverApp() {

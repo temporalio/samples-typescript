@@ -1,19 +1,24 @@
 import { NativeConnection, Worker } from '@temporalio/worker'
-import * as activities from 'activities'
-import { taskQueue } from 'common'
-import { namespace, getConnectionOptions } from 'common/lib/temporal-connection'
+import * as activities from '@fooddelivery/activities'
+import { taskQueue } from '@fooddelivery/common'
+import { namespace, getConnectionOptions } from '@fooddelivery/common/lib/temporal-connection'
 
 async function run() {
   const connection = await NativeConnection.connect(getConnectionOptions())
-  const worker = await Worker.create({
-    workflowsPath: require.resolve('../../../packages/workflows/'),
-    activities,
-    connection,
-    namespace,
-    taskQueue,
-  })
+  try {
+    const worker = await Worker.create({
+      workflowsPath: require.resolve('../../../packages/workflows/'),
+      activities,
+      connection,
+      namespace,
+      taskQueue,
+    })
 
-  await worker.run()
+    await worker.run()
+  } finally {
+    // Close the connection once the worker has stopped
+    await connection.close()
+  }
 }
 
 run().catch((err) => {

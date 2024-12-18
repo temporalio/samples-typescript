@@ -1,5 +1,5 @@
 {
-  "name": "menu",
+  "name": "@fooddelivery/menu",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,35 +11,37 @@
     "postinstall": "npm run tailwind"
   },
   "dependencies": {
+    "@fooddelivery/common": "*",
+    "@fooddelivery/tailwind-config": "*",
+    "@fooddelivery/ui": "*",
+    "@fooddelivery/workflows": "*",
+    "@heroicons/react": "^2.0.13",
     "@tanstack/react-query": "^4.16.1",
+    "@temporalio/client": "^1.11.5",
     "@trpc/client": "^10.0.0-rc.8",
     "@trpc/next": "^10.0.0-rc.8",
     "@trpc/react-query": "^10.0.0-rc.8",
     "@trpc/server": "^10.0.0-rc.8",
-    "common": "*",
-    "next": "^13.0.0",
+    "next": "^15.1.1",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sharp": "^0.31.2",
-    "tailwind-config": "*",
-    "ui": "*",
+    "sharp": "^0.32.6",
     "uuid": "^9.0.0",
-    "workflows": "*",
     "zod": "^3.19.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "@types/node": "^17.0.12",
+    "@fooddelivery/eslint-config-food": "*",
+    "@fooddelivery/tsconfig": "*",
+    "@types/node": "^22.9.1",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",
     "@types/uuid": "^8.3.4",
     "autoprefixer": "^10.4.0",
     "concurrently": "7.5.0",
-    "eslint": "7.32.0",
-    "eslint-config-food": "*",
-    "postcss": "^8.4.5",
+    "eslint": "^8.57.1",
+    "postcss": "^8.4.31",
     "tailwindcss": "^3.1.6",
-    "tsconfig": "*",
-    "typescript": "^4.5.3"
+    "typescript": "^5.6.3"
   }
 }
