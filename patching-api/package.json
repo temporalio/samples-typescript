@@ -26,7 +26,7 @@
     "@temporalio/client": "^1.11.5",
     "@temporalio/worker": "^1.11.5",
     "@temporalio/workflow": "^1.11.5",
-    "axios": "0.26.0",
+    "axios": "0.28.0",
     "eslint": "^8.57.1",
     "node-fetch": "2.x"
   },
