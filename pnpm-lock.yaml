@@ -392,8 +392,8 @@ importers:
         specifier: ^1.11.5
         version: 1.11.5
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: 5.x
+        version: 5.0.9
       triple-beam:
         specifier: ^1.3.0
         version: 1.4.1
@@ -572,8 +572,8 @@ importers:
         specifier: ^1.11.5
         version: 1.11.5
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: 5.x
+        version: 5.0.9
     devDependencies:
       '@temporalio/testing':
         specifier: ^1.11.5
@@ -1212,8 +1212,8 @@ importers:
         specifier: ^1.11.5
         version: 1.11.5
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: 5.x
+        version: 5.0.9
     devDependencies:
       '@tsconfig/node18':
         specifier: ^18.2.4
@@ -1264,8 +1264,8 @@ importers:
         specifier: ^1.11.5
         version: 1.11.5
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: 5.x
+        version: 5.0.9
     devDependencies:
       '@temporalio/testing':
         specifier: ^1.11.5
@@ -1472,8 +1472,8 @@ importers:
         specifier: ^1.11.5
         version: 1.11.5
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: 5.x
+        version: 5.0.9
     devDependencies:
       '@temporalio/testing':
         specifier: ^1.11.5
@@ -1536,8 +1536,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: 5.x
+        version: 5.0.9
     devDependencies:
       '@temporalio/testing':
         specifier: ^1.11.5
@@ -1600,8 +1600,8 @@ importers:
         specifier: ^0.5.0
         version: 0.5.0
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: 5.x
+        version: 5.0.9
     devDependencies:
       '@temporalio/testing':
         specifier: ^1.11.5
@@ -1816,8 +1816,8 @@ importers:
         specifier: ^1.11.5
         version: 1.11.5
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: 5.x
+        version: 5.0.9
     devDependencies:
       '@temporalio/testing':
         specifier: ^1.11.5
@@ -2639,8 +2639,8 @@ importers:
         specifier: ^1.11.5
         version: 1.11.5
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: 5.x
+        version: 5.0.9
     devDependencies:
       '@tsconfig/node18':
         specifier: ^18.2.4
@@ -2975,8 +2975,8 @@ importers:
         specifier: ^1.11.5
         version: 1.11.5
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: 5.x
+        version: 5.0.9
     devDependencies:
       '@tsconfig/node18':
         specifier: ^18.2.4
@@ -10189,6 +10189,11 @@ packages:
   nanoid@3.3.8:
     resolution: {integrity: sha512-WNLf5Sd8oZxOm+TzppcYk8gVOgP+l58xNy58D0nbUnOxOWRWvlcCV4kUF7ltmI6PsrLl/BgKEyS4mqsGChFN0w==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
+  nanoid@5.0.9:
+    resolution: {integrity: sha512-Aooyr6MXU6HpvvWXKoVoXwKMs/KyVakWwg7xQfv5/S/RIgJMy0Ifa45H9qqYy7pTCszrHzP21Uk4PZq2HpEM8Q==}
+    engines: {node: ^18 || >=20}
     hasBin: true
 
   napi-build-utils@1.0.2:
@@ -22618,6 +22623,8 @@ snapshots:
   nanoid@3.3.3: {}
 
   nanoid@3.3.8: {}
+
+  nanoid@5.0.9: {}
 
   napi-build-utils@1.0.2: {}
 
