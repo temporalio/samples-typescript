@@ -26,6 +26,10 @@ jobs:
             nestjs-exchange-rates,
             timer-examples
           ]
+        include:
+          - os: windows-latest
+            node: 22
+            node-release-override: 22.11.0
 
     steps:
       - uses: actions/checkout@v4
@@ -38,7 +42,11 @@ jobs:
 
       - uses: actions/setup-node@v4
         with:
-          node-version: ${{ matrix.node }}
+          # Node 22.12.0 on Windows incorrectly resolves `localhost` to `::1`, rather than both `::1` and `127.0.0.1`.
+          # THis causes errors when executing tests. So until this gets fixed upstream, we force the last known good
+          # version of Node on Windows.
+          # See https://github.com/nodejs/node/issues/56137 (_resolved_ already, but not yet released).
+          node-version: ${{ matrix.node-release-override || matrix.node }}
           # Comment out cache line when testing with act:
           # (Test command is: act --platform ubuntu-latest=lucasalt/act_base:latest)
           cache: 'pnpm'
