@@ -4,7 +4,9 @@ import * as wo from '@temporalio/worker';
 import { transactionWorkflow } from '../workflows';
 import { getTransactionConfirmation } from '../shared';
 import assert from 'assert';
+import { nanoid } from 'nanoid';
 import { WithStartWorkflowOperation } from '@temporalio/client';
+
 const taskQueue = 'early-return';
 
 describe('transaction workflow', function () {
@@ -38,7 +40,7 @@ describe('transaction workflow', function () {
   it('supports early return', async function () {
     await worker.runUntil(async () => {
       const startOp = new WithStartWorkflowOperation(transactionWorkflow, {
-        workflowId: `transaction-early-return-test`,
+        workflowId: `transaction-${nanoid()}`,
         taskQueue,
         workflowIdConflictPolicy: 'FAIL',
       });
