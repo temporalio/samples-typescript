@@ -5,9 +5,8 @@ import { getTransactionConfirmation } from './shared';
 async function runTransactionWorkflow(transactionID: string, client: Client) {
   const workflowId = 'transaction-' + transactionID;
 
-  const startWorkflowOperation = WithStartWorkflowOperation.create(transactionWorkflow, {
+  const startWorkflowOperation = new WithStartWorkflowOperation(transactionWorkflow, {
     workflowId,
-    args: [transactionID],
     taskQueue: 'early-return',
     workflowIdConflictPolicy: 'FAIL',
   });
