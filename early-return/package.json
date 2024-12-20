@@ -29,7 +29,7 @@
     "nanoid": "3.x"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.11.5",
+    "@temporalio/testing": "file:~/src/temporalio/sdk-typescript/packages/testing",
     "@tsconfig/node18": "^18.2.4",
     "@types/mocha": "8.x",
     "@types/node": "^22.9.1",
