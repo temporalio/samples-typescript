@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "format": "prettier --write .",
-    "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "start": "ts-node scratchpad.ts",
@@ -20,10 +19,10 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.11.5",
-    "@temporalio/client": "^1.11.5",
-    "@temporalio/worker": "^1.11.5",
-    "@temporalio/workflow": "^1.11.5"
+    "@temporalio/activity": "^1.11.6",
+    "@temporalio/client": "^1.11.6",
+    "@temporalio/worker": "^1.11.6",
+    "@temporalio/workflow": "^1.11.6"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
