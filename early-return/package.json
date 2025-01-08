@@ -9,7 +9,7 @@
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "test": "mocha --exit --require ts-node/register src/test/*.test.ts",
-    "workflow": "ts-node src/start-test-workflow.ts"
+    "workflow": "ts-node src/start-workflow.ts"
   },
   "nodemonConfig": {
     "execMap": {
