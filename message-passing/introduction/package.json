@@ -28,7 +28,7 @@
     "@temporalio/worker": "^1.11.6",
     "@temporalio/workflow": "^1.11.6",
     "async-mutex": "^0.5.0",
-    "nanoid": "3.x"
+    "nanoid": "5.x"
   },
   "devDependencies": {
     "@temporalio/testing": "^1.11.6",
