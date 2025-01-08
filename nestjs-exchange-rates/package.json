@@ -8,7 +8,7 @@
     "build": "npm run build:server && npm run build:worker",
     "build:server": "nest build --webpack server",
     "build:worker": "nest build --webpack worker && ts-node apps/worker/scripts/build-workflow-bundle.ts",
-    "format": "prettier --write \"apps/**/*.ts\" \"libs/**/*.ts\"",
+    "format": "prettier --write .",
     "format:check": "prettier --check .",
     "start:server": "nest start server",
     "start:server:dev": "nest start --watch",
