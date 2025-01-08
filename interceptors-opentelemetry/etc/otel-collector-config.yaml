@@ -30,7 +30,7 @@ exporters:
   # A PULL exporter supporting 'metrics'
   # Prometheus will peiodically scrape that exporter
   prometheus:
-    endpoint: "0.0.0.0:9090"
+    endpoint: '0.0.0.0:9090'
 
   # A PUSH exporter supporting 'traces'
   zipkin:

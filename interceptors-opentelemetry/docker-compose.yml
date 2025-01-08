@@ -4,9 +4,9 @@ services:
   jaeger:
     image: jaegertracing/all-in-one:latest
     ports:
-      - "16686:16686" # Web UI
-      - "14268:14268" # HTTP Port for spans
-      - "6831:6831/udp" # UDP port for Jaeger agent
+      - '16686:16686' # Web UI
+      - '14268:14268' # HTTP Port for spans
+      - '6831:6831/udp' # UDP port for Jaeger agent
 
   zipkin:
     image: openzipkin/zipkin:latest
@@ -14,18 +14,18 @@ services:
       - JAVA_OPTS=-Xms1024m -Xmx1024m -XX:+ExitOnOutOfMemoryError
     restart: always
     ports:
-      - "9411:9411"
+      - '9411:9411'
 
   otel-collector:
     image: otel/opentelemetry-collector:latest
-    command: ["--config=/etc/otel-collector-config.yaml"]
+    command: ['--config=/etc/otel-collector-config.yaml']
     volumes:
       - ./etc/otel-collector-config.yaml:/etc/otel-collector-config.yaml
     ports:
-      - "13133:13133" # health_check extension
-      - "4317:4317" # OTLP gRPC receiver
-      - "4318:4318" # OTLP HTTP receiver
-      - "55679:55679" # zpages extension
+      - '13133:13133' # health_check extension
+      - '4317:4317' # OTLP gRPC receiver
+      - '4318:4318' # OTLP HTTP receiver
+      - '55679:55679' # zpages extension
     depends_on:
       - jaeger
       - zipkin
@@ -35,6 +35,6 @@ services:
     volumes:
       - ./etc/prometheus.yaml:/etc/prometheus/prometheus.yml
     ports:
-      - "9090:9090"
+      - '9090:9090'
     depends_on:
       - otel-collector

@@ -7,14 +7,6 @@ import { OpenTelemetryWorkflowClientInterceptor } from '@temporalio/interceptors
 import { example } from './workflows';
 
 async function run() {
-  const resource = new Resource({
-    [ATTR_SERVICE_NAME]: 'interceptors-sample-client',
-  });
-  // Export spans to console for simplicity
-  const exporter = new ConsoleSpanExporter();
-
-  const otel = new NodeSDK({ traceExporter: exporter, resource });
-  await otel.start();
   // Connect to localhost with default ConnectionOptions,
   // pass options to the Connection constructor to configure TLS and other settings.
   const connection = await Connection.connect();
