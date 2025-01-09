@@ -1,4 +1,4 @@
-const glob = require('glob');
+const { glob } = require('glob');
 
 // Run with https://github.com/google/zx
 const [scriptName, versionToSet] = process.argv.slice(2);

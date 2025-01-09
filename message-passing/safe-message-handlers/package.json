@@ -11,7 +11,6 @@
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "simulation": "ts-node src/run-simulation.ts",
-    "format": "prettier --config .prettierrc 'src/**/*.ts' --write",
     "test": "mocha --exit --require ts-node/register src/test/*.test.ts"
   },
   "nodemonConfig": {
@@ -24,15 +23,15 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.11.5",
-    "@temporalio/client": "^1.11.5",
-    "@temporalio/worker": "^1.11.5",
-    "@temporalio/workflow": "^1.11.5",
+    "@temporalio/activity": "^1.11.6",
+    "@temporalio/client": "^1.11.6",
+    "@temporalio/worker": "^1.11.6",
+    "@temporalio/workflow": "^1.11.6",
     "async-mutex": "^0.5.0",
     "nanoid": "3.x"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.11.5",
+    "@temporalio/testing": "^1.11.6",
     "@tsconfig/node18": "^18.2.4",
     "@types/mocha": "8.x",
     "@types/node": "^22.9.1",
