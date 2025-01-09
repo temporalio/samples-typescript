@@ -8,9 +8,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "start": "ts-node src/worker.ts",
-    "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/client.ts"
+    "start": "ts-node -r ./src/instrumentation.ts src/worker.ts",
+    "start.watch": "nodemon -r ./src/instrumentation.ts src/worker.ts",
+    "workflow": "ts-node -r ./src/instrumentation.ts ./src/client.ts"
   },
   "nodemonConfig": {
     "execMap": {

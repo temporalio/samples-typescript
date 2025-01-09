@@ -1,32 +1,29 @@
-import { Connection, Client } from '@temporalio/client';
-import { Resource } from '@opentelemetry/resources';
-import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
-import { ConsoleSpanExporter } from '@opentelemetry/sdk-trace-base';
-import { NodeSDK } from '@opentelemetry/sdk-node';
+import { randomUUID } from 'crypto';
 import { OpenTelemetryWorkflowClientInterceptor } from '@temporalio/interceptors-opentelemetry';
+import { Connection, Client } from '@temporalio/client';
 import { example } from './workflows';
 
 async function run() {
   // Connect to localhost with default ConnectionOptions,
   // pass options to the Connection constructor to configure TLS and other settings.
   const connection = await Connection.connect();
+
   // Attach the OpenTelemetryClientCallsInterceptor to the client.
   const client = new Client({
     connection,
+
+    // Registers OpenTelemetry Tracing interceptor for Client calls
     interceptors: {
       workflow: [new OpenTelemetryWorkflowClientInterceptor()],
     },
   });
-  try {
-    const result = await client.workflow.execute(example, {
-      taskQueue: 'interceptors-opentelemetry-example',
-      workflowId: 'otel-example-0',
-      args: ['Temporal'],
-    });
-    console.log(result); // Hello, Temporal!
-  } finally {
-    await otel.shutdown();
-  }
+
+  const result = await client.workflow.execute(example, {
+    taskQueue: 'interceptors-opentelemetry-example',
+    workflowId: randomUUID(),
+    args: ['Temporal'],
+  });
+  console.log(result); // Hello, Temporal!
 }
 
 run().catch((err) => {

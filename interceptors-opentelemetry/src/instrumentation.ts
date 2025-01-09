@@ -23,8 +23,8 @@ import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
  * IMPORTANT: Uncomment either of the three options below to choose the desired exporter,
  *            as appropriate for your environment.
  */
-function setupTraceExporter(): SpanExporter {
-  // (1) A span exporter that simply output to the console.
+function setupTraceExporter(): SpanExporter | undefined {
+  // (1) A span exporter that simply outputs to the console.
   //     This only makes sense for demonstration purpose.
   //
   return new ConsoleSpanExporter();
@@ -47,6 +47,8 @@ function setupTraceExporter(): SpanExporter {
   //   timeoutMillis: 1000,   // Default is 10s, which reduces performance overhead in production,
   //                          // but a shorter value is convenient in dev and test use cases.
   // });
+
+  return undefined;
 }
 
 /**
@@ -55,10 +57,10 @@ function setupTraceExporter(): SpanExporter {
  * Note this is only pertinent if you want to export metrics from the Node process itself;
  * metrics for the Temporal Worker are controlled through the Runtime options.
  *
- * IMPORTANT: Uncomment either of the three options below to choose the desired exporter,
+ * IMPORTANT: Uncomment either of the four options below to choose the desired exporter,
  *            as appropriate for your environment.
  */
-function setupMetricReader(): MetricReader {
+function setupMetricReader(): MetricReader | undefined {
   // (1) A metric reader that periodically outputs all metrics to the console.
   //     This only makes sense for demonstration purpose.
   //
@@ -72,8 +74,8 @@ function setupMetricReader(): MetricReader {
   // return new PeriodicExportingMetricReader({
   //   exporter: new OTLPMetricExporterGrpc({
   //     url: 'http://127.0.0.1:4317',
-  //     timeoutMillis: 1000,    // Default is 10s, which reduces performance overhead in production,
-  //                             // but a shorter value is convenient in dev and test use cases.
+  //     timeoutMillis: 1000,   // Default is 10s, which reduces performance overhead in production,
+  //                            // but a shorter value is convenient in dev and test use cases.
   //     }),
   // })
 
@@ -84,15 +86,20 @@ function setupMetricReader(): MetricReader {
   // return new PeriodicExportingMetricReader({
   //   exporter: new OTLPMetricExporterGrpc({
   //     url: 'http://127.0.0.1:4318/v1/metrics',
-  //     timeoutMillis: 1000,    // Default is 10s, which reduces performance overhead in production,
-  //                             // but a shorter value is convenient in dev and test use cases.
+  //     timeoutMillis: 1000,   // Default is 10s, which reduces performance overhead in production,
+  //                            // but a shorter value is convenient in dev and test use cases.
   //     }),
   // })
 
   // (4) A metrics exporter that exposes metrics as an HTTP endpoint that can be queried by a collector.
   //
   // return new PrometheusExporter({
-  //   port: 9002,
+  //   host: '127.0.0.1',       // Depending on you execution environment, you might need to set
+  //                            // `host` to `0.0.0.0` instead; beware however that doing so in
+  //                            // environments where this is not needed might expose your metrics
+  //                            // to the public Internet. This is why we default to the safer
+  //                            // value of `127.0.0.1`.
+  //   port: 9092,              // Runtime's metrics will be exposed on port 9091, Node's metrics on 9092.
   // })
 }
 
@@ -100,10 +107,10 @@ export const resource = new Resource({
   [ATTR_SERVICE_NAME]: 'interceptors-sample',
 });
 
-const traceExporter = setupTraceExporter();
+export const traceExporter = setupTraceExporter();
 const metricReader = setupMetricReader();
 
-const otel = new NodeSDK({
+new NodeSDK({
   // This is required for use with the `@temporalio/interceptors-opentelemetry` package.
   resource,
 
@@ -111,12 +118,10 @@ const otel = new NodeSDK({
   traceExporter,
 
   // This is optional; it enables collecting metrics about the Node process, and some other libraries.
-  // Note that Temporal's Worker metrics are controlled through the Runtime options and do not relates
+  // Note that Temporal's Worker metrics are controlled through the Runtime options and do not relate
   // to this option.
   metricReader,
 
   // This is optional; it enables auto-instrumentation for certain libraries.
   instrumentations: [getNodeAutoInstrumentations()],
-});
-
-otel.start();
+}).start();
