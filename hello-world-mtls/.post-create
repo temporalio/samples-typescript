@@ -1,25 +1,6 @@
-To begin development, install the Temporal CLI:
-
-Mac: {cyan brew install temporal}
-Other: Download and extract the latest release from https://github.com/temporalio/cli/releases/latest
-
-Start Temporal Server:
-
-{cyan temporal server start-dev}
-
 Use Node version 18+ (v22.x is recommended):
 
 Mac: {cyan brew install node@22}
 Other: https://nodejs.org/en/download/
 
-Then follow the mTLS setup instructions:
-
-{bold https://docs.temporal.io/typescript/security/#mtls-tutorial}
-
-For step 8, run:
-
-{cyan npm run start.watch}
-
-For step 9, in another shell, run:
-
-{cyan npm run workflow}
+Refer to the README.md file for further instructions.
