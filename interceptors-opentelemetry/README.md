@@ -18,22 +18,21 @@ collection.
 
 1. Make a sure you have a local [Temporal Server](https://github.com/temporalio/cli/#installation) running:
 
-    ```bash
-    temporal server start-dev
-    ```
+   ```bash
+   temporal server start-dev
+   ```
 
 2. (Optional) To use the OpenTelemetry collector, run the Docker Compose file:
 
-    ```
-    docker compose up -d
-    ```
+   ```
+   docker compose up -d
+   ```
 
 3. Install NPM dependencies:
 
    ```
    npm install   # or `pnpm` or `yarn`
    ```
-
 
 ### Output telemetry records to the console
 
@@ -76,17 +75,15 @@ You will observe in your console various telemetry records:
 
 The following subsections describe other configurations that you may experiment with.
 
-
 ### Expose native runtime metrics as a Prometheus endpoint
 
 To configure the sample to expose native runtime metrics as Prometheus endpoints:
 
 1. In file `instrumentation.ts`:
-    1. In function `setupTraceExporter()`, comment out all blocks;
-    1. In function `setupMetricReader()`, uncomment block `(4)`, and comment out all other blocks;
+   1. In function `setupTraceExporter()`, comment out all blocks;
+   2. In function `setupMetricReader()`, uncomment block `(4)`, and comment out all other blocks;
 2. In file `worker.ts`:
-    1. In function `initializeRuntime()`, uncomment block `(2)`, and comment out all other blocks;
-    2. In function `main()`, comment out the `sinks` and `interceptors` properties
+   1. In function `initializeRuntime()`, uncomment block `(2)`, and comment out all other blocks;
 3. `npm run start.watch` to start the Worker.
 4. In another shell, `npm run workflow` to run the Workflow.
 
@@ -100,10 +97,10 @@ To view metrics:
 To configure the sample to send metrics and tracing data to an OpenTelemetry collector:
 
 1. In file `instrumentation.ts`:
-    1. In function `setupTraceExporter()`, uncomment block `(2)`, and comment out all other blocks;
-    1. In function `setupMetricReader()`, uncomment block `(2)`, and comment out all other blocks;
+   1. In function `setupTraceExporter()`, uncomment block `(2)`, and comment out all other blocks;
+   2. In function `setupMetricReader()`, uncomment block `(2)`, and comment out all other blocks;
 2. In file `worker.ts`:
-    1. In function `initializeRuntime()`, uncomment block `(1)`, and comment out all other blocks;
+   1. In function `initializeRuntime()`, uncomment block `(1)`, and comment out all other blocks;
 3. `npm run start.watch` to start the Worker.
 4. In another shell, `npm run workflow` to run the Workflow.
 

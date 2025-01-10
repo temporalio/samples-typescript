@@ -10,8 +10,8 @@ import { OTLPTraceExporter as OTLPTraceExporterGrpc } from '@opentelemetry/expor
 import { OTLPTraceExporter as OTLPTraceExporterHttp } from '@opentelemetry/exporter-trace-otlp-http';
 import { OTLPMetricExporter as OTLPMetricExporterGrpc } from '@opentelemetry/exporter-metrics-otlp-grpc';
 import { OTLPMetricExporter as OTLPMetricExporterHttp } from '@opentelemetry/exporter-metrics-otlp-http';
-import { PrometheusExporter }from '@opentelemetry/exporter-prometheus';
-import { MetricReader,  PeriodicExportingMetricReader, ConsoleMetricExporter  } from '@opentelemetry/sdk-metrics';
+import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
+import { MetricReader, PeriodicExportingMetricReader, ConsoleMetricExporter } from '@opentelemetry/sdk-metrics';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
 import { Resource } from '@opentelemetry/resources';
 import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
@@ -34,8 +34,10 @@ function setupTraceExporter(): SpanExporter | undefined {
   //
   // return new OTLPTraceExporterGrpc({
   //   url: 'http://127.0.0.1:4317',
-  //   timeoutMillis: 1000,    // Default is 10s, which reduces performance overhead in production,
-  //                           // but a shorter value is convenient in dev and test use cases.
+  //
+  //   // Default is 10s, which reduces performance overhead in production,
+  //   // but a shorter value is convenient in dev and test use cases.
+  //   timeoutMillis: 1000,
   // });
 
   // (3) A span exporter that sends spans to a server as _OTLP over HTTP_.
@@ -44,8 +46,10 @@ function setupTraceExporter(): SpanExporter | undefined {
   //
   // return new OTLPTraceExporterHttp({
   //   url: 'http://127.0.0.1:4318/v1/traces',
-  //   timeoutMillis: 1000,   // Default is 10s, which reduces performance overhead in production,
-  //                          // but a shorter value is convenient in dev and test use cases.
+  //
+  //   // Default is 10s, which reduces performance overhead in production,
+  //   // but a shorter value is convenient in dev and test use cases.
+  //   timeoutMillis: 1000,
   // });
 
   return undefined;
@@ -66,7 +70,7 @@ function setupMetricReader(): MetricReader | undefined {
   //
   return new PeriodicExportingMetricReader({
     exporter: new ConsoleMetricExporter(),
-  })
+  });
 
   // (2) A metric exporter that periodically sends metrics to a server using the _OTLP over gRPC_ protocol.
   //     This is the most common configuration when connecting to a metrics collector.
@@ -74,10 +78,12 @@ function setupMetricReader(): MetricReader | undefined {
   // return new PeriodicExportingMetricReader({
   //   exporter: new OTLPMetricExporterGrpc({
   //     url: 'http://127.0.0.1:4317',
-  //     timeoutMillis: 1000,   // Default is 10s, which reduces performance overhead in production,
-  //                            // but a shorter value is convenient in dev and test use cases.
-  //     }),
-  // })
+
+  //     // Default is 10s, which reduces performance overhead in production,
+  //     // but a shorter value is convenient in dev and test use cases.
+  //     timeoutMillis: 1000,
+  //   }),
+  // });
 
   // (3) A metrics exporter that sends metrics to a server as _OTLP over HTTP_.
   //     This may be used as a fallback if _OTLP over gRPC_ doesn't work for whatever reason.
@@ -86,21 +92,23 @@ function setupMetricReader(): MetricReader | undefined {
   // return new PeriodicExportingMetricReader({
   //   exporter: new OTLPMetricExporterGrpc({
   //     url: 'http://127.0.0.1:4318/v1/metrics',
-  //     timeoutMillis: 1000,   // Default is 10s, which reduces performance overhead in production,
-  //                            // but a shorter value is convenient in dev and test use cases.
-  //     }),
-  // })
+
+  //     // Default is 10s, which reduces performance overhead in production,
+  //     // but a shorter value is convenient in dev and test use cases.
+  //     timeoutMillis: 1000,
+  // });
 
   // (4) A metrics exporter that exposes metrics as an HTTP endpoint that can be queried by a collector.
   //
   // return new PrometheusExporter({
-  //   host: '127.0.0.1',       // Depending on you execution environment, you might need to set
-  //                            // `host` to `0.0.0.0` instead; beware however that doing so in
-  //                            // environments where this is not needed might expose your metrics
-  //                            // to the public Internet. This is why we default to the safer
-  //                            // value of `127.0.0.1`.
-  //   port: 9092,              // Runtime's metrics will be exposed on port 9091, Node's metrics on 9092.
-  // })
+  //   // Depending on you execution environment, you might need to set `host` to `0.0.0.0` instead;
+  //   // beware however that doing so in environments where this is not needed might expose your metrics
+  //   // to the public Internet. This is why we default to the safer value of `127.0.0.1`.
+  //   host: '127.0.0.1',
+
+  //   // Runtime's metrics will be exposed on port 9091, Node's metrics on 9092.
+  //   port: 9092,
+  // });
 }
 
 export const resource = new Resource({

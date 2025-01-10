@@ -39,15 +39,14 @@ function initializeRuntime() {
       //     by your collector. Just point a browser on http://127.0.0.1:9091/metrics to
       //     visualize your Worker's metrics.
       //
-      metrics: {
-        prometheus: {
-          bindAddress: '127.0.0.1:9091',   // Depending on you execution environment, you might need
-                                           // to set the host to `0.0.0.0` instead; beware however
-                                           // that doing so in environments where this is not needed
-                                           // might expose your metrics to the public Internet. This
-                                           // is why we default to the safer value of `127.0.0.1`.
-        },
-      },
+      // metrics: {
+      //   prometheus: {
+      //     // Depending on you execution environment, you might need to set the host to `0.0.0.0` instead;
+      //     // beware however that doing so in environments where this is not needed might expose your
+      //     // metrics to the public Internet. This is why we default to the safer value of `127.0.0.1`.
+      //     bindAddress: '127.0.0.1:9091',
+      //   },
+      // },
 
       // Configure forwarding of log entries emitted by the native runtime through the TypeScript
       // logger (i.e. the one configured using the `logger` property above). This is required for
@@ -55,7 +54,7 @@ function initializeRuntime() {
       //
       logging: {
         forward: {},
-        filter: makeTelemetryFilterString({ core: 'INFO', other: 'INFO' })
+        filter: makeTelemetryFilterString({ core: 'INFO', other: 'INFO' }),
       },
     },
   });
@@ -70,10 +69,11 @@ async function main() {
     taskQueue: 'interceptors-opentelemetry-example',
 
     // Registers OpenTelemetry Tracing sinks and interceptors for Workflow and Activity calls
-    sinks: {
+    //
+    sinks: traceExporter && {
       exporter: makeWorkflowExporter(traceExporter, resource),
     },
-    interceptors: {
+    interceptors: traceExporter && {
       // IMPORTANT: When prebundling Workflow code (i.e. using `bundleWorkflowCode(...)`), you MUST
       //            provide the following `workflowModules` property to `bundleWorkflowCode()`;
       //            Workflow code tracing won't work if you don't.
@@ -82,8 +82,8 @@ async function main() {
       activity: [
         (ctx) => ({
           inbound: new OpenTelemetryActivityInboundInterceptor(ctx),
-          outbound: new OpenTelemetryActivityOutboundInterceptor(ctx)
-        })
+          outbound: new OpenTelemetryActivityOutboundInterceptor(ctx),
+        }),
       ],
     },
   });
