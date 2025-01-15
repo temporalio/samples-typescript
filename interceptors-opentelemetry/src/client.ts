@@ -4,11 +4,10 @@ import { Connection, Client } from '@temporalio/client';
 import { example } from './workflows';
 
 async function run() {
-  // Connect to localhost with default ConnectionOptions,
-  // pass options to the Connection constructor to configure TLS and other settings.
+  // Connect to localhost with default ConnectionOptions.
   const connection = await Connection.connect();
 
-  // Attach the OpenTelemetryClientCallsInterceptor to the client.
+  // Attach the OpenTelemetryWorkflowClientInterceptor to the client.
   const client = new Client({
     connection,
 

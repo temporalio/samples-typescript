@@ -5,16 +5,16 @@ import {
   makeWorkflowExporter,
 } from '@temporalio/interceptors-opentelemetry/lib/worker';
 import * as activities from './activities';
-import { resource, traceExporter } from './instrumentation';
+import { otelSdk, resource, traceExporter } from './instrumentation';
 
 function initializeRuntime() {
   Runtime.install({
     // Configure a logger that will collect all log messages emitted by the Worker,
     // including those emitted through the Workflow's and Activity's context logger APIs.
     // See the 'custom-logger' sample for an example of how to build a logger that
-    // process log messages using a third party logging library.
+    // processes log messages using a third party logging library.
     //
-    // IMPORTANT: Make sure to also configure the `telemetryOptions.logging` property
+    // IMPORTANT: Make sure to configure the `telemetryOptions.logging` property
     //            below to also collect logs emitted by the native runtime.
     //
     logger: new DefaultLogger('WARN'),
@@ -87,8 +87,11 @@ async function main() {
       ],
     },
   });
-
-  await worker.run();
+  try {
+    await worker.run();
+  } finally {
+    await otelSdk.shutdown();
+  }
 }
 
 main().then(

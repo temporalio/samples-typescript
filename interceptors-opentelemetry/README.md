@@ -16,21 +16,21 @@ collection.
 
 ### Preparation
 
-1. Make a sure you have a local [Temporal Server](https://github.com/temporalio/cli/#installation) running:
+1. Make sure you have a local [Temporal Server](https://github.com/temporalio/cli/#installation) running:
 
-   ```bash
+   ```sh
    temporal server start-dev
    ```
 
 2. (Optional) To use the OpenTelemetry collector, run the Docker Compose file:
 
-   ```
+   ```sh
    docker compose up -d
    ```
 
 3. Install NPM dependencies:
 
-   ```
+   ```sh
    npm install   # or `pnpm` or `yarn`
    ```
 

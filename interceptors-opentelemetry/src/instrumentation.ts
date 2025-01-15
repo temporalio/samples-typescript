@@ -118,7 +118,7 @@ export const resource = new Resource({
 export const traceExporter = setupTraceExporter();
 const metricReader = setupMetricReader();
 
-new NodeSDK({
+export const otelSdk = new NodeSDK({
   // This is required for use with the `@temporalio/interceptors-opentelemetry` package.
   resource,
 
@@ -132,4 +132,6 @@ new NodeSDK({
 
   // This is optional; it enables auto-instrumentation for certain libraries.
   instrumentations: [getNodeAutoInstrumentations()],
-}).start();
+})
+
+otelSdk.start();
