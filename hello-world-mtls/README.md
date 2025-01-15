@@ -41,13 +41,13 @@ or to a self-hosted Temporal deployment that is [secured with TLS](https://docs.
 3. Run the Worker:
 
 ```
-npm run start.watch` to start the Worker
+npm run start.watch to start the Worker
 ```
 
 4. From another shell, start a Workflow execution:
 
 ```
-npm run workflow` to run the Workflow
+npm run workflow to run the Workflow
 ```
 
 ## Common Configurations
