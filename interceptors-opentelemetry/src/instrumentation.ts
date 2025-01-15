@@ -132,6 +132,6 @@ export const otelSdk = new NodeSDK({
 
   // This is optional; it enables auto-instrumentation for certain libraries.
   instrumentations: [getNodeAutoInstrumentations()],
-})
+});
 
 otelSdk.start();
