@@ -82,8 +82,6 @@ regarding usage of mTLS authentication with Temporal Cloud.
   provide a Root CA certificate to your Clients and Workers, as Temporal Cloud server certificates
   are signed by well known Root CAs. Simply leave that field out.
 
-- **Server Name Override**: You may need to provide a Server Name Override
-
 Refer to [this documentation page](https://docs.temporal.io/cloud/api-keys) for more details
 regarding usage of API Key authentication with Temporal Cloud.
 
