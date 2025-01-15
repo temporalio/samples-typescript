@@ -1,0 +1,47 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+        endpoint: 0.0.0.0:4317
+
+      http: # Not used in this sample
+        endpoint: 0.0.0.0:4318
+
+processors:
+  # In a normal setup, enabling the batch processor is recommended for better performance. To enable the
+  # batch processor, you must uncomment the following line AND add it to the service pipelines below.
+  # https://github.com/open-telemetry/opentelemetry-collector/blob/main/processor/batchprocessor/README.md
+  # - batch:
+
+extensions:
+  health_check:
+  # pprof:
+  #   endpoint: :1888
+  # zpages:
+  #   endpoint: :55679
+
+exporters:
+  # A PUSH exporter supporting 'traces'
+  otlp/jaeger:
+    endpoint: jaeger:4317
+    tls:
+      insecure: true
+
+  # A PULL exporter supporting 'metrics'
+  # Prometheus will peiodically scrape that exporter
+  prometheus:
+    endpoint: '0.0.0.0:9090'
+
+  # A PUSH exporter supporting 'traces'
+  zipkin:
+    endpoint: http://zipkin:9411/api/v2/spans
+
+service:
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      exporters: [prometheus]
+
+    traces:
+      receivers: [otlp]
+      exporters: [otlp/jaeger, zipkin]
