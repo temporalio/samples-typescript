@@ -21,8 +21,12 @@ async function run() {
           key: clientKey,
         },
     },
-    apiKey,
+    apiKey: apiKey,
+    metadata: {
+      'temporal-namespace': namespace,
+    },
   });
+
   const client = new Client({ connection, namespace });
 
   // Run example workflow and await its completion

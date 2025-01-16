@@ -22,7 +22,10 @@ async function run() {
           key: clientKey,
         },
     },
-    apiKey,
+    apiKey: apiKey,
+    metadata: {
+      'temporal-namespace': namespace,
+    },
   });
 
   try {
