@@ -60,7 +60,7 @@ npm run workflow to run the Workflow
 - **Address**: Make sure to configure the mTLS endpoint as it appears in Temporal Cloud's web interface,
   e.g. `${namespace}.tmprl.cloud:7233`.
 
-  Note that endpoints of the form `${region}.${provider}.api.tmprl.cloud:7233` only support [API Key authentication](#connection-to-a-temporal-cloud-namespace-with-api-key-authentication). They will not work with mTLS authentication.
+  Note that endpoints of the form `${region}.${provider}.api.temporal.io:7233` only support [API Key authentication](#connection-to-a-temporal-cloud-namespace-with-api-key-authentication). They will not work with mTLS authentication.
 
 - **Server Root CA Certificate**: When connecting to Temporal Cloud, you generally do not need to
   provide a Root CA certificate to your Clients and Workers, as Temporal Cloud server certificates
@@ -75,8 +75,9 @@ regarding usage of mTLS authentication with Temporal Cloud.
 - **Namespace**: Make sure to configure the namespace as it appears in Temporal Cloud's web interface.
   It will look something like `my-application.abc45`.
 
-- **Address**: Make sure to configure the TLS endpoint as it appears in Temporal Cloud's web interface.
-  It will look something like `${region}.${provider}.api.tmprl.cloud:7233`.
+- **Address**: Make sure to configure the API Key endpoint as it appears in Temporal Cloud's web interface.
+  As noted above, this will be different from the address you'd use with mTLS. With API Key authentication, 
+  this endpoint address will look something like `${region}.${provider}.api.temporal.io:7233`.
 
 - **Server Root CA Certificate**: When connecting to Temporal Cloud, you generally do not need to
   provide a Root CA certificate to your Clients and Workers, as Temporal Cloud server certificates
