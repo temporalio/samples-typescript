@@ -76,7 +76,7 @@ regarding usage of mTLS authentication with Temporal Cloud.
   It will look something like `my-application.abc45`.
 
 - **Address**: Make sure to configure the API Key endpoint as it appears in Temporal Cloud's web interface.
-  As noted above, this will be different from the address you'd use with mTLS. With API Key authentication, 
+  As noted above, this will be different from the address you'd use with mTLS. With API Key authentication,
   this endpoint address will look something like `${region}.${provider}.api.temporal.io:7233`.
 
 - **Server Root CA Certificate**: When connecting to Temporal Cloud, you generally do not need to
