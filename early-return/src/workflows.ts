@@ -8,8 +8,8 @@ export async function transactionWorkflow(): Promise<TransactionReport> {
     const status = 'confirmed' as const;
     return { status };
   });
-  await wf.sleep(1000);
   confirmed = true;
-  let amount = 77;
-  return { finalAmount: amount, status: 'complete' };
+  // Simulate lengthy transaction completion
+  await wf.sleep(2000);
+  return { finalAmount: 77, status: 'complete' };
 }

@@ -14,10 +14,9 @@ async function runTransactionWorkflow(transactionID: string, client: Client) {
   const earlyConfirmation = await client.workflow.executeUpdateWithStart(getTransactionConfirmation, {
     startWorkflowOperation,
   });
+  console.log(`early transaction confirmation: ${JSON.stringify(earlyConfirmation)}`);
   const wfHandle = await startWorkflowOperation.workflowHandle();
   const finalReport = await wfHandle.result();
-
-  console.log(`early transaction confirmation: ${JSON.stringify(earlyConfirmation)}`);
   console.log(`final transaction report: ${JSON.stringify(finalReport)}`);
 }
 
