@@ -493,70 +493,6 @@ importers:
         specifier: ^5.6.3
         version: 5.7.2
 
-  early-return:
-    dependencies:
-      '@temporalio/activity':
-        specifier: file:~/src/temporalio/sdk-typescript/packages/activity
-        version: file:../sdk-typescript/packages/activity
-      '@temporalio/client':
-        specifier: file:~/src/temporalio/sdk-typescript/packages/client
-        version: file:../sdk-typescript/packages/client
-      '@temporalio/worker':
-        specifier: file:~/src/temporalio/sdk-typescript/packages/worker
-        version: file:../sdk-typescript/packages/worker(@swc/helpers@0.5.15)
-      '@temporalio/workflow':
-        specifier: file:~/src/temporalio/sdk-typescript/packages/workflow
-        version: file:../sdk-typescript/packages/workflow
-      async-mutex:
-        specifier: ^0.5.0
-        version: 0.5.0
-      nanoid:
-        specifier: 3.x
-        version: 3.3.8
-    devDependencies:
-      '@temporalio/testing':
-        specifier: file:~/src/temporalio/sdk-typescript/packages/testing
-        version: file:../sdk-typescript/packages/testing(@swc/helpers@0.5.15)
-      '@tsconfig/node18':
-        specifier: ^18.2.4
-        version: 18.2.4
-      '@types/mocha':
-        specifier: 8.x
-        version: 8.2.3
-      '@types/node':
-        specifier: ^22.9.1
-        version: 22.10.1
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^8.18.0
-        version: 8.18.0(@typescript-eslint/parser@8.18.0(eslint@8.57.1)(typescript@5.7.2))(eslint@8.57.1)(typescript@5.7.2)
-      '@typescript-eslint/parser':
-        specifier: ^8.18.0
-        version: 8.18.0(eslint@8.57.1)(typescript@5.7.2)
-      eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@8.57.1)
-      eslint-plugin-deprecation:
-        specifier: ^3.0.0
-        version: 3.0.0(eslint@8.57.1)(typescript@5.7.2)
-      mocha:
-        specifier: 8.x
-        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.15))(@types/node@22.10.1)(typescript@5.7.2))
-      nodemon:
-        specifier: ^3.1.7
-        version: 3.1.7
-      prettier:
-        specifier: ^3.4.2
-        version: 3.4.2
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.10.1(@swc/helpers@0.5.15))(@types/node@22.10.1)(typescript@5.7.2)
-      typescript:
-        specifier: ^5.6.3
-        version: 5.7.2
-
   ejson:
     dependencies:
       '@temporalio/activity':
@@ -5742,30 +5678,14 @@ packages:
   '@temporalio/activity@1.11.6':
     resolution: {integrity: sha512-sEXB8wTmb5Jz02rh0sEIgT7eGhc68ASY0ccmJUCSgETVUzm+KsUszZygCaTImN6Zmpr1yIcoJ9+AQ3MTzUP/hg==}
 
-  '@temporalio/activity@file:../sdk-typescript/packages/activity':
-    resolution: {directory: ../sdk-typescript/packages/activity, type: directory}
-    engines: {node: '>= 18.0.0'}
-
   '@temporalio/client@1.11.6':
     resolution: {integrity: sha512-UxzX700i4AROxS9YIXK074A53wSuujoeIRnRxs7uVOdgzu8pLf30Wk+ZDq+ty6IeHA60qsTcZRs+PlBHqeuMUA==}
-
-  '@temporalio/client@file:../sdk-typescript/packages/client':
-    resolution: {directory: ../sdk-typescript/packages/client, type: directory}
-    engines: {node: '>= 18.0.0'}
 
   '@temporalio/common@1.11.6':
     resolution: {integrity: sha512-7yjHpJeDbVcqa2rk6spHTVhNob/oCXXrInZPSov9i2Pa0VElquiWpx8d9pJ8sATuxpBpvozNmTEnGWgNEI+G6w==}
 
-  '@temporalio/common@file:../sdk-typescript/packages/common':
-    resolution: {directory: ../sdk-typescript/packages/common, type: directory}
-    engines: {node: '>= 18.0.0'}
-
   '@temporalio/core-bridge@1.11.6':
     resolution: {integrity: sha512-6C+eOFKzs8SJ1q2t6a1HyIVj3E8YLC3k9u3n6doxrGo+d/QxJhs/3tJgW6cwFEKY1tdCNGR/gVM+BwvffLqykQ==}
-
-  '@temporalio/core-bridge@file:../sdk-typescript/packages/core-bridge':
-    resolution: {directory: ../sdk-typescript/packages/core-bridge, type: directory}
-    engines: {node: '>= 18.0.0'}
 
   '@temporalio/interceptors-opentelemetry@1.11.6':
     resolution: {integrity: sha512-/HjWnDeUq3E8Dp3dm+JxdS8VDG0jc7JvjZEJknaV3+w8j4NErlSS4whu6SJdjk7hEbVZCbSCK7Qnz1IklYifwQ==}
@@ -5787,31 +5707,15 @@ packages:
   '@temporalio/proto@1.11.6':
     resolution: {integrity: sha512-N9qnyNabiY2LySft4fBrMCBNRoxbmADMdpP9+CX8RSVCHVLlf32FzkTUTFwZX1dOU+g2JsYrUzHFEBOPBpD8dQ==}
 
-  '@temporalio/proto@file:../sdk-typescript/packages/proto':
-    resolution: {directory: ../sdk-typescript/packages/proto, type: directory}
-    engines: {node: '>= 18.0.0'}
-
   '@temporalio/testing@1.11.6':
     resolution: {integrity: sha512-Vsxd7d6cO2CbjyLDezWUdaQUb0uXRZbUb7i7O4ALZ64yXX8FdYTn3IYmihNunjD1Eb3I1zu8yv+DhA9TMJce6w==}
-
-  '@temporalio/testing@file:../sdk-typescript/packages/testing':
-    resolution: {directory: ../sdk-typescript/packages/testing, type: directory}
-    engines: {node: '>= 18.0.0'}
 
   '@temporalio/worker@1.11.6':
     resolution: {integrity: sha512-Y8ccZBN0c4KLe06DfWbw1Is11y2ENuN+oQvrl9Tw66OGCRLE1Kk08m59iQrWiehiXYzW1DRQG4IHlMjv0Tl8Rg==}
     engines: {node: '>= 16.0.0'}
 
-  '@temporalio/worker@file:../sdk-typescript/packages/worker':
-    resolution: {directory: ../sdk-typescript/packages/worker, type: directory}
-    engines: {node: '>= 18.0.0'}
-
   '@temporalio/workflow@1.11.6':
     resolution: {integrity: sha512-WxPxjTJccP0tD5FwAQjdXZfqx6s5eYaBGgN9+VkMAEeW1KRfYs6dkaUj4qzzu5sN95zr71Euohk/sJG2jd3efQ==}
-
-  '@temporalio/workflow@file:../sdk-typescript/packages/workflow':
-    resolution: {directory: ../sdk-typescript/packages/workflow, type: directory}
-    engines: {node: '>= 18.0.0'}
 
   '@testing-library/dom@7.31.2':
     resolution: {integrity: sha512-3UqjCpey6HiTZT92vODYLPxTBWlM8ZOOjr3LX5F37/VRipW2M1kX6I/Cm4VXzteZqfGfagg8yXywpcOgQBlNsQ==}
@@ -11809,6 +11713,7 @@ packages:
     engines: {node: '>=0.6.0', teleport: '>=0.2.0'}
     deprecated: |-
       You or someone you depend on is using Q, the JavaScript Promise library that gave JavaScript developers strong feelings about promises. They can almost certainly migrate to the native JavaScript promise now. Thank you literally everyone for joining me in this bet against the odds. Be excellent to each other.
+
       (For a CapTP with native promises, see @endo/eventual-send and @endo/captp)
 
   qs@6.11.0:
@@ -16915,25 +16820,11 @@ snapshots:
       '@temporalio/common': 1.11.6
       abort-controller: 3.0.0
 
-  '@temporalio/activity@file:../sdk-typescript/packages/activity':
-    dependencies:
-      '@temporalio/common': file:../sdk-typescript/packages/common
-      abort-controller: 3.0.0
-
   '@temporalio/client@1.11.6':
     dependencies:
       '@grpc/grpc-js': 1.12.4
       '@temporalio/common': 1.11.6
       '@temporalio/proto': 1.11.6
-      abort-controller: 3.0.0
-      long: 5.2.3
-      uuid: 9.0.1
-
-  '@temporalio/client@file:../sdk-typescript/packages/client':
-    dependencies:
-      '@grpc/grpc-js': 1.12.4
-      '@temporalio/common': file:../sdk-typescript/packages/common
-      '@temporalio/proto': file:../sdk-typescript/packages/proto
       abort-controller: 3.0.0
       long: 5.2.3
       uuid: 9.0.1
@@ -16945,23 +16836,9 @@ snapshots:
       ms: 3.0.0-canary.1
       proto3-json-serializer: 2.0.2
 
-  '@temporalio/common@file:../sdk-typescript/packages/common':
-    dependencies:
-      '@temporalio/proto': file:../sdk-typescript/packages/proto
-      long: 5.2.3
-      ms: 3.0.0-canary.1
-      proto3-json-serializer: 2.0.2
-
   '@temporalio/core-bridge@1.11.6':
     dependencies:
       '@temporalio/common': 1.11.6
-      arg: 5.0.2
-      cargo-cp-artifact: 0.1.9
-      which: 4.0.0
-
-  '@temporalio/core-bridge@file:../sdk-typescript/packages/core-bridge':
-    dependencies:
-      '@temporalio/common': file:../sdk-typescript/packages/common
       arg: 5.0.2
       cargo-cp-artifact: 0.1.9
       which: 4.0.0
@@ -16997,11 +16874,6 @@ snapshots:
       long: 5.2.3
       protobufjs: 7.4.0
 
-  '@temporalio/proto@file:../sdk-typescript/packages/proto':
-    dependencies:
-      long: 5.2.3
-      protobufjs: 7.4.0
-
   '@temporalio/testing@1.11.6(@swc/helpers@0.5.15)':
     dependencies:
       '@temporalio/activity': 1.11.6
@@ -17011,22 +16883,6 @@ snapshots:
       '@temporalio/proto': 1.11.6
       '@temporalio/worker': 1.11.6(@swc/helpers@0.5.15)
       '@temporalio/workflow': 1.11.6
-      abort-controller: 3.0.0
-    transitivePeerDependencies:
-      - '@swc/helpers'
-      - esbuild
-      - uglify-js
-      - webpack-cli
-
-  '@temporalio/testing@file:../sdk-typescript/packages/testing(@swc/helpers@0.5.15)':
-    dependencies:
-      '@temporalio/activity': file:../sdk-typescript/packages/activity
-      '@temporalio/client': file:../sdk-typescript/packages/client
-      '@temporalio/common': file:../sdk-typescript/packages/common
-      '@temporalio/core-bridge': file:../sdk-typescript/packages/core-bridge
-      '@temporalio/proto': file:../sdk-typescript/packages/proto
-      '@temporalio/worker': file:../sdk-typescript/packages/worker(@swc/helpers@0.5.15)
-      '@temporalio/workflow': file:../sdk-typescript/packages/workflow
       abort-controller: 3.0.0
     transitivePeerDependencies:
       - '@swc/helpers'
@@ -17059,40 +16915,10 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@temporalio/worker@file:../sdk-typescript/packages/worker(@swc/helpers@0.5.15)':
-    dependencies:
-      '@swc/core': 1.10.1(@swc/helpers@0.5.15)
-      '@temporalio/activity': file:../sdk-typescript/packages/activity
-      '@temporalio/client': file:../sdk-typescript/packages/client
-      '@temporalio/common': file:../sdk-typescript/packages/common
-      '@temporalio/core-bridge': file:../sdk-typescript/packages/core-bridge
-      '@temporalio/proto': file:../sdk-typescript/packages/proto
-      '@temporalio/workflow': file:../sdk-typescript/packages/workflow
-      abort-controller: 3.0.0
-      heap-js: 2.5.0
-      memfs: 4.15.0
-      rxjs: 7.8.1
-      source-map: 0.7.4
-      source-map-loader: 4.0.2(webpack@5.96.1(@swc/core@1.10.1(@swc/helpers@0.5.15)))
-      supports-color: 8.1.1
-      swc-loader: 0.2.6(@swc/core@1.10.1(@swc/helpers@0.5.15))(webpack@5.96.1(@swc/core@1.10.1(@swc/helpers@0.5.15)))
-      unionfs: 4.5.4
-      webpack: 5.96.1(@swc/core@1.10.1(@swc/helpers@0.5.15))
-    transitivePeerDependencies:
-      - '@swc/helpers'
-      - esbuild
-      - uglify-js
-      - webpack-cli
-
   '@temporalio/workflow@1.11.6':
     dependencies:
       '@temporalio/common': 1.11.6
       '@temporalio/proto': 1.11.6
-
-  '@temporalio/workflow@file:../sdk-typescript/packages/workflow':
-    dependencies:
-      '@temporalio/common': file:../sdk-typescript/packages/common
-      '@temporalio/proto': file:../sdk-typescript/packages/proto
 
   '@testing-library/dom@7.31.2':
     dependencies:
