@@ -29,7 +29,7 @@ export async function getEnv(): Promise<Env> {
     clientCert: await maybeReadFileAsBuffer(process.env.TEMPORAL_CLIENT_CERT_PATH),
     clientKey: await maybeReadFileAsBuffer(process.env.TEMPORAL_CLIENT_KEY_PATH),
 
-    apiKey: process.env.TEMPORAL_CLIENT_KEY_PATH,
+    apiKey: process.env.TEMPORAL_CLIENT_API_KEY,
 
     taskQueue: process.env.TEMPORAL_TASK_QUEUE || 'hello-world-tls',
   };

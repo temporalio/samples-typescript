@@ -23,6 +23,9 @@ async function run() {
         },
     },
     apiKey,
+    metadata: {
+      'temporal-namespace': namespace,
+    },
   });
 
   try {
