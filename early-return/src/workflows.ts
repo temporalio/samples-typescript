@@ -8,8 +8,10 @@ export async function transactionWorkflow(): Promise<TransactionReport> {
     const status = 'confirmed' as const;
     return { status };
   });
+  // Simulate low-latency operation required to initially confirm / authorize the transaction.
+  await wf.sleep(500);
   confirmed = true;
-  // Simulate lengthy transaction completion
-  await wf.sleep(2000);
+  // Simulate slower transaction completion / payment capture process.
+  await wf.sleep(5000);
   return { finalAmount: 77, status: 'complete' };
 }
