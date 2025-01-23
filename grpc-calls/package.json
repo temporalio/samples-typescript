@@ -27,7 +27,7 @@
     "@temporalio/common": "^1.11.6",
     "@temporalio/worker": "^1.11.6",
     "@temporalio/workflow": "^1.11.6",
-    "nanoid": "3.x"
+    "nanoid": "5.x"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
