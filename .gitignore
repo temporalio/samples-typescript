@@ -109,3 +109,6 @@ lib/
 yarn.lock
 package-lock.json
 */**/pnpm-lock.yaml
+
+# vs code launch.json
+.vscode/launch.json
