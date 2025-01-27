@@ -212,6 +212,14 @@ pnpm run format
 pnpm run lint
 ```
 
+> [!NOTE]
+> To **reset** your environment in the event that it is broken, consider running:
+> ```
+> git clean -xfd && rm pnpm-lock.yaml
+> ```
+> in the root directory</br>
+> **Warning**: this may result in losing work-in-progress (i.e. untracked files).
+
 ### Dependencies
 
 - The docs and tutorials depend on `SNIPSTART` and `SNIPEND` comments in samples. Make sure to search through the [docs](https://github.com/temporalio/documentation/) and [learn](https://github.com/temporalio/temporal-learning) repos to make sure a snippet is unused before removing it.

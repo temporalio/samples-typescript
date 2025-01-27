@@ -5,11 +5,10 @@ import { nanoid } from 'nanoid';
 
 async function run() {
   const connection = await Connection.connect({ address: 'localhost:7233' });
-  const client = new Client({connection});
+  const client = new Client({ connection });
 
   const handle = await client.workflow.start(sleepForDays, {
     taskQueue: 'sleep-for-days',
-    args: [3], // 3 day sleep interval
     workflowId: 'workflow-' + nanoid(),
   });
   console.log(`Started workflow ${handle.workflowId}`);

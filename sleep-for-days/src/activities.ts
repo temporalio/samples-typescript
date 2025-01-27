@@ -2,4 +2,3 @@
 export async function sendEmail(msg: string): Promise<void> {
   console.log(`Email message: ${msg}`);
 }
-

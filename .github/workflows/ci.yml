@@ -24,7 +24,8 @@ jobs:
             activities-examples,
             mutex,
             nestjs-exchange-rates,
-            timer-examples
+            timer-examples,
+            sleep-for-days
           ]
         include:
           - os: windows-latest
@@ -38,7 +39,7 @@ jobs:
         name: Install pnpm
         with:
           run_install: false
-          version: 9
+          version: 10
 
       - uses: actions/setup-node@v4
         with:
@@ -69,7 +70,7 @@ jobs:
         name: Install pnpm
         with:
           run_install: false
-          version: 9
+          version: 10
 
       - uses: actions/setup-node@v4
         with:
