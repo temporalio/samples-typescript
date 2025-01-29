@@ -35,6 +35,7 @@
     "search-attributes",
     "signals-queries",
     "sinks",
+    "sleep-for-days",
     "snippets",
     "state",
     "timer-examples",
