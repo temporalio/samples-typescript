@@ -20,7 +20,6 @@ describe('sleep-for-days workflow', function () {
 
   it('runs continuously until signal is received', async () => {
     const client = testEnv.client;
-    // let activityExecutions = 0;
 
     const mockActivities: typeof activitiesType = {
       sendEmail: jest.fn(activities.sendEmail),
@@ -29,7 +28,6 @@ describe('sleep-for-days workflow', function () {
     const worker = await Worker.create({
       connection: testEnv.nativeConnection,
       workflowsPath: require.resolve('../workflows'),
-      // activities: mockActivities,
       activities: mockActivities,
       taskQueue,
     });
