@@ -26,6 +26,8 @@
     "nestjs-exchange-rates",
     "nextjs-ecommerce-oneclick",
     "patching-api",
+    "polling-frequent",
+    "polling-infrequent",
     "production",
     "protobufs",
     "query-subscriptions",
