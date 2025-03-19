@@ -8,7 +8,6 @@ import {
   Context,
   ApplicationFailure
 } from '@temporalio/activity';
-import console from 'node:console';
 
 export async function fakeProgress(sleepIntervalMs = 1000): Promise<void> {
   try {
@@ -58,7 +57,7 @@ export async function myLongRunningActivity(): Promise<ActivityExecutionDetails>
     // use startToClose as basis for overall ops timeouts
     const timeout = ctx.info.startToCloseTimeoutMs - 100
 
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
       logger.debug('simulating operation for (ms)', {timeout})
       // this simulates some lengthy operation like a report generation or API call
       // we avoid using `sleep` so that the operation won't receive a CancelledFailure directly

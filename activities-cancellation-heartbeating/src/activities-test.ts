@@ -1,11 +1,9 @@
 import { MockActivityEnvironment } from '@temporalio/testing';
 import * as assert from 'node:assert';
-import { ApplicationFailure, Context, heartbeat, sleep } from '@temporalio/activity';
 import { CancelledFailure } from '@temporalio/workflow';
-import * as console from 'node:console';
 import { ActivityExecutionDetails, myLongRunningActivity } from './activities';
 
-describe('MyWorkflowActivities', function() {
+describe('LongRunningActivity Test', function() {
 
   describe('when background heartbeating', function() {
     let testEnv: MockActivityEnvironment
@@ -17,13 +15,7 @@ describe('MyWorkflowActivities', function() {
       })
     })
     it('should sent details back', async function() {
-      let actual: ActivityExecutionDetails = {
-        heartbeatsReported: 0,
-        mainOperationResult: undefined,
-        err: undefined,
-      }
-
-      actual = await testEnv.run(myLongRunningActivity)
+      const actual: ActivityExecutionDetails = await testEnv.run(myLongRunningActivity)
       assert.equal(actual.heartbeatsReported, 18)
     })
   })
@@ -48,12 +40,11 @@ describe('MyWorkflowActivities', function() {
       const runPromise= async (): Promise<ActivityExecutionDetails>  => {
         return await testEnv.run(myLongRunningActivity)
       }
-      interface fulfilled {
-        value: ActivityExecutionDetails
-      }
+
       const actual = await Promise.allSettled([cancelPromise(), runPromise()])
       assert.ok(actual[1])
       assert.equal("fulfilled", actual[1].status)
+      // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
       assert.ok(actual[1].value.err instanceof CancelledFailure)
     })
