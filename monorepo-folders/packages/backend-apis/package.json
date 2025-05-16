@@ -8,7 +8,7 @@
     "start": "nodemon server.ts --watch . --watch ../temporal-workflows"
   },
   "dependencies": {
-    "@temporalio/client": "^1.11.6",
+    "@temporalio/client": "^1.11.8",
     "express": "~4.20.0",
     "temporal-workflows": "*",
     "ts-node": "^10.9.2"

@@ -9,7 +9,7 @@
   },
   "dependencies": {
     "@fooddelivery/common": "*",
-    "@temporalio/workflow": "^1.11.6"
+    "@temporalio/workflow": "^1.11.8"
   },
   "devDependencies": {
     "@fooddelivery/activities": "*",
