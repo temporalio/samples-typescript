@@ -7,6 +7,7 @@ import {
   ClusterState,
   ClusterManagerStateSummary,
   DeleteJobUpdateInput,
+  ClusterManagerInput,
 } from './types';
 
 const { assignNodesToJob, unassignNodesForJob, startCluster, shutdownCluster } = wf.proxyActivities<typeof activities>({
@@ -25,15 +26,17 @@ export class ClusterManager {
   state: ClusterManagerState;
   seenJobs: Set<string>;
   nodesMutex: Mutex;
+  private maxHistoryLength: number | null;
 
-  constructor(state?: ClusterManagerState) {
-    this.state = state ?? {
+  constructor(input: ClusterManagerInput = {}) {
+    this.state = input.state ?? {
       clusterState: ClusterState.NOT_STARTED,
       nodes: new Map<string, string | null>(),
       maxAssignedNodes: 0,
     };
     this.nodesMutex = new Mutex();
     this.seenJobs = new Set<string>();
+    this.maxHistoryLength = input.testContinueAsNew ? 120 : null;
   }
 
   async startCluster(): Promise<void> {
@@ -144,5 +147,18 @@ export class ClusterManager {
         return value === jobName;
       })
     );
+  }
+
+  shouldContinueAsNew(): boolean {
+    if (wf.workflowInfo().continueAsNewSuggested) {
+      return true;
+    }
+    
+    // This is just for ease-of-testing. In production, we trust temporal to tell us when to continue-as-new.
+    if (this.maxHistoryLength !== null && wf.workflowInfo().historyLength > this.maxHistoryLength) {
+      return true;
+    }
+    
+    return false;
   }
 }

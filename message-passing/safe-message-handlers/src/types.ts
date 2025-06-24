@@ -6,6 +6,7 @@ export interface ClusterManagerState {
 
 export interface ClusterManagerInput {
   state?: ClusterManagerState;
+  testContinueAsNew?: boolean;
 }
 
 export interface ClusterManagerStateSummary {
