@@ -26,7 +26,7 @@ export class ClusterManager {
   state: ClusterManagerState;
   seenJobs: Set<string>;
   nodesMutex: Mutex;
-  private maxHistoryLength: number | null;
+  private maxHistoryLength?: number;
 
   constructor(input: ClusterManagerInput = {}) {
     this.state = input.state ?? {
@@ -36,7 +36,7 @@ export class ClusterManager {
     };
     this.nodesMutex = new Mutex();
     this.seenJobs = new Set<string>();
-    this.maxHistoryLength = input.testContinueAsNew ? 120 : null;
+    this.maxHistoryLength = input.testContinueAsNew ? 120 : undefined;
   }
 
   async startCluster(): Promise<void> {
