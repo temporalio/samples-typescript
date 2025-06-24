@@ -155,7 +155,7 @@ export class ClusterManager {
     }
     
     // This is just for ease-of-testing. In production, we trust temporal to tell us when to continue-as-new.
-    if (this.maxHistoryLength !== null && wf.workflowInfo().historyLength > this.maxHistoryLength) {
+    if (this.maxHistoryLength !== undefined && wf.workflowInfo().historyLength > this.maxHistoryLength) {
       return true;
     }
     
