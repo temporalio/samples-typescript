@@ -17,7 +17,7 @@ export const deleteJobUpdate = wf.defineUpdate<void, [DeleteJobUpdateInput]>('de
 export const getClusterStatusQuery = wf.defineQuery<ClusterManagerStateSummary>('getClusterStatus');
 
 export async function clusterManagerWorkflow(input: ClusterManagerInput = {}): Promise<ClusterManagerStateSummary> {
-  const manager = new ClusterManager(input.state);
+  const manager = new ClusterManager(input);
   //
   // Message-handling API
   //
@@ -52,7 +52,7 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput = {}): P
   // continue-as-new.
   await wf.condition(() => manager.state.clusterState === ClusterState.STARTED);
   await wf.condition(
-    () => manager.state.clusterState === ClusterState.SHUTTING_DOWN || wf.workflowInfo().continueAsNewSuggested
+    () => manager.state.clusterState === ClusterState.SHUTTING_DOWN || manager.shouldContinueAsNew()
   );
   if (manager.state.clusterState !== ClusterState.SHUTTING_DOWN) {
     // You should typically wait for all async handlers to finish before
@@ -62,7 +62,10 @@ export async function clusterManagerWorkflow(input: ClusterManagerInput = {}): P
     // new. This sample does not schedule any activities or child workflows, so
     // it is sufficient just to wait for handlers to finish.
     await wf.condition(wf.allHandlersFinished);
-    return await wf.continueAsNew<typeof clusterManagerWorkflow>({ state: manager.getState() });
+    return await wf.continueAsNew<typeof clusterManagerWorkflow>({ 
+      state: manager.getState(),
+      testContinueAsNew: input.testContinueAsNew 
+    });
   } else {
     return manager.getStateSummary();
   }
