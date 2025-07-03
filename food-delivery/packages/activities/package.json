@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@fooddelivery/common": "*",
-    "@temporalio/activity": "^1.11.8"
+    "@temporalio/activity": "^1.12.0"
   },
   "devDependencies": {
     "@fooddelivery/tsconfig": "*",
