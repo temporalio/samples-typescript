@@ -1,5 +1,5 @@
 {
-  "name": "temporal-polling-frequent",
+  "name": "temporal-polling-infrequent",
   "version": "0.1.0",
   "private": true,
   "scripts": {
