@@ -1,0 +1,42 @@
+{
+  "name": "child-workflows",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
+    "start-iterator": "ts-node src/iterator/worker.ts",
+    "start-iterator.watch": "nodemon src/iterator/worker.ts",
+    "workflow-iterator": "ts-node src/iterator/client.ts",
+    "format": "prettier --config .prettierrc 'src/**/*.ts' --write"
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
+  "dependencies": {
+    "@temporalio/activity": "^1.10.1",
+    "@temporalio/client": "^1.10.1",
+    "@temporalio/worker": "^1.10.1",
+    "@temporalio/workflow": "^1.10.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node16": "^1.0.0",
+    "@types/node": "^16.11.43",
+    "@typescript-eslint/eslint-plugin": "^5.0.0",
+    "@typescript-eslint/parser": "^5.0.0",
+    "eslint": "^7.32.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-deprecation": "^1.2.1",
+    "nodemon": "^2.0.22",
+    "prettier": "^2.8.8",
+    "ts-node": "^10.9.2",
+    "typescript": "^4.4.2"
+  }
+}
