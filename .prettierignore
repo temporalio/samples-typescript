@@ -1,7 +1,6 @@
 # Ignore everything by default, except for the files and folders listed below
 *
 
-!.devcontainer/
 !.github/
 
 !.scripts/
