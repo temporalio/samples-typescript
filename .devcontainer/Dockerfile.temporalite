@@ -1,9 +1,0 @@
-FROM golang:1.17 AS builder
-
- RUN go install github.com/DataDog/temporalite/cmd/temporalite@latest
- RUN go install -v github.com/temporalio/tctl/cmd@latest
-
- RUN mv /go/bin/cmd /go/bin/tctl
-
- EXPOSE 7233
- ENTRYPOINT ["/go/bin/temporalite", "start", "--ephemeral", "-n", "default", "--ip" , "0.0.0.0"]
