@@ -14,7 +14,12 @@
     "schedule.go-faster": "ts-node src/go-faster.ts",
     "schedule.pause": "ts-node src/pause-schedule.ts",
     "schedule.unpause": "ts-node src/unpause-schedule.ts",
-    "schedule.delete": "ts-node src/delete-schedule.ts"
+    "schedule.delete": "ts-node src/delete-schedule.ts",
+    "schedule.describe": "ts-node src/describe-schedule.ts",
+    "schedule.backfill": "ts-node src/backfill-schedule.ts",
+    "schedule.list": "ts-node src/list-schedule.ts",
+    "schedule.trigger": "ts-node src/trigger-schedule.ts",
+    "schedule.update": "ts-node src/update-schedule.ts"
   },
   "nodemonConfig": {
     "execMap": {

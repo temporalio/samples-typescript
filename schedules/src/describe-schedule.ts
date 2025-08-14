@@ -1,15 +1,16 @@
 import { Connection, Client } from '@temporalio/client';
 
-// @@@SNIPSTART typescript-delete-a-scheduled-workflow
+// @@@SNIPSTART typescript-describe-a-scheduled-workflow
 async function run() {
   const client = new Client({
     connection: await Connection.connect(),
   });
 
   const handle = client.schedule.getHandle('sample-schedule');
-  await handle.delete();
 
-  console.log(`Schedule is now deleted.`);
+  const result = await handle.describe();
+
+  console.log(`Schedule description: ${JSON.stringify(result)}`);
 }
 // @@@SNIPEND
 

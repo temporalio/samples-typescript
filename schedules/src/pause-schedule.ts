@@ -1,5 +1,6 @@
 import { Connection, Client } from '@temporalio/client';
 
+// @@@SNIPSTART typescript-pause-a-scheduled-workflow
 async function run() {
   const client = new Client({
     connection: await Connection.connect(),
@@ -10,6 +11,7 @@ async function run() {
 
   console.log(`Schedule is now paused.`);
 }
+// @@@SNIPEND
 
 run()
   .then(() => process.exit(0))

@@ -1,6 +1,7 @@
 import { Connection, Client, ScheduleOverlapPolicy } from '@temporalio/client';
 import { reminder } from './workflows';
 
+// @@@SNIPSTART typescript-create-a-scheduled-workflow
 async function run() {
   const client = new Client({
     connection: await Connection.connect(),
@@ -42,6 +43,7 @@ async function run() {
       // ],
     },
   });
+  // @@@SNIPEND
 
   console.log(`Started schedule '${schedule.scheduleId}'.
 
@@ -53,7 +55,12 @@ You can now run:
   npm run schedule.pause
   npm run schedule.unpause
   npm run schedule.delete
-  `);
+  npm run schedule.describe
+  npm run schedule.backfill
+  npm run schedule.list
+  npm run schedule.trigger
+  npm run schedule.update
+`);
 
   await client.connection.close();
 }
