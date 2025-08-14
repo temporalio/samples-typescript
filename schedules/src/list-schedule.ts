@@ -6,7 +6,7 @@ async function run() {
     connection: await Connection.connect(),
   });
 
-  let schedules = []
+  const schedules = []
 
   const scheduleList = client.schedule.list();
 
