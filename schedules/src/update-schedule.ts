@@ -1,13 +1,22 @@
-import { Connection, Client, ScheduleDescription, ScheduleOptionsStartWorkflowAction, ScheduleUpdateOptions, Workflow } from '@temporalio/client';
+import {
+  Connection,
+  Client,
+  ScheduleDescription,
+  ScheduleOptionsStartWorkflowAction,
+  ScheduleUpdateOptions,
+  Workflow,
+} from '@temporalio/client';
 
 // @@@SNIPSTART typescript-update-a-scheduled-workflow
-const updateSchedule = (input: ScheduleDescription): ScheduleUpdateOptions<ScheduleOptionsStartWorkflowAction<Workflow>> => {
-    const scheduleAction = input.action;
+const updateSchedule = (
+  input: ScheduleDescription,
+): ScheduleUpdateOptions<ScheduleOptionsStartWorkflowAction<Workflow>> => {
+  const scheduleAction = input.action;
 
-    scheduleAction.args = ["my updated schedule arg"];
+  scheduleAction.args = ['my updated schedule arg'];
 
-    return {...input, ...scheduleAction}
-}
+  return { ...input, ...scheduleAction };
+};
 
 async function run() {
   const client = new Client({

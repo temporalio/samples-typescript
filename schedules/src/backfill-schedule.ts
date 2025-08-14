@@ -14,8 +14,8 @@ async function run() {
   const backfillOptions: Backfill = {
     start: subtractMinutes(10),
     end: subtractMinutes(9),
-    overlap: ScheduleOverlapPolicy.ALLOW_ALL
-  }
+    overlap: ScheduleOverlapPolicy.ALLOW_ALL,
+  };
 
   const handle = client.schedule.getHandle('sample-schedule');
   await handle.backfill(backfillOptions);

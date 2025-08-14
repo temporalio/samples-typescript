@@ -6,15 +6,15 @@ async function run() {
     connection: await Connection.connect(),
   });
 
-  const schedules = []
+  const schedules = [];
 
   const scheduleList = client.schedule.list();
 
   for await (const schedule of scheduleList) {
-    schedules.push(schedule)
+    schedules.push(schedule);
   }
 
-  console.log(`Schedules are now listed: ${JSON.stringify(schedules)}`)
+  console.log(`Schedules are now listed: ${JSON.stringify(schedules)}`);
 }
 // @@ SNIPEND
 
