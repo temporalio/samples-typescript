@@ -16,7 +16,7 @@ async function run() {
 
   console.log(`Schedules are now listed: ${JSON.stringify(schedules)}`);
 }
-// @@ SNIPEND
+// @@@SNIPEND
 
 run().catch((err) => {
   console.error(err);
