@@ -1,0 +1,49 @@
+{
+  "name": "temporal-hello-world",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "start.caller": "ts-node src/caller/worker.ts",
+    "start.service": "ts-node src/service/worker.ts",
+    "workflow": "ts-node src/starter.ts"
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
+  "dependencies": {
+    "@temporalio/activity": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/activity",
+    "@temporalio/client": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/client",
+    "@temporalio/nexus": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/nexus",
+    "@temporalio/worker": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/worker",
+    "@temporalio/workflow": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/workflow",
+    "nexus-rpc": "^0.0.1",
+    "nanoid": "3.x"
+  },
+  "devDependencies": {
+    "@temporalio/testing": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/testing",
+    "@tsconfig/node18": "^18.2.4",
+    "@types/mocha": "8.x",
+    "@types/node": "^22.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "mocha": "8.x",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.4.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}

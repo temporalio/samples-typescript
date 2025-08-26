@@ -179,7 +179,7 @@ testProjectsNode.value.items = [];
 
 for (const sample of samples) {
   // Don't use require, because it won't work with ESM samples
-  const packageJson = JSON.parse(readFileSync(`../${sample}/package.json`));
+  const packageJson = JSON.parse(readFileSync(`./${sample}/package.json`));
   const hasTestScript = !!packageJson.scripts.test;
 
   if (hasTestScript) {

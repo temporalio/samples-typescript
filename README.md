@@ -112,6 +112,10 @@ and you'll be given the list of sample options.
 - [**Dependency Injection**](./activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities).
 - [**Worker-Specific Task Queues**](./worker-specific-task-queues): Use a unique task queue per Worker to have certain Activities only run on that specific Worker. For instance for a file processing Workflow, where the first Activity is downloading a file, and subsequent Activities need to operate on that file. (If multiple Workers were on the same queue, subsequent Activities may get run on different machines that don't have the downloaded file.)
 
+#### Nexus APIs
+
+- [**Nexus Hello**](./nexus-hello): Demonstrates how to define a Nexus Service, implement the Operation handlers, and call the Operations from a Workflow.
+
 #### Workflow APIs
 
 - **Timers**:
