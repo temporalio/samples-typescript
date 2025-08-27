@@ -1,5 +1,5 @@
 {
-  "name": "temporal-hello-world",
+  "name": "nexus-hello",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -22,16 +22,16 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/activity",
-    "@temporalio/client": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/client",
-    "@temporalio/nexus": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/nexus",
-    "@temporalio/worker": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/worker",
-    "@temporalio/workflow": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/workflow",
+    "@temporalio/activity": "^1.13.0",
+    "@temporalio/client": "^1.13.0",
+    "@temporalio/nexus": "^1.13.0",
+    "@temporalio/worker": "^1.13.0",
+    "@temporalio/workflow": "^1.13.0",
     "nexus-rpc": "^0.0.1",
     "nanoid": "3.x"
   },
   "devDependencies": {
-    "@temporalio/testing": "file:///Users/jwatkins/Development/Temporal/TypeScriptSDK/sdk-typescript-2//packages/testing",
+    "@temporalio/testing": "^1.13.0",
     "@tsconfig/node18": "^18.2.4",
     "@types/mocha": "8.x",
     "@types/node": "^22.9.1",

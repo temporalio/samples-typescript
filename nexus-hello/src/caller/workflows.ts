@@ -10,11 +10,7 @@ export async function echoCallerWorkflow(message: string): Promise<string> {
     endpoint: HELLO_SERVICE_ENDPOINT,
   });
 
-  const result = await nexusClient.executeOperation(
-    'echo',
-    { message },
-    { scheduleToCloseTimeout: '10s' }
-  );
+  const result = await nexusClient.executeOperation('echo', { message }, { scheduleToCloseTimeout: '10s' });
 
   return result.message;
 }
@@ -28,7 +24,7 @@ export async function helloCallerWorkflow(name: string, language: LanguageCode):
   const helloResult = await nexusClient.executeOperation(
     'hello',
     { name, language },
-    { scheduleToCloseTimeout: '10s' }
+    { scheduleToCloseTimeout: '10s' },
   );
 
   return helloResult.message;

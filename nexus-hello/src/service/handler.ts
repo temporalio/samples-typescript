@@ -14,7 +14,7 @@ export const helloServiceHandler = nexus.serviceHandler(helloService, {
     // You may also access a Temporal Client by calling `temporalNexus.getClient()`.
     // That Client can be used to make arbitrary calls, such as signaling, querying,
     // or listing workflows.
-    return input
+    return input;
   },
   hello: new temporalNexus.WorkflowRunOperationHandler<HelloInput, HelloOutput>(
     // WorkflowRunOperationHandler takes a function that receives the Operation's context and input.
