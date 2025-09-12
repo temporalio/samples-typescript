@@ -26,14 +26,13 @@ async function run() {
   const workflowId = 'workflow-cancelled-' + nanoid();
 
   // Start the workflow
-  const handle = await client.workflow.start(cancellableCallerWorkflow, {
+  const handle = await client.workflow.signalWithStart(cancellableCallerWorkflow, {
     taskQueue: callerTaskQueue,
     workflowId,
     args: ['Temporal', 'en'],
+    signal: cancellableCallerWorkflowCancel
   });
-  console.log(`Started cancellable workflow: ${workflowId}`);
-  handle.signal(cancellableCallerWorkflowCancel);
-  console.log(`Sent cancellation signal`);
+  console.log(`Started cancellable workflow: ${workflowId}, sent cancellation signal`);
 
   try {
     const cancelledMessage = await handle.result();
