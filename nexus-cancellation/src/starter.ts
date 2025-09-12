@@ -1,6 +1,7 @@
 import { nanoid } from 'nanoid';
-import { Connection, Client } from '@temporalio/client';
-import { cancellableCallerWorkflow } from './caller/workflows';
+import { Connection, Client, WorkflowFailedError } from '@temporalio/client';
+import { cancellableCallerWorkflow, cancellableCallerWorkflowCancel } from './caller/workflows';
+import { isCancellation } from '@temporalio/workflow';
 
 async function run() {
   const callerTaskQueue = 'nexus-cancellation-caller-task-queue';
@@ -15,7 +16,7 @@ async function run() {
   console.log('\n--- Testing cancellable workflow (normal completion) ---');
   const completedMessage = await client.workflow.execute(cancellableCallerWorkflow, {
     taskQueue: callerTaskQueue,
-    args: ['Temporal', 'en', false],
+    args: ['Temporal', 'en'],
     workflowId: 'workflow-completed-' + nanoid(),
   });
   console.log(`Completed message: ${completedMessage}`);
@@ -28,15 +29,21 @@ async function run() {
   const handle = await client.workflow.start(cancellableCallerWorkflow, {
     taskQueue: callerTaskQueue,
     workflowId,
-    args: ['Temporal', 'en', true],
+    args: ['Temporal', 'en'],
   });
   console.log(`Started cancellable workflow: ${workflowId}`);
+  handle.signal(cancellableCallerWorkflowCancel);
+  console.log(`Sent cancellation signal`);
 
   try {
     const cancelledMessage = await handle.result();
     console.log(`Unexpected completion: ${cancelledMessage}`);
-  } catch (error: any) {
-    console.log(`Workflow was cancelled as expected: ${error.message}`);
+  } catch (error: unknown) {
+    if (isCancellation((error as WorkflowFailedError).cause)) {
+      console.log(`Workflow was cancelled as expected: ${(error as Error).message}`);
+    } else {
+      throw error;
+    }
   }
 }
 

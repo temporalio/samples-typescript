@@ -1,4 +1,3 @@
-// @@@SNIPSTART typescript-nexus-hello-service-handler
 import { randomUUID } from 'crypto';
 import * as nexus from 'nexus-rpc';
 import * as temporalNexus from '@temporalio/nexus';
@@ -26,4 +25,3 @@ export const helloServiceHandler = nexus.serviceHandler(helloService, {
     },
   ),
 });
-// @@@SNIPEND

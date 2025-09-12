@@ -1,4 +1,3 @@
-// @@@SNIPSTART typescript-nexus-hello-service-worker
 import { Worker, NativeConnection } from '@temporalio/worker';
 import { helloServiceHandler } from './handler';
 
@@ -22,7 +21,6 @@ async function run() {
     await connection.close();
   }
 }
-// @@@SNIPEND
 
 run().catch((err) => {
   console.error(err);

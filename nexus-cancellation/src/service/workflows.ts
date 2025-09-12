@@ -1,4 +1,3 @@
-// @@@SNIPSTART typescript-nexus-hello-workflow
 import { ApplicationFailure } from '@temporalio/workflow';
 import { HelloInput, HelloOutput } from '../api';
 
@@ -28,4 +27,3 @@ export async function helloWorkflow(name: HelloInput): Promise<HelloOutput> {
       throw new ApplicationFailure(`Unsupported language: ${name.language}`);
   }
 }
-// @@@SNIPEND

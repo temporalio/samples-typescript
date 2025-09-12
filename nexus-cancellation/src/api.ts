@@ -1,4 +1,3 @@
-// @@@SNIPSTART typescript-nexus-cancellation-service
 import * as nexus from 'nexus-rpc';
 
 export const helloService = nexus.service('hello', {
@@ -20,4 +19,3 @@ export interface HelloOutput {
 }
 
 export type LanguageCode = 'en' | 'fr' | 'de' | 'es' | 'tr';
-// @@@SNIPEND
