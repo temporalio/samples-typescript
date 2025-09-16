@@ -63,6 +63,7 @@ async function waitForWorkerAndMakeCurrent(client: Client, buildId: string): Pro
   const namespace = client.options.namespace ?? 'default';
 
   // Wait for the worker deployment version to be visible
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     try {
       const response = await client.workflowService.describeWorkerDeployment({

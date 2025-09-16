@@ -3187,6 +3187,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.0
         version: 1.13.0
+      '@temporalio/common':
+        specifier: ^1.13.0
+        version: 1.13.0
       '@temporalio/worker':
         specifier: ^1.13.0
         version: 1.13.0(@swc/helpers@0.5.15)

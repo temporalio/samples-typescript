@@ -23,6 +23,7 @@ export async function autoUpgradingWorkflowV1(): Promise<void> {
     signals.push(signal);
   });
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     await condition(() => signals.length > 0);
     const nextSignal = signals.shift();
@@ -48,6 +49,7 @@ export async function autoUpgradingWorkflowV1b(): Promise<void> {
     signals.push(signal);
   });
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     await condition(() => signals.length > 0);
     const nextSignal = signals.shift();
@@ -77,6 +79,7 @@ export async function pinnedWorkflowV1(): Promise<void> {
     signals.push(signal);
   });
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     await condition(() => signals.length > 0);
     const nextSignal = signals.shift();
@@ -98,6 +101,7 @@ export async function pinnedWorkflowV2(): Promise<void> {
 
   await someActivity('Pinned-v2');
 
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     await condition(() => signals.length > 0);
     const nextSignal = signals.shift();
