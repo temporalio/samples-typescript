@@ -30,7 +30,7 @@ async function run() {
     taskQueue: callerTaskQueue,
     workflowId,
     args: ['Temporal', 'en'],
-    signal: cancellableCallerWorkflowCancel
+    signal: cancellableCallerWorkflowCancel,
   });
   console.log(`Started cancellable workflow: ${workflowId}, sent cancellation signal`);
 

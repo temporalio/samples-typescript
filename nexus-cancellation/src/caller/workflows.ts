@@ -5,10 +5,7 @@ const HELLO_SERVICE_ENDPOINT = 'my-nexus-endpoint-name';
 
 export const cancellableCallerWorkflowCancel = wf.defineSignal('cancellableCallerWorkflowCancel');
 
-export async function cancellableCallerWorkflow(
-  name: string,
-  language: LanguageCode,
-): Promise<string | undefined> {
+export async function cancellableCallerWorkflow(name: string, language: LanguageCode): Promise<string | undefined> {
   const nexusClient = wf.createNexusClient({
     service: helloService,
     endpoint: HELLO_SERVICE_ENDPOINT,
@@ -16,7 +13,7 @@ export async function cancellableCallerWorkflow(
 
   return await wf.CancellationScope.cancellable(async () => {
     // Cancel upon receiving signal.
-    wf.setHandler(cancellableCallerWorkflowCancel, async() => {
+    wf.setHandler(cancellableCallerWorkflowCancel, async () => {
       wf.CancellationScope.current().cancel();
     });
 
@@ -33,7 +30,7 @@ export async function cancellableCallerWorkflow(
       return result.message;
     } catch (err) {
       if (wf.isCancellation(err)) {
-        console.log("Workflow calling Nexus operation cancelled");
+        console.log('Workflow calling Nexus operation cancelled');
       }
       throw err;
     }
