@@ -13,6 +13,11 @@ async function main(): Promise<void> {
   console.info('Waiting for v1 worker to appear. Run `npm run worker1` in another terminal.');
   await waitForWorkerAndMakeCurrent(client, '1.0');
 
+  // Next we'll start two workflows, one which uses the `AutoUpgrade` behavior, and one which uses
+  // `Pinned`. Importantly, note that when we start the workflows, we are using a workflow type
+  // name which does *not* include the version number. We defined them with versioned names so
+  // we could show changes to the code, but here when the client invokes them, we're demonstrating
+  // that the client remains version-agnostic.
   const autoUpgradeHandle = await client.workflow.start('AutoUpgrading', {
     workflowId: `worker-versioning-versioning-autoupgrade_${randomUUID()}`,
     taskQueue: TASK_QUEUE,
