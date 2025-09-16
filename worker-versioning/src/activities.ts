@@ -1,16 +1,16 @@
-export async function greet(name: string): Promise<string> {
-  return `Hello, ${name}!`;
+export interface IncompatibleActivityInput {
+  /** Identifier for the caller */
+  readonly calledBy: string;
+  /** Extra data used to illustrate incompatible changes */
+  readonly moreData: string;
 }
 
-// This function represents the need to change the interface to `greet`. Perhaps we didn't realize
-// we would need to pass additional data, and we change the string parameter to an object. (Hint:
-// It's a great idea to always start with objects for this reason, as they can be extended without
-// breaking compatibility as long as you use a wire format that maintains compatibility.)
-export async function superGreet(input: SuperGreetInput): Promise<string> {
-  return `Hello, ${input.name}! You are number ${input.aNumber}`;
+/** Basic activity for the workflow. */
+export async function someActivity(calledBy: string): Promise<string> {
+  return `SomeActivity called by ${calledBy}`;
 }
 
-export interface SuperGreetInput {
-  name: string;
-  aNumber: number;
+/** Activity that accepts different input to illustrate an incompatible change. */
+export async function someIncompatibleActivity(input: IncompatibleActivityInput): Promise<string> {
+  return `SomeIncompatibleActivity called by ${input.calledBy} with ${input.moreData}`;
 }
