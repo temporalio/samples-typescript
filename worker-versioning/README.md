@@ -14,6 +14,7 @@ demonstrates:
 ## Running
 
 1. Start a Temporal server with `temporal server start-dev`. See [Temporal Server](https://github.com/temporalio/cli/#installation).
+   Ensure that you're using at least Server version 1.28.0 (CLI version 1.4.0).
 2. Install dependencies with `npm install`.
 3. In one terminal run the driver application: `npm run example`.
 4. When prompted by the application, start the workers in separate terminals:
