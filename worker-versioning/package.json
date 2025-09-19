@@ -4,7 +4,10 @@
   "private": true,
   "scripts": {
     "build": "tsc --build",
-    "example": "ts-node src/example.ts",
+    "example": "ts-node src/app.ts",
+    "worker1": "ts-node src/workerv1.ts",
+    "worker1_1": "ts-node src/workerv1_1.ts",
+    "worker2": "ts-node src/workerv2.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint ."
@@ -21,9 +24,9 @@
   "dependencies": {
     "@temporalio/activity": "^1.13.0",
     "@temporalio/client": "^1.13.0",
+    "@temporalio/common": "^1.13.0",
     "@temporalio/worker": "^1.13.0",
-    "@temporalio/workflow": "^1.13.0",
-    "nanoid": "3.x"
+    "@temporalio/workflow": "^1.13.0"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",

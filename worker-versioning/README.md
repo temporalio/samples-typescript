@@ -1,16 +1,26 @@
-# Build ID Based Versioning
+# Worker Versioning
 
-This sample illustrates how to use [Build ID based versioning](https://docs.temporal.io/workers#worker-versioning) to help you appropriately roll out
-incompatible and compatible changes to workflow and activity code for the same task queue.
+This sample demonstrates how to use Temporal's Worker Versioning feature to safely deploy updates to
+workflow and activity code. It shows the difference between auto-upgrading and pinned workflows, and
+how to manage worker deployments with different build IDs.
 
-## Description
+The sample creates multiple worker versions (1.0, 1.1, and 2.0) within one deployment and
+demonstrates:
 
-The sample shows you how to roll out both a compatible change and an incompatible change to a
-workflow.
+- **Auto-upgrading workflows**: Automatically and controllably migrate to newer worker versions
+- **Pinned workflows**: Stay on the original worker version throughout their lifecycle
+- **Compatible vs incompatible changes**: How to make safe updates using `patched`
 
 ## Running
 
-1. `temporal server start-dev --dynamic-config-value frontend.workerVersioningDataAPIs=true --dynamic-config-value frontend.workerVersioningWorkflowAPIs=true --dynamic-config-value worker.buildIdScavengerEnabled=true`
-   to start [Temporal Server](https://github.com/temporalio/cli/#installation) with Worker Versioning enabled.
-1. `npm install` to install dependencies.
-1. `npm run example` to run the example. It starts multiple workers and workflows and demonstrates their interaction.
+1. Start a Temporal server with `temporal server start-dev`. See [Temporal Server](https://github.com/temporalio/cli/#installation).
+   Ensure that you're using at least Server version 1.28.0 (CLI version 1.4.0).
+2. Install dependencies with `npm install`.
+3. In one terminal run the driver application: `npm run example`.
+4. When prompted by the application, start the workers in separate terminals:
+   - `npm run worker1`
+   - `npm run worker1_1`
+   - `npm run worker2`
+
+Follow the prompts in the example to observe auto-upgrading workflows migrating to newer workers
+while pinned workflows remain on their original versions.
