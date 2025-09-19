@@ -1,5 +1,5 @@
 {
-  "name": "nexus-hello",
+  "name": "nexus-cancellation",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -9,9 +9,9 @@
     "format:check": "prettier --check .",
     "lint": "eslint .",
     "start.caller": "ts-node src/caller/worker.ts",
-    "start.caller.watch": "nodemon --watch src/caller --watch src/shared src/caller/worker.ts",
+    "start.caller.watch": "nodemon --watch src/caller/ src/caller/worker.ts",
     "start.service": "ts-node src/service/worker.ts",
-    "start.service.watch": "nodemon --watch src/service --watch src/shared src/service/worker.ts",
+    "start.service.watch": "nodemon --watch src/service/ src/service/worker.ts",
     "workflow": "ts-node src/starter.ts"
   },
   "nodemonConfig": {

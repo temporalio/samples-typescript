@@ -11,6 +11,7 @@
   - [Basic](#basic)
   - [API demos](#api-demos)
     - [Activity APIs and design patterns](#activity-apis-and-design-patterns)
+    - [Nexus APIs](#nexus-apis)
     - [Workflow APIs](#workflow-apis)
     - [Production APIs](#production-apis)
     - [Advanced APIs](#advanced-apis)
@@ -115,6 +116,7 @@ and you'll be given the list of sample options.
 #### Nexus APIs
 
 - [**Nexus Hello**](./nexus-hello): Demonstrates how to define a Nexus Service, implement the Operation handlers, and call the Operations from a Workflow.
+- [**Nexus Cancellation**](./nexus-cancellation): Demonstrates how to cancel a Nexus Operation from a caller workflow using a CancellationScope
 
 #### Workflow APIs
 
