@@ -25,7 +25,8 @@ jobs:
             mutex,
             nestjs-exchange-rates,
             timer-examples,
-            sleep-for-days
+            sleep-for-days,
+            child-workflows
           ]
         include:
           - os: windows-latest
