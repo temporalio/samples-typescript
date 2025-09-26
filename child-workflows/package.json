@@ -10,7 +10,8 @@
     "lint": "eslint .",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/client.ts"
+    "workflow": "ts-node src/client.ts",
+    "test": "vitest run"
   },
   "nodemonConfig": {
     "execMap": {
@@ -22,10 +23,11 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.13.0",
-    "@temporalio/client": "^1.13.0",
-    "@temporalio/worker": "^1.13.0",
-    "@temporalio/workflow": "^1.13.0"
+    "@temporalio/activity": "^1.11.1",
+    "@temporalio/client": "^1.11.3",
+    "@temporalio/worker": "^1.11.1",
+    "@temporalio/workflow": "^1.11.1",
+    "vitest": "^3.2.4"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
