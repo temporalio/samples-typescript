@@ -8,7 +8,7 @@
     "cron-workflows",
     "custom-logger",
     "dsl-interpreter",
-    "eager-wf-start",
+    "eager-workflow-start",
     "early-return",
     "ejson",
     "empty",

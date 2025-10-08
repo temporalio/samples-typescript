@@ -3,25 +3,26 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [Running](#running)
-  - [In browser](#in-browser)
-  - [Locally](#locally)
-  - [Scaffold](#scaffold)
-- [Samples](#samples)
-  - [Basic](#basic)
-  - [API demos](#api-demos)
-    - [Activity APIs and design patterns](#activity-apis-and-design-patterns)
-    - [Nexus APIs](#nexus-apis)
-    - [Workflow APIs](#workflow-apis)
-    - [Production APIs](#production-apis)
-    - [Advanced APIs](#advanced-apis)
-    - [Test APIs](#test-apis)
-  - [Full-stack apps](#full-stack-apps)
-- [External apps & libraries](#external-apps--libraries)
-- [Contributing](#contributing)
-  - [Dependencies](#dependencies)
-  - [Upgrading the SDK version in `package.json`s](#upgrading-the-sdk-version-in-packagejsons)
-  - [Config files](#config-files)
+- [samples-typescript](#samples-typescript)
+  - [Running](#running)
+    - [In browser](#in-browser)
+    - [Locally](#locally)
+    - [Scaffold](#scaffold)
+  - [Samples](#samples)
+    - [Basic](#basic)
+    - [API demos](#api-demos)
+      - [Activity APIs and design patterns](#activity-apis-and-design-patterns)
+      - [Nexus APIs](#nexus-apis)
+      - [Workflow APIs](#workflow-apis)
+      - [Production APIs](#production-apis)
+      - [Advanced APIs](#advanced-apis)
+      - [Test APIs](#test-apis)
+    - [Full-stack apps](#full-stack-apps)
+  - [External apps \& libraries](#external-apps--libraries)
+  - [Contributing](#contributing)
+    - [Dependencies](#dependencies)
+    - [Upgrading the SDK version in `package.json`s](#upgrading-the-sdk-version-in-packagejsons)
+    - [Config files](#config-files)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -135,6 +136,7 @@ and you'll be given the list of sample options.
 - [**Child Workflows**](https://github.com/temporalio/samples-typescript/tree/main/child-workflows): Start and control Child Workflows.
 - [**Infinite Workflows**](https://github.com/temporalio/samples-typescript/tree/main/continue-as-new): Use the `continueAsNew` API for indefinitely long running Workflows.
 - [**Search Attributes**](https://github.com/temporalio/samples-typescript/tree/main/search-attributes): Create, set, upsert, and read Search Attributes.
+- [**Eager Workflow Start**](https://github.com/temporalio/samples-typescript/tree/main/eager-workflow-start): Run a workflow that uses Eager Workflow Start
 
 - [**Subscriptions**](https://github.com/temporalio/subscription-workflow-project-template-typescript/)
 
