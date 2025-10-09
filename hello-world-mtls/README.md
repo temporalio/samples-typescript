@@ -14,7 +14,6 @@ or to a self-hosted Temporal deployment that is [secured with TLS](https://docs.
    ```
 
 2. Set and export the following environment variables, as appropriate for your Temporal cluster.
-
    - `TEMPORAL_ADDRESS` — gRPC endpoint of your Temporal cluster
    - `TEMPORAL_NAMESPACE` — Your namespace
 
@@ -28,12 +27,10 @@ or to a self-hosted Temporal deployment that is [secured with TLS](https://docs.
      SNI does not match the expected host. Adding this override should be done with care.
 
    _(for mTLS authentication only)_
-
    - `TEMPORAL_CLIENT_CERT_PATH` — Path to a file containing your client certificate
    - `TEMPORAL_CLIENT_KEY_PATH` — Path to a file containing your client private key
 
    _(for API Key authentication only)_
-
    - `TEMPORAL_CLIENT_API_KEY` — The API Key used to identify this Client or Worker.
 
    Refer to the [Common Configurations](#common-configurations) section below for details.
