@@ -1,0 +1,48 @@
+{
+  "name": "temporal-eager-workflow-start",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "start": "ts-node src/run.ts",
+    "start.watch": "nodemon src/run.ts",
+    "test": "jest"
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
+  "dependencies": {
+    "@temporalio/activity": "1.13.1",
+    "@temporalio/client": "1.13.1",
+    "@temporalio/worker": "1.13.1",
+    "@temporalio/workflow": "1.13.1",
+    "nanoid": "3.x"
+  },
+  "devDependencies": {
+    "@temporalio/testing": "1.13.1",
+    "@tsconfig/node18": "^18.2.4",
+    "@types/jest": "^29.5.14",
+    "@types/node": "^22.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "jest": "^29.7.0",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.4.2",
+    "ts-jest": "^29.2.5",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
