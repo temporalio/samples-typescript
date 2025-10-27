@@ -51,7 +51,9 @@ describe('example workflow', async function () {
   }
 
   it('returns correct result', async () => {
-    const result = await executeWithWorker({});
+    const fakeMakeHTTPRequest = sinon.stub().resolves('42');
+
+    const result = await executeWithWorker({ activities: { makeHTTPRequest: fakeMakeHTTPRequest } });
     assert.equal(result, 'The answer is 42');
   });
 
