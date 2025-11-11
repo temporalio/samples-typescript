@@ -10,7 +10,7 @@
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
   "dependencies": {
-    "@temporalio/client": "^1.13.1",
+    "@temporalio/client": "^1.13.2",
     "@trpc/server": "^10.0.0-rc.8",
     "@trpc/react-query": "^10.0.0-rc.8"
   },
