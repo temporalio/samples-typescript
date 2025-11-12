@@ -1,11 +1,15 @@
-import { Client } from '@temporalio/client';
+import { Client, Connection } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { v4 as uuid } from 'uuid';
 import { getDataConverter } from './data-converter';
 import { example } from './workflows';
 
 async function run() {
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
   // @@@SNIPSTART typescript-encryption-client
   const client = new Client({
+    connection,
     dataConverter: await getDataConverter(),
   });
 

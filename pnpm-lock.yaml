@@ -138,6 +138,9 @@ importers:
       '@temporalio/common':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -5980,6 +5983,10 @@ packages:
 
   '@temporalio/core-bridge@1.13.2':
     resolution: {integrity: sha512-zwYZqeWypi1YHTeoYwBYgIVmWNg4+/T+CCcOwtyNUvA25wim85p9JOCB9tKgG4e8Hu1Nptd7yEjPaZtLPmJjjg==}
+    engines: {node: '>= 18.0.0'}
+
+  '@temporalio/envconfig@1.13.2':
+    resolution: {integrity: sha512-jq5K8PBMgHKXtjk7c6zocg+XRbwbhivWBhRq7xMZlniNd2Cb06UxxN7EVQ246KSjQc/soQcPrOTj3Xc/tjXH/w==}
     engines: {node: '>= 18.0.0'}
 
   '@temporalio/interceptors-opentelemetry@1.13.2':
@@ -12683,6 +12690,10 @@ packages:
     resolution: {integrity: sha512-94hK0Hh8rPqQl2xXc3HsaBoOXKV20MToPkcXvwbISWLEs+64sBq5kFgn2kJDHb1Pry9yrP0dxrCI9RRci7RXKg==}
     engines: {node: '>= 6.0.0', npm: '>= 3.0.0'}
 
+  smol-toml@1.4.2:
+    resolution: {integrity: sha512-rInDH6lCNiEyn3+hH8KVGFdbjc099j47+OSgbMrfDYX1CmXLfdKd7qi6IfcWj2wFxvSVkuI46M+wPGYfEOEj6g==}
+    engines: {node: '>= 18'}
+
   sockjs@0.3.24:
     resolution: {integrity: sha512-GJgLTZ7vYb/JtPSSZ10hsOYIvEYsjbNU+zPdIHcUaWVNUEPivzxku31865sSSud0Da0W4lEeOPlmw93zLQchuQ==}
 
@@ -17217,6 +17228,11 @@ snapshots:
       arg: 5.0.2
       cargo-cp-artifact: 0.1.9
       which: 4.0.0
+
+  '@temporalio/envconfig@1.13.2':
+    dependencies:
+      '@temporalio/common': 1.13.2
+      smol-toml: 1.4.2
 
   '@temporalio/interceptors-opentelemetry@1.13.2(@temporalio/common@1.13.2)(@temporalio/workflow@1.13.2)':
     dependencies:
@@ -26095,6 +26111,8 @@ snapshots:
   slash@4.0.0: {}
 
   smart-buffer@4.2.0: {}
+
+  smol-toml@1.4.2: {}
 
   sockjs@0.3.24:
     dependencies:

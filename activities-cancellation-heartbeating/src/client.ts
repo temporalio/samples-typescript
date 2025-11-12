@@ -1,9 +1,11 @@
 import { Connection, Client, WorkflowFailedError, CancelledFailure } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { runCancellableActivity } from './workflows';
 import { setTimeout } from 'timers/promises';
 
 async function run() {
-  const connection = await Connection.connect();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
   const client = new Client({ connection });
 
   const handle = await client.workflow.start(runCancellableActivity, {

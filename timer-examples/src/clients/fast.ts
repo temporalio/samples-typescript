@@ -1,8 +1,11 @@
-import { Client } from '@temporalio/client';
+import { Client, Connection } from '@temporalio/client';
 import { processOrderWorkflow } from '../workflows';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 
 async function run(): Promise<void> {
-  const client = new Client();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
+  const client = new Client({ connection });
 
   // Does *not* send email to `process.env.ADMIN_EMAIL` that order processing is slow
   const result = await client.workflow.execute(processOrderWorkflow, {

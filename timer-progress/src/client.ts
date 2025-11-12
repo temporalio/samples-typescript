@@ -1,9 +1,12 @@
-import { Client } from '@temporalio/client';
+import { Client, Connection } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { progress, getProgress } from './workflows';
 import { setTimeout } from 'timers/promises';
 
 async function run() {
-  const client = new Client();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
+  const client = new Client({ connection });
 
   const handle = await client.workflow.start(progress, { taskQueue: 'timer-progress', workflowId: 'progress-0' });
 

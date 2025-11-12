@@ -1,4 +1,5 @@
-import { Client } from '@temporalio/client';
+import { Client, Connection } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { DSLInterpreter, DSL } from './workflows';
 import yaml from 'js-yaml';
 import fs from 'fs';
@@ -23,7 +24,9 @@ async function run() {
   if (path) {
     dslInput = yaml.load((await fs.promises.readFile(path)).toString()) as DSL;
   }
-  const client = new Client(); // remember to configure Connection for production
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
+  const client = new Client({ connection });
 
   // Invoke the `DSLInterpreter` Workflow, only resolved when the workflow completes
   const result = await client.workflow.execute(DSLInterpreter, {

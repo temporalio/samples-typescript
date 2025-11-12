@@ -1,8 +1,11 @@
-import { Client } from '@temporalio/client';
+import { Client, Connection } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { parentWorkflow } from './workflows';
 
 async function run() {
-  const client = new Client();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
+  const client = new Client({ connection });
 
   const result = await client.workflow.execute(parentWorkflow, {
     taskQueue: 'child-workflows',

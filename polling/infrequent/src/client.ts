@@ -1,10 +1,12 @@
 // @@@SNIPSTART typescript-polling-infrequent
 import { Connection, Client } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { greetingWorkflow } from './workflows';
 import { nanoid } from 'nanoid';
 
 async function run() {
-  const connection = await Connection.connect({ address: 'localhost:7233' });
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
   const client = new Client({ connection });
 
   const handle = await client.workflow.start(greetingWorkflow, {

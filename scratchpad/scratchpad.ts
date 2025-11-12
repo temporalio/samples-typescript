@@ -1,6 +1,7 @@
 import { proxyActivities, inWorkflowContext } from '@temporalio/workflow';
 import { Connection, Client } from '@temporalio/client';
 import { Worker, DefaultLogger, Runtime } from '@temporalio/worker';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 
 const workflowId = 'scratchpad';
 const taskQueue = 'scratchpad';
@@ -38,7 +39,8 @@ async function main(): Promise<void> {
       ignoreModules: ['@temporalio/client', '@temporalio/worker'],
     },
   });
-  const connection = await Connection.connect();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
   const client = new Client({ connection });
   await worker.runUntil(starter(client));
 }

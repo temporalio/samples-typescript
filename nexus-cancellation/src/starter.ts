@@ -1,12 +1,14 @@
 import { nanoid } from 'nanoid';
 import { Connection, Client, WorkflowFailedError } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { cancellableCallerWorkflow, cancellableCallerWorkflowCancel } from './caller/workflows';
 import { isCancellation } from '@temporalio/workflow';
 
 async function run() {
   const callerTaskQueue = 'nexus-cancellation-caller-task-queue';
 
-  const connection = await Connection.connect({ address: 'localhost:7233' });
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
   const client = new Client({
     connection,
     namespace: 'my-caller-namespace',

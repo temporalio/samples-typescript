@@ -1,11 +1,13 @@
 // @@@SNIPSTART typescript-message-passing-introduction
 import * as cl from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import * as greetingWorkflow from './workflows';
 import { Language } from './workflows';
 import { nanoid } from 'nanoid';
 
 export async function run() {
-  const connection = await cl.Connection.connect({ address: 'localhost:7233' });
+  const config = loadClientConnectConfig();
+  const connection = await cl.Connection.connect(config.connectionOptions);
   const client = new cl.Client({ connection });
   const handle = await client.workflow.start(greetingWorkflow.greetingWorkflow, {
     taskQueue: 'my-task-queue',
