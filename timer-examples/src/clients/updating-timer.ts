@@ -1,8 +1,11 @@
-import { Client } from '@temporalio/client';
+import { Client, Connection } from '@temporalio/client';
 import { countdownWorkflow, setDeadlineSignal, timeLeftQuery } from '../workflows';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 
 async function run(): Promise<void> {
-  const client = new Client();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
+  const client = new Client({ connection });
 
   const handle = await client.workflow.start(countdownWorkflow, {
     taskQueue: 'timer-examples',

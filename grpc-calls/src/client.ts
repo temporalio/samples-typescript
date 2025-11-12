@@ -1,4 +1,5 @@
 import { Connection } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { defaultPayloadConverter } from '@temporalio/common';
 import { nanoid } from 'nanoid';
 import { setTimeout } from 'timers/promises';
@@ -6,7 +7,8 @@ import { setTimeout } from 'timers/promises';
 async function run() {
   const workflowId = 'workflow-' + nanoid();
   const requestId = 'request-' + nanoid();
-  const connection = await Connection.connect();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
 
   // // normal way of starting a Workflow, with a Client
   // const client = new Client({ connection });

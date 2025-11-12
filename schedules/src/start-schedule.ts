@@ -1,11 +1,12 @@
 import { Connection, Client, ScheduleOverlapPolicy } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { reminder } from './workflows';
 
 // @@@SNIPSTART typescript-create-a-scheduled-workflow
 async function run() {
-  const client = new Client({
-    connection: await Connection.connect(),
-  });
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
+  const client = new Client({ connection });
 
   // https://typescript.temporal.io/api/classes/client.ScheduleClient#create
   const schedule = await client.schedule.create({

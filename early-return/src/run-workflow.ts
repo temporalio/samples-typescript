@@ -1,4 +1,5 @@
 import { Connection, Client, WithStartWorkflowOperation } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { transactionWorkflow } from './workflows';
 import { getTransactionConfirmation } from './shared';
 
@@ -21,7 +22,8 @@ async function runTransactionWorkflow(transactionID: string, client: Client) {
 }
 
 async function main() {
-  const connection = await Connection.connect();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
   const client = new Client({ connection });
   const transactionID = process.argv[2] || 'my-transaction-id';
   await runTransactionWorkflow(transactionID, client);

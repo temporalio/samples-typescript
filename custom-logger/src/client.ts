@@ -1,16 +1,15 @@
 import { nanoid } from 'nanoid';
 import { Connection, Client } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { logSampleWorkflow } from './workflows';
 
 async function run() {
-  const connection = await Connection.connect(); // Connect to localhost with default ConnectionOptions.
-  // In production, pass options to the Connection constructor to configure TLS and other settings.
-  // This is optional but we leave this here to remind you there is a gRPC connection being established.
-
-  const client = new Client({
-    connection,
-    // In production you will likely specify `namespace` here; it is 'default' if omitted
-  });
+  // Load client configuration from config file.
+  // (see: https://docs.temporal.io/develop/environment-configuration)
+  // In production, you can configure TLS and other settings in your config file.
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
+  const client = new Client({ connection });
 
   // Invoke the `logSampleWorkflow` Workflow, only resolved when the workflow completes
   await client.workflow.execute(logSampleWorkflow, {

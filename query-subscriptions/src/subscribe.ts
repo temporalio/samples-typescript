@@ -1,6 +1,7 @@
 import Redis from 'ioredis';
 import { applyPatches } from 'immer';
-import { Client } from '@temporalio/client';
+import { Client, Connection } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { State, counter } from './workflows';
 import { Versioned } from './workflows/subscriptions';
 import { taskQueue } from './env';
@@ -85,7 +86,9 @@ export class SubscriptionClient {
 }
 
 export async function run(): Promise<void> {
-  const client = new Client();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
+  const client = new Client({ connection });
   const subsClient = new SubscriptionClient(client);
   const { workflowId } = await client.workflow.start(counter, {
     taskQueue,

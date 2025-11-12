@@ -1,14 +1,17 @@
 import { randomUUID } from 'crypto';
 import { setTimeout as delay } from 'timers/promises';
-import { Client } from '@temporalio/client';
+import { Client, Connection } from '@temporalio/client';
 import type { WorkflowHandle } from '@temporalio/client';
 import { toCanonicalString, WorkerDeploymentVersion } from '@temporalio/common';
 
 import { DEPLOYMENT_NAME, TASK_QUEUE } from './constants';
 import { doNextSignal } from './workflows-base';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 
 async function main(): Promise<void> {
-  const client = new Client();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
+  const client = new Client({ connection });
 
   console.info('Waiting for v1 worker to appear. Run `npm run worker1` in another terminal.');
   await waitForWorkerAndMakeCurrent(client, '1.0');

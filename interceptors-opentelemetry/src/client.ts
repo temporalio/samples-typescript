@@ -1,11 +1,12 @@
 import { randomUUID } from 'crypto';
 import { OpenTelemetryWorkflowClientInterceptor } from '@temporalio/interceptors-opentelemetry';
 import { Connection, Client } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { example } from './workflows';
 
 async function run() {
-  // Connect to localhost with default ConnectionOptions.
-  const connection = await Connection.connect();
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
 
   // Attach the OpenTelemetryWorkflowClientInterceptor to the client.
   const client = new Client({

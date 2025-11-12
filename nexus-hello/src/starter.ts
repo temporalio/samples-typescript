@@ -1,12 +1,14 @@
 import { nanoid } from 'nanoid';
 import { Connection, Client } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { echoCallerWorkflow, helloCallerWorkflow } from './caller/workflows';
 
 async function run() {
   const namespace = 'my-caller-namespace';
   const callerTaskQueue = 'nexus-hello-caller-task-queue';
 
-  const connection = await Connection.connect({ address: 'localhost:7233' });
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
   const client = new Client({
     connection,
     namespace,

@@ -1,13 +1,12 @@
 import { Connection, Client } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import cuid from 'cuid';
 import * as Workflows from './types/workflow-commands';
 import { openAccount as openAccountWorkflow } from './workflows';
 async function run() {
-  const connection = await Connection.connect();
-  const client = new Client({
-    connection,
-    // In production you will likely specify `namespace` here; it is 'default' if omitted
-  });
+  const config = loadClientConnectConfig();
+  const connection = await Connection.connect(config.connectionOptions);
+  const client = new Client({ connection });
   // workflow params
   const openAccount: Workflows.OpenAccount = {
     accountId: cuid(),

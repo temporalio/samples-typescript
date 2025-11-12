@@ -37,6 +37,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -84,6 +87,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -136,6 +142,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/common':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -238,6 +247,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -285,6 +297,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -336,6 +351,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -383,6 +401,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -446,6 +467,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -499,6 +523,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -565,6 +592,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -629,6 +659,9 @@ importers:
       '@temporalio/common':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -688,6 +721,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -752,6 +788,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/common':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/proto':
@@ -879,6 +918,9 @@ importers:
       '@temporalio/common':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -941,6 +983,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -1370,6 +1415,9 @@ importers:
       '@temporalio/common':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -1420,6 +1468,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -1481,6 +1532,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -1599,6 +1653,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/interceptors-opentelemetry':
         specifier: ^1.13.2
         version: 1.13.2(@temporalio/common@1.13.2)(@temporalio/workflow@1.13.2)
@@ -1649,6 +1706,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -1710,6 +1770,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -1774,6 +1837,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -1995,6 +2061,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -2183,6 +2252,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -2265,6 +2337,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/nexus':
         specifier: ^1.13.2
         version: 1.13.2
@@ -2323,6 +2398,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/nexus':
         specifier: ^1.13.2
         version: 1.13.2
@@ -2379,6 +2457,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -2448,6 +2529,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -2498,6 +2582,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/common':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -2573,6 +2660,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -2631,6 +2721,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -2686,6 +2779,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -2733,6 +2829,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -2787,6 +2886,9 @@ importers:
       '@temporalio/common':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/proto':
         specifier: ^1.13.2
         version: 1.13.2
@@ -2839,6 +2941,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -2888,6 +2993,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -2935,6 +3043,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -3004,6 +3115,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -3056,6 +3170,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -3103,6 +3220,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -3184,6 +3304,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.13.2
         version: 1.13.2
+      '@temporalio/envconfig':
+        specifier: ^1.13.2
+        version: 1.13.2
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -3231,6 +3354,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -3283,6 +3409,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/client':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':
@@ -3341,6 +3470,9 @@ importers:
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/common':
+        specifier: ^1.13.2
+        version: 1.13.2
+      '@temporalio/envconfig':
         specifier: ^1.13.2
         version: 1.13.2
       '@temporalio/worker':

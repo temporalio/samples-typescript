@@ -1,12 +1,14 @@
 import { Client } from '@temporalio/client';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { eagerWorkflow } from './workflows';
 import { nanoid } from 'nanoid';
 import { NativeConnection, Worker } from '@temporalio/worker';
 import * as activities from './activities';
 
 async function run() {
+  const config = loadClientConnectConfig();
   // Note that the client and worker share the same native connection and run in the same process.
-  const sharedNativeConnection = await NativeConnection.connect({ address: 'localhost:7233' });
+  const sharedNativeConnection = await NativeConnection.connect(config.connectionOptions);
 
   const client = new Client({
     connection: sharedNativeConnection,
