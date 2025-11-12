@@ -1,0 +1,30 @@
+{
+  "name": "temporal-env-config",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "load-default": "ts-node src/load-from-file.ts",
+    "load-profile": "ts-node src/load-profile.ts"
+  },
+  "dependencies": {
+    "@temporalio/client": "^1.13.2",
+    "@temporalio/envconfig": "^1.13.2"
+  },
+  "devDependencies": {
+    "@tsconfig/node18": "^18.2.4",
+    "@types/node": "^22.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "prettier": "^3.4.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.6.3"
+  }
+}
