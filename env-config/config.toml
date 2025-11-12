@@ -1,0 +1,40 @@
+# This is a sample configuration file for demonstrating Temporal's environment
+# configuration feature. It defines multiple profiles for different environments,
+# such as local development, production, and staging.
+
+# Default profile for local development
+[profile.default]
+address = "localhost:7233"
+namespace = "default"
+
+# Optional: Add custom gRPC headers
+[profile.default.grpc_meta]
+my-custom-header = "development-value"
+trace-id = "dev-trace-123"
+
+# Staging profile with inline certificate data
+[profile.staging]
+address = "localhost:9999"
+namespace = "staging"
+
+# An example production profile for Temporal Cloud
+[profile.prod]
+address = "your-namespace.a1b2c.tmprl.cloud:7233"
+namespace = "your-namespace"
+# Replace with your actual Temporal Cloud API key
+api_key = "your-api-key-here"
+
+# TLS configuration for production
+[profile.prod.tls]
+# TLS is auto-enabled when an API key is present, but you can configure it
+# explicitly.
+# disabled = false
+
+# Use certificate files for mTLS. Replace with actual paths.
+client_cert_path = "/etc/temporal/certs/client.pem"
+client_key_path = "/etc/temporal/certs/client.key"
+
+# Custom headers for production
+[profile.prod.grpc_meta]
+environment = "production"
+service-version = "v1.2.3"
