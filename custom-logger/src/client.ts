@@ -4,6 +4,9 @@ import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { logSampleWorkflow } from './workflows';
 
 async function run() {
+  // Load client configuration from config file.
+  // (see: https://docs.temporal.io/develop/environment-configuration)
+  // In production, you can configure TLS and other settings in your config file.
   const config = loadClientConnectConfig();
   const connection = await Connection.connect(config.connectionOptions);
   const client = new Client({ connection });
