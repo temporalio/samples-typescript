@@ -13,8 +13,8 @@ async function main() {
   const configFile = resolve(__dirname, '../config.toml');
   const profileName = 'staging';
 
-  console.log("The 'staging' profile in config.toml has an incorrect address (localhost:9999).");
-  console.log("We'll programmatically override it to the correct address.");
+  // The 'staging' profile in config.toml has an incorrect address (localhost:9999)
+  // We'll programmatically override it to the correct address
 
   // Load the 'staging' profile.
   const config = loadClientConnectConfig({
