@@ -13,6 +13,7 @@
     "ejson",
     "empty",
     "encryption",
+    "env-config",
     "expense",
     "fetch-esm",
     "food-delivery",
