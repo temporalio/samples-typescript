@@ -143,6 +143,7 @@ and you'll be given the list of sample options.
 #### Production APIs
 
 - [**Production Build**](./production): Build code in advance for faster Worker startup times.
+- [**Environment Configuration**](./env-config): Configure Temporal Client connections using TOML configuration files with support for multiple environment profiles and programmatic overrides.
 - [**Debugging**](https://docs.temporal.io/dev-guide/typescript/debugging): The [vscode-debugger](./vscode-debugger) sample shows how to use the Temporal VS Code plugin to debug a running or completed Workflow Execution.
 - [**Patching**](https://docs.temporal.io/workflows/#workflow-versioning): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
 - [**Custom Logger**](./custom-logger): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components.
