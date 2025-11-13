@@ -3,6 +3,7 @@
  * programmatically overriding its values.
  */
 
+// @@@SNIPSTART typescript-env-config-load-profile-with-overrides
 import { Connection, Client } from '@temporalio/client';
 import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { resolve } from 'path';
@@ -45,3 +46,4 @@ main().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+// @@@SNIPEND
