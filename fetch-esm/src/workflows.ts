@@ -3,13 +3,13 @@ import { proxyActivities } from '@temporalio/workflow';
 // Only import the activity types
 import type * as activities from './activities.ts';
 
-const { greet } = proxyActivities<typeof activities>({
+const { greetLocal } = proxyActivities<typeof activities>({
   scheduleToCloseTimeout: '5 seconds',
 });
 
 // A variant of the preceding workflow that does not perform any HTTP requests
-export async function exampleHello(name: string): Promise<string> {
-  return await greet(name);
+export async function exampleLocal(name: string): Promise<string> {
+  return await greetLocal(name);
 }
 // @@@SNIPEND
 

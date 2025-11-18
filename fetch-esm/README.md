@@ -6,7 +6,7 @@ Fundamental difference from CommonJS:
 
 - [`package.json`](./package.json) has `"type": "module"` attribute.
 - [`tsconfig.json`](./tsconfig.json) outputs in `esnext` format.
-- Imports [must](https://nodejs.org/api/esm.html#esm_mandatory_file_extensions) include the `.js` file extension.
+- Imports [must](https://nodejs.org/api/esm.html#esm_mandatory_file_extensions) include the `.js` or `.ts` file extension.
 
 ### Running this sample
 
@@ -18,5 +18,5 @@ Fundamental difference from CommonJS:
 The Workflow should return:
 
 ```
-Hello, Temporal!
+Hello World!
 ```

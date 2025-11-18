@@ -11,8 +11,9 @@
     "lint": "eslint .",
     "start": "tsx src/worker.ts",
     "start.watch": "tsx watch src/worker.ts",
-    "workflow": "tsx src/client-hello.ts",
-    "workflow-fetch": "tsx src/client-fetch.ts"
+    "workflow": "tsx src/client-fetch.ts",
+    "workflow-fetch": "tsx src/client-fetch.ts",
+    "workflow-local": "tsx src/client-local.ts"
   },
   "dependencies": {
     "@temporalio/activity": "^1.13.2",
@@ -33,7 +34,6 @@
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-deprecation": "^3.0.0",
     "node-fetch": "^3.0.0",
-    "nodemon": "^3.1.7",
     "prettier": "^3.4.2",
     "tsx": "^4.20.6",
     "typescript": "^5.6.3"
