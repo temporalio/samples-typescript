@@ -1025,9 +1025,6 @@ importers:
       eslint-plugin-deprecation:
         specifier: ^3.0.0
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
-      nodemon:
-        specifier: ^3.1.7
-        version: 3.1.9
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
