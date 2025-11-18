@@ -2,7 +2,7 @@
 import { Worker } from '@temporalio/worker';
 import { URL, fileURLToPath } from 'url';
 import path from 'path';
-import * as activities from './activities.js';
+import * as activities from './activities.ts';
 
 // Support running both complied code and ts-node/esm loader
 const workflowsPathUrl = new URL(`./workflows${path.extname(import.meta.url)}`, import.meta.url);
