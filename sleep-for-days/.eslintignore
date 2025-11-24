@@ -1,5 +1,3 @@
 node_modules
-coverage
-jest.config.js
 lib
 .eslintrc.js
