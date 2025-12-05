@@ -25,7 +25,7 @@ async function starter(client: Client): Promise<void> {
     taskQueue,
     workflowId,
     args: ['Temporal'],
-    workflowIdReusePolicy: 'TERMINATE_IF_RUNNING',
+    workflowIdConflictPolicy: 'TERMINATE_EXISTING',
   });
   console.log(result);
 }
