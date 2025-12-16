@@ -1,6 +1,6 @@
 import { Connection, Client } from '@temporalio/client';
 import { loadClientConnectConfig } from '@temporalio/envconfig';
-import { haikuAgent, mcpAgent, middlewareAgent, telemetryAgent, toolsAgent } from './workflows';
+import { haikuAgent, mcpAgent, middlewareAgent, toolsAgent } from './workflows';
 import { nanoid } from 'nanoid';
 
 async function run() {

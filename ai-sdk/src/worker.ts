@@ -1,6 +1,6 @@
 import { NativeConnection, Worker } from '@temporalio/worker';
 import * as activities from './activities';
-import { AiSDKPlugin } from '@temporalio/ai-sdk';
+import { AiSdkPlugin } from '@temporalio/ai-sdk';
 import { openai } from '@ai-sdk/openai';
 import { experimental_createMCPClient as createMCPClient } from '@ai-sdk/mcp';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
@@ -11,19 +11,21 @@ async function run() {
   });
   try {
     // This is only used by the MCP Sample
-    const mcpClientFactory = () =>
-      createMCPClient({
-        transport: new StdioClientTransport({
-          command: 'node',
-          args: ['lib/mcp-server.js'],
-        }),
-      });
+    const mcpClientFactories = {
+      testServer: () =>
+        createMCPClient({
+          transport: new StdioClientTransport({
+            command: 'node',
+            args: ['lib/mcp-server.js'],
+          }),
+        })
+    }
 
     const worker = await Worker.create({
       plugins: [
-        new AiSDKPlugin({
+        new AiSdkPlugin({
           modelProvider: openai,
-          mcpClientFactory
+          mcpClientFactories
         }),
       ],
       connection,
