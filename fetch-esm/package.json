@@ -9,39 +9,33 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "start": "node --loader ts-node/esm src/worker.ts",
-    "start.watch": "nodemon src/worker.ts",
-    "workflow": "node --loader ts-node/esm src/client.ts"
-  },
-  "nodemonConfig": {
-    "execMap": {
-      "ts": "node --loader ts-node/esm"
-    },
-    "ext": "ts",
-    "watch": [
-      "src"
-    ]
+    "start": "tsx src/worker.ts",
+    "start.watch": "tsx watch src/worker.ts",
+    "workflow": "tsx src/client-fetch.ts",
+    "workflow-fetch": "tsx src/client-fetch.ts",
+    "workflow-local": "tsx src/client-local.ts"
   },
   "dependencies": {
     "@temporalio/activity": "^1.13.2",
     "@temporalio/client": "^1.13.2",
+    "@temporalio/common": "^1.13.2",
     "@temporalio/envconfig": "^1.13.2",
     "@temporalio/worker": "^1.13.2",
-    "@temporalio/workflow": "^1.13.2"
+    "@temporalio/workflow": "^1.13.2",
+    "humanize-string": "^3.1.0",
+    "node-fetch": "^3.3.2"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",
     "@types/node": "^22.9.1",
-    "@types/node-fetch": "^3.0.3",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-deprecation": "^3.0.0",
     "node-fetch": "^3.0.0",
-    "nodemon": "^3.1.7",
     "prettier": "^3.4.2",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.20.6",
     "typescript": "^5.6.3"
   }
 }
