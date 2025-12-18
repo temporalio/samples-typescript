@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-vercel-ai-sdk-weather-activity
 export async function getWeather(input: {
   location: string;
 }): Promise<{ city: string; temperatureRange: string; conditions: string }> {
@@ -8,3 +9,4 @@ export async function getWeather(input: {
     conditions: 'Sunny with wind.',
   };
 }
+// @@@SNIPEND

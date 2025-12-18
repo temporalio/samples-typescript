@@ -11,6 +11,7 @@ async function run() {
   });
   try {
     // This is only used by the MCP Sample
+    // @@@SNIPSTART typescript-vercel-ai-sdk-mcp-client-factories
     const mcpClientFactories = {
       testServer: () =>
         createMCPClient({
@@ -20,7 +21,9 @@ async function run() {
           }),
         })
     }
+    // @@@SNIPEND
 
+    // @@@SNIPSTART typescript-vercel-ai-sdk-worker-create
     const worker = await Worker.create({
       plugins: [
         new AiSdkPlugin({
@@ -35,6 +38,7 @@ async function run() {
       workflowsPath: require.resolve('./workflows'),
       activities,
     });
+    // @@@SNIPEND
 
     await worker.run();
   } finally {

@@ -10,6 +10,7 @@ const { getWeather } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
 });
 
+// @@@SNIPSTART typescript-vercel-ai-sdk-haiku-agent
 export async function haikuAgent(prompt: string): Promise<string> {
   const result = await generateText({
     model: temporalProvider.languageModel('gpt-4o-mini'),
@@ -18,7 +19,9 @@ export async function haikuAgent(prompt: string): Promise<string> {
   });
   return result.text;
 }
+// @@@SNIPEND
 
+// @@@SNIPSTART typescript-vercel-ai-sdk-tools-agent
 export async function toolsAgent(question: string): Promise<string> {
   const result = await generateText({
     model: temporalProvider.languageModel('gpt-4o-mini'),
@@ -37,7 +40,9 @@ export async function toolsAgent(question: string): Promise<string> {
   });
   return result.text;
 }
+// @@@SNIPEND
 
+// @@@SNIPSTART typescript-vercel-ai-sdk-middleware-agent
 export async function middlewareAgent(prompt: string): Promise<string> {
   const cache = new Map<string, any>();
   const middleware: LanguageModelV2Middleware = {
@@ -68,6 +73,7 @@ export async function middlewareAgent(prompt: string): Promise<string> {
   return result.text;
 }
 
+// @@@SNIPSTART typescript-vercel-ai-sdk-mcp-agent
 export async function mcpAgent(prompt: string): Promise<string> {
   const mcpClient = new TemporalMCPClient({name: "testServer"});
   const tools = await mcpClient.tools();
@@ -80,3 +86,4 @@ export async function mcpAgent(prompt: string): Promise<string> {
   });
   return result.text;
 }
+// @@@SNIPEND
