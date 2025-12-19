@@ -35,16 +35,19 @@ async function run() {
         workflowId: 'workflow-' + nanoid(),
       });
       break;
-    default:
+    case 'haiku':
       handle = await client.workflow.start(haikuAgent, {
         taskQueue: 'ai-sdk',
         args: ['Temporal'],
         workflowId: 'workflow-' + nanoid(),
       });
+      break;
+    default:
+      throw new Error('Unknown workflow type: ' + workflow);
   }
   console.log(`Started workflow ${handle.workflowId}`);
 
-  // optional: wait for client result
+  // optional: wait for workflow result
   console.log(await handle.result()); // Hello, Temporal!
 }
 
