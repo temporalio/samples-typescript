@@ -5,7 +5,7 @@ import { nanoid } from 'nanoid';
 
 async function run() {
   const args = process.argv;
-  const workflow = args[2] ?? "haiku";
+  const workflow = args[2] ?? 'haiku';
   console.log(`Running ${workflow}`);
 
   const config = loadClientConnectConfig();
@@ -14,21 +14,21 @@ async function run() {
 
   let handle;
   switch (workflow) {
-    case "middleware":
+    case 'middleware':
       handle = await client.workflow.start(middlewareAgent, {
         taskQueue: 'ai-sdk',
         args: ['Middleware'],
         workflowId: 'workflow-' + nanoid(),
       });
       break;
-    case "mcp":
+    case 'mcp':
       handle = await client.workflow.start(mcpAgent, {
         taskQueue: 'ai-sdk',
         args: ['Tell me about lickitung.'],
         workflowId: 'workflow-' + nanoid(),
       });
       break;
-    case "tools":
+    case 'tools':
       handle = await client.workflow.start(toolsAgent, {
         taskQueue: 'ai-sdk',
         args: ['What is the weather in Tokyo?'],

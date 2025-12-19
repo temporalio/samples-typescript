@@ -19,8 +19,8 @@ async function run() {
             command: 'node',
             args: ['lib/mcp-server.js'],
           }),
-        })
-    }
+        }),
+    };
     // @@@SNIPEND
 
     // @@@SNIPSTART typescript-vercel-ai-sdk-worker-create
@@ -28,7 +28,7 @@ async function run() {
       plugins: [
         new AiSdkPlugin({
           modelProvider: openai,
-          mcpClientFactories
+          mcpClientFactories,
         }),
       ],
       connection,

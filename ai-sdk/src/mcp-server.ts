@@ -15,7 +15,7 @@ server.registerTool(
     description: 'Get Pokemon details by name',
     inputSchema: {
       name: z.string(),
-    }
+    },
   },
   async ({ name }) => {
     const path = `/pokemon/${name.toLowerCase()}`;
@@ -49,7 +49,7 @@ async function main() {
   console.log('Pokemon MCP Server running on stdio');
 }
 
-main().catch(error => {
+main().catch((error) => {
   console.error('Fatal error in main():', error);
   process.exit(1);
 });
@@ -82,8 +82,6 @@ async function makePokeApiRequest<T>(path: string): Promise<T | null> {
 function formatPokemonData(pokemon: Pokemon) {
   return [
     `Name: ${pokemon.name}`,
-    `Abilities: ${pokemon.abilities
-      .map(ability => ability.ability.name)
-      .join(', ')}`,
+    `Abilities: ${pokemon.abilities.map((ability) => ability.ability.name).join(', ')}`,
   ].join('\n');
 }

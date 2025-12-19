@@ -75,7 +75,7 @@ export async function middlewareAgent(prompt: string): Promise<string> {
 
 // @@@SNIPSTART typescript-vercel-ai-sdk-mcp-agent
 export async function mcpAgent(prompt: string): Promise<string> {
-  const mcpClient = new TemporalMCPClient({name: "testServer"});
+  const mcpClient = new TemporalMCPClient({ name: 'testServer' });
   const tools = await mcpClient.tools();
   const result = await generateText({
     model: temporalProvider.languageModel('gpt-4o-mini'),
