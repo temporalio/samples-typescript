@@ -242,38 +242,38 @@ importers:
   ai-sdk:
     dependencies:
       '@ai-sdk/mcp':
-        specifier: ^0.0.8
-        version: 0.0.8(zod@3.25.76)
+        specifier: ^1.0.0
+        version: 1.0.5(zod@3.25.76)
       '@ai-sdk/openai':
-        specifier: ^2.0.28
-        version: 2.0.88(zod@3.25.76)
+        specifier: ^3.0.0
+        version: 3.0.7(zod@3.25.76)
       '@ai-sdk/provider':
-        specifier: ^2.0.0
-        version: 2.0.0
+        specifier: ^3.0.0
+        version: 3.0.2
       '@modelcontextprotocol/sdk':
         specifier: ^1.10.2
         version: 1.25.1(hono@4.11.1)(zod@3.25.76)
       '@temporalio/activity':
-        specifier: ^1.14.0
-        version: 1.14.0
+        specifier: ^1.14.1
+        version: 1.14.1
       '@temporalio/ai-sdk':
-        specifier: ^1.14.0
-        version: 1.14.0(@ai-sdk/mcp@0.0.8(zod@3.25.76))(@ai-sdk/provider@2.0.0)(ai@5.0.115(zod@3.25.76))
+        specifier: ^1.14.1
+        version: 1.14.1(@ai-sdk/mcp@1.0.5(zod@3.25.76))(@ai-sdk/provider@3.0.2)(ai@6.0.24(zod@3.25.76))
       '@temporalio/client':
-        specifier: ^1.14.0
-        version: 1.14.0
+        specifier: ^1.14.1
+        version: 1.14.1
       '@temporalio/envconfig':
-        specifier: ^1.14.0
-        version: 1.14.0
+        specifier: ^1.14.1
+        version: 1.14.1
       '@temporalio/worker':
-        specifier: ^1.14.0
-        version: 1.14.0(@swc/helpers@0.5.15)
+        specifier: ^1.14.1
+        version: 1.14.1(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.14.0
-        version: 1.14.0
+        specifier: ^1.14.1
+        version: 1.14.1
       ai:
-        specifier: ^5.0.91
-        version: 5.0.115(zod@3.25.76)
+        specifier: ^6.0.0
+        version: 6.0.24(zod@3.25.76)
       nanoid:
         specifier: 3.x
         version: 3.3.8
@@ -1172,7 +1172,7 @@ importers:
         version: 10.45.2(@trpc/server@10.45.2)
       '@trpc/next':
         specifier: ^10.0.0-rc.8
-        version: 10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/react-query@10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/server@10.45.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/server@10.45.2)(next@15.1.6(@babel/core@7.26.7)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/react-query@10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/server@10.45.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/server@10.45.2)(next@15.1.6(@babel/core@7.26.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@trpc/react-query':
         specifier: ^10.0.0-rc.8
         version: 10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/server@10.45.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1260,7 +1260,7 @@ importers:
         version: 10.45.2(@trpc/server@10.45.2)
       '@trpc/next':
         specifier: ^10.0.0-rc.8
-        version: 10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/react-query@10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/server@10.45.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/server@10.45.2)(next@15.1.6(@babel/core@7.26.7)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
+        version: 10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/react-query@10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/server@10.45.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/server@10.45.2)(next@15.1.6(@babel/core@7.26.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@trpc/react-query':
         specifier: ^10.0.0-rc.8
         version: 10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/server@10.45.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1743,7 +1743,7 @@ importers:
         version: 1.13.2
       '@temporalio/interceptors-opentelemetry':
         specifier: ^1.13.2
-        version: 1.13.2(@temporalio/common@1.14.0)(@temporalio/workflow@1.13.2)
+        version: 1.13.2(@temporalio/common@1.14.1)(@temporalio/workflow@1.13.2)
       '@temporalio/worker':
         specifier: ^1.13.2
         version: 1.13.2(@swc/helpers@0.5.15)
@@ -3606,38 +3606,32 @@ packages:
   '@adobe/css-tools@4.4.1':
     resolution: {integrity: sha512-12WGKBQzjUAI4ayyF4IAtfw2QR/IDoqk6jTddXDhtYTJF9ASmoE1zst7cVtP0aL/F1jUJL5r+JxKXKEgHNbEUQ==}
 
-  '@ai-sdk/gateway@2.0.22':
-    resolution: {integrity: sha512-6fHjDfCbjfj4vyMExuLei7ir2///E5sNwNZaobdJsJIxJjDSsjzSLGO/aUI7p9eOnB8XctDrDSF5ilwDGpi6eg==}
+  '@ai-sdk/gateway@3.0.10':
+    resolution: {integrity: sha512-sRlPMKd38+fdp2y11USW44c0o8tsIsT6T/pgyY04VXC3URjIRnkxugxd9AkU2ogfpPDMz50cBAGPnMxj+6663Q==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/mcp@0.0.8':
-    resolution: {integrity: sha512-9y9GuGcZ9/+pMIHfpOCJgZVp+AZMv6TkjX2NVT17SQZvTF2N8LXuCXyoUPyi1PxIxzxl0n463LxxaB2O6olC+Q==}
+  '@ai-sdk/mcp@1.0.5':
+    resolution: {integrity: sha512-ViLrt9ybjtwSubMBhnV3Wjaq+ZITx1UlFU5mnLAgWj2HAxoEIwpZGRAqdD/ojJlV950wEM/OCha/1rtGdUy/bw==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/openai@2.0.88':
-    resolution: {integrity: sha512-LlOf83haeZIiRUH1Zw1oEmqUfw5y54227CvndFoBpIkMJwQDGAB3VARUeOJ6iwAWDJjXSz06GdnEnhRU67Yatw==}
+  '@ai-sdk/openai@3.0.7':
+    resolution: {integrity: sha512-CBoYn1U59Lop8yBL9KuVjHCKc/B06q9Qo0SasRwHoyMEq+X4I8LQZu3a8Ck1jwwcZTTxfyiExB70LtIRSynBDA==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/provider-utils@3.0.17':
-    resolution: {integrity: sha512-TR3Gs4I3Tym4Ll+EPdzRdvo/rc8Js6c4nVhFLuvGLX/Y4V9ZcQMa/HTiYsHEgmYrf1zVi6Q145UEZUfleOwOjw==}
+  '@ai-sdk/provider-utils@4.0.4':
+    resolution: {integrity: sha512-VxhX0B/dWGbpNHxrKCWUAJKXIXV015J4e7qYjdIU9lLWeptk0KMLGcqkB4wFxff5Njqur8dt8wRi1MN9lZtDqg==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
 
-  '@ai-sdk/provider-utils@3.0.19':
-    resolution: {integrity: sha512-W41Wc9/jbUVXVwCN/7bWa4IKe8MtxO3EyA0Hfhx6grnmiYlCvpI8neSYWFE0zScXJkgA/YK3BRybzgyiXuu6JA==}
-    engines: {node: '>=18'}
-    peerDependencies:
-      zod: ^3.25.76 || ^4.1.8
-
-  '@ai-sdk/provider@2.0.0':
-    resolution: {integrity: sha512-6o7Y2SeO9vFKB8lArHXehNuusnpddKPk7xqL7T2/b+OvXMRIXUO1rR4wcv1hAFUAT9avGZshty3Wlua/XA7TvA==}
+  '@ai-sdk/provider@3.0.2':
+    resolution: {integrity: sha512-HrEmNt/BH/hkQ7zpi2o6N3k1ZR1QTb7z85WYhYygiTxOQuaml4CMtHCWRbric5WPU+RNsYI7r1EpyVQMKO1pYw==}
     engines: {node: '>=18'}
 
   '@alloc/quick-lru@5.2.0':
@@ -6440,13 +6434,17 @@ packages:
     resolution: {integrity: sha512-ayGqfjqW8R1nhow54Y3A5ezoVwFr4SbB8VHaQA3seDFOB+6TyOVSlulYqGgFMxl/FXBkRa/VEswEDqS/xQq7aQ==}
     engines: {node: '>= 18.0.0'}
 
-  '@temporalio/ai-sdk@1.14.0':
-    resolution: {integrity: sha512-yGOSsAt3VGxmeOPoAuFxfEtTq8B39VN+QwULPUxaUcNRH6UAGJT3kZaJvzFhdwkBLn7JdjCzRokKQLcIWo0kLg==}
+  '@temporalio/activity@1.14.1':
+    resolution: {integrity: sha512-wG2fTNgomhcKOzPY7mqhKqe8scawm4BvUYdgX1HJouHmVNRgtZurf2xQWJZQOTxWrsXfdoYqzohZLzxlNtcC5A==}
+    engines: {node: '>= 18.0.0'}
+
+  '@temporalio/ai-sdk@1.14.1':
+    resolution: {integrity: sha512-4zZaWQRU6EadkE8UEQ3vjal2tiKCVSDY6KOtayS8zRGXijs2gLCopwnMm0mrfd9DPfzoeCK2hWDMtYPPzRGwrQ==}
     engines: {node: '>= 18.0.0'}
     peerDependencies:
-      '@ai-sdk/mcp': ^0.0.8
-      '@ai-sdk/provider': ^2.0.0
-      ai: ^5.0.91
+      '@ai-sdk/mcp': ^1.0.0
+      '@ai-sdk/provider': ^3.0.0
+      ai: ^6.0.0
 
   '@temporalio/client@1.13.2':
     resolution: {integrity: sha512-gyptINv/i6DTG4sRgE6S10vsO6V56iQQujDFaVIwg5pcRsRqqHIwoOldI4j1RqrEoEy7J4prRBGNwOd5H3Yf8A==}
@@ -6454,6 +6452,10 @@ packages:
 
   '@temporalio/client@1.14.0':
     resolution: {integrity: sha512-kjzJ+7M2kHj32cTTSQT5WOjEIOxY0TNV5g6Sw9PzWmKWdtIZig+d7qUIA3VjDe/TieNozxjR2wNAX5sKzYFANA==}
+    engines: {node: '>= 18.0.0'}
+
+  '@temporalio/client@1.14.1':
+    resolution: {integrity: sha512-AfWSA0LYzBvDLFiFgrPWqTGGq1NGnF3d4xKnxf0PGxSmv5SLb/aqQ9lzHg4DJ5UNkHO4M/NwzdxzzoaR1J5F8Q==}
     engines: {node: '>= 18.0.0'}
 
   '@temporalio/common@1.13.2':
@@ -6464,6 +6466,10 @@ packages:
     resolution: {integrity: sha512-jVmurBdFHdqw/wIehzVJikS8MhavL630p88TJ64P5PH0nP8S5V8R5vhkmHZ7n0sMRO+A0QFyWYyvnccu6MQZvw==}
     engines: {node: '>= 18.0.0'}
 
+  '@temporalio/common@1.14.1':
+    resolution: {integrity: sha512-y49wOm3AIEKZufIQ/QU5JhTSaHJIEkiUt5bGB0/uSzCg8P4g8Cz0XoVPSbDwuCix533O9cOKcliYq7Gzjt/sIA==}
+    engines: {node: '>= 18.0.0'}
+
   '@temporalio/core-bridge@1.13.2':
     resolution: {integrity: sha512-zwYZqeWypi1YHTeoYwBYgIVmWNg4+/T+CCcOwtyNUvA25wim85p9JOCB9tKgG4e8Hu1Nptd7yEjPaZtLPmJjjg==}
     engines: {node: '>= 18.0.0'}
@@ -6472,12 +6478,16 @@ packages:
     resolution: {integrity: sha512-62WRbESKVtCx1FafbikQB90EwKNF+mEAaOJKifUIU4lQnk9wlZPRfrf6pwyqr+Uqi7uZhD2YqHXWUNVYbmQU7w==}
     engines: {node: '>= 18.0.0'}
 
+  '@temporalio/core-bridge@1.14.1':
+    resolution: {integrity: sha512-mrXXIFK5yNvsSZsTejLnL64JMuMliQjFKktSGITm2Ci7cWZ/ZTOVN6u+hCsUKfadYYv83jSuOC9Xe3z3RK273w==}
+    engines: {node: '>= 18.0.0'}
+
   '@temporalio/envconfig@1.13.2':
     resolution: {integrity: sha512-jq5K8PBMgHKXtjk7c6zocg+XRbwbhivWBhRq7xMZlniNd2Cb06UxxN7EVQ246KSjQc/soQcPrOTj3Xc/tjXH/w==}
     engines: {node: '>= 18.0.0'}
 
-  '@temporalio/envconfig@1.14.0':
-    resolution: {integrity: sha512-I1GL9heBV2yvOx+KtDtjDXZiubFj99K5qA3/Ab7fazPpNcgu6doxUIHTk7UB444fi3myVwmaIavE/ZuW6EhGGA==}
+  '@temporalio/envconfig@1.14.1':
+    resolution: {integrity: sha512-KAzxQtA6gqo8Lxto39ECD72Cpnsj9mzQ69TMeya4nXa0/K6G2ZOmo3bJ0DGmPzBl/c0u9fuYB9gs9uZAadpoVQ==}
     engines: {node: '>= 18.0.0'}
 
   '@temporalio/interceptors-opentelemetry@1.13.2':
@@ -6498,6 +6508,10 @@ packages:
     resolution: {integrity: sha512-0tgf+EBuz5vgYUukaYUzVHKr27XNQejXXO1i0x8+4sjR5zN6euNKraHfRzrDWRSm3nTZ6199rCTbR+CPrqaC/g==}
     engines: {node: '>= 18.0.0'}
 
+  '@temporalio/nexus@1.14.1':
+    resolution: {integrity: sha512-51oTeJ8nntAMF8boFSlzVdHlyC7y/LaLQPZMjEEOV2pi8O9yOI7GZvYDIAHhY8Z8AcDVgbXb8x0BbkjkwNiUiQ==}
+    engines: {node: '>= 18.0.0'}
+
   '@temporalio/nyc-test-coverage@1.13.2':
     resolution: {integrity: sha512-OxEs8Dmt37IlzFMj/EBGaQKlANJ/kmgVTUjyhn2YDXjJilqnC54akn7AFEE8hLpW1qSRBe6w8wQvbtSCnyojwQ==}
     engines: {node: '>= 18.0.0'}
@@ -6507,8 +6521,8 @@ packages:
       '@temporalio/workflow': 1.13.2
       webpack: ^5.94.0
 
-  '@temporalio/plugin@1.14.0':
-    resolution: {integrity: sha512-MJQgo9h/RHhcXNSUJzfzew2sXjUCWFNUx8al2YixLdRh0l1QXEEqUz7+nDyoshgewMaOp7LEV6BGSYjLAbKH/g==}
+  '@temporalio/plugin@1.14.1':
+    resolution: {integrity: sha512-YWoBfqxo21LZd8oEZrrInwL3kfofAq2sUwImwzLRdfk/4id62noA4Z6EcTHkYzpRmYBVnI38cikJVdTuKt3/Ew==}
     engines: {node: '>= 18.0.0'}
 
   '@temporalio/proto@1.13.2':
@@ -6517,6 +6531,10 @@ packages:
 
   '@temporalio/proto@1.14.0':
     resolution: {integrity: sha512-duYVjt3x6SkuFzJr+5NlklEgookPqW065qdcvogmdfVjrgiwz4W/07AN3+fL4ufmqt1//0SyF6nyqv9RNADYNA==}
+    engines: {node: '>= 18.0.0'}
+
+  '@temporalio/proto@1.14.1':
+    resolution: {integrity: sha512-mCsUommDPXbXbBu60p1g4jpSqVb+GNR67yR0uKTU8ARb4qVZQo7SQnOUaneoxDERDXuR/yIjVCektMm+7Myb+A==}
     engines: {node: '>= 18.0.0'}
 
   '@temporalio/testing@1.13.2':
@@ -6535,12 +6553,20 @@ packages:
     resolution: {integrity: sha512-wo5rgPSt83aT1hLYmh/0X4yOx/6uRbIvBa9LXqGo7s9s1GJkUyJpAahRt8aMoLm4qPsiZtu1gtU5KcASOmgqtg==}
     engines: {node: '>= 18.0.0'}
 
+  '@temporalio/worker@1.14.1':
+    resolution: {integrity: sha512-wFfN5gc03eq1bYAuJNsG9a1iWBG6hL9zAfYbxiJdshPhpHa82BtHGvXD447oT2BX3zqI+Jf2b0m/N0wgkW6wyQ==}
+    engines: {node: '>= 18.0.0'}
+
   '@temporalio/workflow@1.13.2':
     resolution: {integrity: sha512-vK8s0iCTMGNLtUZeKiFVfmLd4nVUDaJ4aS0yCy8WvMUpgqBTpaaOWPAy7KiH0grKB7zIskiWljEMtpt3ce586w==}
     engines: {node: '>= 18.0.0'}
 
   '@temporalio/workflow@1.14.0':
     resolution: {integrity: sha512-hxUqCZTkdSwgy5nc/O1DIpYH0Z77cM57RfJvhK4ELmkkb1jh/Q4dshDannH1qQ1zYT0IKRBHSW7m1aMy1+dgDA==}
+    engines: {node: '>= 18.0.0'}
+
+  '@temporalio/workflow@1.14.1':
+    resolution: {integrity: sha512-MzshcoRo8zjQYa9WHrv3XC8LVvpRNSVaW3kOSTmHuTYDh/7be48WODOgs5yUpbnkpsw6rjVCDCgtB/K02cQwDg==}
     engines: {node: '>= 18.0.0'}
 
   '@testing-library/dom@7.31.2':
@@ -7130,8 +7156,8 @@ packages:
   '@vercel/node@2.14.3':
     resolution: {integrity: sha512-XEoMTQvqQC11hItfDsTegtBA66jTFXA7PTyI2QHASpoAQFMGcx91XI/sTPvxgK/1u+eXjxpiv6OU3l4/i27G4Q==}
 
-  '@vercel/oidc@3.0.5':
-    resolution: {integrity: sha512-fnYhv671l+eTTp48gB4zEsTW/YtRgRPnkI2nT7x6qw5rkI1Lq2hTmQIpHPgyThI0znLK+vX2n9XxKdXZ7BUbbw==}
+  '@vercel/oidc@3.1.0':
+    resolution: {integrity: sha512-Fw28YZpRnA3cAHHDlkt7xQHiJ0fcL+NRcIqsocZQUSmbzeIKRpwttJjik5ZGanXP+vlA4SbTg+AbA3bP363l+w==}
     engines: {node: '>= 20'}
 
   '@vercel/python@3.1.60':
@@ -7292,8 +7318,8 @@ packages:
     resolution: {integrity: sha512-4I7Td01quW/RpocfNayFdFVk1qSuoh0E7JrbRJ16nH01HhKFQ88INq9Sd+nd72zqRySlr9BmDA8xlEJ6vJMrYA==}
     engines: {node: '>=8'}
 
-  ai@5.0.115:
-    resolution: {integrity: sha512-aVuHx0orGxXvhyL7oXUyW8TnWQE6Al8f3Bl6VZjz0WHMV+WaACHPkSyvQ3wje2QCUGzdl5DBF5d+OaXyghPQyg==}
+  ai@6.0.24:
+    resolution: {integrity: sha512-np5VIe32O1vgDnzWWKa34NX1OkhaiY84DSfVWcmswVHtxp97g6k9EKv5dts8OfO9lM73XKyd6a7JqflA0+DN7A==}
     engines: {node: '>=18'}
     peerDependencies:
       zod: ^3.25.76 || ^4.1.8
@@ -14778,41 +14804,34 @@ snapshots:
 
   '@adobe/css-tools@4.4.1': {}
 
-  '@ai-sdk/gateway@2.0.22(zod@3.25.76)':
+  '@ai-sdk/gateway@3.0.10(zod@3.25.76)':
     dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.19(zod@3.25.76)
-      '@vercel/oidc': 3.0.5
+      '@ai-sdk/provider': 3.0.2
+      '@ai-sdk/provider-utils': 4.0.4(zod@3.25.76)
+      '@vercel/oidc': 3.1.0
       zod: 3.25.76
 
-  '@ai-sdk/mcp@0.0.8(zod@3.25.76)':
+  '@ai-sdk/mcp@1.0.5(zod@3.25.76)':
     dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.17(zod@3.25.76)
+      '@ai-sdk/provider': 3.0.2
+      '@ai-sdk/provider-utils': 4.0.4(zod@3.25.76)
       pkce-challenge: 5.0.1
       zod: 3.25.76
 
-  '@ai-sdk/openai@2.0.88(zod@3.25.76)':
+  '@ai-sdk/openai@3.0.7(zod@3.25.76)':
     dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.19(zod@3.25.76)
+      '@ai-sdk/provider': 3.0.2
+      '@ai-sdk/provider-utils': 4.0.4(zod@3.25.76)
       zod: 3.25.76
 
-  '@ai-sdk/provider-utils@3.0.17(zod@3.25.76)':
+  '@ai-sdk/provider-utils@4.0.4(zod@3.25.76)':
     dependencies:
-      '@ai-sdk/provider': 2.0.0
+      '@ai-sdk/provider': 3.0.2
       '@standard-schema/spec': 1.1.0
       eventsource-parser: 3.0.6
       zod: 3.25.76
 
-  '@ai-sdk/provider-utils@3.0.19(zod@3.25.76)':
-    dependencies:
-      '@ai-sdk/provider': 2.0.0
-      '@standard-schema/spec': 1.1.0
-      eventsource-parser: 3.0.6
-      zod: 3.25.76
-
-  '@ai-sdk/provider@2.0.0':
+  '@ai-sdk/provider@3.0.2':
     dependencies:
       json-schema: 0.4.0
 
@@ -18040,14 +18059,20 @@ snapshots:
       '@temporalio/common': 1.14.0
       abort-controller: 3.0.0
 
-  '@temporalio/ai-sdk@1.14.0(@ai-sdk/mcp@0.0.8(zod@3.25.76))(@ai-sdk/provider@2.0.0)(ai@5.0.115(zod@3.25.76))':
+  '@temporalio/activity@1.14.1':
     dependencies:
-      '@ai-sdk/mcp': 0.0.8(zod@3.25.76)
-      '@ai-sdk/provider': 2.0.0
-      '@temporalio/plugin': 1.14.0
-      '@temporalio/workflow': 1.14.0
+      '@temporalio/client': 1.14.1
+      '@temporalio/common': 1.14.1
+      abort-controller: 3.0.0
+
+  '@temporalio/ai-sdk@1.14.1(@ai-sdk/mcp@1.0.5(zod@3.25.76))(@ai-sdk/provider@3.0.2)(ai@6.0.24(zod@3.25.76))':
+    dependencies:
+      '@ai-sdk/mcp': 1.0.5(zod@3.25.76)
+      '@ai-sdk/provider': 3.0.2
+      '@temporalio/plugin': 1.14.1
+      '@temporalio/workflow': 1.14.1
       '@ungap/structured-clone': 1.3.0
-      ai: 5.0.115(zod@3.25.76)
+      ai: 6.0.24(zod@3.25.76)
       headers-polyfill: 4.0.3
       web-streams-polyfill: 4.2.0
 
@@ -18069,6 +18094,15 @@ snapshots:
       long: 5.2.4
       uuid: 11.1.0
 
+  '@temporalio/client@1.14.1':
+    dependencies:
+      '@grpc/grpc-js': 1.12.5
+      '@temporalio/common': 1.14.1
+      '@temporalio/proto': 1.14.1
+      abort-controller: 3.0.0
+      long: 5.2.4
+      uuid: 11.1.0
+
   '@temporalio/common@1.13.2':
     dependencies:
       '@temporalio/proto': 1.13.2
@@ -18080,6 +18114,14 @@ snapshots:
   '@temporalio/common@1.14.0':
     dependencies:
       '@temporalio/proto': 1.14.0
+      long: 5.2.4
+      ms: 3.0.0-canary.1
+      nexus-rpc: 0.0.1
+      proto3-json-serializer: 2.0.2
+
+  '@temporalio/common@1.14.1':
+    dependencies:
+      '@temporalio/proto': 1.14.1
       long: 5.2.4
       ms: 3.0.0-canary.1
       nexus-rpc: 0.0.1
@@ -18101,23 +18143,28 @@ snapshots:
       cargo-cp-artifact: 0.1.9
       which: 4.0.0
 
+  '@temporalio/core-bridge@1.14.1':
+    dependencies:
+      '@grpc/grpc-js': 1.12.5
+      '@temporalio/common': 1.14.1
+
   '@temporalio/envconfig@1.13.2':
     dependencies:
       '@temporalio/common': 1.13.2
       smol-toml: 1.4.2
 
-  '@temporalio/envconfig@1.14.0':
+  '@temporalio/envconfig@1.14.1':
     dependencies:
-      '@temporalio/common': 1.14.0
+      '@temporalio/common': 1.14.1
       smol-toml: 1.4.2
 
-  '@temporalio/interceptors-opentelemetry@1.13.2(@temporalio/common@1.14.0)(@temporalio/workflow@1.13.2)':
+  '@temporalio/interceptors-opentelemetry@1.13.2(@temporalio/common@1.14.1)(@temporalio/workflow@1.13.2)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
-      '@temporalio/common': 1.14.0
+      '@temporalio/common': 1.14.1
     optionalDependencies:
       '@temporalio/workflow': 1.13.2
 
@@ -18137,6 +18184,14 @@ snapshots:
       long: 5.2.4
       nexus-rpc: 0.0.1
 
+  '@temporalio/nexus@1.14.1':
+    dependencies:
+      '@temporalio/client': 1.14.1
+      '@temporalio/common': 1.14.1
+      '@temporalio/proto': 1.14.1
+      long: 5.2.4
+      nexus-rpc: 0.0.1
+
   '@temporalio/nyc-test-coverage@1.13.2(@temporalio/common@1.13.2)(@temporalio/worker@1.13.2(@swc/helpers@0.5.15))(@temporalio/workflow@1.13.2)(typescript@5.7.3)(webpack@5.96.1(@swc/core@1.10.11(@swc/helpers@0.5.15)))':
     dependencies:
       '@temporalio/common': 1.13.2
@@ -18151,7 +18206,7 @@ snapshots:
       - supports-color
       - typescript
 
-  '@temporalio/plugin@1.14.0': {}
+  '@temporalio/plugin@1.14.1': {}
 
   '@temporalio/proto@1.13.2':
     dependencies:
@@ -18159,6 +18214,11 @@ snapshots:
       protobufjs: 7.4.0
 
   '@temporalio/proto@1.14.0':
+    dependencies:
+      long: 5.2.4
+      protobufjs: 7.4.0
+
+  '@temporalio/proto@1.14.1':
     dependencies:
       long: 5.2.4
       protobufjs: 7.4.0
@@ -18255,6 +18315,36 @@ snapshots:
       - uglify-js
       - webpack-cli
 
+  '@temporalio/worker@1.14.1(@swc/helpers@0.5.15)':
+    dependencies:
+      '@grpc/grpc-js': 1.12.5
+      '@swc/core': 1.10.11(@swc/helpers@0.5.15)
+      '@temporalio/activity': 1.14.1
+      '@temporalio/client': 1.14.1
+      '@temporalio/common': 1.14.1
+      '@temporalio/core-bridge': 1.14.1
+      '@temporalio/nexus': 1.14.1
+      '@temporalio/proto': 1.14.1
+      '@temporalio/workflow': 1.14.1
+      abort-controller: 3.0.0
+      heap-js: 2.6.0
+      memfs: 4.17.0
+      nexus-rpc: 0.0.1
+      proto3-json-serializer: 2.0.2
+      protobufjs: 7.4.0
+      rxjs: 7.8.1
+      source-map: 0.7.4
+      source-map-loader: 4.0.2(webpack@5.96.1(@swc/core@1.10.11(@swc/helpers@0.5.15)))
+      supports-color: 8.1.1
+      swc-loader: 0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.96.1(@swc/core@1.10.11(@swc/helpers@0.5.15)))
+      unionfs: 4.5.4
+      webpack: 5.96.1(@swc/core@1.10.11(@swc/helpers@0.5.15))
+    transitivePeerDependencies:
+      - '@swc/helpers'
+      - esbuild
+      - uglify-js
+      - webpack-cli
+
   '@temporalio/workflow@1.13.2':
     dependencies:
       '@temporalio/common': 1.13.2
@@ -18265,6 +18355,12 @@ snapshots:
     dependencies:
       '@temporalio/common': 1.14.0
       '@temporalio/proto': 1.14.0
+      nexus-rpc: 0.0.1
+
+  '@temporalio/workflow@1.14.1':
+    dependencies:
+      '@temporalio/common': 1.14.1
+      '@temporalio/proto': 1.14.1
       nexus-rpc: 0.0.1
 
   '@testing-library/dom@7.31.2':
@@ -18335,7 +18431,7 @@ snapshots:
     dependencies:
       '@trpc/server': 10.45.2
 
-  '@trpc/next@10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/react-query@10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/server@10.45.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/server@10.45.2)(next@15.1.6(@babel/core@7.26.7)(@opentelemetry/api@1.9.0)(babel-plugin-macros@3.1.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
+  '@trpc/next@10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/react-query@10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/server@10.45.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/server@10.45.2)(next@15.1.6(@babel/core@7.26.7)(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(react-dom@18.3.1(react@18.3.1))(react@18.3.1)':
     dependencies:
       '@tanstack/react-query': 4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@trpc/client': 10.45.2(@trpc/server@10.45.2)
@@ -19091,7 +19187,7 @@ snapshots:
       - encoding
       - utf-8-validate
 
-  '@vercel/oidc@3.0.5': {}
+  '@vercel/oidc@3.1.0': {}
 
   '@vercel/python@3.1.60': {}
 
@@ -19376,11 +19472,11 @@ snapshots:
       clean-stack: 2.2.0
       indent-string: 4.0.0
 
-  ai@5.0.115(zod@3.25.76):
+  ai@6.0.24(zod@3.25.76):
     dependencies:
-      '@ai-sdk/gateway': 2.0.22(zod@3.25.76)
-      '@ai-sdk/provider': 2.0.0
-      '@ai-sdk/provider-utils': 3.0.19(zod@3.25.76)
+      '@ai-sdk/gateway': 3.0.10(zod@3.25.76)
+      '@ai-sdk/provider': 3.0.2
+      '@ai-sdk/provider-utils': 4.0.4(zod@3.25.76)
       '@opentelemetry/api': 1.9.0
       zod: 3.25.76
 
