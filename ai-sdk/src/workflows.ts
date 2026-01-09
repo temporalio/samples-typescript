@@ -4,7 +4,7 @@ import { TemporalMCPClient, temporalProvider } from '@temporalio/ai-sdk';
 import type * as activities from './activities';
 import { proxyActivities } from '@temporalio/workflow';
 import z from 'zod';
-import { LanguageModelV3Middleware } from '@ai-sdk/provider';
+import { LanguageModelV2Middleware } from '@ai-sdk/provider';
 
 const { getWeather } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
@@ -45,8 +45,7 @@ export async function toolsAgent(question: string): Promise<string> {
 // @@@SNIPSTART typescript-vercel-ai-sdk-middleware-agent
 export async function middlewareAgent(prompt: string): Promise<string> {
   const cache = new Map<string, any>();
-  const middleware: LanguageModelV3Middleware = {
-    specificationVersion: 'v3',
+  const middleware: LanguageModelV2Middleware = {
     wrapGenerate: async ({ doGenerate, params }) => {
       const cacheKey = JSON.stringify(params);
       if (cache.has(cacheKey)) {
