@@ -1,5 +1,5 @@
 {
-  "name": "temporal-hello-world",
+  "name": "temporal-ai-sdk",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -23,22 +23,22 @@
     ]
   },
   "dependencies": {
-    "@ai-sdk/openai": "^2.0.28",
-    "@ai-sdk/provider": "^2.0.0",
-    "@ai-sdk/mcp": "^0.0.8",
+    "@ai-sdk/openai": "^3.0.0",
+    "@ai-sdk/provider": "^3.0.0",
+    "@ai-sdk/mcp": "^1.0.0",
     "@modelcontextprotocol/sdk": "^1.10.2",
-    "@temporalio/activity": "^1.14.0",
-    "@temporalio/ai-sdk": "^1.14.0",
-    "@temporalio/client": "^1.14.0",
-    "@temporalio/envconfig": "^1.14.0",
-    "@temporalio/worker": "^1.14.0",
-    "@temporalio/workflow": "^1.14.0",
-    "ai": "^5.0.91",
+    "@temporalio/activity": "^1.14.1",
+    "@temporalio/ai-sdk": "^1.14.1",
+    "@temporalio/client": "^1.14.1",
+    "@temporalio/envconfig": "^1.14.1",
+    "@temporalio/worker": "^1.14.1",
+    "@temporalio/workflow": "^1.14.1",
+    "ai": "^6.0.0",
     "nanoid": "3.x",
     "zod": "^3.25.76"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.14.0",
+    "@temporalio/testing": "^1.14.1",
     "@tsconfig/node18": "^18.2.4",
     "@types/mocha": "8.x",
     "@types/node": "^22.9.1",
