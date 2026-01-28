@@ -5,8 +5,8 @@ Other: https://www.docker.com/products/docker-desktop
 
 Start Temporal Server:
 
-{cyan git clone} https://github.com/temporalio/docker-compose.git temporal-server
-{cyan cd} temporal-server/
+{cyan git clone} https://github.com/temporalio/samples-server.git
+{cyan cd} samples-server/compose
 {cyan docker-compose up}
 
 Use Node version 18+ (v22.x is recommended):
