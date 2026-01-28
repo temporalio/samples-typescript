@@ -5,7 +5,6 @@
 
 - [samples-typescript](#samples-typescript)
   - [Running](#running)
-    - [In browser](#in-browser)
     - [Locally](#locally)
     - [Scaffold](#scaffold)
   - [Samples](#samples)
@@ -29,13 +28,6 @@
 Each directory in this repo is a sample Temporal project built with the [TypeScript SDK](https://github.com/temporalio/sdk-typescript/) (see [docs](https://docs.temporal.io/application-development?lang=typescript#supported-sdks) and [API reference](https://typescript.temporal.io/)).
 
 ## Running
-
-### In browser
-
-The fastest way to try out these samples is running them in the browser:
-
-- Gitpod: [One click to try](https://gitpod.io/#https://github.com/temporalio/samples-typescript/) (there is a good free tier)
-- [GitHub Codespaces](https://docs.github.com/en/codespaces/developing-in-codespaces/creating-a-codespace#creating-a-codespace) (if your org admin has enabled this) - [90 second video demo](https://youtu.be/FdEQQC9EdfU)
 
 ### Locally
 
