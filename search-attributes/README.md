@@ -19,8 +19,6 @@ This runs [`src/client-operator-service.ts`](./src/client-operator-service.ts), 
   - Read search attributes from `WorkflowInfo`
   - Upsert search attributes
 
-This requires an Elasticsearch instance, which is included in the default `docker-compose`.
-
 ### Running this sample
 
 1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
