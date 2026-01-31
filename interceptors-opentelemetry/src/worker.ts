@@ -1,3 +1,4 @@
+import { logs, SeverityNumber } from "@opentelemetry/api-logs";
 import { DefaultLogger, Worker, Runtime, makeTelemetryFilterString } from '@temporalio/worker';
 import {
   OpenTelemetryActivityInboundInterceptor,
@@ -17,7 +18,26 @@ function initializeRuntime() {
     // IMPORTANT: Make sure to configure the `telemetryOptions.logging` property
     //            below to also collect logs emitted by the native runtime.
     //
-    logger: new DefaultLogger('WARN'),
+    logger: new DefaultLogger("WARN", (entry) => {
+      const seconds = Number(entry.timestampNanos / BigInt(1e9));
+      const nanos = Number(entry.timestampNanos % BigInt(1e9));
+      const hrTime= [seconds, nanos];
+      logs.getLogger("interceptors-sample").emit({
+        severityNumber: {
+          TRACE: SeverityNumber.TRACE,
+          DEBUG: SeverityNumber.DEBUG,
+          INFO: SeverityNumber.INFO,
+          WARN: SeverityNumber.WARN,
+          ERROR: SeverityNumber.ERROR,
+        }[entry.level],
+        body: entry.message,
+        severityText: entry.level.toLowerCase(),
+        timestamp: hrTime,
+        observedTimestamp: hrTime,
+        attributes: entry.meta,
+      });
+    }),
+
 
     telemetryOptions: {
       // Configure the OpenTelemetry metrics exporter for the native runtime.
