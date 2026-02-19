@@ -27,7 +27,7 @@
     "@types/node": "^22.9.1",
     "@fooddelivery/eslint-config-food": "*",
     "eslint": "^8.57.1",
-    "pnpm": "^9.15.0",
+    "pnpm": "^10.28.2",
     "prettier": "^3.4.2",
     "prettier-plugin-tailwindcss": "^0.1.12",
     "vercel": "^29.0.3"
