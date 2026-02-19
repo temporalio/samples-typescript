@@ -1,11 +1,7 @@
 import { DefaultLogger, Worker, Runtime, makeTelemetryFilterString } from '@temporalio/worker';
-import {
-  OpenTelemetryActivityInboundInterceptor,
-  OpenTelemetryActivityOutboundInterceptor,
-  makeWorkflowExporter,
-} from '@temporalio/interceptors-opentelemetry/lib/worker';
+import { OpenTelemetryPlugin } from '@temporalio/interceptors-opentelemetry';
 import * as activities from './activities';
-import { otelSdk, resource, traceExporter } from './instrumentation';
+import { setupOtelSdk, resource, spanProcessor } from './instrumentation';
 
 function initializeRuntime() {
   Runtime.install({
@@ -61,31 +57,18 @@ function initializeRuntime() {
 }
 
 async function main() {
+  const otelSdk = setupOtelSdk();
   initializeRuntime();
+
+  // The OpenTelemetryPlugin automatically configures interceptors and sinks
+  // for tracing Workflow, Activity, and Client calls.
+  const plugins = spanProcessor ? [new OpenTelemetryPlugin({ resource, spanProcessor })] : [];
 
   const worker = await Worker.create({
     workflowsPath: require.resolve('./workflows'),
     activities,
     taskQueue: 'interceptors-opentelemetry-example',
-
-    // Registers OpenTelemetry Tracing sinks and interceptors for Workflow and Activity calls
-    //
-    sinks: traceExporter && {
-      exporter: makeWorkflowExporter(traceExporter, resource),
-    },
-    interceptors: traceExporter && {
-      // IMPORTANT: When prebundling Workflow code (i.e. using `bundleWorkflowCode(...)`), you MUST
-      //            provide the following `workflowModules` property to `bundleWorkflowCode()`;
-      //            Workflow code tracing won't work if you don't.
-      //
-      workflowModules: [require.resolve('./workflows')],
-      activity: [
-        (ctx) => ({
-          inbound: new OpenTelemetryActivityInboundInterceptor(ctx),
-          outbound: new OpenTelemetryActivityOutboundInterceptor(ctx),
-        }),
-      ],
-    },
+    plugins,
   });
   try {
     await worker.run();

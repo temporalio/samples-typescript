@@ -1,21 +1,20 @@
 import { randomUUID } from 'crypto';
-import { OpenTelemetryWorkflowClientInterceptor } from '@temporalio/interceptors-opentelemetry';
+import { OpenTelemetryPlugin } from '@temporalio/interceptors-opentelemetry';
 import { Connection, Client } from '@temporalio/client';
 import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { example } from './workflows';
+import { resource, spanProcessor } from './instrumentation';
 
 async function run() {
   const config = loadClientConnectConfig();
   const connection = await Connection.connect(config.connectionOptions);
 
-  // Attach the OpenTelemetryWorkflowClientInterceptor to the client.
+  // The OpenTelemetryPlugin automatically registers tracing interceptors for Client calls.
+  const plugins = spanProcessor ? [new OpenTelemetryPlugin({ resource, spanProcessor })] : [];
+
   const client = new Client({
     connection,
-
-    // Registers OpenTelemetry Tracing interceptor for Client calls
-    interceptors: {
-      workflow: [new OpenTelemetryWorkflowClientInterceptor()],
-    },
+    plugins,
   });
 
   const result = await client.workflow.execute(example, {
