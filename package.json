@@ -12,7 +12,8 @@
     "upgrade-versions": "zx .scripts/upgrade-versions.mjs",
     "lint": "pnpm run -r --filter './*' lint",
     "prepare": "husky install",
-    "update-toc": "doctoc README.md"
+    "update-toc": "doctoc README.md",
+    "verify-samples": "zx .scripts/verify-samples.mjs"
   },
   "devDependencies": {
     "doctoc": "^2.1.0",
