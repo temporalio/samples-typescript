@@ -28,7 +28,7 @@
     "@temporalio/envconfig": "^1.13.2",
     "@temporalio/worker": "^1.13.2",
     "@temporalio/workflow": "^1.13.2",
-    "js-yaml": "^4.1.0"
+    "js-yaml": "^4.1.1"
   },
   "devDependencies": {
     "@tsconfig/node18": "^18.2.4",

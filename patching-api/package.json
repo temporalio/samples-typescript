@@ -27,7 +27,7 @@
     "@temporalio/envconfig": "^1.13.2",
     "@temporalio/worker": "^1.13.2",
     "@temporalio/workflow": "^1.13.2",
-    "axios": "0.28.0",
+    "axios": "0.30.3",
     "eslint": "^8.57.1",
     "node-fetch": "2.x"
   },

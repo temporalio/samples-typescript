@@ -26,7 +26,7 @@
     "@ai-sdk/openai": "^3.0.0",
     "@ai-sdk/provider": "^3.0.0",
     "@ai-sdk/mcp": "^1.0.0",
-    "@modelcontextprotocol/sdk": "^1.10.2",
+    "@modelcontextprotocol/sdk": "^1.26.0",
     "@temporalio/activity": "^1.14.1",
     "@temporalio/ai-sdk": "^1.14.1",
     "@temporalio/client": "^1.14.1",
