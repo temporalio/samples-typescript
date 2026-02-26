@@ -5,7 +5,7 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NodeSDK } from '@opentelemetry/sdk-node';
-import { ConsoleSpanExporter, SpanExporter } from '@opentelemetry/sdk-trace-node';
+import { ConsoleSpanExporter, SimpleSpanProcessor, SpanProcessor, SpanExporter } from '@opentelemetry/sdk-trace-node';
 import { OTLPTraceExporter as OTLPTraceExporterGrpc } from '@opentelemetry/exporter-trace-otlp-grpc';
 import { OTLPTraceExporter as OTLPTraceExporterHttp } from '@opentelemetry/exporter-trace-otlp-http';
 import { OTLPMetricExporter as OTLPMetricExporterGrpc } from '@opentelemetry/exporter-metrics-otlp-grpc';
@@ -115,23 +115,31 @@ export const resource = new Resource({
   [ATTR_SERVICE_NAME]: 'interceptors-sample',
 });
 
-export const traceExporter = setupTraceExporter();
+const traceExporter = setupTraceExporter();
+
+export const spanProcessor: SpanProcessor | undefined = traceExporter
+  ? new SimpleSpanProcessor(traceExporter)
+  : undefined;
+
 const metricReader = setupMetricReader();
 
-export const otelSdk = new NodeSDK({
-  // This is required for use with the `@temporalio/interceptors-opentelemetry` package.
-  resource,
+export function setupOtelSdk(): NodeSDK {
+  const otelSdk = new NodeSDK({
+    // This is required for use with the `@temporalio/interceptors-opentelemetry` package.
+    resource,
 
-  // This is required for use with the `@temporalio/interceptors-opentelemetry` package.
-  traceExporter,
+    // This is required for use with the `@temporalio/interceptors-opentelemetry` package.
+    spanProcessors: spanProcessor ? [spanProcessor] : [],
 
-  // This is optional; it enables collecting metrics about the Node process, and some other libraries.
-  // Note that Temporal's Worker metrics are controlled through the Runtime options and do not relate
-  // to this option.
-  metricReader,
+    // This is optional; it enables collecting metrics about the Node process, and some other libraries.
+    // Note that Temporal's Worker metrics are controlled through the Runtime options and do not relate
+    // to this option.
+    metricReader,
 
-  // This is optional; it enables auto-instrumentation for certain libraries.
-  instrumentations: [getNodeAutoInstrumentations()],
-});
+    // This is optional; it enables auto-instrumentation for certain libraries.
+    instrumentations: [getNodeAutoInstrumentations()],
+  });
 
-otelSdk.start();
+  otelSdk.start();
+  return otelSdk;
+}
