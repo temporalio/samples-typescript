@@ -68,6 +68,9 @@ async function main() {
     workflowsPath: require.resolve('./workflows'),
     activities,
     taskQueue: 'interceptors-opentelemetry-example',
+    // IMPORTANT: When prebundling Workflow code (i.e. using `bundleWorkflowCode(...)`), you MUST
+    // provide the following `plugins` property to `bundleWorkflowCode()`.
+    // Workflow code tracing won't work if you don't.
     plugins,
   });
   try {

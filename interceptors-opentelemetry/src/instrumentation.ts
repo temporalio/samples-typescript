@@ -5,7 +5,7 @@
 
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { NodeSDK } from '@opentelemetry/sdk-node';
-import { ConsoleSpanExporter, SimpleSpanProcessor, SpanProcessor, SpanExporter } from '@opentelemetry/sdk-trace-node';
+import { ConsoleSpanExporter, SpanProcessor, SpanExporter, BatchSpanProcessor } from '@opentelemetry/sdk-trace-node';
 import { OTLPTraceExporter as OTLPTraceExporterGrpc } from '@opentelemetry/exporter-trace-otlp-grpc';
 import { OTLPTraceExporter as OTLPTraceExporterHttp } from '@opentelemetry/exporter-trace-otlp-http';
 import { OTLPMetricExporter as OTLPMetricExporterGrpc } from '@opentelemetry/exporter-metrics-otlp-grpc';
@@ -118,7 +118,7 @@ export const resource = new Resource({
 const traceExporter = setupTraceExporter();
 
 export const spanProcessor: SpanProcessor | undefined = traceExporter
-  ? new SimpleSpanProcessor(traceExporter)
+  ? new BatchSpanProcessor(traceExporter)
   : undefined;
 
 const metricReader = setupMetricReader();
