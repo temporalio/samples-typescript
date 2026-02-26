@@ -39,6 +39,7 @@
     "schedules",
     "scratchpad",
     "search-attributes",
+    "server-sent-events",
     "signals-queries",
     "sinks",
     "sleep-for-days",
