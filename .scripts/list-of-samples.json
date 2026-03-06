@@ -5,6 +5,7 @@
     "activities-examples",
     "ai-sdk",
     "child-workflows",
+    "context-propagation",
     "continue-as-new",
     "cron-workflows",
     "custom-logger",
