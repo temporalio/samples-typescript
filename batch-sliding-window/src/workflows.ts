@@ -108,7 +108,7 @@ export async function processBatchWorkflow(input: ProcessBatchWorkflowInput): Pr
       executeChild(slidingWindowWorkflow, {
         workflowId: childId,
         args: [childInput],
-      })
+      }),
     );
 
     offset += partitionSizes[i];
@@ -138,7 +138,9 @@ export async function slidingWindowWorkflow(input: SlidingWindowWorkflowInput): 
   });
 
   setHandler(stateQuery, () => ({
-    currentRecords: Object.keys(currentRecords).map(Number).sort((a, b) => a - b),
+    currentRecords: Object.keys(currentRecords)
+      .map(Number)
+      .sort((a, b) => a - b),
     childrenStartedByThisRun: childrenStartedCount,
     offset: input.offset,
     progress,
