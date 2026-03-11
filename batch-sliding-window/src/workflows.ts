@@ -14,7 +14,7 @@ import {
   startChild,
   workflowInfo,
 } from '@temporalio/workflow';
-import type { createActivites } from './activities';
+import type { createActivities, SingleRecord } from './activities';
 
 const { getRecordCount, getRecords } = proxyActivities<ReturnType<typeof createActivities>>({
   startToCloseTimeout: '5 seconds',
@@ -152,7 +152,7 @@ export async function slidingWindowWorkflow(input: SlidingWindowWorkflowInput): 
   });
 
   // Load the next page of records (skip if we've reached the end)
-  let records: activities.SingleRecord[] = [];
+  let records: SingleRecord[] = [];
   if (input.offset < input.maximumOffset) {
     const output = await getRecords({
       pageSize: input.pageSize,
@@ -207,7 +207,7 @@ export async function slidingWindowWorkflow(input: SlidingWindowWorkflowInput): 
  * Signals by workflow ID only (no run ID) so the signal reaches the
  * latest run even after the parent has called continue-as-new.
  */
-export async function recordProcessorWorkflow(record: activities.SingleRecord): Promise<void> {
+export async function recordProcessorWorkflow(record: SingleRecord): Promise<void> {
   const sleepMs = ((record.id % 10) + 1) * 1000;
   await sleep(sleepMs);
 
