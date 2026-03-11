@@ -14,9 +14,9 @@ import {
   startChild,
   workflowInfo,
 } from '@temporalio/workflow';
-import type * as activities from './activities';
+import type { createActivites } from './activities';
 
-const { getRecordCount, getRecords } = proxyActivities<ReturnType<(typeof activities)['createActivities']>>({
+const { getRecordCount, getRecords } = proxyActivities<ReturnType<typeof createActivities>>({
   startToCloseTimeout: '5 seconds',
 });
 
@@ -90,10 +90,7 @@ export async function processBatchWorkflow(input: ProcessBatchWorkflowInput): Pr
 
   for (let i = 0; i < input.partitions; i++) {
     const childId = `${workflowInfo().workflowId}/${i}`;
-    let maximumPartitionOffset = offset + partitionSizes[i];
-    if (maximumPartitionOffset > totalRecords) {
-      maximumPartitionOffset = totalRecords;
-    }
+    const maximumPartitionOffset = Math.min(offset + partitionSizes[i], totalRecords);
 
     const childInput: SlidingWindowWorkflowInput = {
       pageSize: input.pageSize,
