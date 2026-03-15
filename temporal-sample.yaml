@@ -1,0 +1,26 @@
+version: 1
+language: typescript
+scaffold: {}
+samples:
+  - path: hello-world
+    description: Default scaffolded hello world project
+  - path: nexus-hello
+    description: Nexus service definition and cross-namespace calls
+  - path: nexus-cancellation
+    description: Cancel a Nexus operation from a caller workflow
+  - path: ai-sdk
+    description: Vercel AI SDK integration for LLM applications
+  - path: saga
+    description: Microservice orchestration using the Saga pattern
+  - path: expense
+    description: Expense workflow with Signal-based approval/rejection
+  - path: child-workflows
+    description: Child workflow execution patterns
+  - path: signals-queries
+    description: Signals, Queries, and Workflow Cancellation
+  - path: dsl-interpreter
+    description: DSL workflow interpreter driven by YAML step definitions
+  - path: encryption
+    description: Custom data converter with AES encryption
+  - path: food-delivery
+    description: Production-like distributed app from blog post
