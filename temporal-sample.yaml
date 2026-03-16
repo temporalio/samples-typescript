@@ -24,3 +24,79 @@ samples:
     description: Custom data converter with AES encryption
   - path: food-delivery
     description: Production-like distributed app from blog post
+  - path: activities-cancellation-heartbeating
+    description: Activity heartbeating and cancellation of long-running Activities
+  - path: activities-dependency-injection
+    description: Share dependencies between Activities via dependency injection
+  - path: activities-examples
+    description: HTTP requests, cancellable fetch, and async Activity completion
+  - path: batch-sliding-window
+    description: Batch processing with a sliding window of parallel child Workflows
+  - path: continue-as-new
+    description: Continue-as-new API for long-running Workflows
+  - path: cron-workflows
+    description: Cron-scheduled Workflow execution (deprecated, use Schedules)
+  - path: custom-logger
+    description: Custom logging with Winston for Workers, Workflows, and Activities
+  - path: eager-workflow-start
+    description: Eager Workflow Start for low-latency first-task execution
+  - path: early-return
+    description: Early return pattern via Update-with-Start
+  - path: ejson
+    description: Custom payload converter using EJSON for Dates, binary, and special numbers
+  - path: empty
+    description: Empty starter project scaffolded by @temporalio/create
+  - path: env-config
+    description: External client configuration via TOML profiles
+  - path: fetch-esm
+    description: Project configuration with TypeScript and ES Modules
+  - path: grpc-calls
+    description: Raw gRPC calls to Temporal Server via WorkflowService
+  - path: hello-world-js
+    description: Hello World sample in plain JavaScript
+  - path: hello-world-mtls
+    description: TLS and mTLS connection configuration for Temporal Cloud
+  - path: interceptors-opentelemetry
+    description: OpenTelemetry tracing and metrics via SDK interceptors
+  - path: message-passing
+    description: Queries, Signals, Updates, and safe message handler patterns
+  - path: monorepo-folders
+    description: Realistic monorepo structure with frontend, backend, and Worker packages
+  - path: mutex
+    description: Distributed mutex lock via a coordinating Workflow
+  - path: nestjs-exchange-rates
+    description: NestJS integration caching exchange rates with long-lived Workflows
+  - path: nextjs-ecommerce-oneclick
+    description: Next.js one-click e-commerce app with Temporal backend
+  - path: patching-api
+    description: Patching/versioning API for migrating in-progress Workflows
+  - path: polling
+    description: Infrequent polling with Activity heartbeating
+  - path: production
+    description: Prebuilt Workflow bundles for production Worker startup
+  - path: protobufs
+    description: Protobuf payload converter for type-safe serialization
+  - path: query-subscriptions
+    description: Subscribable Workflow state via Redis Streams and interceptors
+  - path: schedules
+    description: Schedule Workflows to run at specific times
+  - path: scratchpad
+    description: Minimal single-file project for quick prototyping
+  - path: search-attributes
+    description: Custom Search Attributes on Workflow Executions
+  - path: sinks
+    description: Workflow Sinks API for alerting and side effects
+  - path: sleep-for-days
+    description: Long-running Workflow that sleeps for days between actions
+  - path: state
+    description: Workflow state management via Signals and Queries
+  - path: timer-examples
+    description: Timer patterns including updatable timers via Signals
+  - path: timer-progress
+    description: Timer-based progress tracking in Workflows
+  - path: vscode-debugger
+    description: VS Code debugger integration for Workflow Executions
+  - path: worker-specific-task-queues
+    description: Unique Task Queues per Worker for co-located Activity execution
+  - path: worker-versioning
+    description: Worker Versioning with auto-upgrading and pinned deployments
