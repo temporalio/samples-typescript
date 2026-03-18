@@ -4,312 +4,99 @@ scaffold: {}
 samples:
   - path: hello-world
     description: Default scaffolded hello world project
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: nexus-hello
     description: Nexus service definition and cross-namespace calls
-    commands:
-      - cmd: npm install
-      - cmd: temporal operator namespace create --namespace nexus-sample-caller
-      - cmd: temporal operator namespace create --namespace nexus-sample-handler
-      - cmd: temporal operator nexus endpoint create --name nexus-sample --target-namespace nexus-sample-handler --target-task-queue my-handler-task-queue
-      - cmd: npm run start.service.watch
-      - cmd: npm run start.caller.watch
-        new_terminal: true
-      - cmd: npm run workflow
-        new_terminal: true
   - path: nexus-cancellation
     description: Cancel a Nexus operation from a caller workflow
-    commands:
-      - cmd: npm install
-      - cmd: temporal operator namespace create --namespace nexus-sample-caller
-      - cmd: temporal operator namespace create --namespace nexus-sample-handler
-      - cmd: temporal operator nexus endpoint create --name nexus-sample --target-namespace nexus-sample-handler --target-task-queue my-handler-task-queue
-      - cmd: npm run start.service.watch
-      - cmd: npm run start.caller.watch
-        new_terminal: true
-      - cmd: npm run workflow
-        new_terminal: true
   - path: ai-sdk
     description: Vercel AI SDK integration for LLM applications
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: saga
     description: Microservice orchestration using the Saga pattern
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: expense
     description: Expense workflow with Signal-based approval/rejection
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run server.watch
-        new_terminal: true
-      - cmd: npm run workflow-approve
-        new_terminal: true
   - path: child-workflows
     description: Child workflow execution patterns
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: signals-queries
     description: Signals, Queries, and Workflow Cancellation
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow.start
-        new_terminal: true
   - path: dsl-interpreter
     description: DSL workflow interpreter driven by YAML step definitions
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow1
-        new_terminal: true
   - path: encryption
     description: Custom data converter with AES encryption
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: food-delivery
     description: Production-like distributed app from blog post
   - path: activities-cancellation-heartbeating
     description: Activity heartbeating and cancellation of long-running Activities
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: activities-dependency-injection
     description: Share dependencies between Activities via dependency injection
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: activities-examples
     description: HTTP requests, cancellable fetch, and async Activity completion
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: batch-sliding-window
     description: Batch processing with a sliding window of parallel child Workflows
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: continue-as-new
     description: Continue-as-new API for long-running Workflows
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: cron-workflows
     description: Cron-scheduled Workflow execution (deprecated, use Schedules)
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: custom-logger
     description: Custom logging with Winston for Workers, Workflows, and Activities
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: eager-workflow-start
     description: Eager Workflow Start for low-latency first-task execution
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
   - path: early-return
     description: Early return pattern via Update-with-Start
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: ejson
     description: Custom payload converter using EJSON for Dates, binary, and special numbers
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: empty
     description: Empty starter project scaffolded by @temporalio/create
   - path: env-config
     description: External client configuration via TOML profiles
   - path: fetch-esm
     description: Project configuration with TypeScript and ES Modules
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: grpc-calls
     description: Raw gRPC calls to Temporal Server via WorkflowService
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: hello-world-js
     description: Hello World sample in plain JavaScript
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: hello-world-mtls
     description: TLS and mTLS connection configuration for Temporal Cloud
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: interceptors-opentelemetry
     description: OpenTelemetry tracing and metrics via SDK interceptors
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: message-passing
     description: Queries, Signals, Updates, and safe message handler patterns
   - path: monorepo-folders
     description: Realistic monorepo structure with frontend, backend, and Worker packages
   - path: mutex
     description: Distributed mutex lock via a coordinating Workflow
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: nestjs-exchange-rates
     description: NestJS integration caching exchange rates with long-lived Workflows
-    commands:
-      - cmd: npm install
-      - cmd: npm run start:worker
-      - cmd: npm run start:server
-        new_terminal: true
   - path: nextjs-ecommerce-oneclick
     description: Next.js one-click e-commerce app with Temporal backend
-    commands:
-      - cmd: npm install
-      - cmd: npm run dev
   - path: patching-api
     description: Patching/versioning API for migrating in-progress Workflows
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: polling
     description: Infrequent polling with Activity heartbeating
   - path: production
     description: Prebuilt Workflow bundles for production Worker startup
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: protobufs
     description: Protobuf payload converter for type-safe serialization
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: query-subscriptions
     description: Subscribable Workflow state via Redis Streams and interceptors
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run subscribe
-        new_terminal: true
   - path: schedules
     description: Schedule Workflows to run at specific times
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run schedule.start
-        new_terminal: true
   - path: scratchpad
     description: Minimal single-file project for quick prototyping
   - path: search-attributes
     description: Custom Search Attributes on Workflow Executions
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: sinks
     description: Workflow Sinks API for alerting and side effects
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: sleep-for-days
     description: Long-running Workflow that sleeps for days between actions
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: state
     description: Workflow state management via Signals and Queries
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow.start
-        new_terminal: true
   - path: timer-examples
     description: Timer patterns including updatable timers via Signals
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow-slow
-        new_terminal: true
   - path: timer-progress
     description: Timer-based progress tracking in Workflows
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: vscode-debugger
     description: VS Code debugger integration for Workflow Executions
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: worker-specific-task-queues
     description: Unique Task Queues per Worker for co-located Activity execution
-    commands:
-      - cmd: npm install
-      - cmd: npm run start.watch
-      - cmd: npm run workflow
-        new_terminal: true
   - path: worker-versioning
     description: Worker Versioning with auto-upgrading and pinned deployments
