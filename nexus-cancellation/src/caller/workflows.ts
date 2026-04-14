@@ -6,7 +6,7 @@ const HELLO_SERVICE_ENDPOINT = 'my-nexus-endpoint-name';
 export const cancellableCallerWorkflowCancel = wf.defineSignal('cancellableCallerWorkflowCancel');
 
 export async function cancellableCallerWorkflow(name: string, language: LanguageCode): Promise<string | undefined> {
-  const nexusClient = wf.createNexusClient({
+  const nexusClient = wf.createNexusServiceClient({
     service: helloService,
     endpoint: HELLO_SERVICE_ENDPOINT,
   });

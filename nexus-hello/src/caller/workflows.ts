@@ -5,7 +5,7 @@ import { helloService, LanguageCode } from '../api';
 const HELLO_SERVICE_ENDPOINT = 'my-nexus-endpoint-name';
 
 export async function echoCallerWorkflow(message: string): Promise<string> {
-  const nexusClient = wf.createNexusClient({
+  const nexusClient = wf.createNexusServiceClient({
     service: helloService,
     endpoint: HELLO_SERVICE_ENDPOINT,
   });
@@ -16,7 +16,7 @@ export async function echoCallerWorkflow(message: string): Promise<string> {
 }
 
 export async function helloCallerWorkflow(name: string, language: LanguageCode): Promise<string> {
-  const nexusClient = wf.createNexusClient({
+  const nexusClient = wf.createNexusServiceClient({
     service: helloService,
     endpoint: HELLO_SERVICE_ENDPOINT,
   });
