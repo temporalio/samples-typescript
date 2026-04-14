@@ -22,15 +22,15 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.15.0",
-    "@temporalio/client": "^1.15.0",
-    "@temporalio/envconfig": "^1.15.0",
-    "@temporalio/worker": "^1.15.0",
-    "@temporalio/workflow": "^1.15.0",
+    "@temporalio/activity": "^1.16.0",
+    "@temporalio/client": "^1.16.0",
+    "@temporalio/envconfig": "^1.16.0",
+    "@temporalio/worker": "^1.16.0",
+    "@temporalio/workflow": "^1.16.0",
     "nanoid": "3.x"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.15.0",
+    "@temporalio/testing": "^1.16.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/jest": "^29.5.14",
     "@types/node": "^22.9.1",
