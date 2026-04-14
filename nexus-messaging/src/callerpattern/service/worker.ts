@@ -1,5 +1,5 @@
 import { Worker, NativeConnection } from '@temporalio/worker';
-import { Connection, Client } from '@temporalio/client';
+import { Connection, Client, WorkflowExecutionAlreadyStartedError } from '@temporalio/client';
 import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { nexusGreetingServiceHandler } from './handler';
 import { createActivities } from './activities';
@@ -25,12 +25,8 @@ async function run() {
         workflowId: workflowIdForUser(userId),
       });
       console.log(`Started GreetingWorkflow for user: ${userId}`);
-    } catch (err: any) {
-      if (
-        err?.code === 6 /* ALREADY_EXISTS */ ||
-        err?.message?.includes('already') ||
-        err?.name === 'WorkflowExecutionAlreadyStartedError'
-      ) {
+    } catch (err) {
+      if (err instanceof WorkflowExecutionAlreadyStartedError) {
         console.log(`GreetingWorkflow for user ${userId} already running`);
       } else {
         throw err;

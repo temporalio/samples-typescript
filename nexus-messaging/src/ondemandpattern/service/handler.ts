@@ -23,7 +23,7 @@ export const nexusRemoteGreetingServiceHandler = nexus.serviceHandler(nexusRemot
     async (ctx, input: RunFromRemoteInput) => {
       return await temporalNexus.startWorkflow(ctx, greetingWorkflow, {
         args: [],
-        workflowId: getWorkflowId(input.userId) ?? ctx.requestId ?? randomUUID(),
+        workflowId: getWorkflowId(input.userId),
       });
     },
   ),
