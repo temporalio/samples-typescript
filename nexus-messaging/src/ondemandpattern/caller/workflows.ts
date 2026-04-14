@@ -1,7 +1,7 @@
 import * as wf from '@temporalio/workflow';
 import { nexusRemoteGreetingService, NEXUS_ENDPOINT, Language } from '../api';
 
-const nexusClient = wf.createNexusClient({
+const nexusClient = wf.createNexusServiceClient({
   service: nexusRemoteGreetingService,
   endpoint: NEXUS_ENDPOINT,
 });

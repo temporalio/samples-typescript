@@ -75,6 +75,14 @@ npm run start.callerpattern.caller
 npm run workflow.callerpattern
 ```
 
+Expected output:
+
+```
+  languages: chinese, english
+  current language: english
+  set language to french, previous was: english
+  approved
+```
 ---
 
 ## Sub-example 2: On-demand pattern (`ondemandpattern`)
@@ -106,6 +114,20 @@ npm run start.ondemandpattern.caller
 
 # Terminal 3 – start the caller workflow
 npm run workflow.ondemandpattern
+```
+
+Expected output:
+
+```
+  started workflow one for user: UserId_One
+  started workflow two for user: UserId_Two
+  workflow one languages: chinese, english
+  workflow one: set language to spanish, previous was: english
+  workflow two current language: english
+  workflow two: set language to hindi, previous was: english
+  approved both workflows
+  workflow one result: Hola, mundo
+  workflow two result: नमस्ते दुनिया
 ```
 
 ---
