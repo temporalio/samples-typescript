@@ -139,5 +139,4 @@ Both patterns use the same `GreetingWorkflow` design:
 - **Initial greetings**: `{ chinese: "你好，世界", english: "Hello, world" }`
 - **Supported languages**: `arabic`, `chinese`, `english`, `french`, `hindi`, `portuguese`, `spanish`
 - Waits for the `approve` signal and all handlers to finish before returning the current greeting.
-- The `setLanguage` update calls a `callGreetingService` activity when the requested language is not
-  yet in the local cache.
+- The `setLanguage` update calls a `callGreetingService` activity to change the current greeting
