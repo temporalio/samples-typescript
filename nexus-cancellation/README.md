@@ -44,24 +44,24 @@ All APIs are experimental and may be subject to backwards-incompatible changes.
 2. Make sure you have a local [Temporal Server](https://github.com/temporalio/cli/#installation) running:
 
    ```sh
-   temporal server start-dev --port 7233
+   temporal server start-dev
    ```
 
 3. Create the expected namespaces:
 
-```bash
-temporal operator namespace create --namespace my-caller-namespace
-temporal operator namespace create --namespace my-target-namespace
-```
+   ```bash
+   temporal operator namespace create --namespace my-caller-namespace
+   temporal operator namespace create --namespace my-target-namespace
+   ```
 
 4. Setup the Nexus Endpoint on the caller namespace:
 
-```bash
-temporal operator nexus endpoint create \
-  --name my-nexus-endpoint-name \
-  --target-namespace my-target-namespace \
-  --target-task-queue my-handler-task-queue
-```
+   ```bash
+   temporal operator nexus endpoint create \
+     --name my-nexus-endpoint-name \
+     --target-namespace my-target-namespace \
+     --target-task-queue my-handler-task-queue
+   ```
 
 ### Execution
 
@@ -73,16 +73,16 @@ temporal operator nexus endpoint create \
 
 Example output:
 
-```bash
-Echo message: This message is from the client
+    ```bash
+    Echo message: This message is from the client
 
---- Testing cancellable workflow (normal completion) ---
-Completed message: Hello, Temporal!
+    --- Testing cancellable workflow (normal completion) ---
+    Completed message: Hello, Temporal!
 
---- Testing cancellable workflow (with cancellation) ---
-Started cancellable workflow: workflow-cancelled-A1B2C3D4
-Workflow was cancelled as expected: NexusOperationFailure: ...
-```
+    --- Testing cancellable workflow (with cancellation) ---
+    Started cancellable workflow: workflow-cancelled-A1B2C3D4
+    Workflow was cancelled as expected: NexusOperationFailure: ...
+    ```
 
 ## Key Concepts
 
