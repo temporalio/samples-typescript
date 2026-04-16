@@ -8,6 +8,7 @@ and `NexusGreetingService` knows how to get the desired workflow ID from that Us
 The handler worker uses the same prefix to generate a workflow ID from a user ID when it launches the workflow.
 
 The caller workflow:
+
 1. Queries for supported languages (`getLanguages` -- backed by a query handler)
 2. Queries the current language (`getLanguage`)
 3. Changes the language to French (`setLanguage` -- backed by an update handler that calls an activity)

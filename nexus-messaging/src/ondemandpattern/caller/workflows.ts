@@ -14,16 +14,8 @@ export async function callerRemoteWorkflow(): Promise<string[]> {
 
   // Start both remote workflows concurrently
   const [handleOne, handleTwo] = await Promise.all([
-    nexusClient.startOperation(
-      'runFromRemote',
-      { userId: userIdOne },
-      { scheduleToCloseTimeout: '60s' },
-    ),
-    nexusClient.startOperation(
-      'runFromRemote',
-      { userId: userIdTwo },
-      { scheduleToCloseTimeout: '60s' },
-    ),
+    nexusClient.startOperation('runFromRemote', { userId: userIdOne }, { scheduleToCloseTimeout: '60s' }),
+    nexusClient.startOperation('runFromRemote', { userId: userIdTwo }, { scheduleToCloseTimeout: '60s' }),
   ]);
 
   log.push(`started workflow one for user: ${userIdOne}`);
