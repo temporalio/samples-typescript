@@ -9,7 +9,7 @@ import {
   RunFromRemoteOutput,
   SetLanguageInput,
 } from '../api';
-import {approveSignal, getLanguageQuery, getLanguagesQuery, greetingWorkflow, setLanguageUpdate} from './workflows';
+import { approveSignal, getLanguageQuery, getLanguagesQuery, greetingWorkflow, setLanguageUpdate } from './workflows';
 
 const WORKFLOW_ID_PREFIX = 'GreetingWorkflow_for_';
 
