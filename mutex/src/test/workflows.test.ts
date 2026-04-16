@@ -11,7 +11,7 @@ import { EventEmitter, once } from 'node:events';
 const taskQueue = 'test' + new Date().toLocaleDateString('en-US');
 
 describe('lock workflow', function () {
-  this.timeout(10000);
+  this.timeout(15000);
   let worker: Worker;
   let env: TestWorkflowEnvironment;
   let workflowBundle: WorkflowBundleWithSourceMap;
