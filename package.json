@@ -23,6 +23,11 @@
     "zx": "^8.2.4"
   },
   "pnpm": {
+    "overrides": {
+      "@temporalio/lambda-worker>@temporalio/common": "^1.15.0",
+      "@temporalio/lambda-worker>@temporalio/envconfig": "^1.15.0",
+      "@temporalio/lambda-worker>@temporalio/worker": "^1.15.0"
+    },
     "packageExtensions": {
       "eslint-config-next": {
         "peerDependencies": {

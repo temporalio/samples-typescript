@@ -1,0 +1,6 @@
+[profile.default]
+address = "ns-sdk-dev-01.temporal-dev.tmprl-test.cloud:7233"
+namespace = "ns-sdk-dev-01.temporal-dev"
+[profile.default.tls]
+client_cert_path = "client.pem"
+client_key_path = "client.key"
