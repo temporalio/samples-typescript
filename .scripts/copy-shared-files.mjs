@@ -17,6 +17,7 @@ const TSCONFIG_EXCLUDE = [
   'production',
   'hello-world-js',
   'food-delivery',
+  'lambda-worker',
   'nestjs-exchange-rates',
   'empty',
   'hello-world',
@@ -29,6 +30,7 @@ const GITIGNORE_EXCLUDE = [
   'hello-world-js',
   'protobufs',
   'food-delivery',
+  'lambda-worker',
   'nestjs-exchange-rates',
 ];
 const ESLINTRC_EXCLUDE = [
@@ -61,6 +63,7 @@ const POST_CREATE_EXCLUDE = [
   'patching-api',
   'signals-queries',
   'activities-cancellation-heartbeating',
+  'lambda-worker',
   'nestjs-exchange-rates',
   'food-delivery',
   'search-attributes',
