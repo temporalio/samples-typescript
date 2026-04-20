@@ -17,12 +17,13 @@ const { createExpense, payment } = wf.proxyActivities<typeof activities>({
   startToCloseTimeout: '5 minutes',
 });
 
-export function timeoutOrUserAction(timeout: Duration): Promise<ExpenseStatus> {
-  return new Promise((resolve, reject) => {
-    wf.setHandler(approveSignal, () => resolve(ExpenseStatus.APPROVED));
-    wf.setHandler(rejectSignal, () => resolve(ExpenseStatus.REJECTED));
-    wf.sleep(timeout).then(() => resolve(ExpenseStatus.TIMED_OUT), reject);
-  });
+export async function timeoutOrUserAction(timeout: Duration): Promise<ExpenseStatus> {
+  let status: ExpenseStatus = ExpenseStatus.TIMED_OUT;
+  wf.setHandler(approveSignal, () => { status = ExpenseStatus.APPROVED; });
+  wf.setHandler(rejectSignal, () => { status = ExpenseStatus.REJECTED; });
+  await wf.condition(() => status !== ExpenseStatus.TIMED_OUT, timeout);
+
+  return status;
 }
 
 export async function expense(expenseId: string, timeout: Duration = '10s'): Promise<{ status: ExpenseStatus }> {
