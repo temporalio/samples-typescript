@@ -24,7 +24,7 @@ export async function callerWorkflow(userId: string): Promise<string[]> {
   // Set language to French via update
   const previousLanguage: Language = await nexusClient.executeOperation(
     'setLanguage',
-    { userId, language: 'french' as Language },
+    { userId, language: 'french' },
     { scheduleToCloseTimeout: '10s' },
   );
   log.push(`set language to french, previous was: ${previousLanguage}`);
