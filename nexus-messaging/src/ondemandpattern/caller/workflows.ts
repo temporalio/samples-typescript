@@ -46,7 +46,7 @@ export async function callerRemoteWorkflow(): Promise<string[]> {
 
   const prevLangTwo: Language = await nexusClient.executeOperation(
     'setLanguage',
-    { userId: userIdTwo, language: 'hindi' as Language },
+    { userId: userIdTwo, language: 'hindi' },
     { scheduleToCloseTimeout: '10s' },
   );
   log.push(`workflow two: set language to hindi, previous was: ${prevLangTwo}`);
