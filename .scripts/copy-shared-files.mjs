@@ -8,6 +8,14 @@ const yaml = require('yaml');
 const NON_SAMPLES = ['node_modules'];
 const ADDITIONAL_SAMPLES = [];
 
+// Some directories contain one or more samples nested in them instead of having
+// a package.json. These are treated as NON_SAMPLES, but child directories are added
+// as samples.
+const HAS_CHILD_SAMPLES = [
+  'message-passing',
+  'polling',
+];
+
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
 const TSCONFIG_EXCLUDE = [
@@ -102,11 +110,26 @@ for (let i = 0; i < FILES.length; i++) {
   }
 }
 
+
+// Collect all samples that are children of dirs specified in HAS_CHILD_SAMPLES
+const childSamples = await Promise.all(HAS_CHILD_SAMPLES.map(async (dirName) => {
+  const dirents = await fs.readdir(`./${dirName}`, { withFileTypes: true});
+  return dirents.filter((dirent) => dirent.isDirectory()).map(({name}) => `${dirName}/${name}`);
+})).then((samples) => {
+  return samples.reduce((accum, cur) => accum.concat(cur), []);
+});
+
+// Read the repo directory to find all samples
 const dirents = await fs.readdir('.', { withFileTypes: true });
+
+// Filter out dirs specified NON_SAMPLES and HAS_CHILD_SAMPLES.
+// Include dirs specified as ADDITIONAL_SAMPLES and the child directories
+// of the dirs specified in HAS_CHILD_SAMPLES.
+const resolvedNonSamples = NON_SAMPLES.concat(HAS_CHILD_SAMPLES);
 const samples = dirents
-  .filter((dirent) => dirent.isDirectory() && !NON_SAMPLES.includes(dirent.name) && dirent.name[0] !== '.')
+  .filter((dirent) => dirent.isDirectory() && !resolvedNonSamples.includes(dirent.name) && dirent.name[0] !== '.')
   .map(({ name }) => name)
-  .concat(ADDITIONAL_SAMPLES);
+  .concat(ADDITIONAL_SAMPLES, childSamples);
 
 const hasNewSamples = samples.find((sample) => !STORED_SAMPLES.has(sample));
 await fs.writeFile('./.scripts/list-of-samples.json', JSON.stringify({ samples }, null, '  '));

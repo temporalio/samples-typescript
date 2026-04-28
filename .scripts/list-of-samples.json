@@ -24,15 +24,14 @@
     "hello-world-js",
     "hello-world-mtls",
     "interceptors-opentelemetry",
-    "message-passing",
     "monorepo-folders",
     "mutex",
     "nestjs-exchange-rates",
     "nextjs-ecommerce-oneclick",
     "nexus-cancellation",
     "nexus-hello",
+    "nexus-messaging",
     "patching-api",
-    "polling",
     "production",
     "protobufs",
     "query-subscriptions",
@@ -49,6 +48,10 @@
     "timer-progress",
     "vscode-debugger",
     "worker-specific-task-queues",
-    "worker-versioning"
+    "worker-versioning",
+    "message-passing/execute-update",
+    "message-passing/introduction",
+    "message-passing/safe-message-handlers",
+    "polling/infrequent"
   ]
 }

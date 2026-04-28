@@ -6,9 +6,9 @@ on:
       - main
   pull_request:
 
+
 permissions:
   contents: read
-
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -21,14 +21,23 @@ jobs:
       fail-fast: false
       matrix:
         os: [ ubuntu-latest, windows-latest, macos-latest ]
-        node: [20, 22, 24]
+        node: [ 20, 22, 24 ]
         project:
           [
             activities-examples,
+            ai-sdk,
+            eager-workflow-start,
+            early-return,
+            empty,
+            hello-world,
             mutex,
             nestjs-exchange-rates,
+            sleep-for-days,
             timer-examples,
-            sleep-for-days
+            message-passing/execute-update,
+            message-passing/introduction,
+            message-passing/safe-message-handlers,
+            polling/infrequent
           ]
         include:
           - os: windows-latest
