@@ -10,38 +10,41 @@ import assert from 'assert';
 const hasOpenAIKey = Boolean(process.env.OPENAI_API_KEY);
 const describeWorkflow = hasOpenAIKey ? describe : describe.skip;
 
-describeWorkflow(hasOpenAIKey ? 'Example workflow' : 'Example workflow (skipped: OPENAI_API_KEY is not set)', function () {
-  this.timeout(30_000);
+describeWorkflow(
+  hasOpenAIKey ? 'Example workflow' : 'Example workflow (skipped: OPENAI_API_KEY is not set)',
+  function () {
+    this.timeout(30_000);
 
-  let testEnv: TestWorkflowEnvironment;
+    let testEnv: TestWorkflowEnvironment;
 
-  before(async () => {
-    testEnv = await TestWorkflowEnvironment.createLocal();
-  });
-
-  after(async () => {
-    await testEnv?.teardown();
-  });
-
-  it('successfully completes the Workflow', async () => {
-    const { client, nativeConnection } = testEnv;
-    const taskQueue = 'test';
-
-    const worker = await Worker.create({
-      connection: nativeConnection,
-      plugins: [new AiSdkPlugin({ modelProvider: openai })],
-      taskQueue,
-      workflowsPath: require.resolve('../workflows'),
-      activities,
+    before(async () => {
+      testEnv = await TestWorkflowEnvironment.createLocal();
     });
 
-    const result = await worker.runUntil(
-      client.workflow.execute(haikuAgent, {
-        args: ['Temporal'],
-        workflowId: 'test',
+    after(async () => {
+      await testEnv?.teardown();
+    });
+
+    it('successfully completes the Workflow', async () => {
+      const { client, nativeConnection } = testEnv;
+      const taskQueue = 'test';
+
+      const worker = await Worker.create({
+        connection: nativeConnection,
+        plugins: [new AiSdkPlugin({ modelProvider: openai })],
         taskQueue,
-      }),
-    );
-    assert.ok(result.length > 0);
-  });
-});
+        workflowsPath: require.resolve('../workflows'),
+        activities,
+      });
+
+      const result = await worker.runUntil(
+        client.workflow.execute(haikuAgent, {
+          args: ['Temporal'],
+          workflowId: 'test',
+          taskQueue,
+        }),
+      );
+      assert.ok(result.length > 0);
+    });
+  },
+);
