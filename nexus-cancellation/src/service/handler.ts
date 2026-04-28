@@ -6,7 +6,7 @@ import { helloWorkflow } from './workflows';
 /**
  * Creates a business-meaningful ID that is used to dedupe workflow starts
  * from the `helloService.hello` Nexus Operation.
- * 
+ *
  * @param input HelloInput
  * @returns A workflow ID derived from the Nexus Operation input.
  */
