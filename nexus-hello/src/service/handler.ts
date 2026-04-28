@@ -4,6 +4,13 @@ import * as temporalNexus from '@temporalio/nexus';
 import { helloService, EchoInput, EchoOutput, HelloInput, HelloOutput } from '../api';
 import { helloWorkflow } from './workflows';
 
+/**
+ * Creates a business-meaningful ID that is used to dedupe workflow starts
+ * from the `helloService.hello` Nexus Operation.
+ * 
+ * @param input HelloInput
+ * @returns A workflow ID derived from the Nexus Operation input.
+ */
 function workflowIdForHello(input: HelloInput): string {
   return `hello-${input.language}-${input.name}`;
 }
