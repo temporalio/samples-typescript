@@ -2727,6 +2727,9 @@ importers:
       '@temporalio/client':
         specifier: ^1.16.0
         version: 1.16.0
+      '@temporalio/common':
+        specifier: ^1.16.0
+        version: 1.16.0
       '@temporalio/envconfig':
         specifier: ^1.16.0
         version: 1.16.0

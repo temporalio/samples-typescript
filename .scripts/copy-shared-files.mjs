@@ -209,6 +209,11 @@ for (const sample of samples) {
 
   if (hasTestScript) {
     testProjectsNode.value.items.push(sample);
+  } else {
+    const index = testProjectsNode.value.items.indexOf(sample);
+    if (index >= 0) {
+      testProjectsNode.value.items.splice(index, 1);
+    }
   }
 }
 
