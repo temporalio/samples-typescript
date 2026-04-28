@@ -55,6 +55,8 @@ const ESLINTIGNORE_EXCLUDE = [
   'activities-examples',
   'food-delivery',
   'nestjs-exchange-rates',
+  'eager-workflow-start',
+  'sleep-for-days',
 ];
 
 const POST_CREATE_EXCLUDE = [
