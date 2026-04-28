@@ -17,9 +17,14 @@ module.exports = {
     'prettier',
   ],
   rules: {
-    '@typescript-eslint/no-floating-promises': 'error',
+    // recommended for safety
+    '@typescript-eslint/no-floating-promises': 'error', // forgetting to await Activities and Workflow APIs is bad
     'deprecation/deprecation': 'warn',
+
+    // code style preference
     'object-shorthand': ['error', 'always'],
+
+    // relaxed rules, for convenience
     '@typescript-eslint/no-unused-vars': [
       'warn',
       {

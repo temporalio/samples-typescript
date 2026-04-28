@@ -9,3 +9,4 @@ packages:
   - 'monorepo-folders/packages/*'
   - 'food-delivery/apps/*'
   - 'food-delivery/packages/*'
+  - 'polling/*'

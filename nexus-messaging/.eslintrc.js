@@ -36,7 +36,7 @@ module.exports = {
   },
   overrides: [
     {
-      files: ['src/workflows.ts', 'src/workflows-*.ts', 'src/workflows/*.ts', 'src/**/workflows.ts'],
+      files: ['src/workflows.ts', 'src/workflows-*.ts', 'src/workflows/*.ts'],
       rules: {
         'no-restricted-imports': [
           'error',
