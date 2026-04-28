@@ -7,7 +7,7 @@ describe('greet activity', async () => {
   it('successfully greets the user', async () => {
     const env = new MockActivityEnvironment();
     const result = await env.run(activities.getWeather, { location: 'Tokyo' });
-    assert.equal(result, {
+    assert.deepEqual(result, {
       city: 'Tokyo',
       temperatureRange: '14-20C',
       conditions: 'Sunny with wind.',

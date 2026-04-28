@@ -3,8 +3,16 @@ import { before, describe, it } from 'mocha';
 import { Worker } from '@temporalio/worker';
 import { haikuAgent } from '../workflows';
 import * as activities from '../activities';
+import { AiSdkPlugin } from '@temporalio/ai-sdk';
+import { openai } from '@ai-sdk/openai';
+import assert from 'assert';
 
-describe('Example workflow', () => {
+const hasOpenAIKey = Boolean(process.env.OPENAI_API_KEY);
+const describeWorkflow = hasOpenAIKey ? describe : describe.skip;
+
+describeWorkflow(hasOpenAIKey ? 'Example workflow' : 'Example workflow (skipped: OPENAI_API_KEY is not set)', function () {
+  this.timeout(30_000);
+
   let testEnv: TestWorkflowEnvironment;
 
   before(async () => {
@@ -21,6 +29,7 @@ describe('Example workflow', () => {
 
     const worker = await Worker.create({
       connection: nativeConnection,
+      plugins: [new AiSdkPlugin({ modelProvider: openai })],
       taskQueue,
       workflowsPath: require.resolve('../workflows'),
       activities,
@@ -33,5 +42,6 @@ describe('Example workflow', () => {
         taskQueue,
       }),
     );
+    assert.ok(result.length > 0);
   });
 });
