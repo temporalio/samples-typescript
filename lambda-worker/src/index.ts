@@ -9,6 +9,5 @@ export const handler = runWorker({ deploymentName: 'sdk-demo', buildId: 'v1' }, 
     codePath: require.resolve('./workflow-bundle.js'),
   };
   config.workerOptions.activities = activities;
-  config.workerOptions.workerDeploymentOptions!.defaultVersioningBehavior = 'AUTO_UPGRADE';
   applyDefaults(config);
 });

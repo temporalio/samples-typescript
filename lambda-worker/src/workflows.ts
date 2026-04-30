@@ -14,4 +14,4 @@ export async function sampleWorkflow(name: string): Promise<string> {
   return result;
 }
 
-setWorkflowOptions({ versioningBehavior: 'AUTO_UPGRADE' }, sampleWorkflow);
+setWorkflowOptions({ versioningBehavior: 'PINNED' }, sampleWorkflow);
