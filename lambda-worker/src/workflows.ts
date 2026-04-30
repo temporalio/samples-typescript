@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-lambda-worker-workflow
 import { log, proxyActivities, setWorkflowOptions } from '@temporalio/workflow';
 import type * as activities from './activities';
 
@@ -15,3 +16,4 @@ export async function sampleWorkflow(name: string): Promise<string> {
 }
 
 setWorkflowOptions({ versioningBehavior: 'PINNED' }, sampleWorkflow);
+// @@@SNIPEND

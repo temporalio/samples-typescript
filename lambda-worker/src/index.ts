@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-lambda-worker
 import { runWorker } from '@temporalio/lambda-worker';
 import { applyDefaults } from '@temporalio/lambda-worker/otel';
 import * as activities from './activities';
@@ -11,3 +12,4 @@ export const handler = runWorker({ deploymentName: 'sdk-demo', buildId: 'v1' }, 
   config.workerOptions.activities = activities;
   applyDefaults(config);
 });
+// @@@SNIPEND
