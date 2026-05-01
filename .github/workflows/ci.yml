@@ -64,6 +64,7 @@ jobs:
             mutex
             nestjs-exchange-rates
             sleep-for-days
+            standalone-activity
             timer-examples
             message-passing/introduction
             message-passing/safe-message-handlers
