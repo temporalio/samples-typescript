@@ -17,11 +17,16 @@ describe('transaction workflow', function () {
 
   before(async function () {
     wo.Runtime.install({ logger: new wo.DefaultLogger('WARN') });
+    console.log('starting test server');
+    const start = performance.now();
     env = await TestWorkflowEnvironment.createLocal({
       server: {
         extraArgs: ['--dynamic-config-value', 'frontend.enableExecuteMultiOperation=true'],
       },
     });
+    console.log('startup time: ', performance.now() - start);
+
+    console.log('bundling');
     workflowBundle = await wo.bundleWorkflowCode({
       workflowsPath: require.resolve('../workflows'),
       logger: new wo.DefaultLogger('WARN'),
