@@ -7,7 +7,7 @@ export function createActivities(redis: Redis.Redis) {
   return {
     async publish(version: number, patches: Patch[]) {
       const patchArgs = patches.flatMap((diff, idx) => [`${idx}`, JSON.stringify(diff)]);
-      await redis.xadd(activityInfo().workflowExecution.workflowId, version, ...patchArgs);
+      await redis.xadd(activityInfo().workflowExecution!.workflowId, version, ...patchArgs);
     },
   };
 }

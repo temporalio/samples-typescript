@@ -9,7 +9,7 @@ const ERROR_ATTEMPTS = 5
 const attempts = new Map<string, number> ();
 
 export async function getServiceResult(input: ComposeGreetingInput): Promise<string> {
-    const workflowId = activityInfo().workflowExecution.workflowId;
+    const workflowId = activityInfo().workflowExecution!.workflowId;
     const currentCount = attempts.get(workflowId) ?? 0;
     attempts.set(workflowId, currentCount + 1);
 

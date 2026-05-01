@@ -1,15 +1,15 @@
+import { makeOtelPlugin } from '@temporalio/lambda-worker/otel';
 import { bundleWorkflowCode } from '@temporalio/worker';
-import { makeOtelPlugins } from '@temporalio/lambda-worker/otel';
 import { writeFile } from 'fs/promises';
 import path from 'path';
 
 async function bundle() {
   // Pass OTel plugins so workflow interceptor modules are included in the bundle.
-  const plugins = makeOtelPlugins();
+  const { plugin, spanProcessor } = makeOtelPlugin();
 
   const { code } = await bundleWorkflowCode({
     workflowsPath: require.resolve('../workflows'),
-    plugins,
+    plugins: [plugin],
   });
   const codePath = path.join(__dirname, '../../workflow-bundle.js');
 

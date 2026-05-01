@@ -1,6 +1,6 @@
 # CloudFormation template for creating an IAM role that Temporal Cloud can assume to invoke Lambda functions.
 AWSTemplateFormatVersion: '2010-09-09'
-Description: Creates an IAM role that Temporal Cloud can assume to invoke Lambda functions for Serverless Workers.
+Description: Creates an IAM role that Temporal Cloud can assume to invoke multiple Lambda functions for Serverless Workers.
 
 Parameters:
   AssumeRoleExternalId:
@@ -10,11 +10,15 @@ Parameters:
     MinLength: 5
     MaxLength: 45
 
-  LambdaFunctionARN:
-    Type: String
+  LambdaFunctionARNs:
+    Type: CommaDelimitedList
     Description: >-
-      The ARN of the Lambda function to invoke
-      (e.g., arn:aws:lambda:us-west-2:123456789012:function:worker-1)
+      Comma-separated list of Lambda function ARNs to invoke (e.g.,
+      arn:aws:lambda:us-west-2:123456789012:function:worker-1,arn:aws:lambda:us-west-2:123456789012:function:worker-2)
+
+  RoleName:
+    Type: String
+    Default: 'Temporal-Cloud-Serverless-Worker'
 
 Metadata:
   AWS::CloudFormation::Interface:
@@ -26,26 +30,34 @@ Metadata:
       - Label:
           default: 'Lambda Configuration'
         Parameters:
-          - LambdaFunctionARN
+          - LambdaFunctionARNs
+          - RoleName
     ParameterLabels:
       AssumeRoleExternalId:
         default: 'External ID (provided by Temporal Cloud)'
-      LambdaFunctionARN:
-        default: 'Lambda Function ARN'
+      LambdaFunctionARNs:
+        default: 'Lambda Function ARNs (comma-separated list)'
+      RoleName:
+        default: 'IAM Role Name'
 
 Resources:
   TemporalCloudServerlessWorker:
     Type: AWS::IAM::Role
     Properties:
-      RoleName: !Sub
-        - 'Temporal-Cloud-Serverless-Worker-${LambdaName}'
-        - LambdaName: !Select [6, !Split [':', !Ref LambdaFunctionARN]]
+      RoleName: !Sub '${RoleName}-${AWS::StackName}'
       AssumeRolePolicyDocument:
         Version: '2012-10-17'
         Statement:
           - Effect: Allow
             Principal:
-              AWS: [arn:aws:iam::031568301006:role/wci-lambda-invoke]
+              AWS:
+                [
+                  arn:aws:iam::902542641901:role/wci-lambda-invoke,
+                  arn:aws:iam::160190466495:role/wci-lambda-invoke,
+                  arn:aws:iam::819232936619:role/wci-lambda-invoke,
+                  arn:aws:iam::829909441867:role/wci-lambda-invoke,
+                  arn:aws:iam::354116250941:role/wci-lambda-invoke,
+                ]
             Action: sts:AssumeRole
             Condition:
               StringEquals:
@@ -65,9 +77,9 @@ Resources:
             Action:
               - lambda:InvokeFunction
               - lambda:GetFunction
-            Resource: [!Ref LambdaFunctionARN]
+            Resource: !Ref LambdaFunctionARNs
       Roles:
-        - !Ref TemporalCloudServerlessWorker
+        - !Sub '${RoleName}-${AWS::StackName}'
 
 Outputs:
   RoleARN:
@@ -78,8 +90,8 @@ Outputs:
 
   RoleName:
     Description: The name of the IAM role
-    Value: !Ref TemporalCloudServerlessWorker
+    Value: !Ref RoleName
 
-  LambdaFunctionARN:
-    Description: The Lambda function ARN that can be invoked
-    Value: !Ref LambdaFunctionARN
+  LambdaFunctionARNs:
+    Description: The Lambda function ARNs that can be invoked
+    Value: !Join [', ', !Ref LambdaFunctionARNs]

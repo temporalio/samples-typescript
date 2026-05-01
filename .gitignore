@@ -114,3 +114,4 @@ package-lock.json
 
 **/client.key
 **/client.pem
+worker-versioning/.claude/settings.local.json

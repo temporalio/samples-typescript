@@ -3,7 +3,6 @@ set -euo pipefail
 
 FUNCTION_NAME="${1:?Usage: deploy-lambda.sh <function-name>}"
 SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
-SDK_DIR="$SCRIPT_DIR/../../sdk-node"
 
 # Build TypeScript
 cd "$SCRIPT_DIR"
@@ -22,21 +21,14 @@ cp "$SCRIPT_DIR/lib/"*.js "$SCRIPT_DIR/package/"
 # Copy workflow bundle alongside the handler
 cp "$SCRIPT_DIR/workflow-bundle.js" "$SCRIPT_DIR/package/"
 
-# Install production dependencies.
-# TODO: Once @temporalio/lambda-worker is published, remove the sed and the
-# manual copy below — npm install will handle everything.
+# Install production dependencies
 cd "$SCRIPT_DIR/package"
-sed '/@temporalio\/lambda-worker/d' "$SCRIPT_DIR/package.json" > package.json
+cp "$SCRIPT_DIR/package.json" package.json
 npm install --omit=dev --ignore-scripts
 
 # Strip native binaries for platforms other than Lambda's (linux x86_64)
 find node_modules/@temporalio/core-bridge/releases -mindepth 1 -maxdepth 1 \
     ! -name 'x86_64-unknown-linux-gnu' -exec rm -rf {} +
-
-# Manually place the local lambda-worker package (not yet published)
-mkdir -p node_modules/@temporalio/lambda-worker
-cp "$SDK_DIR/packages/lambda-worker/package.json" node_modules/@temporalio/lambda-worker/
-cp -r "$SDK_DIR/packages/lambda-worker/lib" node_modules/@temporalio/lambda-worker/
 
 # Copy config files and certs
 cp "$SCRIPT_DIR/temporal.toml" "$SCRIPT_DIR/otel-collector-config.yaml" \
