@@ -21,6 +21,7 @@
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
 import { Connection, Client } from "@temporalio/client";
+import { WorkflowIdConflictPolicy } from "@temporalio/common";
 import { ToolRegistry, agenticSession, type AgenticSession } from "@temporalio/tool-registry";
 import {
   approvalWorkflow,
@@ -309,6 +310,10 @@ async function realRequestHumanApproval(alert: AlertPayload, request: ApprovalRe
     args: [key],
     signal: approvalRequestSignal,
     signalArgs: [request],
+    // If the activity retries while the approval workflow is still running,
+    // attach to the existing one rather than starting a new approval. The
+    // operator should not get a second prompt for the same incident.
+    workflowIdConflictPolicy: WorkflowIdConflictPolicy.USE_EXISTING,
   });
 
   const response = (await handle.result()) as ApprovalResponse;
