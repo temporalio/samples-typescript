@@ -20,6 +20,7 @@
  */
 import { exec } from "node:child_process";
 import { promisify } from "node:util";
+import { heartbeat } from "@temporalio/activity";
 import { Connection, Client } from "@temporalio/client";
 import { WorkflowIdConflictPolicy } from "@temporalio/common";
 import { ToolRegistry, agenticSession, type AgenticSession } from "@temporalio/tool-registry";
@@ -316,7 +317,16 @@ async function realRequestHumanApproval(alert: AlertPayload, request: ApprovalRe
     workflowIdConflictPolicy: WorkflowIdConflictPolicy.USE_EXISTING,
   });
 
-  const response = (await handle.result()) as ApprovalResponse;
-  await connection.close();
-  return response;
+  // Heartbeat every 30 seconds while waiting on the approval workflow.
+  // agenticSession only heartbeats between LLM turns, so a multi-hour
+  // operator wait inside this handler would otherwise trigger heartbeat
+  // timeout in 120s and kill the activity.
+  const ticker = setInterval(() => heartbeat(), 30_000);
+  try {
+    const response = (await handle.result()) as ApprovalResponse;
+    return response;
+  } finally {
+    clearInterval(ticker);
+    await connection.close();
+  }
 }
