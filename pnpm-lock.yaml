@@ -4,11 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-overrides:
-  '@temporalio/lambda-worker>@temporalio/common': ^1.15.0
-  '@temporalio/lambda-worker>@temporalio/envconfig': ^1.15.0
-  '@temporalio/lambda-worker>@temporalio/worker': ^1.15.0
-
 packageExtensionsChecksum: sha256-RSsb6d/Rd8pXhdhSBzrPSOhVUv6Qo/SaIv70LvTVxoA=
 
 importers:
