@@ -111,3 +111,7 @@ package-lock.json
 */**/pnpm-lock.yaml
 
 .idea/
+
+**/client.key
+**/client.pem
+worker-versioning/.claude/settings.local.json

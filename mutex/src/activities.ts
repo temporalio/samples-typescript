@@ -6,7 +6,7 @@ export function createActivities(client: Client) {
   return {
     async signalWithStartLockWorkflow(resourceId: string, timeoutMs: number) {
       const req: LockRequest = {
-        initiatorId: activityInfo().workflowExecution.workflowId,
+        initiatorId: activityInfo().workflowExecution!.workflowId,
         timeoutMs,
       };
       await client.workflow.signalWithStart('lockWorkflow', {
