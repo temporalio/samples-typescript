@@ -27,12 +27,10 @@ async function run() {
     args: ['Temporal'],
   });
 
-  console.log(`Started activity ${handle.activityId}`);
-
   // Optional: wait for activity result
   console.log(await handle.result()); // Hello, Temporal!
 
-  // execute allows starting the activity and getting the result in one go
+  // `execute` allows starting the activity and getting the result in one go
   console.log(
     await activitiesClient.execute('greet', {
       ...activityOptions,

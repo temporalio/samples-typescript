@@ -1,5 +1,5 @@
 {
-  "name": "temporal-standalone-activities",
+  "name": "temporal-standalone-activity",
   "version": "0.1.0",
   "private": true,
   "scripts": {

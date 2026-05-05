@@ -104,7 +104,7 @@ and you'll be given the list of sample options.
   - `doSomethingAsync`: Complete an Activity async with [`AsyncCompletionClient`](https://typescript.temporal.io/api/classes/client.AsyncCompletionClient/#complete).
 - [**Activity Cancellation and Heartbeating**](./activities-cancellation-heartbeating): Heartbeat progress for long running activities and cancel them.
 - [**Dependency Injection**](./activities-dependency-injection): Share dependencies between activities (for example, when you need to initialize a database connection once and then pass it to multiple activities).
-- [**Standalone Activities**](./activities-dependency-injection): Execute Activities directly from a Temporal Client, without a Workflow.
+- [**Standalone Activity**](./standalone-activity): Execute Activities directly from a Temporal Client, without a Workflow.
 - [**Worker-Specific Task Queues**](./worker-specific-task-queues): Use a unique task queue per Worker to have certain Activities only run on that specific Worker. For instance for a file processing Workflow, where the first Activity is downloading a file, and subsequent Activities need to operate on that file. (If multiple Workers were on the same queue, subsequent Activities may get run on different machines that don't have the downloaded file.)
 
 #### Nexus APIs

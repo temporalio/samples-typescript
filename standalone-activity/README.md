@@ -1,4 +1,4 @@
-# Standalone Activities
+# Standalone Activity
 
 This sample shows how to execute Activities directly from a Temporal Client, without a Workflow.
 
@@ -7,11 +7,11 @@ This sample shows how to execute Activities directly from a Temporal Client, wit
 1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
 1. `npm install` to install dependencies.
 1. `npm run start.watch` to start the Worker.
-1. In another shell, `npm run execute` to execute activities.
+1. In another shell, `npm run execute` to execute the activity in different ways.
 
-Example output (activity ID will be different each time):
+Example output:
+
 ```
-Started activity ElEpcNuDGacKlmDFzzzVq
 Hello, Temporal!
 Hello, World!
 Hello, Temporal!
