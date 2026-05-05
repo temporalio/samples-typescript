@@ -15,7 +15,7 @@ async function createWorker(connection: NativeConnection) {
   });
 }
 
-describe('Example workflow', () => {
+describe('Example activity', () => {
   let testEnv: TestWorkflowEnvironment;
 
   before(async () => {
@@ -36,6 +36,7 @@ describe('Example workflow', () => {
         id: 'test',
         taskQueue,
         args: ['Temporal'],
+        scheduleToCloseTimeout: '10s',
       }),
     );
     assert.equal(result, 'Hello, Temporal!');
@@ -53,10 +54,12 @@ describe('Example workflow', () => {
           id: 'test',
           taskQueue,
           args: [1],
+          scheduleToCloseTimeout: '10s',
         }),
         (err) => {
           assert(err instanceof ActivityExecutionFailedError);
           assert.equal(err.cause?.message, 'name must be a string');
+          return true;
         },
       );
     } finally {
