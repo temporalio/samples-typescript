@@ -9,7 +9,8 @@ async function run() {
   // Documentation for query syntax available at https://docs.temporal.io/list-filter
   const query = 'TaskQueue="hello-standalone-activities"';
 
-  console.log(`Total activities: ${(await client.activity.count(query)).count}`);
+  const { count } = await client.activity.count(query);
+  console.log(`Total activities: ${count}`);
 
   console.log('ACTIVITY ID | RUN ID | ACTIVITY TYPE | STATUS | COMPLETED TIME');
 

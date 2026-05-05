@@ -31,13 +31,12 @@ async function run() {
   console.log(await handle.result()); // Hello, Temporal!
 
   // `execute` allows starting the activity and getting the result in one go
-  console.log(
-    await activitiesClient.execute('greet', {
-      ...activityOptions,
-      id: activityId + '-2',
-      args: ['World'],
-    }),
-  ); // Hello, World!
+  const result = await activitiesClient.execute('greet', {
+    ...activityOptions,
+    id: activityId + '-2',
+    args: ['World'],
+  });
+  console.log(result); // Hello, World!
 
   // If needed, activity handle can be recreated from just activity ID, although with weaker type safety
   const newHandle = client.activity.getHandle<string>(activityId);
