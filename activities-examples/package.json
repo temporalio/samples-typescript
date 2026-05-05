@@ -32,7 +32,7 @@
     "@temporalio/envconfig": "^1.16.0",
     "@temporalio/worker": "^1.16.0",
     "@temporalio/workflow": "^1.16.0",
-    "axios": "^0.28.0",
+    "axios": "^0.31.1",
     "node-fetch": "2.x"
   },
   "devDependencies": {
