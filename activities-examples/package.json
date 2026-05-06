@@ -32,7 +32,7 @@
     "@temporalio/envconfig": "^1.16.0",
     "@temporalio/worker": "^1.16.0",
     "@temporalio/workflow": "^1.16.0",
-    "axios": "^0.28.0",
+    "axios": "^0.31.1",
     "node-fetch": "2.x"
   },
   "devDependencies": {
@@ -60,7 +60,7 @@
     "ts-jest": "^28.0.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3",
-    "uuid": "^8.3.2",
+    "uuid": "^14.0.0",
     "webpack": "5.96.1"
   }
 }
