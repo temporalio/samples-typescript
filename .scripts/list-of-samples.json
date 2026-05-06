@@ -48,6 +48,7 @@
     "state",
     "timer-examples",
     "timer-progress",
+    "tool-registry-incident-triage",
     "vscode-debugger",
     "worker-specific-task-queues",
     "worker-versioning",
