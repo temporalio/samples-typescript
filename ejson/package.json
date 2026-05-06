@@ -29,7 +29,7 @@
     "@temporalio/worker": "^1.16.0",
     "@temporalio/workflow": "^1.16.0",
     "ejson": "^2.2.2",
-    "uuid": "^8.3.2"
+    "uuid": "^14.0.0"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",

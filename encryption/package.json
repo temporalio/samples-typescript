@@ -33,7 +33,7 @@
     "cors": "^2.8.5",
     "ejson": "^2.2.2",
     "express": "^4.20.0",
-    "uuid": "^8.3.2",
+    "uuid": "^14.0.0",
     "yargs": "^16.2.0"
   },
   "devDependencies": {
