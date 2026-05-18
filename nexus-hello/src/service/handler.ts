@@ -1,9 +1,19 @@
 // @@@SNIPSTART typescript-nexus-hello-service-handler
-import { randomUUID } from 'crypto';
 import * as nexus from 'nexus-rpc';
 import * as temporalNexus from '@temporalio/nexus';
 import { helloService, EchoInput, EchoOutput, HelloInput, HelloOutput } from '../api';
 import { helloWorkflow } from './workflows';
+
+/**
+ * Creates a business-meaningful ID that is used to dedupe workflow starts
+ * from the `helloService.hello` Nexus Operation.
+ *
+ * @param input HelloInput
+ * @returns A workflow ID derived from the Nexus Operation input.
+ */
+function workflowIdForHello(input: HelloInput): string {
+  return `hello-${input.language}-${input.name}`;
+}
 
 export const helloServiceHandler = nexus.serviceHandler(helloService, {
   echo: async (ctx, input: EchoInput): Promise<EchoOutput> => {
@@ -27,9 +37,8 @@ export const helloServiceHandler = nexus.serviceHandler(helloService, {
         args: [input],
 
         // Workflow IDs should typically be business-meaningful IDs and are used to dedupe workflow starts.
-        // For this example, we're using the request ID allocated by Temporal when the caller workflow schedules
-        // the operation, this ID is guaranteed to be stable across retries of this operation.
-        workflowId: ctx.requestId ?? randomUUID(),
+        // For this example, the workflow handles the greeting request for a given person and language pair.
+        workflowId: workflowIdForHello(input),
 
         // Task queue defaults to the task queue this Operation is handled on.
       });
