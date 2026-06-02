@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-hello-world-workflow
 import { TemporalAgent } from '@temporalio/strands-agents';
 
 export async function helloWorld(prompt: string): Promise<string> {
@@ -7,3 +8,4 @@ export async function helloWorld(prompt: string): Promise<string> {
   const result = await agent.invoke(prompt);
   return result.toString();
 }
+// @@@SNIPEND

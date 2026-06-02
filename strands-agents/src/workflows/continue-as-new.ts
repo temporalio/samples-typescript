@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-continue-as-new-workflow
 import type { Message } from '@strands-agents/sdk';
 import { TemporalAgent } from '@temporalio/strands-agents';
 import {
@@ -58,3 +59,4 @@ export async function chatWorkflow(input: ChatInput = {}): Promise<void> {
     await continueAsNew<typeof chatWorkflow>({ messages: agent.messages });
   }
 }
+// @@@SNIPEND

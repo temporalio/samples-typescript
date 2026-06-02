@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-human-in-the-loop-workflow
 import {
   BeforeToolCallEvent,
   tool,
@@ -60,3 +61,4 @@ export async function humanInTheLoop(prompt: string): Promise<string> {
   }
   return result.toString();
 }
+// @@@SNIPEND

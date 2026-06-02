@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-activity-interrupt-activity
 import { ApplicationFailure } from '@temporalio/common';
 import { STRANDS_INTERRUPT_TYPE } from '@temporalio/strands-agents';
 
@@ -29,3 +30,4 @@ export async function deleteThing(input: { name: string }): Promise<string> {
   }
   return `deleted ${input.name}`;
 }
+// @@@SNIPEND

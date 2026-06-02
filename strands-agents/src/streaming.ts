@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-streaming-client
 import { Client, Connection } from '@temporalio/client';
 import { WorkflowStreamClient } from '@temporalio/workflow-streams/client';
 import { streamingWorkflow } from './workflows';
@@ -45,3 +46,4 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+// @@@SNIPEND

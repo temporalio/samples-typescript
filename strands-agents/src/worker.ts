@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-worker
 import path from 'node:path';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { McpClient } from '@strands-agents/sdk';
@@ -42,3 +43,4 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+// @@@SNIPEND

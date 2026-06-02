@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-mcp-workflow
 import { TemporalAgent, TemporalMCPClient } from '@temporalio/strands-agents';
 
 export async function mcpWorkflow(prompt: string): Promise<string> {
@@ -12,3 +13,4 @@ export async function mcpWorkflow(prompt: string): Promise<string> {
   const result = await agent.invoke(prompt);
   return result.toString();
 }
+// @@@SNIPEND

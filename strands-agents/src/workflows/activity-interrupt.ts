@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-activity-interrupt-workflow
 import type { InterruptResponseContent, InterruptResponseContentData } from '@strands-agents/sdk';
 import { TemporalAgent, workflow as strandsWorkflow } from '@temporalio/strands-agents';
 import { condition, defineQuery, defineSignal, setHandler } from '@temporalio/workflow';
@@ -45,3 +46,4 @@ export async function activityInterrupt(prompt: string): Promise<string> {
   }
   return result.toString();
 }
+// @@@SNIPEND

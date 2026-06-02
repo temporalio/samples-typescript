@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-structured-output-workflow
 import { TemporalAgent } from '@temporalio/strands-agents';
 import { z } from 'zod';
 
@@ -17,3 +18,4 @@ export async function structuredOutputWorkflow(prompt: string): Promise<PersonIn
   const result = await agent.invoke(prompt);
   return result.structuredOutput as PersonInfo;
 }
+// @@@SNIPEND

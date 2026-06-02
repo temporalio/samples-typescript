@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-streaming-workflow
 import { TemporalAgent } from '@temporalio/strands-agents';
 import { WorkflowStream } from '@temporalio/workflow-streams/workflow';
 
@@ -13,3 +14,4 @@ export async function streamingWorkflow(prompt: string): Promise<string> {
   const result = await agent.invoke(prompt);
   return result.toString();
 }
+// @@@SNIPEND

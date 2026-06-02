@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-hooks-workflow
 import { AfterToolCallEvent, tool } from '@strands-agents/sdk';
 import { TemporalAgent, workflow as strandsWorkflow } from '@temporalio/strands-agents';
 import { z } from 'zod';
@@ -34,3 +35,4 @@ export async function hooksWorkflow(prompt: string): Promise<string[]> {
   await agent.invoke(prompt);
   return fired;
 }
+// @@@SNIPEND

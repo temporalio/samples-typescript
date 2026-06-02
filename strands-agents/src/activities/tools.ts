@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-tools-activity
 export async function fetchWeather(input: { city: string }): Promise<{ city: string; temperatureF: number; conditions: string }> {
   return {
     city: input.city,
@@ -5,3 +6,4 @@ export async function fetchWeather(input: { city: string }): Promise<{ city: str
     conditions: 'sunny',
   };
 }
+// @@@SNIPEND

@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-strands-hello-world-client
 import { Client, Connection } from '@temporalio/client';
 import { helloWorld } from './workflows';
 
@@ -19,3 +20,4 @@ run().catch((err) => {
   console.error(err);
   process.exit(1);
 });
+// @@@SNIPEND
