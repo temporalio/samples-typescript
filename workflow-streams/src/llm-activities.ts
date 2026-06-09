@@ -29,7 +29,7 @@ import {
  * cleanly on scope exit.
  */
 export async function streamCompletion(input: LLMInput): Promise<string> {
-  await using client = WorkflowStreamClient.fromActivity({ batchInterval: '200 milliseconds' });
+  await using client = WorkflowStreamClient.fromWithinActivity({ batchInterval: '200 milliseconds' });
   // Disable provider-side retries; let Temporal own retry policy at the
   // activity layer.
   const openai = new OpenAI({ maxRetries: 0 });

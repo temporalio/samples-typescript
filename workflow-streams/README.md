@@ -29,7 +29,7 @@ has its own worker because it needs the `openai` package and an
 - `src/workflows.ts` (`order`) — a workflow that hosts a `WorkflowStream` and
   publishes status events as it processes an order.
 - `src/activities.ts` (`chargeCard`) — an activity that publishes intermediate
-  progress to the stream via `WorkflowStreamClient.fromActivity()`.
+  progress to the stream via `WorkflowStreamClient.fromWithinActivity()`.
 - `src/run-publisher.ts` — starts the workflow, subscribes to both topics,
   decodes each by `item.topic`, and prints events as they arrive.
 
