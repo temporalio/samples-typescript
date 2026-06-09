@@ -11,11 +11,11 @@ export const myNexusServiceHandler = nexus.serviceHandler(myNexusService, {
     };
   },
   hello: new temporalNexus.TemporalOperationHandler<HelloInput, HelloOutput>({
-    async start(ctx,client, input){
+    async start(ctx, client, input) {
       return await client.startWorkflow(helloWorkflow, {
         args: [input],
         workflowId: `hello-${nanoid()}`,
       });
-    }
+    },
   }),
 });

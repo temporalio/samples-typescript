@@ -2740,8 +2740,8 @@ importers:
         specifier: 1.18.0
         version: 1.18.0
       nanoid:
-        specifier: 3.x
-        version: 3.3.8
+        specifier: ~3.3.12
+        version: 3.3.12
       nexus-rpc:
         specifier: ^0.0.2
         version: 0.0.2
@@ -12305,6 +12305,11 @@ packages:
 
   nanoid@3.1.20:
     resolution: {integrity: sha512-a1cQNyczgKbLX9jwbS/+d7W8fX/RfgYR7lVWwWOGIPNgK2m0MWvrGF6/m4kk6U3QcFMnZf3RIhL0v2Jgh/0Uxw==}
+    engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
+    hasBin: true
+
+  nanoid@3.3.12:
+    resolution: {integrity: sha512-ZB9RH/39qpq5Vu6Y+NmUaFhQR6pp+M2Xt76XBnEwDaGcVAqhlvxrl3B2bKS5D3NH3QR76v3aSrKaF/Kiy7lEtQ==}
     engines: {node: ^10 || ^12 || ^13.7 || ^14 || >=15.0.1}
     hasBin: true
 
@@ -26261,6 +26266,8 @@ snapshots:
 
   nanoid@3.1.20: {}
 
+  nanoid@3.3.12: {}
+
   nanoid@3.3.3: {}
 
   nanoid@3.3.8: {}
@@ -27314,7 +27321,7 @@ snapshots:
 
   postcss@8.4.31:
     dependencies:
-      nanoid: 3.3.8
+      nanoid: 3.3.12
       picocolors: 1.1.1
       source-map-js: 1.2.1
 

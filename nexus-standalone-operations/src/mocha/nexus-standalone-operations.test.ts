@@ -7,29 +7,25 @@ import { myNexusService } from '../api';
 import { NAMESPACE, TASK_QUEUE } from '../shared';
 import { myNexusServiceHandler } from '../worker/handler';
 
-type EndpointIdentifier = {
-  id: string;
-};
-
 describe('Nexus standalone operations', () => {
-  let endpointName:string;
+  let endpointName: string;
   let testEnv: TestWorkflowEnvironment;
 
   before(async () => {
     endpointName = `test-nexus-standalone-${randomUUID()}`;
     testEnv = await TestWorkflowEnvironment.createLocal({
-    server: {
-      extraArgs: [
-        '--dynamic-config-value',
-        'nexusoperation.enableStandalone=true',
-        '--dynamic-config-value',
-        'history.enableChasmCallbacks=true',
-      ],
-      executable: {
-        type: 'cached-download',
-        version: 'v1.7.1-standalone-nexus-operations'
-      }
-    },
+      server: {
+        extraArgs: [
+          '--dynamic-config-value',
+          'nexusoperation.enableStandalone=true',
+          '--dynamic-config-value',
+          'history.enableChasmCallbacks=true',
+        ],
+        executable: {
+          type: 'cached-download',
+          version: 'v1.7.1-standalone-nexus-operations',
+        },
+      },
     });
   });
 
@@ -57,8 +53,7 @@ describe('Nexus standalone operations', () => {
 
       const echoOperationId = `echo-${randomUUID()}`;
       try {
-      const echoResult = 
-        await nexusClient.executeOperation(
+        const echoResult = await nexusClient.executeOperation(
           myNexusService.operations.echo,
           { message: 'test-echo' },
           {
@@ -66,7 +61,7 @@ describe('Nexus standalone operations', () => {
             scheduleToCloseTimeout: '10s',
           },
         );
-      assert.equal(echoResult.message, 'test-echo');
+        assert.equal(echoResult.message, 'test-echo');
       } catch (err) {
         console.log(err);
         throw err;
@@ -74,20 +69,18 @@ describe('Nexus standalone operations', () => {
 
       const helloOperationId = `hello-${randomUUID()}`;
       try {
+        const handle = await nexusClient.startOperation(
+          myNexusService.operations.hello,
+          { name: 'Test' },
+          {
+            id: helloOperationId,
+            scheduleToCloseTimeout: '10s',
+          },
+        );
+        assert.equal(handle.operationId, helloOperationId);
 
-      const handle = await nexusClient.startOperation(
-        myNexusService.operations.hello,
-        { name: 'Test' },
-        {
-          id: helloOperationId,
-          scheduleToCloseTimeout: '10s',
-        },
-      );
-      assert.equal(handle.operationId, helloOperationId);
-
-      const helloResult = await handle.result();
-      assert.equal(helloResult.greeting, 'Hello, Test!');
-
+        const helloResult = await handle.result();
+        assert.equal(helloResult.greeting, 'Hello, Test!');
       } catch (err) {
         console.log(err);
         throw err;
