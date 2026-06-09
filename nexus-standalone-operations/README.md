@@ -18,7 +18,7 @@ Standalone Nexus operations require a server version that supports this feature.
 
 ## Prerequisites
 
-Start a Temporal dev server with the dynamic config flags required for standalone Nexus operations:
+A Temporal dev server with the dynamic config flags required for standalone Nexus operations:
 
 ```bash
 temporal server start-dev \
