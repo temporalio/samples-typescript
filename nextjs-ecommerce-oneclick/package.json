@@ -24,7 +24,7 @@
     "@temporalio/envconfig": "^1.20.3",
     "@temporalio/worker": "^1.20.3",
     "@temporalio/workflow": "^1.20.3",
-    "next": "latest",
+    "next": "^16.2.6",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-toastify": "^8.0.3",
