@@ -34,7 +34,7 @@
     "@temporalio/worker": "^1.18.0",
     "@temporalio/workflow": "^1.18.0",
     "@temporalio/workflow-streams": "^1.18.0",
-    "nanoid": "3.x",
+    "nanoid": "^3.3.8",
     "openai": "^4.77.0"
   },
   "devDependencies": {
