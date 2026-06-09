@@ -144,11 +144,16 @@ if (numSharedFilesChanged === 0 && !hasNewSamples) {
 
 await $`git add ${'./.scripts/list-of-samples.json'}`;
 
-let [answer] = await question(
-  `Running pre-commit hook.
+let answer;
+// Only prompt when stdin is a terminal — in non-interactive runs (Claude Code, CI,
+// git hooks where stdin carries ref data), proceed with the default.
+if (process.stdin.isTTY) {
+  [answer] = await question(
+    `Running pre-commit hook.
 This will overwrite changes made to most config files in samples (like ${chalk.bold('hello-world/tsconfig.json')}).
 Proceed? [Y/n] `
-);
+  );
+}
 
 if ((answer ?? 'y').toUpperCase() !== 'Y') {
   console.log(`To change config files, edit them in the ${chalk.bold('.shared/')} directory.\nAborting commit.`);
