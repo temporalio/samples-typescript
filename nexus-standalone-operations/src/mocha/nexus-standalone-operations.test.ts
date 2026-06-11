@@ -23,7 +23,7 @@ describe('Nexus standalone operations', () => {
         ],
         executable: {
           type: 'cached-download',
-          version: 'v1.7.1-standalone-nexus-operations',
+          version: 'v1.7.2-standalone-nexus-operations',
         },
       },
     });
