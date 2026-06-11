@@ -11,11 +11,11 @@
     "postinstall": "npm run tailwind"
   },
   "dependencies": {
-    "@fooddelivery/common": "*",
-    "@fooddelivery/menu": "*",
-    "@fooddelivery/tailwind-config": "*",
-    "@fooddelivery/ui": "*",
-    "@fooddelivery/workflows": "*",
+    "@fooddelivery/common": "workspace:*",
+    "@fooddelivery/menu": "workspace:*",
+    "@fooddelivery/tailwind-config": "workspace:*",
+    "@fooddelivery/ui": "workspace:*",
+    "@fooddelivery/workflows": "workspace:*",
     "@tanstack/react-query": "^4.16.1",
     "@temporalio/client": "^1.18.1",
     "@trpc/client": "^10.0.0-rc.8",
@@ -31,7 +31,7 @@
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
-    "@fooddelivery/tsconfig": "*",
+    "@fooddelivery/tsconfig": "workspace:*",
     "@types/node": "^22.9.1",
     "@types/react": "^18.0.22",
     "@types/react-dom": "^18.0.7",

@@ -10,11 +10,11 @@
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
   "dependencies": {
-    "@fooddelivery/common": "*",
+    "@fooddelivery/common": "workspace:*",
     "@temporalio/activity": "^1.18.1"
   },
   "devDependencies": {
-    "@fooddelivery/tsconfig": "*",
+    "@fooddelivery/tsconfig": "workspace:*",
     "eslint": "^8.57.1",
     "typescript": "^5.6.3"
   }

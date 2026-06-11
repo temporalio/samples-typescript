@@ -4,8 +4,6 @@ settings:
   autoInstallPeers: true
   excludeLinksFromLockfile: false
 
-packageExtensionsChecksum: sha256-RSsb6d/Rd8pXhdhSBzrPSOhVUv6Qo/SaIv70LvTVxoA=
-
 importers:
 
   .:
@@ -207,7 +205,7 @@ importers:
         version: 28.1.3(@types/node@22.12.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
       mocha:
         specifier: 8.x
-        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 8.4.0
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -310,7 +308,7 @@ importers:
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
       mocha:
         specifier: 8.x
-        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 8.4.0
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -771,7 +769,7 @@ importers:
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
       mocha:
         specifier: 8.x
-        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 8.4.0
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -902,7 +900,7 @@ importers:
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
       mocha:
         specifier: 8.x
-        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 8.4.0
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -1175,7 +1173,7 @@ importers:
   food-delivery:
     devDependencies:
       '@fooddelivery/eslint-config-food':
-        specifier: '*'
+        specifier: workspace:*
         version: link:packages/eslint-config-food
       '@types/node':
         specifier: ^22.9.1
@@ -1194,24 +1192,24 @@ importers:
         version: 0.1.13(prettier@3.4.2)
       vercel:
         specifier: ^29.0.3
-        version: 29.4.0(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 29.4.0(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@4.9.5))
 
   food-delivery/apps/driver:
     dependencies:
       '@fooddelivery/common':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/common
       '@fooddelivery/menu':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../menu
       '@fooddelivery/tailwind-config':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/tailwind-config
       '@fooddelivery/ui':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/ui
       '@fooddelivery/workflows':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/workflows
       '@tanstack/react-query':
         specifier: ^4.16.1
@@ -1254,7 +1252,7 @@ importers:
         specifier: ^7.0.0
         version: 7.26.7
       '@fooddelivery/tsconfig':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/tsconfig
       '@types/node':
         specifier: ^22.9.1
@@ -1287,16 +1285,16 @@ importers:
   food-delivery/apps/menu:
     dependencies:
       '@fooddelivery/common':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/common
       '@fooddelivery/tailwind-config':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/tailwind-config
       '@fooddelivery/ui':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/ui
       '@fooddelivery/workflows':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/workflows
       '@heroicons/react':
         specifier: ^2.0.13
@@ -1342,10 +1340,10 @@ importers:
         specifier: ^7.0.0
         version: 7.26.7
       '@fooddelivery/eslint-config-food':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/eslint-config-food
       '@fooddelivery/tsconfig':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/tsconfig
       '@types/node':
         specifier: ^22.9.1
@@ -1381,10 +1379,10 @@ importers:
   food-delivery/apps/worker:
     dependencies:
       '@fooddelivery/common':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/common
       '@fooddelivery/workflows':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/workflows
       '@temporalio/activity':
         specifier: ^1.18.1
@@ -1400,7 +1398,7 @@ importers:
         version: 1.18.1
     devDependencies:
       '@fooddelivery/tsconfig':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../../packages/tsconfig
       '@types/node':
         specifier: ^22.9.1
@@ -1418,14 +1416,14 @@ importers:
   food-delivery/packages/activities:
     dependencies:
       '@fooddelivery/common':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../common
       '@temporalio/activity':
         specifier: ^1.18.1
         version: 1.18.1
     devDependencies:
       '@fooddelivery/tsconfig':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../tsconfig
       eslint:
         specifier: ^8.57.1
@@ -1447,7 +1445,7 @@ importers:
         version: 10.45.2
     devDependencies:
       '@fooddelivery/tsconfig':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../tsconfig
       eslint:
         specifier: ^8.57.1
@@ -1469,7 +1467,7 @@ importers:
         version: 8.57.1
       eslint-config-next:
         specifier: ^15.0.4
-        version: 15.1.6(eslint@8.57.1)(next@16.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.7.3)
+        version: 15.1.6(eslint@8.57.1)(typescript@5.7.3)
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.1)
@@ -1495,10 +1493,10 @@ importers:
         version: 2.2.0(react@18.3.1)
     devDependencies:
       '@fooddelivery/common':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../common
       '@fooddelivery/tsconfig':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../tsconfig
       '@types/react':
         specifier: ^18.0.22
@@ -1522,17 +1520,17 @@ importers:
   food-delivery/packages/workflows:
     dependencies:
       '@fooddelivery/common':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../common
       '@temporalio/workflow':
         specifier: ^1.18.1
         version: 1.18.1
     devDependencies:
       '@fooddelivery/activities':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../activities
       '@fooddelivery/tsconfig':
-        specifier: '*'
+        specifier: workspace:*
         version: link:../tsconfig
       eslint:
         specifier: ^8.57.1
@@ -1649,7 +1647,7 @@ importers:
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
       mocha:
         specifier: 8.x
-        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 8.4.0
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -1960,7 +1958,7 @@ importers:
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
       mocha:
         specifier: 8.x
-        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 8.4.0
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -2027,7 +2025,7 @@ importers:
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
       mocha:
         specifier: 8.x
-        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 8.4.0
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -2094,7 +2092,7 @@ importers:
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
       mocha:
         specifier: 8.x
-        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 8.4.0
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -2154,7 +2152,7 @@ importers:
         specifier: ~4.20.0
         version: 4.20.0
       temporal-workflows:
-        specifier: '*'
+        specifier: workspace:*
         version: link:../temporal-workflows
       ts-node:
         specifier: ^10.9.2
@@ -2222,7 +2220,7 @@ importers:
         specifier: ^1.18.1
         version: 1.18.1(@swc/helpers@0.5.15)
       temporal-workflows:
-        specifier: '*'
+        specifier: workspace:*
         version: link:../temporal-workflows
       ts-node:
         specifier: ^10.9.2
@@ -2316,7 +2314,7 @@ importers:
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
       mocha:
         specifier: 10.2.0
-        version: 10.2.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 10.2.0
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -2513,7 +2511,7 @@ importers:
         version: 8.57.1
       eslint-config-next:
         specifier: ^15.0.4
-        version: 15.1.6(eslint@8.57.1)(next@16.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.7.3)
+        version: 15.1.6(eslint@8.57.1)(typescript@5.7.3)
       eslint-config-prettier:
         specifier: ^9.1.0
         version: 9.1.0(eslint@8.57.1)
@@ -3553,7 +3551,7 @@ importers:
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
       mocha:
         specifier: 8.x
-        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 8.4.0
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
@@ -3678,7 +3676,7 @@ importers:
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
       mocha:
         specifier: ^10.0.0
-        version: 10.2.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+        version: 10.2.0
       ms:
         specifier: ^2.1.3
         version: 2.1.3
@@ -9697,7 +9695,6 @@ packages:
     resolution: {integrity: sha512-Wd1uy6y7nBbXUSg9QAuQ+xYEKli5CgUhLjz1QHW11jLDis5vK5XB3PemL6jEmy7HrdhaRFDz+GTZ/3FoH+EUjg==}
     peerDependencies:
       eslint: ^7.23.0 || ^8.0.0 || ^9.0.0
-      next: '*'
       typescript: '>=3.3.1'
     peerDependenciesMeta:
       typescript:
@@ -12177,15 +12174,11 @@ packages:
     resolution: {integrity: sha512-IDY7fl/BecMwFHzoqF2sg/SHHANeBoMMXFlS9r0OXKDssYE1M5O43wUY/9BVPeIvfH2zmEbBfseqN9gBQZzXkg==}
     engines: {node: '>= 14.0.0'}
     hasBin: true
-    peerDependencies:
-      ts-node: '*'
 
   mocha@8.4.0:
     resolution: {integrity: sha512-hJaO0mwDXmZS4ghXsvPVriOhsxQ7ofcpQdm8dE+jISUOKopitvnXFQmpRR7jd2K6VBG6E26gU3IAbXXGIbu4sQ==}
     engines: {node: '>= 10.12.0'}
     hasBin: true
-    peerDependencies:
-      ts-node: '*'
 
   modern-ahocorasick@1.1.0:
     resolution: {integrity: sha512-sEKPVl2rM+MNVkGQt3ChdmD8YsigmXdn5NifZn6jiwn9LRJpWm8F3guhaqrJT/JOat6pwpbXEk6kv+b9DMIjsQ==}
@@ -20138,6 +20131,33 @@ snapshots:
       - encoding
       - supports-color
 
+  '@vercel/remix-builder@1.8.10(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@4.9.5))':
+    dependencies:
+      '@remix-run/dev': '@vercel/remix-run-dev@1.16.1(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@4.9.5))'
+      '@vercel/build-utils': 6.7.3
+      '@vercel/nft': 0.22.5
+      '@vercel/static-config': 2.0.17
+      path-to-regexp: 6.2.1
+      semver: 7.3.8
+      ts-morph: 12.0.0
+    transitivePeerDependencies:
+      - '@remix-run/serve'
+      - '@types/node'
+      - babel-plugin-macros
+      - bluebird
+      - bufferutil
+      - encoding
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - ts-node
+      - utf-8-validate
+
   '@vercel/remix-builder@1.8.10(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))':
     dependencies:
       '@remix-run/dev': '@vercel/remix-run-dev@1.16.1(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))'
@@ -20149,6 +20169,77 @@ snapshots:
       ts-morph: 12.0.0
     transitivePeerDependencies:
       - '@remix-run/serve'
+      - '@types/node'
+      - babel-plugin-macros
+      - bluebird
+      - bufferutil
+      - encoding
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - ts-node
+      - utf-8-validate
+
+  '@vercel/remix-run-dev@1.16.1(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@4.9.5))':
+    dependencies:
+      '@babel/core': 7.26.7
+      '@babel/generator': 7.26.5
+      '@babel/parser': 7.26.7
+      '@babel/plugin-syntax-jsx': 7.25.9(@babel/core@7.26.7)
+      '@babel/plugin-syntax-typescript': 7.25.9(@babel/core@7.26.7)
+      '@babel/preset-env': 7.26.7(@babel/core@7.26.7)
+      '@babel/preset-typescript': 7.26.0(@babel/core@7.26.7)
+      '@babel/traverse': 7.26.7
+      '@babel/types': 7.26.7
+      '@npmcli/package-json': 2.0.0
+      '@remix-run/server-runtime': 1.16.1
+      '@vanilla-extract/integration': 6.5.0(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)
+      arg: 5.0.2
+      cacache: 15.3.0
+      chalk: 4.1.2
+      chokidar: 3.6.0
+      dotenv: 16.4.7
+      esbuild: 0.17.6
+      esbuild-plugin-polyfill-node: 0.2.0(esbuild@0.17.6)
+      execa: 5.1.1
+      exit-hook: 2.2.1
+      express: 4.20.0
+      fast-glob: 3.2.11
+      fs-extra: 10.1.0
+      get-port: 5.1.1
+      gunzip-maybe: 1.4.2
+      inquirer: 8.2.6
+      jsesc: 3.0.2
+      json5: 2.2.3
+      lodash: 4.17.21
+      lodash.debounce: 4.0.8
+      lru-cache: 7.18.3
+      minimatch: 9.0.5
+      node-fetch: 2.7.0
+      ora: 5.4.1
+      postcss: 8.5.1
+      postcss-discard-duplicates: 5.1.0(postcss@8.5.1)
+      postcss-load-config: 4.0.2(postcss@8.5.1)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@4.9.5))
+      postcss-modules: 6.0.1(postcss@8.5.1)
+      prettier: 2.7.1
+      pretty-ms: 7.0.1
+      proxy-agent: 5.0.0
+      react-refresh: 0.14.2
+      recast: 0.21.5
+      remark-frontmatter: 4.0.1
+      remark-mdx-frontmatter: 1.1.1
+      semver: 7.6.3
+      sort-package-json: 1.57.0
+      tar-fs: 2.1.2
+      tsconfig-paths: 4.2.0
+      ws: 7.5.10
+      xdm: 2.1.0
+    transitivePeerDependencies:
       - '@types/node'
       - babel-plugin-macros
       - bluebird
@@ -22365,7 +22456,7 @@ snapshots:
     optionalDependencies:
       source-map: 0.6.1
 
-  eslint-config-next@15.1.6(eslint@8.57.1)(next@16.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(typescript@5.7.3):
+  eslint-config-next@15.1.6(eslint@8.57.1)(typescript@5.7.3):
     dependencies:
       '@next/eslint-plugin-next': 15.1.6
       '@rushstack/eslint-patch': 1.10.5
@@ -22378,7 +22469,6 @@ snapshots:
       eslint-plugin-jsx-a11y: 6.10.2(eslint@8.57.1)
       eslint-plugin-react: 7.37.4(eslint@8.57.1)
       eslint-plugin-react-hooks: 5.1.0(eslint@8.57.1)
-      next: 16.2.6(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
     optionalDependencies:
       typescript: 5.7.3
     transitivePeerDependencies:
@@ -26094,7 +26184,7 @@ snapshots:
       pkg-types: 1.3.1
       ufo: 1.5.4
 
-  mocha@10.2.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)):
+  mocha@10.2.0:
     dependencies:
       ansi-colors: 4.1.1
       browser-stdout: 1.3.1
@@ -26113,13 +26203,12 @@ snapshots:
       serialize-javascript: 6.0.0
       strip-json-comments: 3.1.1
       supports-color: 8.1.1
-      ts-node: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)
       workerpool: 6.2.1
       yargs: 16.2.0
       yargs-parser: 20.2.4
       yargs-unparser: 2.0.0
 
-  mocha@8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)):
+  mocha@8.4.0:
     dependencies:
       '@ungap/promise-all-settled': 1.1.2
       ansi-colors: 4.1.1
@@ -26140,7 +26229,6 @@ snapshots:
       serialize-javascript: 5.0.1
       strip-json-comments: 3.1.1
       supports-color: 8.1.1
-      ts-node: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)
       which: 2.0.2
       wide-align: 1.1.3
       workerpool: 6.1.0
@@ -26944,6 +27032,14 @@ snapshots:
     optionalDependencies:
       postcss: 8.5.1
       ts-node: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)
+
+  postcss-load-config@4.0.2(postcss@8.5.1)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@4.9.5)):
+    dependencies:
+      lilconfig: 3.1.3
+      yaml: 2.7.0
+    optionalDependencies:
+      postcss: 8.5.1
+      ts-node: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@4.9.5)
 
   postcss-load-config@4.0.2(postcss@8.5.1)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)):
     dependencies:
@@ -29251,6 +29347,27 @@ snapshots:
     optionalDependencies:
       '@swc/core': 1.10.11(@swc/helpers@0.5.15)
 
+  ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@4.9.5):
+    dependencies:
+      '@cspotcode/source-map-support': 0.8.1
+      '@tsconfig/node10': 1.0.11
+      '@tsconfig/node12': 1.0.11
+      '@tsconfig/node14': 1.0.3
+      '@tsconfig/node16': 1.0.4
+      '@types/node': 22.12.0
+      acorn: 8.15.0
+      acorn-walk: 8.3.4
+      arg: 4.1.3
+      create-require: 1.1.1
+      diff: 4.0.2
+      make-error: 1.3.6
+      typescript: 4.9.5
+      v8-compile-cache-lib: 3.0.1
+      yn: 3.1.1
+    optionalDependencies:
+      '@swc/core': 1.10.11(@swc/helpers@0.5.15)
+    optional: true
+
   ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3):
     dependencies:
       '@cspotcode/source-map-support': 0.8.1
@@ -29608,6 +29725,38 @@ snapshots:
       spdx-expression-parse: 3.0.1
 
   vary@1.1.2: {}
+
+  vercel@29.4.0(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@4.9.5)):
+    dependencies:
+      '@vercel/build-utils': 6.7.3
+      '@vercel/go': 2.5.1
+      '@vercel/hydrogen': 0.0.64
+      '@vercel/next': 3.8.5
+      '@vercel/node': 2.14.3(@swc/core@1.10.11(@swc/helpers@0.5.15))
+      '@vercel/python': 3.1.60
+      '@vercel/redwood': 1.1.15
+      '@vercel/remix-builder': 1.8.10(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@4.9.5))
+      '@vercel/ruby': 1.3.76
+      '@vercel/static-build': 1.3.32(@swc/core@1.10.11(@swc/helpers@0.5.15))
+    transitivePeerDependencies:
+      - '@remix-run/serve'
+      - '@swc/core'
+      - '@swc/wasm'
+      - '@types/node'
+      - babel-plugin-macros
+      - bluebird
+      - bufferutil
+      - encoding
+      - less
+      - lightningcss
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - ts-node
+      - utf-8-validate
 
   vercel@29.4.0(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(babel-plugin-macros@3.1.0)(terser@5.37.0)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)):
     dependencies:
