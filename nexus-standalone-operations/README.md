@@ -61,6 +61,7 @@ Example output:
 
 ```
 Echo result: hello
+Echo result from existing operation handle: hello
 
 Started myNexusService.hello. Operation ID: hello-...
 myNexusService.hello result: Hello, World!

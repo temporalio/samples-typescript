@@ -17,15 +17,21 @@ async function run() {
   });
 
   // Start sync echo operation and await the result immediately.
+  const operationId = `echo-${nanoid()}`
   const echoResult = await nexusClient.executeOperation(
     myNexusService.operations.echo,
     { message: 'hello' },
     {
-      id: `echo-${nanoid()}`,
+      id: operationId,
       scheduleToCloseTimeout: '10s',
     },
   );
   console.log(`Echo result: ${echoResult.message}`);
+
+  // Get a handle to an existing operation and get the result
+  const existingOpHandle = client.nexus.getHandle<typeof myNexusService.operations.echo>(operationId);
+  const existingResult = await existingOpHandle.result();
+  console.log(`Echo result from existing operation handle: ${existingResult.message}`);
 
   // Start async (workflow-backed) hello operation and get a NexusOperationHandle.
   const handle = await nexusClient.startOperation(
