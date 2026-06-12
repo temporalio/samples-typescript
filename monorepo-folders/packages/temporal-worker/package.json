@@ -8,8 +8,8 @@
     "start": "nodemon worker.ts --watch ./worker.ts --watch ../temporal-workflows"
   },
   "dependencies": {
-    "@temporalio/worker": "^1.18.0",
-    "temporal-workflows": "*",
+    "@temporalio/worker": "^1.18.1",
+    "temporal-workflows": "workspace:*",
     "ts-node": "^10.9.2"
   },
   "devDependencies": {
