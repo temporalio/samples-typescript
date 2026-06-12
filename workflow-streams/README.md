@@ -20,11 +20,11 @@ The package has no root entrypoint; import from the two subpaths instead:
   (`WorkflowStreamClient`, …). Pulls in `crypto` and `@temporalio/client`; do
   not import from a workflow file.
 
-This sample has five scenarios. The first four share one worker; the fifth
-has its own worker because it needs the `openai` package and an
-`OPENAI_API_KEY`.
+This sample has five scenarios. All of them share one worker except LLM
+streaming, which has its own worker because it needs the `openai` package and
+an `OPENAI_API_KEY`.
 
-**Scenario 1 — basic publish/subscribe with heterogeneous topics:**
+**Basic publish/subscribe with heterogeneous topics:**
 
 - `src/workflows.ts` (`order`) — a workflow that hosts a `WorkflowStream` and
   publishes status events as it processes an order.
@@ -33,7 +33,7 @@ has its own worker because it needs the `openai` package and an
 - `src/run-publisher.ts` — starts the workflow, subscribes to both topics,
   decodes each by `item.topic`, and prints events as they arrive.
 
-**Scenario 2 — reconnecting subscriber:**
+**Reconnecting subscriber:**
 
 - `src/workflows.ts` (`pipeline`) — a multi-stage pipeline that publishes
   stage transitions over ~10 seconds, leaving room for a consumer to
@@ -44,7 +44,7 @@ has its own worker because it needs the `openai` package and an
   consumer can disappear (page refresh, server restart, laptop closed) and
   resume later without missing events or seeing duplicates.
 
-**Scenario 3 — external (non-Activity) publisher:**
+**External (non-Activity) publisher:**
 
 - `src/workflows.ts` (`hub`) — a passive workflow that does no work of its
   own; it exists only to host a `WorkflowStream` and shut down when signaled.
@@ -55,7 +55,7 @@ has its own worker because it needs the `openai` package and an
   `close`. The shape that fits a backend service or scheduled job pushing
   events into a workflow it didn't itself start.
 
-**Scenario 4 — bounded log via `truncate()`:**
+**Bounded log via `truncate()`:**
 
 - `src/workflows.ts` (`ticker`) — a long-running workflow that publishes
   events at a fixed cadence and calls `stream.truncate(...)` periodically to
@@ -66,7 +66,7 @@ has its own worker because it needs the `openai` package and an
   the new base offset. The output makes the trade visible: bounded log size
   in exchange for intermediate events being invisible to slow consumers.
 
-**Scenario 5 — LLM streaming:**
+**LLM streaming:**
 
 - `src/llm-workflows.ts` (`llmStreaming`) — hosts a `WorkflowStream` and runs
   `streamCompletion` as a single activity. The workflow itself does no
@@ -79,7 +79,7 @@ has its own worker because it needs the `openai` package and an
   terminal as they arrive, and on a `retry` event uses ANSI escapes to rewind
   the printed output before the retried attempt re-publishes.
 
-Scenario 5 runs on its own worker (`src/llm-worker.ts`, on
+The LLM streaming scenario runs on its own worker (`src/llm-worker.ts`, on
 `workflow-stream-llm-task-queue`) because it needs the `openai` dependency
 and an `OPENAI_API_KEY`, and because killing this worker mid-stream is the
 easiest way to demonstrate retry handling without disrupting the other four
@@ -91,13 +91,13 @@ scenarios.
    Server](https://github.com/temporalio/cli/#installation).
 2. `npm install` to install dependencies.
 
-For scenarios 1–4, start the shared worker:
+For all scenarios except LLM streaming, start the shared worker:
 
 ```bash
 npm run start
 ```
 
-For scenario 5, export the API key and start the LLM worker:
+For LLM streaming, export the API key and start the LLM worker:
 
 ```bash
 export OPENAI_API_KEY=...
@@ -107,14 +107,14 @@ npm run start.llm
 Then in another terminal, pick a scenario:
 
 ```bash
-npm run workflow.publisher       # scenario 1
-npm run workflow.reconnecting    # scenario 2
-npm run workflow.external        # scenario 3
-npm run workflow.ticker          # scenario 4
-npm run workflow.llm             # scenario 5
+npm run workflow.publisher       # basic publish/subscribe
+npm run workflow.reconnecting    # reconnecting subscriber
+npm run workflow.external        # external publisher
+npm run workflow.ticker          # bounded log
+npm run workflow.llm             # LLM streaming
 ```
 
-To exercise scenario 5's retry path, kill the LLM worker (Ctrl-C) while
+To exercise the LLM streaming retry path, kill the LLM worker (Ctrl-C) while
 output is streaming and start it again. The activity's next attempt sends a
 retry event first; the consumer clears its on-screen output via ANSI escapes
 and re-renders from scratch.
