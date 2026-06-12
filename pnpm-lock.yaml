@@ -3948,9 +3948,15 @@ importers:
         specifier: ^4.77.0
         version: 4.104.0(ws@8.18.0)(zod@3.25.76)
     devDependencies:
+      '@temporalio/testing':
+        specifier: ^1.18.0
+        version: 1.18.1(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
+      '@types/mocha':
+        specifier: ^9.1.1
+        version: 9.1.1
       '@types/node':
         specifier: ^22.9.1
         version: 22.12.0
@@ -3969,12 +3975,18 @@ importers:
       eslint-plugin-deprecation:
         specifier: ^3.0.0
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
+      mocha:
+        specifier: ^10.0.0
+        version: 10.2.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
       prettier:
         specifier: ^3.4.2
         version: 3.4.2
+      source-map-support:
+        specifier: ^0.5.21
+        version: 0.5.21
       ts-node:
         specifier: ^10.9.2
         version: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)

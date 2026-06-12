@@ -8,6 +8,8 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
+    "test": "mocha --require ts-node/register --require source-map-support/register src/test/*.test.ts",
+    "test.watch": "mocha --require ts-node/register --require source-map-support/register src/test/*.test.ts -w --watch-files src",
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "start.llm": "ts-node src/llm-worker.ts",
@@ -38,15 +40,19 @@
     "openai": "^4.77.0"
   },
   "devDependencies": {
+    "@temporalio/testing": "^1.18.0",
     "@tsconfig/node22": "^22.0.0",
+    "@types/mocha": "^9.1.1",
     "@types/node": "^22.9.1",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-deprecation": "^3.0.0",
+    "mocha": "^10.0.0",
     "nodemon": "^3.1.7",
     "prettier": "^3.4.2",
+    "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }
