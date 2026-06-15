@@ -54,6 +54,20 @@
     "message-passing/execute-update",
     "message-passing/introduction",
     "message-passing/safe-message-handlers",
+    "openai-agents/agent-patterns",
+    "openai-agents/basic",
+    "openai-agents/customer-service",
+    "openai-agents/handoffs",
+    "openai-agents/hosted-mcp",
+    "openai-agents/human-approval",
+    "openai-agents/mcp",
+    "openai-agents/model-providers",
+    "openai-agents/nexus-tools",
+    "openai-agents/reasoning-content",
+    "openai-agents/research-bot",
+    "openai-agents/sessions",
+    "openai-agents/tools",
+    "openai-agents/tracing",
     "polling/infrequent"
   ]
 }

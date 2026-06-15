@@ -13,6 +13,7 @@ const ADDITIONAL_SAMPLES = [];
 // as samples.
 const HAS_CHILD_SAMPLES = [
   'message-passing',
+  'openai-agents',
   'polling',
 ];
 

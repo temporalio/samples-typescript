@@ -9,6 +9,7 @@ packages:
   - 'monorepo-folders/packages/*'
   - 'food-delivery/apps/*'
   - 'food-delivery/packages/*'
+  - 'openai-agents/*'
   - 'polling/*'
 allowBuilds:
   '@nestjs/core': true
