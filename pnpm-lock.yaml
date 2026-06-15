@@ -2725,20 +2725,20 @@ importers:
   nexus-standalone-operations:
     dependencies:
       '@temporalio/client':
-        specifier: 1.18.0
-        version: 1.18.0
+        specifier: 1.18.1
+        version: 1.18.1
       '@temporalio/envconfig':
-        specifier: 1.18.0
-        version: 1.18.0
+        specifier: 1.18.1
+        version: 1.18.1
       '@temporalio/nexus':
-        specifier: 1.18.0
-        version: 1.18.0
+        specifier: 1.18.1
+        version: 1.18.1
       '@temporalio/worker':
-        specifier: 1.18.0
-        version: 1.18.0(@swc/helpers@0.5.15)
+        specifier: 1.18.1
+        version: 1.18.1(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: 1.18.0
-        version: 1.18.0
+        specifier: 1.18.1
+        version: 1.18.1
       nanoid:
         specifier: ~3.3.12
         version: 3.3.12
@@ -2747,8 +2747,8 @@ importers:
         version: 0.0.2
     devDependencies:
       '@temporalio/testing':
-        specifier: 1.18.0
-        version: 1.18.0(@swc/helpers@0.5.15)
+        specifier: 1.18.1
+        version: 1.18.1(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -20775,8 +20775,8 @@ snapshots:
       memfs: 4.17.0
       nexus-rpc: 0.0.2
       protobufjs: 7.6.2
-      rxjs: 7.8.1
-      source-map: 0.7.4
+      rxjs: 7.8.2
+      source-map: 0.7.6
       source-map-loader: 5.0.0(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15)))
       supports-color: 8.1.1
       swc-loader: 0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15)))
@@ -20812,8 +20812,8 @@ snapshots:
       memfs: 4.17.0
       nexus-rpc: 0.0.2
       protobufjs: 7.6.2
-      rxjs: 7.8.1
-      source-map: 0.7.4
+      rxjs: 7.8.2
+      source-map: 0.7.6
       source-map-loader: 5.0.0(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1))
       supports-color: 8.1.1
       swc-loader: 0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1))
@@ -30729,7 +30729,7 @@ snapshots:
 
   terser-webpack-plugin@5.6.1(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)):
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.37.0
@@ -30740,7 +30740,7 @@ snapshots:
 
   terser-webpack-plugin@5.6.1(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))):
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.37.0
@@ -30750,7 +30750,7 @@ snapshots:
 
   terser-webpack-plugin@5.6.1(webpack@5.107.2):
     dependencies:
-      '@jridgewell/trace-mapping': 0.3.25
+      '@jridgewell/trace-mapping': 0.3.31
       jest-worker: 27.5.1
       schema-utils: 4.3.3
       terser: 5.37.0
@@ -31536,14 +31536,14 @@ snapshots:
 
   webpack@5.107.2:
     dependencies:
-      '@types/estree': 1.0.8
+      '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
       acorn: 8.16.0
       acorn-import-phases: 1.0.4(acorn@8.16.0)
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.23.0
       es-module-lexer: 2.1.0
@@ -31575,14 +31575,14 @@ snapshots:
 
   webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15)):
     dependencies:
-      '@types/estree': 1.0.8
+      '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
       acorn: 8.16.0
       acorn-import-phases: 1.0.4(acorn@8.16.0)
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.23.0
       es-module-lexer: 2.1.0
@@ -31614,14 +31614,14 @@ snapshots:
 
   webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1):
     dependencies:
-      '@types/estree': 1.0.8
+      '@types/estree': 1.0.9
       '@types/json-schema': 7.0.15
       '@webassemblyjs/ast': 1.14.1
       '@webassemblyjs/wasm-edit': 1.14.1
       '@webassemblyjs/wasm-parser': 1.14.1
       acorn: 8.16.0
       acorn-import-phases: 1.0.4(acorn@8.16.0)
-      browserslist: 4.28.1
+      browserslist: 4.28.2
       chrome-trace-event: 1.0.4
       enhanced-resolve: 5.23.0
       es-module-lexer: 2.1.0
