@@ -34,9 +34,7 @@ temporal server start-dev \
    npm install   # or `pnpm` or `yarn`
    ```
 
-2. Start a compatible Temporal Server on `localhost:7233`.
-
-3. Create the Nexus endpoint:
+2. Create the Nexus endpoint:
 
    ```sh
    temporal operator nexus endpoint create \
@@ -45,13 +43,13 @@ temporal server start-dev \
      --target-task-queue nexus-standalone-operations
    ```
 
-4. In one shell, start the Worker:
+3. In one shell, start the Worker:
 
    ```sh
-   npm run start.worker
+   npm run worker
    ```
 
-5. In another shell, execute the sample:
+4. In another shell, execute the sample:
 
    ```sh
    npm run starter

@@ -16,7 +16,7 @@ async function run() {
     service: myNexusService,
   });
 
-  // Start sync echo operation and await the result immediately.
+  // Start sync echo operation and await the result immediately via executeOperation.
   const operationId = `echo-${nanoid()}`;
   const echoResult = await nexusClient.executeOperation(
     myNexusService.operations.echo,
