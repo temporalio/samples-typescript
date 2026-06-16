@@ -49,6 +49,7 @@ const ESLINTRC_EXCLUDE = [
   'protobufs',
   'food-delivery',
   'nestjs-exchange-rates',
+  'workflow-streams',
 ];
 const ESLINTIGNORE_EXCLUDE = [
   'production',
@@ -80,6 +81,7 @@ const POST_CREATE_EXCLUDE = [
   'worker-versioning',
   'empty',
   'scratchpad',
+  'workflow-streams',
 ];
 
 const PRETTIERRC_EXCLUDE = ['food-delivery'];
