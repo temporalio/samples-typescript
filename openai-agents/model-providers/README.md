@@ -31,15 +31,14 @@ export OPENAI_API_KEY=sk-or-...
 export OPENAI_MODEL=meta-llama/llama-3.1-8b-instruct
 ```
 
-Then start the Worker and run the Workflow:
+Then start the Worker and run the Workflow (run from the `openai-agents/` root, after `npm install` there):
 
 ```bash
-npm install
-npm run start.watch
+npx ts-node model-providers/src/worker.ts
 ```
 
 ```bash
-npm run workflow "Say hello in one sentence."
+npx ts-node model-providers/src/client.ts "Say hello in one sentence."
 ```
 
 `OPENAI_MODEL` is forwarded to the run via `runConfig.model` and resolved by your custom provider.
@@ -51,5 +50,5 @@ and assert the agent run is handled by the injected provider, including resolvin
 model name. This is the same injection point the live custom-provider setup uses.
 
 ```bash
-npm test
+npx mocha --exit --require ts-node/register --require source-map-support/register "model-providers/src/mocha/*.test.ts"
 ```

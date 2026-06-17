@@ -7,7 +7,7 @@ not duplicate spans.
 The Worker selects a tracing mode (default `custom`):
 
 ```bash
-npm run start.watch -- <mode>     # mode: custom | openai | otel
+npx ts-node tracing/src/worker.ts <mode>     # mode: custom | openai | otel
 # or set TRACING_MODE=<mode>
 ```
 
@@ -50,14 +50,15 @@ the optional peer dependency `@opentelemetry/sdk-trace-base`.
 temporal server start-dev
 ```
 
+Run these from the `openai-agents/` root (run `npm install` there once first).
+
 ```bash
 export OPENAI_API_KEY=sk-...
-npm install
-npm run start.watch -- custom
+npx ts-node tracing/src/worker.ts custom
 ```
 
 ```bash
-npm run workflow "What is 42 plus 58?"
+npx ts-node tracing/src/client.ts "What is 42 plus 58?"
 ```
 
 ## Test
@@ -66,5 +67,5 @@ The test runs offline with a `FakeModelProvider`. It registers a custom `Tracing
 agent that calls a function tool, and asserts that `agent` and `function` spans were emitted.
 
 ```bash
-npm test
+npx mocha --exit --require ts-node/register --require source-map-support/register "tracing/src/mocha/*.test.ts"
 ```

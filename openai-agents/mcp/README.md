@@ -29,19 +29,19 @@ network calls, and drive the bundled MCP servers locally to assert that tool res
    temporal server start-dev
    ```
 
-2. In another terminal, start the worker:
+2. In another terminal, start the worker (run from the `openai-agents/` root, after `npm install` there):
 
    ```sh
    export OPENAI_API_KEY=sk-...
-   npm run start.watch
+   npx ts-node mcp/src/worker.ts
    ```
 
 3. In a third terminal, run a workflow:
 
    ```sh
-   npm run workflow filesystem
-   npm run workflow streamable-http
-   npm run workflow sse
-   npm run workflow prompt-server
-   npm run workflow stateful-memory
+   npx ts-node mcp/src/client.ts filesystem
+   npx ts-node mcp/src/client.ts streamable-http
+   npx ts-node mcp/src/client.ts sse
+   npx ts-node mcp/src/client.ts prompt-server
+   npx ts-node mcp/src/client.ts stateful-memory
    ```

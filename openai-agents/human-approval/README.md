@@ -15,21 +15,20 @@ Flow (`src/workflows.ts`):
 
 ## Run
 
-```bash
-npm install
-npm run build
+Run these from the `openai-agents/` root (run `npm install` there once first).
 
+```bash
 # In one terminal, start the Worker (requires a local Temporal server and OPENAI_API_KEY):
-OPENAI_API_KEY=sk-... npm start
+OPENAI_API_KEY=sk-... npx ts-node human-approval/src/worker.ts
 
 # In another terminal, start the workflow (the client sends the approval Signal):
-npm run workflow
+npx ts-node human-approval/src/client.ts
 ```
 
 ## Test
 
 ```bash
-npm test
+npx mocha --exit --require ts-node/register --require source-map-support/register "human-approval/src/mocha/*.test.ts"
 ```
 
 The test runs a real Worker against `TestWorkflowEnvironment` with a scripted fake model, so no

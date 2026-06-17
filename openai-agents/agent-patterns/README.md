@@ -14,26 +14,25 @@ Scenarios:
 
 ## Run
 
-```bash
-npm install
-npm run build
+Run these from the `openai-agents/` root (run `npm install` there once first).
 
+```bash
 # In one terminal, start the Worker (requires a local Temporal server and OPENAI_API_KEY):
-OPENAI_API_KEY=sk-... npm start
+OPENAI_API_KEY=sk-... npx ts-node agent-patterns/src/worker.ts
 
 # In another terminal, start a scenario:
-npm run workflow deterministic
-npm run workflow parallelization
-npm run workflow llm-as-judge
-npm run workflow agents-as-tools
-npm run workflow input-guardrails
-npm run workflow output-guardrails
+npx ts-node agent-patterns/src/client.ts deterministic
+npx ts-node agent-patterns/src/client.ts parallelization
+npx ts-node agent-patterns/src/client.ts llm-as-judge
+npx ts-node agent-patterns/src/client.ts agents-as-tools
+npx ts-node agent-patterns/src/client.ts input-guardrails
+npx ts-node agent-patterns/src/client.ts output-guardrails
 ```
 
 ## Test
 
 ```bash
-npm test
+npx mocha --exit --require ts-node/register --require source-map-support/register "agent-patterns/src/mocha/*.test.ts"
 ```
 
 Tests run a real Worker against `TestWorkflowEnvironment` with a scripted fake model, so no

@@ -16,23 +16,23 @@ Start the Temporal dev server:
 temporal server start-dev
 ```
 
-Set your OpenAI key and start the Worker:
+Set your OpenAI key and start the Worker (run from the `openai-agents/` root, after `npm install` there):
 
 ```
 export OPENAI_API_KEY=sk-...
-npm run start
+npx ts-node research-bot/src/worker.ts
 ```
 
 In another shell, start the Workflow (optionally pass a query):
 
 ```
-npm run workflow "Caribbean surfing in April"
+npx ts-node research-bot/src/client.ts "Caribbean surfing in April"
 ```
 
 ## Test
 
 ```
-npm test
+npx mocha --exit --require ts-node/register --require source-map-support/register "research-bot/src/mocha/*.test.ts"
 ```
 
 The test uses `TestWorkflowEnvironment`, a real Worker, and a `FakeModelProvider`, so it runs without

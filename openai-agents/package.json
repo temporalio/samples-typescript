@@ -1,5 +1,5 @@
 {
-  "name": "temporal-openai-agents-tools",
+  "name": "temporal-openai-agents",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,29 +8,21 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "start": "ts-node src/worker.ts",
-    "start.watch": "nodemon src/worker.ts",
-    "workflow": "ts-node src/client.ts",
-    "test": "mocha --exit --require ts-node/register --require source-map-support/register src/mocha/*.test.ts"
-  },
-  "nodemonConfig": {
-    "execMap": {
-      "ts": "ts-node"
-    },
-    "ext": "ts",
-    "watch": [
-      "src"
-    ]
+    "test": "mocha --exit --require ts-node/register --require source-map-support/register \"*/src/mocha/*.test.ts\""
   },
   "dependencies": {
     "@temporalio/activity": "^1.18.0",
     "@temporalio/client": "^1.18.0",
+    "@temporalio/nexus": "^1.18.0",
     "@temporalio/openai-agents": "^1.18.0",
     "@temporalio/worker": "^1.18.0",
     "@temporalio/workflow": "^1.18.0",
     "@openai/agents-core": "^0.11.6",
     "@openai/agents-openai": "^0.11.6",
+    "@modelcontextprotocol/sdk": "^1.29.0",
+    "@opentelemetry/api": "^1.9.0",
     "openai": "^6.0.0",
+    "nexus-rpc": "^0.0.2",
     "nanoid": "3.x",
     "zod": "^4.0.0"
   },
@@ -41,11 +33,11 @@
     "@types/node": "^22.9.1",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
+    "@opentelemetry/sdk-trace-base": "^1.30.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-deprecation": "^3.0.0",
     "mocha": "8.x",
-    "nodemon": "^3.1.7",
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3",

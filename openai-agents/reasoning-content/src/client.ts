@@ -8,7 +8,7 @@ async function run() {
   }
 
   const prompt = process.argv[2] ?? 'What is the square root of 841? Please explain your reasoning.';
-  const model = process.env.OPENAI_MODEL ?? 'deepseek-reasoner';
+  const model = process.env.OPENAI_MODEL ?? 'gpt-5.5';
 
   const connection = await Connection.connect();
   const client = new Client({ connection });

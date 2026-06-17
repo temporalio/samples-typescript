@@ -22,21 +22,21 @@ describe('openai-agents/reasoning-content', function () {
     const taskQueue = 'test-reasoning-content';
     const seenRequests: { model: string; prompt: string }[] = [];
     activities.setReasoningClientFactory(() => ({
-      chat: {
-        completions: {
-          create: async (body) => {
-            seenRequests.push({ model: body.model, prompt: body.messages[body.messages.length - 1]!.content });
-            return {
-              choices: [
-                {
-                  message: {
-                    reasoning_content: 'sqrt(841): 29 * 29 = 841, so the answer is 29.',
-                    content: 'The square root of 841 is 29.',
-                  },
-                },
-              ],
-            };
-          },
+      responses: {
+        create: async (body) => {
+          seenRequests.push({ model: body.model, prompt: body.input });
+          return {
+            output: [
+              {
+                type: 'reasoning',
+                summary: [{ text: 'sqrt(841): 29 * 29 = 841, so the answer is 29.' }],
+              },
+              {
+                type: 'message',
+                content: [{ type: 'output_text', text: 'The square root of 841 is 29.' }],
+              },
+            ],
+          };
         },
       },
     }));

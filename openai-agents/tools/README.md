@@ -18,20 +18,19 @@ Start a Temporal dev server:
 temporal server start-dev
 ```
 
-In one shell, start the Worker (a real `OPENAI_API_KEY` is required for hosted tools to fire):
+In one shell, start the Worker (run from the `openai-agents/` root, after `npm install` there; a real `OPENAI_API_KEY` is required for hosted tools to fire):
 
 ```bash
 export OPENAI_API_KEY=sk-...
-npm install
-npm run start.watch
+npx ts-node tools/src/worker.ts
 ```
 
 In another shell, run a scenario:
 
 ```bash
-npm run workflow web-search
-npm run workflow image-generation
-npm run workflow code-interpreter
+npx ts-node tools/src/client.ts web-search
+npx ts-node tools/src/client.ts image-generation
+npx ts-node tools/src/client.ts code-interpreter
 ```
 
 Hosted tools only execute against the live OpenAI API. With a real key, the agent calls the tool
@@ -44,5 +43,5 @@ model call, the fake provider cannot exercise them; instead each test asserts th
 the hosted tool into the model request and completes with a scripted response.
 
 ```bash
-npm test
+npx mocha --exit --require ts-node/register --require source-map-support/register "tools/src/mocha/*.test.ts"
 ```

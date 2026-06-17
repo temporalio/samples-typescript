@@ -19,17 +19,17 @@ Start the Temporal dev server:
 temporal server start-dev
 ```
 
-Set your OpenAI key and start the Worker:
+Set your OpenAI key and start the Worker (run from the `openai-agents/` root, after `npm install` there):
 
 ```
 export OPENAI_API_KEY=sk-...
-npm run start
+npx ts-node customer-service/src/worker.ts
 ```
 
 In another shell, start the interactive chat client:
 
 ```
-npm run workflow
+npx ts-node customer-service/src/client.ts
 ```
 
 Type messages to chat. Type `history` to print the transcript, or `exit` to quit.
@@ -37,7 +37,7 @@ Type messages to chat. Type `history` to print the transcript, or `exit` to quit
 ## Test
 
 ```
-npm test
+npx mocha --exit --require ts-node/register --require source-map-support/register "customer-service/src/mocha/*.test.ts"
 ```
 
 The test uses `TestWorkflowEnvironment`, a real Worker, and a `FakeModelProvider`, so it runs without

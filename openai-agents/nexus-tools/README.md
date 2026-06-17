@@ -19,24 +19,24 @@ Start the Temporal dev server:
 temporal server start-dev
 ```
 
-Set your OpenAI key and start the Worker:
+Set your OpenAI key and start the Worker (run from the `openai-agents/` root, after `npm install` there):
 
 ```
 export OPENAI_API_KEY=sk-...
-npm run start
+npx ts-node nexus-tools/src/worker.ts
 ```
 
 In another shell, run the Workflow. The client creates the Nexus endpoint if needed, then starts the
 Workflow (optionally pass a prompt):
 
 ```
-npm run workflow "What is the weather in Tokyo?"
+npx ts-node nexus-tools/src/client.ts "What is the weather in Tokyo?"
 ```
 
 ## Test
 
 ```
-npm test
+npx mocha --exit --require ts-node/register --require source-map-support/register "nexus-tools/src/mocha/*.test.ts"
 ```
 
 The test uses `TestWorkflowEnvironment`, `env.createNexusEndpoint(...)`, a real Worker, and a

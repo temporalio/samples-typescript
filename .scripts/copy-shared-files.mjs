@@ -13,13 +13,13 @@ const ADDITIONAL_SAMPLES = [];
 // as samples.
 const HAS_CHILD_SAMPLES = [
   'message-passing',
-  'openai-agents',
   'polling',
 ];
 
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
 const TSCONFIG_EXCLUDE = [
+  'openai-agents',
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'fetch-esm',
@@ -43,6 +43,7 @@ const GITIGNORE_EXCLUDE = [
   'nestjs-exchange-rates',
 ];
 const ESLINTRC_EXCLUDE = [
+  'openai-agents',
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'fetch-esm',

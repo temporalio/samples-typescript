@@ -37,19 +37,19 @@ Workflow runs to completion).
    temporal server start-dev
    ```
 
-2. In another terminal, start the worker:
+2. In another terminal, start the worker (run from the `openai-agents/` root, after `npm install` there):
 
    ```sh
    export OPENAI_API_KEY=sk-...
-   npm run start.watch
+   npx ts-node hosted-mcp/src/worker.ts
    ```
 
 3. In a third terminal, run a workflow:
 
    ```sh
    export OPENAI_API_KEY=sk-...
-   npm run workflow simple
-   npm run workflow approval
+   npx ts-node hosted-mcp/src/client.ts simple
+   npx ts-node hosted-mcp/src/client.ts approval
    ```
 
 The `approval` client starts the Workflow and then sends the `approvalDecision` Signal with `true`
