@@ -155,6 +155,7 @@ and you'll be given the list of sample options.
   - [**OpenTelemetry**](./interceptors-opentelemetry): Use the Interceptors feature to add OpenTelemetry metrics reporting to your workflows.
   - [**Query Subscriptions**](./query-subscriptions): Use Redis Streams, Immer, and SDK Interceptors to subscribe to Workflow state.
 - [**gRPC calls**](./grpc-calls): Make raw gRPC calls for advanced queries not covered by the WorkflowClient API.
+- [**LangSmith**](./langsmith): Trace Workflows and Activities to [LangSmith](https://www.langchain.com/langsmith) using the `@temporalio/langsmith` plugin.
 
 #### Test APIs
 

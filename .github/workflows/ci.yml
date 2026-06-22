@@ -61,6 +61,7 @@ jobs:
             early-return
             empty
             hello-world
+            langsmith
             mutex
             nestjs-exchange-rates
             sleep-for-days
