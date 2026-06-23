@@ -10,9 +10,7 @@ interface ReasoningOutputItem {
   summary: { text: string }[];
 }
 
-type MessageContentPart =
-  | { type: 'output_text'; text: string }
-  | { type: 'refusal'; refusal: string };
+type MessageContentPart = { type: 'output_text'; text: string } | { type: 'refusal'; refusal: string };
 
 interface MessageOutputItem {
   type: 'message';
