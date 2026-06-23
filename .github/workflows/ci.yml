@@ -49,6 +49,16 @@ jobs:
 
       - run: pnpm install
 
+      # Download the time-skipping test server once, before the test loop. The
+      # binary is fetched lazily on first use and cached in the system temp dir;
+      # doing it here keeps the cold download off the critical path of any test's
+      # default 5s hook timeout (which flakes on slower runners).
+      - name: Pre-download time-skipping test server
+        shell: bash
+        working-directory: eager-workflow-start
+        run: >
+          node -e "require('@temporalio/testing').TestWorkflowEnvironment.createTimeSkipping().then(e => e.teardown())"
+
       - name: Build and test sample projects
         shell: bash
         run: |
