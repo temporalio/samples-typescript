@@ -10,12 +10,12 @@
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
   "dependencies": {
-    "@temporalio/client": "^1.18.0",
+    "@temporalio/client": "^1.18.1",
     "@trpc/server": "^10.0.0-rc.8",
     "@trpc/react-query": "^10.0.0-rc.8"
   },
   "devDependencies": {
-    "@fooddelivery/tsconfig": "*",
+    "@fooddelivery/tsconfig": "workspace:*",
     "eslint": "^8.57.1",
     "typescript": "^5.6.3"
   }

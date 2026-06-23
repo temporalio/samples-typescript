@@ -25,7 +25,7 @@
   },
   "devDependencies": {
     "@types/node": "^22.9.1",
-    "@fooddelivery/eslint-config-food": "*",
+    "@fooddelivery/eslint-config-food": "workspace:*",
     "eslint": "^8.57.1",
     "pnpm": "^9.15.0",
     "prettier": "^3.4.2",

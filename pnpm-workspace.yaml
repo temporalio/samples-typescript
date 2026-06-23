@@ -25,3 +25,14 @@ hoist: false
 # FIXME: Can't we do something equivalent at the project-level instead?
 publicHoistPattern:
   - postcss-*
+
+allowBuilds:
+  '@nestjs/core': true
+  '@swc/core': true
+  core-js: true
+  core-js-pure: true
+  deasync: true
+  esbuild: true
+  protobufjs: true
+  sharp: true
+  vercel: true
