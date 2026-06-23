@@ -66,6 +66,7 @@ jobs:
             sleep-for-days
             standalone-activity
             timer-examples
+            workflow-streams
             message-passing/introduction
             message-passing/safe-message-handlers
             polling/infrequent

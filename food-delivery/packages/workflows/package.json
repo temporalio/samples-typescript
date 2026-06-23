@@ -8,12 +8,12 @@
     "lint": "TIMING=1 eslint \"**/*.ts*\""
   },
   "dependencies": {
-    "@fooddelivery/common": "*",
-    "@temporalio/workflow": "^1.18.0"
+    "@fooddelivery/common": "workspace:*",
+    "@temporalio/workflow": "^1.18.1"
   },
   "devDependencies": {
-    "@fooddelivery/activities": "*",
-    "@fooddelivery/tsconfig": "*",
+    "@fooddelivery/activities": "workspace:*",
+    "@fooddelivery/tsconfig": "workspace:*",
     "eslint": "^8.57.1",
     "typescript": "^5.6.3"
   }

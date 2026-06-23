@@ -10,3 +10,13 @@ packages:
   - 'food-delivery/apps/*'
   - 'food-delivery/packages/*'
   - 'polling/*'
+allowBuilds:
+  '@nestjs/core': true
+  '@swc/core': true
+  core-js: true
+  core-js-pure: true
+  deasync: true
+  esbuild: true
+  protobufjs: true
+  sharp: true
+  vercel: true
