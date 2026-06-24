@@ -3,25 +3,25 @@
 <!-- START doctoc generated TOC please keep comment here to allow auto update -->
 <!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
 
-- [samples-typescript](#samples-typescript)
-  - [Running](#running)
-    - [Locally](#locally)
-    - [Scaffold](#scaffold)
-  - [Samples](#samples)
-    - [Basic](#basic)
-    - [API demos](#api-demos)
-      - [Activity APIs and design patterns](#activity-apis-and-design-patterns)
-      - [Nexus APIs](#nexus-apis)
-      - [Workflow APIs](#workflow-apis)
-      - [Production APIs](#production-apis)
-      - [Advanced APIs](#advanced-apis)
-      - [Test APIs](#test-apis)
-    - [Full-stack apps](#full-stack-apps)
-  - [External apps \& libraries](#external-apps--libraries)
-  - [Contributing](#contributing)
-    - [Dependencies](#dependencies)
-    - [Upgrading the SDK version in `package.json`s](#upgrading-the-sdk-version-in-packagejsons)
-    - [Config files](#config-files)
+- [Running](#running)
+  - [Locally](#locally)
+  - [Scaffold](#scaffold)
+- [Samples](#samples)
+  - [Basic](#basic)
+  - [API demos](#api-demos)
+    - [Activity APIs and design patterns](#activity-apis-and-design-patterns)
+    - [Nexus APIs](#nexus-apis)
+    - [Workflow APIs](#workflow-apis)
+    - [Production APIs](#production-apis)
+    - [Advanced APIs](#advanced-apis)
+    - [Test APIs](#test-apis)
+    - [AI / LLM](#ai--llm)
+  - [Full-stack apps](#full-stack-apps)
+- [External apps & libraries](#external-apps--libraries)
+- [Contributing](#contributing)
+  - [Dependencies](#dependencies)
+  - [Upgrading the SDK version in `package.json`s](#upgrading-the-sdk-version-in-packagejsons)
+  - [Config files](#config-files)
 
 <!-- END doctoc generated TOC please keep comment here to allow auto update -->
 
@@ -160,6 +160,24 @@ and you'll be given the list of sample options.
 
 - [**Mocha with code coverage or Jest**](https://github.com/temporalio/samples-typescript/tree/main/activities-examples#testing)
 - [**Time skipping**](https://github.com/temporalio/samples-typescript/tree/main/timer-examples#testing)
+
+#### AI / LLM
+
+- [**OpenAI Agents**](./openai-agents): Run [OpenAI Agents SDK](https://github.com/openai/openai-agents-js) agents as Temporal Workflows with the `@temporalio/openai-agents` integration. The [`openai-agents/`](./openai-agents) directory contains fourteen samples:
+  - [**Basic**](./openai-agents/basic): A single agent plus the building blocks — Activity-backed and inline tools, local-Activity tools, agent context, structured output, per-run model override, and dynamic instructions.
+  - [**Handoffs**](./openai-agents/handoffs): A triage agent routes each request to a specialist agent, using both the `Agent[]` and `handoff()` forms and a per-handoff input filter.
+  - [**Agent Patterns**](./openai-agents/agent-patterns): Multi-agent orchestration patterns — deterministic chaining, parallelization, LLM-as-judge, agents-as-tools, and input/output guardrails.
+  - [**Sessions**](./openai-agents/sessions): Conversation history with `WorkflowSafeMemorySession`, including carrying history across a `continueAsNew` boundary.
+  - [**Human Approval**](./openai-agents/human-approval): A human-in-the-loop tool that pauses the run for an `approve` Signal, then resumes by serializing and rehydrating the run state across `continueAsNew`.
+  - [**Tools**](./openai-agents/tools): Server-side hosted tools — web search, image generation, and code interpreter — executed by the model provider in the model Activity.
+  - [**Tracing**](./openai-agents/tracing): The three supported tracing paths — a custom `TracingProcessor`, the OpenAI hosted exporter, and OpenTelemetry — plus `temporal:*` orchestration spans.
+  - [**Model Providers**](./openai-agents/model-providers): Pass a custom `ModelProvider` to point an agent at any OpenAI-compatible endpoint.
+  - [**Reasoning Content**](./openai-agents/reasoning-content): Read a reasoning model's `reasoning_content` field by calling the `openai` SDK directly from an Activity.
+  - [**MCP**](./openai-agents/mcp): Stateless and stateful Model Context Protocol servers (stdio, Streamable HTTP, SSE, and prompt servers) running locally.
+  - [**Hosted MCP**](./openai-agents/hosted-mcp): A `HostedMCPTool` the model calls server-side, with and without a Signal-driven approval round trip.
+  - [**Research Bot**](./openai-agents/research-bot): A planner agent fans out concurrent web searches and a writer agent synthesizes a final report.
+  - [**Customer Service**](./openai-agents/customer-service): A long-running, multi-turn Workflow driven by Updates and Queries, with triage handoffs and `continueAsNew` to bound history.
+  - [**Nexus Tools**](./openai-agents/nexus-tools): Expose a Nexus Operation as an agent tool with `nexusOperationAsTool`.
 
 ### Full-stack apps
 

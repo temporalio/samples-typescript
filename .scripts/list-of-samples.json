@@ -32,6 +32,7 @@
     "nexus-cancellation",
     "nexus-hello",
     "nexus-messaging",
+    "openai-agents",
     "patching-api",
     "production",
     "protobufs",

@@ -42,6 +42,7 @@ const GITIGNORE_EXCLUDE = [
   'nestjs-exchange-rates',
 ];
 const ESLINTRC_EXCLUDE = [
+  'openai-agents',
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'fetch-esm',
@@ -63,6 +64,7 @@ const ESLINTIGNORE_EXCLUDE = [
 ];
 
 const POST_CREATE_EXCLUDE = [
+  'openai-agents',
   'schedules',
   'timer-examples',
   'query-subscriptions',

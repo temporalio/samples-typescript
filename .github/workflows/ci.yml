@@ -69,6 +69,7 @@ jobs:
             workflow-streams
             message-passing/introduction
             message-passing/safe-message-handlers
+            openai-agents
             polling/infrequent
           )
           for project in "${projects[@]}"; do
