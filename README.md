@@ -181,6 +181,14 @@ and you'll be given the list of sample options.
   - [**Customer Service**](./openai-agents/customer-service): A long-running, multi-turn Workflow driven by Updates and Queries, with triage handoffs and `continueAsNew` to bound history.
   - [**Nexus Tools**](./openai-agents/nexus-tools): Expose a Nexus Operation as an agent tool with `nexusOperationAsTool`.
   - [**Streaming**](./openai-agents/src/streaming): Run an agent in streaming mode over a Workflow Stream, with an external client subscribing to the model's deltas live.
+- [**Google ADK Agents**](./google-adk-agents): Run [Google Agent Development Kit](https://github.com/google/adk-js) (`@google/adk`) agents as Temporal Workflows with the `@temporalio/google-adk-agents` integration. The [`google-adk-agents/`](./google-adk-agents) directory contains seven samples:
+  - [**Basic**](./google-adk-agents/src/basic): A single `LlmAgent` whose model is a `TemporalModel`, driven by `InMemoryRunner` for one durable model call.
+  - [**Tools**](./google-adk-agents/src/tools): An existing Temporal Activity exposed to the agent as an ADK tool with `activityAsTool`.
+  - [**Agent Patterns**](./google-adk-agents/src/agent-patterns): A coordinator `LlmAgent` starts an ADK `transfer_to_agent` relay through a researcher and a writer, each with its own `TemporalModel`.
+  - [**MCP**](./google-adk-agents/src/mcp): A `TemporalMCPToolset` backed by a filesystem MCP server the Worker opens over stdio.
+  - [**Streaming**](./google-adk-agents/src/streaming): Token streaming from a direct `TemporalModel` call — no agent loop — over a Workflow Stream, with an external client printing the deltas as they arrive.
+  - [**Human Approval**](./google-adk-agents/src/human-approval): A `LongRunningFunctionTool` whose completion is gated by a Temporal Signal or Update.
+  - [**Observability**](./google-adk-agents/src/observability): Token usage, latency, and call counts from the agent loop's OpenTelemetry spans, by composing `OpenTelemetryPlugin` onto the Worker alongside `GoogleAdkPlugin`.
 
 ### Full-stack apps
 

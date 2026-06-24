@@ -60,6 +60,7 @@ jobs:
             eager-workflow-start
             early-return
             empty
+            google-adk-agents
             hello-world
             langsmith
             mutex

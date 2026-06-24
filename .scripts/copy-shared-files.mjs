@@ -62,6 +62,7 @@ const ESLINTIGNORE_EXCLUDE = [
 
 const POST_CREATE_EXCLUDE = [
   'openai-agents',
+  'google-adk-agents',
   'env-config',
   'dsl-interpreter',
   'eager-workflow-start',
