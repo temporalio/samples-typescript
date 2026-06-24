@@ -1,9 +1,5 @@
 // Run with https://github.com/google/zx
-const { readFileSync } = require('fs');
-
 const STORED_SAMPLES = new Set(require('./list-of-samples.json').samples);
-
-const yaml = require('yaml');
 
 const NON_SAMPLES = ['node_modules'];
 const ADDITIONAL_SAMPLES = [];
@@ -200,35 +196,6 @@ for (const sample of samples) {
 
   await copyAndAdd(sample, '.nvmrc');
 }
-
-process.stdout.write('Updating GitHub workflows...');
-
-const ciConfig = yaml.parseDocument(await fs.readFile('.github/workflows/ci.yml', 'utf8'));
-const jobsNode = ciConfig.contents.items.find((i) => i.key.value === 'jobs');
-const testNode = jobsNode.value.items.find((i) => i.key.value === 'test-individual');
-const testProjectsNode = testNode.value.items
-  .find((i) => i.key.value === 'strategy')
-  .value.items.find((i) => i.key.value === 'matrix')
-  .value.items.find((i) => i.key.value === 'project');
-
-testProjectsNode.value.items = [];
-
-for (const sample of samples) {
-  // Don't use require, because it won't work with ESM samples
-  const packageJson = JSON.parse(readFileSync(`./${sample}/package.json`));
-  const hasTestScript = !!packageJson.scripts.test;
-
-  if (hasTestScript) {
-    testProjectsNode.value.items.push(sample);
-  } else {
-    const index = testProjectsNode.value.items.indexOf(sample);
-    if (index >= 0) {
-      testProjectsNode.value.items.splice(index, 1);
-    }
-  }
-}
-
-await fs.writeFile('.github/workflows/ci.yml', ciConfig.toString());
 
 console.log(' done.');
 
