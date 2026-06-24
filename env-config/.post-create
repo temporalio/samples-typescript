@@ -12,7 +12,7 @@ Use Node version 18+ (v22.x is recommended):
 Mac: {cyan brew install node@22}
 Other: https://nodejs.org/en/download/
 
-Then, in the project directory, using two other shells, run these commands:
+This sample loads Temporal Client configuration from a TOML file. In the project directory, run either:
 
-{cyan npm run start.watch}
-{cyan npm run workflow}
+{cyan npm run load-default}
+{cyan npm run load-profile}
