@@ -23,7 +23,7 @@ async function run() {
       connection,
       namespace: 'default',
       taskQueue: LLM_TASK_QUEUE,
-      workflowsPath: require.resolve('./llm-workflows'),
+      workflowsPath: require.resolve('./workflows-llm'),
       activities,
     });
     await worker.run();
