@@ -12,7 +12,9 @@ Use Node version 18+ (v22.x is recommended):
 Mac: {cyan brew install node@22}
 Other: https://nodejs.org/en/download/
 
-Then, in the project directory, using two other shells, run these commands:
+This sample has several scenarios under {cyan src/}. Using two other shells, start a Worker for one scenario and run its client (example: {cyan basic}):
 
-{cyan npm run start.watch}
-{cyan npm run workflow}
+{cyan OPENAI_API_KEY=<your-key> npx ts-node src/basic/worker.ts}
+{cyan npx ts-node src/basic/client.ts hello-world}
+
+See README.md for the full list of scenarios.
