@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
-    "@types/mocha": "8.x",
+    "@types/mocha": "10.x",
     "@types/node": "^22.9.1",
     "@types/node-fetch": "^2.5.12",
     "@types/sinon": "^10.0.4",

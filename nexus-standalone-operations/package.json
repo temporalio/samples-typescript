@@ -1,5 +1,5 @@
 {
-  "name": "temporal-standalone-activity",
+  "name": "nexus-standalone-operations",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -8,10 +8,9 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "start": "ts-node src/worker.ts",
-    "start.watch": "nodemon src/worker.ts",
-    "execute": "ts-node src/execute.ts",
-    "list": "ts-node src/list.ts",
+    "worker": "ts-node src/worker/worker.ts",
+    "worker.watch": "nodemon --watch src src/worker/worker.ts",
+    "starter": "ts-node src/starter.ts",
     "test": "mocha --exit --require ts-node/register --require source-map-support/register src/mocha/*.test.ts"
   },
   "nodemonConfig": {
@@ -24,14 +23,16 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.18.1",
-    "@temporalio/client": "^1.18.1",
-    "@temporalio/envconfig": "^1.18.1",
-    "@temporalio/worker": "^1.18.1",
-    "nanoid": "3.x"
+    "@temporalio/client": "1.18.1",
+    "@temporalio/envconfig": "1.18.1",
+    "@temporalio/nexus": "1.18.1",
+    "@temporalio/worker": "1.18.1",
+    "@temporalio/workflow": "1.18.1",
+    "nanoid": "~3.3.12",
+    "nexus-rpc": "^0.0.2"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.18.1",
+    "@temporalio/testing": "1.18.1",
     "@tsconfig/node22": "^22.0.0",
     "@types/mocha": "10.x",
     "@types/node": "^22.9.1",
@@ -43,6 +44,7 @@
     "mocha": "10.x",
     "nodemon": "^3.1.7",
     "prettier": "^3.4.2",
+    "source-map-support": "^0.5.21",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.3"
   }
