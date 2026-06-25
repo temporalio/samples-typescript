@@ -9,7 +9,24 @@ packages:
   - 'monorepo-folders/packages/*'
   - 'food-delivery/apps/*'
   - 'food-delivery/packages/*'
+  - 'openai-agents/*'
   - 'polling/*'
+
+linkWorkspacePackages: true
+sharedWorkspaceLockfile: true
+hoist: false
+
+# By default, PNPM hoists eslint and prettier to the workspace root, but that may causes issues
+# with this workspace, as some samples have completely different versions of these packages, or
+# depends on incompatible plugins.
+#
+# The monorepo sample uses postcss with an external configuration file that refers to plugins by
+# their package name, rather than passing objects. That doesn't work with PNPM's strict node_modules
+# structure. To work around this, hoist all postcss-* packages.
+# FIXME: Can't we do something equivalent at the project-level instead?
+publicHoistPattern:
+  - postcss-*
+
 allowBuilds:
   '@nestjs/core': true
   '@swc/core': true

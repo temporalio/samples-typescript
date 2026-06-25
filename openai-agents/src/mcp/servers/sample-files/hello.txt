@@ -1,0 +1,3 @@
+Hello from the MCP filesystem server!
+This file is part of the sample-files directory.
+It demonstrates the listFiles and readFile tools.

@@ -12,7 +12,12 @@ Use Node version 18+ (v22.x is recommended):
 Mac: {cyan brew install node@22}
 Other: https://nodejs.org/en/download/
 
-Then, in the project directory, using two other shells, run these commands:
+This sample uses Nexus and has two self-contained patterns (callerpattern and ondemandpattern). First create the namespaces and Nexus endpoint as described in the README.
 
-{cyan npm run start.watch}
-{cyan npm run workflow}
+For the caller pattern, start the service Worker, the caller Worker, and the Workflow in three separate shells:
+
+{cyan npm run start.callerpattern.service}
+{cyan npm run start.callerpattern.caller}
+{cyan npm run workflow.callerpattern}
+
+The on-demand pattern has an equivalent ondemandpattern trio of scripts -- see the README.
