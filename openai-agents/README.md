@@ -33,6 +33,7 @@ Each scenario's README describes how to start its Worker and run its scenarios b
 | [`multi-agent`](./src/multi-agent)                     | A planner agent fans out concurrent web searches and a writer agent synthesizes a final report.                                                                                           |
 | [`stateful-conversation`](./src/stateful-conversation) | A long-running, multi-turn Workflow driven by Updates and Queries, with triage handoffs and `continueAsNew` to bound history.                                                             |
 | [`nexus-tools`](./src/nexus-tools)                     | Expose a [Nexus](https://docs.temporal.io/nexus) Operation as an agent tool with `nexusOperationAsTool`.                                                                                  |
+| [`streaming`](./src/streaming)                         | Run an agent in streaming mode over a Workflow Stream and subscribe to the model stream events live from an external client.                                                              |
 
 ## Feature support
 
@@ -58,5 +59,5 @@ Any OpenAI Agents SDK `ModelProvider` can drive the model Activity. The provider
 | Child Workflows         | Supported     | Plugin config propagates to children                                                    |
 | Local Activities        | Supported     | Set `useLocalActivity: true` in `modelParams`                                           |
 | Model override per run  | Supported     | `runConfig.model` accepts a string model name                                           |
-| Streaming               | Not supported | Use `runner.run()`                                                                      |
+| Streaming               | Supported (experimental) | `run(agent, input, { stream: true })` over a Workflow Stream; see [`streaming`](./src/streaming) |
 | Voice agents            | Not supported |                                                                                         |
