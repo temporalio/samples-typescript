@@ -1,0 +1,33 @@
+{
+  "name": "aws-sqs-example",
+  "version": "1.0.0",
+  "scripts": {
+    "start:worker": "tsx src/worker.ts | pino-pretty",
+    "start:client": "tsx src/client.ts | pino-pretty",
+    "start:worker:watch": "tsx watch src/worker.ts | pino-pretty",
+    "start:client:watch": "tsx watch src/client.ts | pino-pretty"
+  },
+  "dependencies": {
+    "@aws-sdk/client-sqs": "^3.427.0",
+    "@temporalio/activity": "^1.8.6",
+    "@temporalio/client": "^1.8.6",
+    "@temporalio/common": "^1.8.6",
+    "@temporalio/worker": "^1.8.6",
+    "@temporalio/workflow": "^1.8.6",
+    "dotenv": "^16.3.1",
+    "nanoid": "^5.0.1",
+    "pino": "^8.15.6",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.7.4",
+    "@typescript-eslint/parser": "^6.7.4",
+    "eslint": "^8.51.0",
+    "eslint-config-prettier": "^9.0.0",
+    "eslint-plugin-deprecation": "^2.0.0",
+    "pino-pretty": "^10.2.3",
+    "prettier": "^3.0.3",
+    "tsx": "^3.13.0",
+    "typescript": "^5.2.2"
+  }
+}
