@@ -25,6 +25,7 @@
     "hello-world-mtls",
     "interceptors-opentelemetry",
     "lambda-worker",
+    "langsmith",
     "monorepo-folders",
     "mutex",
     "nestjs-exchange-rates",
