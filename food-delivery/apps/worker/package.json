@@ -21,10 +21,10 @@
   "dependencies": {
     "@fooddelivery/common": "workspace:*",
     "@fooddelivery/workflows": "workspace:*",
-    "@temporalio/activity": "^1.18.1",
-    "@temporalio/common": "^1.18.1",
-    "@temporalio/worker": "^1.18.1",
-    "@temporalio/workflow": "^1.18.1"
+    "@temporalio/activity": "^1.19.0",
+    "@temporalio/common": "^1.19.0",
+    "@temporalio/worker": "^1.19.0",
+    "@temporalio/workflow": "^1.19.0"
   },
   "devDependencies": {
     "@fooddelivery/tsconfig": "workspace:*",
