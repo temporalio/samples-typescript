@@ -12,8 +12,8 @@
     "load-profile": "ts-node src/load-profile.ts"
   },
   "dependencies": {
-    "@temporalio/client": "^1.18.1",
-    "@temporalio/envconfig": "^1.18.1"
+    "@temporalio/client": "^1.19.0",
+    "@temporalio/envconfig": "^1.19.0"
   },
   "devDependencies": {
     "@tsconfig/node22": "^22.0.0",
