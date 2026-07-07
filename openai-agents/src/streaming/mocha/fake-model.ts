@@ -17,8 +17,9 @@ export function streamingTextEvents(text: string): StreamEvent[] {
       status: 'completed',
     },
   ];
+  const chunks = text.match(/\s*\S+\s*/g) ?? [text];
   return [
-    { type: 'output_text_delta', delta: text },
+    ...chunks.map((delta) => ({ type: 'output_text_delta', delta })),
     {
       type: 'response_done',
       response: {

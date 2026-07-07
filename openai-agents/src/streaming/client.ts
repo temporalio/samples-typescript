@@ -11,18 +11,14 @@ interface ModelStreamEvent {
 }
 
 async function run() {
-  const apiKey = process.env.OPENAI_API_KEY;
-  if (!apiKey) {
-    throw new Error('OPENAI_API_KEY environment variable is required');
-  }
-
   const connection = await Connection.connect();
   const client = new Client({
     connection,
     plugins: [
       new OpenAIAgentsPlugin({
-        modelProvider: new OpenAIProvider({ apiKey }),
-        modelParams: { streamingTopic },
+        // The client never calls the model (it runs in the Worker's Activity); this only satisfies the plugin's required modelProvider field.
+        modelProvider: new OpenAIProvider({}),
+        modelParams: { streamingTopic, streamingBatchInterval: '200 milliseconds' },
       }),
     ],
   });
