@@ -26,16 +26,16 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.19.0",
-    "@temporalio/client": "^1.19.0",
-    "@temporalio/envconfig": "^1.19.0",
-    "@temporalio/worker": "^1.19.0",
-    "@temporalio/workflow": "^1.19.0",
+    "@temporalio/activity": "^1.20.0",
+    "@temporalio/client": "^1.20.0",
+    "@temporalio/envconfig": "^1.20.0",
+    "@temporalio/worker": "^1.20.0",
+    "@temporalio/workflow": "^1.20.0",
     "axios": "0.28.0",
     "dotenv": "^16.4.5"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.19.0",
+    "@temporalio/testing": "^1.20.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/mocha": "^9.1.1",
     "@types/ms": "^0.7.31",
