@@ -37,7 +37,6 @@ describe('openai-agents/streaming workflow scenarios', function () {
       plugins: [
         new OpenAIAgentsPlugin({
           modelProvider: new StreamingFakeModelProvider(events),
-          modelParams: { streamingTopic, streamingBatchInterval: '50 milliseconds' },
         }),
       ],
       bundlerOptions: {
@@ -57,7 +56,7 @@ describe('openai-agents/streaming workflow scenarios', function () {
       plugins: [
         new OpenAIAgentsPlugin({
           modelProvider: new StreamingFakeModelProvider(events),
-          modelParams: { streamingTopic },
+          modelParams: { streamingTopic, streamingBatchInterval: '50 milliseconds' },
         }),
       ],
     });
@@ -91,7 +90,11 @@ describe('openai-agents/streaming workflow scenarios', function () {
         received.map((e) => e.type),
         events.map((e) => e.type),
       );
-      assert.strictEqual(received[0]!.delta, 'Hello streamed world');
+      const streamedText = received
+        .filter((e) => e.type === 'output_text_delta')
+        .map((e) => e.delta)
+        .join('');
+      assert.strictEqual(streamedText, 'Hello streamed world');
       return finalOutput;
     });
 

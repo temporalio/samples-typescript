@@ -1,7 +1,6 @@
 import { NativeConnection, Worker } from '@temporalio/worker';
 import { OpenAIAgentsPlugin } from '@temporalio/openai-agents';
 import { OpenAIProvider } from '@openai/agents-openai';
-import { streamingTopic } from './workflows';
 
 async function run() {
   const apiKey = process.env.OPENAI_API_KEY;
@@ -18,7 +17,6 @@ async function run() {
       plugins: [
         new OpenAIAgentsPlugin({
           modelProvider: new OpenAIProvider({ apiKey }),
-          modelParams: { streamingTopic, streamingBatchInterval: '200 milliseconds' },
         }),
       ],
       bundlerOptions: {
