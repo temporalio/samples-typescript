@@ -32,20 +32,20 @@ importers:
   activities-cancellation-heartbeating:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -84,20 +84,20 @@ importers:
   activities-dependency-injection:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -136,23 +136,23 @@ importers:
   activities-examples:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       axios:
         specifier: ^0.28.0
         version: 0.28.0
@@ -161,11 +161,11 @@ importers:
         version: 2.7.0
     devDependencies:
       '@temporalio/nyc-test-coverage':
-        specifier: ^1.19.0
-        version: 1.19.0(@temporalio/common@1.19.0)(@temporalio/worker@1.19.0(@swc/helpers@0.5.15))(@temporalio/workflow@1.19.0)(typescript@5.7.3)(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15)))
+        specifier: ^1.20.0
+        version: 1.20.0(@temporalio/common@1.20.0)(@temporalio/worker@1.20.0(@swc/helpers@0.5.15))(@temporalio/workflow@1.20.0)(typescript@5.7.3)(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15)))
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -254,23 +254,23 @@ importers:
         specifier: ^1.10.2
         version: 1.25.1(hono@4.12.27)(zod@3.25.76)
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/ai-sdk':
-        specifier: ^1.19.0
-        version: 1.19.0(@ai-sdk/mcp@1.0.5(zod@3.25.76))(@ai-sdk/provider@3.0.2)(ai@6.0.24(zod@3.25.76))
+        specifier: ^1.20.0
+        version: 1.20.0(@ai-sdk/mcp@1.0.5(zod@3.25.76))(@ai-sdk/provider@3.0.2)(ai@6.0.24(zod@3.25.76))
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       ai:
         specifier: ^6.0.0
         version: 6.0.24(zod@3.25.76)
@@ -282,8 +282,8 @@ importers:
         version: 3.25.76
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -327,20 +327,20 @@ importers:
   batch-sliding-window:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -379,20 +379,20 @@ importers:
   child-workflows:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -431,20 +431,20 @@ importers:
   continue-as-new:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -483,20 +483,20 @@ importers:
   cron-workflows:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -535,20 +535,20 @@ importers:
   custom-logger:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
@@ -599,20 +599,20 @@ importers:
   dsl-interpreter:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       js-yaml:
         specifier: ^4.1.0
         version: 4.1.0
@@ -657,27 +657,27 @@ importers:
   eager-workflow-start:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -724,27 +724,27 @@ importers:
   early-return:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -788,23 +788,23 @@ importers:
   ejson:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       ejson:
         specifier: ^2.2.2
         version: 2.2.3
@@ -855,27 +855,27 @@ importers:
   empty:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -919,26 +919,26 @@ importers:
   encryption:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/proto':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       cors:
         specifier: ^2.8.5
         version: 2.8.5
@@ -1007,11 +1007,11 @@ importers:
   env-config:
     dependencies:
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -1047,23 +1047,23 @@ importers:
   expense:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       axios:
         specifier: ^0.28.0
         version: 0.28.0
@@ -1117,23 +1117,23 @@ importers:
   fetch-esm:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       humanize-string:
         specifier: ^3.1.0
         version: 3.1.0
@@ -1217,8 +1217,8 @@ importers:
         specifier: ^4.16.1
         version: 4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@trpc/client':
         specifier: ^10.0.0-rc.8
         version: 10.45.2(@trpc/server@10.45.2)
@@ -1305,8 +1305,8 @@ importers:
         specifier: ^4.16.1
         version: 4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@trpc/client':
         specifier: ^10.0.0-rc.8
         version: 10.45.2(@trpc/server@10.45.2)
@@ -1387,17 +1387,17 @@ importers:
         specifier: workspace:*
         version: link:../../packages/workflows
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@fooddelivery/tsconfig':
         specifier: workspace:*
@@ -1421,8 +1421,8 @@ importers:
         specifier: workspace:*
         version: link:../common
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@fooddelivery/tsconfig':
         specifier: workspace:*
@@ -1437,8 +1437,8 @@ importers:
   food-delivery/packages/common:
     dependencies:
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@trpc/react-query':
         specifier: ^10.0.0-rc.8
         version: 10.45.2(@tanstack/react-query@4.36.1(react-dom@18.3.1(react@18.3.1))(react@18.3.1))(@trpc/client@10.45.2(@trpc/server@10.45.2))(@trpc/server@10.45.2)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -1525,8 +1525,8 @@ importers:
         specifier: workspace:*
         version: link:../common
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@fooddelivery/activities':
         specifier: workspace:*
@@ -1544,23 +1544,23 @@ importers:
   grpc-calls:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
@@ -1602,27 +1602,27 @@ importers:
   hello-world:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -1666,20 +1666,20 @@ importers:
   hello-world-js:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@types/node':
         specifier: ^22.9.1
@@ -1700,17 +1700,17 @@ importers:
   hello-world-mtls:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -1785,23 +1785,23 @@ importers:
         specifier: ^1.28.0
         version: 1.28.0
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/interceptors-opentelemetry':
-        specifier: ^1.19.0
-        version: 1.19.0(@temporalio/common@1.19.0)(@temporalio/workflow@1.19.0)
+        specifier: ^1.20.0
+        version: 1.20.0(@temporalio/common@1.20.0)(@temporalio/workflow@1.20.0)
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -1855,26 +1855,26 @@ importers:
         specifier: ^1.25.1
         version: 1.28.0
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/interceptors-opentelemetry':
-        specifier: ^1.19.0
-        version: 1.19.0(@temporalio/common@1.19.0)(@temporalio/workflow@1.19.0)
+        specifier: ^1.20.0
+        version: 1.20.0(@temporalio/common@1.20.0)(@temporalio/workflow@1.20.0)
       '@temporalio/lambda-worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@aws-lambda-powertools/logger@2.33.0)(@opentelemetry/exporter-trace-otlp-grpc@0.52.1(@opentelemetry/api@1.9.0))(@opentelemetry/resources@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(@temporalio/interceptors-opentelemetry@1.19.0(@temporalio/common@1.19.0)(@temporalio/workflow@1.19.0))(@types/aws-lambda@8.10.161)
+        specifier: ^1.20.0
+        version: 1.20.0(@aws-lambda-powertools/logger@2.33.0)(@opentelemetry/exporter-trace-otlp-grpc@0.52.1(@opentelemetry/api@1.9.0))(@opentelemetry/resources@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(@temporalio/interceptors-opentelemetry@1.20.0(@temporalio/common@1.20.0)(@temporalio/workflow@1.20.0))(@types/aws-lambda@8.10.161)
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -1913,27 +1913,27 @@ importers:
   message-passing/execute-update:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -1977,20 +1977,20 @@ importers:
   message-passing/introduction:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       async-mutex:
         specifier: ^0.5.0
         version: 0.5.0
@@ -1999,8 +1999,8 @@ importers:
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -2044,20 +2044,20 @@ importers:
   message-passing/safe-message-handlers:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       async-mutex:
         specifier: ^0.5.0
         version: 0.5.0
@@ -2066,8 +2066,8 @@ importers:
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -2148,8 +2148,8 @@ importers:
   monorepo-folders/packages/backend-apis:
     dependencies:
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       express:
         specifier: ~4.20.0
         version: 4.20.0
@@ -2219,8 +2219,8 @@ importers:
   monorepo-folders/packages/temporal-worker:
     dependencies:
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       temporal-workflows:
         specifier: workspace:*
         version: link:../temporal-workflows
@@ -2235,11 +2235,11 @@ importers:
   monorepo-folders/packages/temporal-workflows:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -2266,27 +2266,27 @@ importers:
   mutex:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -2348,20 +2348,20 @@ importers:
         specifier: ^10.4.8
         version: 10.4.15(@nestjs/common@10.4.15(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.15)
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       axios:
         specifier: ^1.3.1
         version: 1.7.9
@@ -2382,8 +2382,8 @@ importers:
         specifier: ^10.4.8
         version: 10.4.15(@nestjs/common@10.4.15(reflect-metadata@0.2.2)(rxjs@7.8.1))(@nestjs/core@10.4.15)(@nestjs/platform-express@10.4.15)
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@types/express':
         specifier: ^5.0.0
         version: 5.0.0
@@ -2457,20 +2457,20 @@ importers:
         specifier: ^0.3.3
         version: 0.3.4(tailwindcss@2.2.19(autoprefixer@10.4.20(postcss@8.5.1))(postcss@8.5.1)(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)))
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)(postcss@8.5.1)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)(postcss@8.5.1)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       next:
         specifier: latest
         version: 16.2.9(@opentelemetry/api@1.9.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -2542,23 +2542,23 @@ importers:
   nexus-cancellation:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/nexus':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
@@ -2603,23 +2603,23 @@ importers:
   nexus-hello:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/nexus':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
@@ -2664,23 +2664,23 @@ importers:
   nexus-messaging:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/nexus':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
@@ -2725,20 +2725,20 @@ importers:
   nexus-standalone-operations:
     dependencies:
       '@temporalio/client':
-        specifier: 1.19.0
-        version: 1.19.0
+        specifier: 1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: 1.19.0
-        version: 1.19.0
+        specifier: 1.20.0
+        version: 1.20.0
       '@temporalio/nexus':
-        specifier: 1.19.0
-        version: 1.19.0
+        specifier: 1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: 1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: 1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: 1.19.0
-        version: 1.19.0
+        specifier: 1.20.0
+        version: 1.20.0
       nanoid:
         specifier: ~3.3.12
         version: 3.3.12
@@ -2747,8 +2747,8 @@ importers:
         version: 0.0.2
     devDependencies:
       '@temporalio/testing':
-        specifier: 1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: 1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -2807,23 +2807,23 @@ importers:
         specifier: ^1.9.0
         version: 1.9.0
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/nexus':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/openai-agents':
-        specifier: ^1.19.0
-        version: 1.19.0(@openai/agents-core@0.11.8(ws@8.18.0)(zod@4.4.3))(@openai/agents-openai@0.11.8(ws@8.18.0)(zod@4.4.3))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(openai@6.45.0(ws@8.18.0)(zod@4.4.3))
+        specifier: ^1.20.0
+        version: 1.20.0(@openai/agents-core@0.11.8(ws@8.18.0)(zod@4.4.3))(@openai/agents-openai@0.11.8(ws@8.18.0)(zod@4.4.3))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(openai@6.45.0(ws@8.18.0)(zod@4.4.3))
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.12
@@ -2841,8 +2841,8 @@ importers:
         specifier: ^1.30.0
         version: 1.30.1(@opentelemetry/api@1.9.0)
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -2886,20 +2886,20 @@ importers:
   patching-api:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       axios:
         specifier: 0.28.0
         version: 0.28.0
@@ -2956,30 +2956,30 @@ importers:
   polling/infrequent:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -3029,20 +3029,20 @@ importers:
   production:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -3081,23 +3081,23 @@ importers:
   protobufs:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       uuid:
         specifier: ^8.3.2
         version: 8.3.2
@@ -3160,20 +3160,20 @@ importers:
   query-subscriptions:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       immer:
         specifier: ^9.0.6
         version: 9.0.21
@@ -3221,20 +3221,20 @@ importers:
   saga:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       cuid:
         specifier: ^2.1.8
         version: 2.1.8
@@ -3279,20 +3279,20 @@ importers:
   schedules:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -3331,20 +3331,20 @@ importers:
   scratchpad:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -3383,26 +3383,26 @@ importers:
   search-attributes:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/proto':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -3441,20 +3441,20 @@ importers:
   signals-queries:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -3493,20 +3493,20 @@ importers:
   sinks:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -3545,27 +3545,27 @@ importers:
   sleep-for-days:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -3615,20 +3615,20 @@ importers:
   snippets:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: 3.x
         version: 3.3.8
@@ -3670,24 +3670,24 @@ importers:
   standalone-activity:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       nanoid:
         specifier: 3.x
         version: 3.3.8
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -3731,20 +3731,20 @@ importers:
   state:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -3783,20 +3783,20 @@ importers:
   timer-examples:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       axios:
         specifier: 0.28.0
         version: 0.28.0
@@ -3805,8 +3805,8 @@ importers:
         version: 16.4.7
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -3865,20 +3865,20 @@ importers:
   timer-progress:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -3917,20 +3917,20 @@ importers:
   vscode-debugger:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       waait:
         specifier: ^1.0.5
         version: 1.0.5
@@ -3972,20 +3972,20 @@ importers:
   worker-specific-task-queues:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       uuid:
         specifier: ^8.3.2
         version: 8.3.2
@@ -4030,23 +4030,23 @@ importers:
   worker-versioning:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/envconfig':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -4085,23 +4085,23 @@ importers:
   workflow-streams:
     dependencies:
       '@temporalio/activity':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/client':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/common':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/worker':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@temporalio/workflow':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       '@temporalio/workflow-streams':
-        specifier: ^1.19.0
-        version: 1.19.0
+        specifier: ^1.20.0
+        version: 1.20.0
       nanoid:
         specifier: ^3.3.8
         version: 3.3.12
@@ -4110,8 +4110,8 @@ importers:
         version: 4.104.0(ws@8.18.0)(zod@3.25.76)
     devDependencies:
       '@temporalio/testing':
-        specifier: ^1.19.0
-        version: 1.19.0(@swc/helpers@0.5.15)
+        specifier: ^1.20.0
+        version: 1.20.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
@@ -7870,53 +7870,53 @@ packages:
   '@tanstack/virtual-core@3.11.3':
     resolution: {integrity: sha512-v2mrNSnMwnPJtcVqNvV0c5roGCBqeogN8jDtgtuHCphdwBasOZ17x8UV8qpHUh+u0MLfX43c0uUHKje0s+Zb0w==}
 
-  '@temporalio/activity@1.19.0':
-    resolution: {integrity: sha512-7/JtFzqcGodG3WBh75F0ohP0yHB+ucmn4sNn5f+2DiDB+JN5YjsZPRTgynFUTcxAgjAsfsiQ4oP19HK67Jm9Kg==}
+  '@temporalio/activity@1.20.0':
+    resolution: {integrity: sha512-XiSZHH2lc5i5psy/yhO6n0lrz2KMH7RitJzzq59F3etjtdWOeMkaL0HgngwDyjMAcqnT1eyKe0BN4wkuDhmsQA==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/ai-sdk@1.19.0':
-    resolution: {integrity: sha512-oEEMCRevgfWaJiEnqzK3EC1yq1N9VfuWySUjxzUyXJ7pJ77UFXYLTNahLC7aCtECmwNGfW5WeVQKcED16S6kVg==}
+  '@temporalio/ai-sdk@1.20.0':
+    resolution: {integrity: sha512-FMA0UYCCWIDF/3SgB+03Yjic0WclThmRJt4kgcL70F04WXLBb9WF3gjY7p9EcER9Hkh46qJrTpr/pVZqwpqomA==}
     engines: {node: '>= 20.3.0'}
     peerDependencies:
       '@ai-sdk/mcp': ^1.0.0
       '@ai-sdk/provider': ^3.0.0
       ai: ^6.0.0
 
-  '@temporalio/client@1.19.0':
-    resolution: {integrity: sha512-yFR29wM7pygfYvgZoyZVx0ZCCF/tBv9vQ4ynXsj6BM48+IEcWbuXxayNtp8aUpa7A9fpiiw/cP15ysyGYrrseA==}
+  '@temporalio/client@1.20.0':
+    resolution: {integrity: sha512-1uSc2JyfALm6bdIJxMA/5ThzkNCKZrktqCOx4H22kjelb9qZsuD49Ki+3NUQKkDDfsj20xio6GrDal8jHChy/w==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/common@1.19.0':
-    resolution: {integrity: sha512-ifH7nnT5daOUiRt6Wty/Q1DaiHl3IUpDcFu+MOe0hNtIwzyEG7P0JV8UD3G6qynmqwQ/8fI6lPgiWZUJeyAPxQ==}
+  '@temporalio/common@1.20.0':
+    resolution: {integrity: sha512-ixzLkXk0VfdyyADFA+T8z+JlxmuL7e9Of3uh525P/JjhHl01FR4sornpTjnjl0+4WLH6FfcPu/X2T+KPpna7EQ==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/core-bridge@1.19.0':
-    resolution: {integrity: sha512-BlFNftWuE7APa3brsRIfFTW7dNvhlvJft113bdVv4nfueGTR9rXpVfRZG/RS0USSGRZKCgrNLEm93Y0i8UqcYw==}
+  '@temporalio/core-bridge@1.20.0':
+    resolution: {integrity: sha512-ueYAkdiT0mQ18zIPqDUtszejJOhiJT6nPq1Rxs4GHbTIc64WOMBvnKDGC//QNOov6Ci23yA7nioR1eRjRI9/3Q==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/envconfig@1.19.0':
-    resolution: {integrity: sha512-0C5Z4ygOLhUrWtsYLSaiW0U/xO/aGOShdcKLiBep3BzbkZPLEwMYAoZ5M0hs2YF/UxerQrjnMUFZRbKRG8tfIw==}
+  '@temporalio/envconfig@1.20.0':
+    resolution: {integrity: sha512-kZ8jOKS+6Y0ZK6lNQJX4Fk2dM420gnViQcxp2WfBNDyPCs9kEbhtl6LbHuircxKdVla+fPaetu/SujzDlD937Q==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/interceptors-opentelemetry@1.19.0':
-    resolution: {integrity: sha512-efreUwZbc1cNInhlCOifvgE2k7o1PimAqpNz9GEGTqF6nGctXB0PT+BZoZpQj+/IABzmZ+YoXweEyC+xCBJPDA==}
+  '@temporalio/interceptors-opentelemetry@1.20.0':
+    resolution: {integrity: sha512-jKy2BqW2WNEwXwoosIBe2E+vRdFL4kY2591k7nU/0746mxpKiDYDM9WpQUbyvMt3IQliQQ3+Nk9pj8/9H6Q+iQ==}
     engines: {node: '>= 20.3.0'}
     peerDependencies:
-      '@temporalio/common': 1.19.0
-      '@temporalio/workflow': 1.19.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/workflow': 1.20.0
     peerDependenciesMeta:
       '@temporalio/workflow':
         optional: true
 
-  '@temporalio/lambda-worker@1.19.0':
-    resolution: {integrity: sha512-VmDeTE5eOEEvXQ1YgSBpLxjTiw0Pp5MEtUr+0gWm8ZsVc0zMR4vMq5ceUutG34ELrxy8dlhvH7Mw8SQvfhRhSw==}
+  '@temporalio/lambda-worker@1.20.0':
+    resolution: {integrity: sha512-lZHGlxDi8yChw3VzGSbToo6X8t3n3CEUHeY64IwGI/cgSWTnGsKILzgf9/H6EVwX12Q9g0JhZoATqccSKaIw6g==}
     engines: {node: '>= 20.3.0'}
     peerDependencies:
       '@aws-lambda-powertools/logger': ^2.0.0
       '@opentelemetry/exporter-trace-otlp-grpc': ^0.52.0
       '@opentelemetry/resources': ^1.25.1
       '@opentelemetry/sdk-trace-base': ^1.25.1
-      '@temporalio/interceptors-opentelemetry': 1.19.0
+      '@temporalio/interceptors-opentelemetry': 1.20.0
       '@types/aws-lambda': ^8.10.145
     peerDependenciesMeta:
       '@aws-lambda-powertools/logger':
@@ -7932,21 +7932,21 @@ packages:
       '@types/aws-lambda':
         optional: true
 
-  '@temporalio/nexus@1.19.0':
-    resolution: {integrity: sha512-roQm6YH52d1omQKZhuvy4P6gSruRCjUC0Ly4hj1PyP4dN1HScX20boRViytiSLYjzuLtYyhuzQNNCThcCG7IxQ==}
+  '@temporalio/nexus@1.20.0':
+    resolution: {integrity: sha512-gAWHIbZ76zbIjAjkuYbGjxdpelDU5RnNOO+osipvRlx1c8jTYDBm+YCFDmXgI3dbCBysUKTPm6NxGeOM/fJs0A==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/nyc-test-coverage@1.19.0':
-    resolution: {integrity: sha512-7rMup5iexo+APe6xUlGrQQp8YNJrfpcZUA9+5EufPFX24sQStKr8fmDNwe2VAx5uK3lo3mOb85bUXP7P1nt9LQ==}
+  '@temporalio/nyc-test-coverage@1.20.0':
+    resolution: {integrity: sha512-lwQgrSg8gmkKdPRp0ZvhQEx7ReP96xmA2ul2jDgq3jinLD9tBPvJi+ZD9C8rOumxKsZzRQM+4gBw9Fl8KXpiKw==}
     engines: {node: '>= 20.3.0'}
     peerDependencies:
-      '@temporalio/common': 1.19.0
-      '@temporalio/worker': 1.19.0
-      '@temporalio/workflow': 1.19.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/worker': 1.20.0
+      '@temporalio/workflow': 1.20.0
       webpack: ^5.106.2
 
-  '@temporalio/openai-agents@1.19.0':
-    resolution: {integrity: sha512-tpmvcCwf97vBBQX4vfZ6HJmE7+BqyHxLr/zvbOCuXeT+xI54HPj6Zj45Fax0njN+Cf57UuEPBl+IdJcjmog26A==}
+  '@temporalio/openai-agents@1.20.0':
+    resolution: {integrity: sha512-CKhQYHxkumj2DL4JwyKu+83id0Rem8h0ZeUvFJEywjB1Ab9L43mAG1SyWs9Q+5AjkcEh4zivASzoErHiNTFtxA==}
     engines: {node: '>= 20.3.0'}
     peerDependencies:
       '@openai/agents-core': ~0.11.6
@@ -7957,28 +7957,28 @@ packages:
       '@opentelemetry/sdk-trace-base':
         optional: true
 
-  '@temporalio/plugin@1.19.0':
-    resolution: {integrity: sha512-Lm41D6h3/+fG44ewBwDFsvYrNdFhXpWLgfc7FwZAqjTuiHXJvrYybw8DyOHo/emGN1POSHEYtZ5wfYkcu10OuA==}
+  '@temporalio/plugin@1.20.0':
+    resolution: {integrity: sha512-GdTSDP6vpSHbetG/hyMJKGbA0uCCr+/VeZlEFNsVfxDYie/+3wsirgQpQ+5ore8/BGKgmY2NXoWtjhIQxMf6QA==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/proto@1.19.0':
-    resolution: {integrity: sha512-xL6lcacE18ywGRWEcZ1RhKqPnXEdQX0hhI+YEIZ+jdKU9S8ISJk9at1KR3w3krvxJ3ozOx+BcaCKBdQyI/qSXw==}
+  '@temporalio/proto@1.20.0':
+    resolution: {integrity: sha512-mgLkUhT5XNAbNPpvkw0C6qLtcsiS2Av4GoJnLxtsjEUVJg3Fegai8dmZ+LAYF/YdPmVrTonJmRMolmlGj2rpyA==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/testing@1.19.0':
-    resolution: {integrity: sha512-UGeyMWwRyW7fQuZIbwapv85vs1IX9n8fiI2v+WdAheaTugaScSdigRHLGqWQqgHH7Ks45RIiYeUahZQLOcocIQ==}
+  '@temporalio/testing@1.20.0':
+    resolution: {integrity: sha512-ulhJR8K0Jp+FMoQzy3DiPmiL+FULHH2emYiWsHM3u/v9TijeeS5ZAX5a9GRR7RWzstiCBFJXMyfxZLL2WvTkyw==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/worker@1.19.0':
-    resolution: {integrity: sha512-H4FkEUKCDYlTl2koOTZQfpvAyAb/pXZ/B7HZUtdq/Aa5o3jTCbEWcQBqhbDLW5j9Fn21hX9AVxHBSBv+WqrXUA==}
+  '@temporalio/worker@1.20.0':
+    resolution: {integrity: sha512-kNYOwFZFMJTQeWvv9K8KV4Ci7wJ3D1z8dzD7uDcXrs1by1xPt8JJDGAYxS0y+KjPqK6gPa1rL15sX3CCvU3lcw==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/workflow-streams@1.19.0':
-    resolution: {integrity: sha512-Rb1aejwqcfCfLUJv/S1rWVqb/Bb/e4q44sl5sgMER43i2BOwXCEs0tlm7gyC+poWaJosi2XQpenuts5/z4Kmug==}
+  '@temporalio/workflow-streams@1.20.0':
+    resolution: {integrity: sha512-s6HSs/KSPmV7LwW2X4g8Q8erFUu6EANTzSenKk6cunsGChAGKDZlUOv1WhYrz8adgGPcwXc9jQQXpdJ8r7ne5A==}
     engines: {node: '>= 20.3.0'}
 
-  '@temporalio/workflow@1.19.0':
-    resolution: {integrity: sha512-9Mc0+6d9yVho8CXVgQ5UZo+6lq2AOG1C/UfBIww9eO30fqc3BglvT+/hDvISPvXz22OlZbvFnfrQMBuL6Hjp0w==}
+  '@temporalio/workflow@1.20.0':
+    resolution: {integrity: sha512-L10zSOW+6WCiI+0a679P58ib9nXAuNeME/Pr23djWzrXy1zQh9apUlyp4UCaLzdcaaXURqWMWUhNc31/RvRThw==}
     engines: {node: '>= 20.3.0'}
 
   '@testing-library/dom@7.31.2':
@@ -14358,6 +14358,10 @@ packages:
     resolution: {integrity: sha512-N9EiLovGEQOJSPF26Ij7qUGvahfEnq0eeYZ02aigIedkmz1qZSwjnP9SBITHJuF/6MYbIW4HDN8zdYjsjqJKXQ==}
     engines: {node: '>=12.0.0'}
 
+  protobufjs@7.6.5:
+    resolution: {integrity: sha512-/FPD0nUc9jH6rfFjji9IBqOz4pcSE3CsT1m7Ep6Mdb0LxSUMj8hgl6GomOvZzpNpAqqGaXA0P3VSrZLFzIhQrw==}
+    engines: {node: '>=12.0.0'}
+
   proxy-addr@2.0.7:
     resolution: {integrity: sha512-llQsMLSUDUPT44jdrU/O37qlnifitDP+ZwrmmZcoSKyLKvtZxpyV0n2/bD/N4tBAAZ/gJEdZU7KMraoK1+XYAg==}
     engines: {node: '>= 0.10'}
@@ -15528,49 +15532,6 @@ packages:
       uglify-js:
         optional: true
 
-  terser-webpack-plugin@5.6.1:
-    resolution: {integrity: sha512-201R5j+sJpK8nFWwKVyNfZot8FaJbLZDq5evriVzbV1wDtSXDjRUDRfJzHpAaxFDMEhsZL1QkeqM61wgsS3KaQ==}
-    engines: {node: '>= 10.13.0'}
-    peerDependencies:
-      '@minify-html/node': '*'
-      '@swc/core': '*'
-      '@swc/css': '*'
-      '@swc/html': '*'
-      clean-css: '*'
-      cssnano: '*'
-      csso: '*'
-      esbuild: '*'
-      html-minifier-terser: '*'
-      lightningcss: '*'
-      postcss: '*'
-      uglify-js: '*'
-      webpack: ^5.1.0
-    peerDependenciesMeta:
-      '@minify-html/node':
-        optional: true
-      '@swc/core':
-        optional: true
-      '@swc/css':
-        optional: true
-      '@swc/html':
-        optional: true
-      clean-css:
-        optional: true
-      cssnano:
-        optional: true
-      csso:
-        optional: true
-      esbuild:
-        optional: true
-      html-minifier-terser:
-        optional: true
-      lightningcss:
-        optional: true
-      postcss:
-        optional: true
-      uglify-js:
-        optional: true
-
   terser@5.37.0:
     resolution: {integrity: sha512-B8wRRkmre4ERucLM/uXx4MOV5cbnOlVAqUst+1+iLKPI0dOgFO28f84ptoQt9HEI537PMzfYa/d+GEPKTRXmYA==}
     engines: {node: '>=10'}
@@ -16183,10 +16144,6 @@ packages:
     resolution: {integrity: sha512-TnbFSbcOCcDgjZ4piURLCbJ3nJhznVh9kw6F6iokjiFPl8ONxe9A6nMDVXDiNbrSfLILs6vB07F7wLBrwPYzJw==}
     engines: {node: '>=10.13.0'}
 
-  watchpack@2.5.1:
-    resolution: {integrity: sha512-Zn5uXdcFNIA1+1Ei5McRd+iRzfhENPCe7LeABkJtNulSxjma+l7ltNx55BWZkRlwRnpOgHqxnjyaDgJnNXnqzg==}
-    engines: {node: '>=10.13.0'}
-
   watchpack@2.5.2:
     resolution: {integrity: sha512-6i/00NBjP4yGPs+caKSyRfpTF/8Torsu0MOW3mMzIbhgISFder8i7xbqgHlLMwJrdiN8ndBV3UA1/AfzPSr+jg==}
     engines: {node: '>=10.13.0'}
@@ -16272,16 +16229,6 @@ packages:
   webpack-sources@3.5.0:
     resolution: {integrity: sha512-HPuy+uuoTCaaoEoI1LQ3JN9+vrPBvEesnnX1jADHy728cHSMlq4wUc4afYqahq2B1mhQVZxCXOkNTnXltr+2vQ==}
     engines: {node: '>=10.13.0'}
-
-  webpack@5.107.2:
-    resolution: {integrity: sha512-v7RhXaJbpMlV0D7hC7lb2EbnxkoeUqf9qhKr6lozx3Q48pmFrqqNRmZFUEGmi7pSwm6fCQ2H1IjvCkHqdpVdjQ==}
-    engines: {node: '>=10.13.0'}
-    hasBin: true
-    peerDependencies:
-      webpack-cli: '*'
-    peerDependenciesMeta:
-      webpack-cli:
-        optional: true
 
   webpack@5.108.3:
     resolution: {integrity: sha512-hOpaCHmQVVY66IVTjofnH14IgSdmod2aquSGHGuYig/OIdWge01Hk2Wt988DZcwXumFUT4+FvJY5N+ikl8o/ww==}
@@ -21011,76 +20958,76 @@ snapshots:
 
   '@tanstack/virtual-core@3.11.3': {}
 
-  '@temporalio/activity@1.19.0':
+  '@temporalio/activity@1.20.0':
     dependencies:
-      '@temporalio/client': 1.19.0
-      '@temporalio/common': 1.19.0
+      '@temporalio/client': 1.20.0
+      '@temporalio/common': 1.20.0
 
-  '@temporalio/ai-sdk@1.19.0(@ai-sdk/mcp@1.0.5(zod@3.25.76))(@ai-sdk/provider@3.0.2)(ai@6.0.24(zod@3.25.76))':
+  '@temporalio/ai-sdk@1.20.0(@ai-sdk/mcp@1.0.5(zod@3.25.76))(@ai-sdk/provider@3.0.2)(ai@6.0.24(zod@3.25.76))':
     dependencies:
       '@ai-sdk/mcp': 1.0.5(zod@3.25.76)
       '@ai-sdk/provider': 3.0.2
-      '@temporalio/activity': 1.19.0
-      '@temporalio/client': 1.19.0
-      '@temporalio/common': 1.19.0
-      '@temporalio/plugin': 1.19.0
-      '@temporalio/workflow': 1.19.0
-      '@temporalio/workflow-streams': 1.19.0
+      '@temporalio/activity': 1.20.0
+      '@temporalio/client': 1.20.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/plugin': 1.20.0
+      '@temporalio/workflow': 1.20.0
+      '@temporalio/workflow-streams': 1.20.0
       '@ungap/structured-clone': 1.3.2
       ai: 6.0.24(zod@3.25.76)
       headers-polyfill: 4.0.3
       web-streams-polyfill: 4.2.0
 
-  '@temporalio/client@1.19.0':
+  '@temporalio/client@1.20.0':
     dependencies:
       '@grpc/grpc-js': 1.12.5
-      '@temporalio/common': 1.19.0
-      '@temporalio/proto': 1.19.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/proto': 1.20.0
       abort-controller: 3.0.0
       long: 5.3.2
       nexus-rpc: 0.0.2
       uuid: 11.1.0
 
-  '@temporalio/common@1.19.0':
+  '@temporalio/common@1.20.0':
     dependencies:
-      '@temporalio/proto': 1.19.0
+      '@temporalio/proto': 1.20.0
       long: 5.3.2
       ms: 3.0.0-canary.1
       nexus-rpc: 0.0.2
       proto3-json-serializer: 2.0.2
 
-  '@temporalio/core-bridge@1.19.0':
+  '@temporalio/core-bridge@1.20.0':
     dependencies:
       '@grpc/grpc-js': 1.12.5
-      '@temporalio/common': 1.19.0
+      '@temporalio/common': 1.20.0
 
-  '@temporalio/envconfig@1.19.0':
+  '@temporalio/envconfig@1.20.0':
     dependencies:
-      '@temporalio/common': 1.19.0
+      '@temporalio/common': 1.20.0
       smol-toml: 1.6.1
 
-  '@temporalio/interceptors-opentelemetry@1.19.0(@temporalio/common@1.19.0)(@temporalio/workflow@1.19.0)':
+  '@temporalio/interceptors-opentelemetry@1.20.0(@temporalio/common@1.20.0)(@temporalio/workflow@1.20.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
-      '@temporalio/common': 1.19.0
-      '@temporalio/plugin': 1.19.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/plugin': 1.20.0
     optionalDependencies:
-      '@temporalio/workflow': 1.19.0
+      '@temporalio/workflow': 1.20.0
 
-  '@temporalio/lambda-worker@1.19.0(@aws-lambda-powertools/logger@2.33.0)(@opentelemetry/exporter-trace-otlp-grpc@0.52.1(@opentelemetry/api@1.9.0))(@opentelemetry/resources@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(@temporalio/interceptors-opentelemetry@1.19.0(@temporalio/common@1.19.0)(@temporalio/workflow@1.19.0))(@types/aws-lambda@8.10.161)':
+  '@temporalio/lambda-worker@1.20.0(@aws-lambda-powertools/logger@2.33.0)(@opentelemetry/exporter-trace-otlp-grpc@0.52.1(@opentelemetry/api@1.9.0))(@opentelemetry/resources@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(@temporalio/interceptors-opentelemetry@1.20.0(@temporalio/common@1.20.0)(@temporalio/workflow@1.20.0))(@types/aws-lambda@8.10.161)':
     dependencies:
-      '@temporalio/common': 1.19.0
-      '@temporalio/envconfig': 1.19.0
-      '@temporalio/worker': 1.19.0(@swc/helpers@0.5.15)
+      '@temporalio/common': 1.20.0
+      '@temporalio/envconfig': 1.20.0
+      '@temporalio/worker': 1.20.0(@swc/helpers@0.5.15)
     optionalDependencies:
       '@aws-lambda-powertools/logger': 2.33.0
       '@opentelemetry/exporter-trace-otlp-grpc': 0.52.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
-      '@temporalio/interceptors-opentelemetry': 1.19.0(@temporalio/common@1.19.0)(@temporalio/workflow@1.19.0)
+      '@temporalio/interceptors-opentelemetry': 1.20.0(@temporalio/common@1.20.0)(@temporalio/workflow@1.20.0)
       '@types/aws-lambda': 8.10.161
     transitivePeerDependencies:
       - '@minify-html/node'
@@ -21097,19 +21044,19 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@temporalio/nexus@1.19.0':
+  '@temporalio/nexus@1.20.0':
     dependencies:
-      '@temporalio/client': 1.19.0
-      '@temporalio/common': 1.19.0
-      '@temporalio/proto': 1.19.0
+      '@temporalio/client': 1.20.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/proto': 1.20.0
       long: 5.3.2
       nexus-rpc: 0.0.2
 
-  '@temporalio/nyc-test-coverage@1.19.0(@temporalio/common@1.19.0)(@temporalio/worker@1.19.0(@swc/helpers@0.5.15))(@temporalio/workflow@1.19.0)(typescript@5.7.3)(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15)))':
+  '@temporalio/nyc-test-coverage@1.20.0(@temporalio/common@1.20.0)(@temporalio/worker@1.20.0(@swc/helpers@0.5.15))(@temporalio/workflow@1.20.0)(typescript@5.7.3)(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15)))':
     dependencies:
-      '@temporalio/common': 1.19.0
-      '@temporalio/worker': 1.19.0(@swc/helpers@0.5.15)
-      '@temporalio/workflow': 1.19.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/worker': 1.20.0(@swc/helpers@0.5.15)
+      '@temporalio/workflow': 1.20.0
       convert-source-map: 2.0.0
       istanbul-lib-coverage: 3.2.2
       istanbul-lib-instrument: 6.0.3
@@ -21119,16 +21066,16 @@ snapshots:
       - supports-color
       - typescript
 
-  '@temporalio/openai-agents@1.19.0(@openai/agents-core@0.11.8(ws@8.18.0)(zod@4.4.3))(@openai/agents-openai@0.11.8(ws@8.18.0)(zod@4.4.3))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(openai@6.45.0(ws@8.18.0)(zod@4.4.3))':
+  '@temporalio/openai-agents@1.20.0(@openai/agents-core@0.11.8(ws@8.18.0)(zod@4.4.3))(@openai/agents-openai@0.11.8(ws@8.18.0)(zod@4.4.3))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(openai@6.45.0(ws@8.18.0)(zod@4.4.3))':
     dependencies:
       '@openai/agents-core': 0.11.8(ws@8.18.0)(zod@4.4.3)
       '@openai/agents-openai': 0.11.8(ws@8.18.0)(zod@4.4.3)
       '@opentelemetry/api': 1.9.0
-      '@temporalio/activity': 1.19.0
-      '@temporalio/common': 1.19.0
-      '@temporalio/plugin': 1.19.0
-      '@temporalio/worker': 1.19.0(@swc/helpers@0.5.15)
-      '@temporalio/workflow': 1.19.0
+      '@temporalio/activity': 1.20.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/plugin': 1.20.0
+      '@temporalio/worker': 1.20.0(@swc/helpers@0.5.15)
+      '@temporalio/workflow': 1.20.0
       '@ungap/structured-clone': 1.3.2
       headers-polyfill: 4.0.3
       openai: 6.45.0(ws@8.18.0)(zod@4.4.3)
@@ -21150,22 +21097,22 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@temporalio/plugin@1.19.0': {}
+  '@temporalio/plugin@1.20.0': {}
 
-  '@temporalio/proto@1.19.0':
+  '@temporalio/proto@1.20.0':
     dependencies:
       long: 5.3.2
-      protobufjs: 7.6.2
+      protobufjs: 7.6.5
 
-  '@temporalio/testing@1.19.0(@swc/helpers@0.5.15)':
+  '@temporalio/testing@1.20.0(@swc/helpers@0.5.15)':
     dependencies:
-      '@temporalio/activity': 1.19.0
-      '@temporalio/client': 1.19.0
-      '@temporalio/common': 1.19.0
-      '@temporalio/core-bridge': 1.19.0
-      '@temporalio/proto': 1.19.0
-      '@temporalio/worker': 1.19.0(@swc/helpers@0.5.15)
-      '@temporalio/workflow': 1.19.0
+      '@temporalio/activity': 1.20.0
+      '@temporalio/client': 1.20.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/core-bridge': 1.20.0
+      '@temporalio/proto': 1.20.0
+      '@temporalio/worker': 1.20.0(@swc/helpers@0.5.15)
+      '@temporalio/workflow': 1.20.0
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/css'
@@ -21181,28 +21128,28 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@temporalio/worker@1.19.0(@swc/helpers@0.5.15)':
+  '@temporalio/worker@1.20.0(@swc/helpers@0.5.15)':
     dependencies:
       '@grpc/grpc-js': 1.12.5
       '@swc/core': 1.10.11(@swc/helpers@0.5.15)
-      '@temporalio/activity': 1.19.0
-      '@temporalio/client': 1.19.0
-      '@temporalio/common': 1.19.0
-      '@temporalio/core-bridge': 1.19.0
-      '@temporalio/nexus': 1.19.0
-      '@temporalio/proto': 1.19.0
-      '@temporalio/workflow': 1.19.0
+      '@temporalio/activity': 1.20.0
+      '@temporalio/client': 1.20.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/core-bridge': 1.20.0
+      '@temporalio/nexus': 1.20.0
+      '@temporalio/proto': 1.20.0
+      '@temporalio/workflow': 1.20.0
       heap-js: 2.6.0
       memfs: 4.17.0
       nexus-rpc: 0.0.2
-      protobufjs: 7.6.2
+      protobufjs: 7.6.5
       rxjs: 7.8.2
       source-map: 0.7.6
-      source-map-loader: 5.0.0(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15)))
+      source-map-loader: 5.0.0(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15)))
       supports-color: 8.1.1
-      swc-loader: 0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15)))
+      swc-loader: 0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15)))
       unionfs: 4.5.4
-      webpack: 5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))
+      webpack: 5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/css'
@@ -21218,28 +21165,28 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@temporalio/worker@1.19.0(@swc/helpers@0.5.15)(postcss@8.5.1)':
+  '@temporalio/worker@1.20.0(@swc/helpers@0.5.15)(postcss@8.5.1)':
     dependencies:
       '@grpc/grpc-js': 1.12.5
       '@swc/core': 1.10.11(@swc/helpers@0.5.15)
-      '@temporalio/activity': 1.19.0
-      '@temporalio/client': 1.19.0
-      '@temporalio/common': 1.19.0
-      '@temporalio/core-bridge': 1.19.0
-      '@temporalio/nexus': 1.19.0
-      '@temporalio/proto': 1.19.0
-      '@temporalio/workflow': 1.19.0
+      '@temporalio/activity': 1.20.0
+      '@temporalio/client': 1.20.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/core-bridge': 1.20.0
+      '@temporalio/nexus': 1.20.0
+      '@temporalio/proto': 1.20.0
+      '@temporalio/workflow': 1.20.0
       heap-js: 2.6.0
       memfs: 4.17.0
       nexus-rpc: 0.0.2
-      protobufjs: 7.6.2
+      protobufjs: 7.6.5
       rxjs: 7.8.2
       source-map: 0.7.6
-      source-map-loader: 5.0.0(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1))
+      source-map-loader: 5.0.0(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1))
       supports-color: 8.1.1
-      swc-loader: 0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1))
+      swc-loader: 0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1))
       unionfs: 4.5.4
-      webpack: 5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)
+      webpack: 5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/css'
@@ -21255,18 +21202,18 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@temporalio/workflow-streams@1.19.0':
+  '@temporalio/workflow-streams@1.20.0':
     dependencies:
-      '@temporalio/activity': 1.19.0
-      '@temporalio/client': 1.19.0
-      '@temporalio/common': 1.19.0
-      '@temporalio/proto': 1.19.0
-      '@temporalio/workflow': 1.19.0
+      '@temporalio/activity': 1.20.0
+      '@temporalio/client': 1.20.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/proto': 1.20.0
+      '@temporalio/workflow': 1.20.0
 
-  '@temporalio/workflow@1.19.0':
+  '@temporalio/workflow@1.20.0':
     dependencies:
-      '@temporalio/common': 1.19.0
-      '@temporalio/proto': 1.19.0
+      '@temporalio/common': 1.20.0
+      '@temporalio/proto': 1.20.0
       nexus-rpc: 0.0.2
 
   '@testing-library/dom@7.31.2':
@@ -28193,6 +28140,17 @@ snapshots:
 
   minimist@1.2.8: {}
 
+  minimizer-webpack-plugin@5.6.1(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)):
+    dependencies:
+      '@jridgewell/trace-mapping': 0.3.31
+      jest-worker: 27.5.1
+      schema-utils: 4.3.3
+      terser: 5.37.0
+      webpack: 5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)
+    optionalDependencies:
+      '@swc/core': 1.10.11(@swc/helpers@0.5.15)
+      postcss: 8.5.1
+
   minimizer-webpack-plugin@5.6.1(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))):
     dependencies:
       '@jridgewell/trace-mapping': 0.3.31
@@ -29625,6 +29583,20 @@ snapshots:
       '@types/node': 22.12.0
       long: 5.3.2
 
+  protobufjs@7.6.5:
+    dependencies:
+      '@protobufjs/aspromise': 1.1.2
+      '@protobufjs/base64': 1.1.2
+      '@protobufjs/codegen': 2.0.5
+      '@protobufjs/eventemitter': 1.1.1
+      '@protobufjs/fetch': 1.1.1
+      '@protobufjs/float': 1.0.2
+      '@protobufjs/path': 1.1.2
+      '@protobufjs/pool': 1.1.0
+      '@protobufjs/utf8': 1.1.1
+      '@types/node': 22.12.0
+      long: 5.3.2
+
   proxy-addr@2.0.7:
     dependencies:
       forwarded: 0.2.0
@@ -30725,17 +30697,17 @@ snapshots:
       source-map-js: 1.2.1
       webpack: 5.96.1(@swc/core@1.10.11(@swc/helpers@0.5.15))
 
-  source-map-loader@5.0.0(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)):
+  source-map-loader@5.0.0(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)):
     dependencies:
       iconv-lite: 0.6.3
       source-map-js: 1.2.1
-      webpack: 5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)
+      webpack: 5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)
 
-  source-map-loader@5.0.0(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))):
+  source-map-loader@5.0.0(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))):
     dependencies:
       iconv-lite: 0.6.3
       source-map-js: 1.2.1
-      webpack: 5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))
+      webpack: 5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))
 
   source-map-support@0.5.13:
     dependencies:
@@ -31092,17 +31064,17 @@ snapshots:
       picocolors: 1.1.1
       stable: 0.1.8
 
-  swc-loader@0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)):
+  swc-loader@0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)):
     dependencies:
       '@swc/core': 1.10.11(@swc/helpers@0.5.15)
       '@swc/counter': 0.1.3
-      webpack: 5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)
+      webpack: 5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)
 
-  swc-loader@0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))):
+  swc-loader@0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))):
     dependencies:
       '@swc/core': 1.10.11(@swc/helpers@0.5.15)
       '@swc/counter': 0.1.3
-      webpack: 5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))
+      webpack: 5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))
 
   swr@1.3.0(react@18.3.1):
     dependencies:
@@ -31271,27 +31243,6 @@ snapshots:
       serialize-javascript: 6.0.2
       terser: 5.37.0
       webpack: 5.97.1(@swc/core@1.10.11(@swc/helpers@0.5.15))
-    optionalDependencies:
-      '@swc/core': 1.10.11(@swc/helpers@0.5.15)
-
-  terser-webpack-plugin@5.6.1(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.31
-      jest-worker: 27.5.1
-      schema-utils: 4.3.3
-      terser: 5.37.0
-      webpack: 5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)
-    optionalDependencies:
-      '@swc/core': 1.10.11(@swc/helpers@0.5.15)
-      postcss: 8.5.1
-
-  terser-webpack-plugin@5.6.1(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))):
-    dependencies:
-      '@jridgewell/trace-mapping': 0.3.31
-      jest-worker: 27.5.1
-      schema-utils: 4.3.3
-      terser: 5.37.0
-      webpack: 5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))
     optionalDependencies:
       '@swc/core': 1.10.11(@swc/helpers@0.5.15)
 
@@ -31959,11 +31910,6 @@ snapshots:
       glob-to-regexp: 0.4.1
       graceful-fs: 4.2.11
 
-  watchpack@2.5.1:
-    dependencies:
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-
   watchpack@2.5.2:
     dependencies:
       graceful-fs: 4.2.11
@@ -32065,84 +32011,6 @@ snapshots:
 
   webpack-sources@3.5.0: {}
 
-  webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15)):
-    dependencies:
-      '@types/estree': 1.0.9
-      '@types/json-schema': 7.0.15
-      '@webassemblyjs/ast': 1.14.1
-      '@webassemblyjs/wasm-edit': 1.14.1
-      '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.16.0
-      acorn-import-phases: 1.0.4(acorn@8.16.0)
-      browserslist: 4.28.2
-      chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.23.0
-      es-module-lexer: 2.1.0
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      loader-runner: 4.3.2
-      mime-db: 1.54.0
-      neo-async: 2.6.2
-      schema-utils: 4.3.3
-      tapable: 2.3.3
-      terser-webpack-plugin: 5.6.1(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15)))
-      watchpack: 2.5.1
-      webpack-sources: 3.5.0
-    transitivePeerDependencies:
-      - '@minify-html/node'
-      - '@swc/core'
-      - '@swc/css'
-      - '@swc/html'
-      - clean-css
-      - cssnano
-      - csso
-      - esbuild
-      - html-minifier-terser
-      - lightningcss
-      - postcss
-      - uglify-js
-
-  webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1):
-    dependencies:
-      '@types/estree': 1.0.9
-      '@types/json-schema': 7.0.15
-      '@webassemblyjs/ast': 1.14.1
-      '@webassemblyjs/wasm-edit': 1.14.1
-      '@webassemblyjs/wasm-parser': 1.14.1
-      acorn: 8.16.0
-      acorn-import-phases: 1.0.4(acorn@8.16.0)
-      browserslist: 4.28.2
-      chrome-trace-event: 1.0.4
-      enhanced-resolve: 5.23.0
-      es-module-lexer: 2.1.0
-      eslint-scope: 5.1.1
-      events: 3.3.0
-      glob-to-regexp: 0.4.1
-      graceful-fs: 4.2.11
-      loader-runner: 4.3.2
-      mime-db: 1.54.0
-      neo-async: 2.6.2
-      schema-utils: 4.3.3
-      tapable: 2.3.3
-      terser-webpack-plugin: 5.6.1(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)(webpack@5.107.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1))
-      watchpack: 2.5.1
-      webpack-sources: 3.5.0
-    transitivePeerDependencies:
-      - '@minify-html/node'
-      - '@swc/core'
-      - '@swc/css'
-      - '@swc/html'
-      - clean-css
-      - cssnano
-      - csso
-      - esbuild
-      - html-minifier-terser
-      - lightningcss
-      - postcss
-      - uglify-js
-
   webpack@5.108.3:
     dependencies:
       '@types/estree': 1.0.9
@@ -32200,6 +32068,44 @@ snapshots:
       loader-runner: 4.3.2
       mime-db: 1.54.0
       minimizer-webpack-plugin: 5.6.1(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15)))
+      neo-async: 2.6.2
+      schema-utils: 4.3.3
+      tapable: 2.3.3
+      watchpack: 2.5.2
+      webpack-sources: 3.5.0
+    transitivePeerDependencies:
+      - '@minify-html/node'
+      - '@swc/core'
+      - '@swc/css'
+      - '@swc/html'
+      - clean-css
+      - cssnano
+      - csso
+      - esbuild
+      - html-minifier-terser
+      - lightningcss
+      - postcss
+      - uglify-js
+
+  webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1):
+    dependencies:
+      '@types/estree': 1.0.9
+      '@types/json-schema': 7.0.15
+      '@webassemblyjs/ast': 1.14.1
+      '@webassemblyjs/wasm-edit': 1.14.1
+      '@webassemblyjs/wasm-parser': 1.14.1
+      acorn: 8.16.0
+      acorn-import-phases: 1.0.4(acorn@8.16.0)
+      browserslist: 4.28.2
+      chrome-trace-event: 1.0.4
+      enhanced-resolve: 5.23.0
+      es-module-lexer: 2.1.0
+      eslint-scope: 5.1.1
+      events: 3.3.0
+      graceful-fs: 4.2.11
+      loader-runner: 4.3.2
+      mime-db: 1.54.0
+      minimizer-webpack-plugin: 5.6.1(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1)(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))(postcss@8.5.1))
       neo-async: 2.6.2
       schema-utils: 4.3.3
       tapable: 2.3.3
