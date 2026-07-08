@@ -23,6 +23,9 @@
     "zx": "^8.8.5"
   },
   "pnpm": {
+    "overrides": {
+      "webpack": "~5.107.0"
+    },
     "packageExtensions": {
       "eslint-config-next": {
         "peerDependencies": {
