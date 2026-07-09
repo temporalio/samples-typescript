@@ -6,7 +6,7 @@ This sample demonstrates how to execute Nexus Operations directly from client co
 
 All APIs are experimental and may be subject to backwards-incompatible changes.
 
-Standalone Nexus operations require a server version that supports this feature. Use the dev server build at https://github.com/temporalio/cli/releases/tag/v1.7.2-standalone-nexus-operations.
+Standalone Nexus operations require a server version that supports this feature. Use the dev server build at https://github.com/temporalio/cli/releases/tag/v1.7.3-standalone-nexus-operations.
 
 ## Structure
 
