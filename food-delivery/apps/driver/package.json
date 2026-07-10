@@ -17,7 +17,7 @@
     "@fooddelivery/ui": "workspace:*",
     "@fooddelivery/workflows": "workspace:*",
     "@tanstack/react-query": "^4.16.1",
-    "@temporalio/client": "^1.19.0",
+    "@temporalio/client": "^1.20.0",
     "@trpc/client": "^10.0.0-rc.8",
     "@trpc/next": "^10.0.0-rc.8",
     "@trpc/react-query": "^10.0.0-rc.8",

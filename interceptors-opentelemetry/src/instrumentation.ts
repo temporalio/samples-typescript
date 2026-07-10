@@ -13,7 +13,7 @@ import { OTLPMetricExporter as OTLPMetricExporterHttp } from '@opentelemetry/exp
 import { PrometheusExporter } from '@opentelemetry/exporter-prometheus';
 import { MetricReader, PeriodicExportingMetricReader, ConsoleMetricExporter } from '@opentelemetry/sdk-metrics';
 import { getNodeAutoInstrumentations } from '@opentelemetry/auto-instrumentations-node';
-import { Resource } from '@opentelemetry/resources';
+import { resourceFromAttributes } from '@opentelemetry/resources';
 import { ATTR_SERVICE_NAME } from '@opentelemetry/semantic-conventions';
 /* eslint-enable @typescript-eslint/no-unused-vars */
 
@@ -111,7 +111,7 @@ function setupMetricReader(): MetricReader | undefined {
   // });
 }
 
-export const resource = new Resource({
+export const resource = resourceFromAttributes({
   [ATTR_SERVICE_NAME]: 'interceptors-sample',
 });
 
@@ -125,10 +125,10 @@ const metricReader = setupMetricReader();
 
 export function setupOtelSdk(): NodeSDK {
   const otelSdk = new NodeSDK({
-    // This is required for use with the `@temporalio/interceptors-opentelemetry` package.
+    // This is required for use with the `@temporalio/interceptors-opentelemetry-v2` package.
     resource,
 
-    // This is required for use with the `@temporalio/interceptors-opentelemetry` package.
+    // This is required for use with the `@temporalio/interceptors-opentelemetry-v2` package.
     spanProcessors: spanProcessor ? [spanProcessor] : [],
 
     // This is optional; it enables collecting metrics about the Node process, and some other libraries.

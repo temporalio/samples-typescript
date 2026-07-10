@@ -1,5 +1,5 @@
 import { randomUUID } from 'crypto';
-import { OpenTelemetryPlugin } from '@temporalio/interceptors-opentelemetry';
+import { OpenTelemetryPlugin } from '@temporalio/interceptors-opentelemetry-v2';
 import { Connection, Client } from '@temporalio/client';
 import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { example } from './workflows';
