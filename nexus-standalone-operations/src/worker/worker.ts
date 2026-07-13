@@ -12,7 +12,7 @@ async function run() {
   try {
     const worker = await Worker.create({
       connection,
-      namespace: config.namespace ?? 'default',
+      namespace: config.namespace ?? 'my-handler-namespace',
       taskQueue: TASK_QUEUE,
       workflowsPath: require.resolve('./workflows'),
       nexusServices: [myNexusServiceHandler],

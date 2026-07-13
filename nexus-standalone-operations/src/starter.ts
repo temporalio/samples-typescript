@@ -10,7 +10,7 @@ async function run() {
   // temporal.toml). The starter runs in the caller namespace (see README).
   const config = loadClientConnectConfig();
   const connection = await Connection.connect(config.connectionOptions);
-  const client = new Client({ connection, namespace: config.namespace ?? 'default' });
+  const client = new Client({ connection, namespace: config.namespace ?? 'my-caller-namespace' });
 
   // Create a typed NexusServiceClient bound to the endpoint and service.
   // The endpoint must be pre-created on the server (see README).
