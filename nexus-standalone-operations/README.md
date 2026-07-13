@@ -21,37 +21,32 @@ Standalone Nexus operations require a server version that supports this feature.
 
 ## Run locally against a dev server
 
-1. Install NPM dependencies:
+Install dependencies first with `npm install` (or `pnpm` / `yarn`).
 
-   ```sh
-   npm install   # or `pnpm` or `yarn`
-   ```
-
-2. Start the [Temporal dev server build that supports standalone Nexus operations](https://docs.temporal.io/standalone-nexus-operation#temporal-cli-support)
-   with the required namespaces pre-created (this command is blocking; run it in its own terminal):
+1. Start the [Temporal dev server build that supports standalone Nexus operations](https://docs.temporal.io/standalone-nexus-operation#temporal-cli-support) with the required namespaces pre-created:
 
    ```bash
-   temporal server start-dev \
+   ./temporal server start-dev \
      --namespace my-caller-namespace \
      --namespace my-handler-namespace
    ```
 
-3. Create a Nexus endpoint that routes to the handler namespace and the worker's task queue:
+2. Create a Nexus endpoint that routes to the handler namespace and the worker's task queue:
 
    ```sh
-   temporal operator nexus endpoint create \
+   ./temporal operator nexus endpoint create \
      --name my-nexus-endpoint \
      --target-namespace my-handler-namespace \
      --target-task-queue nexus-handler-queue
    ```
 
-4. In a second shell, start the Worker in the handler namespace:
+3. In a second shell, start the Worker in the handler namespace:
 
    ```sh
    TEMPORAL_NAMESPACE=my-handler-namespace npm run worker
    ```
 
-5. In a third shell, run the starter in the caller namespace:
+4. In a third shell, run the starter in the caller namespace:
 
    ```sh
    TEMPORAL_NAMESPACE=my-caller-namespace npm run starter
