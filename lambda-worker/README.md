@@ -46,16 +46,23 @@ you can find [here](https://docs.temporal.io/production-deployment/worker-deploy
 
 ### 1. Create a lambda function for your TypeScript worker
 
-Use either the AWS web UI or CLI to create a Node.js runtime Lambda function. Ex:
+Use either the AWS web UI or CLI to create a Node.js runtime Lambda function. The
+`create-function` call requires initial code, so seed it with an empty placeholder zip —
+the real worker code is uploaded later in [step 5](#5-deploy-the-lambda-function) via
+`deploy-lambda.sh`. Ex:
 
 ```bash
+# Create a placeholder zip to bootstrap the function (contents are overwritten in step 5)
+zip placeholder.zip src/index.ts
+
 aws lambda create-function \
   --function-name my-temporal-worker \
   --runtime nodejs22.x \
-  --handler lib/index.handler \
+  --handler index.handler \
   --role arn:aws:iam::<YOUR_ACCOUNT_ID>:role/my-temporal-worker-execution \
   --timeout 600 \
-  --memory-size 256
+  --memory-size 256 \
+  --code ZipFile=fileb://placeholder.zip
 ```
 
 ### 2. Configure Temporal connection
