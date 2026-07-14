@@ -4,7 +4,7 @@ import { after, before, describe, it } from 'mocha';
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { Worker } from '@temporalio/worker';
 import { myNexusService } from '../api';
-import { NAMESPACE, TASK_QUEUE } from '../shared';
+import { TASK_QUEUE } from '../shared';
 import { myNexusServiceHandler } from '../worker/handler';
 
 describe('Nexus standalone operations', () => {
@@ -15,15 +15,9 @@ describe('Nexus standalone operations', () => {
     endpointName = `test-nexus-standalone-${randomUUID()}`;
     testEnv = await TestWorkflowEnvironment.createLocal({
       server: {
-        extraArgs: [
-          '--dynamic-config-value',
-          'nexusoperation.enableStandalone=true',
-          '--dynamic-config-value',
-          'history.enableChasmCallbacks=true',
-        ],
         executable: {
           type: 'cached-download',
-          version: 'v1.7.3-standalone-nexus-operations',
+          version: 'v1.7.4-standalone-nexus-operations',
         },
       },
     });
@@ -39,7 +33,7 @@ describe('Nexus standalone operations', () => {
 
     const worker = await Worker.create({
       connection: nativeConnection,
-      namespace: NAMESPACE,
+      namespace: 'default',
       taskQueue: TASK_QUEUE,
       workflowsPath: require.resolve('../worker/workflows'),
       nexusServices: [myNexusServiceHandler],

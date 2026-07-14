@@ -2,12 +2,15 @@ import { Connection, Client } from '@temporalio/client';
 import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { nanoid } from 'nanoid';
 import { myNexusService } from './api';
-import { ENDPOINT_NAME, NAMESPACE } from './shared';
+import { ENDPOINT_NAME } from './shared';
 
 async function run() {
+  // The client is configured via the SDK's environment configuration support, which reads
+  // TEMPORAL_ADDRESS, TEMPORAL_NAMESPACE, etc. from the environment (and optionally a profile from
+  // temporal.toml). The starter runs in the caller namespace (see README).
   const config = loadClientConnectConfig();
   const connection = await Connection.connect(config.connectionOptions);
-  const client = new Client({ connection, namespace: NAMESPACE });
+  const client = new Client({ connection, namespace: config.namespace ?? 'my-caller-namespace' });
 
   // Create a typed NexusServiceClient bound to the endpoint and service.
   // The endpoint must be pre-created on the server (see README).
