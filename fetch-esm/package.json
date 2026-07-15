@@ -16,12 +16,12 @@
     "workflow-local": "tsx src/client-local.ts"
   },
   "dependencies": {
-    "@temporalio/activity": "^1.20.0",
-    "@temporalio/client": "^1.20.0",
-    "@temporalio/common": "^1.20.0",
-    "@temporalio/envconfig": "^1.20.0",
-    "@temporalio/worker": "^1.20.0",
-    "@temporalio/workflow": "^1.20.0",
+    "@temporalio/activity": "^1.20.3",
+    "@temporalio/client": "^1.20.3",
+    "@temporalio/common": "^1.20.3",
+    "@temporalio/envconfig": "^1.20.3",
+    "@temporalio/worker": "^1.20.3",
+    "@temporalio/workflow": "^1.20.3",
     "humanize-string": "^3.1.0",
     "node-fetch": "^3.3.2"
   },
