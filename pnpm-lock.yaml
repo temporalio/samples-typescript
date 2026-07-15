@@ -1910,6 +1910,73 @@ importers:
         specifier: ^5.6.3
         version: 5.7.3
 
+  langsmith:
+    dependencies:
+      '@temporalio/activity':
+        specifier: ^1.20.3
+        version: 1.20.3
+      '@temporalio/client':
+        specifier: ^1.20.3
+        version: 1.20.3
+      '@temporalio/langsmith':
+        specifier: ^1.20.3
+        version: 1.20.3(@swc/helpers@0.5.15)(langsmith@0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(ws@8.18.0)(zod@4.4.3))(ws@8.18.0))
+      '@temporalio/worker':
+        specifier: ^1.20.3
+        version: 1.20.3(@swc/helpers@0.5.15)
+      '@temporalio/workflow':
+        specifier: ^1.20.3
+        version: 1.20.3
+      langsmith:
+        specifier: ^0.7.9
+        version: 0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(ws@8.18.0)(zod@4.4.3))(ws@8.18.0)
+      nanoid:
+        specifier: 3.x
+        version: 3.3.12
+    devDependencies:
+      '@temporalio/testing':
+        specifier: ^1.20.3
+        version: 1.20.3(@swc/helpers@0.5.15)
+      '@tsconfig/node22':
+        specifier: ^22.0.0
+        version: 22.0.5
+      '@types/mocha':
+        specifier: 8.x
+        version: 8.2.3
+      '@types/node':
+        specifier: ^22.9.1
+        version: 22.12.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.18.0
+        version: 8.22.0(@typescript-eslint/parser@8.22.0(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3)
+      '@typescript-eslint/parser':
+        specifier: ^8.18.0
+        version: 8.22.0(eslint@8.57.1)(typescript@5.7.3)
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@8.57.1)
+      eslint-plugin-deprecation:
+        specifier: ^3.0.0
+        version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
+      mocha:
+        specifier: 8.x
+        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
+      source-map-support:
+        specifier: ^0.5.21
+        version: 0.5.21
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.7.3
+
   message-passing/execute-update:
     dependencies:
       '@temporalio/activity':
@@ -7984,6 +8051,12 @@ packages:
       '@types/aws-lambda':
         optional: true
 
+  '@temporalio/langsmith@1.20.3':
+    resolution: {integrity: sha512-34XoWDfiPD6J66pCX2cC5/HDdfmzTx0PAymI3MQq81lenGioJEf5FxZ6fwlMEIzXK0In1jV03OGQsi6BKBSXbg==}
+    engines: {node: '>= 20.0.0'}
+    peerDependencies:
+      langsmith: ^0.7.9
+
   '@temporalio/nexus@1.20.3':
     resolution: {integrity: sha512-OSl73enJ9M8OMk2QaGHr4cQ1DDLEkjMhU1Z3tBt2zbWkKDs2IHKkl1wU/rMeXg7AJf5uqHcp209SBaDN/rqDiA==}
     engines: {node: '>= 20.3.0'}
@@ -12528,6 +12601,26 @@ packages:
   kuler@2.0.0:
     resolution: {integrity: sha512-Xq9nH7KlWZmXAtodXDDRE7vs6DU1gTU8zYDHDiWLSip45Egwq3plLHzPn27NgvzL2r1LMPC1vdqh98sQxtqj4A==}
 
+  langsmith@0.7.17:
+    resolution: {integrity: sha512-FfmxKOVp+qBkdbOWTwXxU7qeX2H40RMsLW9Us+53/4rZYl/QzfUeeBe/rE98mfuSSnEz1tOOMjoPJIYoMt1wnw==}
+    peerDependencies:
+      '@opentelemetry/api': '*'
+      '@opentelemetry/exporter-trace-otlp-proto': '*'
+      '@opentelemetry/sdk-trace-base': '*'
+      openai: '*'
+      ws: '>=7'
+    peerDependenciesMeta:
+      '@opentelemetry/api':
+        optional: true
+      '@opentelemetry/exporter-trace-otlp-proto':
+        optional: true
+      '@opentelemetry/sdk-trace-base':
+        optional: true
+      openai:
+        optional: true
+      ws:
+        optional: true
+
   language-subtag-registry@0.3.23:
     resolution: {integrity: sha512-0K65Lea881pHotoGEa5gDlMxt3pctLi2RplBb7Ezh4rRdLEOtgi7n4EwK9lamnUCkKBqaeKRVebTq6BAxSkpXQ==}
 
@@ -13573,6 +13666,10 @@ packages:
     resolution: {integrity: sha512-BZOr3nRQHOntUjTrH8+Lh54smKHoHyur8We1V8DSMVrl5A2malOOwuJRnKRDjSnkoeBh4at6BwEnb5I7Jl31wg==}
     engines: {node: '>=8'}
 
+  p-finally@1.0.0:
+    resolution: {integrity: sha512-LICb2p9CB7FS+0eR1oqWnHhp0FljGLZCWBE9aix0Uye9W8LTQPwMTYVGWQWIw9RdQiDg4+epXQODwIYJtSJaow==}
+    engines: {node: '>=4'}
+
   p-limit@2.3.0:
     resolution: {integrity: sha512-//88mFWSJx8lxCzwdAABTJL2MyWB12+eIY7MDL2SqLmAkeKU9qxRvWuSyTjm3FUmpBEMuFfckAIqEaVGUDxb6w==}
     engines: {node: '>=6'}
@@ -13605,8 +13702,16 @@ packages:
     resolution: {integrity: sha512-/bjOqmgETBYB5BoEeGVea8dmvHb2m9GLy1E9W43yeyfP6QQCZGFNa+XRceJEuDB6zqr+gKpIAmlLebMpykw/MQ==}
     engines: {node: '>=10'}
 
+  p-queue@6.6.2:
+    resolution: {integrity: sha512-RwFpb72c/BhQLEXIZ5K2e+AhgNVmIejGlTgiB9MzZ0e93GRvqZ7uSi0dvRF7/XIXDeNkra2fNHBxTyPDGySpjQ==}
+    engines: {node: '>=8'}
+
   p-retry@4.6.2:
     resolution: {integrity: sha512-312Id396EbJdvRONlngUx0NydfrIQ5lsYu0znKVUzVvArzEIt08V1qhtyESbGVd1FGX7UKtiFp5uwKZdM8wIuQ==}
+    engines: {node: '>=8'}
+
+  p-timeout@3.2.0:
+    resolution: {integrity: sha512-rhIwUycgwwKcP9yTOOFK/AKsAopjjCakVqLHePO3CC6Mir1Z99xT+R63jZxAT5lFZLa2inS5h+ZS2GvR99/FBg==}
     engines: {node: '>=8'}
 
   p-try@2.2.0:
@@ -21172,6 +21277,30 @@ snapshots:
       - uglify-js
       - webpack-cli
 
+  '@temporalio/langsmith@1.20.3(@swc/helpers@0.5.15)(langsmith@0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(ws@8.18.0)(zod@4.4.3))(ws@8.18.0))':
+    dependencies:
+      '@temporalio/activity': 1.20.3
+      '@temporalio/client': 1.20.3
+      '@temporalio/common': 1.20.3
+      '@temporalio/plugin': 1.20.3
+      '@temporalio/worker': 1.20.3(@swc/helpers@0.5.15)
+      '@temporalio/workflow': 1.20.3
+      langsmith: 0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(ws@8.18.0)(zod@4.4.3))(ws@8.18.0)
+    transitivePeerDependencies:
+      - '@minify-html/node'
+      - '@swc/css'
+      - '@swc/helpers'
+      - '@swc/html'
+      - clean-css
+      - cssnano
+      - csso
+      - esbuild
+      - html-minifier-terser
+      - lightningcss
+      - postcss
+      - uglify-js
+      - webpack-cli
+
   '@temporalio/nexus@1.20.3':
     dependencies:
       '@temporalio/client': 1.20.3
@@ -27515,6 +27644,16 @@ snapshots:
 
   kuler@2.0.0: {}
 
+  langsmith@0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(ws@8.18.0)(zod@4.4.3))(ws@8.18.0):
+    dependencies:
+      p-queue: 6.6.2
+    optionalDependencies:
+      '@opentelemetry/api': 1.9.0
+      '@opentelemetry/exporter-trace-otlp-proto': 0.220.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/sdk-trace-base': 2.9.0(@opentelemetry/api@1.9.0)
+      openai: 6.45.0(ws@8.18.0)(zod@4.4.3)
+      ws: 8.18.0
+
   language-subtag-registry@0.3.23: {}
 
   language-tags@1.0.9:
@@ -28825,6 +28964,8 @@ snapshots:
 
   p-cancelable@2.1.1: {}
 
+  p-finally@1.0.0: {}
+
   p-limit@2.3.0:
     dependencies:
       p-try: 2.2.0
@@ -28855,10 +28996,19 @@ snapshots:
     dependencies:
       aggregate-error: 3.1.0
 
+  p-queue@6.6.2:
+    dependencies:
+      eventemitter3: 4.0.7
+      p-timeout: 3.2.0
+
   p-retry@4.6.2:
     dependencies:
       '@types/retry': 0.12.0
       retry: 0.13.1
+
+  p-timeout@3.2.0:
+    dependencies:
+      p-finally: 1.0.0
 
   p-try@2.2.0: {}
 
