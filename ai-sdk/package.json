@@ -23,17 +23,18 @@
     ]
   },
   "dependencies": {
-    "@ai-sdk/openai": "^3.0.0",
-    "@ai-sdk/provider": "^3.0.0",
-    "@ai-sdk/mcp": "^1.0.0",
-    "@modelcontextprotocol/sdk": "^1.10.2",
+    "@ai-sdk/openai": "^4.0.0",
+    "@ai-sdk/provider": "^4.0.0",
+    "@ai-sdk/mcp": "^2.0.0",
+    "@modelcontextprotocol/sdk": "^1.25.2",
     "@temporalio/activity": "^1.20.3",
     "@temporalio/ai-sdk": "^1.20.3",
     "@temporalio/client": "^1.20.3",
     "@temporalio/envconfig": "^1.20.3",
     "@temporalio/worker": "^1.20.3",
     "@temporalio/workflow": "^1.20.3",
-    "ai": "^6.0.0",
+    "@temporalio/workflow-streams": "^1.20.3",
+    "ai": "^7.0.0",
     "nanoid": "3.x",
     "zod": "^3.25.76"
   },
