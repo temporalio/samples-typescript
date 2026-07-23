@@ -1,9 +1,9 @@
-import { generateText, streamText, streamObject, stepCountIs, tool, wrapLanguageModel } from 'ai';
+import { generateText, streamText, stepCountIs, tool, wrapLanguageModel } from 'ai';
 import type { LanguageModelMiddleware } from 'ai';
 import { TemporalMCPClient, TemporalProvider, temporalProvider } from '@temporalio/ai-sdk/workflow';
 import { WorkflowStream } from '@temporalio/workflow-streams/workflow';
 import type * as activities from './activities';
-import { proxyActivities, sleep } from '@temporalio/workflow';
+import { proxyActivities, condition, defineSignal, setHandler } from '@temporalio/workflow';
 import z from 'zod';
 
 const { getWeather } = proxyActivities<typeof activities>({
@@ -73,6 +73,7 @@ export async function middlewareAgent(prompt: string): Promise<string> {
   });
   return result.text;
 }
+// @@@SNIPEND
 
 // @@@SNIPSTART typescript-vercel-ai-sdk-mcp-agent
 export async function mcpAgent(prompt: string): Promise<string> {
@@ -96,6 +97,12 @@ export async function mcpAgent(prompt: string): Promise<string> {
 export const STREAM_TOPIC = 'text-stream';
 // @@@SNIPEND
 
+// @@@SNIPSTART typescript-vercel-ai-sdk-consumer-done-signal
+// A subscriber sends this signal once it has received the stream's final delta,
+// so the workflow knows it is safe to complete. See `client.ts` for the sender.
+export const consumerDoneSignal = defineSignal('consumer-done');
+// @@@SNIPEND
+
 // A provider whose language-model calls stream their deltas onto STREAM_TOPIC.
 // Setting `streamingTopic` enables `doStream`; without it, streaming calls
 // throw. Use a distinct topic per concurrent streaming call.
@@ -109,6 +116,12 @@ export async function streamingAgent(prompt: string): Promise<string> {
   // publish-signal handler is registered before the streaming activity starts
   // publishing deltas to it.
   new WorkflowStream();
+
+  // A subscriber flips this once it has consumed the final delta (see below).
+  let consumerDone = false;
+  setHandler(consumerDoneSignal, () => {
+    consumerDone = true;
+  });
 
   const result = streamText({
     model: streamingProvider.languageModel('gpt-4o-mini'),
@@ -125,46 +138,12 @@ export async function streamingAgent(prompt: string): Promise<string> {
     text += delta;
   }
 
-  // Briefly hold the run open so a subscriber's final poll can deliver the
-  // last deltas before the workflow exits and its in-memory stream log is gone.
-  await sleep('500 milliseconds');
+  // The workflow's stream log lives in memory and is discarded once the run
+  // completes, which can race a subscriber's final poll. Rather than guess at a
+  // fixed delay, wait for the subscriber to signal that it received the last
+  // delta. The timeout is a fallback for when nothing is subscribed, so the run
+  // can't hang forever.
+  await condition(() => consumerDone, '10 seconds');
   return text;
-}
-// @@@SNIPEND
-
-// A provider for streaming structured output onto its own topic. `streamObject`
-// flows through the same `doStream` path as `streamText`, so no extra wiring is
-// needed — only a distinct topic so the two streams stay separable.
-export const OBJECT_STREAM_TOPIC = 'object-stream';
-const objectStreamingProvider = new TemporalProvider({
-  languageModel: { streamingTopic: OBJECT_STREAM_TOPIC },
-});
-
-// @@@SNIPSTART typescript-vercel-ai-sdk-stream-object-agent
-export async function streamObjectAgent(prompt: string): Promise<string> {
-  new WorkflowStream();
-
-  const result = streamObject({
-    model: objectStreamingProvider.languageModel('gpt-4o-mini'),
-    schema: z.object({
-      recipe: z.object({
-        name: z.string(),
-        ingredients: z.array(z.object({ name: z.string(), amount: z.string() })),
-        steps: z.array(z.string()),
-      }),
-    }),
-    prompt,
-  });
-
-  // External subscribers see the object build up incrementally via the partial
-  // JSON deltas published to OBJECT_STREAM_TOPIC. The workflow drains the
-  // partial stream and durably resolves the final, validated object.
-  for await (const _partial of result.partialObjectStream) {
-    // Draining drives the stream; the consumer renders the live partials.
-  }
-  const object = await result.object;
-
-  await sleep('500 milliseconds');
-  return object.recipe.name;
 }
 // @@@SNIPEND

@@ -6,10 +6,9 @@ import {
   mcpAgent,
   middlewareAgent,
   streamingAgent,
-  streamObjectAgent,
   toolsAgent,
   STREAM_TOPIC,
-  OBJECT_STREAM_TOPIC,
+  consumerDoneSignal,
 } from './workflows';
 import { nanoid } from 'nanoid';
 
@@ -25,6 +24,9 @@ async function renderStream(client: Client, workflowId: string, topic: string): 
     if (part.type === 'finish') break;
   }
   process.stdout.write('\n');
+  // Acknowledge receipt so the Workflow can complete without racing this final
+  // poll against its in-memory stream log being discarded.
+  await client.workflow.getHandle(workflowId).signal(consumerDoneSignal);
 }
 // @@@SNIPEND
 
@@ -47,18 +49,6 @@ async function run() {
       });
       console.log(`Started workflow ${streamHandle.workflowId}`);
       await renderStream(client, streamHandle.workflowId, STREAM_TOPIC);
-      console.log(await streamHandle.result());
-      await connection.close();
-      return;
-    }
-    case 'stream-object': {
-      const streamHandle = await client.workflow.start(streamObjectAgent, {
-        taskQueue: 'ai-sdk',
-        args: ['Generate a lasagna recipe.'],
-        workflowId: 'workflow-' + nanoid(),
-      });
-      console.log(`Started workflow ${streamHandle.workflowId}`);
-      await renderStream(client, streamHandle.workflowId, OBJECT_STREAM_TOPIC);
       console.log(await streamHandle.result());
       await connection.close();
       return;

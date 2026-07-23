@@ -11,7 +11,7 @@ import type {
   ProviderV4,
 } from '@ai-sdk/provider';
 import assert from 'assert';
-import { streamingAgent, streamObjectAgent, STREAM_TOPIC, OBJECT_STREAM_TOPIC } from '../workflows';
+import { streamingAgent, STREAM_TOPIC, consumerDoneSignal } from '../workflows';
 import * as activities from '../activities';
 import { AiSdkPlugin } from '@temporalio/ai-sdk';
 
@@ -86,6 +86,8 @@ async function collectDeltas(client: any, workflowId: string, topic: string): Pr
     if (part.type === 'text-delta') deltas.push(part.delta);
     if (part.type === 'finish') break;
   }
+  // Mirror the real consumer: acknowledge receipt so the workflow can complete.
+  await client.workflow.getHandle(workflowId).signal(consumerDoneSignal);
   return deltas;
 }
 
@@ -131,49 +133,6 @@ describe('streaming agents', function () {
       // The external subscriber saw the response arrive incrementally.
       assert.ok(deltas.length > 1, `expected multiple live deltas, got ${deltas.length}`);
       assert.strictEqual(deltas.join(''), chunks.join(''));
-    });
-  });
-
-  it('streamObjectAgent publishes JSON deltas and returns the parsed object', async () => {
-    const { client, nativeConnection } = testEnv;
-    const taskQueue = 'test-stream-object';
-    // A valid JSON document matching streamObjectAgent's schema, split so the
-    // subscriber observes it building up incrementally.
-    const object = {
-      recipe: {
-        name: 'Classic Lasagna',
-        ingredients: [{ name: 'pasta', amount: '1 box' }],
-        steps: ['Layer', 'Bake'],
-      },
-    };
-    const json = JSON.stringify(object);
-    const chunks = json.match(/.{1,12}/gs) ?? [json];
-
-    const worker = await Worker.create({
-      connection: nativeConnection,
-      plugins: [new AiSdkPlugin({ modelProvider: mockProvider(chunks) })],
-      taskQueue,
-      workflowsPath: require.resolve('../workflows'),
-      activities,
-    });
-
-    await worker.runUntil(async () => {
-      const handle = await client.workflow.start(streamObjectAgent, {
-        args: ['Generate a lasagna recipe.'],
-        workflowId: 'test-stream-object-' + Date.now(),
-        taskQueue,
-      });
-
-      const deltasPromise = collectDeltas(client, handle.workflowId, OBJECT_STREAM_TOPIC);
-      const result = await handle.result();
-      const deltas = await deltasPromise;
-
-      // The workflow durably resolves the final, validated object.
-      assert.strictEqual(result, object.recipe.name);
-      // The external subscriber saw the JSON build up incrementally, and the
-      // concatenated deltas reconstruct the full document.
-      assert.ok(deltas.length > 1, `expected multiple live deltas, got ${deltas.length}`);
-      assert.strictEqual(deltas.join(''), json);
     });
   });
 });
