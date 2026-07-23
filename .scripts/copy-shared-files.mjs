@@ -15,6 +15,7 @@ const HAS_CHILD_SAMPLES = [
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
 const TSCONFIG_EXCLUDE = [
+  'ai-sdk',
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'fetch-esm',
