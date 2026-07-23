@@ -21,6 +21,7 @@ const TSCONFIG_EXCLUDE = [
   'production',
   'hello-world-js',
   'food-delivery',
+  'google-adk-agents',
   'lambda-worker',
   'nestjs-exchange-rates',
   'empty',
@@ -44,6 +45,7 @@ const ESLINTRC_EXCLUDE = [
   'hello-world-js',
   'protobufs',
   'food-delivery',
+  'google-adk-agents',
   'nestjs-exchange-rates',
 ];
 const ESLINTIGNORE_EXCLUDE = [
