@@ -33,6 +33,11 @@
         "peerDependencies": {
           "ts-node": "*"
         }
+      },
+      "@temporalio/strands-agents": {
+        "dependencies": {
+          "zod": "^4.0.0"
+        }
       }
     }
   }

@@ -1,18 +1,20 @@
 // @@@SNIPSTART typescript-strands-worker
 import path from 'node:path';
+import { fileURLToPath } from 'node:url';
 import { StdioClientTransport } from '@modelcontextprotocol/sdk/client/stdio.js';
 import { McpClient } from '@strands-agents/sdk';
 import { StrandsPlugin } from '@temporalio/strands-agents';
 import { NativeConnection, Worker } from '@temporalio/worker';
 import * as activities from './activities';
 
-const ECHO_SERVER = path.join(__dirname, 'mcp-server.ts');
+const ext = path.extname(fileURLToPath(import.meta.url));
+const ECHO_SERVER = fileURLToPath(new URL(`./mcp-server${ext}`, import.meta.url));
 
 function makeEchoClient(): McpClient {
   return new McpClient({
     transport: new StdioClientTransport({
       command: 'npx',
-      args: ['ts-node', ECHO_SERVER],
+      args: ['tsx', ECHO_SERVER],
     }),
   });
 }
@@ -25,7 +27,7 @@ async function run() {
     const worker = await Worker.create({
       connection,
       taskQueue: 'strands-agents',
-      workflowsPath: require.resolve('./workflows'),
+      workflowsPath: fileURLToPath(new URL(`./workflows${ext}`, import.meta.url)),
       activities,
       // Omit `models:` so the plugin registers its default `BedrockModel` under
       // the name `bedrock`. To use a different provider or pin a model ID,

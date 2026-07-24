@@ -1,5 +1,6 @@
 import assert from 'assert';
 import { after, before, describe, it } from 'mocha';
+import { workflowsPath } from './workflows-path';
 import { StrandsPlugin } from '@temporalio/strands-agents';
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { Worker } from '@temporalio/worker';
@@ -24,7 +25,7 @@ describe('chatWorkflow', () => {
     const worker = await Worker.create({
       connection: nativeConnection,
       taskQueue,
-      workflowsPath: require.resolve('../workflows'),
+      workflowsPath,
       plugins: [
         new StrandsPlugin({
           models: {
