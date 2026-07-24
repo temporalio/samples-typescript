@@ -46,7 +46,7 @@ describe('toolsWorkflow', () => {
         args: ['count r in strawberry and check the weather'],
         workflowId: 'test-tools',
         taskQueue,
-      })
+      }),
     );
     assert.equal(result, 'there are 3 Rs and it is sunny');
   });

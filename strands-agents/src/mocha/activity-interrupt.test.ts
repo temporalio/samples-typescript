@@ -31,10 +31,7 @@ describe('activityInterrupt workflow', () => {
         new StrandsPlugin({
           models: {
             bedrock: () =>
-              new StubModel([
-                toolCallTurn('deleteThing', 'call_1', { name: 'system' }),
-                textTurn('deleted system'),
-              ]),
+              new StubModel([toolCallTurn('deleteThing', 'call_1', { name: 'system' }), textTurn('deleted system')]),
           },
         }),
       ],

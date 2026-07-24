@@ -1795,7 +1795,7 @@ importers:
         version: 1.21.0
       '@temporalio/interceptors-opentelemetry-v2':
         specifier: ^1.21.0
-        version: 1.21.0(@temporalio/common@1.21.0)(@temporalio/workflow@1.21.0)
+        version: 1.21.0(@temporalio/common@1.21.1)(@temporalio/workflow@1.21.0)
       '@temporalio/worker':
         specifier: ^1.21.0
         version: 1.21.0(@swc/helpers@0.5.15)
@@ -1865,10 +1865,10 @@ importers:
         version: 1.21.0
       '@temporalio/interceptors-opentelemetry':
         specifier: ^1.21.0
-        version: 1.21.0(@temporalio/common@1.21.0)(@temporalio/workflow@1.21.0)
+        version: 1.21.0(@temporalio/common@1.21.1)(@temporalio/workflow@1.21.0)
       '@temporalio/lambda-worker':
         specifier: ^1.21.0
-        version: 1.21.0(@aws-lambda-powertools/logger@2.33.0)(@opentelemetry/exporter-trace-otlp-grpc@0.52.1(@opentelemetry/api@1.9.0))(@opentelemetry/resources@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(@temporalio/interceptors-opentelemetry@1.21.0(@temporalio/common@1.21.0)(@temporalio/workflow@1.21.0))(@types/aws-lambda@8.10.161)
+        version: 1.21.0(@aws-lambda-powertools/logger@2.33.0)(@opentelemetry/exporter-trace-otlp-grpc@0.52.1(@opentelemetry/api@1.9.0))(@opentelemetry/resources@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(@temporalio/interceptors-opentelemetry@1.21.0(@temporalio/common@1.21.1)(@temporalio/workflow@1.21.0))(@types/aws-lambda@8.10.161)
       '@temporalio/worker':
         specifier: ^1.21.0
         version: 1.21.0(@swc/helpers@0.5.15)
@@ -1920,7 +1920,7 @@ importers:
         version: 1.21.0
       '@temporalio/langsmith':
         specifier: ^1.21.0
-        version: 1.21.0(@swc/helpers@0.5.15)(langsmith@0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(ws@8.18.0)(zod@4.4.3))(ws@8.18.0))
+        version: 1.21.0(@swc/helpers@0.5.15)(langsmith@0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(ws@8.18.0))
       '@temporalio/worker':
         specifier: ^1.21.0
         version: 1.21.0(@swc/helpers@0.5.15)
@@ -1929,7 +1929,7 @@ importers:
         version: 1.21.0
       langsmith:
         specifier: ^0.7.9
-        version: 0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(ws@8.18.0)(zod@4.4.3))(ws@8.18.0)
+        version: 0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(ws@8.18.0)
       nanoid:
         specifier: 3.x
         version: 3.3.12
@@ -2866,10 +2866,10 @@ importers:
         version: 1.29.0(zod@4.4.3)
       '@openai/agents-core':
         specifier: ^0.11.6
-        version: 0.11.8(ws@8.18.0)(zod@4.4.3)
+        version: 0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
       '@openai/agents-openai':
         specifier: ^0.11.6
-        version: 0.11.8(ws@8.18.0)(zod@4.4.3)
+        version: 0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
       '@opentelemetry/api':
         specifier: ^1.9.0
         version: 1.9.0
@@ -2884,7 +2884,7 @@ importers:
         version: 1.21.0
       '@temporalio/openai-agents':
         specifier: ^1.21.0
-        version: 1.21.0(@openai/agents-core@0.11.8(ws@8.18.0)(zod@4.4.3))(@openai/agents-openai@0.11.8(ws@8.18.0)(zod@4.4.3))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(openai@6.45.0(ws@8.18.0)(zod@4.4.3))
+        version: 1.21.0(@openai/agents-core@0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(@openai/agents-openai@0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))
       '@temporalio/worker':
         specifier: ^1.21.0
         version: 1.21.0(@swc/helpers@0.5.15)
@@ -2899,7 +2899,7 @@ importers:
         version: 0.0.2
       openai:
         specifier: ^6.0.0
-        version: 6.45.0(ws@8.18.0)(zod@4.4.3)
+        version: 6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
       zod:
         specifier: ^4.0.0
         version: 4.4.3
@@ -3847,6 +3847,82 @@ importers:
         specifier: ^5.6.3
         version: 5.7.3
 
+  strands-agents:
+    dependencies:
+      '@modelcontextprotocol/sdk':
+        specifier: ^1.25.2
+        version: 1.29.0(zod@4.4.3)
+      '@strands-agents/sdk':
+        specifier: ^1.3.0
+        version: 1.11.0(@ai-sdk/provider@3.0.14)(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@opentelemetry/api@1.9.0)(@opentelemetry/resources@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-metrics@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-node@2.9.0(@opentelemetry/api@1.9.0))(@smithy/types@4.16.1)(express@5.2.1)(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(zod@4.4.3)
+      '@temporalio/activity':
+        specifier: ^1.21.1
+        version: 1.21.1
+      '@temporalio/client':
+        specifier: ^1.21.1
+        version: 1.21.1
+      '@temporalio/envconfig':
+        specifier: ^1.21.1
+        version: 1.21.1
+      '@temporalio/strands-agents':
+        specifier: ^1.21.1
+        version: 1.21.1(@strands-agents/sdk@1.11.0(@ai-sdk/provider@3.0.14)(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@opentelemetry/api@1.9.0)(@opentelemetry/resources@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-metrics@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-node@2.9.0(@opentelemetry/api@1.9.0))(@smithy/types@4.16.1)(express@5.2.1)(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(zod@4.4.3))
+      '@temporalio/worker':
+        specifier: ^1.21.1
+        version: 1.21.1(@swc/helpers@0.5.15)
+      '@temporalio/workflow':
+        specifier: ^1.21.1
+        version: 1.21.1
+      '@temporalio/workflow-streams':
+        specifier: ^1.21.1
+        version: 1.21.1
+      zod:
+        specifier: ^4.1.12
+        version: 4.4.3
+    devDependencies:
+      '@temporalio/testing':
+        specifier: ^1.21.1
+        version: 1.21.1(@swc/helpers@0.5.15)
+      '@tsconfig/node22':
+        specifier: ^22.0.0
+        version: 22.0.5
+      '@types/mocha':
+        specifier: 8.x
+        version: 8.2.3
+      '@types/node':
+        specifier: ^22.9.1
+        version: 22.12.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.18.0
+        version: 8.22.0(@typescript-eslint/parser@8.22.0(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3)
+      '@typescript-eslint/parser':
+        specifier: ^8.18.0
+        version: 8.22.0(eslint@8.57.1)(typescript@5.7.3)
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@8.57.1)
+      eslint-plugin-deprecation:
+        specifier: ^3.0.0
+        version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
+      mocha:
+        specifier: 8.x
+        version: 8.4.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+      nodemon:
+        specifier: ^3.1.7
+        version: 3.1.9
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.7.3
+
   timer-examples:
     dependencies:
       '@temporalio/activity':
@@ -4301,8 +4377,88 @@ packages:
       '@middy/core':
         optional: true
 
+  '@aws-sdk/client-bedrock-runtime@3.1094.0':
+    resolution: {integrity: sha512-zvSgV2cG95ig6M2jGh21jZlCwoy/pVXRzwjhuAlHTJgP/a5BQ7OKZ/TymiosHxFdEZ0p+Qou08sj8P6IAy7P1Q==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/core@3.976.0':
+    resolution: {integrity: sha512-0cjRaEdlVoOrsNb9pP5q1Syyc8pXw5xSj2Np2ryReRTr9FppIIRVSdZK4lbnfmc2Hvgux/xBOUU6baB7z8//uA==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/credential-provider-env@3.972.60':
+    resolution: {integrity: sha512-BAkxdoe7tpDDqCghGpuOeHQRbm/2znVvOQm0AvpQbA2tbfMN46doN4zx65fv85ImP3KADwc2zQPmbrlI9MPfMg==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/credential-provider-http@3.972.62':
+    resolution: {integrity: sha512-g/0fGqKTb9xpKdd9AtpmV5Eo3DFKbnkpA2+w0peISSlu7NfAoWOuYBFxsu+yWBtxU89ka55ezoZBCbFaS8pjYQ==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/credential-provider-ini@3.973.5':
+    resolution: {integrity: sha512-ylubazcRfq2TVus/qXucSXeC42Qdjp5HQxTu68K/BsdMiZlcSLD1zkpoCgApXZX1Y6YJhtGGs7ZHhO/GuIgBlw==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/credential-provider-login@3.972.67':
+    resolution: {integrity: sha512-CCygIKJ9YbI3n84OClSaSppkgKKHVj2TGT33c6FRORZrYNZQ1POmD+ip0FLYokiJAK7sSdc3YVkOsBm90oxWMQ==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/credential-provider-node@3.972.71':
+    resolution: {integrity: sha512-HIg7Q2osBzajQwL+1Vkyh2E7Gim3eTNb9RHIsOxDGjW0eZg4oEKtRs5sioCnc73ilhaOm4gX2lHVF8J7+nt2rg==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/credential-provider-process@3.972.60':
+    resolution: {integrity: sha512-YIo3f99hM43QdYG8hDzwGemnR/pU95b0kramqSJUTleCqaB7+HwKf7YZFHqvOgTqZTPx/mRmNIqoDRr3U0Z3Tw==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/credential-provider-sso@3.973.4':
+    resolution: {integrity: sha512-BPdmL8sSBOCv4ngZ+3LHxyc3CNqDCEK37CHioCk7zGrTMY5sUtkH8q+o6qA80nn6w3/fyBPGNE7OIRlmoOxRQA==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/credential-provider-web-identity@3.972.66':
+    resolution: {integrity: sha512-kSAziJboOmZmsR9/MTbiNjowl2BPes1bQuJpne4qAZ62ubi8fjfr/aupJSQje6udBoYxXTQbsL0e0kby2la3ng==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/eventstream-handler-node@3.972.29':
+    resolution: {integrity: sha512-t3tKQRTVXsI2QNPE3CaNjHl0wRO9Xi3acZkAyti2RQsiFmZ9Gi0kArX2ighlRJ1BtDVuul413gThAgzyTfgmWA==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/middleware-eventstream@3.972.24':
+    resolution: {integrity: sha512-oykin4mDWxNOuYQ7SF1cHzgYeuFEkF4cdRwgvjFFbIklkx09qIFBiOgsORafG9sXZFO3TayMmQuAQYgADXhI8w==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/middleware-websocket@3.972.42':
+    resolution: {integrity: sha512-dw+GP8DC7QC2C8tUoK7DI8BnrNAjz8tb+uBHSrD2qJvxkCf58kTtFr98pljSrk+umU4n4HDW4eU2k7C2dWMzsg==}
+    engines: {node: '>= 14.0.0'}
+
+  '@aws-sdk/nested-clients@3.997.34':
+    resolution: {integrity: sha512-Y9REVrSwmLM+Qy6sZJ7ofMC2S3Hr3tPP/4CzL5U1olPP7OGoF+6+Px0E49cVQBtSxJtyeLJMf0UaBErfeSahAA==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/signature-v4-multi-region@3.996.41':
+    resolution: {integrity: sha512-QMUytg+FQMGouc8gHS00KoYih3+N6cqmVI/pQGOIo7Nr7OpQaiXjSYOuL+vsPZ1tymY4LAQ8MYcHJmws5LRxng==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/token-providers@3.1092.0':
+    resolution: {integrity: sha512-hBYUAr6iBLNFcsiWTgtBb0stdSw39VOUq4Sp4A5caCNf66BAZplWN4FleKrVpJx5li2YgdnK2DqoFSMWC642FQ==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/token-providers@3.1094.0':
+    resolution: {integrity: sha512-eroYjVPX8/20Ah7r0FqADfgBTQyujHUxpOBYsbHM/DYuqMidtO9reM3xN9qXk51oO0TuowEci/SpBbpzGtwV1A==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/types@3.974.2':
+    resolution: {integrity: sha512-3W6IUtSxFbH6X7Wb7DzGCV5QiFQsd0g8bOfntpmDxQlzBoKWUMBu/JPQR0DwkE+Hpnxd6db1tXbOwdeHddG6cA==}
+    engines: {node: '>=20.0.0'}
+
+  '@aws-sdk/xml-builder@3.972.36':
+    resolution: {integrity: sha512-RdGmS1GLrtaTOLE1ElSluMldNrpk9Emq6uYs8SS8iHlu5xTAmM9rRkM91o48+rIRryBtyO9t+uLYCoMG6jVMVA==}
+    engines: {node: '>=20.0.0'}
+
   '@aws/lambda-invoke-store@0.2.4':
     resolution: {integrity: sha512-iY8yvjE0y651BixKNPgmv1WrQc+GZ142sb0z4gYnChDDY2YqI4P/jsSopBWrKfAt7LOJAkOXt7rC/hms+WclQQ==}
+    engines: {node: '>=18.0.0'}
+
+  '@aws/lambda-invoke-store@0.3.0':
+    resolution: {integrity: sha512-sl4Bm6yiMNYrZKkqqDFWN0UfnWhlS8ivKxrYl+6t0gCLrqr8y3B2IqZZbFRkfaVVp7C/baApyh71P+LeE1A2sQ==}
     engines: {node: '>=18.0.0'}
 
   '@babel/code-frame@7.26.2':
@@ -7801,8 +7957,98 @@ packages:
       Deprecated: no longer maintained and no longer used by Sinon packages. See
         https://github.com/sinonjs/nise/issues/243 for replacement details.
 
+  '@smithy/core@3.29.8':
+    resolution: {integrity: sha512-rpCbCV+TimOBi3VLNBMmtTvgfOWcFIEAru3+TFlG87SL2F+te4jOnnNR+cf3uR4eJ5Qf4LnT80fqnBKgPRS6zA==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/credential-provider-imds@4.4.13':
+    resolution: {integrity: sha512-X+2HNZhWi5i3rJsCas0LPf6fTQUaKyJ40zd8aTO/bwpRfpU3biYaqLr7C1WMibL7PVKJalpi1PyybjGPNoHC8Q==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/fetch-http-handler@5.6.10':
+    resolution: {integrity: sha512-5/Yj9mS2JjTsB3B8ZX7euh77mrY9aXW23ag1yAmFykSRmA6vldqBrgqmSeQ50EjY+5SB8+aE4w14B6LKbBVEhQ==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/node-http-handler@4.9.10':
+    resolution: {integrity: sha512-ETQz9v/Z+nTQc6fRWTXxUpxJqwpmzB3Tn3WKAdHwWkeT+m+HE5czs6GNG8vW+4vyxXSls65RVcvOZwk7Q/PS/Q==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/signature-v4@5.6.9':
+    resolution: {integrity: sha512-g5rnEii/mkT0mjVJmlsaOfyNBtHNTecD9Lo4NP8D5HzMUEnZNpz7/FbvBCjNcV4vteHFAxOGiLUYNxPkDZZAPw==}
+    engines: {node: '>=18.0.0'}
+
+  '@smithy/types@4.16.1':
+    resolution: {integrity: sha512-0JFs3V2y2M9tKW5na/qxe69Zv+uxLMO7QBbhxF/FHu/Gp2NFZAAL9tWl9PU02xxo07pb3G9FTyjNc6D5uZrJIg==}
+    engines: {node: '>=18.0.0'}
+
   '@standard-schema/spec@1.1.0':
     resolution: {integrity: sha512-l2aFy5jALhniG5HgqrD6jXLi/rUWrKvqN/qJx6yoJsgKhblVd+iqqU4RCXavm/jPityDo5TCvKMnpjKnOriy0w==}
+
+  '@strands-agents/sdk@1.11.0':
+    resolution: {integrity: sha512-k2a9UtDd8vcmpaSpSHDbhSEe3zt5DnjzI83OGV5sFlStH5XtOMwmAc7EoiidhCxKUYOoIUUJQjLKsUFRJ3ac7w==}
+    engines: {node: '>=20.0.0'}
+    peerDependencies:
+      '@a2a-js/sdk': ^0.3.10
+      '@ai-sdk/provider': ^3.0.0
+      '@anthropic-ai/sdk': ^0.109.1
+      '@aws-sdk/client-bedrock-agent': ^3.1078.0
+      '@aws-sdk/client-bedrock-agent-runtime': ^3.1078.0
+      '@aws-sdk/client-s3': ^3.1078.0
+      '@aws/bedrock-token-generator': ^1.1.0
+      '@cedar-policy/cedar-wasm': ^4.0.0
+      '@cedar-policy/mcp-schema-generator-wasm': ^0.6.0
+      '@google/genai': ^2.6.0
+      '@modelcontextprotocol/sdk': ^1.25.2
+      '@opentelemetry/api': ^1.9.0
+      '@opentelemetry/exporter-metrics-otlp-http': ^0.219.0
+      '@opentelemetry/exporter-trace-otlp-http': ^0.219.0
+      '@opentelemetry/resources': ^2.8.0
+      '@opentelemetry/sdk-metrics': ^2.6.1
+      '@opentelemetry/sdk-trace-base': ^2.6.1
+      '@opentelemetry/sdk-trace-node': ^2.6.1
+      '@smithy/types': ^4.15.1
+      express: ^5.1.0
+      openai: ^6.45.0
+      zod: ^4.1.12
+    peerDependenciesMeta:
+      '@a2a-js/sdk':
+        optional: true
+      '@ai-sdk/provider':
+        optional: true
+      '@anthropic-ai/sdk':
+        optional: true
+      '@aws-sdk/client-bedrock-agent':
+        optional: true
+      '@aws-sdk/client-bedrock-agent-runtime':
+        optional: true
+      '@aws-sdk/client-s3':
+        optional: true
+      '@aws/bedrock-token-generator':
+        optional: true
+      '@cedar-policy/cedar-wasm':
+        optional: true
+      '@cedar-policy/mcp-schema-generator-wasm':
+        optional: true
+      '@google/genai':
+        optional: true
+      '@opentelemetry/exporter-metrics-otlp-http':
+        optional: true
+      '@opentelemetry/exporter-trace-otlp-http':
+        optional: true
+      '@opentelemetry/resources':
+        optional: true
+      '@opentelemetry/sdk-metrics':
+        optional: true
+      '@opentelemetry/sdk-trace-base':
+        optional: true
+      '@opentelemetry/sdk-trace-node':
+        optional: true
+      '@smithy/types':
+        optional: true
+      express:
+        optional: true
+      openai:
+        optional: true
 
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     resolution: {integrity: sha512-lR8q/9W7hZpMWweNiAKU7NQerBnzQQLvi8qnTDU/fxItPhtZVMbPV3lbCwjhIlNBe9Bbr5V+KHshvWmVSG9cxQ==}
@@ -7987,6 +8233,10 @@ packages:
     resolution: {integrity: sha512-v9Tf3CNi0Iy5VylB5GrzWz9KpuhrWDhdDuyfDHO1BX71Exwq1aXRnak0WQY0umjNI/oK+mPHKQ8/RAmmAFOL/w==}
     engines: {node: '>= 20.3.0'}
 
+  '@temporalio/activity@1.21.1':
+    resolution: {integrity: sha512-UjA1d4ugL3pRXElwnggtVAMe3lppUPzYpBPmpDLTXfOtxEXPTK1x+8OC2jrZY7qmvpHkOdoo86S+UYFzJkMk/A==}
+    engines: {node: '>= 20.3.0'}
+
   '@temporalio/ai-sdk@1.20.3':
     resolution: {integrity: sha512-j3XUiu/3ckePcd9gBzDcwuN/phyvtAQot2RFNeKoLgAeWGgDhhfbrT9q2sg1i8VgTd4z4uprQpRJacFgGW88bA==}
     engines: {node: '>= 20.3.0'}
@@ -8003,12 +8253,20 @@ packages:
     resolution: {integrity: sha512-ujkdvIOswOi4AbISWbH5/w4vCOhgb+0oj/o/4AImArBLyxVqlqhW+AIrY+7zxOkFpF2CN9dlDJBzDdCGbBeHYA==}
     engines: {node: '>= 20.3.0'}
 
+  '@temporalio/client@1.21.1':
+    resolution: {integrity: sha512-rdZAh20wzI5i/SyS46Nv9mE6t2KkS9DTrB57HEMLsq6eqm58Nc6la0WQKJGsUNkmN98KKirByidZ5D/ik3kiQw==}
+    engines: {node: '>= 20.3.0'}
+
   '@temporalio/common@1.20.3':
     resolution: {integrity: sha512-VM9GyUAa7tl413nM24mcBhUfUeqcGazmDkx/GfDA0c+KuEVusclMg9eqa63EDv/rguC/YhWaXu6q5Kl8+99GSw==}
     engines: {node: '>= 20.3.0'}
 
   '@temporalio/common@1.21.0':
     resolution: {integrity: sha512-cGPkW47dRo2MPT5BzTUSuRUrtxNdYUaUSlvwBA2fX45egrlza2oBvsev52c7l0h0tReflDuAAEoh1JGS2qot6Q==}
+    engines: {node: '>= 20.3.0'}
+
+  '@temporalio/common@1.21.1':
+    resolution: {integrity: sha512-8Pis59xYLrGu6GfkkWvrYWkSPEvo8lBBILsR6gBHGbymNlEc0ynylRXqPmRjwuLfYS7jHzxqjjO7cvXJQ/z2Fg==}
     engines: {node: '>= 20.3.0'}
 
   '@temporalio/core-bridge@1.20.3':
@@ -8019,12 +8277,20 @@ packages:
     resolution: {integrity: sha512-EBSLy4fip2e5jPMznGi32bcYZK3MztNvMfDY3Z96gJYk6N1R5EkR+lINoxLv1wkLVUoFBj+I+xQ1Xi8FF4iZbw==}
     engines: {node: '>= 20.3.0'}
 
+  '@temporalio/core-bridge@1.21.1':
+    resolution: {integrity: sha512-gCy/6TFhcFAjFPRN1DeHSwAnXU380Jn/y6yG2dkSV+rYK0JRl66SE2NvdcAjzhoPO/twHEaHklbppojH0cUpUw==}
+    engines: {node: '>= 20.3.0'}
+
   '@temporalio/envconfig@1.20.3':
     resolution: {integrity: sha512-5CgTXb/UsvmwZc8lW5aLkplEpCRGwJkV+bWNcxblFjfayit0VYCxn+S7iMbW01Hj7dQWJ+RX+Xg+E+iFHf07JA==}
     engines: {node: '>= 20.3.0'}
 
   '@temporalio/envconfig@1.21.0':
     resolution: {integrity: sha512-d2MWXGvgsqXUP+Cw6oVyF0Yz68XuR4yns5fuCZgu5BUwlKGdjQ56f+AX2cSyl0/P6yugG0sLJ6iQe9UbQCBdeQ==}
+    engines: {node: '>= 20.3.0'}
+
+  '@temporalio/envconfig@1.21.1':
+    resolution: {integrity: sha512-VwhGteeXTIMMsWlYF6zxYcxZWWuWvPIfCmcTJSk86iGKF2O0umhPPR+DE4Uc7Y6mG+wJ7GJVe7YmY2KZu2xOCg==}
     engines: {node: '>= 20.3.0'}
 
   '@temporalio/interceptors-opentelemetry-v2@1.21.0':
@@ -8085,6 +8351,10 @@ packages:
     resolution: {integrity: sha512-xuOmjJnBwcLf7fXOGWJUyOvGRqF0JTVlSgJPOOQpgWrGUSXYRvPKSW0p3tUE1rzfssBDYZp9905uK2OJE+3LpA==}
     engines: {node: '>= 20.3.0'}
 
+  '@temporalio/nexus@1.21.1':
+    resolution: {integrity: sha512-CIAoTt/WpSE0bn1mE9q5O6hU76q97W349e0FSrUuwQAYDXBy7jzFM6ZzYmm7S5Uk2tC1xrRCAjUGg1lMnHQppw==}
+    engines: {node: '>= 20.3.0'}
+
   '@temporalio/nyc-test-coverage@1.21.0':
     resolution: {integrity: sha512-RReHRMe5CnWENZAwJcPDu8wYeoFVgOI7IrbWqgFgSEwJR07kc1YZnaLggswqGErnCCed/8AAz7Coex7mEIjugQ==}
     engines: {node: '>= 20.3.0'}
@@ -8114,6 +8384,10 @@ packages:
     resolution: {integrity: sha512-NmKGG27iYQzR0YaU6EWUzBCbiWS+KhmOF1qBOkwdVysLQIT7w2QjFLAmBw80wrrWxb/1l7xlLYHlNYSWJ2OqIg==}
     engines: {node: '>= 20.3.0'}
 
+  '@temporalio/plugin@1.21.1':
+    resolution: {integrity: sha512-OabF/4y0SXn8ifakRGbAAqBUuIPl4dj1peqEbxgOvRQO9Ak6ZWmUpPvR72oh1QUTXYn38svudsL8MeP8+6DHFg==}
+    engines: {node: '>= 20.3.0'}
+
   '@temporalio/proto@1.20.3':
     resolution: {integrity: sha512-RdbHC3zH+N0QqG1Q38h2LilFIQ3lbGLVmLYCyNcV+PPfzrtrZ8pwBACpSGwEuF7WWFziLAhJ2oMVXTnmXY5ocQ==}
     engines: {node: '>= 20.3.0'}
@@ -8122,12 +8396,26 @@ packages:
     resolution: {integrity: sha512-i2rNFdMZOWPDiO9YTl3knksR80IX36DpklJftpJndlAFfPAXv/iHf2UXxiGyr4N4beF8TNyNWOb30Vjk663ROg==}
     engines: {node: '>= 20.3.0'}
 
+  '@temporalio/proto@1.21.1':
+    resolution: {integrity: sha512-eSHGrZ6CxbtjrAzxiMgKrWeDiBlWk6/JkIqsB1hrkPB6TQXC67Az8v0BL0Fj3ur8ktQZbaacON/xCDjTsvJyGw==}
+    engines: {node: '>= 20.3.0'}
+
+  '@temporalio/strands-agents@1.21.1':
+    resolution: {integrity: sha512-4ZLPLf9mj2x232RKHEo3bez9RjJZRRvfvQkX7xp8EmpDKN7EhlJmZk/RBz+eivBN1PIDeYF3EVYZkBEhp0+ccw==}
+    engines: {node: '>= 20.0.0'}
+    peerDependencies:
+      '@strands-agents/sdk': ^1.3.0
+
   '@temporalio/testing@1.20.3':
     resolution: {integrity: sha512-YptZtr/HPKov+9GxOEY9Onpuzy/WppBVOdqWaNbZasD5x3vo3aVOyFA1eVcGXSLnKMmQC+JGr+LLLJP/9Dn36A==}
     engines: {node: '>= 20.3.0'}
 
   '@temporalio/testing@1.21.0':
     resolution: {integrity: sha512-YjCT3v2CUTpGZkY5/epX4QL8KGg2ZR0pTKV/SttGQ8PiBr4HofY6zJxY0bRVxo7sRDboOogOYjbEV+ElGVJHpQ==}
+    engines: {node: '>= 20.3.0'}
+
+  '@temporalio/testing@1.21.1':
+    resolution: {integrity: sha512-vKYQZsa8EFE4Rvlh0v1Ry2B0+vnnpgfHarSadue+3ZUWf3cx28HGCseZEgHcaG299ChsjbADntKO6YjwlMv1Jw==}
     engines: {node: '>= 20.3.0'}
 
   '@temporalio/worker@1.20.3':
@@ -8138,6 +8426,10 @@ packages:
     resolution: {integrity: sha512-8StC83emDAlTg48PyPuqmNhdNRimf2OfMcJbQbMypq7jJg6QULmbLlbXmaZlDc/8qGxyYwOc6b2VwzQhLNGpZw==}
     engines: {node: '>= 20.3.0'}
 
+  '@temporalio/worker@1.21.1':
+    resolution: {integrity: sha512-ccXus6+w317tL+NsJXEYWpHFxcy0VDPfstmBzej0yZrkzWNvAkaWVGQbguKoLToDM8+DMaqklx1dX4gJnknR1g==}
+    engines: {node: '>= 20.3.0'}
+
   '@temporalio/workflow-streams@1.20.3':
     resolution: {integrity: sha512-YIoQTFDhA4yroUOxjj3EDjOk/QHCLXNyz3TGrSFbbVobEykyjXWhkYlLyu1SkVu9bee5Nz+lH4T34B4vvEMzgg==}
     engines: {node: '>= 20.3.0'}
@@ -8146,12 +8438,20 @@ packages:
     resolution: {integrity: sha512-ymMFOo6MHfx3HAPs1nAENB4T1EiifBR+73jxRJXpz0cst4SoA8QcmxoGK/eSuA7qC5FmtmeoKX9rmagcUNRUDA==}
     engines: {node: '>= 20.3.0'}
 
+  '@temporalio/workflow-streams@1.21.1':
+    resolution: {integrity: sha512-x4reh2EaiH6ageejhlFslWOAQ5cODYhWWD44XjMCSKj7xelrVgyjAzWmSvbmLOK/z71HhzGYIPCd6W4bY0Nlww==}
+    engines: {node: '>= 20.3.0'}
+
   '@temporalio/workflow@1.20.3':
     resolution: {integrity: sha512-6LRfnWp3HcvqvKFwbOhs5iDQkHNIM5Rxtxhsi2E5ViPDvJMBqlQ0sQ4oRo5SEgr5Bri650i7GfEQQJMVl7xoKg==}
     engines: {node: '>= 20.3.0'}
 
   '@temporalio/workflow@1.21.0':
     resolution: {integrity: sha512-TlVrRTkcqbC/LFaWsJDr/43wupXhex3LZnxX/deba6badmRMhnQxzKdAXC2/NDOUrs7k6jG7j3QwOMGvW2rBYw==}
+    engines: {node: '>= 20.3.0'}
+
+  '@temporalio/workflow@1.21.1':
+    resolution: {integrity: sha512-Tsoe9RnB0mL75DGVo3wJJrgTl+QnHYUysPjqRkzQdzgeKravN8RxE0HCfS3cYRZej3eEVwoDftgbo7/KR0NXWQ==}
     engines: {node: '>= 20.3.0'}
 
   '@testing-library/dom@7.31.2':
@@ -9389,6 +9689,9 @@ packages:
 
   boolbase@1.0.0:
     resolution: {integrity: sha512-JZOSA7Mo9sNGB8+UjSgzdLtokWAky1zbztM3WRLCbZ70/3cTANmQmOdR7y2g+J0e2WXywy1yS468tY+IruqEww==}
+
+  bowser@2.14.1:
+    resolution: {integrity: sha512-tzPjzCxygAKWFOJP011oxFHs57HzIhOEracIgAePE4pqB3LikALKnSzUyU4MGs9/iCEUuHlAJTjTc5M+u7YEGg==}
 
   brace-expansion@1.1.11:
     resolution: {integrity: sha512-iCuPHDFgrHX7H2vEI/5xpz07zSHB00TpugqhmYtVmMO6518mCuRMoOYFldEBl0g187ufozdaHgWKcYFb61qGiA==}
@@ -16256,6 +16559,10 @@ packages:
     resolution: {integrity: sha512-0/A9rDy9P7cJ+8w1c9WD9V//9Wj15Ce2MPz8Ri6032usz+NfePxx5AcN3bN+r6ZL6jEo066/yNYB3tn4pQEx+A==}
     hasBin: true
 
+  uuid@14.0.1:
+    resolution: {integrity: sha512-6ZxzVpzDXDa3bJWaHilVayA+BH/1zmxCJoVgvmqJnid/gPoKHxUrS/aC/T6LGQtNHT+XHG9fXPJB4d+IrU30Ew==}
+    hasBin: true
+
   uuid@8.3.2:
     resolution: {integrity: sha512-+NYs2QeMWy+GWFOEm9xnn6HCDp0l7QBD7ml8zLUmJ+93Q5NF0NocErnwkTkXVFNiX3/fpC6afS8Dhb/gz7R7eg==}
     hasBin: true
@@ -16902,7 +17209,189 @@ snapshots:
       '@aws-lambda-powertools/commons': 2.33.0
       '@aws/lambda-invoke-store': 0.2.4
 
+  '@aws-sdk/client-bedrock-runtime@3.1094.0':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/credential-provider-node': 3.972.71
+      '@aws-sdk/eventstream-handler-node': 3.972.29
+      '@aws-sdk/middleware-eventstream': 3.972.24
+      '@aws-sdk/middleware-websocket': 3.972.42
+      '@aws-sdk/token-providers': 3.1094.0
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/fetch-http-handler': 5.6.10
+      '@smithy/node-http-handler': 4.9.10
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/core@3.976.0':
+    dependencies:
+      '@aws-sdk/types': 3.974.2
+      '@aws-sdk/xml-builder': 3.972.36
+      '@aws/lambda-invoke-store': 0.3.0
+      '@smithy/core': 3.29.8
+      '@smithy/signature-v4': 5.6.9
+      '@smithy/types': 4.16.1
+      bowser: 2.14.1
+      tslib: 2.8.1
+
+  '@aws-sdk/credential-provider-env@3.972.60':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/credential-provider-http@3.972.62':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/fetch-http-handler': 5.6.10
+      '@smithy/node-http-handler': 4.9.10
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/credential-provider-ini@3.973.5':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/credential-provider-env': 3.972.60
+      '@aws-sdk/credential-provider-http': 3.972.62
+      '@aws-sdk/credential-provider-login': 3.972.67
+      '@aws-sdk/credential-provider-process': 3.972.60
+      '@aws-sdk/credential-provider-sso': 3.973.4
+      '@aws-sdk/credential-provider-web-identity': 3.972.66
+      '@aws-sdk/nested-clients': 3.997.34
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/credential-provider-imds': 4.4.13
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/credential-provider-login@3.972.67':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/nested-clients': 3.997.34
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/credential-provider-node@3.972.71':
+    dependencies:
+      '@aws-sdk/credential-provider-env': 3.972.60
+      '@aws-sdk/credential-provider-http': 3.972.62
+      '@aws-sdk/credential-provider-ini': 3.973.5
+      '@aws-sdk/credential-provider-process': 3.972.60
+      '@aws-sdk/credential-provider-sso': 3.973.4
+      '@aws-sdk/credential-provider-web-identity': 3.972.66
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/credential-provider-imds': 4.4.13
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/credential-provider-process@3.972.60':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/credential-provider-sso@3.973.4':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/nested-clients': 3.997.34
+      '@aws-sdk/token-providers': 3.1092.0
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/credential-provider-web-identity@3.972.66':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/nested-clients': 3.997.34
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/eventstream-handler-node@3.972.29':
+    dependencies:
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/middleware-eventstream@3.972.24':
+    dependencies:
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/middleware-websocket@3.972.42':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/fetch-http-handler': 5.6.10
+      '@smithy/signature-v4': 5.6.9
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/nested-clients@3.997.34':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/signature-v4-multi-region': 3.996.41
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/fetch-http-handler': 5.6.10
+      '@smithy/node-http-handler': 4.9.10
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/signature-v4-multi-region@3.996.41':
+    dependencies:
+      '@aws-sdk/types': 3.974.2
+      '@smithy/signature-v4': 5.6.9
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/token-providers@3.1092.0':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/nested-clients': 3.997.34
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/token-providers@3.1094.0':
+    dependencies:
+      '@aws-sdk/core': 3.976.0
+      '@aws-sdk/nested-clients': 3.997.34
+      '@aws-sdk/types': 3.974.2
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/types@3.974.2':
+    dependencies:
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@aws-sdk/xml-builder@3.972.36':
+    dependencies:
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
   '@aws/lambda-invoke-store@0.2.4': {}
+
+  '@aws/lambda-invoke-store@0.3.0': {}
 
   '@babel/code-frame@7.26.2':
     dependencies:
@@ -20021,10 +20510,10 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  '@openai/agents-core@0.11.8(ws@8.18.0)(zod@4.4.3)':
+  '@openai/agents-core@0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)':
     dependencies:
       debug: 4.4.3(supports-color@5.5.0)
-      openai: 6.45.0(ws@8.18.0)(zod@4.4.3)
+      openai: 6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
     optionalDependencies:
       '@modelcontextprotocol/sdk': 1.29.0(zod@4.4.3)
       zod: 4.4.3
@@ -20036,11 +20525,11 @@ snapshots:
       - supports-color
       - ws
 
-  '@openai/agents-openai@0.11.8(ws@8.18.0)(zod@4.4.3)':
+  '@openai/agents-openai@0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)':
     dependencies:
-      '@openai/agents-core': 0.11.8(ws@8.18.0)(zod@4.4.3)
+      '@openai/agents-core': 0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
       debug: 4.4.3(supports-color@5.5.0)
-      openai: 6.45.0(ws@8.18.0)(zod@4.4.3)
+      openai: 6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
       zod: 4.4.3
     transitivePeerDependencies:
       - '@aws-sdk/credential-provider-node'
@@ -21068,7 +21557,59 @@ snapshots:
 
   '@sinonjs/text-encoding@0.7.3': {}
 
+  '@smithy/core@3.29.8':
+    dependencies:
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@smithy/credential-provider-imds@4.4.13':
+    dependencies:
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@smithy/fetch-http-handler@5.6.10':
+    dependencies:
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@smithy/node-http-handler@4.9.10':
+    dependencies:
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@smithy/signature-v4@5.6.9':
+    dependencies:
+      '@smithy/core': 3.29.8
+      '@smithy/types': 4.16.1
+      tslib: 2.8.1
+
+  '@smithy/types@4.16.1':
+    dependencies:
+      tslib: 2.8.1
+
   '@standard-schema/spec@1.1.0': {}
+
+  '@strands-agents/sdk@1.11.0(@ai-sdk/provider@3.0.14)(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@opentelemetry/api@1.9.0)(@opentelemetry/resources@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-metrics@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-node@2.9.0(@opentelemetry/api@1.9.0))(@smithy/types@4.16.1)(express@5.2.1)(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(zod@4.4.3)':
+    dependencies:
+      '@aws-sdk/client-bedrock-runtime': 3.1094.0
+      '@modelcontextprotocol/sdk': 1.29.0(zod@4.4.3)
+      '@opentelemetry/api': 1.9.0
+      '@types/json-schema': 7.0.15
+      uuid: 14.0.1
+      yaml: 2.9.0
+      zod: 4.4.3
+    optionalDependencies:
+      '@ai-sdk/provider': 3.0.14
+      '@opentelemetry/resources': 2.9.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/sdk-metrics': 2.9.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/sdk-trace-base': 2.9.0(@opentelemetry/api@1.9.0)
+      '@opentelemetry/sdk-trace-node': 2.9.0(@opentelemetry/api@1.9.0)
+      '@smithy/types': 4.16.1
+      express: 5.2.1
+      openai: 6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
 
   '@surma/rollup-plugin-off-main-thread@2.2.3':
     dependencies:
@@ -21242,6 +21783,11 @@ snapshots:
       '@temporalio/client': 1.21.0
       '@temporalio/common': 1.21.0
 
+  '@temporalio/activity@1.21.1':
+    dependencies:
+      '@temporalio/client': 1.21.1
+      '@temporalio/common': 1.21.1
+
   '@temporalio/ai-sdk@1.20.3(@ai-sdk/mcp@1.0.64(zod@3.25.76))(@ai-sdk/provider@3.0.14)(ai@6.0.234(zod@3.25.76))':
     dependencies:
       '@ai-sdk/mcp': 1.0.64(zod@3.25.76)
@@ -21277,6 +21823,16 @@ snapshots:
       nexus-rpc: 0.0.2
       uuid: 11.1.0
 
+  '@temporalio/client@1.21.1':
+    dependencies:
+      '@grpc/grpc-js': 1.14.4
+      '@temporalio/common': 1.21.1
+      '@temporalio/proto': 1.21.1
+      abort-controller: 3.0.0
+      long: 5.3.2
+      nexus-rpc: 0.0.2
+      uuid: 11.1.0
+
   '@temporalio/common@1.20.3':
     dependencies:
       '@temporalio/proto': 1.20.3
@@ -21293,6 +21849,14 @@ snapshots:
       nexus-rpc: 0.0.2
       proto3-json-serializer: 2.0.2
 
+  '@temporalio/common@1.21.1':
+    dependencies:
+      '@temporalio/proto': 1.21.1
+      long: 5.3.2
+      ms: 3.0.0-canary.1
+      nexus-rpc: 0.0.2
+      proto3-json-serializer: 2.0.2
+
   '@temporalio/core-bridge@1.20.3':
     dependencies:
       '@grpc/grpc-js': 1.14.4
@@ -21302,6 +21866,11 @@ snapshots:
     dependencies:
       '@grpc/grpc-js': 1.14.4
       '@temporalio/common': 1.21.0
+
+  '@temporalio/core-bridge@1.21.1':
+    dependencies:
+      '@grpc/grpc-js': 1.14.4
+      '@temporalio/common': 1.21.1
 
   '@temporalio/envconfig@1.20.3':
     dependencies:
@@ -21313,29 +21882,34 @@ snapshots:
       '@temporalio/common': 1.21.0
       smol-toml: 1.6.1
 
-  '@temporalio/interceptors-opentelemetry-v2@1.21.0(@temporalio/common@1.21.0)(@temporalio/workflow@1.21.0)':
+  '@temporalio/envconfig@1.21.1':
+    dependencies:
+      '@temporalio/common': 1.21.1
+      smol-toml: 1.6.1
+
+  '@temporalio/interceptors-opentelemetry-v2@1.21.0(@temporalio/common@1.21.1)(@temporalio/workflow@1.21.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 2.9.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 2.9.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 2.9.0(@opentelemetry/api@1.9.0)
-      '@temporalio/common': 1.21.0
+      '@temporalio/common': 1.21.1
       '@temporalio/plugin': 1.21.0
     optionalDependencies:
       '@temporalio/workflow': 1.21.0
 
-  '@temporalio/interceptors-opentelemetry@1.21.0(@temporalio/common@1.21.0)(@temporalio/workflow@1.21.0)':
+  '@temporalio/interceptors-opentelemetry@1.21.0(@temporalio/common@1.21.1)(@temporalio/workflow@1.21.0)':
     dependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/core': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
-      '@temporalio/common': 1.21.0
+      '@temporalio/common': 1.21.1
       '@temporalio/plugin': 1.21.0
     optionalDependencies:
       '@temporalio/workflow': 1.21.0
 
-  '@temporalio/lambda-worker@1.21.0(@aws-lambda-powertools/logger@2.33.0)(@opentelemetry/exporter-trace-otlp-grpc@0.52.1(@opentelemetry/api@1.9.0))(@opentelemetry/resources@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(@temporalio/interceptors-opentelemetry@1.21.0(@temporalio/common@1.21.0)(@temporalio/workflow@1.21.0))(@types/aws-lambda@8.10.161)':
+  '@temporalio/lambda-worker@1.21.0(@aws-lambda-powertools/logger@2.33.0)(@opentelemetry/exporter-trace-otlp-grpc@0.52.1(@opentelemetry/api@1.9.0))(@opentelemetry/resources@1.30.1(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(@temporalio/interceptors-opentelemetry@1.21.0(@temporalio/common@1.21.1)(@temporalio/workflow@1.21.0))(@types/aws-lambda@8.10.161)':
     dependencies:
       '@temporalio/common': 1.21.0
       '@temporalio/envconfig': 1.21.0
@@ -21345,7 +21919,7 @@ snapshots:
       '@opentelemetry/exporter-trace-otlp-grpc': 0.52.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/resources': 1.30.1(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
-      '@temporalio/interceptors-opentelemetry': 1.21.0(@temporalio/common@1.21.0)(@temporalio/workflow@1.21.0)
+      '@temporalio/interceptors-opentelemetry': 1.21.0(@temporalio/common@1.21.1)(@temporalio/workflow@1.21.0)
       '@types/aws-lambda': 8.10.161
     transitivePeerDependencies:
       - '@minify-html/node'
@@ -21362,7 +21936,7 @@ snapshots:
       - uglify-js
       - webpack-cli
 
-  '@temporalio/langsmith@1.21.0(@swc/helpers@0.5.15)(langsmith@0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(ws@8.18.0)(zod@4.4.3))(ws@8.18.0))':
+  '@temporalio/langsmith@1.21.0(@swc/helpers@0.5.15)(langsmith@0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(ws@8.18.0))':
     dependencies:
       '@temporalio/activity': 1.21.0
       '@temporalio/client': 1.21.0
@@ -21370,7 +21944,7 @@ snapshots:
       '@temporalio/plugin': 1.21.0
       '@temporalio/worker': 1.21.0(@swc/helpers@0.5.15)
       '@temporalio/workflow': 1.21.0
-      langsmith: 0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(ws@8.18.0)(zod@4.4.3))(ws@8.18.0)
+      langsmith: 0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(ws@8.18.0)
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/css'
@@ -21402,6 +21976,14 @@ snapshots:
       long: 5.3.2
       nexus-rpc: 0.0.2
 
+  '@temporalio/nexus@1.21.1':
+    dependencies:
+      '@temporalio/client': 1.21.1
+      '@temporalio/common': 1.21.1
+      '@temporalio/proto': 1.21.1
+      long: 5.3.2
+      nexus-rpc: 0.0.2
+
   '@temporalio/nyc-test-coverage@1.21.0(@temporalio/common@1.21.0)(@temporalio/worker@1.21.0(@swc/helpers@0.5.15))(@temporalio/workflow@1.21.0)(typescript@5.7.3)(webpack@5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15)))':
     dependencies:
       '@temporalio/common': 1.21.0
@@ -21416,10 +21998,10 @@ snapshots:
       - supports-color
       - typescript
 
-  '@temporalio/openai-agents@1.21.0(@openai/agents-core@0.11.8(ws@8.18.0)(zod@4.4.3))(@openai/agents-openai@0.11.8(ws@8.18.0)(zod@4.4.3))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(openai@6.45.0(ws@8.18.0)(zod@4.4.3))':
+  '@temporalio/openai-agents@1.21.0(@openai/agents-core@0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(@openai/agents-openai@0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(@opentelemetry/sdk-trace-base@1.30.1(@opentelemetry/api@1.9.0))(@swc/helpers@0.5.15)(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))':
     dependencies:
-      '@openai/agents-core': 0.11.8(ws@8.18.0)(zod@4.4.3)
-      '@openai/agents-openai': 0.11.8(ws@8.18.0)(zod@4.4.3)
+      '@openai/agents-core': 0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
+      '@openai/agents-openai': 0.11.8(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
       '@opentelemetry/api': 1.9.0
       '@temporalio/activity': 1.21.0
       '@temporalio/common': 1.21.0
@@ -21429,7 +22011,7 @@ snapshots:
       '@temporalio/workflow-streams': 1.21.0
       '@ungap/structured-clone': 1.3.2
       headers-polyfill: 4.0.3
-      openai: 6.45.0(ws@8.18.0)(zod@4.4.3)
+      openai: 6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
       web-streams-polyfill: 4.2.0
     optionalDependencies:
       '@opentelemetry/sdk-trace-base': 1.30.1(@opentelemetry/api@1.9.0)
@@ -21452,6 +22034,8 @@ snapshots:
 
   '@temporalio/plugin@1.21.0': {}
 
+  '@temporalio/plugin@1.21.1': {}
+
   '@temporalio/proto@1.20.3':
     dependencies:
       long: 5.3.2
@@ -21461,6 +22045,23 @@ snapshots:
     dependencies:
       long: 5.3.2
       protobufjs: 7.6.5
+
+  '@temporalio/proto@1.21.1':
+    dependencies:
+      long: 5.3.2
+      protobufjs: 7.6.5
+
+  '@temporalio/strands-agents@1.21.1(@strands-agents/sdk@1.11.0(@ai-sdk/provider@3.0.14)(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@opentelemetry/api@1.9.0)(@opentelemetry/resources@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-metrics@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-node@2.9.0(@opentelemetry/api@1.9.0))(@smithy/types@4.16.1)(express@5.2.1)(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(zod@4.4.3))':
+    dependencies:
+      '@strands-agents/sdk': 1.11.0(@ai-sdk/provider@3.0.14)(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3))(@opentelemetry/api@1.9.0)(@opentelemetry/resources@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-metrics@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-node@2.9.0(@opentelemetry/api@1.9.0))(@smithy/types@4.16.1)(express@5.2.1)(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(zod@4.4.3)
+      '@temporalio/activity': 1.21.1
+      '@temporalio/common': 1.21.1
+      '@temporalio/plugin': 1.21.1
+      '@temporalio/workflow': 1.21.1
+      '@temporalio/workflow-streams': 1.21.1
+      '@ungap/structured-clone': 1.3.2
+      headers-polyfill: 4.0.3
+      web-streams-polyfill: 4.2.0
 
   '@temporalio/testing@1.20.3(@swc/helpers@0.5.15)':
     dependencies:
@@ -21495,6 +22096,30 @@ snapshots:
       '@temporalio/proto': 1.21.0
       '@temporalio/worker': 1.21.0(@swc/helpers@0.5.15)
       '@temporalio/workflow': 1.21.0
+    transitivePeerDependencies:
+      - '@minify-html/node'
+      - '@swc/css'
+      - '@swc/helpers'
+      - '@swc/html'
+      - clean-css
+      - cssnano
+      - csso
+      - esbuild
+      - html-minifier-terser
+      - lightningcss
+      - postcss
+      - uglify-js
+      - webpack-cli
+
+  '@temporalio/testing@1.21.1(@swc/helpers@0.5.15)':
+    dependencies:
+      '@temporalio/activity': 1.21.1
+      '@temporalio/client': 1.21.1
+      '@temporalio/common': 1.21.1
+      '@temporalio/core-bridge': 1.21.1
+      '@temporalio/proto': 1.21.1
+      '@temporalio/worker': 1.21.1(@swc/helpers@0.5.15)
+      '@temporalio/workflow': 1.21.1
     transitivePeerDependencies:
       - '@minify-html/node'
       - '@swc/css'
@@ -21621,6 +22246,43 @@ snapshots:
       - uglify-js
       - webpack-cli
 
+  '@temporalio/worker@1.21.1(@swc/helpers@0.5.15)':
+    dependencies:
+      '@grpc/grpc-js': 1.14.4
+      '@swc/core': 1.10.11(@swc/helpers@0.5.15)
+      '@temporalio/activity': 1.21.1
+      '@temporalio/client': 1.21.1
+      '@temporalio/common': 1.21.1
+      '@temporalio/core-bridge': 1.21.1
+      '@temporalio/nexus': 1.21.1
+      '@temporalio/proto': 1.21.1
+      '@temporalio/workflow': 1.21.1
+      heap-js: 2.6.0
+      memfs: 4.17.0
+      nexus-rpc: 0.0.2
+      protobufjs: 7.6.5
+      rxjs: 7.8.2
+      source-map: 0.7.6
+      source-map-loader: 5.0.0(webpack@5.108.4(@swc/core@1.10.11(@swc/helpers@0.5.15)))
+      supports-color: 8.1.1
+      swc-loader: 0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.108.4(@swc/core@1.10.11(@swc/helpers@0.5.15)))
+      unionfs: 4.5.4
+      webpack: 5.108.4(@swc/core@1.10.11(@swc/helpers@0.5.15))
+    transitivePeerDependencies:
+      - '@minify-html/node'
+      - '@swc/css'
+      - '@swc/helpers'
+      - '@swc/html'
+      - clean-css
+      - cssnano
+      - csso
+      - esbuild
+      - html-minifier-terser
+      - lightningcss
+      - postcss
+      - uglify-js
+      - webpack-cli
+
   '@temporalio/workflow-streams@1.20.3':
     dependencies:
       '@temporalio/activity': 1.20.3
@@ -21637,6 +22299,14 @@ snapshots:
       '@temporalio/proto': 1.21.0
       '@temporalio/workflow': 1.21.0
 
+  '@temporalio/workflow-streams@1.21.1':
+    dependencies:
+      '@temporalio/activity': 1.21.1
+      '@temporalio/client': 1.21.1
+      '@temporalio/common': 1.21.1
+      '@temporalio/proto': 1.21.1
+      '@temporalio/workflow': 1.21.1
+
   '@temporalio/workflow@1.20.3':
     dependencies:
       '@temporalio/common': 1.20.3
@@ -21647,6 +22317,12 @@ snapshots:
     dependencies:
       '@temporalio/common': 1.21.0
       '@temporalio/proto': 1.21.0
+      nexus-rpc: 0.0.2
+
+  '@temporalio/workflow@1.21.1':
+    dependencies:
+      '@temporalio/common': 1.21.1
+      '@temporalio/proto': 1.21.1
       nexus-rpc: 0.0.2
 
   '@testing-library/dom@7.31.2':
@@ -23429,6 +24105,8 @@ snapshots:
       multicast-dns: 7.2.5
 
   boolbase@1.0.0: {}
+
+  bowser@2.14.1: {}
 
   brace-expansion@1.1.11:
     dependencies:
@@ -27822,14 +28500,14 @@ snapshots:
 
   kuler@2.0.0: {}
 
-  langsmith@0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(ws@8.18.0)(zod@4.4.3))(ws@8.18.0):
+  langsmith@0.7.17(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3))(ws@8.18.0):
     dependencies:
       p-queue: 6.6.2
     optionalDependencies:
       '@opentelemetry/api': 1.9.0
       '@opentelemetry/exporter-trace-otlp-proto': 0.220.0(@opentelemetry/api@1.9.0)
       '@opentelemetry/sdk-trace-base': 2.9.0(@opentelemetry/api@1.9.0)
-      openai: 6.45.0(ws@8.18.0)(zod@4.4.3)
+      openai: 6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
       ws: 8.18.0
 
   language-subtag-registry@0.3.23: {}
@@ -29095,8 +29773,10 @@ snapshots:
     transitivePeerDependencies:
       - encoding
 
-  openai@6.45.0(ws@8.18.0)(zod@4.4.3):
+  openai@6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3):
     optionalDependencies:
+      '@aws-sdk/credential-provider-node': 3.972.71
+      '@smithy/signature-v4': 5.6.9
       ws: 8.18.0
       zod: 4.4.3
 
@@ -32245,6 +32925,8 @@ snapshots:
   utils-merge@1.0.1: {}
 
   uuid@11.1.0: {}
+
+  uuid@14.0.1: {}
 
   uuid@8.3.2: {}
 

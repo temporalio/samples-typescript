@@ -4,17 +4,17 @@ A complete set of samples for the Temporal TypeScript SDK's Strands integration,
 
 One worker registers all activities, all workflows, and an MCP server. Each feature has its own client script in `src/`:
 
-| Feature | Client | What it demonstrates |
-| --- | --- | --- |
-| Hello World | `npm run workflow:hello-world` | Minimal `TemporalAgent` invocation. |
-| Tools | `npm run workflow:tools` | Pure Strands `tool()` + `workflow.activityAsTool` for I/O. |
-| Human in the Loop | `npm run workflow:human-in-the-loop` | Gate a tool call on human approval with a `BeforeToolCallEvent` hook + `event.interrupt()`. |
-| Activity Interrupt | `npm run workflow:activity-interrupt` | Activity-thrown interrupt routed through `StrandsFailureConverter`. |
-| Hooks | `npm run workflow:hooks` | `AfterToolCallEvent` with in-workflow and activity-dispatched callbacks. |
-| MCP | `npm run workflow:mcp` | Connect to a stdio MCP server via `TemporalMCPClient`. |
-| Structured Output | `npm run workflow:structured-output` | Constrain output with a Zod schema. |
-| Streaming | `npm run workflow:streaming` | Forward model chunks to subscribers via `WorkflowStream`. |
-| Continue as New | `npm run workflow:continue-as-new` | Long-lived chat with history-aware continue-as-new. |
+| Feature            | Client                                | What it demonstrates                                                                        |
+| ------------------ | ------------------------------------- | ------------------------------------------------------------------------------------------- |
+| Hello World        | `npm run workflow:hello-world`        | Minimal `TemporalAgent` invocation.                                                         |
+| Tools              | `npm run workflow:tools`              | Pure Strands `tool()` + `workflow.activityAsTool` for I/O.                                  |
+| Human in the Loop  | `npm run workflow:human-in-the-loop`  | Gate a tool call on human approval with a `BeforeToolCallEvent` hook + `event.interrupt()`. |
+| Activity Interrupt | `npm run workflow:activity-interrupt` | Activity-thrown interrupt routed through `StrandsFailureConverter`.                         |
+| Hooks              | `npm run workflow:hooks`              | `AfterToolCallEvent` with in-workflow and activity-dispatched callbacks.                    |
+| MCP                | `npm run workflow:mcp`                | Connect to a stdio MCP server via `TemporalMCPClient`.                                      |
+| Structured Output  | `npm run workflow:structured-output`  | Constrain output with a Zod schema.                                                         |
+| Streaming          | `npm run workflow:streaming`          | Forward model chunks to subscribers via `WorkflowStream`.                                   |
+| Continue as New    | `npm run workflow:continue-as-new`    | Long-lived chat with history-aware continue-as-new.                                         |
 
 ### Directory layout
 

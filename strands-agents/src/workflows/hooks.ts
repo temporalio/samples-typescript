@@ -29,7 +29,7 @@ export async function hooksWorkflow(prompt: string): Promise<string[]> {
     strandsWorkflow.activityAsHook('persistToolCall', {
       activityInput: (event) => event.toolUse.name,
       activityOptions: { startToCloseTimeout: '15 seconds', retry: { maximumAttempts: 3 } },
-    })
+    }),
   );
 
   await agent.invoke(prompt);

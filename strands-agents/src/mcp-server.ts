@@ -10,7 +10,7 @@ server.registerTool(
     description: 'Return the input message unchanged.',
     inputSchema: { message: z.string() },
   },
-  async ({ message }) => ({ content: [{ type: 'text', text: message }] })
+  async ({ message }) => ({ content: [{ type: 'text', text: message }] }),
 );
 
 async function main() {

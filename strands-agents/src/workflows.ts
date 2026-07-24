@@ -1,10 +1,6 @@
 export { helloWorld } from './workflows/hello-world';
 export { toolsWorkflow } from './workflows/tools';
-export {
-  humanInTheLoop,
-  hitlApproveSignal,
-  hitlPendingApprovalQuery,
-} from './workflows/human-in-the-loop';
+export { humanInTheLoop, hitlApproveSignal, hitlPendingApprovalQuery } from './workflows/human-in-the-loop';
 export {
   activityInterrupt,
   activityInterruptApproveSignal,

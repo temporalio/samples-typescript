@@ -29,10 +29,7 @@ describe('humanInTheLoop workflow', () => {
         new StrandsPlugin({
           models: {
             bedrock: () =>
-              new StubModel([
-                toolCallTurn('deleteFile', 'call_1', { path: '/tmp/x' }),
-                textTurn('deleted /tmp/x'),
-              ]),
+              new StubModel([toolCallTurn('deleteFile', 'call_1', { path: '/tmp/x' }), textTurn('deleted /tmp/x')]),
           },
         }),
       ],

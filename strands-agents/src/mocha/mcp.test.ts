@@ -29,7 +29,7 @@ class StubMcpClient extends McpClient {
           name: t.name,
           description: t.description,
           toolSpec: { name: t.name, description: t.description, inputSchema: t.inputSchema },
-        }) as unknown as Tool
+        }) as unknown as Tool,
     ) as never;
   }
   override async callTool(tool: { name: string }, args: JSONValue): Promise<JSONValue> {
@@ -71,8 +71,7 @@ describe('mcpWorkflow', () => {
       plugins: [
         new StrandsPlugin({
           models: {
-            bedrock: () =>
-              new StubModel([toolCallTurn('echo', 'call_1', { message: 'hi' }), textTurn('echoed')]),
+            bedrock: () => new StubModel([toolCallTurn('echo', 'call_1', { message: 'hi' }), textTurn('echoed')]),
           },
           mcpClients: { echo: echoFactory },
         }),
@@ -84,7 +83,7 @@ describe('mcpWorkflow', () => {
         args: ['echo hi'],
         workflowId: 'test-mcp',
         taskQueue,
-      })
+      }),
     );
     assert.equal(result, 'echoed');
   });

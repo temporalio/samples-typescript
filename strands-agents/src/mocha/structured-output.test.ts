@@ -40,7 +40,7 @@ describe('structuredOutputWorkflow', () => {
         args: ['describe John'],
         workflowId: 'test-structured',
         taskQueue,
-      })
+      }),
     );
     assert.deepEqual(result, person);
   });

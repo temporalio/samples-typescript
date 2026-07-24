@@ -30,8 +30,7 @@ describe('hooksWorkflow', () => {
       plugins: [
         new StrandsPlugin({
           models: {
-            bedrock: () =>
-              new StubModel([toolCallTurn('echo', 'call_1', { text: 'hello' }), textTurn('done')]),
+            bedrock: () => new StubModel([toolCallTurn('echo', 'call_1', { text: 'hello' }), textTurn('done')]),
           },
         }),
       ],
@@ -42,7 +41,7 @@ describe('hooksWorkflow', () => {
         args: ['say hello'],
         workflowId: 'test-hooks',
         taskQueue,
-      })
+      }),
     );
     assert.deepEqual(fired, ['echo']);
   });

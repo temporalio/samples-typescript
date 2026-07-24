@@ -1,10 +1,6 @@
 import { Client, Connection } from '@temporalio/client';
 import { StrandsPlugin } from '@temporalio/strands-agents';
-import {
-  activityInterrupt,
-  activityInterruptApproveSignal,
-  activityInterruptPendingApprovalQuery,
-} from './workflows';
+import { activityInterrupt, activityInterruptApproveSignal, activityInterruptPendingApprovalQuery } from './workflows';
 
 async function run() {
   const connection = await Connection.connect({

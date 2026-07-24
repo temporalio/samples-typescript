@@ -33,7 +33,7 @@ describe('helloWorld workflow', () => {
         args: ['say hi'],
         workflowId: 'test-hello',
         taskQueue,
-      })
+      }),
     );
     assert.equal(result, 'hello from stub');
   });
