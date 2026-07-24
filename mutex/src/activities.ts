@@ -4,13 +4,13 @@ import { LockRequest, lockRequestSignal } from './shared';
 
 export function createActivities(client: Client) {
   return {
-    async signalWithStartLockWorkflow(resourceId: string, timeoutMs: number) {
+    async signalWithStartLockWorkflow(resourceId: string, timeoutMs: number, taskQueue: string) {
       const req: LockRequest = {
         initiatorId: activityInfo().workflowExecution!.workflowId,
         timeoutMs,
       };
       await client.workflow.signalWithStart('lockWorkflow', {
-        taskQueue: activityInfo().taskQueue,
+        taskQueue,
         workflowId: resourceId,
         signal: lockRequestSignal,
         signalArgs: [req],

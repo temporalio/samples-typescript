@@ -69,7 +69,7 @@ export async function oneAtATimeWorkflow(resourceId: string, sleepForMs = 500, l
   const hasLock = () => !!releaseSignalName;
 
   // Send a signal to the given lock Workflow to acquire the lock
-  await signalWithStartLockWorkflow(resourceId, lockTimeoutMs);
+  await signalWithStartLockWorkflow(resourceId, lockTimeoutMs, workflowInfo().taskQueue);
   await condition(hasLock);
 
   await notifyLocked(resourceId, releaseSignalName);

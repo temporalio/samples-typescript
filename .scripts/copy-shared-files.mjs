@@ -1,9 +1,5 @@
 // Run with https://github.com/google/zx
-const { readFileSync } = require('fs');
-
 const STORED_SAMPLES = new Set(require('./list-of-samples.json').samples);
-
-const yaml = require('yaml');
 
 const NON_SAMPLES = ['node_modules'];
 const ADDITIONAL_SAMPLES = [];
@@ -62,6 +58,15 @@ const ESLINTIGNORE_EXCLUDE = [
 ];
 
 const POST_CREATE_EXCLUDE = [
+  'openai-agents',
+  'env-config',
+  'dsl-interpreter',
+  'eager-workflow-start',
+  'standalone-activity',
+  'state',
+  'nexus-cancellation',
+  'nexus-hello',
+  'nexus-messaging',
   'schedules',
   'timer-examples',
   'query-subscriptions',
@@ -80,6 +85,7 @@ const POST_CREATE_EXCLUDE = [
   'worker-versioning',
   'empty',
   'scratchpad',
+  'workflow-streams',
 ];
 
 const PRETTIERRC_EXCLUDE = ['food-delivery'];
@@ -144,11 +150,16 @@ if (numSharedFilesChanged === 0 && !hasNewSamples) {
 
 await $`git add ${'./.scripts/list-of-samples.json'}`;
 
-let [answer] = await question(
-  `Running pre-commit hook.
+let answer;
+// Only prompt when stdin is a terminal — in non-interactive runs (Claude Code, CI,
+// git hooks where stdin carries ref data), proceed with the default.
+if (process.stdin.isTTY) {
+  [answer] = await question(
+    `Running pre-commit hook.
 This will overwrite changes made to most config files in samples (like ${chalk.bold('hello-world/tsconfig.json')}).
 Proceed? [Y/n] `
-);
+  );
+}
 
 if ((answer ?? 'y').toUpperCase() !== 'Y') {
   console.log(`To change config files, edit them in the ${chalk.bold('.shared/')} directory.\nAborting commit.`);
@@ -192,35 +203,6 @@ for (const sample of samples) {
 
   await copyAndAdd(sample, '.nvmrc');
 }
-
-process.stdout.write('Updating GitHub workflows...');
-
-const ciConfig = yaml.parseDocument(await fs.readFile('.github/workflows/ci.yml', 'utf8'));
-const jobsNode = ciConfig.contents.items.find((i) => i.key.value === 'jobs');
-const testNode = jobsNode.value.items.find((i) => i.key.value === 'test-individual');
-const testProjectsNode = testNode.value.items
-  .find((i) => i.key.value === 'strategy')
-  .value.items.find((i) => i.key.value === 'matrix')
-  .value.items.find((i) => i.key.value === 'project');
-
-testProjectsNode.value.items = [];
-
-for (const sample of samples) {
-  // Don't use require, because it won't work with ESM samples
-  const packageJson = JSON.parse(readFileSync(`./${sample}/package.json`));
-  const hasTestScript = !!packageJson.scripts.test;
-
-  if (hasTestScript) {
-    testProjectsNode.value.items.push(sample);
-  } else {
-    const index = testProjectsNode.value.items.indexOf(sample);
-    if (index >= 0) {
-      testProjectsNode.value.items.splice(index, 1);
-    }
-  }
-}
-
-await fs.writeFile('.github/workflows/ci.yml', ciConfig.toString());
 
 console.log(' done.');
 

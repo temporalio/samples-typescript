@@ -12,7 +12,11 @@ Use Node version 18+ (v22.x is recommended):
 Mac: {cyan brew install node@22}
 Other: https://nodejs.org/en/download/
 
-Then, in the project directory, using two other shells, run these commands:
+Then, in the project directory, start the Worker:
 
 {cyan npm run start.watch}
-{cyan npm run workflow}
+
+In another shell, run one of the sample Workflows:
+
+{cyan npm run workflow1}
+{cyan npm run workflow2}

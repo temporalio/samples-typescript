@@ -3,7 +3,7 @@
 This sample demonstrates how to configure the Temporal SDK to emit metrics and
 tracing spans through an OpenTelemetry collector.
 
-It features the `@temporalio/interceptors-opentelemetry` package, which uses
+It features the `@temporalio/interceptors-opentelemetry-v2` package, which uses
 [Interceptors](https://docs.temporal.io/develop/typescript/interceptors) to
 propagate the [OpenTelemetry](https://opentelemetry.io/) tracing context from a
 Client to Workflows, to Child Workflows, and up to Activities.
