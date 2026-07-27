@@ -2,7 +2,7 @@
 
 These samples use the `@temporalio/openai-agents` integration to run [OpenAI Agents SDK](https://github.com/openai/openai-agents-js) agents as Temporal Workflows. Agent orchestration — the agent loop, handoffs, tool calls, and guardrails — runs inside the Workflow, while model calls run as durable Activities, so they retry on failure and are not repeated during Workflow replay.
 
-This is a single project: one `package.json` and one set of configs at the `openai-agents/` root, with each scenario in its own subdirectory. Run `npm install` once here, then run any scenario by path (see each scenario's README). The integration package itself is documented in the [`@temporalio/openai-agents` README](https://github.com/temporalio/sdk-typescript/tree/main/packages/openai-agents).
+This is a single project: one `package.json` and one set of configs at the `openai-agents/` root, with each scenario in its own subdirectory. Run `npm install` once here, then run any scenario by path (see each scenario's README). The integration package itself is documented in the [`@temporalio/openai-agents` README](https://github.com/temporalio/sdk-typescript/tree/main/contrib/openai-agents).
 
 ## Prerequisites
 
