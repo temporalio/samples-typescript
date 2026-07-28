@@ -4,14 +4,10 @@ import { Worker } from '@temporalio/worker';
 import { Client } from '@temporalio/client';
 import { OpenAIAgentsPlugin } from '@temporalio/openai-agents';
 import { WorkflowStreamClient } from '@temporalio/workflow-streams/client';
+import { type StreamEvent } from '@openai/agents-core';
 import assert from 'assert';
 import { StreamingFakeModelProvider, streamingTextEvents } from './fake-model';
-import { streamingChat, streamingTopic } from '../workflows';
-
-interface ModelStreamEvent {
-  type?: string;
-  delta?: string;
-}
+import { consumerDoneSignal, streamingChat, streamingTopic } from '../workflows';
 
 describe('openai-agents/streaming workflow scenarios', function () {
   this.timeout(30_000);
@@ -26,9 +22,14 @@ describe('openai-agents/streaming workflow scenarios', function () {
     await testEnv?.teardown();
   });
 
-  it('streamingChat: external subscriber receives the streamed events in order', async () => {
+  it('streamingChat: external subscriber receives the streamed events while the run is in flight', async () => {
     const taskQueue = 'test-streaming';
     const events = streamingTextEvents('Hello streamed world');
+
+    let releaseFinalEvent!: () => void;
+    const finalEventGate = new Promise<void>((resolve) => {
+      releaseFinalEvent = resolve;
+    });
 
     const worker = await Worker.create({
       connection: testEnv.nativeConnection,
@@ -36,7 +37,7 @@ describe('openai-agents/streaming workflow scenarios', function () {
       workflowsPath: require.resolve('../workflows'),
       plugins: [
         new OpenAIAgentsPlugin({
-          modelProvider: new StreamingFakeModelProvider(events),
+          modelProvider: new StreamingFakeModelProvider(events, finalEventGate),
         }),
       ],
       bundlerOptions: {
@@ -69,17 +70,19 @@ describe('openai-agents/streaming workflow scenarios', function () {
         args: ['Hi'],
       });
 
-      const received: ModelStreamEvent[] = [];
+      const received: StreamEvent[] = [];
       const streamClient = WorkflowStreamClient.create(client, workflowId);
-      const gen = streamClient.topic<ModelStreamEvent>(streamingTopic).subscribe(0, { pollCooldown: 0 });
+      const gen = streamClient.topic<StreamEvent>(streamingTopic).subscribe(0, { pollCooldown: 0 });
       const collect = (async () => {
         for await (const item of gen) {
           received.push(item.data);
+          releaseFinalEvent();
           if (received.length >= events.length) {
             await gen.return();
             break;
           }
         }
+        await handle.signal(consumerDoneSignal);
       })();
 
       const finalOutput = await handle.result();
@@ -90,10 +93,7 @@ describe('openai-agents/streaming workflow scenarios', function () {
         received.map((e) => e.type),
         events.map((e) => e.type),
       );
-      const streamedText = received
-        .filter((e) => e.type === 'output_text_delta')
-        .map((e) => e.delta)
-        .join('');
+      const streamedText = received.map((e) => (e.type === 'output_text_delta' ? e.delta : '')).join('');
       assert.strictEqual(streamedText, 'Hello streamed world');
       return finalOutput;
     });

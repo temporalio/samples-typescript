@@ -165,7 +165,7 @@ and you'll be given the list of sample options.
 
 #### AI / LLM
 
-- [**OpenAI Agents**](./openai-agents): Run [OpenAI Agents SDK](https://github.com/openai/openai-agents-js) agents as Temporal Workflows with the `@temporalio/openai-agents` integration. The [`openai-agents/`](./openai-agents) directory contains fourteen samples:
+- [**OpenAI Agents**](./openai-agents): Run [OpenAI Agents SDK](https://github.com/openai/openai-agents-js) agents as Temporal Workflows with the `@temporalio/openai-agents` integration. The [`openai-agents/`](./openai-agents) directory contains fifteen samples:
   - [**Basic**](./openai-agents/basic): A single agent plus the building blocks — Activity-backed and inline tools, local-Activity tools, agent context, structured output, per-run model override, and dynamic instructions.
   - [**Handoffs**](./openai-agents/handoffs): A triage agent routes each request to a specialist agent, using both the `Agent[]` and `handoff()` forms and a per-handoff input filter.
   - [**Agent Patterns**](./openai-agents/agent-patterns): Multi-agent orchestration patterns — deterministic chaining, parallelization, LLM-as-judge, agents-as-tools, and input/output guardrails.
@@ -180,6 +180,7 @@ and you'll be given the list of sample options.
   - [**Research Bot**](./openai-agents/research-bot): A planner agent fans out concurrent web searches and a writer agent synthesizes a final report.
   - [**Customer Service**](./openai-agents/customer-service): A long-running, multi-turn Workflow driven by Updates and Queries, with triage handoffs and `continueAsNew` to bound history.
   - [**Nexus Tools**](./openai-agents/nexus-tools): Expose a Nexus Operation as an agent tool with `nexusOperationAsTool`.
+  - [**Streaming**](./openai-agents/src/streaming): Run an agent in streaming mode over a Workflow Stream, with an external client subscribing to the model's deltas live.
 
 ### Full-stack apps
 

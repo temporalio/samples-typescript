@@ -2,7 +2,7 @@
 
 Demonstrates the streaming API of the Temporal OpenAI Agents integration. The Workflow hosts a
 [Workflow Stream](https://github.com/temporalio/sdk-typescript/tree/main/contrib/workflow-streams)
-and runs an agent in streaming mode with `runner.run(agent, input, { stream: true })`. As the model
+and runs an agent in streaming mode with `new TemporalOpenAIRunner().run(agent, input, { stream: true })`. As the model
 responds, the streaming model Activity publishes each raw model stream event to the Workflow Stream
 topic, and an external client subscribes to that topic to print the deltas live.
 

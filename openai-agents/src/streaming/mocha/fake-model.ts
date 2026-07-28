@@ -1,5 +1,5 @@
 import {
-  type AgentOutputItem,
+  type AssistantMessageItem,
   type Model,
   type ModelProvider,
   type ModelRequest,
@@ -8,7 +8,7 @@ import {
 } from '@openai/agents-core';
 
 export function streamingTextEvents(text: string): StreamEvent[] {
-  const output: AgentOutputItem[] = [
+  const output: AssistantMessageItem[] = [
     {
       type: 'message',
       id: 'msg_fake_stream_001',
@@ -19,7 +19,7 @@ export function streamingTextEvents(text: string): StreamEvent[] {
   ];
   const chunks = text.match(/\s*\S+\s*/g) ?? [text];
   return [
-    ...chunks.map((delta) => ({ type: 'output_text_delta', delta })),
+    ...chunks.map((delta): StreamEvent => ({ type: 'output_text_delta', delta })),
     {
       type: 'response_done',
       response: {
@@ -28,25 +28,30 @@ export function streamingTextEvents(text: string): StreamEvent[] {
         output,
       },
     },
-  ] as StreamEvent[];
+  ];
 }
 
 export class StreamingFakeModel implements Model {
-  constructor(private readonly events: StreamEvent[]) {}
+  constructor(
+    private readonly events: StreamEvent[],
+    private readonly finalEventGate?: Promise<void>,
+  ) {}
   async getResponse(_request: ModelRequest): Promise<ModelResponse> {
     throw new Error('StreamingFakeModel only supports getStreamedResponse');
   }
   async *getStreamedResponse(_request: ModelRequest): AsyncIterable<StreamEvent> {
-    for (const event of this.events) {
+    for (const event of this.events.slice(0, -1)) {
       yield event;
     }
+    await this.finalEventGate;
+    yield this.events[this.events.length - 1];
   }
 }
 
 export class StreamingFakeModelProvider implements ModelProvider {
   private readonly model: StreamingFakeModel;
-  constructor(events: StreamEvent[]) {
-    this.model = new StreamingFakeModel(events);
+  constructor(events: StreamEvent[], finalEventGate?: Promise<void>) {
+    this.model = new StreamingFakeModel(events, finalEventGate);
   }
   getModel(_name?: string): Model {
     return this.model;

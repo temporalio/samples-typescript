@@ -1,14 +1,10 @@
 import { Connection, Client } from '@temporalio/client';
 import { OpenAIAgentsPlugin } from '@temporalio/openai-agents';
 import { OpenAIProvider } from '@openai/agents-openai';
+import { type StreamEvent } from '@openai/agents-core';
 import { WorkflowStreamClient } from '@temporalio/workflow-streams/client';
-import { streamingChat, streamingTopic } from './workflows';
+import { consumerDoneSignal, streamingChat, streamingTopic } from './workflows';
 import { nanoid } from 'nanoid';
-
-interface ModelStreamEvent {
-  type?: string;
-  delta?: string;
-}
 
 async function run() {
   const connection = await Connection.connect();
@@ -34,16 +30,17 @@ async function run() {
   console.log(`Started workflow ${handle.workflowId}`);
 
   const streamClient = WorkflowStreamClient.create(client, workflowId);
-  const subscriber = (async () => {
-    for await (const item of streamClient.topic<ModelStreamEvent>(streamingTopic).subscribe()) {
-      if (item.data.type === 'output_text_delta' && item.data.delta) {
-        process.stdout.write(item.data.delta);
-      }
+  for await (const item of streamClient.topic<StreamEvent>(streamingTopic).subscribe()) {
+    if (item.data.type === 'output_text_delta') {
+      process.stdout.write(item.data.delta);
     }
-  })();
+    if (item.data.type === 'response_done') {
+      break;
+    }
+  }
+  await handle.signal(consumerDoneSignal);
 
   const result = await handle.result();
-  await subscriber;
   console.log('\n---');
   console.log(result);
 }
