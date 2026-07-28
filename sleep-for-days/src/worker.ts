@@ -1,4 +1,4 @@
-// @@@SNIPSTART typescript-hello-worker
+// @@@SNIPSTART typescript-sleep-for-days-worker
 import { NativeConnection, Worker } from '@temporalio/worker';
 import * as activities from './activities';
 
