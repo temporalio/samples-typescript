@@ -30,6 +30,7 @@ const TSCONFIG_EXCLUDE = [
   'scratchpad',
 ];
 const GITIGNORE_EXCLUDE = [
+  'external-storage',
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'production',
