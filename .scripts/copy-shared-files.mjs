@@ -31,6 +31,7 @@ const TSCONFIG_EXCLUDE = [
   'langsmith',
 ];
 const GITIGNORE_EXCLUDE = [
+  'external-storage',
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'production',

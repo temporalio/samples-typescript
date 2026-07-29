@@ -1120,6 +1120,79 @@ importers:
         specifier: ^5.6.3
         version: 5.7.3
 
+  external-storage:
+    dependencies:
+      '@temporalio/activity':
+        specifier: ^1.21.0
+        version: 1.23.0
+      '@temporalio/client':
+        specifier: ^1.21.0
+        version: 1.23.0
+      '@temporalio/common':
+        specifier: ^1.21.0
+        version: 1.23.0
+      '@temporalio/envconfig':
+        specifier: ^1.21.0
+        version: 1.23.0
+      '@temporalio/proto':
+        specifier: ^1.21.0
+        version: 1.23.0
+      '@temporalio/worker':
+        specifier: ^1.21.0
+        version: 1.23.0(@swc/helpers@0.5.15)
+      '@temporalio/workflow':
+        specifier: ^1.21.0
+        version: 1.23.0
+      nanoid:
+        specifier: ^3.3.8
+        version: 3.3.12
+    devDependencies:
+      '@temporalio/testing':
+        specifier: ^1.21.0
+        version: 1.23.0(@swc/helpers@0.5.15)
+      '@tsconfig/node22':
+        specifier: ^22.0.0
+        version: 22.0.5
+      '@types/mocha':
+        specifier: ^9.1.1
+        version: 9.1.1
+      '@types/node':
+        specifier: ^22.9.1
+        version: 22.12.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.18.0
+        version: 8.22.0(@typescript-eslint/parser@8.22.0(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3)
+      '@typescript-eslint/parser':
+        specifier: ^8.18.0
+        version: 8.22.0(eslint@8.57.1)(typescript@5.7.3)
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@8.57.1)
+      eslint-plugin-deprecation:
+        specifier: ^3.0.0
+        version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
+      mocha:
+        specifier: ^10.0.0
+        version: 10.2.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+      nodemon:
+        specifier: ^3.1.7
+        version: 3.1.9
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
+      source-map-support:
+        specifier: ^0.5.21
+        version: 0.5.21
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.7.3
+
   fetch-esm:
     dependencies:
       '@temporalio/activity':
@@ -9565,11 +9638,6 @@ packages:
 
   acorn@7.4.1:
     resolution: {integrity: sha512-nQyp0o1/mNdbTO1PO6kHkwSrmgZ0MT/jCCpNiwbUjGoRN4dlBhqJtoQuCnEOKzgTVwg0ZWiCoQy6SxMebQVh8A==}
-    engines: {node: '>=0.4.0'}
-    hasBin: true
-
-  acorn@8.15.0:
-    resolution: {integrity: sha512-NZyJarBfL7nWwIq+FDL6Zp/yHEhePMNnnJ0y3qfieCrmNvYct8uvtiV41UvlSe6apAfk0fY1FbWx+NwfmpvtTg==}
     engines: {node: '>=0.4.0'}
     hasBin: true
 
@@ -18522,7 +18590,7 @@ snapshots:
     dependencies:
       '@babel/compat-data': 7.26.5
       '@babel/helper-validator-option': 7.25.9
-      browserslist: 4.24.4
+      browserslist: 4.28.2
       lru-cache: 5.1.1
       semver: 6.3.1
 
@@ -21587,7 +21655,7 @@ snapshots:
   '@mikro-orm/mariadb@6.6.16(@mikro-orm/core@6.6.16)(pg@8.20.0)':
     dependencies:
       '@mikro-orm/core': 6.6.16
-      '@mikro-orm/knex': 6.6.16(@mikro-orm/core@6.6.16)(mariadb@3.4.5)(mysql2@3.20.0(@types/node@22.12.0))(pg@8.20.0)
+      '@mikro-orm/knex': 6.6.16(@mikro-orm/core@6.6.16)(mariadb@3.4.5)(pg@8.20.0)(sqlite3@5.1.7)
       mariadb: 3.4.5
     transitivePeerDependencies:
       - better-sqlite3
@@ -21640,7 +21708,7 @@ snapshots:
   '@mikro-orm/postgresql@6.6.16(@mikro-orm/core@6.6.16)(mariadb@3.4.5)':
     dependencies:
       '@mikro-orm/core': 6.6.16
-      '@mikro-orm/knex': 6.6.16(@mikro-orm/core@6.6.16)(mariadb@3.4.5)(mysql2@3.20.0(@types/node@22.12.0))(pg@8.20.0)
+      '@mikro-orm/knex': 6.6.16(@mikro-orm/core@6.6.16)(mariadb@3.4.5)(pg@8.20.0)(sqlite3@5.1.7)
       pg: 8.20.0
       postgres-array: 3.0.4
       postgres-date: 2.1.0
@@ -24465,7 +24533,7 @@ snapshots:
     dependencies:
       '@mapbox/node-pre-gyp': 1.0.11(encoding@0.1.13)
       '@rollup/pluginutils': 4.2.1
-      acorn: 8.15.0
+      acorn: 8.16.0
       async-sema: 3.1.1
       bindings: 1.5.0
       estree-walker: 2.0.2
@@ -24767,8 +24835,6 @@ snapshots:
       acorn: 8.16.0
 
   acorn@7.4.1: {}
-
-  acorn@8.15.0: {}
 
   acorn@8.16.0: {}
 

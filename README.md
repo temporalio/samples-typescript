@@ -145,6 +145,7 @@ and you'll be given the list of sample options.
 - [**Worker Versioning**](./worker-versioning): Version Workers with Build IDs in order to deploy incompatible changes to Workflow code.
 - [**Protobufs**](./protobufs): Use [Protobufs](https://docs.temporal.io/security/#default-data-converter).
 - [**Custom Payload Converter**](./ejson): Customize data serialization by creating a `PayloadConverter` that uses EJSON to convert Dates, binary, and regexes.
+- [**External Storage**](./external-storage): Keep large payloads out of Workflow History by writing a custom `StorageDriver` that offloads them to disk, where other Workers can read them back.
 - **Monorepos**:
   - [`/monorepo-folders`](./monorepo-folders): yarn workspace with packages for a web frontend, API server, Worker, and Workflows/Activities.
   - [`psigen/temporal-ts-example`](https://github.com/psigen/temporal-ts-example): yarn workspace containerized with [tilt](https://tilt.dev/). Includes `temporalite`, `parcel`, and different packages for Workflows and Activities.
