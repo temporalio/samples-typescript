@@ -41,6 +41,7 @@ export const PAYLOAD_SIZE_THRESHOLD = 32 * 1024;
  * retrieving happen in Worker and Client code, outside the sandbox, so the driver is
  * free to do I/O and hold connections.
  */
+// @@@SNIPSTART typescript-custom-driver-data-converter
 export function createDataConverter(rootDir: string = STORAGE_ROOT): DataConverter {
   return {
     externalStorage: new ExternalStorage({
@@ -58,3 +59,4 @@ export function createDataConverter(rootDir: string = STORAGE_ROOT): DataConvert
     }),
   };
 }
+// @@@SNIPEND
