@@ -2894,6 +2894,9 @@ importers:
       '@temporalio/workflow':
         specifier: ^1.21.0
         version: 1.21.0
+      '@temporalio/workflow-streams':
+        specifier: ^1.21.0
+        version: 1.21.0
       nanoid:
         specifier: 3.x
         version: 3.3.12
