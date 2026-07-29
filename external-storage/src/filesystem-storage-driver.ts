@@ -79,7 +79,6 @@ export interface FileSystemStorageDriverOptions {
  * a Workflow result, retrieval fails. That cross-process handoff is the whole point of
  * external storage, so this driver uses the filesystem.
  */
-// @@@SNIPSTART typescript-custom-storage-driver
 export class FileSystemStorageDriver implements StorageDriver {
   readonly name: string;
 
@@ -109,6 +108,7 @@ export class FileSystemStorageDriver implements StorageDriver {
    * safe to let errors propagate instead of, say, silently falling back to inline
    * payloads, which would defeat the point of the size threshold.
    */
+  // @@@SNIPSTART typescript-custom-storage-driver
   async store(context: StorageDriverStoreContext, payloads: Payload[]): Promise<StorageDriverClaim[]> {
     const keyPrefix = buildKeyPrefix(context.target);
     return runAllAbortingOnFirstError(context.abortSignal, (signal) =>
@@ -122,6 +122,7 @@ export class FileSystemStorageDriver implements StorageDriver {
       claims.map((claim) => this.retrievePayload(claim, signal)),
     );
   }
+  // @@@SNIPEND
 
   private async storePayload(
     payload: Payload,
@@ -243,7 +244,6 @@ export class FileSystemStorageDriver implements StorageDriver {
     return filePath;
   }
 }
-// @@@SNIPEND
 
 /**
  * Builds the directory prefix for a blob from the Workflow or Activity that produced
