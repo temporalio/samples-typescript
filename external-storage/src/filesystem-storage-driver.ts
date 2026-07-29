@@ -79,6 +79,7 @@ export interface FileSystemStorageDriverOptions {
  * a Workflow result, retrieval fails. That cross-process handoff is the whole point of
  * external storage, so this driver uses the filesystem.
  */
+// @@@SNIPSTART typescript-custom-storage-driver
 export class FileSystemStorageDriver implements StorageDriver {
   readonly name: string;
 
@@ -242,6 +243,7 @@ export class FileSystemStorageDriver implements StorageDriver {
     return filePath;
   }
 }
+// @@@SNIPEND
 
 /**
  * Builds the directory prefix for a blob from the Workflow or Activity that produced
