@@ -34,9 +34,9 @@
     "@temporalio/worker": "^1.22.0",
     "@temporalio/workflow": "^1.22.0",
     "@temporalio/workflow-streams": "^1.22.0",
-    "ai": "^7.0.0",
+    "ai": "7.0.41",
     "nanoid": "3.x",
-    "zod": "^3.25.76"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
     "@temporalio/testing": "^1.22.0",
