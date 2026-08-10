@@ -1,3 +1,4 @@
+import path from 'node:path';
 import { NativeConnection, Worker } from '@temporalio/worker';
 import * as activities from './activities';
 import { AiSdkPlugin } from '@temporalio/ai-sdk';
@@ -12,12 +13,18 @@ async function run() {
   try {
     // This is only used by the MCP Sample
     // @@@SNIPSTART typescript-vercel-ai-sdk-mcp-client-factories
+    const mcpServerPath = require.resolve('./mcp-server');
+    const mcpServerArgs = mcpServerPath.endsWith('.ts')
+      ? ['-r', require.resolve('ts-node/register'), mcpServerPath]
+      : [mcpServerPath];
+
     const mcpClientFactories = {
       testServer: () =>
         createMCPClient({
           transport: new StdioClientTransport({
-            command: 'node',
-            args: ['lib/mcp-server.js'],
+            command: process.execPath,
+            args: mcpServerArgs,
+            cwd: path.resolve(__dirname, '..'),
           }),
         }),
     };
