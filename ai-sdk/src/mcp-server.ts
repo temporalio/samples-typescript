@@ -46,7 +46,8 @@ server.registerTool(
 async function main() {
   const transport = new StdioServerTransport();
   await server.connect(transport);
-  console.log('Pokemon MCP Server running on stdio');
+  // Log to stderr: stdout is the JSON-RPC channel for a stdio MCP server.
+  console.error('Pokemon MCP Server running on stdio');
 }
 
 main().catch((error) => {
