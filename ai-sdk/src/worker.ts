@@ -13,9 +13,6 @@ async function run() {
   try {
     // This is only used by the MCP Sample
     // @@@SNIPSTART typescript-vercel-ai-sdk-mcp-client-factories
-    // Resolve the MCP server script to an absolute path so it's found regardless of the Worker's
-    // cwd, and run it with the same runtime as the Worker: ts-node when running the sources in
-    // `src`, plain node when running the compiled output in `lib`.
     const mcpServerPath = require.resolve('./mcp-server');
     const mcpServerArgs = mcpServerPath.endsWith('.ts')
       ? ['-r', require.resolve('ts-node/register'), mcpServerPath]
@@ -25,10 +22,8 @@ async function run() {
       testServer: () =>
         createMCPClient({
           transport: new StdioClientTransport({
-            // The same Node binary that's running this Worker.
             command: process.execPath,
             args: mcpServerArgs,
-            // Run from the project root so ts-node picks up this project's tsconfig.json.
             cwd: path.resolve(__dirname, '..'),
           }),
         }),
