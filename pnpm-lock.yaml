@@ -2792,6 +2792,76 @@ importers:
         specifier: ^5.6.3
         version: 5.7.3
 
+  nexus-standalone-activity:
+    dependencies:
+      '@temporalio/activity':
+        specifier: link:../../../sdk-typescript/packages/activity
+        version: link:../../../sdk-typescript/packages/activity
+      '@temporalio/client':
+        specifier: link:../../../sdk-typescript/packages/client
+        version: link:../../../sdk-typescript/packages/client
+      '@temporalio/envconfig':
+        specifier: link:../../../sdk-typescript/packages/envconfig
+        version: link:../../../sdk-typescript/packages/envconfig
+      '@temporalio/nexus':
+        specifier: link:../../../sdk-typescript/packages/nexus
+        version: link:../../../sdk-typescript/packages/nexus
+      '@temporalio/worker':
+        specifier: link:../../../sdk-typescript/packages/worker
+        version: link:../../../sdk-typescript/packages/worker
+      nanoid:
+        specifier: ~3.3.12
+        version: 3.3.12
+      nexus-rpc:
+        specifier: ^0.0.2
+        version: 0.0.2
+    devDependencies:
+      '@temporalio/testing':
+        specifier: link:../../../sdk-typescript/packages/testing
+        version: link:../../../sdk-typescript/packages/testing
+      '@tsconfig/node22':
+        specifier: ^22.0.0
+        version: 22.0.5
+      '@types/mocha':
+        specifier: 10.x
+        version: 10.0.10
+      '@types/node':
+        specifier: ^22.9.1
+        version: 22.12.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.18.0
+        version: 8.22.0(@typescript-eslint/parser@8.22.0(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3)
+      '@typescript-eslint/parser':
+        specifier: ^8.18.0
+        version: 8.22.0(eslint@8.57.1)(typescript@5.7.3)
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@8.57.1)
+      eslint-plugin-deprecation:
+        specifier: ^3.0.0
+        version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
+      mocha:
+        specifier: 10.x
+        version: 10.2.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
+      nodemon:
+        specifier: ^3.1.7
+        version: 3.1.9
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
+      source-map-support:
+        specifier: ^0.5.21
+        version: 0.5.21
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.7.3
+
   nexus-standalone-operations:
     dependencies:
       '@temporalio/client':

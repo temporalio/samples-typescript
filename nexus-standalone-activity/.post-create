@@ -1,0 +1,13 @@
+Use Node version 20.3+ (v22.x is recommended):
+
+Mac: {cyan brew install node@22}
+Other: https://nodejs.org/en/download/
+
+Install this sample's main-branch SDK dependencies:
+
+{cyan pnpm install}
+
+Then follow README.md to start a compatible Temporal dev server, create the Nexus endpoint, and run:
+
+{cyan pnpm run worker}
+{cyan pnpm run starter}
