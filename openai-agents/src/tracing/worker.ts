@@ -40,6 +40,7 @@ async function run() {
       connection,
       taskQueue: 'openai-agents-tracing',
       workflowsPath: require.resolve('./workflows'),
+      // @@@SNIPSTART typescript-openai-agents-tracing-worker
       plugins: [
         new OpenAIAgentsPlugin({
           modelProvider: new OpenAIProvider({ apiKey }),
@@ -47,6 +48,7 @@ async function run() {
           interceptorOptions: { useOtelInstrumentation, addTemporalSpans: true },
         }),
       ],
+      // @@@SNIPEND
       bundlerOptions: {
         webpackConfigHook: (config) => ({
           ...config,

@@ -26,6 +26,29 @@ async function run() {
 
     const filesystemServerPath = path.resolve(__dirname, 'servers', 'filesystem-server.ts');
 
+    // @@@SNIPSTART typescript-openai-agents-mcp-worker
+    // A stateless provider reconnects per operation, so each tool call stands alone.
+    const statelessProviders = [
+      new StatelessMCPServerProvider(
+        'filesystem',
+        () =>
+          new MCPServerStdio({
+            command: 'npx',
+            args: ['ts-node', filesystemServerPath],
+            name: 'filesystem',
+          }),
+      ),
+      new StatelessMCPServerProvider(
+        'streamableHttp',
+        () => new MCPServerStreamableHttp({ url: toolsHttp.url, name: 'streamableHttp' }),
+      ),
+      new StatelessMCPServerProvider('sse', () => new MCPServerSSE({ url: toolsSse.url, name: 'sse' })),
+    ];
+
+    // A stateful provider also takes the connection, which the plugin uses to run a
+    // dedicated Worker holding the MCP session open for the life of the Workflow run.
+    const statefulProviders = [new StatefulMCPServerProvider('memory', () => createNotesServer(), connection)];
+
     const worker = await Worker.create({
       connection,
       taskQueue: 'openai-agents-mcp',
@@ -35,25 +58,10 @@ async function run() {
         new OpenAIAgentsPlugin({
           modelProvider: new OpenAIProvider({ apiKey }),
           modelParams: { useLocalActivity: true },
-          mcpServerProviders: [
-            new StatelessMCPServerProvider(
-              'filesystem',
-              () =>
-                new MCPServerStdio({
-                  command: 'npx',
-                  args: ['ts-node', filesystemServerPath],
-                  name: 'filesystem',
-                }),
-            ),
-            new StatelessMCPServerProvider(
-              'streamableHttp',
-              () => new MCPServerStreamableHttp({ url: toolsHttp.url, name: 'streamableHttp' }),
-            ),
-            new StatelessMCPServerProvider('sse', () => new MCPServerSSE({ url: toolsSse.url, name: 'sse' })),
-            new StatefulMCPServerProvider('memory', () => createNotesServer(), connection),
-          ],
+          mcpServerProviders: [...statelessProviders, ...statefulProviders],
         }),
       ],
+      // @@@SNIPEND
       bundlerOptions: {
         webpackConfigHook: (config) => ({
           ...config,
