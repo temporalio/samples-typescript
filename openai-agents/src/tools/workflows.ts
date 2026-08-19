@@ -2,6 +2,7 @@ import { Agent } from '@openai/agents-core';
 import { webSearchTool, imageGenerationTool, codeInterpreterTool } from '@openai/agents-openai';
 import { TemporalOpenAIRunner } from '@temporalio/openai-agents/workflow';
 
+// @@@SNIPSTART typescript-openai-agents-hosted-tool-workflow
 export async function webSearch(prompt: string): Promise<string> {
   const agent = new Agent({
     name: 'WebSearchAgent',
@@ -11,6 +12,7 @@ export async function webSearch(prompt: string): Promise<string> {
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
   return result.finalOutput ?? '';
 }
+// @@@SNIPEND
 
 export async function imageGeneration(prompt: string): Promise<string> {
   const agent = new Agent({

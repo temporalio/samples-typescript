@@ -11,6 +11,7 @@ async function run() {
 
   const connection = await NativeConnection.connect({ address: 'localhost:7233' });
   try {
+    // @@@SNIPSTART typescript-openai-agents-hello-world-worker
     const worker = await Worker.create({
       connection,
       taskQueue: 'openai-agents-basic',
@@ -33,6 +34,7 @@ async function run() {
       },
     });
     await worker.run();
+    // @@@SNIPEND
   } finally {
     await connection.close();
   }

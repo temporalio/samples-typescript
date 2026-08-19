@@ -3,6 +3,7 @@ import type { AgentInputItem } from '@openai/agents-core';
 import { TemporalOpenAIRunner, WorkflowSafeMemorySession } from '@temporalio/openai-agents/workflow';
 import { continueAsNew } from '@temporalio/workflow';
 
+// @@@SNIPSTART typescript-openai-agents-session-workflow
 export async function multiTurnChat(prompts: string[]): Promise<string[]> {
   const agent = new Agent({ name: 'ChatAgent', instructions: 'You are a helpful assistant.' });
   const session = new WorkflowSafeMemorySession();
@@ -14,6 +15,7 @@ export async function multiTurnChat(prompts: string[]): Promise<string[]> {
   }
   return replies;
 }
+// @@@SNIPEND
 
 export interface CarryoverChatInput {
   prompts: string[];
@@ -21,6 +23,7 @@ export interface CarryoverChatInput {
   accumulated?: string[];
 }
 
+// @@@SNIPSTART typescript-openai-agents-session-carryover-workflow
 export async function carryoverChat(input: CarryoverChatInput): Promise<string[] | void> {
   const agent = new Agent({ name: 'ChatAgent', instructions: 'You are a helpful assistant.' });
   const session = new WorkflowSafeMemorySession({ initialItems: input.initialItems });
@@ -46,3 +49,4 @@ export async function carryoverChat(input: CarryoverChatInput): Promise<string[]
     accumulated,
   });
 }
+// @@@SNIPEND

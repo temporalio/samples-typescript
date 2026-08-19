@@ -8,6 +8,7 @@ export interface ApprovalInput {
   resumeFromRunState?: string;
 }
 
+// @@@SNIPSTART typescript-openai-agents-approval-workflow
 export async function approvalWorkflow(input: ApprovalInput = {}): Promise<string> {
   const action = tool({
     name: 'dangerousAction',
@@ -57,3 +58,4 @@ export async function approvalWorkflow(input: ApprovalInput = {}): Promise<strin
   await continueAsNew<typeof approvalWorkflow>({ resumeFromRunState: result.state.toString() });
   throw new Error('unreachable');
 }
+// @@@SNIPEND

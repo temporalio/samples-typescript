@@ -5,6 +5,7 @@ import type { Activities } from './activities';
 
 const activities = proxyActivities<Activities>({ startToCloseTimeout: '1 minute' });
 
+// @@@SNIPSTART typescript-openai-agents-stateless-mcp-workflow
 export async function filesystem(prompt: string): Promise<string> {
   const agent = new Agent({
     name: 'FilesystemAgent',
@@ -14,6 +15,7 @@ export async function filesystem(prompt: string): Promise<string> {
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
   return result.finalOutput ?? '';
 }
+// @@@SNIPEND
 
 export async function streamableHttp(prompt: string): Promise<string> {
   const agent = new Agent({
@@ -45,6 +47,7 @@ export async function promptServer(prompt: string): Promise<string> {
   return result.finalOutput ?? '';
 }
 
+// @@@SNIPSTART typescript-openai-agents-stateful-mcp-workflow
 export async function statefulMemory(prompt: string): Promise<string> {
   const server = statefulMcpServer('memory');
   await server.connect();
@@ -60,3 +63,4 @@ export async function statefulMemory(prompt: string): Promise<string> {
     await server.cleanup();
   }
 }
+// @@@SNIPEND
