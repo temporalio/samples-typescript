@@ -61,7 +61,6 @@ async function run() {
           mcpServerProviders: [...statelessProviders, ...statefulProviders],
         }),
       ],
-      // @@@SNIPEND
       bundlerOptions: {
         webpackConfigHook: (config) => ({
           ...config,
@@ -72,6 +71,7 @@ async function run() {
         }),
       },
     });
+    // @@@SNIPEND
 
     await worker.run();
   } finally {
