@@ -23,8 +23,10 @@ Run these from the `google-adk-agents/` root (run `npm install` there once first
 GEMINI_API_KEY=... npx ts-node src/observability/worker.ts
 
 # In another terminal, run the scenario:
-npx ts-node src/observability/client.ts
+temporal workflow start --type observedAgent --task-queue google-adk-observability --workflow-id google-adk-observability-1 --input '["Write a haiku about durable execution.","Write a haiku about replay."]'
 ```
+
+For a credential-free local run, start the Worker with `MODEL_PROVIDER=fake npx ts-node src/observability/worker.ts`.
 
 The per-call token, model, and latency lines print in the Worker's terminal.
 

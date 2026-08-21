@@ -9,7 +9,6 @@ import assert from 'assert';
 import * as activities from '../activities';
 import { weatherAgent } from '../workflows';
 
-// A fresh model instance per Activity invocation, so the turn has to come from the request.
 function weatherModelProvider(): (model: string) => BaseLlm {
   class WeatherLlm extends BaseLlm {
     override async *generateContentAsync(
@@ -17,12 +16,21 @@ function weatherModelProvider(): (model: string) => BaseLlm {
       _stream = false,
       _abortSignal?: AbortSignal,
     ): AsyncGenerator<LlmResponse, void> {
-      const toolResponse = (llmRequest.contents ?? [])
-        .flatMap((content) => content.parts ?? [])
-        .find((part) => part.functionResponse?.name === 'getWeather')?.functionResponse?.response as
-        | { result?: unknown; error?: unknown }
-        | undefined;
+      const parts = (llmRequest.contents ?? []).flatMap((content) => content.parts ?? []);
+      const conversion = parts.find((part) => part.functionResponse?.name === 'celsiusToFahrenheit');
+      const toolResponse = parts.find((part) => part.functionResponse?.name === 'getWeather')?.functionResponse
+        ?.response as { result?: unknown; error?: unknown } | undefined;
       if (toolResponse === undefined) {
+        if (conversion === undefined) {
+          yield {
+            content: {
+              role: 'model',
+              parts: [{ functionCall: { name: 'celsiusToFahrenheit', args: { celsius: 17 } } }],
+            },
+            turnComplete: true,
+          };
+          return;
+        }
         yield {
           content: { role: 'model', parts: [{ functionCall: { name: 'getWeather', args: { city: 'Tokyo' } } }] },
           turnComplete: true,
@@ -82,7 +90,8 @@ describe('google-adk-agents/tools workflow scenarios', function () {
     const { events } = await testEnv.client.workflow.getHandle(workflowId).fetchHistory();
     const scheduled = (events ?? []).map((e) => e.activityTaskScheduledEventAttributes?.activityType?.name);
     assert.strictEqual(scheduled.filter((name) => name === 'getWeather').length, 1);
-    assert.strictEqual(scheduled.filter((name) => name === 'adk-invokeModel').length, 2);
+    assert.strictEqual(scheduled.filter((name) => name === 'celsiusToFahrenheit').length, 0);
+    assert.strictEqual(scheduled.filter((name) => name === 'adk-invokeModel').length, 3);
   });
 
   it('weatherAgent: a failed tool Activity reaches the model as the tool response, and the agent answers from it', async () => {

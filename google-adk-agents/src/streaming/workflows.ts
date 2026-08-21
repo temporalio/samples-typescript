@@ -30,7 +30,6 @@ export async function streamingModelCall(prompt: string): Promise<{ text: string
 
   let text = '';
   let chunks = 0;
-  // The turn's whole text is on the last, non-partial response; the deltas would double it.
   for await (const response of model.generateContentAsync(request, true)) {
     if (response.partial === true) {
       chunks++;
@@ -38,7 +37,6 @@ export async function streamingModelCall(prompt: string): Promise<{ text: string
     }
     text = (response.content?.parts ?? []).map((part) => part.text ?? '').join('');
   }
-  // Completing discards the stream log, racing a subscriber's final poll; the timeout covers no subscriber.
   await condition(() => consumerDone, '10 seconds');
   return { text, chunks };
 }

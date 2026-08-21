@@ -18,7 +18,6 @@ const readFileDef: MockMCPToolDefinition = {
   handler: (args) => ({ contents: `contents of ${String(args.path)}` }),
 };
 
-// A fresh model instance per Activity invocation, so the turn has to come from the request.
 function readFileModelProvider(): (model: string) => BaseLlm {
   class ReadFileLlm extends BaseLlm {
     override async *generateContentAsync(

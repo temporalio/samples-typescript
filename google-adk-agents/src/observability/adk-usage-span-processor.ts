@@ -1,7 +1,6 @@
 import type { Context } from '@opentelemetry/api';
 import type { ReadableSpan, Span, SpanProcessor } from '@opentelemetry/sdk-trace-base';
 
-// ADK's tracer name; the SDK's own interceptor spans arrive under a different one.
 const ADK_TRACER = 'gcp.vertex.agent';
 
 export interface ModelCall {

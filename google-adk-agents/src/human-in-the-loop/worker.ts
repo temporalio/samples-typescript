@@ -6,7 +6,7 @@ async function run() {
   try {
     const worker = await Worker.create({
       connection,
-      taskQueue: 'google-adk-agent-patterns',
+      taskQueue: 'google-adk-human-in-the-loop',
       workflowsPath: require.resolve('./workflows'),
       plugins: [new GoogleAdkPlugin()],
     });

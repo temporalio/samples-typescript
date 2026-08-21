@@ -1,5 +1,6 @@
 import { NativeConnection, Worker } from '@temporalio/worker';
 import { GoogleAdkPlugin } from '@temporalio/google-adk-agents';
+import { offlineModelProvider } from './offline-model';
 import * as activities from './activities';
 
 async function run() {
@@ -10,7 +11,9 @@ async function run() {
       taskQueue: 'google-adk-tools',
       workflowsPath: require.resolve('./workflows'),
       activities,
-      plugins: [new GoogleAdkPlugin()],
+      plugins: [
+        new GoogleAdkPlugin(process.env.MODEL_PROVIDER === 'fake' ? { modelProvider: offlineModelProvider() } : {}),
+      ],
     });
     await worker.run();
   } finally {

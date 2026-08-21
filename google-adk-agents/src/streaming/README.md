@@ -18,6 +18,8 @@ GEMINI_API_KEY=... npx ts-node src/streaming/worker.ts
 npx ts-node src/streaming/client.ts
 ```
 
+For a credential-free local run, start the Worker with `MODEL_PROVIDER=fake npx ts-node src/streaming/worker.ts`.
+
 The story prints token by token as the model produces it. In the Temporal UI the history shows a single `adk-invokeModelStreaming` Activity.
 
 ## Test

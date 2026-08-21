@@ -1,6 +1,7 @@
 import { Resource } from '@opentelemetry/resources';
 import { NativeConnection, Worker } from '@temporalio/worker';
 import { GoogleAdkPlugin } from '@temporalio/google-adk-agents';
+import { fakeModelProvider } from '@temporalio/google-adk-agents/testing';
 import { OpenTelemetryPlugin } from '@temporalio/interceptors-opentelemetry';
 import { AdkUsageSpanProcessor } from './adk-usage-span-processor';
 
@@ -23,7 +24,19 @@ async function run() {
           resource: new Resource({ 'service.name': 'google-adk-observability' }),
           spanProcessor,
         }),
-        new GoogleAdkPlugin(),
+        new GoogleAdkPlugin(
+          process.env.MODEL_PROVIDER === 'fake'
+            ? {
+                modelProvider: fakeModelProvider([
+                  {
+                    content: { role: 'model', parts: [{ text: 'Workflows remember.' }] },
+                    usageMetadata: { promptTokenCount: 6, candidatesTokenCount: 3 },
+                    turnComplete: true,
+                  },
+                ]),
+              }
+            : {},
+        ),
       ],
     });
     await worker.run();

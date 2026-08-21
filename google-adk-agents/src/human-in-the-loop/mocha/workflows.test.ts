@@ -5,7 +5,7 @@ import { after, before, describe, it } from 'mocha';
 import assert from 'assert';
 import { humanApproval, approveSignal, approveUpdate } from '../workflows';
 
-describe('google-adk-agents/human-approval workflow scenarios', function () {
+describe('google-adk-agents/human-in-the-loop workflow scenarios', function () {
   this.timeout(30_000);
 
   let testEnv: TestWorkflowEnvironment;
@@ -28,7 +28,7 @@ describe('google-adk-agents/human-approval workflow scenarios', function () {
   }
 
   it('humanApproval: long-running tool resumes on the approve Signal', async () => {
-    const taskQueue = 'test-google-adk-human-approval-signal';
+    const taskQueue = 'test-google-adk-human-in-the-loop-signal';
     const worker = await makeWorker(taskQueue);
     await worker.runUntil(async () => {
       const handle = await testEnv.client.workflow.start(humanApproval, {
@@ -41,7 +41,7 @@ describe('google-adk-agents/human-approval workflow scenarios', function () {
   });
 
   it('humanApproval: long-running tool resumes on the approve Update', async () => {
-    const taskQueue = 'test-google-adk-human-approval-update';
+    const taskQueue = 'test-google-adk-human-in-the-loop-update';
     const worker = await makeWorker(taskQueue);
     await worker.runUntil(async () => {
       const handle = await testEnv.client.workflow.start(humanApproval, {
@@ -55,7 +55,7 @@ describe('google-adk-agents/human-approval workflow scenarios', function () {
   });
 
   it('humanApproval: cancelling the Workflow ends it as CANCELLED', async () => {
-    const taskQueue = 'test-google-adk-human-approval-cancel';
+    const taskQueue = 'test-google-adk-human-in-the-loop-cancel';
     const worker = await makeWorker(taskQueue);
     await worker.runUntil(async () => {
       const handle = await testEnv.client.workflow.start(humanApproval, {

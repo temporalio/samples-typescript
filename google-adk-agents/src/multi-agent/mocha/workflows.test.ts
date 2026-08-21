@@ -11,7 +11,6 @@ function text(s: string): LlmResponse {
   return { content: { role: 'model', parts: [{ text: s }] }, turnComplete: true };
 }
 
-// ADK JS's `transfer_to_agent` tool reads `args.agentName` (camelCase).
 function transferTo(agentName: string): LlmResponse {
   return {
     content: { role: 'model', parts: [{ functionCall: { name: 'transfer_to_agent', args: { agentName } } }] },
@@ -19,7 +18,6 @@ function transferTo(agentName: string): LlmResponse {
   };
 }
 
-// Keyed by the asking agent rather than by call order, so an Activity retry re-serves the same turn.
 function scriptedModelProvider(script: Record<string, LlmResponse>): (model: string) => BaseLlm {
   class ScriptedLlm extends BaseLlm {
     override async *generateContentAsync(
@@ -42,7 +40,7 @@ function scriptedModelProvider(script: Record<string, LlmResponse>): (model: str
   return (model: string) => new ScriptedLlm({ model });
 }
 
-describe('google-adk-agents/agent-patterns workflow scenarios', function () {
+describe('google-adk-agents/multi-agent workflow scenarios', function () {
   this.timeout(30_000);
 
   let testEnv: TestWorkflowEnvironment;
@@ -62,7 +60,7 @@ describe('google-adk-agents/agent-patterns workflow scenarios', function () {
       writer: text('snow on the mountain'),
     });
 
-    const taskQueue = 'test-google-adk-agent-patterns';
+    const taskQueue = 'test-google-adk-multi-agent';
     const worker = await Worker.create({
       connection: testEnv.nativeConnection,
       taskQueue,
@@ -72,7 +70,7 @@ describe('google-adk-agents/agent-patterns workflow scenarios', function () {
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(multiAgent, {
         args: ['mountains'],
-        workflowId: 'test-google-adk-agent-patterns-' + Date.now(),
+        workflowId: 'test-google-adk-multi-agent-' + Date.now(),
         taskQueue,
       }),
     );

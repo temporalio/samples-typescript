@@ -34,7 +34,6 @@ export async function humanApproval(): Promise<string> {
   try {
     return (await tool.runAsync({ args: {}, toolContext: {} as never })) as string;
   } catch (err) {
-    // ADK's FunctionTool re-throws execute's error as a plain Error, so a cancelled condition() no longer reads as cancellation.
     if (CancellationScope.current().consideredCancelled) {
       throw new CancelledFailure('Workflow cancelled');
     }

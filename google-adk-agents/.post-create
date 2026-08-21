@@ -12,9 +12,9 @@ Use Node version 22 or later:
 Mac: {cyan brew install node@22}
 Other: https://nodejs.org/en/download/
 
-This sample has several scenarios under {cyan src/}. Using two other shells, start a Worker for one scenario and run its client (example: {cyan basic}):
+This sample has several scenarios under {cyan src/}. Using two other shells, start a Worker for one scenario and run its client (example: {cyan agent-chat}):
 
-{cyan GEMINI_API_KEY=<your-key> npx ts-node src/basic/worker.ts}
-{cyan npx ts-node src/basic/client.ts}
+{cyan GEMINI_API_KEY=<your-key> npx ts-node src/agent-chat/worker.ts}
+{cyan npx ts-node src/agent-chat/client.ts}
 
 See README.md for the full list of scenarios.
