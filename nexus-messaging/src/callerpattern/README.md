@@ -1,9 +1,9 @@
 ## Caller pattern
 
 The handler worker starts a `GreetingWorkflow` for a user ID at boot.
-`NexusGreetingService` holds that ID and routes every Nexus operation to it.
+`nexusGreetingServiceHandler` derives the workflow ID and routes every Nexus operation to it.
 The caller's input does not have that workflow ID as the caller doesn't know it -- but the caller sends in the User ID,
-and `NexusGreetingService` knows how to get the desired workflow ID from that User ID (via the `GreetingWorkflow_for_<userId>` prefix).
+and `nexusGreetingServiceHandler` knows how to get the desired workflow ID from that User ID (via the `GreetingWorkflow_for_<userId>` prefix).
 
 The handler worker uses the same prefix to generate a workflow ID from a user ID when it launches the workflow.
 
