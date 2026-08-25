@@ -15,19 +15,23 @@ The caller workflow:
 
 ### Running
 
-Start a Temporal server:
+Start a compatible Temporal dev server with Workflow Update callbacks enabled:
 
 ```bash
-temporal server start-dev
+./temporal server start-dev \
+  --dynamic-config-value history.enableCHASMCallbacks=true \
+  --dynamic-config-value history.enableUpdateCallbacks=true \
+  --namespace nexus-messaging-handler-namespace \
+  --namespace nexus-messaging-caller-namespace
 ```
 
-Create the namespaces and Nexus endpoint:
+This sample requires a Temporal dev-server build that supports Workflow Update callbacks. Download the compatible
+binary from the [Temporal CLI pre-release instructions](https://docs.temporal.io/standalone-nexus-operation#temporal-cli-support).
+
+Create the Nexus endpoint:
 
 ```bash
-temporal operator namespace create --namespace nexus-messaging-handler-namespace
-temporal operator namespace create --namespace nexus-messaging-caller-namespace
-
-temporal operator nexus endpoint create \
+./temporal operator nexus endpoint create \
   --name nexus-messaging-nexus-endpoint \
   --target-namespace nexus-messaging-handler-namespace \
   --target-task-queue nexus-messaging-handler-task-queue
