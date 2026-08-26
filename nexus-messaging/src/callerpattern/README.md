@@ -22,6 +22,7 @@ Start a compatible Temporal dev server with Workflow Update callbacks enabled:
 ./temporal server start-dev \
   --dynamic-config-value history.enableCHASMCallbacks=true \
   --dynamic-config-value history.enableUpdateCallbacks=true \
+  --dynamic-config-value history.enableCHASMSignalBacklinks=true \
   --namespace nexus-messaging-handler-namespace \
   --namespace nexus-messaging-caller-namespace
 ```

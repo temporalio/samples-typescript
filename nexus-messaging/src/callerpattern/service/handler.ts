@@ -33,7 +33,7 @@ export const nexusGreetingServiceHandler = nexus.serviceHandler(nexusGreetingSer
 
   approve: new temporalNexus.TemporalOperationHandler({
     async start(_ctx, client, input: ApproveInput) {
-      const handle = client.client.workflow.getHandle(workflowIdForUser(input.userId));
+      const handle = client.getWorkflowHandle(workflowIdForUser(input.userId));
       await handle.signal(approveSignal);
       return temporalNexus.TemporalOperationResult.sync(undefined);
     },
