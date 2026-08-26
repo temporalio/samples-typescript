@@ -12,7 +12,9 @@ Use Node version 18+ (v22.x is recommended):
 Mac: {cyan brew install node@22}
 Other: https://nodejs.org/en/download/
 
-Then, in the project directory, using two other shells, run these commands:
+To see live traces in LangSmith, enable tracing:
 
-{cyan npm run start.watch}
-{cyan npm run workflow}
+{cyan export LANGSMITH_TRACING=true}
+{cyan export LANGSMITH_API_KEY=...}
+
+Then run a scenario by path (see each scenario's README).
