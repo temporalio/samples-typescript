@@ -30,7 +30,7 @@
     "@temporalio/nexus": "^1.23.0",
     "@temporalio/worker": "^1.23.0",
     "@temporalio/workflow": "^1.23.0",
-    "nexus-rpc": "^0.0.2",
+    "nexus-rpc": "^0.0.3",
     "nanoid": "3.x"
   },
   "devDependencies": {

@@ -2633,8 +2633,8 @@ importers:
         specifier: 3.x
         version: 3.3.8
       nexus-rpc:
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -2694,8 +2694,8 @@ importers:
         specifier: 3.x
         version: 3.3.8
       nexus-rpc:
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -2755,8 +2755,8 @@ importers:
         specifier: 3.x
         version: 3.3.8
       nexus-rpc:
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
     devDependencies:
       '@tsconfig/node22':
         specifier: ^22.0.0
@@ -2813,8 +2813,8 @@ importers:
         specifier: ~3.3.12
         version: 3.3.12
       nexus-rpc:
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
     devDependencies:
       '@temporalio/testing':
         specifier: ^1.23.0
@@ -2901,8 +2901,8 @@ importers:
         specifier: 3.x
         version: 3.3.12
       nexus-rpc:
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
       openai:
         specifier: ^6.0.0
         version: 6.45.0(@aws-sdk/credential-provider-node@3.972.71)(@smithy/signature-v4@5.6.9)(ws@8.18.0)(zod@4.4.3)
@@ -13722,10 +13722,6 @@ packages:
         optional: true
       sass:
         optional: true
-
-  nexus-rpc@0.0.2:
-    resolution: {integrity: sha512-IWjIExdVYlmwXuzHdY/Q3lXCv1gbqoAXPazQhy2w4Xgtgha3H0OOujEESVPQcFUFMWm+pAk2gKnb57g8S41JZg==}
-    engines: {node: '>= 20.0.0'}
 
   nexus-rpc@0.0.3:
     resolution: {integrity: sha512-ksIBeYHDv6FHAR1h3Vwk0kQ6REhdo1STqDHXMzu/yn/VN/XzgOor2IUjewG6paoA7IgxlIPZoOU/PD78PC6HTg==}
@@ -29735,8 +29731,6 @@ snapshots:
     transitivePeerDependencies:
       - '@babel/core'
       - babel-plugin-macros
-
-  nexus-rpc@0.0.2: {}
 
   nexus-rpc@0.0.3: {}
 
