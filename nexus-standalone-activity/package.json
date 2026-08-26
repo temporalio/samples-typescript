@@ -23,16 +23,16 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "link:../../../sdk-typescript/packages/activity",
-    "@temporalio/client": "link:../../../sdk-typescript/packages/client",
-    "@temporalio/envconfig": "link:../../../sdk-typescript/packages/envconfig",
-    "@temporalio/nexus": "link:../../../sdk-typescript/packages/nexus",
-    "@temporalio/worker": "link:../../../sdk-typescript/packages/worker",
+    "@temporalio/activity": "^1.23.0",
+    "@temporalio/client": "^1.23.0",
+    "@temporalio/envconfig": "^1.23.0",
+    "@temporalio/nexus": "^1.23.0",
+    "@temporalio/worker": "^1.23.0",
     "nanoid": "~3.3.12",
-    "nexus-rpc": "^0.0.2"
+    "nexus-rpc": "^0.0.3"
   },
   "devDependencies": {
-    "@temporalio/testing": "link:../../../sdk-typescript/packages/testing",
+    "@temporalio/testing": "^1.23.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/mocha": "10.x",
     "@types/node": "^22.9.1",

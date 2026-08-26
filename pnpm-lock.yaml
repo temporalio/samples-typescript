@@ -2795,30 +2795,30 @@ importers:
   nexus-standalone-activity:
     dependencies:
       '@temporalio/activity':
-        specifier: link:../../../sdk-typescript/packages/activity
-        version: link:../../../sdk-typescript/packages/activity
+        specifier: ^1.23.0
+        version: 1.23.0
       '@temporalio/client':
-        specifier: link:../../../sdk-typescript/packages/client
-        version: link:../../../sdk-typescript/packages/client
+        specifier: ^1.23.0
+        version: 1.23.0
       '@temporalio/envconfig':
-        specifier: link:../../../sdk-typescript/packages/envconfig
-        version: link:../../../sdk-typescript/packages/envconfig
+        specifier: ^1.23.0
+        version: 1.23.0
       '@temporalio/nexus':
-        specifier: link:../../../sdk-typescript/packages/nexus
-        version: link:../../../sdk-typescript/packages/nexus
+        specifier: ^1.23.0
+        version: 1.23.0
       '@temporalio/worker':
-        specifier: link:../../../sdk-typescript/packages/worker
-        version: link:../../../sdk-typescript/packages/worker
+        specifier: ^1.23.0
+        version: 1.23.0(@swc/helpers@0.5.15)
       nanoid:
         specifier: ~3.3.12
         version: 3.3.12
       nexus-rpc:
-        specifier: ^0.0.2
-        version: 0.0.2
+        specifier: ^0.0.3
+        version: 0.0.3
     devDependencies:
       '@temporalio/testing':
-        specifier: link:../../../sdk-typescript/packages/testing
-        version: link:../../../sdk-typescript/packages/testing
+        specifier: ^1.23.0
+        version: 1.23.0(@swc/helpers@0.5.15)
       '@tsconfig/node22':
         specifier: ^22.0.0
         version: 22.0.5
