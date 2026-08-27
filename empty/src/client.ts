@@ -1,4 +1,4 @@
-// @@@SNIPSTART typescript-hello-client
+// @@@SNIPSTART typescript-empty-client
 import { Connection, Client } from '@temporalio/client';
 import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { nanoid } from 'nanoid';
