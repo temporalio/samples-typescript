@@ -8,7 +8,7 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "lint": "eslint .",
-    "test": "tsc --build && mocha --exit --require source-map-support/register \"lib/*/mocha/*.test.js\""
+    "test": "tsc --build && mocha --exit \"lib/*/mocha/*.test.js\""
   },
   "dependencies": {
     "@temporalio/client": "^1.23.0",
