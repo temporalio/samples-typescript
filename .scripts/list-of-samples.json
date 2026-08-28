@@ -17,6 +17,7 @@
     "encryption",
     "env-config",
     "expense",
+    "external-storage",
     "fetch-esm",
     "food-delivery",
     "grpc-calls",
