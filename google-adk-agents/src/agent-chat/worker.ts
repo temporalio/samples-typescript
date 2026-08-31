@@ -5,6 +5,7 @@ import { offlineModelProvider } from './offline-model';
 async function run() {
   const connection = await NativeConnection.connect({ address: 'localhost:7233' });
   try {
+    // @@@SNIPSTART typescript-google-adk-agent-chat-worker
     const worker = await Worker.create({
       connection,
       taskQueue: 'google-adk-agent-chat',
@@ -14,6 +15,7 @@ async function run() {
       ],
     });
     await worker.run();
+    // @@@SNIPEND
   } finally {
     await connection.close();
   }
