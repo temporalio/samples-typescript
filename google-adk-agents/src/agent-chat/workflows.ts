@@ -20,12 +20,14 @@ export async function agentChat(messages: Message[] = [], turns = 0, runs = 1, t
   let processing = 0;
   let nextUpdate = 0;
   let currentUpdate = 0;
+  // @@@SNIPSTART typescript-google-adk-agent-chat-workflow
   const agent = new LlmAgent({
     name: 'assistant',
     model: new TemporalModel('gemini-2.5-flash'),
     instruction: 'Continue the conversation using its prior context. Respond in one sentence.',
   });
   const runner = new InMemoryRunner({ agent, appName: 'agent-chat' });
+  // @@@SNIPEND
   const sessionId = `run-${runs}`;
   await runner.sessionService.createSession({ appName: runner.appName, userId: 'user', sessionId });
   setHandler(getChatState, () => ({ messages, turns, runs }));
