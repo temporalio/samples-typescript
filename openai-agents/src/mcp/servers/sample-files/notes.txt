@@ -1,0 +1,3 @@
+Temporal is a durable execution platform.
+Workflows are code that can survive process failures.
+Activities are the building blocks for side effects.

@@ -1,4 +1,4 @@
-// @@@SNIPSTART typescript-hello-client
+// @@@SNIPSTART typescript-sleep-for-days-client
 import { Connection, Client } from '@temporalio/client';
 import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { sleepForDays } from './workflows';

@@ -23,18 +23,18 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.18.1",
-    "@temporalio/client": "^1.18.1",
-    "@temporalio/envconfig": "^1.18.1",
-    "@temporalio/worker": "^1.18.1",
-    "@temporalio/workflow": "^1.18.1",
+    "@temporalio/activity": "^1.23.0",
+    "@temporalio/client": "^1.23.0",
+    "@temporalio/envconfig": "^1.23.0",
+    "@temporalio/worker": "^1.23.0",
+    "@temporalio/workflow": "^1.23.0",
     "nanoid": "3.x"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.18.1",
+    "@temporalio/testing": "^1.23.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/jest": "^29.5.14",
-    "@types/mocha": "8.x",
+    "@types/mocha": "10.x",
     "@types/node": "^22.9.1",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",

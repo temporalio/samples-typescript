@@ -10,7 +10,7 @@ import type * as activities from '../activities';
 import type * as llmActivities from '../llm-activities';
 import { TOPIC_PROGRESS, TOPIC_STATUS, type StatusEvent } from '../shared';
 import { closeSignal, hub, order, pipeline, ticker } from '../workflows';
-import { llmStreaming } from '../llm-workflows';
+import { llmStreaming } from '../workflows-llm';
 
 // The unit tests below cover the workflow side only. The client subscribe path
 // needs a real server, so it is exercised by the integration test at the end.
@@ -116,7 +116,7 @@ describe('workflow-streams workflows', function () {
     const worker = await Worker.create({
       connection: env.nativeConnection,
       taskQueue,
-      workflowsPath: require.resolve('../llm-workflows'),
+      workflowsPath: require.resolve('../workflows-llm'),
       activities: mockActivities,
     });
     const result = await worker.runUntil(

@@ -31,7 +31,7 @@ import {
   type TextComplete,
   type TextDelta,
 } from './llm-shared';
-import { llmStreaming } from './llm-workflows';
+import { llmStreaming } from './workflows-llm';
 
 // Long enough that you can comfortably kill the worker mid-stream and watch
 // the retry render. Adjust to taste.

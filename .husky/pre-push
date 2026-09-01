@@ -1,5 +1,9 @@
 #!/bin/bash
 set -euo pipefail
 
-exec < /dev/tty
+# Attach the terminal so copy-shared-files can prompt, but skip when there is
+# no TTY (Claude Code, IDE integrations, CI).
+if sh -c ': < /dev/tty' 2> /dev/null; then
+  exec < /dev/tty
+fi
 npm run copy-shared-files

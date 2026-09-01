@@ -1,8 +1,8 @@
 # Workflow Streams
 
 > **Experimental.** These samples use `@temporalio/workflow-streams`, which is
-> currently distributed on the `contrib/pubsub` branch of `sdk-typescript`. The
-> module is experimental and its API may change.
+> published on npm and lives under `contrib/workflow-streams` in
+> `sdk-typescript`. The module is experimental and its API may change.
 
 `@temporalio/workflow-streams` lets a workflow host a durable,
 offset-addressed event channel. The workflow holds an append-only log;

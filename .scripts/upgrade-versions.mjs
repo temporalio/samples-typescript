@@ -12,7 +12,7 @@ for (const packageJsonFile of await glob(`**/package.json`, { ignore: '**/node_m
   const content = JSON.parse(await fs.readFile(packageJsonFile));
   const changed = replaceDeps({ content, fields: ['dependencies', 'devDependencies', 'resolutions'] });
   if (changed) {
-    await fs.writeFile(packageJsonFile, JSON.stringify(content, null, 2));
+    await fs.writeFile(packageJsonFile, `${JSON.stringify(content, null, 2)}\n`);
   }
 }
 

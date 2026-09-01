@@ -11,7 +11,7 @@
     "start": "ts-node src/worker.ts",
     "start.watch": "nodemon src/worker.ts",
     "workflow": "ts-node src/client.ts",
-    "test": "mocha --exit --require ts-node/register --require source-map-support/register src/mocha/*.test.ts"
+    "test": "mocha --exit --node-option experimental-require-module --require ts-node/register --require source-map-support/register src/mocha/*.test.ts"
   },
   "nodemonConfig": {
     "execMap": {
@@ -23,31 +23,32 @@
     ]
   },
   "dependencies": {
-    "@ai-sdk/openai": "^3.0.0",
-    "@ai-sdk/provider": "^3.0.0",
-    "@ai-sdk/mcp": "^1.0.0",
-    "@modelcontextprotocol/sdk": "^1.10.2",
-    "@temporalio/activity": "^1.18.1",
-    "@temporalio/ai-sdk": "^1.18.1",
-    "@temporalio/client": "^1.18.1",
-    "@temporalio/envconfig": "^1.18.1",
-    "@temporalio/worker": "^1.18.1",
-    "@temporalio/workflow": "^1.18.1",
-    "ai": "^6.0.0",
+    "@ai-sdk/openai": "^4.0.0",
+    "@ai-sdk/provider": "^4.0.0",
+    "@ai-sdk/mcp": "^2.0.0",
+    "@modelcontextprotocol/sdk": "^1.25.2",
+    "@temporalio/activity": "^1.23.0",
+    "@temporalio/ai-sdk": "^1.23.0",
+    "@temporalio/client": "^1.23.0",
+    "@temporalio/envconfig": "^1.23.0",
+    "@temporalio/worker": "^1.23.0",
+    "@temporalio/workflow": "^1.23.0",
+    "@temporalio/workflow-streams": "^1.23.0",
+    "ai": "7.0.41",
     "nanoid": "3.x",
-    "zod": "^3.25.76"
+    "zod": "^4.0.0"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.18.1",
+    "@temporalio/testing": "^1.23.0",
     "@tsconfig/node22": "^22.0.0",
-    "@types/mocha": "8.x",
+    "@types/mocha": "10.x",
     "@types/node": "^22.9.1",
     "@typescript-eslint/eslint-plugin": "^8.18.0",
     "@typescript-eslint/parser": "^8.18.0",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-deprecation": "^3.0.0",
-    "mocha": "8.x",
+    "mocha": "10.x",
     "nodemon": "^3.1.7",
     "prettier": "^3.4.2",
     "ts-node": "^10.9.2",

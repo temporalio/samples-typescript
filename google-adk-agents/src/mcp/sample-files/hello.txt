@@ -1,0 +1,2 @@
+Hello from the Temporal Google ADK filesystem MCP sample.
+This file is exposed to the agent through the filesystem MCP server.

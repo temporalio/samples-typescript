@@ -1,5 +1,5 @@
 import { DefaultLogger, Worker, Runtime, makeTelemetryFilterString } from '@temporalio/worker';
-import { OpenTelemetryPlugin } from '@temporalio/interceptors-opentelemetry';
+import { OpenTelemetryPlugin } from '@temporalio/interceptors-opentelemetry-v2';
 import * as activities from './activities';
 import { setupOtelSdk, resource, spanProcessor } from './instrumentation';
 
