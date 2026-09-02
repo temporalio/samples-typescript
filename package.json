@@ -4,6 +4,7 @@
   "scripts": {
     "build": "pnpm run -r --filter './*' build",
     "test": "pnpm run -r --filter './*' test",
+    "prewarm-test-server": "node -e \"require('@temporalio/testing').TestWorkflowEnvironment.createTimeSkipping().then(e => e.teardown())\"",
     "format": "pnpm format:self ; pnpm run -r --filter './*' format",
     "format:self": "prettier --write .",
     "format:check": "pnpm format:check:self ; pnpm run -r --filter './*' format:check",
@@ -15,6 +16,7 @@
     "update-toc": "doctoc README.md"
   },
   "devDependencies": {
+    "@temporalio/testing": "^1.23.0",
     "doctoc": "^2.1.0",
     "glob": "^11.0.0",
     "husky": "^7.0.2",

@@ -10,6 +10,9 @@ importers:
 
   .:
     devDependencies:
+      '@temporalio/testing':
+        specifier: ^1.23.0
+        version: 1.23.0(@swc/helpers@0.5.15)
       doctoc:
         specifier: ^2.1.0
         version: 2.2.1
