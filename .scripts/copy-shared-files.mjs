@@ -28,6 +28,7 @@ const TSCONFIG_EXCLUDE = [
   'empty',
   'hello-world',
   'scratchpad',
+  'langsmith',
 ];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -48,6 +49,7 @@ const ESLINTRC_EXCLUDE = [
   'protobufs',
   'food-delivery',
   'nestjs-exchange-rates',
+  'langsmith',
 ];
 const ESLINTIGNORE_EXCLUDE = [
   'production',
@@ -90,6 +92,7 @@ const POST_CREATE_EXCLUDE = [
   'empty',
   'scratchpad',
   'workflow-streams',
+  'langsmith',
 ];
 
 const PRETTIERRC_EXCLUDE = ['food-delivery'];
