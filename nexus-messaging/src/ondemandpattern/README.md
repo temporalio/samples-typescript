@@ -9,7 +9,7 @@ The caller workflow:
 
 1. Attaches approval context for user one via `attachApprovalContext`, before anything has started
    that user's workflow
-2. Starts two remote `GreetingWorkflow` instances via `runFromRemote` (backed by `TemporalOperation`)
+2. Starts or attaches to two remote `GreetingWorkflow` instances via `runFromRemote` (backed by `TemporalOperation`)
 3. Attaches approval context for user two, whose workflow now already exists
 4. Queries supported languages from workflow one and the current language from workflow two
 5. Changes the language on each (Spanish and Hindi)
