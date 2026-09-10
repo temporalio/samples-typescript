@@ -7,7 +7,7 @@ export const CALLER_NAMESPACE = 'nexus-messaging-caller-namespace';
 
 export const nexusRemoteGreetingService = nexus.service('NexusRemoteGreetingService', {
   /**
-   * Starts a new GreetingWorkflow with the given workflowId (async WorkflowRunOperation).
+   * Starts a new GreetingWorkflow with the given workflowId (async TemporalOperation).
    */
   runFromRemote: nexus.operation<RunFromRemoteInput, RunFromRemoteOutput>(),
 

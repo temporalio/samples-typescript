@@ -26,9 +26,9 @@ function getWorkflowId(userId: string): string {
 }
 
 export const nexusRemoteGreetingServiceHandler = nexus.serviceHandler(nexusRemoteGreetingService, {
-  runFromRemote: new temporalNexus.WorkflowRunOperationHandler<RunFromRemoteInput, RunFromRemoteOutput>(
-    async (ctx, input: RunFromRemoteInput) => {
-      return await temporalNexus.startWorkflow(ctx, greetingWorkflow, {
+  runFromRemote: new temporalNexus.TemporalOperationHandler({
+    async start(_ctx, client, input: RunFromRemoteInput) {
+      return await client.startWorkflow(greetingWorkflow, {
         args: [],
         workflowId: getWorkflowId(input.userId),
         // attachApprovalContext may have created the GreetingWorkflow already, so attach to the
@@ -36,7 +36,7 @@ export const nexusRemoteGreetingServiceHandler = nexus.serviceHandler(nexusRemot
         workflowIdConflictPolicy: 'USE_EXISTING',
       });
     },
-  ),
+  }),
 
   getLanguages: new temporalNexus.TemporalOperationHandler({
     async start(_ctx, client, input: GetLanguagesInput) {
