@@ -2,6 +2,7 @@ import * as nexus from 'nexus-rpc';
 import * as temporalNexus from '@temporalio/nexus';
 import {
   ApproveInput,
+  AttachApprovalContextInput,
   GetLanguageInput,
   GetLanguagesInput,
   nexusRemoteGreetingService,
@@ -9,7 +10,14 @@ import {
   RunFromRemoteOutput,
   SetLanguageInput,
 } from '../api';
-import { approveSignal, getLanguageQuery, getLanguagesQuery, greetingWorkflow, setLanguageUpdate } from './workflows';
+import {
+  approveSignal,
+  attachApprovalContextSignal,
+  getLanguageQuery,
+  getLanguagesQuery,
+  greetingWorkflow,
+  setLanguageUpdate,
+} from './workflows';
 
 const WORKFLOW_ID_PREFIX = 'GreetingWorkflow_for_';
 
@@ -18,14 +26,17 @@ function getWorkflowId(userId: string): string {
 }
 
 export const nexusRemoteGreetingServiceHandler = nexus.serviceHandler(nexusRemoteGreetingService, {
-  runFromRemote: new temporalNexus.WorkflowRunOperationHandler<RunFromRemoteInput, RunFromRemoteOutput>(
-    async (ctx, input: RunFromRemoteInput) => {
-      return await temporalNexus.startWorkflow(ctx, greetingWorkflow, {
+  runFromRemote: new temporalNexus.TemporalOperationHandler({
+    async start(_ctx, client, input: RunFromRemoteInput) {
+      return await client.startWorkflow(greetingWorkflow, {
         args: [],
         workflowId: getWorkflowId(input.userId),
+        // attachApprovalContext may have created the GreetingWorkflow already, so attach to the
+        // running execution instead of failing (the default behavior).
+        workflowIdConflictPolicy: 'USE_EXISTING',
       });
     },
-  ),
+  }),
 
   getLanguages: new temporalNexus.TemporalOperationHandler({
     async start(_ctx, client, input: GetLanguagesInput) {
@@ -54,6 +65,19 @@ export const nexusRemoteGreetingServiceHandler = nexus.serviceHandler(nexusRemot
     async start(_ctx, client, input: ApproveInput) {
       const handle = client.getWorkflowHandle(getWorkflowId(input.userId));
       await handle.signal(approveSignal);
+      return temporalNexus.TemporalOperationResult.sync(undefined);
+    },
+  }),
+
+  // Signals the Workflow, starting it first if it is not already running.
+  attachApprovalContext: new temporalNexus.TemporalOperationHandler({
+    async start(_ctx, client, input: AttachApprovalContextInput) {
+      await client.signalWithStartWorkflow<typeof greetingWorkflow, [AttachApprovalContextInput]>(greetingWorkflow, {
+        args: [],
+        workflowId: getWorkflowId(input.userId),
+        signal: attachApprovalContextSignal,
+        signalArgs: [input],
+      });
       return temporalNexus.TemporalOperationResult.sync(undefined);
     },
   }),

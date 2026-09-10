@@ -1,5 +1,5 @@
 import * as wf from '@temporalio/workflow';
-import { Language } from '../api';
+import { AttachApprovalContextInput, Language } from '../api';
 import { createActivities } from './activities';
 
 const { callGreetingService } = wf.proxyActivities<ReturnType<typeof createActivities>>({
@@ -11,6 +11,7 @@ export const getLanguageQuery = wf.defineQuery<Language, []>('getLanguage');
 export const setLanguageUpdate = wf.defineUpdate<Language, [Language]>('setLanguage');
 export const setLanguageUsingActivityUpdate = wf.defineUpdate<Language, [Language]>('setLanguageUsingActivity');
 export const approveSignal = wf.defineSignal<[]>('approve');
+export const attachApprovalContextSignal = wf.defineSignal<[AttachApprovalContextInput]>('attachApprovalContext');
 
 const INITIAL_GREETINGS: Partial<Record<Language, string>> = {
   chinese: '你好，世界',
@@ -21,6 +22,7 @@ export async function greetingWorkflow(): Promise<string> {
   let language: Language = 'english';
   let greetings: Partial<Record<Language, string>> = { ...INITIAL_GREETINGS };
   let approved = false;
+  let approvalContext: string | undefined;
 
   wf.setHandler(getLanguagesQuery, () => Object.keys(greetings) as Language[]);
 
@@ -56,7 +58,13 @@ export async function greetingWorkflow(): Promise<string> {
   });
 
   wf.setHandler(approveSignal, () => {
+    wf.log.info('approve signal received', { approvalContext });
     approved = true;
+  });
+
+  wf.setHandler(attachApprovalContextSignal, (input: AttachApprovalContextInput) => {
+    wf.log.info('attachApprovalContext signal received', { userId: input.userId, note: input.note });
+    approvalContext = input.note;
   });
 
   await wf.condition(() => approved && wf.allHandlersFinished());

@@ -7,11 +7,14 @@ instance to target.
 
 The caller workflow:
 
-1. Starts two remote `GreetingWorkflow` instances via `runFromRemote` (backed by `WorkflowRunOperation`)
-2. Queries supported languages from workflow one and the current language from workflow two
-3. Changes the language on each (Spanish and Hindi)
-4. Approves both workflows
-5. Waits for each to complete and returns their results
+1. Attaches approval context for user one via `attachApprovalContext`, before anything has started
+   that user's workflow
+2. Starts or attaches to two remote `GreetingWorkflow` instances via `runFromRemote` (backed by `TemporalOperation`)
+3. Attaches approval context for user two, whose workflow now already exists
+4. Queries supported languages from workflow one and the current language from workflow two
+5. Changes the language on each (Spanish and Hindi)
+6. Approves both workflows
+7. Waits for each to complete and returns their results
 
 ### Running
 
@@ -22,6 +25,7 @@ Start a compatible Temporal dev server with Workflow Update callbacks enabled:
   --dynamic-config-value history.enableCHASMCallbacks=true \
   --dynamic-config-value history.enableUpdateCallbacks=true \
   --dynamic-config-value history.enableCHASMSignalBacklinks=true \
+  --dynamic-config-value history.enableSignalWithStartFromWorkflow=true \
   --namespace nexus-messaging-handler-namespace \
   --namespace nexus-messaging-caller-namespace
 ```
@@ -65,8 +69,10 @@ npm run workflow.ondemandpattern
 Expected output:
 
 ```
+  attached approval context for user: UserId_One
   started workflow one for user: UserId_One
   started workflow two for user: UserId_Two
+  attached approval context to running workflow for user: UserId_Two
   workflow one languages: chinese, english
   workflow one: set language to spanish, previous was: english
   workflow two current language: english
