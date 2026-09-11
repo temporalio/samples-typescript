@@ -72,6 +72,7 @@ jobs:
             message-passing/introduction
             message-passing/safe-message-handlers
             openai-agents
+            openrouter
             polling/infrequent
           )
           for project in "${projects[@]}"; do
