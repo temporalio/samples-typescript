@@ -37,6 +37,7 @@
     "nexus-standalone-activity",
     "nexus-standalone-operations",
     "openai-agents",
+    "openrouter",
     "patching-api",
     "production",
     "protobufs",
