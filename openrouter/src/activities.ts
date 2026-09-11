@@ -1,5 +1,5 @@
 import OpenAI, { APIError } from 'openai';
-import { ApplicationFailure, Context } from '@temporalio/activity';
+import { ApplicationFailure, Context, log } from '@temporalio/activity';
 import { OPENROUTER_BASE_URL, OpenRouterRequest, OpenRouterResult } from './shared';
 
 /**
@@ -144,7 +144,7 @@ async function send(client: OpenAI, request: OpenRouterRequest, attempt: number)
     generationId: data.id,
     cacheStatus: response.headers.get('x-openrouter-cache-status') ?? '',
   };
-  Context.current().log.info('OpenRouter call completed', {
+  log.info('OpenRouter call completed', {
     attempt,
     model: result.model,
     costUsd: result.costUsd,
