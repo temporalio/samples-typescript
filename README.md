@@ -191,6 +191,7 @@ and you'll be given the list of sample options.
   - [**Human in the Loop**](./google-adk-agents/src/human-in-the-loop): A `LongRunningFunctionTool` whose completion is gated by a Temporal Signal or Update.
   - [**Structured Output**](./google-adk-agents/src/structured-output): Schema-constrained agent output validated at the Workflow boundary.
   - [**Observability**](./google-adk-agents/src/observability): Token usage, latency, and call counts from the agent loop's OpenTelemetry spans, by composing `OpenTelemetryPlugin` onto the Worker alongside `GoogleAdkPlugin`.
+- [**OpenRouter**](./openrouter): Call [OpenRouter](https://openrouter.ai/) from an Activity and fan a prompt batch out with bounded concurrency. Temporal owns the retries, `Retry-After` becomes the next retry delay, and OpenRouter's response cache makes a retried call free.
 
 ### Full-stack apps
 
