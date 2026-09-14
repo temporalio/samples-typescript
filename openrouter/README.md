@@ -8,7 +8,7 @@ This is the TypeScript port of the Python [`openrouter/prompt_batch`](https://gi
 
 - One Activity per prompt, run concurrently under a fixed number of runners, so a slow or failing prompt never blocks the others.
 - OpenRouter's Auto Router (`openrouter/auto`) choosing a model per prompt, with the chosen model and OpenRouter's reported cost returned for each.
-- Temporal-owned retries: the `openai` client is created with `maxRetries: 0`; 429 and 5xx retry with backoff and honor `Retry-After`; 4xx errors fail fast and the prompt is reported as skipped instead of failing the batch. OpenRouter can also return HTTP 200 with an `error` body and no `choices`; the Activity checks for that.
+- Temporal-owned retries: the `openai` client is created with `maxRetries: 0`; 429 and 5xx retry with backoff and honor `Retry-After`; 4xx errors fail fast and the prompt is reported as skipped instead of failing the batch. Running out of money gets its own failure type, `OpenRouterOutOfCredits`, for both 402 (account out of credits) and 403 `Key limit exceeded` (per-key limit), so a Workflow can pause on it. OpenRouter can also return HTTP 200 with an `error` body and no `choices`; the Activity checks for that.
 - Retries served from OpenRouter's response cache at $0: the Activity sends `X-OpenRouter-Cache: true`, so if a Worker dies after OpenRouter answered but before Temporal recorded the result, the retried, byte-identical request is a cache hit.
 - Heartbeats, so a dead Worker is detected after `heartbeatTimeout` (10s) rather than after the full `startToCloseTimeout`.
 
