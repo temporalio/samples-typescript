@@ -92,15 +92,25 @@ describe('callOpenRouter activity', () => {
     assert.strictEqual(failure.nextRetryDelay, '7s');
   });
 
-  it('treats 402 insufficient credits as non-retryable', async () => {
+  it('treats 402 insufficient credits as out of credits, non-retryable', async () => {
     const activities = makeActivities(() => ({
       status: 402,
       body: { error: { code: 402, message: 'Insufficient credits' } },
     }));
     const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
-    assert.strictEqual(failure.type, 'OpenRouterHTTP402');
+    assert.strictEqual(failure.type, 'OpenRouterOutOfCredits');
     assert.strictEqual(failure.nonRetryable, true);
     assert.match(failure.message, /Insufficient credits/);
+  });
+
+  it('treats 403 key limit exceeded as out of credits too', async () => {
+    const activities = makeActivities(() => ({
+      status: 403,
+      body: { error: { code: 403, message: 'Key limit exceeded (total limit)' } },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterOutOfCredits');
+    assert.strictEqual(failure.nonRetryable, true);
   });
 
   it('classifies an error body inside a 200 by its code', async () => {

@@ -37,6 +37,14 @@ export function errorType(status: number): string {
   return `OpenRouterHTTP${status}`;
 }
 
+/**
+ * Thrown instead of an HTTP status type when the call failed for lack of
+ * money: 402 when the account is out of credits, or 403 "Key limit exceeded"
+ * when the API key hit its own credit limit. A Workflow can pause on this and
+ * resume once someone tops up.
+ */
+export const OUT_OF_CREDITS = 'OpenRouterOutOfCredits';
+
 function retryAfter(headers: Headers | undefined): string | undefined {
   const value = headers?.get('retry-after');
   if (value === null || value === undefined) return undefined;
@@ -48,10 +56,19 @@ function retryAfter(headers: Headers | undefined): string | undefined {
 /**
  * Turn an OpenRouter error into an ApplicationFailure with the right retry
  * posture. Retryable: 408, 429 (honoring Retry-After), and any 5xx.
- * Non-retryable: other 4xx. 400 is a bad request, 401 a bad key, 402 means
- * the key is out of credits, 403 a moderation or permission block.
+ * Non-retryable: other 4xx. 400 is a bad request, 401 a bad key, 403 a
+ * moderation or permission block. Out of money is its own type
+ * (OUT_OF_CREDITS): 402 for the account, 403 "Key limit exceeded" for the key.
  */
 export function throwForStatus(status: number, message: string, headers?: Headers): never {
+  if (status === 402 || (status === 403 && message.toLowerCase().includes('limit exceeded'))) {
+    throw ApplicationFailure.create({
+      message: `OpenRouter returned HTTP ${status}: ${message}`,
+      type: OUT_OF_CREDITS,
+      nonRetryable: true,
+      details: [{ status }],
+    });
+  }
   const retryable = status === 408 || status === 429 || status >= 500;
   throw ApplicationFailure.create({
     message: `OpenRouter returned HTTP ${status}: ${message}`,
