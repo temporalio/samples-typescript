@@ -16,7 +16,7 @@
     "update-toc": "doctoc README.md"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.23.0",
+    "@temporalio/testing": "^1.24.0",
     "doctoc": "^2.1.0",
     "glob": "^11.0.0",
     "husky": "^7.0.2",
