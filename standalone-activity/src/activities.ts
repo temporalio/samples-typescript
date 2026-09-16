@@ -1,3 +1,4 @@
+// @@@SNIPSTART typescript-standalone-activity-definition
 import { ApplicationFailure } from '@temporalio/activity';
 
 export async function greet(name: string): Promise<string> {
@@ -6,3 +7,4 @@ export async function greet(name: string): Promise<string> {
   }
   return `Hello, ${name}!`;
 }
+// @@@SNIPEND
