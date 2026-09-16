@@ -9,8 +9,8 @@
 /README.md @temporalio/sdk @temporalio/nexus
 /pnpm-lock.yaml @temporalio/sdk @temporalio/nexus
 
-# The Nexus team owns any folder whose name starts with "nexus"
-/nexus*/ @temporalio/nexus
+# SDK & Nexus teams share ownership of any folder whose name starts with "nexus"
+/nexus*/ @temporalio/sdk @temporalio/nexus
 
 /ai-sdk/            @temporalio/sdk @temporalio/ai-sdk
 /google-adk-agents/ @temporalio/sdk @temporalio/ai-sdk
