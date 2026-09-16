@@ -54,7 +54,6 @@
     "strands-agents",
     "timer-examples",
     "timer-progress",
-    "vscode-debugger",
     "worker-specific-task-queues",
     "worker-versioning",
     "workflow-streams",
