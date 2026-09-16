@@ -4221,61 +4221,6 @@ importers:
         specifier: ^5.6.3
         version: 5.7.3
 
-  vscode-debugger:
-    dependencies:
-      '@temporalio/activity':
-        specifier: ^1.24.0
-        version: 1.24.0
-      '@temporalio/client':
-        specifier: ^1.24.0
-        version: 1.24.0
-      '@temporalio/envconfig':
-        specifier: ^1.24.0
-        version: 1.24.0
-      '@temporalio/worker':
-        specifier: ^1.24.0
-        version: 1.24.0(@swc/helpers@0.5.15)
-      '@temporalio/workflow':
-        specifier: ^1.24.0
-        version: 1.24.0
-      waait:
-        specifier: ^1.0.5
-        version: 1.0.5
-    devDependencies:
-      '@tsconfig/node22':
-        specifier: ^22.0.0
-        version: 22.0.5
-      '@types/node':
-        specifier: ^22.9.1
-        version: 22.12.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^8.18.0
-        version: 8.22.0(@typescript-eslint/parser@8.22.0(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3)
-      '@typescript-eslint/parser':
-        specifier: ^8.18.0
-        version: 8.22.0(eslint@8.57.1)(typescript@5.7.3)
-      eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@8.57.1)
-      eslint-plugin-deprecation:
-        specifier: ^3.0.0
-        version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
-      nodemon:
-        specifier: ^3.1.7
-        version: 3.1.9
-      prettier:
-        specifier: ^3.4.2
-        version: 3.4.2
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)
-      typescript:
-        specifier: ^5.6.3
-        version: 5.7.3
-
   worker-specific-task-queues:
     dependencies:
       '@temporalio/activity':
@@ -17601,9 +17546,6 @@ packages:
   w3c-xmlserializer@2.0.0:
     resolution: {integrity: sha512-4tzD0mF8iSiMiNs30BiLO3EpfGLZUT2MSX/G+o7ZywDzliWQ3OPtTZ0PTC3B3ca1UAf4cJMHB+2Bf56EriJuRA==}
     engines: {node: '>=10'}
-
-  waait@1.0.5:
-    resolution: {integrity: sha512-wp+unA4CpqxvBUKHHv8D86fK4jWByHAWyhEXXVHfVUZfK+16ylpj7hjQ58Z8j9ntu8XNukRQT8Fi5qbyJ8rkyw==}
 
   walker@1.0.8:
     resolution: {integrity: sha512-ts/8E8l5b7kY0vlWLewOkDXMmPdLcVV4GmOQLyxuSswIJsweeFZtAsMF7k1Nszz+TYBQrlYRmzOnr398y1JemQ==}
@@ -35252,8 +35194,6 @@ snapshots:
   w3c-xmlserializer@2.0.0:
     dependencies:
       xml-name-validator: 3.0.0
-
-  waait@1.0.5: {}
 
   walker@1.0.8:
     dependencies:
