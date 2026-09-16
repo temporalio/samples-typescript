@@ -1,20 +1,20 @@
-# These owners will be the default owners for everything in
-# the repo. Unless a later match takes precedence,
-# @temporalio/sdk will be requested for review when
-# someone opens a pull request.
+# These owners will be the default owners for everything in the repo.
+# Later matches override earlier entries.
+
 * @temporalio/sdk
 
-# SDK & Nexus teams share ownership of these files
-/.scripts/list-of-samples.json @temporalio/sdk @temporalio/nexus
-/README.md @temporalio/sdk @temporalio/nexus
-/pnpm-lock.yaml @temporalio/sdk @temporalio/nexus
+# IMPORTANT: Make sure to add `@temporalio/sdk` on every override below.
+# This is required so that SDK team can do repo-wide maintenance tasks.
 
-# The Nexus team owns any folder whose name starts with "nexus"
-/nexus*/ @temporalio/nexus
+/README.md                      @temporalio/sdk @temporalio/nexus @temporalio/ai-sdk
+/.scripts/list-of-samples.json  @temporalio/sdk @temporalio/nexus @temporalio/ai-sdk
+/pnpm-lock.yaml                 @temporalio/sdk @temporalio/nexus @temporalio/ai-sdk
 
-/ai-sdk/            @temporalio/sdk @temporalio/ai-sdk
-/google-adk-agents/ @temporalio/sdk @temporalio/ai-sdk
-/langsmith/         @temporalio/sdk @temporalio/ai-sdk
-/openai-agents/     @temporalio/sdk @temporalio/ai-sdk
-/strands-agents/    @temporalio/sdk @temporalio/ai-sdk
-/workflow-streams/  @temporalio/sdk @temporalio/ai-sdk
+/nexus*/                        @temporalio/sdk @temporalio/nexus
+
+/ai-sdk/                        @temporalio/sdk @temporalio/ai-sdk
+/google-adk-agents/             @temporalio/sdk @temporalio/ai-sdk
+/langsmith/                     @temporalio/sdk @temporalio/ai-sdk
+/openai-agents/                 @temporalio/sdk @temporalio/ai-sdk
+/strands-agents/                @temporalio/sdk @temporalio/ai-sdk
+/workflow-streams/              @temporalio/sdk @temporalio/ai-sdk
