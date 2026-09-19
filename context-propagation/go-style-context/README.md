@@ -1,9 +1,14 @@
-# Custom Logger demo
+# Go-Style Context Propagation
 
-This project demonstrates how to capture log entries produced by Workers, Workflows and Activities, and process them
-using a third party logging libraries (in this case, the [Winston](https://github.com/winstonjs/winston) package).
+This project demonstrate an advanced use case where interceptors are used to propagate some contextual data from client to workflow, to child workflow, and to activities.
 
-The [Logging docs](https://docs.temporal.io/dev-guide/typescript/observability#logging) explain some of the code in this sample.
+In this demo, that contextual data is inject custom log
+attributes on log entries produced from workflow and activities.
+
+In particular, this sample demonstrate:
+
+- Using
+  attributes,
 
 ### Running this sample
 
