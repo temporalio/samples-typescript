@@ -100,7 +100,37 @@ describe('callOpenRouter activity', () => {
     const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
     assert.strictEqual(failure.type, 'OpenRouterOutOfCredits');
     assert.strictEqual(failure.nonRetryable, true);
-    assert.match(failure.message, /Insufficient credits/);
+    assert.strictEqual(failure.message, 'OpenRouter returned HTTP 402: Insufficient credits');
+  });
+
+  it('retries a transient in-flight-budget 402 after Retry-After', async () => {
+    const activities = makeActivities(() => ({
+      status: 402,
+      body: {
+        error: {
+          code: 402,
+          message: 'In-flight budget exceeded',
+          metadata: { limit_source: 'openrouter_in_flight_budget' },
+        },
+      },
+      headers: { 'Retry-After': '3' },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP402');
+    assert.strictEqual(failure.nonRetryable, false);
+    assert.strictEqual(failure.nextRetryDelay, '3s');
+  });
+
+  it('ignores an empty or non-positive Retry-After', async () => {
+    for (const value of ['', '-5', '0']) {
+      const activities = makeActivities(() => ({
+        status: 429,
+        body: { error: { code: 429, message: 'Rate limited' } },
+        headers: { 'Retry-After': value },
+      }));
+      const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+      assert.strictEqual(failure.nextRetryDelay, undefined, `Retry-After ${JSON.stringify(value)}`);
+    }
   });
 
   it('treats 403 key limit exceeded as out of credits too', async () => {
@@ -145,8 +175,11 @@ describe('callOpenRouter activity', () => {
 
   it('aborts the HTTP request and surfaces cancellation when the Activity is cancelled', async () => {
     let seenSignal: AbortSignal | undefined;
+    let requestStarted!: () => void;
+    const started = new Promise<void>((resolve) => (requestStarted = resolve));
     const fetch = (input: string | URL | Request, init?: RequestInit): Promise<Response> => {
       seenSignal = init?.signal ?? undefined;
+      requestStarted();
       return new Promise((_, reject) => {
         init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')));
       });
@@ -156,7 +189,7 @@ describe('callOpenRouter activity', () => {
     const env = new MockActivityEnvironment({ heartbeatTimeoutMs: 1000 });
 
     const run = env.run(activities.callOpenRouter, request);
-    await new Promise((resolve) => setTimeout(resolve, 50));
+    await started;
     env.cancel();
 
     await assert.rejects(run, (e: unknown) => e instanceof CancelledFailure);

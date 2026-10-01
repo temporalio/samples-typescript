@@ -7,12 +7,20 @@ import { DEFAULT_MODEL, TASK_QUEUE } from './shared';
 const DEFAULT_PROMPTS = ['Explain retries in one sentence.', 'Write a haiku about databases.'];
 
 async function run() {
-  // Usage: npm run workflow -- [--fail-once] [--model <slug>] [prompt ...]
+  // Usage: npm run workflow -- [--fail-once] [--model <slug>] [--max-concurrency <n>] [prompt ...]
   const args = process.argv.slice(2);
-  const failOnceAfterCall = args.includes('--fail-once');
-  const modelIndex = args.indexOf('--model');
-  const model = modelIndex >= 0 ? args[modelIndex + 1] : DEFAULT_MODEL;
-  const prompts = args.filter((a, i) => !a.startsWith('--') && (modelIndex < 0 || i !== modelIndex + 1));
+  let failOnceAfterCall = false;
+  let model = DEFAULT_MODEL;
+  let maxConcurrency = 5;
+  const prompts: string[] = [];
+  for (let i = 0; i < args.length; i++) {
+    const arg = args[i];
+    if (arg === '--fail-once') failOnceAfterCall = true;
+    else if (arg === '--model') model = args[++i] ?? model;
+    else if (arg === '--max-concurrency') maxConcurrency = Number(args[++i]);
+    else if (arg.startsWith('--')) throw new Error(`Unknown flag: ${arg}`);
+    else prompts.push(arg);
+  }
 
   const config = loadClientConnectConfig();
   const connection = await Connection.connect(config.connectionOptions);
@@ -23,7 +31,7 @@ async function run() {
   const result = await client.workflow.execute(promptBatch, {
     taskQueue: TASK_QUEUE,
     workflowId,
-    args: [{ prompts: prompts.length ? prompts : DEFAULT_PROMPTS, model, failOnceAfterCall }],
+    args: [{ prompts: prompts.length ? prompts : DEFAULT_PROMPTS, model, maxConcurrency, failOnceAfterCall }],
   });
 
   for (const r of result.results) {

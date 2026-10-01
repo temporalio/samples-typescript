@@ -1,4 +1,4 @@
-import OpenAI, { APIError, APIUserAbortError } from 'openai';
+import OpenAI, { APIError } from 'openai';
 import { ApplicationFailure, Context, log } from '@temporalio/activity';
 import { OPENROUTER_BASE_URL, OpenRouterRequest, OpenRouterResult } from './shared';
 
@@ -40,31 +40,51 @@ export function errorType(status: number): string {
 
 /**
  * Thrown instead of an HTTP status type when the call failed for lack of
- * money: 402 when the account is out of credits, or 403 "Key limit exceeded"
- * when the API key hit its own credit limit. A Workflow can pause on this and
- * resume once someone tops up.
+ * money: a 402 (account or API key out of credits; `error.metadata.limit_source`
+ * says which) or, as observed in practice, a 403 "Key limit exceeded" for a
+ * per-key limit. A Workflow can pause on this and resume once someone tops up.
  */
 export const OUT_OF_CREDITS = 'OpenRouterOutOfCredits';
 
 /** Parse Retry-After in either its delta-seconds or HTTP-date form. */
 function retryAfter(headers: Headers | undefined): string | undefined {
-  const value = headers?.get('retry-after');
-  if (value === null || value === undefined) return undefined;
+  const value = headers?.get('retry-after')?.trim();
+  if (!value) return undefined;
   const seconds = Number(value);
-  if (Number.isFinite(seconds)) return `${seconds}s`;
+  if (Number.isFinite(seconds)) return seconds > 0 ? `${seconds}s` : undefined;
   const delayMs = Date.parse(value) - Date.now();
   return Number.isFinite(delayMs) && delayMs > 0 ? `${Math.ceil(delayMs / 1000)}s` : undefined;
 }
 
+/** The `error` object OpenRouter returns, as far as this sample reads it. */
+interface OpenRouterErrorBody {
+  code?: number;
+  message?: string;
+  metadata?: { limit_source?: string };
+}
+
+function errorBody(body: unknown): OpenRouterErrorBody {
+  if (!body || typeof body !== 'object') return {};
+  // openai's APIError.error is already the inner `error` object; a raw
+  // response body wraps it as `{ error: {...} }`. Accept both.
+  const inner = 'error' in body ? (body as { error: unknown }).error : body;
+  return inner && typeof inner === 'object' ? (inner as OpenRouterErrorBody) : {};
+}
+
 /**
  * Turn an OpenRouter error into an ApplicationFailure with the right retry
- * posture. Retryable: 408, 429 (honoring Retry-After), and any 5xx.
- * Non-retryable: other 4xx. 400 is a bad request, 401 a bad key, 403 a
- * moderation or permission block. Out of money is its own type
- * (OUT_OF_CREDITS): 402 for the account, 403 "Key limit exceeded" for the key.
+ * posture. Retryable: 408, 429 (honoring Retry-After), any 5xx, and the
+ * transient in-flight-budget 402. Non-retryable: other 4xx. 400 is a bad
+ * request, 401 a bad key, 403 a moderation or permission block. Out of money
+ * is its own type (OUT_OF_CREDITS).
  */
-export function throwForStatus(status: number, message: string, headers?: Headers): never {
-  if (status === 402 || (status === 403 && message.toLowerCase().includes('limit exceeded'))) {
+export function throwForStatus(status: number, error: OpenRouterErrorBody, headers?: Headers): never {
+  const message = error.message ?? '';
+  // A 402 from the in-flight budget cap is transient: OpenRouter asks you to
+  // wait for Retry-After and try again. Every other 402, and the legacy 403
+  // "Key limit exceeded", means someone has to add credits.
+  const transient402 = status === 402 && error.metadata?.limit_source === 'openrouter_in_flight_budget';
+  if (!transient402 && (status === 402 || (status === 403 && message.toLowerCase().includes('limit exceeded')))) {
     throw ApplicationFailure.create({
       message: `OpenRouter returned HTTP ${status}: ${message}`,
       type: OUT_OF_CREDITS,
@@ -72,7 +92,7 @@ export function throwForStatus(status: number, message: string, headers?: Header
       details: [{ status }],
     });
   }
-  const retryable = status === 408 || status === 429 || status >= 500;
+  const retryable = transient402 || status === 408 || status === 429 || status >= 500;
   throw ApplicationFailure.create({
     message: `OpenRouter returned HTTP ${status}: ${message}`,
     type: errorType(status),
@@ -80,14 +100,6 @@ export function throwForStatus(status: number, message: string, headers?: Header
     nextRetryDelay: retryable ? retryAfter(headers) : undefined,
     details: [{ status }],
   });
-}
-
-function errorMessage(body: unknown): string {
-  if (body && typeof body === 'object' && 'error' in body) {
-    const error = (body as { error?: { message?: unknown } }).error;
-    if (error && typeof error.message === 'string') return error.message;
-  }
-  return '';
 }
 
 function contentToText(content: unknown): string {
@@ -128,7 +140,7 @@ async function send(client: OpenAI, request: OpenRouterRequest, context: Context
     params.plugins = [{ id: 'auto-router', cost_tier: request.costTier }];
   }
 
-  let data: OpenAI.Chat.ChatCompletion & { error?: { code?: number; message?: string } };
+  let data: OpenAI.Chat.ChatCompletion & { error?: OpenRouterErrorBody };
   let response: Response;
   try {
     ({ data, response } = await client.chat.completions
@@ -145,13 +157,14 @@ async function send(client: OpenAI, request: OpenRouterRequest, context: Context
       })
       .withResponse());
   } catch (e) {
-    if (e instanceof APIUserAbortError && context.cancellationSignal.aborted) {
-      // The request was aborted because the Activity was cancelled; surface
-      // that as a cancellation, not as a failed call.
+    if (context.cancellationSignal.aborted) {
+      // Whatever the request did, the Activity was cancelled; surface that as
+      // a cancellation, not as a failed call. Rejects with CancelledFailure.
       await context.cancelled;
     }
     if (e instanceof APIError && typeof e.status === 'number') {
-      throwForStatus(e.status, errorMessage(e.error) || e.message, e.headers);
+      const error = errorBody(e.error);
+      throwForStatus(e.status, { ...error, message: error.message ?? e.message }, e.headers);
     }
     // Connection errors and timeouts propagate as-is: Temporal retries them.
     throw e;
@@ -160,7 +173,8 @@ async function send(client: OpenAI, request: OpenRouterRequest, context: Context
   if (data.error) {
     // OpenRouter can return HTTP 200 with an error body and no choices when
     // the upstream provider failed after the request was accepted.
-    throwForStatus(data.error.code ?? 500, data.error.message ?? '', response.headers);
+    const error = errorBody(data);
+    throwForStatus(error.code ?? 500, error, response.headers);
   }
 
   const usage = data.usage as (OpenAI.CompletionUsage & { cost?: number }) | undefined;
