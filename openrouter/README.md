@@ -31,7 +31,7 @@ Starting openrouter-prompt-batch-...
   Q: Explain retries in one sentence.
   A: Retries are the automatic re-attempts of a failed operation ...
 
-Total cost: $0.000547
+Reported cost: $0.000547 (what OpenRouter reported on each prompt's final attempt)
 Inspect: temporal workflow show -w openrouter-prompt-batch-...
 ```
 
@@ -59,6 +59,8 @@ For agents built on the [Vercel AI SDK](../ai-sdk), [`@openrouter/ai-sdk-provide
 ## What Temporal does and does not guarantee
 
 Activities are at-least-once. If a Worker dies mid-call, the retry re-sends the request; within the cache TTL that retry costs nothing, but two identical requests in flight at the same time both miss the cache and both bill. Completed Activities are never re-run, so a restarted batch resumes at the first unfinished prompt.
+
+The reported cost in the result is the sum of what OpenRouter reported on each prompt's final, successful attempt. An attempt that was billed but whose response never made it back to Temporal is not in that number (with `--fail-once`, the first attempt is billed and the result shows the $0 cache hit). For actual spend, use OpenRouter's dashboard or `GET /api/v1/key`.
 
 Each Activity adds a few events to the Workflow's Event History, and every answer is part of the Workflow result. The sample caps a batch at 100 prompts; for larger batches, use one Workflow per slice or continue-as-new.
 

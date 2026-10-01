@@ -12,6 +12,10 @@ Use Node version 18+ (v22.x is recommended):
 Mac: {cyan brew install node@22}
 Other: https://nodejs.org/en/download/
 
+Set your OpenRouter API key (https://openrouter.ai/settings/keys) in the shell that runs the Worker:
+
+{cyan export OPENROUTER_API_KEY=sk-or-v1-...}
+
 Then, in the project directory, using two other shells, run these commands:
 
 {cyan npm run start.watch}

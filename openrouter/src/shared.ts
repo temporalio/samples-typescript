@@ -34,7 +34,8 @@ export interface OpenRouterResult {
   prompt: string;
   model: string;
   answer: string;
-  costUsd: number;
+  /** What OpenRouter reported for this attempt; null if the response had no usage.cost. */
+  costUsd: number | null;
   generationId: string;
   /** "HIT" or "MISS" from X-OpenRouter-Cache-Status, or "" when absent. */
   cacheStatus: string;
@@ -55,5 +56,10 @@ export interface BatchInput {
 export interface BatchResult {
   results: OpenRouterResult[];
   skipped: SkippedPrompt[];
-  totalCostUsd: number;
+  /**
+   * Sum of the cost OpenRouter reported on each prompt's final, successful
+   * attempt. Attempts that were billed but whose result never reached Temporal
+   * are not included; OpenRouter's dashboard is the source of truth for spend.
+   */
+  reportedCostUsd: number;
 }

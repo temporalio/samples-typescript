@@ -27,14 +27,17 @@ async function run() {
   });
 
   for (const r of result.results) {
-    console.log(`\n[${r.model}] $${r.costUsd.toFixed(6)} cache=${r.cacheStatus || '-'}`);
+    const cost = r.costUsd === null ? 'unknown' : `$${r.costUsd.toFixed(6)}`;
+    console.log(`\n[${r.model}] ${cost} cache=${r.cacheStatus || '-'}`);
     console.log(`  Q: ${r.prompt}`);
     console.log(`  A: ${r.answer.trim()}`);
   }
   for (const s of result.skipped) {
     console.log(`\n[skipped: ${s.reason}] ${s.prompt}`);
   }
-  console.log(`\nTotal cost: $${result.totalCostUsd.toFixed(6)}`);
+  console.log(
+    `\nReported cost: $${result.reportedCostUsd.toFixed(6)} (what OpenRouter reported on each prompt's final attempt)`,
+  );
   console.log(`Inspect: temporal workflow show -w ${workflowId}`);
 }
 

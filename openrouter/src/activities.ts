@@ -45,12 +45,14 @@ export function errorType(status: number): string {
  */
 export const OUT_OF_CREDITS = 'OpenRouterOutOfCredits';
 
+/** Parse Retry-After in either its delta-seconds or HTTP-date form. */
 function retryAfter(headers: Headers | undefined): string | undefined {
   const value = headers?.get('retry-after');
   if (value === null || value === undefined) return undefined;
   const seconds = Number(value);
-  // HTTP-date form: let the Activity retry policy decide the delay.
-  return Number.isFinite(seconds) ? `${seconds}s` : undefined;
+  if (Number.isFinite(seconds)) return `${seconds}s`;
+  const delayMs = Date.parse(value) - Date.now();
+  return Number.isFinite(delayMs) && delayMs > 0 ? `${Math.ceil(delayMs / 1000)}s` : undefined;
 }
 
 /**
@@ -153,11 +155,16 @@ async function send(client: OpenAI, request: OpenRouterRequest, attempt: number)
   }
 
   const usage = data.usage as (OpenAI.CompletionUsage & { cost?: number }) | undefined;
+  if (typeof usage?.cost !== 'number') {
+    // OpenRouter reports cost on every response; if it is ever missing, say
+    // so rather than pretending the call was free.
+    log.warn('OpenRouter response has no usage.cost');
+  }
   const result: OpenRouterResult = {
     prompt: request.prompt,
     model: data.model,
     answer: contentToText(data.choices?.[0]?.message?.content),
-    costUsd: typeof usage?.cost === 'number' ? usage.cost : 0,
+    costUsd: typeof usage?.cost === 'number' ? usage.cost : null,
     generationId: data.id,
     cacheStatus: response.headers.get('x-openrouter-cache-status') ?? '',
   };

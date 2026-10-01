@@ -1,4 +1,4 @@
-import { ActivityFailure, ApplicationFailure, log, proxyActivities } from '@temporalio/workflow';
+import { ActivityFailure, ApplicationFailure, isCancellation, log, proxyActivities } from '@temporalio/workflow';
 import type { createActivities } from './activities';
 import {
   BatchInput,
@@ -32,6 +32,11 @@ export async function promptBatch(batch: BatchInput): Promise<BatchResult> {
     );
   }
 
+  const maxConcurrency = batch.maxConcurrency ?? 5;
+  if (!Number.isInteger(maxConcurrency) || maxConcurrency < 1) {
+    throw ApplicationFailure.nonRetryable('maxConcurrency must be a positive integer');
+  }
+
   const outcomes: (OpenRouterResult | SkippedPrompt)[] = new Array(batch.prompts.length);
   let next = 0;
   // Bounded concurrency: N runners pull from the shared prompt list.
@@ -41,14 +46,14 @@ export async function promptBatch(batch: BatchInput): Promise<BatchResult> {
       outcomes[index] = await answer(batch.prompts[index], batch);
     }
   };
-  await Promise.all(Array.from({ length: batch.maxConcurrency ?? 5 }, runner));
+  await Promise.all(Array.from({ length: Math.min(maxConcurrency, batch.prompts.length) }, runner));
 
   const results = outcomes.filter((o): o is OpenRouterResult => 'answer' in o);
   const skipped = outcomes.filter((o): o is SkippedPrompt => 'reason' in o);
   return {
     results,
     skipped,
-    totalCostUsd: Number(results.reduce((sum, r) => sum + r.costUsd, 0).toFixed(6)),
+    reportedCostUsd: Number(results.reduce((sum, r) => sum + (r.costUsd ?? 0), 0).toFixed(6)),
   };
 }
 
@@ -62,6 +67,8 @@ async function answer(prompt: string, batch: BatchInput): Promise<OpenRouterResu
       failOnceAfterCall: batch.failOnceAfterCall ?? false,
     });
   } catch (e) {
+    // Workflow cancellation is not a per-prompt failure.
+    if (isCancellation(e)) throw e;
     // One bad prompt should not fail the batch. Record why and carry on; the
     // caller decides what to do with skipped prompts.
     const cause = e instanceof ActivityFailure ? e.cause : e;

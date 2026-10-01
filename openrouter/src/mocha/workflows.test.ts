@@ -61,6 +61,26 @@ describe('promptBatch workflow', function () {
       ['one', 'two'],
     );
     assert.deepStrictEqual(result.skipped, [{ prompt: 'bad', reason: 'OpenRouterHTTP400' }]);
-    assert.strictEqual(result.totalCostUsd, 0.002);
+    assert.strictEqual(result.reportedCostUsd, 0.002);
+  });
+
+  it('rejects a non-positive maxConcurrency', async () => {
+    const taskQueue = 'test-openrouter-' + Date.now();
+    const worker = await Worker.create({
+      connection: testEnv.nativeConnection,
+      taskQueue,
+      workflowsPath: require.resolve('../workflows'),
+      activities: { callOpenRouter: async () => assert.fail('should not run') },
+    });
+    await assert.rejects(
+      worker.runUntil(
+        testEnv.client.workflow.execute(promptBatch, {
+          args: [{ prompts: ['one'], maxConcurrency: 0 }],
+          workflowId: 'test-openrouter-' + Date.now(),
+          taskQueue,
+        }),
+      ),
+      (err: unknown) => /maxConcurrency/.test(String((err as { cause?: Error }).cause?.message)),
+    );
   });
 });

@@ -143,12 +143,25 @@ describe('callOpenRouter activity', () => {
     assert.strictEqual(result.costUsd, 0);
   });
 
-  it('reports a missing cost as zero', async () => {
+  it('reports a missing cost as unknown', async () => {
     const body = completion();
     delete (body.usage as { cost?: number }).cost;
     const activities = makeActivities(() => ({ status: 200, body }));
     const result = (await new MockActivityEnvironment().run(activities.callOpenRouter, request)) as OpenRouterResult;
-    assert.strictEqual(result.costUsd, 0);
+    assert.strictEqual(result.costUsd, null);
     assert.strictEqual(result.cacheStatus, '');
+  });
+
+  it('honors an HTTP-date Retry-After', async () => {
+    const when = new Date(Date.now() + 30_000).toUTCString();
+    const activities = makeActivities(() => ({
+      status: 503,
+      body: { error: { code: 503, message: 'No provider available' } },
+      headers: { 'Retry-After': when },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP503');
+    const seconds = Number(String(failure.nextRetryDelay).replace('s', ''));
+    assert.ok(seconds > 25 && seconds <= 30, `unexpected delay ${failure.nextRetryDelay}`);
   });
 });

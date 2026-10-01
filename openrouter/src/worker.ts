@@ -1,11 +1,13 @@
 import { NativeConnection, Worker } from '@temporalio/worker';
+import { loadClientConnectConfig } from '@temporalio/envconfig';
 import { buildClient, createActivities } from './activities';
 import { TASK_QUEUE } from './shared';
 
 async function run() {
-  const connection = await NativeConnection.connect({
-    address: 'localhost:7233',
-  });
+  // Same connection settings as the client, so a profile that points at a
+  // remote server moves both the starter and the Worker.
+  const config = loadClientConnectConfig();
+  const connection = await NativeConnection.connect(config.connectionOptions);
   try {
     // One OpenRouter client for the Worker's lifetime, shared by every
     // concurrent Activity. Reads OPENROUTER_API_KEY from the environment.

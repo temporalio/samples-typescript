@@ -64,6 +64,7 @@ const ESLINTIGNORE_EXCLUDE = [
 
 const POST_CREATE_EXCLUDE = [
   'openai-agents',
+  'openrouter',
   'google-adk-agents',
   'env-config',
   'dsl-interpreter',
