@@ -153,6 +153,24 @@ describe('callOpenRouter activity', () => {
     );
   });
 
+  it('caps a huge Retry-After', async () => {
+    const activities = makeActivities(() => ({
+      status: 429,
+      body: { error: { code: 429, message: 'Rate limited' } },
+      headers: { 'Retry-After': '1000000000' },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.nextRetryDelay, '300s');
+  });
+
+  it('retries a 200 with no choices and no error', async () => {
+    const body = { ...completion(), choices: [] };
+    const activities = makeActivities(() => ({ status: 200, body }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP500');
+    assert.strictEqual(failure.nonRetryable, false);
+  });
+
   it('treats 403 key limit exceeded as out of credits too', async () => {
     const activities = makeActivities(() => ({
       status: 403,

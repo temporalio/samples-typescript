@@ -46,14 +46,23 @@ export function errorType(status: number): string {
  */
 export const OUT_OF_CREDITS = 'OpenRouterOutOfCredits';
 
+/** Longest Retry-After the Activity passes through as the next retry delay. */
+const MAX_RETRY_AFTER_SECONDS = 300;
+
 /** Parse Retry-After in either its delta-seconds or HTTP-date form. */
 function retryAfter(headers: Headers | undefined): string | undefined {
   const value = headers?.get('retry-after')?.trim();
   if (!value) return undefined;
-  const seconds = Number(value);
-  if (Number.isFinite(seconds)) return seconds > 0 ? `${seconds}s` : undefined;
-  const delayMs = Date.parse(value) - Date.now();
-  return Number.isFinite(delayMs) && delayMs > 0 ? `${Math.ceil(delayMs / 1000)}s` : undefined;
+  let seconds = Number(value);
+  if (!Number.isFinite(seconds)) {
+    const delayMs = Date.parse(value) - Date.now();
+    if (!Number.isFinite(delayMs)) return undefined;
+    seconds = Math.ceil(delayMs / 1000);
+  }
+  if (seconds <= 0) return undefined;
+  // Honor the server, within reason: nextRetryDelay overrides the retry
+  // policy's interval, so cap it rather than park a prompt for hours.
+  return `${Math.min(seconds, MAX_RETRY_AFTER_SECONDS)}s`;
 }
 
 /** The `error` object OpenRouter returns, as far as this sample reads it. */
@@ -181,6 +190,10 @@ async function send(client: OpenAI, request: OpenRouterRequest, context: Context
     // Or a 200 with a partial answer and the provider's error on the choice
     // itself; a partial answer is not an answer.
     throwForStatus(typeof choiceError.code === 'number' ? choiceError.code : 500, choiceError, response.headers);
+  }
+  if (!data.choices?.length) {
+    // No error and no answer: treat like a server error and retry.
+    throwForStatus(500, { message: 'Response has no choices' }, response.headers);
   }
 
   const usage = data.usage as (OpenAI.CompletionUsage & { cost?: number }) | undefined;
