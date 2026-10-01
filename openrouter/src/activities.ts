@@ -1,12 +1,13 @@
-import OpenAI, { APIError } from 'openai';
+import OpenAI, { APIError, APIUserAbortError } from 'openai';
 import { ApplicationFailure, Context, log } from '@temporalio/activity';
 import { OPENROUTER_BASE_URL, OpenRouterRequest, OpenRouterResult } from './shared';
 
 /**
  * OpenAI SDK client pointed at OpenRouter.
  *
- * Client-side retries are disabled so that Temporal owns every retry and each
- * attempt is visible in Event History. (OpenRouter's official `@openrouter/sdk`
+ * Client-side retries are disabled so that Temporal owns every retry: the
+ * attempt count and last failure land in Event History, and each attempt is
+ * logged below. (OpenRouter's official `@openrouter/sdk`
  * retries 5xx and connection errors for up to an hour by default; if you use it
  * instead, pass `retryConfig: { strategy: 'none' }`.)
  */
@@ -109,7 +110,7 @@ export function createActivities(client: OpenAI) {
         ? setInterval(() => context.heartbeat(context.info.attempt), heartbeatMs / 2)
         : undefined;
       try {
-        return await send(client, request, context.info.attempt);
+        return await send(client, request, context);
       } finally {
         if (heartbeat) clearInterval(heartbeat);
       }
@@ -117,7 +118,8 @@ export function createActivities(client: OpenAI) {
   };
 }
 
-async function send(client: OpenAI, request: OpenRouterRequest, attempt: number): Promise<OpenRouterResult> {
+async function send(client: OpenAI, request: OpenRouterRequest, context: Context): Promise<OpenRouterResult> {
+  const attempt = context.info.attempt;
   const params: OpenAI.Chat.ChatCompletionCreateParamsNonStreaming & { plugins?: unknown } = {
     model: request.model,
     messages: [{ role: 'user', content: request.prompt }],
@@ -131,6 +133,8 @@ async function send(client: OpenAI, request: OpenRouterRequest, attempt: number)
   try {
     ({ data, response } = await client.chat.completions
       .create(params, {
+        // Abort the HTTP request if the Activity is cancelled.
+        signal: context.cancellationSignal,
         headers: {
           // Ask OpenRouter to cache the successful response. A retry of the
           // byte-identical request within the TTL is served from cache and
@@ -141,6 +145,11 @@ async function send(client: OpenAI, request: OpenRouterRequest, attempt: number)
       })
       .withResponse());
   } catch (e) {
+    if (e instanceof APIUserAbortError && context.cancellationSignal.aborted) {
+      // The request was aborted because the Activity was cancelled; surface
+      // that as a cancellation, not as a failed call.
+      await context.cancelled;
+    }
     if (e instanceof APIError && typeof e.status === 'number') {
       throwForStatus(e.status, errorMessage(e.error) || e.message, e.headers);
     }

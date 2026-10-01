@@ -16,7 +16,7 @@ async function run() {
 
   const config = loadClientConnectConfig();
   const connection = await Connection.connect(config.connectionOptions);
-  const client = new Client({ connection });
+  const client = new Client({ connection, namespace: config.namespace ?? 'default' });
 
   const workflowId = 'openrouter-prompt-batch-' + nanoid();
   console.log(`Starting ${workflowId}`);

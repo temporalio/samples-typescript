@@ -1,5 +1,5 @@
 import { MockActivityEnvironment } from '@temporalio/testing';
-import { ApplicationFailure } from '@temporalio/activity';
+import { ApplicationFailure, CancelledFailure } from '@temporalio/activity';
 import { describe, it } from 'mocha';
 import assert from 'assert';
 import OpenAI from 'openai';
@@ -141,6 +141,26 @@ describe('callOpenRouter activity', () => {
     )) as OpenRouterResult;
     assert.strictEqual(result.cacheStatus, 'HIT');
     assert.strictEqual(result.costUsd, 0);
+  });
+
+  it('aborts the HTTP request and surfaces cancellation when the Activity is cancelled', async () => {
+    let seenSignal: AbortSignal | undefined;
+    const fetch = (input: string | URL | Request, init?: RequestInit): Promise<Response> => {
+      seenSignal = init?.signal ?? undefined;
+      return new Promise((_, reject) => {
+        init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')));
+      });
+    };
+    const client = new OpenAI({ baseURL: OPENROUTER_BASE_URL, apiKey: 'test-key', maxRetries: 0, fetch });
+    const activities = createActivities(client);
+    const env = new MockActivityEnvironment({ heartbeatTimeoutMs: 1000 });
+
+    const run = env.run(activities.callOpenRouter, request);
+    await new Promise((resolve) => setTimeout(resolve, 50));
+    env.cancel();
+
+    await assert.rejects(run, (e: unknown) => e instanceof CancelledFailure);
+    assert.ok(seenSignal?.aborted, 'the request signal should have been aborted');
   });
 
   it('reports a missing cost as unknown', async () => {
