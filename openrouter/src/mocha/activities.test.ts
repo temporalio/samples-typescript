@@ -153,6 +153,17 @@ describe('callOpenRouter activity', () => {
     assert.strictEqual(failure.nonRetryable, true);
   });
 
+  it('treats a provider error on the choice as an error, not an answer', async () => {
+    const body = completion() as ReturnType<typeof completion> & { choices: Record<string, unknown>[] };
+    body.choices[0].finish_reason = 'error';
+    body.choices[0].error = { code: 502, message: 'Provider died' };
+    const activities = makeActivities(() => ({ status: 200, body }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP502');
+    assert.strictEqual(failure.nonRetryable, false);
+    assert.match(failure.message, /Provider died/);
+  });
+
   it('with failOnceAfterCall, fails the first attempt only', async () => {
     const activities = makeActivities(() => ({
       status: 200,

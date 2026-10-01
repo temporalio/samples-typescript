@@ -176,6 +176,12 @@ async function send(client: OpenAI, request: OpenRouterRequest, context: Context
     const error = errorBody(data);
     throwForStatus(error.code ?? 500, error, response.headers);
   }
+  const choiceError = (data.choices?.[0] as { error?: OpenRouterErrorBody } | undefined)?.error;
+  if (choiceError) {
+    // Or a 200 with a partial answer and the provider's error on the choice
+    // itself; a partial answer is not an answer.
+    throwForStatus(choiceError.code ?? 500, choiceError, response.headers);
+  }
 
   const usage = data.usage as (OpenAI.CompletionUsage & { cost?: number }) | undefined;
   if (typeof usage?.cost !== 'number') {
