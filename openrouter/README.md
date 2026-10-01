@@ -8,7 +8,7 @@ This is the TypeScript port of the Python [`openrouter/prompt_batch`](https://gi
 
 - One Activity per prompt, run concurrently under a fixed number of runners, so a slow or failing prompt never blocks the others.
 - OpenRouter's Auto Router (`openrouter/auto`) choosing a model per prompt, with the chosen model and OpenRouter's reported cost returned for each.
-- Temporal-owned retries: the `openai` client is created with `maxRetries: 0`, so every attempt is one HTTP call driven by the Activity retry policy and Event History records the attempt count and last failure; 429, 5xx, and OpenRouter's transient in-flight-budget 402 retry with backoff and honor `Retry-After`; other 4xx errors fail fast and the prompt is reported as skipped instead of failing the batch. Running out of money gets its own failure type, `OpenRouterOutOfCredits`, so a Workflow can pause on it: a 402 for the account or the API key (`error.metadata.limit_source` says which), or the 403 `Key limit exceeded` we have seen a per-key limit return in practice. OpenRouter can also return HTTP 200 with an `error` body and no `choices`, or with a partial answer and an `error` on the choice; the Activity checks for both.
+- Temporal-owned retries: the `openai` client is created with `maxRetries: 0`, so every attempt is one HTTP call driven by the Activity retry policy and Event History records the attempt count and last failure; 408, 429, 5xx, and OpenRouter's transient in-flight-budget 402 retry with backoff and honor `Retry-After`; other 4xx errors fail fast and the prompt is reported as skipped instead of failing the batch. Running out of money gets its own failure type, `OpenRouterOutOfCredits`, so a Workflow can pause on it: a 402 for the account or the API key (`error.metadata.limit_source` says which), or the 403 `Key limit exceeded` we have seen a per-key limit return in practice. OpenRouter can also return HTTP 200 with an `error` body and no `choices`, or with a partial answer and an `error` on the choice; the Activity checks for both.
 - Retries served from OpenRouter's response cache at $0: the Activity sends `X-OpenRouter-Cache: true`, so if a Worker dies after OpenRouter answered but before Temporal recorded the result, the retried, byte-identical request is a cache hit.
 - Heartbeats, so a dead Worker is detected after `heartbeatTimeout` (10s) rather than after the full `startToCloseTimeout`.
 
@@ -31,6 +31,10 @@ Starting openrouter-prompt-batch-...
   Q: Explain retries in one sentence.
   A: Retries are the automatic re-attempts of a failed operation ...
 
+[deepseek/deepseek-v4-flash-0731] $0.000525 cache=MISS
+  Q: Write a haiku about databases.
+  A: Columns and table, ...
+
 Reported cost: $0.000547 (what OpenRouter reported on each prompt's final attempt)
 Inspect: temporal workflow show -w openrouter-prompt-batch-...
 ```
@@ -48,12 +52,12 @@ npm run workflow -- --fail-once "Explain idempotency in one sentence."
   Q: Explain idempotency in one sentence.
 ```
 
+`temporal workflow show -w <workflow-id>` shows the Activity completing on attempt 2 with the simulated failure as its last failure; the Worker log has one line per attempt with model, cost, and cache status. The cache is keyed on your API key and the exact request body, so nothing per-attempt goes in the body. OpenRouter writes the cache shortly after the response completes; a retry that arrives before that write lands is a `MISS` and is billed, which you may see occasionally with the one-second retry interval used here.
+
 ### Other options
 
 - `--model <slug>`: any OpenRouter model instead of the Auto Router.
 - `--max-concurrency <n>`: how many prompts are in flight at once (default 5).
-
-`temporal workflow show -w <workflow-id>` shows the Activity completing on attempt 2 with the simulated failure as its last failure; the Worker log has one line per attempt with model, cost, and cache status. The cache is keyed on your API key and the exact request body, so nothing per-attempt goes in the body. OpenRouter writes the cache shortly after the response completes; a retry that arrives before that write lands is a `MISS` and is billed, which you may see occasionally with the one-second retry interval used here.
 
 ## Using OpenRouter's SDKs instead
 

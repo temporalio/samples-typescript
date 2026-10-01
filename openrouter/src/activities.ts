@@ -174,13 +174,13 @@ async function send(client: OpenAI, request: OpenRouterRequest, context: Context
     // OpenRouter can return HTTP 200 with an error body and no choices when
     // the upstream provider failed after the request was accepted.
     const error = errorBody(data);
-    throwForStatus(error.code ?? 500, error, response.headers);
+    throwForStatus(typeof error.code === 'number' ? error.code : 500, error, response.headers);
   }
   const choiceError = (data.choices?.[0] as { error?: OpenRouterErrorBody } | undefined)?.error;
   if (choiceError) {
     // Or a 200 with a partial answer and the provider's error on the choice
     // itself; a partial answer is not an answer.
-    throwForStatus(choiceError.code ?? 500, choiceError, response.headers);
+    throwForStatus(typeof choiceError.code === 'number' ? choiceError.code : 500, choiceError, response.headers);
   }
 
   const usage = data.usage as (OpenAI.CompletionUsage & { cost?: number }) | undefined;

@@ -133,6 +133,26 @@ describe('callOpenRouter activity', () => {
     }
   });
 
+  it('treats a plain 4xx as non-retryable with the server message', async () => {
+    const activities = makeActivities(() => ({ status: 400, body: { error: { code: 400, message: 'Bad prompt' } } }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP400');
+    assert.strictEqual(failure.nonRetryable, true);
+    assert.strictEqual(failure.message, 'OpenRouter returned HTTP 400: Bad prompt');
+  });
+
+  it('lets a connection error propagate unchanged so Temporal retries it', async () => {
+    const fetch = async (): Promise<Response> => {
+      throw new TypeError('fetch failed');
+    };
+    const client = new OpenAI({ baseURL: OPENROUTER_BASE_URL, apiKey: 'test-key', maxRetries: 0, fetch });
+    const activities = createActivities(client);
+    await assert.rejects(
+      new MockActivityEnvironment().run(activities.callOpenRouter, request),
+      (e: unknown) => !(e instanceof ApplicationFailure) && e instanceof Error && /Connection error/.test(e.message),
+    );
+  });
+
   it('treats 403 key limit exceeded as out of credits too', async () => {
     const activities = makeActivities(() => ({
       status: 403,

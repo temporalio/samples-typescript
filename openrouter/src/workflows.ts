@@ -67,11 +67,12 @@ async function answer(prompt: string, batch: BatchInput): Promise<OpenRouterResu
       failOnceAfterCall: batch.failOnceAfterCall ?? false,
     });
   } catch (e) {
-    // Workflow cancellation is not a per-prompt failure.
-    if (isCancellation(e)) throw e;
+    // Workflow cancellation is not a per-prompt failure, and neither is
+    // anything other than the Activity itself failing.
+    if (isCancellation(e) || !(e instanceof ActivityFailure)) throw e;
     // One bad prompt should not fail the batch. Record why and carry on; the
     // caller decides what to do with skipped prompts.
-    const cause = e instanceof ActivityFailure ? e.cause : e;
+    const cause = e.cause;
     const reason =
       cause instanceof ApplicationFailure && cause.type ? cause.type : ((cause as Error)?.name ?? 'Unknown');
     log.warn('Skipping prompt', { prompt, reason });

@@ -16,9 +16,17 @@ async function run() {
   for (let i = 0; i < args.length; i++) {
     const arg = args[i];
     if (arg === '--fail-once') failOnceAfterCall = true;
-    else if (arg === '--model') model = args[++i] ?? model;
-    else if (arg === '--max-concurrency') maxConcurrency = Number(args[++i]);
-    else if (arg.startsWith('--')) throw new Error(`Unknown flag: ${arg}`);
+    else if (arg === '--model' || arg === '--max-concurrency') {
+      const value = args[++i];
+      if (value === undefined || value.startsWith('--')) throw new Error(`${arg} requires a value`);
+      if (arg === '--model') model = value;
+      else {
+        maxConcurrency = Number(value);
+        if (!Number.isInteger(maxConcurrency) || maxConcurrency < 1) {
+          throw new Error('--max-concurrency must be a positive integer');
+        }
+      }
+    } else if (arg.startsWith('--')) throw new Error(`Unknown flag: ${arg}`);
     else prompts.push(arg);
   }
 
