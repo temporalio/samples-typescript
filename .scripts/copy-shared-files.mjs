@@ -73,6 +73,7 @@ const POST_CREATE_EXCLUDE = [
   'nexus-cancellation',
   'nexus-hello',
   'nexus-messaging',
+  'nexus-messaging-temporal-operation',
   'schedules',
   'timer-examples',
   'query-subscriptions',

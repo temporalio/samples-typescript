@@ -12,7 +12,19 @@ export async function callerRemoteWorkflow(): Promise<string[]> {
   const userIdOne = 'UserId_One';
   const userIdTwo = 'UserId_Two';
 
-  // Start both remote workflows concurrently
+  // Attach approval context before anything has started Workflow One. Because
+  // attachApprovalContext is backed by Signal-with-Start on the handler, this call creates the
+  // Workflow and delivers the note to it.
+  await nexusClient.executeOperation(
+    'attachApprovalContext',
+    { userId: userIdOne, note: 'queued for localization review by the nightly batch' },
+    { scheduleToCloseTimeout: '10s' },
+  );
+  log.push(`attached approval context for user: ${userIdOne}`);
+
+  // Start both remote workflows concurrently. Workflow One is already running because of the call
+  // above; the handler sets the conflict policy to USE_EXISTING, so that start attaches the
+  // operation's completion callback to the running execution instead of failing.
   const [handleOne, handleTwo] = await Promise.all([
     nexusClient.startOperation('runFromRemote', { userId: userIdOne }, { scheduleToCloseTimeout: '60s' }),
     nexusClient.startOperation('runFromRemote', { userId: userIdTwo }, { scheduleToCloseTimeout: '60s' }),
@@ -20,6 +32,15 @@ export async function callerRemoteWorkflow(): Promise<string[]> {
 
   log.push(`started workflow one for user: ${userIdOne}`);
   log.push(`started workflow two for user: ${userIdTwo}`);
+
+  // Workflow Two was just created by runFromRemote, so here Signal-with-Start skips the start and
+  // only delivers the Signal.
+  await nexusClient.executeOperation(
+    'attachApprovalContext',
+    { userId: userIdTwo, note: 'translation approved by the localization team' },
+    { scheduleToCloseTimeout: '10s' },
+  );
+  log.push(`attached approval context to running workflow for user: ${userIdTwo}`);
 
   // Interact with workflow one: query languages, set language to spanish
   const languagesOne = await nexusClient.executeOperation(
