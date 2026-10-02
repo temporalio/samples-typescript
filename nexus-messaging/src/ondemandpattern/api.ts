@@ -7,7 +7,7 @@ export const CALLER_NAMESPACE = 'nexus-messaging-caller-namespace';
 
 export const nexusRemoteGreetingService = nexus.service('NexusRemoteGreetingService', {
   /**
-   * Starts a new GreetingWorkflow with the given workflowId (async TemporalOperation).
+   * Starts a new GreetingWorkflow with the given workflowId (async WorkflowRunOperation).
    */
   runFromRemote: nexus.operation<RunFromRemoteInput, RunFromRemoteOutput>(),
 
@@ -30,12 +30,6 @@ export const nexusRemoteGreetingService = nexus.service('NexusRemoteGreetingServ
    * Approves (completes) the given workflow via a signal.
    */
   approve: nexus.operation<ApproveInput, void>(),
-
-  /**
-   * Attaches supporting information for the eventual approval, either by messaging a running
-   * Workflow or by creating one (Signal-with-Start).
-   */
-  attachApprovalContext: nexus.operation<AttachApprovalContextInput, void>(),
 });
 
 export type Language = 'arabic' | 'chinese' | 'english' | 'french' | 'hindi' | 'portuguese' | 'spanish';
@@ -67,9 +61,4 @@ export type SetLanguageOutput = Language;
 
 export interface ApproveInput {
   userId: string;
-}
-
-export interface AttachApprovalContextInput {
-  userId: string;
-  note: string;
 }
