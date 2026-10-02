@@ -27,34 +27,27 @@ export const nexusRemoteGreetingServiceHandler = nexus.serviceHandler(nexusRemot
     },
   ),
 
-  getLanguages: new temporalNexus.TemporalOperationHandler({
-    async start(_ctx, client, input: GetLanguagesInput) {
-      const handle = client.client.workflow.getHandle(getWorkflowId(input.userId));
-      const result = await handle.query(getLanguagesQuery);
-      return temporalNexus.TemporalOperationResult.sync(result);
-    },
-  }),
+  getLanguages: async (ctx, input: GetLanguagesInput) => {
+    const client = temporalNexus.getClient();
+    const handle = client.workflow.getHandle(getWorkflowId(input.userId));
+    return await handle.query(getLanguagesQuery);
+  },
 
-  getLanguage: new temporalNexus.TemporalOperationHandler({
-    async start(_ctx, client, input: GetLanguageInput) {
-      const handle = client.client.workflow.getHandle(getWorkflowId(input.userId));
-      const result = await handle.query(getLanguageQuery);
-      return temporalNexus.TemporalOperationResult.sync(result);
-    },
-  }),
+  getLanguage: async (ctx, input: GetLanguageInput) => {
+    const client = temporalNexus.getClient();
+    const handle = client.workflow.getHandle(getWorkflowId(input.userId));
+    return await handle.query(getLanguageQuery);
+  },
 
-  setLanguage: new temporalNexus.TemporalOperationHandler({
-    async start(_ctx, client, input: SetLanguageInput) {
-      const handle = client.getWorkflowHandle(getWorkflowId(input.userId));
-      return await handle.update(setLanguageUpdate, { args: [input.language] });
-    },
-  }),
+  setLanguage: async (ctx, input: SetLanguageInput) => {
+    const client = temporalNexus.getClient();
+    const handle = client.workflow.getHandle(getWorkflowId(input.userId));
+    return await handle.executeUpdate(setLanguageUpdate, { args: [input.language] });
+  },
 
-  approve: new temporalNexus.TemporalOperationHandler({
-    async start(_ctx, client, input: ApproveInput) {
-      const handle = client.getWorkflowHandle(getWorkflowId(input.userId));
-      await handle.signal(approveSignal);
-      return temporalNexus.TemporalOperationResult.sync(undefined);
-    },
-  }),
+  approve: async (ctx, input: ApproveInput) => {
+    const client = temporalNexus.getClient();
+    const handle = client.workflow.getHandle(getWorkflowId(input.userId));
+    await handle.signal(approveSignal);
+  },
 });
