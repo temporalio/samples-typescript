@@ -54,6 +54,9 @@ async function run() {
   console.log(
     `\nReported cost: $${result.reportedCostUsd.toFixed(6)} (what OpenRouter reported on each prompt's final attempt)`,
   );
+  if (result.unknownCostCount > 0) {
+    console.log(`  ${result.unknownCostCount} prompt(s) came back without a cost`);
+  }
   console.log(`Inspect: temporal workflow show -w ${workflowId}`);
 }
 

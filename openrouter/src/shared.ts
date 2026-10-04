@@ -62,4 +62,9 @@ export interface BatchResult {
    * are not included; OpenRouter's dashboard is the source of truth for spend.
    */
   reportedCostUsd: number;
+  /**
+   * How many successful prompts came back without a cost. When this is not
+   * zero, reportedCostUsd is a subtotal of the known costs.
+   */
+  unknownCostCount: number;
 }

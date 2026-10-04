@@ -54,6 +54,7 @@ export async function promptBatch(batch: BatchInput): Promise<BatchResult> {
     results,
     skipped,
     reportedCostUsd: Number(results.reduce((sum, r) => sum + (r.costUsd ?? 0), 0).toFixed(6)),
+    unknownCostCount: results.filter((r) => r.costUsd === null).length,
   };
 }
 

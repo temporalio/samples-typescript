@@ -64,6 +64,38 @@ describe('promptBatch workflow', function () {
     );
     assert.deepStrictEqual(result.skipped, [{ prompt: 'bad', reason: 'OpenRouterHTTP400' }]);
     assert.strictEqual(result.reportedCostUsd, 0.002);
+    assert.strictEqual(result.unknownCostCount, 0);
+  });
+
+  it('counts prompts whose cost was unknown instead of treating them as free', async () => {
+    const taskQueue = 'test-openrouter-' + nanoid();
+    const activities = {
+      async callOpenRouter(request: OpenRouterRequest): Promise<OpenRouterResult> {
+        return {
+          prompt: request.prompt,
+          model: 'm',
+          answer: 'ok',
+          costUsd: request.prompt === 'known' ? 0.001 : null,
+          generationId: `gen-${request.prompt}`,
+          cacheStatus: '',
+        };
+      },
+    };
+    const worker = await Worker.create({
+      connection: testEnv.nativeConnection,
+      taskQueue,
+      workflowsPath: require.resolve('../workflows'),
+      activities,
+    });
+    const result = await worker.runUntil(
+      testEnv.client.workflow.execute(promptBatch, {
+        args: [{ prompts: ['known', 'unknown'] }],
+        workflowId: 'test-openrouter-' + nanoid(),
+        taskQueue,
+      }),
+    );
+    assert.strictEqual(result.reportedCostUsd, 0.001);
+    assert.strictEqual(result.unknownCostCount, 1);
   });
 
   it('propagates Workflow cancellation instead of recording skipped prompts', async () => {
