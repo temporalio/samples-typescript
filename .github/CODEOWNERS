@@ -7,6 +7,7 @@
 # This is required so that SDK team can do repo-wide maintenance tasks.
 
 /README.md                      @temporalio/sdk @temporalio/nexus @temporalio/ai-sdk
+/.scripts/copy-shared-files.mjs @temporalio/sdk @temporalio/nexus @temporalio/ai-sdk
 /.scripts/list-of-samples.json  @temporalio/sdk @temporalio/nexus @temporalio/ai-sdk
 /pnpm-lock.yaml                 @temporalio/sdk @temporalio/nexus @temporalio/ai-sdk
 
