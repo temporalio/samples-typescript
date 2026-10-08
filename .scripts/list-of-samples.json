@@ -57,6 +57,7 @@
     "timer-progress",
     "worker-specific-task-queues",
     "worker-versioning",
+    "workflow-history-audit",
     "workflow-streams",
     "message-passing/execute-update",
     "message-passing/introduction",

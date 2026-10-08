@@ -162,6 +162,7 @@ and you'll be given the list of sample options.
   - [**Query Subscriptions**](./query-subscriptions): Use Redis Streams, Immer, and SDK Interceptors to subscribe to Workflow state.
 - [**gRPC calls**](./grpc-calls): Make raw gRPC calls for advanced queries not covered by the WorkflowClient API.
 - [**LangSmith**](./langsmith): Trace Workflows and Activities to [LangSmith](https://www.langchain.com/langsmith) using the `@temporalio/langsmith` plugin.
+- [**Workflow History Audit**](./workflow-history-audit): Download encoded Workflow histories, analyze selected payload values locally, and query the resulting summaries.
 
 #### Test APIs
 

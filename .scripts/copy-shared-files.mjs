@@ -29,6 +29,7 @@ const TSCONFIG_EXCLUDE = [
   'hello-world',
   'scratchpad',
   'langsmith',
+  'workflow-history-audit',
 ];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -39,6 +40,7 @@ const GITIGNORE_EXCLUDE = [
   'food-delivery',
   'lambda-worker',
   'nestjs-exchange-rates',
+  'workflow-history-audit',
 ];
 const ESLINTRC_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -50,6 +52,7 @@ const ESLINTRC_EXCLUDE = [
   'food-delivery',
   'nestjs-exchange-rates',
   'langsmith',
+  'workflow-history-audit',
 ];
 const ESLINTIGNORE_EXCLUDE = [
   'production',
@@ -94,6 +97,7 @@ const POST_CREATE_EXCLUDE = [
   'scratchpad',
   'workflow-streams',
   'langsmith',
+  'workflow-history-audit',
 ];
 
 const PRETTIERRC_EXCLUDE = ['food-delivery'];
@@ -104,6 +108,7 @@ const PRETTIERIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
   'protobufs',
   'nestjs-exchange-rates',
+  'workflow-history-audit',
 ];
 
 const NPMRC_EXCLUDE = ['food-delivery'];
