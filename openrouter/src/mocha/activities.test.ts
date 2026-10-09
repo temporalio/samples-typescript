@@ -1,0 +1,269 @@
+import { MockActivityEnvironment } from '@temporalio/testing';
+import { ApplicationFailure, CancelledFailure } from '@temporalio/activity';
+import { describe, it } from 'mocha';
+import assert from 'assert';
+import OpenAI from 'openai';
+import { createActivities } from '../activities';
+import { OPENROUTER_BASE_URL, OpenRouterRequest, OpenRouterResult } from '../shared';
+
+type FakeResponse = { status: number; body: unknown; headers?: Record<string, string> };
+
+/** Activities backed by a fake OpenRouter; no network, no API key. */
+function makeActivities(respond: (request: Request) => FakeResponse, seen: Request[] = []) {
+  const fetch = async (input: string | URL | Request, init?: RequestInit): Promise<Response> => {
+    const request = new Request(input, init);
+    seen.push(request);
+    const { status, body, headers } = respond(request);
+    return new Response(JSON.stringify(body), {
+      status,
+      headers: { 'content-type': 'application/json', ...headers },
+    });
+  };
+  const client = new OpenAI({ baseURL: OPENROUTER_BASE_URL, apiKey: 'test-key', maxRetries: 0, fetch });
+  return createActivities(client);
+}
+
+const request: OpenRouterRequest = {
+  prompt: 'Explain retries in one sentence.',
+  model: 'openrouter/auto',
+  costTier: 'low',
+  cacheTtlSeconds: 600,
+  failOnceAfterCall: false,
+};
+
+function completion(cost: number | undefined = 0.000123, model = 'openai/gpt-4o-mini') {
+  return {
+    id: 'gen-123',
+    object: 'chat.completion',
+    created: 0,
+    model,
+    choices: [
+      { index: 0, finish_reason: 'stop', message: { role: 'assistant', content: 'Retries repeat a failed call.' } },
+    ],
+    usage: { prompt_tokens: 5, completion_tokens: 7, total_tokens: 12, cost },
+  };
+}
+
+async function expectFailure(fn: () => Promise<unknown>): Promise<ApplicationFailure> {
+  try {
+    await fn();
+  } catch (e) {
+    assert.ok(e instanceof ApplicationFailure, `expected ApplicationFailure, got ${String(e)}`);
+    return e;
+  }
+  assert.fail('expected the activity to throw');
+}
+
+describe('callOpenRouter activity', () => {
+  it('returns model, cost, and cache status, with one HTTP call per attempt', async () => {
+    const seen: Request[] = [];
+    const activities = makeActivities(
+      () => ({ status: 200, body: completion(), headers: { 'X-OpenRouter-Cache-Status': 'MISS' } }),
+      seen,
+    );
+
+    const result = (await new MockActivityEnvironment().run(activities.callOpenRouter, request)) as OpenRouterResult;
+
+    assert.deepStrictEqual(result, {
+      prompt: request.prompt,
+      model: 'openai/gpt-4o-mini',
+      answer: 'Retries repeat a failed call.',
+      costUsd: 0.000123,
+      generationId: 'gen-123',
+      cacheStatus: 'MISS',
+    });
+    assert.strictEqual(seen.length, 1);
+    const body = (await seen[0].json()) as { model: string; plugins: unknown };
+    assert.strictEqual(body.model, 'openrouter/auto');
+    assert.deepStrictEqual(body.plugins, [{ id: 'auto-router', cost_tier: 'low' }]);
+    assert.strictEqual(seen[0].headers.get('x-openrouter-cache'), 'true');
+    assert.strictEqual(seen[0].headers.get('x-openrouter-cache-ttl'), '600');
+  });
+
+  it('treats 429 as retryable and honors Retry-After', async () => {
+    const activities = makeActivities(() => ({
+      status: 429,
+      body: { error: { code: 429, message: 'Rate limited' } },
+      headers: { 'Retry-After': '7' },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP429');
+    assert.strictEqual(failure.nonRetryable, false);
+    assert.strictEqual(failure.nextRetryDelay, '7s');
+  });
+
+  it('treats 402 insufficient credits as out of credits, non-retryable', async () => {
+    const activities = makeActivities(() => ({
+      status: 402,
+      body: { error: { code: 402, message: 'Insufficient credits' } },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterOutOfCredits');
+    assert.strictEqual(failure.nonRetryable, true);
+    assert.strictEqual(failure.message, 'OpenRouter returned HTTP 402: Insufficient credits');
+  });
+
+  it('retries a transient in-flight-budget 402 after Retry-After', async () => {
+    const activities = makeActivities(() => ({
+      status: 402,
+      body: {
+        error: {
+          code: 402,
+          message: 'In-flight budget exceeded',
+          metadata: { limit_source: 'openrouter_in_flight_budget' },
+        },
+      },
+      headers: { 'Retry-After': '3' },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP402');
+    assert.strictEqual(failure.nonRetryable, false);
+    assert.strictEqual(failure.nextRetryDelay, '3s');
+  });
+
+  it('ignores an empty or non-positive Retry-After', async () => {
+    for (const value of ['', '-5', '0']) {
+      const activities = makeActivities(() => ({
+        status: 429,
+        body: { error: { code: 429, message: 'Rate limited' } },
+        headers: { 'Retry-After': value },
+      }));
+      const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+      assert.strictEqual(failure.nextRetryDelay, undefined, `Retry-After ${JSON.stringify(value)}`);
+    }
+  });
+
+  it('treats a plain 4xx as non-retryable with the server message', async () => {
+    const activities = makeActivities(() => ({ status: 400, body: { error: { code: 400, message: 'Bad prompt' } } }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP400');
+    assert.strictEqual(failure.nonRetryable, true);
+    assert.strictEqual(failure.message, 'OpenRouter returned HTTP 400: Bad prompt');
+  });
+
+  it('lets a connection error propagate unchanged so Temporal retries it', async () => {
+    const fetch = async (): Promise<Response> => {
+      throw new TypeError('fetch failed');
+    };
+    const client = new OpenAI({ baseURL: OPENROUTER_BASE_URL, apiKey: 'test-key', maxRetries: 0, fetch });
+    const activities = createActivities(client);
+    await assert.rejects(
+      new MockActivityEnvironment().run(activities.callOpenRouter, request),
+      (e: unknown) => !(e instanceof ApplicationFailure) && e instanceof Error && /Connection error/.test(e.message),
+    );
+  });
+
+  it('caps a huge Retry-After', async () => {
+    const activities = makeActivities(() => ({
+      status: 429,
+      body: { error: { code: 429, message: 'Rate limited' } },
+      headers: { 'Retry-After': '1000000000' },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.nextRetryDelay, '300s');
+  });
+
+  it('retries a 200 with no choices and no error', async () => {
+    const body = { ...completion(), choices: [] };
+    const activities = makeActivities(() => ({ status: 200, body }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP500');
+    assert.strictEqual(failure.nonRetryable, false);
+  });
+
+  it('treats 403 key limit exceeded as out of credits too', async () => {
+    const activities = makeActivities(() => ({
+      status: 403,
+      body: { error: { code: 403, message: 'Key limit exceeded (total limit)' } },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterOutOfCredits');
+    assert.strictEqual(failure.nonRetryable, true);
+  });
+
+  it('classifies an error body inside a 200 by its code', async () => {
+    const activities = makeActivities(() => ({
+      status: 200,
+      body: { error: { code: 403, message: 'Flagged by moderation' } },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP403');
+    assert.strictEqual(failure.nonRetryable, true);
+  });
+
+  it('treats a provider error on the choice as an error, not an answer', async () => {
+    const body = completion() as ReturnType<typeof completion> & { choices: Record<string, unknown>[] };
+    body.choices[0].finish_reason = 'error';
+    body.choices[0].error = { code: 502, message: 'Provider died' };
+    const activities = makeActivities(() => ({ status: 200, body }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP502');
+    assert.strictEqual(failure.nonRetryable, false);
+    assert.match(failure.message, /Provider died/);
+  });
+
+  it('with failOnceAfterCall, fails the first attempt only', async () => {
+    const activities = makeActivities(() => ({
+      status: 200,
+      body: completion(0),
+      headers: { 'X-OpenRouter-Cache-Status': 'HIT' },
+    }));
+    const failOnce = { ...request, failOnceAfterCall: true };
+
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, failOnce));
+    assert.strictEqual(failure.type, 'SimulatedFailure');
+    assert.strictEqual(failure.nonRetryable, false);
+
+    const result = (await new MockActivityEnvironment({ attempt: 2 }).run(
+      activities.callOpenRouter,
+      failOnce,
+    )) as OpenRouterResult;
+    assert.strictEqual(result.cacheStatus, 'HIT');
+    assert.strictEqual(result.costUsd, 0);
+  });
+
+  it('aborts the HTTP request and surfaces cancellation when the Activity is cancelled', async () => {
+    let seenSignal: AbortSignal | undefined;
+    let requestStarted!: () => void;
+    const started = new Promise<void>((resolve) => (requestStarted = resolve));
+    const fetch = (input: string | URL | Request, init?: RequestInit): Promise<Response> => {
+      seenSignal = init?.signal ?? undefined;
+      requestStarted();
+      return new Promise((_, reject) => {
+        init?.signal?.addEventListener('abort', () => reject(new DOMException('aborted', 'AbortError')));
+      });
+    };
+    const client = new OpenAI({ baseURL: OPENROUTER_BASE_URL, apiKey: 'test-key', maxRetries: 0, fetch });
+    const activities = createActivities(client);
+    const env = new MockActivityEnvironment({ heartbeatTimeoutMs: 1000 });
+
+    const run = env.run(activities.callOpenRouter, request);
+    await started;
+    env.cancel();
+
+    await assert.rejects(run, (e: unknown) => e instanceof CancelledFailure);
+    assert.ok(seenSignal?.aborted, 'the request signal should have been aborted');
+  });
+
+  it('reports a missing cost as unknown', async () => {
+    const body = completion();
+    delete (body.usage as { cost?: number }).cost;
+    const activities = makeActivities(() => ({ status: 200, body }));
+    const result = (await new MockActivityEnvironment().run(activities.callOpenRouter, request)) as OpenRouterResult;
+    assert.strictEqual(result.costUsd, null);
+    assert.strictEqual(result.cacheStatus, '');
+  });
+
+  it('honors an HTTP-date Retry-After', async () => {
+    const when = new Date(Date.now() + 30_000).toUTCString();
+    const activities = makeActivities(() => ({
+      status: 503,
+      body: { error: { code: 503, message: 'No provider available' } },
+      headers: { 'Retry-After': when },
+    }));
+    const failure = await expectFailure(() => new MockActivityEnvironment().run(activities.callOpenRouter, request));
+    assert.strictEqual(failure.type, 'OpenRouterHTTP503');
+    const seconds = Number(String(failure.nextRetryDelay).replace('s', ''));
+    assert.ok(seconds > 25 && seconds <= 30, `unexpected delay ${failure.nextRetryDelay}`);
+  });
+});
