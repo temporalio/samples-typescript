@@ -28,6 +28,7 @@ publicHoistPattern:
   - postcss-*
 
 allowBuilds:
+  '@google/genai': set this to true or false
   '@nestjs/core': true
   '@swc/core': true
   core-js: true
@@ -36,4 +37,5 @@ allowBuilds:
   esbuild: true
   protobufjs: true
   sharp: true
+  sqlite3: set this to true or false
   vercel: true
