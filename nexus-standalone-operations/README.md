@@ -4,9 +4,9 @@ This sample demonstrates how to execute Nexus Operations directly from client co
 
 The starter and worker connect to two different namespaces (a "caller" namespace and a "handler" namespace) — this mirrors how Nexus is typically used to cross namespace boundaries. The client is configured via the SDK's [environment configuration](https://docs.temporal.io/develop/environment-configuration) support (`loadClientConnectConfig()`), which reads `TEMPORAL_NAMESPACE`, `TEMPORAL_ADDRESS`, etc. from the environment (and optionally profiles from `temporal.toml`).
 
-### Temporal Typescript SDK support for Standalone Nexus Operations is at [Pre-release](https://docs.temporal.io/evaluate/development-production-features/release-stages#pre-release).
+### Temporal Typescript SDK support for Standalone Nexus Operations is at [Public Preview](https://docs.temporal.io/evaluate/development-production-features/release-stages#public-preview).
 
-All APIs are experimental and may be subject to backwards-incompatible changes.
+We aim to preserve backward compatibility and avoid breaking changes.
 
 Standalone Nexus operations require a server version that supports this feature. Use the dev server build at https://github.com/temporalio/cli/releases/tag/v1.7.4-standalone-nexus-operations.
 
