@@ -1,14 +1,12 @@
 # Nexus Standalone Operations
 
+> [!NOTE]
+> ✨ **Standalone Nexus Operations are now in [Public Preview](https://docs.temporal.io/evaluate/development-production-features/release-stages#public-preview).**
+> We aim to preserve backward compatibility and avoid breaking changes.
+
 This sample demonstrates how to execute Nexus Operations directly from client code, without wrapping them in a caller Workflow. It shows both synchronous and workflow-backed Operations, plus listing and counting standalone Nexus Operation executions.
 
 The starter and worker connect to two different namespaces (a "caller" namespace and a "handler" namespace) — this mirrors how Nexus is typically used to cross namespace boundaries. The client is configured via the SDK's [environment configuration](https://docs.temporal.io/develop/environment-configuration) support (`loadClientConnectConfig()`), which reads `TEMPORAL_NAMESPACE`, `TEMPORAL_ADDRESS`, etc. from the environment (and optionally profiles from `temporal.toml`).
-
-### Temporal Typescript SDK support for Standalone Nexus Operations is at [Pre-release](https://docs.temporal.io/evaluate/development-production-features/release-stages#pre-release).
-
-All APIs are experimental and may be subject to backwards-incompatible changes.
-
-Standalone Nexus operations require a server version that supports this feature. Use the dev server build at https://github.com/temporalio/cli/releases/tag/v1.7.4-standalone-nexus-operations.
 
 ## Structure
 
@@ -23,10 +21,13 @@ Standalone Nexus operations require a server version that supports this feature.
 
 Install dependencies first with `npm install` (or `pnpm` / `yarn`).
 
-1. Start the [Temporal dev server build that supports standalone Nexus operations](https://docs.temporal.io/standalone-nexus-operation#temporal-cli-support) with the required namespaces pre-created:
+> [!NOTE]
+> Standalone Nexus Operations require a server that supports this feature. For local development, use a Temporal CLI release that enables SANO in its dev server.
+
+1. Start a [Temporal dev server](https://docs.temporal.io/cli/setup-cli) with the required namespaces pre-created:
 
    ```bash
-   ./temporal server start-dev \
+   temporal server start-dev \
      --namespace my-caller-namespace \
      --namespace my-handler-namespace
    ```
@@ -34,7 +35,7 @@ Install dependencies first with `npm install` (or `pnpm` / `yarn`).
 2. Create a Nexus endpoint that routes to the handler namespace and the worker's task queue:
 
    ```sh
-   ./temporal operator nexus endpoint create \
+   temporal operator nexus endpoint create \
      --name my-nexus-endpoint \
      --target-namespace my-handler-namespace \
      --target-task-queue nexus-handler-queue
