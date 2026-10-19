@@ -3,7 +3,7 @@ import { after, before, describe, it } from 'mocha';
 import { Worker } from '@temporalio/worker';
 import { haikuAgent } from '../workflows';
 import * as activities from '../activities';
-import { AiSdkPlugin } from '@temporalio/ai-sdk';
+import { AiSdkPlugin } from '@temporalio/vercel-ai-sdk';
 import assert from 'assert';
 
 // `@ai-sdk/openai` is ESM-only. Under this sample's CommonJS build a static

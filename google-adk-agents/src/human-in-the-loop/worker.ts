@@ -1,5 +1,5 @@
 import { NativeConnection, Worker } from '@temporalio/worker';
-import { GoogleAdkPlugin } from '@temporalio/google-adk-agents';
+import { GoogleAdkPlugin } from '@temporalio/google-adk';
 
 async function run() {
   const connection = await NativeConnection.connect({ address: 'localhost:7233' });

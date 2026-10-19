@@ -1,6 +1,6 @@
 # Google ADK Agents: Observability
 
-Where an agent's token usage, latency, and call counts come from once `OpenTelemetryPlugin` is composed onto the Worker alongside `GoogleAdkPlugin`, as this sample's `worker.ts` does. Without it, ADK's agent-loop spans are created inside the Workflow sandbox and dropped; the [`@temporalio/google-adk-agents` README](https://github.com/temporalio/sdk-typescript/tree/main/contrib/google-adk-agents#telemetry-and-observability) covers why, and the caveats that come with exporting them.
+Where an agent's token usage, latency, and call counts come from once `OpenTelemetryPlugin` is composed onto the Worker alongside `GoogleAdkPlugin`, as this sample's `worker.ts` does. Without it, ADK's agent-loop spans are created inside the Workflow sandbox and dropped; the [`@temporalio/google-adk` README](https://github.com/temporalio/ai-integrations/tree/main/typescript/google-adk#telemetry-and-observability) covers why, and the caveats that come with exporting them.
 
 Everything here is traces. ADK defines no OpenTelemetry metric instruments, so there is no metric stream to scrape — the numbers below are span attributes.
 

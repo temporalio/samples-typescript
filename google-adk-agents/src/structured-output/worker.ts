@@ -1,7 +1,7 @@
 import type { LlmResponse } from '@google/adk';
 import { NativeConnection, Worker } from '@temporalio/worker';
-import { GoogleAdkPlugin } from '@temporalio/google-adk-agents';
-import { fakeModelProvider } from '@temporalio/google-adk-agents/testing';
+import { GoogleAdkPlugin } from '@temporalio/google-adk';
+import { fakeModelProvider } from '@temporalio/google-adk/testing';
 
 async function run() {
   const offline: LlmResponse[] = [

@@ -1,5 +1,5 @@
 import type { LlmRequest } from '@google/adk';
-import { TemporalModel } from '@temporalio/google-adk-agents/workflow';
+import { TemporalModel } from '@temporalio/google-adk/workflow';
 import { condition, defineSignal, setHandler } from '@temporalio/workflow';
 import { WorkflowStream } from '@temporalio/workflow-streams/workflow';
 

@@ -23,19 +23,21 @@
     ]
   },
   "dependencies": {
-    "@ai-sdk/openai": "^4.0.0",
-    "@ai-sdk/provider": "^4.0.0",
-    "@ai-sdk/mcp": "^2.0.0",
+    "@ai-sdk/openai": "^4.0.83",
+    "@ai-sdk/provider": "^4.0.21",
+    "@ai-sdk/mcp": "^2.0.66",
     "@modelcontextprotocol/sdk": "^1.25.2",
     "@temporalio/activity": "^1.24.0",
-    "@temporalio/ai-sdk": "^1.24.0",
     "@temporalio/client": "^1.24.0",
     "@temporalio/envconfig": "^1.24.0",
+    "@temporalio/vercel-ai-sdk": "^1.0.0",
     "@temporalio/worker": "^1.24.0",
     "@temporalio/workflow": "^1.24.0",
     "@temporalio/workflow-streams": "^1.24.0",
-    "ai": "7.0.41",
+    "ai": "7.0.127",
+    "long": "^5.3.2",
     "nanoid": "3.x",
+    "protobufjs": "^8.7.1",
     "zod": "^4.0.0"
   },
   "devDependencies": {

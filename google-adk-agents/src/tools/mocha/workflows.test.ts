@@ -3,7 +3,7 @@ import type { BaseLlmConnection, LlmRequest, LlmResponse } from '@google/adk';
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { ApplicationFailure } from '@temporalio/common';
 import { Worker } from '@temporalio/worker';
-import { GoogleAdkPlugin } from '@temporalio/google-adk-agents';
+import { GoogleAdkPlugin } from '@temporalio/google-adk';
 import { after, before, describe, it } from 'mocha';
 import assert from 'assert';
 import * as activities from '../activities';

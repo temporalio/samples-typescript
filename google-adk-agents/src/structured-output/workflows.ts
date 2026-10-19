@@ -1,6 +1,6 @@
 import { InMemoryRunner, LlmAgent, isFinalResponse, stringifyContent } from '@google/adk';
 import { Type } from '@google/genai';
-import { TemporalModel } from '@temporalio/google-adk-agents/workflow';
+import { TemporalModel } from '@temporalio/google-adk/workflow';
 import { ApplicationFailure } from '@temporalio/workflow';
 
 export interface IncidentSummary {

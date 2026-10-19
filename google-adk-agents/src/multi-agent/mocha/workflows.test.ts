@@ -1,6 +1,6 @@
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { Worker } from '@temporalio/worker';
-import { GoogleAdkPlugin } from '@temporalio/google-adk-agents';
+import { GoogleAdkPlugin } from '@temporalio/google-adk';
 import { BaseLlm } from '@google/adk';
 import type { BaseLlmConnection, LlmRequest, LlmResponse } from '@google/adk';
 import { after, before, describe, it } from 'mocha';

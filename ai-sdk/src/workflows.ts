@@ -1,6 +1,6 @@
 import { generateText, streamText, stepCountIs, tool, wrapLanguageModel } from 'ai';
 import type { LanguageModelMiddleware } from 'ai';
-import { TemporalMCPClient, TemporalProvider, temporalProvider } from '@temporalio/ai-sdk/workflow';
+import { TemporalMCPClient, TemporalProvider, temporalProvider } from '@temporalio/vercel-ai-sdk/workflow';
 import { WorkflowStream } from '@temporalio/workflow-streams/workflow';
 import type * as activities from './activities';
 import { proxyActivities, condition, defineSignal, setHandler } from '@temporalio/workflow';

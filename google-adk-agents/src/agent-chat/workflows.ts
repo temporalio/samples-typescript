@@ -1,5 +1,5 @@
 import { InMemoryRunner, LlmAgent, isFinalResponse, stringifyContent } from '@google/adk';
-import { TemporalModel } from '@temporalio/google-adk-agents/workflow';
+import { TemporalModel } from '@temporalio/google-adk/workflow';
 import { condition, continueAsNew, defineQuery, defineUpdate, setHandler } from '@temporalio/workflow';
 
 export interface Message {

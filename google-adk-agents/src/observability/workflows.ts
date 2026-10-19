@@ -1,5 +1,5 @@
 import { InMemoryRunner, LlmAgent, isFinalResponse, stringifyContent } from '@google/adk';
-import { TemporalModel } from '@temporalio/google-adk-agents/workflow';
+import { TemporalModel } from '@temporalio/google-adk/workflow';
 
 export async function observedAgent(prompts: string[]): Promise<string[]> {
   const agent = new LlmAgent({

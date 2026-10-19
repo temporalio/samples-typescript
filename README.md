@@ -186,7 +186,7 @@ and you'll be given the list of sample options.
   - [**Customer Service**](./openai-agents/customer-service): A long-running, multi-turn Workflow driven by Updates and Queries, with triage handoffs and `continueAsNew` to bound history.
   - [**Nexus Tools**](./openai-agents/nexus-tools): Expose a Nexus Operation as an agent tool with `nexusOperationAsTool`.
   - [**Streaming**](./openai-agents/src/streaming): Run an agent in streaming mode over a Workflow Stream, with an external client subscribing to the model's deltas live.
-- [**Google ADK Agents**](./google-adk-agents): Run [Google Agent Development Kit](https://github.com/google/adk-js) (`@google/adk`) agents as Temporal Workflows with the `@temporalio/google-adk-agents` integration. The [`google-adk-agents/`](./google-adk-agents) directory contains eight samples:
+- [**Google ADK Agents**](./google-adk-agents): Run [Google Agent Development Kit](https://github.com/google/adk-js) (`@google/adk`) agents as Temporal Workflows with the `@temporalio/google-adk` integration. The [`google-adk-agents/`](./google-adk-agents) directory contains eight samples:
   - [**Agent Chat**](./google-adk-agents/src/agent-chat): Multi-turn agent chat with Updates, queryable history, and Continue-As-New.
   - [**Tools**](./google-adk-agents/src/tools): An existing Temporal Activity exposed to the agent as an ADK tool with `activityAsTool`.
   - [**Multi-Agent**](./google-adk-agents/src/multi-agent): A coordinator `LlmAgent` starts an ADK `transfer_to_agent` relay through a researcher and a writer, each with its own `TemporalModel`.
@@ -264,6 +264,8 @@ pnpm run lint
 - There are [blog posts](https://temporal.io/blog/building-reliable-distributed-systems-in-node) and a PDF that depend on the file structure of the `food-delivery/` sample.
 
 ### Upgrading the SDK version in `package.json`s
+
+The Vercel AI SDK and Google ADK integration packages are versioned independently and are excluded from this command.
 
 ```sh
 pnpm run upgrade-versions -- 'VERSION_STRING_HERE'

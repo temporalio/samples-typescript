@@ -4,8 +4,8 @@
   "compilerOptions": {
     "lib": ["es2021"],
     // The Vercel AI SDK v7 (`ai`) is ESM-only. Use classic CommonJS module
-    // resolution (matching the @temporalio/ai-sdk build) so it can be required
-    // from this CommonJS sample and the `@temporalio/ai-sdk/workflow` subpath
+    // resolution (matching the @temporalio/vercel-ai-sdk build) so it can be required
+    // from this CommonJS sample and the `@temporalio/vercel-ai-sdk/workflow` subpath
     // resolves via `typesVersions`.
     "module": "commonjs",
     "moduleResolution": "node",

@@ -1,7 +1,7 @@
 import * as path from 'path';
 import { NativeConnection, Worker } from '@temporalio/worker';
-import { GoogleAdkPlugin } from '@temporalio/google-adk-agents';
-import { mockMCPToolset } from '@temporalio/google-adk-agents/testing';
+import { GoogleAdkPlugin } from '@temporalio/google-adk';
+import { mockMCPToolset } from '@temporalio/google-adk/testing';
 import { Type } from '@google/genai';
 import { offlineModelProvider } from './offline-model';
 

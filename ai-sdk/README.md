@@ -1,6 +1,8 @@
-# AI Sdk
+# Vercel AI SDK
 
-This project demonstrates some uses of the AI SDK inside Temporal.
+This project uses [`@temporalio/vercel-ai-sdk`](https://github.com/temporalio/ai-integrations/tree/main/typescript/vercel-ai-sdk) to run Vercel AI SDK model and MCP calls as durable Temporal Activities.
+
+Requires Node.js 22.12.0 or later.
 
 ### Setup
 

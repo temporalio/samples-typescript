@@ -1,5 +1,5 @@
 import { NativeConnection, Worker } from '@temporalio/worker';
-import { GoogleAdkPlugin } from '@temporalio/google-adk-agents';
+import { GoogleAdkPlugin } from '@temporalio/google-adk';
 import { offlineModelProvider } from './offline-model';
 import * as activities from './activities';
 

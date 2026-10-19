@@ -1,5 +1,5 @@
 import { InMemoryRunner, LlmAgent, isFinalResponse, stringifyContent } from '@google/adk';
-import { TemporalMCPToolset, TemporalModel } from '@temporalio/google-adk-agents/workflow';
+import { TemporalMCPToolset, TemporalModel } from '@temporalio/google-adk/workflow';
 
 export async function filesystemAgent(prompt: string): Promise<string> {
   const agent = new LlmAgent({

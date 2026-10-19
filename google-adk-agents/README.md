@@ -1,15 +1,15 @@
 # Google ADK Agents
 
-These samples use the `@temporalio/google-adk-agents` integration to run [Google Agent Development Kit](https://github.com/google/adk-js) (`@google/adk`) agents as durable Temporal Workflows. The ADK agent graph — the `Runner` loop, `LlmAgent`s, tools, and MCP toolsets — runs inside the Workflow and replays deterministically, while its non-deterministic I/O — model calls, MCP tool calls, and Activities exposed as tools — runs as durable Activities, so they retry on failure and are not repeated during Workflow replay.
+These samples use the `@temporalio/google-adk` integration to run [Google Agent Development Kit](https://github.com/google/adk-js) (`@google/adk`) agents as durable Temporal Workflows. The ADK agent graph — the `Runner` loop, `LlmAgent`s, tools, and MCP toolsets — runs inside the Workflow and replays deterministically, while its non-deterministic I/O — model calls, MCP tool calls, and Activities exposed as tools — runs as durable Activities, so they retry on failure and are not repeated during Workflow replay.
 
-This is a single project: one `package.json` and one set of configs at the `google-adk-agents/` root, with each scenario in its own subdirectory under `src/`. Run `npm install` once here, then run any scenario by path (see each scenario's README). The integration package itself is documented in the [`@temporalio/google-adk-agents` README](https://github.com/temporalio/sdk-typescript/tree/main/contrib/google-adk-agents).
+This is a single project: one `package.json` and one set of configs at the `google-adk-agents/` root, with each scenario in its own subdirectory under `src/`. Run `npm install` once here, then run any scenario by path (see each scenario's README). The integration package itself is documented in the [`@temporalio/google-adk` README](https://github.com/temporalio/ai-integrations/tree/main/typescript/google-adk).
 
 ## Prerequisites
 
 These apply to every sample in this directory:
 
 - A running Temporal dev server: `temporal server start-dev`.
-- Node 22 or later.
+- Node.js 22.12.0 or later.
 - A Gemini API key for live runs: `export GEMINI_API_KEY=...`. Each scenario also documents a credential-free local mode.
 - Dependencies installed once at the `google-adk-agents/` root: `npm install`.
 

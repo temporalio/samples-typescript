@@ -13,7 +13,7 @@ import type {
 import assert from 'assert';
 import { streamingAgent, STREAM_TOPIC, consumerDoneSignal } from '../workflows';
 import * as activities from '../activities';
-import { AiSdkPlugin } from '@temporalio/ai-sdk';
+import { AiSdkPlugin } from '@temporalio/vercel-ai-sdk';
 
 // A deterministic, offline model that streams a fixed set of text deltas so
 // these tests need no OPENAI_API_KEY and can assert on exact output.

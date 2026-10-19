@@ -1,6 +1,6 @@
 import { FunctionTool, InMemoryRunner, LlmAgent, isFinalResponse, stringifyContent } from '@google/adk';
 import { Type } from '@google/genai';
-import { activityAsTool, TemporalModel } from '@temporalio/google-adk-agents/workflow';
+import { activityAsTool, TemporalModel } from '@temporalio/google-adk/workflow';
 
 export async function weatherAgent(prompt: string): Promise<string> {
   const agent = new LlmAgent({

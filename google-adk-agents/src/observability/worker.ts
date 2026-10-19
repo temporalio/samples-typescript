@@ -1,7 +1,7 @@
 import { Resource } from '@opentelemetry/resources';
 import { NativeConnection, Worker } from '@temporalio/worker';
-import { GoogleAdkPlugin } from '@temporalio/google-adk-agents';
-import { fakeModelProvider } from '@temporalio/google-adk-agents/testing';
+import { GoogleAdkPlugin } from '@temporalio/google-adk';
+import { fakeModelProvider } from '@temporalio/google-adk/testing';
 import { OpenTelemetryPlugin } from '@temporalio/interceptors-opentelemetry';
 import { AdkUsageSpanProcessor } from './adk-usage-span-processor';
 
