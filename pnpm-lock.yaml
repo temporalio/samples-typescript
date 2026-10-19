@@ -242,100 +242,6 @@ importers:
         specifier: 5.108.3
         version: 5.108.3(@swc/core@1.10.11(@swc/helpers@0.5.15))
 
-  ai-sdk:
-    dependencies:
-      '@ai-sdk/mcp':
-        specifier: ^2.0.66
-        version: 2.0.79(zod@4.4.3)
-      '@ai-sdk/openai':
-        specifier: ^4.0.83
-        version: 4.0.97(zod@4.4.3)
-      '@ai-sdk/provider':
-        specifier: ^4.0.21
-        version: 4.0.30
-      '@modelcontextprotocol/sdk':
-        specifier: ^1.25.2
-        version: 1.29.0(zod@4.4.3)
-      '@temporalio/activity':
-        specifier: ^1.24.0
-        version: 1.24.0
-      '@temporalio/client':
-        specifier: ^1.24.0
-        version: 1.24.0
-      '@temporalio/envconfig':
-        specifier: ^1.24.0
-        version: 1.24.0
-      '@temporalio/vercel-ai-sdk':
-        specifier: ^1.0.0
-        version: 1.0.0(@ai-sdk/mcp@2.0.79(zod@4.4.3))(@ai-sdk/provider@4.0.30)(ai@7.0.127(zod@4.4.3))(long@5.3.2)(protobufjs@8.7.2)
-      '@temporalio/worker':
-        specifier: ^1.24.0
-        version: 1.24.0(@swc/helpers@0.5.15)
-      '@temporalio/workflow':
-        specifier: ^1.24.0
-        version: 1.24.0
-      '@temporalio/workflow-streams':
-        specifier: ^1.24.0
-        version: 1.24.0
-      ai:
-        specifier: 7.0.127
-        version: 7.0.127(zod@4.4.3)
-      long:
-        specifier: ^5.3.2
-        version: 5.3.2
-      nanoid:
-        specifier: 3.x
-        version: 3.3.8
-      protobufjs:
-        specifier: ^8.7.1
-        version: 8.7.2
-      zod:
-        specifier: ^4.0.0
-        version: 4.4.3
-    devDependencies:
-      '@temporalio/testing':
-        specifier: ^1.24.0
-        version: 1.24.0(@swc/helpers@0.5.15)
-      '@tsconfig/node22':
-        specifier: ^22.0.0
-        version: 22.0.5
-      '@types/mocha':
-        specifier: 10.x
-        version: 10.0.1
-      '@types/node':
-        specifier: ^22.9.1
-        version: 22.12.0
-      '@typescript-eslint/eslint-plugin':
-        specifier: ^8.18.0
-        version: 8.22.0(@typescript-eslint/parser@8.22.0(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3)
-      '@typescript-eslint/parser':
-        specifier: ^8.18.0
-        version: 8.22.0(eslint@8.57.1)(typescript@5.7.3)
-      eslint:
-        specifier: ^8.57.1
-        version: 8.57.1
-      eslint-config-prettier:
-        specifier: ^9.1.0
-        version: 9.1.0(eslint@8.57.1)
-      eslint-plugin-deprecation:
-        specifier: ^3.0.0
-        version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
-      mocha:
-        specifier: 10.x
-        version: 10.2.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
-      nodemon:
-        specifier: ^3.1.7
-        version: 3.1.9
-      prettier:
-        specifier: ^3.4.2
-        version: 3.4.2
-      ts-node:
-        specifier: ^10.9.2
-        version: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)
-      typescript:
-        specifier: ^5.6.3
-        version: 5.7.3
-
   batch-sliding-window:
     dependencies:
       '@temporalio/activity':
@@ -1553,7 +1459,7 @@ importers:
         specifier: ^5.6.3
         version: 5.7.3
 
-  google-adk-agents:
+  google-adk:
     dependencies:
       '@google/adk':
         specifier: '>=2.0.0 <2.1.0'
@@ -4354,6 +4260,100 @@ importers:
       eslint-plugin-deprecation:
         specifier: ^3.0.0
         version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
+      nodemon:
+        specifier: ^3.1.7
+        version: 3.1.9
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3)
+      typescript:
+        specifier: ^5.6.3
+        version: 5.7.3
+
+  vercel-ai-sdk:
+    dependencies:
+      '@ai-sdk/mcp':
+        specifier: ^2.0.66
+        version: 2.0.79(zod@4.4.3)
+      '@ai-sdk/openai':
+        specifier: ^4.0.83
+        version: 4.0.97(zod@4.4.3)
+      '@ai-sdk/provider':
+        specifier: ^4.0.21
+        version: 4.0.30
+      '@modelcontextprotocol/sdk':
+        specifier: ^1.25.2
+        version: 1.29.0(zod@4.4.3)
+      '@temporalio/activity':
+        specifier: ^1.24.0
+        version: 1.24.0
+      '@temporalio/client':
+        specifier: ^1.24.0
+        version: 1.24.0
+      '@temporalio/envconfig':
+        specifier: ^1.24.0
+        version: 1.24.0
+      '@temporalio/vercel-ai-sdk':
+        specifier: ^1.0.0
+        version: 1.0.0(@ai-sdk/mcp@2.0.79(zod@4.4.3))(@ai-sdk/provider@4.0.30)(ai@7.0.127(zod@4.4.3))(long@5.3.2)(protobufjs@8.7.2)
+      '@temporalio/worker':
+        specifier: ^1.24.0
+        version: 1.24.0(@swc/helpers@0.5.15)
+      '@temporalio/workflow':
+        specifier: ^1.24.0
+        version: 1.24.0
+      '@temporalio/workflow-streams':
+        specifier: ^1.24.0
+        version: 1.24.0
+      ai:
+        specifier: 7.0.127
+        version: 7.0.127(zod@4.4.3)
+      long:
+        specifier: ^5.3.2
+        version: 5.3.2
+      nanoid:
+        specifier: 3.x
+        version: 3.3.8
+      protobufjs:
+        specifier: ^8.7.1
+        version: 8.7.2
+      zod:
+        specifier: ^4.0.0
+        version: 4.4.3
+    devDependencies:
+      '@temporalio/testing':
+        specifier: ^1.24.0
+        version: 1.24.0(@swc/helpers@0.5.15)
+      '@tsconfig/node22':
+        specifier: ^22.0.0
+        version: 22.0.5
+      '@types/mocha':
+        specifier: 10.x
+        version: 10.0.1
+      '@types/node':
+        specifier: ^22.9.1
+        version: 22.12.0
+      '@typescript-eslint/eslint-plugin':
+        specifier: ^8.18.0
+        version: 8.22.0(@typescript-eslint/parser@8.22.0(eslint@8.57.1)(typescript@5.7.3))(eslint@8.57.1)(typescript@5.7.3)
+      '@typescript-eslint/parser':
+        specifier: ^8.18.0
+        version: 8.22.0(eslint@8.57.1)(typescript@5.7.3)
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@8.57.1)
+      eslint-plugin-deprecation:
+        specifier: ^3.0.0
+        version: 3.0.0(eslint@8.57.1)(typescript@5.7.3)
+      mocha:
+        specifier: 10.x
+        version: 10.2.0(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@5.7.3))
       nodemon:
         specifier: ^3.1.7
         version: 3.1.9
