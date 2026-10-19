@@ -265,8 +265,6 @@ pnpm run lint
 
 ### Upgrading the SDK version in `package.json`s
 
-The Vercel AI SDK and Google ADK integration packages are versioned independently and are excluded from this command.
-
 ```sh
 pnpm run upgrade-versions -- 'VERSION_STRING_HERE'
 pnpm run format

@@ -1,8 +1,5 @@
 const { glob } = require('glob');
 
-// These integrations are released independently from the Temporal SDK.
-const INDEPENDENT_PACKAGES = new Set(['@temporalio/vercel-ai-sdk', '@temporalio/google-adk']);
-
 // Run with https://github.com/google/zx
 const [scriptName, versionToSet] = process.argv.slice(2);
 if (!versionToSet) {
@@ -23,7 +20,7 @@ function replaceDeps({ content, fields }) {
   let changed = false;
   for (const field of fields) {
     for (const [dep, version] of Object.entries(content[field] ?? {})) {
-      if (dep.startsWith('@temporalio/') && !INDEPENDENT_PACKAGES.has(dep)) {
+      if (dep.startsWith('@temporalio/')) {
         const repl = replaceDep(dep, versionToSet);
         if (version !== repl) {
           content[field][dep] = repl;
