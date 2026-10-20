@@ -1,6 +1,7 @@
 // @@@SNIPSTART typescript-openai-agents-sandbox-workflow
 import { Manifest, SandboxAgent } from '@openai/agents-core/sandbox';
 import { TemporalOpenAIRunner, temporalSandboxClient, workerEnvValue } from '@temporalio/openai-agents/workflow';
+import { ApplicationFailure } from '@temporalio/workflow';
 
 export async function sandboxWorkflow(prompt: string): Promise<string> {
   const agent = new SandboxAgent({
@@ -16,6 +17,9 @@ export async function sandboxWorkflow(prompt: string): Promise<string> {
   const result = await new TemporalOpenAIRunner().run(agent, prompt, {
     runConfig: { sandbox: { client: temporalSandboxClient('local') } },
   });
-  return result.finalOutput ?? '';
+  if (typeof result.finalOutput !== 'string') {
+    throw ApplicationFailure.nonRetryable('SandboxAgent returned no final output');
+  }
+  return result.finalOutput;
 }
 // @@@SNIPEND
