@@ -1,4 +1,4 @@
-// @@@SNIPSTART typescript-openai-agents-sandbox-workflow
+// @@@SNIPSTART typescript-openai-agents-sandboxes-workflow
 import { Manifest, SandboxAgent } from '@openai/agents-core/sandbox';
 import { TemporalOpenAIRunner, temporalSandboxClient, workerEnvValue } from '@temporalio/openai-agents/workflow';
 import { ApplicationFailure } from '@temporalio/workflow';

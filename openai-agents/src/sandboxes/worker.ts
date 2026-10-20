@@ -1,4 +1,3 @@
-// @@@SNIPSTART typescript-openai-agents-sandbox-worker
 import { NativeConnection, Worker } from '@temporalio/worker';
 import { OpenAIAgentsPlugin, SandboxClientProvider } from '@temporalio/openai-agents';
 import { OpenAIProvider } from '@openai/agents-openai';
@@ -19,6 +18,7 @@ async function run() {
       connection,
       taskQueue: 'openai-agents-sandboxes',
       workflowsPath: require.resolve('./workflows'),
+      // @@@SNIPSTART typescript-openai-agents-sandboxes-worker-configuration
       plugins: [
         new OpenAIAgentsPlugin({
           modelProvider: new OpenAIProvider({ apiKey }),
@@ -26,6 +26,7 @@ async function run() {
           resolvableWorkerEnvVars: ['SANDBOX_SERVICE_TOKEN'],
         }),
       ],
+      // @@@SNIPEND
       bundlerOptions: {
         webpackConfigHook: (config) => ({
           ...config,
@@ -41,7 +42,6 @@ async function run() {
     await connection.close();
   }
 }
-// @@@SNIPEND
 
 run().catch((err) => {
   console.error(err);
