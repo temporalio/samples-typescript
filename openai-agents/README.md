@@ -34,6 +34,7 @@ Each scenario's README describes how to start its Worker and run its scenarios b
 | [`stateful-conversation`](./src/stateful-conversation) | A long-running, multi-turn Workflow driven by Updates and Queries, with triage handoffs and `continueAsNew` to bound history.                                                             |
 | [`nexus-tools`](./src/nexus-tools)                     | Expose a [Nexus](https://docs.temporal.io/nexus) Operation as an agent tool with `nexusOperationAsTool`.                                                                                  |
 | [`streaming`](./src/streaming)                         | Run an agent in streaming mode over a Workflow Stream and subscribe to the model stream events live from an external client.                                                              |
+| [`sandboxes`](./src/sandboxes)                         | A `SandboxAgent` whose sandbox creation, commands, and teardown run as Activities on a Unix-local backend, with a Worker-side secret kept out of Workflow history.                        |
 
 ## Feature support
 
@@ -50,6 +51,7 @@ Any OpenAI Agents SDK `ModelProvider` can drive the model Activity. The provider
 | Hosted tools            | Supported                | Executed server-side by the model provider                                                       |
 | Stateless MCP servers   | Supported                | Via `StatelessMCPServerProvider` and `statelessMcpServer()`                                      |
 | Stateful MCP servers    | Supported                | Via `StatefulMCPServerProvider` and `statefulMcpServer()`                                        |
+| Sandbox agents          | Supported (experimental) | Via `SandboxClientProvider` and `temporalSandboxClient()`; see [`sandboxes`](./src/sandboxes)    |
 | Sessions                | Supported                | Via `WorkflowSafeMemorySession`; upstream `MemorySession` is rejected                            |
 | Run state and approvals | Supported                | Serialize with `result.state.toString()` and rehydrate with `RunState.fromString`                |
 | Guardrails              | Supported                | Guardrail callbacks must be deterministic                                                        |
