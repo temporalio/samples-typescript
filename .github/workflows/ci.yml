@@ -56,11 +56,10 @@ jobs:
           failed=()
           projects=(
             activities-examples
-            ai-sdk
             eager-workflow-start
             early-return
             empty
-            google-adk-agents
+            google-adk
             hello-world
             langsmith
             mutex
@@ -68,6 +67,7 @@ jobs:
             sleep-for-days
             standalone-activity
             timer-examples
+            vercel-ai-sdk
             workflow-streams
             message-passing/introduction
             message-passing/safe-message-handlers
