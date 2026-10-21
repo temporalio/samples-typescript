@@ -1,0 +1,39 @@
+{
+  "name": "temporal-workflow-history-audit",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "lint": "eslint .",
+    "download": "tsx src/commands/download.ts",
+    "analyze": "tsx src/commands/analyze.ts",
+    "query": "tsx src/commands/query.ts",
+    "test": "node --import tsx --test test/*.test.ts",
+    "check": "tsc --noEmit",
+    "format": "prettier --write .",
+    "format:check": "prettier --check ."
+  },
+  "dependencies": {
+    "@grpc/grpc-js": "^1.14.4",
+    "@temporalio/client": "^1.24.0",
+    "@temporalio/common": "^1.24.0",
+    "@temporalio/envconfig": "^1.24.0"
+  },
+  "devDependencies": {
+    "@temporalio/proto": "^1.24.0",
+    "@types/node": "^22.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.18.0",
+    "@typescript-eslint/parser": "^8.18.0",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-deprecation": "^3.0.0",
+    "prettier": "^3.4.2",
+    "tsx": "^4.20.6",
+    "typescript": "^5.6.3"
+  },
+  "engines": {
+    "node": ">=20.3.0"
+  }
+}
