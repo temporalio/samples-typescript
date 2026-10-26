@@ -5,6 +5,7 @@
     "activities-examples",
     "batch-sliding-window",
     "child-workflows",
+    "context-propagation",
     "continue-as-new",
     "cron-workflows",
     "custom-logger",
