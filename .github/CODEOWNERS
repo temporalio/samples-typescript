@@ -13,9 +13,9 @@
 
 /nexus*/                        @temporalio/sdk @temporalio/nexus
 
-/ai-sdk/                        @temporalio/sdk @temporalio/ai-sdk
-/google-adk-agents/             @temporalio/sdk @temporalio/ai-sdk
+/google-adk/                    @temporalio/sdk @temporalio/ai-sdk
 /langsmith/                     @temporalio/sdk @temporalio/ai-sdk
 /openai-agents/                 @temporalio/sdk @temporalio/ai-sdk
 /strands-agents/                @temporalio/sdk @temporalio/ai-sdk
+/vercel-ai-sdk/                 @temporalio/sdk @temporalio/ai-sdk
 /workflow-streams/              @temporalio/sdk @temporalio/ai-sdk

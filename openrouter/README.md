@@ -63,7 +63,7 @@ npm run workflow -- --fail-once "Explain idempotency in one sentence."
 
 This sample uses the `openai` package pointed at `https://openrouter.ai/api/v1`, which is the setup OpenRouter documents for OpenAI-compatible clients; OpenRouter-only fields such as `plugins` go in the request body. OpenRouter's own [`@openrouter/sdk`](https://www.npmjs.com/package/@openrouter/sdk) works too (it is ESM-only). If you use it, construct it with `retryConfig: { strategy: 'none' }`: by default it retries 5xx and connection errors for up to an hour, invisibly to Temporal.
 
-For agents built on the [Vercel AI SDK](../ai-sdk), [`@openrouter/ai-sdk-provider`](https://www.npmjs.com/package/@openrouter/ai-sdk-provider) is a drop-in `modelProvider` for `AiSdkPlugin`. For the [OpenAI Agents SDK](../openai-agents/src/model-providers), point the provider's `baseURL` at OpenRouter.
+For agents built on the [Vercel AI SDK](../vercel-ai-sdk), [`@openrouter/ai-sdk-provider`](https://www.npmjs.com/package/@openrouter/ai-sdk-provider) is a drop-in `modelProvider` for `AiSdkPlugin`. For the [OpenAI Agents SDK](../openai-agents/src/model-providers), point the provider's `baseURL` at OpenRouter.
 
 ## What Temporal does and does not guarantee
 
