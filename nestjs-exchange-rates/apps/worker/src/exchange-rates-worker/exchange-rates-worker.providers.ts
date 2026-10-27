@@ -21,16 +21,11 @@ export const exchangeRatesWorkerProviders = [
             }
           : { workflowsPath: require.resolve('../temporal/workflows') };
 
-      const worker = await Worker.create({
+      return Worker.create({
         taskQueue,
         ...workflowOption,
         activities,
       });
-
-      worker.run();
-      console.log('Started worker!');
-
-      return worker;
     },
   },
 ];
