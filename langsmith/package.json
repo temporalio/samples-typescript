@@ -20,7 +20,7 @@
     "nanoid": "3.x"
   },
   "devDependencies": {
-    "@temporalio/testing": "^1.25.0",
+    "@temporalio/testing": "1.24.0",
     "@tsconfig/node22": "^22.0.0",
     "@types/mocha": "8.x",
     "@types/node": "^22.9.1",
