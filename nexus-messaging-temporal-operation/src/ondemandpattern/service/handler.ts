@@ -57,7 +57,7 @@ export const nexusRemoteGreetingServiceHandler = nexus.serviceHandler(nexusRemot
   setLanguage: new temporalNexus.TemporalOperationHandler({
     async start(_ctx, client, input: SetLanguageInput) {
       const handle = client.getWorkflowHandle(getWorkflowId(input.userId));
-      return await handle.update(setLanguageUpdate, { args: [input.language] });
+      return await handle.update(setLanguageUpdate, { args: [input.language], waitForStage: 'ACCEPTED' });
     },
   }),
 
