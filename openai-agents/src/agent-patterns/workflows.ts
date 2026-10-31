@@ -8,7 +8,7 @@ import type {
   OutputGuardrail,
   OutputGuardrailFunctionArgs,
 } from '@openai/agents-core';
-import { TemporalOpenAIRunner, agentAsTool } from '@temporalio/openai-agents/workflow';
+import { TemporalOpenAIRunner } from '@temporalio/openai-agents/workflow';
 
 export async function deterministic(prompt: string): Promise<string> {
   const outlineAgent = new Agent({
@@ -106,7 +106,7 @@ export async function agentsAsTools(prompt: string): Promise<string> {
     instructions: 'You are a specialist. Answer questions concisely.',
   });
 
-  const specialistTool = agentAsTool(specialistAgent, {
+  const specialistTool = specialistAgent.asTool({
     toolName: 'ask_specialist',
     toolDescription: 'Ask the specialist agent a question and get a concise answer.',
   });

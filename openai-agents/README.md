@@ -47,7 +47,7 @@ Any OpenAI Agents SDK `ModelProvider` can drive the model Activity. The provider
 | Inline function tools   | Supported                | Must be deterministic                                                                            |
 | Activity-backed tools   | Supported                | Via `activityAsTool()`                                                                           |
 | Nexus operation tools   | Supported                | Via `nexusOperationAsTool()`                                                                     |
-| Nested agent tools      | Supported                | Via `agentAsTool()`                                                                              |
+| Nested agent tools      | Supported                | Via `agent.asTool()`                                                                             |
 | Hosted tools            | Supported                | Executed server-side by the model provider                                                       |
 | Stateless MCP servers   | Supported                | Via `StatelessMCPServerProvider` and `statelessMcpServer()`                                      |
 | Stateful MCP servers    | Supported                | Via `StatefulMCPServerProvider` and `statefulMcpServer()`                                        |
