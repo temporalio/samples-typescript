@@ -72,18 +72,6 @@ Total Nexus operations: 2
 
 If you run the starter multiple times, the listing and count will include additional Operations for the endpoint.
 
-## Use a self-hosted cluster
-
-For a self-hosted cluster, use Temporal Server v1.32.0 or later and enable SANO for the caller namespace in the
-server's [dynamic configuration](https://docs.temporal.io/references/dynamic-configuration):
-
-```yaml
-nexusoperation.enableStandalone:
-  - value: true
-    constraints:
-      namespace: my-caller-namespace
-```
-
 ## Run against Temporal Cloud
 
 1. Create two namespaces in Temporal Cloud (for example `my-caller-namespace.<account>` and `my-handler-namespace.<account>`) and generate an API key (or mTLS cert) that can access both.
