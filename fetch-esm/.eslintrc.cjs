@@ -5,7 +5,7 @@ module.exports = {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'deprecation'],
+  plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -22,6 +22,6 @@ module.exports = {
     ],
     '@typescript-eslint/no-explicit-any': 'off',
     'object-shorthand': ['error', 'always'],
-    'deprecation/deprecation': 'warn',
+    '@typescript-eslint/no-deprecated': 'warn',
   },
 };

@@ -41,7 +41,7 @@ export class EjsonPayloadConverter implements PayloadConverterWithEncoding {
   }
 
   public fromPayload<T>(content: Payload): T {
-    return content.data ? EJSON.parse(decode(content.data)) : content.data;
+    return (content.data ? EJSON.parse(decode(content.data)) : content.data) as T;
   }
 }
 

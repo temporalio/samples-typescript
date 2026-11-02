@@ -14,7 +14,7 @@ export async function exchangeRatesWorkflow(storedRates?: ExchangeRates): Promis
   let rates = storedRates;
 
   // Register a query handler that allows querying for the current rates
-  setHandler(getExchangeRatesQuery, () => rates);
+  setHandler(getExchangeRatesQuery, () => rates ?? null);
 
   while (workflowInfo().historyLength < maxNumEvents) {
     // Get the latest rates

@@ -1,6 +1,7 @@
 {
-  "version": "5.6.3",
+  "version": "6.0.3",
   "compilerOptions": {
+    "types": ["node"],
     "target": "es2021",
     "lib": ["es2021"],
     "composite": true,
@@ -12,7 +13,6 @@
     "sourceMap": true,
     "rootDir": "./src",
     "outDir": "./lib",
-    "baseUrl": ".",
     "paths": {
       "@fooddelivery/activities": ["../../packages/activities/index"]
     }

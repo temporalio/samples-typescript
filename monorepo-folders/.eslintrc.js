@@ -7,7 +7,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     include: ['packages/*'],
   },
-  plugins: ['@typescript-eslint', 'deprecation'],
+  plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -25,6 +25,6 @@ module.exports = {
     '@typescript-eslint/no-explicit-any': 'off',
     '@typescript-eslint/no-floating-promises': 'error',
     'object-shorthand': ['error', 'always'],
-    'deprecation/deprecation': 'warn',
+    '@typescript-eslint/no-deprecated': 'warn',
   },
 };

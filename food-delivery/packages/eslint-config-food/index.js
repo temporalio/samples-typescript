@@ -6,7 +6,7 @@ module.exports = {
     'plugin:@typescript-eslint/eslint-recommended',
     'plugin:@typescript-eslint/recommended',
   ],
-  plugins: ['@typescript-eslint', 'deprecation'],
+  plugins: ['@typescript-eslint'],
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: './tsconfig.json',
@@ -14,7 +14,7 @@ module.exports = {
   rules: {
     '@next/next/no-html-link-for-pages': 'off',
     'react/jsx-key': 'off',
-    'deprecation/deprecation': 'warn',
+    '@typescript-eslint/no-deprecated': 'warn',
 
     // forgetting to await Activities and Workflow APIs is bad
     '@typescript-eslint/no-floating-promises': 'error',

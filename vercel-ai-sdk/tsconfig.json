@@ -1,14 +1,12 @@
 {
   "extends": "@tsconfig/node22/tsconfig.json",
-  "version": "5.6.3",
+  "version": "6.0.3",
   "compilerOptions": {
+    "types": ["node"],
     "lib": ["es2021"],
-    // The Vercel AI SDK v7 (`ai`) is ESM-only. Use classic CommonJS module
-    // resolution (matching the @temporalio/vercel-ai-sdk build) so it can be required
-    // from this CommonJS sample and the `@temporalio/vercel-ai-sdk/workflow` subpath
-    // resolves via `typesVersions`.
-    "module": "commonjs",
-    "moduleResolution": "node",
+    // NodeNext supports requiring the ESM-only AI SDK from this CommonJS sample.
+    "module": "nodenext",
+    "moduleResolution": "nodenext",
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
