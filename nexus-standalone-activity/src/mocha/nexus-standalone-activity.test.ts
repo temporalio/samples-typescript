@@ -16,7 +16,7 @@ describe('Nexus operation backed by a standalone Activity', () => {
     endpointName = `test-nexus-activity-${randomUUID()}`;
     const executable = process.env.TEMPORAL_CLI_PATH
       ? { type: 'existing-path' as const, path: process.env.TEMPORAL_CLI_PATH }
-      : { type: 'cached-download' as const, version: 'v1.7.4-standalone-nexus-operations' };
+      : { type: 'cached-download' as const, version: 'v1.10.0' };
     testEnv = await TestWorkflowEnvironment.createLocal({
       server: {
         executable,
