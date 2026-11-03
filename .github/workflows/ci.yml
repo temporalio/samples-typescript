@@ -64,6 +64,8 @@ jobs:
             langsmith
             mutex
             nestjs-exchange-rates
+            nexus-standalone-activity
+            nexus-standalone-operations
             sleep-for-days
             standalone-activity
             timer-examples
