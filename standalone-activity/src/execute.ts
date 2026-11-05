@@ -21,14 +21,18 @@ async function run() {
   const activityId = nanoid();
 
   // Handle can be used to get information and control the activity
+  // @@@SNIPSTART typescript-standalone-activity-start
   const handle = await activitiesClient.start('greet', {
     ...activityOptions,
     id: activityId,
     args: ['Temporal'],
   });
+  // @@@SNIPEND
 
   // Optional: wait for activity result
+  // @@@SNIPSTART typescript-standalone-activity-result
   console.log(await handle.result()); // Hello, Temporal!
+  // @@@SNIPEND
 
   // `execute` allows starting the activity and getting the result in one go
   const result = await activitiesClient.execute('greet', {
@@ -39,7 +43,9 @@ async function run() {
   console.log(result); // Hello, World!
 
   // If needed, activity handle can be recreated from just activity ID, although with weaker type safety
+  // @@@SNIPSTART typescript-standalone-activity-get-handle
   const newHandle = client.activity.getHandle<string>(activityId);
+  // @@@SNIPEND
   console.log(await newHandle.result()); // Hello, Temporal!
 
   // Activity client can execute activities without the typed interface - useful when activity declarations are unavailable
