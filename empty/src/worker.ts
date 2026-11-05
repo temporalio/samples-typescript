@@ -1,4 +1,4 @@
-// @@@SNIPSTART typescript-hello-worker
+// @@@SNIPSTART typescript-empty-worker
 import { NativeConnection, Worker } from '@temporalio/worker';
 import * as activities from './activities';
 import { TASK_QUEUE_NAME } from './shared';

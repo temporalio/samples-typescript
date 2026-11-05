@@ -14,7 +14,7 @@ async function run() {
   const taskQueue = 'hello-standalone-activities';
   const activityOptions = {
     taskQueue,
-    startToCloseTimeout: '10s',
+    startToCloseTimeout: '10s' as const,
   };
 
   // In practice, use a meaningful business ID, like customer ID or transaction ID

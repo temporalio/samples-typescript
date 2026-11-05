@@ -1,6 +1,6 @@
 # Strands Agents
 
-A complete set of samples for the Temporal TypeScript SDK's Strands integration, mirroring the Python samples in [`samples-python/strands_plugin`](https://github.com/temporalio/samples-python/tree/strands-plugin-samples/strands_plugin).
+A complete set of samples for the Temporal TypeScript SDK's Strands integration, mirroring the Python samples in [`samples-python/strands_plugin`](https://github.com/temporalio/samples-python/tree/main/strands_plugin).
 
 One worker registers all activities, all workflows, and an MCP server. Each feature has its own client script in `src/`:
 
@@ -36,30 +36,13 @@ src/
 
 ### Prerequisites
 
-`@temporalio/strands-agents` and its dependency `@temporalio/workflow-streams` live in [`temporalio/sdk-typescript`](https://github.com/temporalio/sdk-typescript) on the `strands` branch and are not yet published to npm. `package.json` references both as `file:` tarballs, assuming `sdk-typescript` is checked out next to `samples-typescript`:
-
-```
-<your-workspace>/
-├── samples-typescript/    # this repo
-└── sdk-typescript/        # the SDK repo on branch `strands`
-```
-
-Before installing, build the contrib packages and produce the tarballs (the `workspace:*` deps inside them need to be substituted with concrete versions, which `pnpm pack` does automatically):
+`@temporalio/strands-agents` and `@temporalio/workflow-streams` are published on npm and already listed in this sample's `package.json`, so `npm install` in this directory is all that is needed. To add the integration to a project of your own:
 
 ```bash
-cd /path/to/sdk-typescript
-git checkout strands
-pnpm install
-pnpm build
-
-cd contrib/strands && pnpm pack && cd ../..
-cd contrib/workflow-streams && pnpm pack && cd ../..
-# `@temporalio/common` needs to be packed too because the streaming feature
-# relies on the `INTERNAL_HANDLER_NAME_ALLOWLIST` added on the `strands` branch
-# but not yet published to npm. The sample's `package.json` overrides every
-# transitive `@temporalio/common` with this tarball.
-cd packages/common && pnpm pack && cd ../..
+npm install @temporalio/strands-agents @strands-agents/sdk
 ```
+
+The integration package itself is documented in the [`@temporalio/strands-agents` README](https://github.com/temporalio/ai-integrations/tree/main/typescript/strands-agents). Node.js 22.12.0 or later is required.
 
 ### Running
 

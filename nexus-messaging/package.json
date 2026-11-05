@@ -25,13 +25,13 @@
     ]
   },
   "dependencies": {
-    "@temporalio/activity": "^1.21.0",
-    "@temporalio/client": "^1.21.0",
-    "@temporalio/envconfig": "^1.21.0",
-    "@temporalio/nexus": "^1.21.0",
-    "@temporalio/worker": "^1.21.0",
-    "@temporalio/workflow": "^1.21.0",
-    "nexus-rpc": "^0.0.2",
+    "@temporalio/activity": "^1.25.0",
+    "@temporalio/client": "^1.25.0",
+    "@temporalio/envconfig": "^1.25.0",
+    "@temporalio/nexus": "^1.25.0",
+    "@temporalio/worker": "^1.25.0",
+    "@temporalio/workflow": "^1.25.0",
+    "nexus-rpc": "^0.0.3",
     "nanoid": "3.x"
   },
   "devDependencies": {

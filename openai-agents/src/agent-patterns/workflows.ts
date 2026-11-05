@@ -99,6 +99,7 @@ export async function llmAsJudge(prompt: string): Promise<string> {
   return output;
 }
 
+// @@@SNIPSTART typescript-openai-agents-agent-as-tool-workflow
 export async function agentsAsTools(prompt: string): Promise<string> {
   const specialistAgent = new Agent({
     name: 'SpecialistAgent',
@@ -121,6 +122,7 @@ export async function agentsAsTools(prompt: string): Promise<string> {
   const result = await runner.run(orchestratorAgent, prompt);
   return result.finalOutput ?? '';
 }
+// @@@SNIPEND
 
 export async function inputGuardrail(prompt: string): Promise<string> {
   const blockedKeywords = ['blocked', 'BLOCK', 'forbidden'];

@@ -1,0 +1,30 @@
+# Vercel AI SDK
+
+This project uses [`@temporalio/vercel-ai-sdk`](https://github.com/temporalio/ai-integrations/tree/main/typescript/vercel-ai-sdk) to run Vercel AI SDK model and MCP calls as durable Temporal Activities.
+
+Requires Node.js 22.12.0 or later.
+
+### Setup
+
+1. `temporal server start-dev` to start [Temporal Server](https://github.com/temporalio/cli/#installation).
+1. `npm install` to install dependencies.
+1. `export OPENAI_API_KEY=<KEY>`
+1. `npm run start.watch` to start the Worker.
+
+### Run the samples
+
+1. `npm run workflow haiku`
+1. `npm run workflow tools`
+1. `npm run workflow mcp`
+1. `npm run workflow middleware`
+1. `npm run workflow stream`
+
+### Streaming
+
+The `stream` sample shows how to stream model output out of a
+Workflow. `streamText` runs the model call in
+an activity that publishes each delta onto a
+[Workflow Stream](https://docs.temporal.io/develop/typescript/workflows/workflow-streams)
+topic. The Workflow hosts the stream (`new WorkflowStream()`) and durably reassembles the
+final result, while external consumers subscribe by Workflow id to render the tokens live
+as they arrive — see `src/client.ts`.

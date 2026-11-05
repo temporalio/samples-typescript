@@ -15,7 +15,7 @@ const HAS_CHILD_SAMPLES = [
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
 const TSCONFIG_EXCLUDE = [
-  'ai-sdk',
+  'vercel-ai-sdk',
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'fetch-esm',
@@ -28,6 +28,7 @@ const TSCONFIG_EXCLUDE = [
   'empty',
   'hello-world',
   'scratchpad',
+  'langsmith',
 ];
 const GITIGNORE_EXCLUDE = [
   'nextjs-ecommerce-oneclick',
@@ -48,6 +49,7 @@ const ESLINTRC_EXCLUDE = [
   'protobufs',
   'food-delivery',
   'nestjs-exchange-rates',
+  'langsmith',
 ];
 const ESLINTIGNORE_EXCLUDE = [
   'production',
@@ -62,6 +64,8 @@ const ESLINTIGNORE_EXCLUDE = [
 
 const POST_CREATE_EXCLUDE = [
   'openai-agents',
+  'openrouter',
+  'google-adk',
   'env-config',
   'dsl-interpreter',
   'eager-workflow-start',
@@ -70,6 +74,7 @@ const POST_CREATE_EXCLUDE = [
   'nexus-cancellation',
   'nexus-hello',
   'nexus-messaging',
+  'nexus-messaging-temporal-operation',
   'schedules',
   'timer-examples',
   'query-subscriptions',
@@ -89,6 +94,7 @@ const POST_CREATE_EXCLUDE = [
   'empty',
   'scratchpad',
   'workflow-streams',
+  'langsmith',
 ];
 
 const PRETTIERRC_EXCLUDE = ['food-delivery'];

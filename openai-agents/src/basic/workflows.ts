@@ -6,12 +6,15 @@ import type * as activities from './activities';
 
 const localActivities = proxyLocalActivities<typeof activities>({ startToCloseTimeout: '10 seconds' });
 
+// @@@SNIPSTART typescript-openai-agents-hello-world-workflow
 export async function helloWorld(prompt: string): Promise<string> {
   const agent = new Agent({ name: 'HelloAgent', instructions: 'You are a helpful assistant.' });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
   return result.finalOutput ?? '';
 }
+// @@@SNIPEND
 
+// @@@SNIPSTART typescript-openai-agents-activity-tool-workflow
 export async function tools(prompt: string): Promise<string> {
   const weatherTool = activityAsTool<typeof activities.getWeather>(
     {
@@ -35,7 +38,9 @@ export async function tools(prompt: string): Promise<string> {
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
   return result.finalOutput ?? '';
 }
+// @@@SNIPEND
 
+// @@@SNIPSTART typescript-openai-agents-inline-tool-workflow
 export async function inlineTool(prompt: string): Promise<string> {
   const addTool = tool({
     name: 'add',
@@ -52,6 +57,7 @@ export async function inlineTool(prompt: string): Promise<string> {
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
   return result.finalOutput ?? '';
 }
+// @@@SNIPEND
 
 export async function localActivityTool(prompt: string): Promise<string> {
   const headlinesTool = tool({

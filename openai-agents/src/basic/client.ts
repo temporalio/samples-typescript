@@ -22,6 +22,7 @@ async function run() {
   const scenario = process.argv[2] ?? 'hello-world';
   console.log(`Running scenario: ${scenario}`);
 
+  // @@@SNIPSTART typescript-openai-agents-hello-world-client
   const connection = await Connection.connect();
   const client = new Client({
     connection,
@@ -30,6 +31,7 @@ async function run() {
 
   const taskQueue = 'openai-agents-basic';
   const workflowId = 'openai-agents-' + nanoid();
+  // @@@SNIPEND
 
   let handle;
   switch (scenario) {

@@ -111,7 +111,13 @@ and you'll be given the list of sample options.
 
 - [**Nexus Hello**](./nexus-hello): Demonstrates how to define a Nexus Service, implement the Operation handlers, and call the Operations from a Workflow.
 - [**Nexus Cancellation**](./nexus-cancellation): Demonstrates how to cancel a Nexus Operation from a caller workflow using a CancellationScope
+- [**Nexus Messaging**](./nexus-messaging): Demonstrates how to send signal, update and query messages through Nexus.
+  This contains two samples, one sending messages to an existing workflow and a second that creates a workflow through Nexus
+  and sends messages to it.
+- [**Nexus Messaging Temporal Operation**](./nexus-messaging-temporal-operation): Demonstrates how to send signal, update and query messages through Nexus.
+  This version uses `TemporalOperationHandler` to either return a synchronous result or start a workflow as the async backing operation.
 - [**Nexus Standalone Operations**](./nexus-standalone-operations): Execute Nexus Operations directly from a Temporal Client, without a caller Workflow.
+- [**Nexus Standalone Activity**](./nexus-standalone-activity): Use a `TemporalOperationHandler` to execute a Nexus Operation as a standalone Activity.
 
 #### Workflow APIs
 
@@ -138,7 +144,6 @@ and you'll be given the list of sample options.
 
 - [**Production Build**](./production): Build code in advance for faster Worker startup times.
 - [**Environment Configuration**](./env-config): Configure Temporal Client connections using TOML configuration files with support for multiple environment profiles and programmatic overrides.
-- [**Debugging**](https://docs.temporal.io/dev-guide/typescript/debugging): The [vscode-debugger](./vscode-debugger) sample shows how to use the Temporal VS Code plugin to debug a running or completed Workflow Execution.
 - [**Patching**](https://docs.temporal.io/workflows/#workflow-versioning): Patch in new Workflow code when making updates to Workflows that have executions in progress in production.
 - [**Custom Logger**](./custom-logger): Use a [winston](https://github.com/winstonjs/winston) logger to get logs out of all SDK components.
 - [**Sinks**](./sinks): Use Sinks to extract data out of Workflows for alerting/logging/metrics/tracing purposes.
@@ -181,6 +186,16 @@ and you'll be given the list of sample options.
   - [**Customer Service**](./openai-agents/customer-service): A long-running, multi-turn Workflow driven by Updates and Queries, with triage handoffs and `continueAsNew` to bound history.
   - [**Nexus Tools**](./openai-agents/nexus-tools): Expose a Nexus Operation as an agent tool with `nexusOperationAsTool`.
   - [**Streaming**](./openai-agents/src/streaming): Run an agent in streaming mode over a Workflow Stream, with an external client subscribing to the model's deltas live.
+- [**Google ADK Agents**](./google-adk): Run [Google Agent Development Kit](https://github.com/google/adk-js) (`@google/adk`) agents as Temporal Workflows with the `@temporalio/google-adk` integration. The [`google-adk/`](./google-adk) directory contains eight samples:
+  - [**Agent Chat**](./google-adk/src/agent-chat): Multi-turn agent chat with Updates, queryable history, and Continue-As-New.
+  - [**Tools**](./google-adk/src/tools): An existing Temporal Activity exposed to the agent as an ADK tool with `activityAsTool`.
+  - [**Multi-Agent**](./google-adk/src/multi-agent): A coordinator `LlmAgent` starts an ADK `transfer_to_agent` relay through a researcher and a writer, each with its own `TemporalModel`.
+  - [**MCP**](./google-adk/src/mcp): A `TemporalMCPToolset` backed by a filesystem MCP server the Worker opens over stdio.
+  - [**Streaming**](./google-adk/src/streaming): Token streaming from a direct `TemporalModel` call — no agent loop — over a Workflow Stream, with an external client printing the deltas as they arrive.
+  - [**Human in the Loop**](./google-adk/src/human-in-the-loop): A `LongRunningFunctionTool` whose completion is gated by a Temporal Signal or Update.
+  - [**Structured Output**](./google-adk/src/structured-output): Schema-constrained agent output validated at the Workflow boundary.
+  - [**Observability**](./google-adk/src/observability): Token usage, latency, and call counts from the agent loop's OpenTelemetry spans, by composing `OpenTelemetryPlugin` onto the Worker alongside `GoogleAdkPlugin`.
+- [**OpenRouter**](./openrouter): Call [OpenRouter](https://openrouter.ai/) from an Activity and fan a prompt batch out with bounded concurrency. Temporal owns the retries, `Retry-After` becomes the next retry delay, and OpenRouter's response cache makes a retried call free.
 
 ### Full-stack apps
 
