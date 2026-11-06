@@ -6,7 +6,6 @@ on:
       - main
   pull_request:
 
-
 permissions:
   contents: read
 
@@ -21,8 +20,8 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        os: [ ubuntu-latest, windows-latest, macos-latest ]
-        node: [ 20, 22, 24 ]
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node: [22, 24, 26]
 
     steps:
       - uses: actions/checkout@9c091bb21b7c1c1d1991bb908d89e4e9dddfe3e0 # v7.0.0

@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    "types": ["node"],
     "lib": ["es2021"],
     "module": "Node16",
     "declaration": true,
@@ -10,12 +11,15 @@
     "target": "es2017",
     "sourceMap": true,
     "outDir": "./dist",
+    // Nest's webpack path resolver needs baseUrl for inherited path mappings.
     "baseUrl": "./",
+    "ignoreDeprecations": "6.0",
     "incremental": true,
     "skipLibCheck": true,
     "paths": {
       "@app/shared": ["libs/shared/src"],
       "@app/shared/*": ["libs/shared/src/*"]
-    }
+    },
+    "rootDir": "."
   }
 }

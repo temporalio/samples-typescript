@@ -9,7 +9,7 @@ module.exports = {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'deprecation'],
+  plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -18,7 +18,7 @@ module.exports = {
   ],
   rules: {
     '@typescript-eslint/no-floating-promises': 'error',
-    'deprecation/deprecation': 'warn',
+    '@typescript-eslint/no-deprecated': 'warn',
     'object-shorthand': ['error', 'always'],
     '@typescript-eslint/no-unused-vars': [
       'warn',

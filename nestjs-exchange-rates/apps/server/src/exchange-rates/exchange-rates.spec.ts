@@ -1,3 +1,4 @@
+import { beforeAll, describe, expect, it, jest } from '@jest/globals';
 import { Test, TestingModule } from '@nestjs/testing';
 import { ExchangeRatesService } from './exchange-rates.service';
 import { exchangeRatesProviders } from './exchange-rates.providers';
