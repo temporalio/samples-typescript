@@ -1,4 +1,4 @@
-# Customer Logger demo
+# Custom Logger demo
 
 This project demonstrates how to capture log entries produced by Workers, Workflows and Activities, and process them
 using a third party logging libraries (in this case, the [Winston](https://github.com/winstonjs/winston) package).
