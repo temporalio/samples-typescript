@@ -8,7 +8,7 @@ Scenarios:
 - **deterministic** — three agents run in sequence, each gating the next (outline → draft → polish).
 - **parallelization** — `Promise.all` fans out to three agents, then a judge agent picks the best answer.
 - **llm-as-judge** — a generate→judge loop that retries until the judge approves.
-- **agents-as-tools** — an orchestrator uses `agentAsTool` to call a specialist agent as a tool.
+- **agents-as-tools** — an orchestrator uses `agent.asTool()` to call a specialist agent as a tool.
 - **input-guardrails** — `runConfig.inputGuardrails` blocks forbidden input before the model runs.
 - **output-guardrails** — `runConfig.outputGuardrails` blocks unsafe model output after the model runs.
 
