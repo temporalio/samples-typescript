@@ -1,5 +1,4 @@
 import assert from 'assert';
-import path from 'path';
 import { createDecipheriv, randomUUID } from 'crypto';
 import { inflateSync } from 'zlib';
 import { Payload, defaultPayloadConverter } from '@temporalio/common';
@@ -19,7 +18,9 @@ describe('Nexus serialization context workflows', function () {
   before(async () => {
     env = await TestWorkflowEnvironment.createLocal({
       server: {
-        executable: { type: 'existing-path', path: process.env.TEMPORAL_CLI_PATH ?? path.resolve('temporal') },
+        executable: process.env.TEMPORAL_CLI_PATH
+          ? { type: 'existing-path', path: process.env.TEMPORAL_CLI_PATH }
+          : { type: 'cached-download', version: 'v1.9.3-nexus-serialization-context' },
         namespace: CALLER,
         extraArgs: ['--namespace', COMPRESSED_HANDLER, '--namespace', ENCRYPTED_HANDLER],
       },

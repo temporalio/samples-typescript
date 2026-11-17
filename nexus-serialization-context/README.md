@@ -181,6 +181,7 @@ pnpm lint
 pnpm build
 ```
 
-The workflow test starts an isolated server on private ports using the same CLI build
-and checks the stored Nexus context and the backing workflows' input and result metadata.
-Set `TEMPORAL_CLI_PATH` to use this CLI build from another location.
+The workflow test downloads and caches CLI `v1.9.3-nexus-serialization-context`, starts
+an isolated server on private ports, and checks the stored Nexus context and the backing
+workflows' input and result metadata. Set `TEMPORAL_CLI_PATH` to use an existing CLI
+executable instead.
