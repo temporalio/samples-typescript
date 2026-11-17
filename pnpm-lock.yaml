@@ -4382,6 +4382,73 @@ importers:
         specifier: ^6.0.3
         version: 6.0.3
 
+  nexus-serialization-context:
+    dependencies:
+      "@temporalio/client":
+        specifier: ^1.26.0
+        version: 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/common":
+        specifier: ^1.26.0
+        version: 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/nexus":
+        specifier: ^1.26.0
+        version: 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/proto":
+        specifier: ^1.26.0
+        version: 1.26.0
+      "@temporalio/worker":
+        specifier: ^1.26.0
+        version: 1.26.0(@swc/helpers@0.5.15)(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/workflow":
+        specifier: ^1.26.0
+        version: 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      nexus-rpc:
+        specifier: ^0.0.3
+        version: 0.0.3
+    devDependencies:
+      "@temporalio/testing":
+        specifier: ^1.26.0
+        version: 1.26.0(@swc/helpers@0.5.15)(long@5.3.2)(protobufjs@8.8.1)
+      "@tsconfig/node22":
+        specifier: ^22.0.0
+        version: 22.0.5
+      "@types/mocha":
+        specifier: 10.x
+        version: 10.0.10
+      "@types/node":
+        specifier: ^22.9.1
+        version: 22.12.0
+      "@typescript-eslint/eslint-plugin":
+        specifier: ^8.72.1
+        version: 8.72.1(@typescript-eslint/parser@8.72.1(eslint@8.57.1)(typescript@6.0.3))(eslint@8.57.1)(typescript@6.0.3)
+      "@typescript-eslint/parser":
+        specifier: ^8.72.1
+        version: 8.72.1(eslint@8.57.1)(typescript@6.0.3)
+      eslint:
+        specifier: ^8.57.1
+        version: 8.57.1
+      eslint-config-prettier:
+        specifier: ^9.1.0
+        version: 9.1.0(eslint@8.57.1)
+      mocha:
+        specifier: ^12.0.3
+        version: 12.0.3(ts-node@10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@6.0.3))
+      nodemon:
+        specifier: ^3.1.7
+        version: 3.1.9
+      prettier:
+        specifier: ^3.4.2
+        version: 3.4.2
+      source-map-support:
+        specifier: ^0.5.21
+        version: 0.5.21
+      ts-node:
+        specifier: ^10.9.2
+        version: 10.9.2(@swc/core@1.10.11(@swc/helpers@0.5.15))(@types/node@22.12.0)(typescript@6.0.3)
+      typescript:
+        specifier: ^6.0.3
+        version: 6.0.3
+
 packages:
 
   '@a2a-js/sdk@0.3.14':
@@ -17768,6 +17835,76 @@ packages:
     resolution: {integrity: sha512-SNgDF5L0gfN7FwVOdEFguY3orU5AkfFZm9B5YSHog/UDHv+lvmd82ZAsOenOkQixigwH2+yyH198AwNdKhj+RA==}
     engines: {node: '>= 12.17.0'}
     hasBin: true
+
+  "@temporalio/activity@1.26.0":
+    resolution:
+      integrity: sha512-j0/yL0PDasvbOuIH571c1rr1n+xsm0BnGX0dl/G+lpWRurxyojCCJmZG9FF472x8xUON6WWequ2qOGquw0gb8A==
+    engines:
+      node: ">= 20.3.0"
+    peerDependencies:
+      long: ^5.3.2
+      protobufjs: ^8.7.1
+  "@temporalio/client@1.26.0":
+    resolution:
+      integrity: sha512-01hNfP6m6bjlut/huL6oCJ8czAMXm3jWKriLnEoLmnh5RzU6AEuqzbw77dmNDF3lQiZaFeY++lCKjSig4IVd9A==
+    engines:
+      node: ">= 20.3.0"
+    peerDependencies:
+      long: ^5.3.2
+      protobufjs: ^8.7.1
+  "@temporalio/common@1.26.0":
+    resolution:
+      integrity: sha512-mHpfPAm6IThHUreLmH9iE7G0ekURbj6jDqJZuG8kfg2unMVx33fQ1cx05TkRuzG8U6IPjIMheyVDnVrBid/TBg==
+    engines:
+      node: ">= 20.3.0"
+    peerDependencies:
+      long: ^5.3.2
+      protobufjs: ^8.7.1
+  "@temporalio/core-bridge@1.26.0":
+    resolution:
+      integrity: sha512-O2vtTOtFkHyl4YQwmUZni63HGlTUxOVoiZNRTZezaygMXG3LJw0dMap4+qCMponkBOiV8Z6qkrGNnShslqYC5g==
+    engines:
+      node: ">= 20.3.0"
+    peerDependencies:
+      long: ^5.3.2
+      protobufjs: ^8.7.1
+  "@temporalio/nexus@1.26.0":
+    resolution:
+      integrity: sha512-Tj44f+H+hNQl3lgrLAduv17Nv3bcPXj4i1hN6wv3C+ZPjFbklD5sroN6gMHK6bzlEqGSR9s5UInjbfE4if8J9w==
+    engines:
+      node: ">= 20.3.0"
+    peerDependencies:
+      long: ^5.3.2
+      protobufjs: ^8.7.1
+  "@temporalio/proto@1.26.0":
+    resolution:
+      integrity: sha512-hrYoXs/b3W7u+PvuK6qB2Cvb/TZv1AxKJn9Rj4YCeQsemWknZ3a4+2FICRuGxwB6bR0qsoVFf5uKQOPtouyDCw==
+    engines:
+      node: ">= 20.3.0"
+  "@temporalio/testing@1.26.0":
+    resolution:
+      integrity: sha512-eClmpgDEl2xBj7wb2SdLsenAxlA8K42qhINDOnjctBA3NJbq2e85FkMRAe3f+vlzoao9HzT0A4hwcGapMYzeoA==
+    engines:
+      node: ">= 20.3.0"
+    peerDependencies:
+      long: ^5.3.2
+      protobufjs: ^8.7.1
+  "@temporalio/worker@1.26.0":
+    resolution:
+      integrity: sha512-X6xdDzBtPNBfP7wdl2PWaWov4wmMtzBLb6PAQYQmOmupPVBZSTajLUi9wP+Fz0s1sqFvUQamY02QaQ3TJysrRA==
+    engines:
+      node: ">= 20.3.0"
+    peerDependencies:
+      long: ^5.3.2
+      protobufjs: ^8.7.1
+  "@temporalio/workflow@1.26.0":
+    resolution:
+      integrity: sha512-wa5SYoxn4qNVOtNaP6D7QPzyifg8KX6rzTkmE9oIqAqF5uxPgCgv1BbIIRq8Iu7Z0AH/mkkUCGwhwirdcmQwhA==
+    engines:
+      node: ">= 20.3.0"
+    peerDependencies:
+      long: ^5.3.2
+      protobufjs: ^8.7.1
 
 snapshots:
 
@@ -35365,3 +35502,113 @@ snapshots:
   zwitch@2.0.4: {}
 
   zx@8.8.5: {}
+
+  "@temporalio/activity@1.26.0(long@5.3.2)(protobufjs@8.8.1)":
+    dependencies:
+      "@temporalio/client": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/common": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      long: 5.3.2
+      protobufjs: 8.8.1
+  "@temporalio/client@1.26.0(long@5.3.2)(protobufjs@8.8.1)":
+    dependencies:
+      "@grpc/grpc-js": 1.14.4
+      "@temporalio/common": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/proto": 1.26.0
+      long: 5.3.2
+      nexus-rpc: 0.0.3
+      protobufjs: 8.8.1
+      uuid: 11.1.0
+  "@temporalio/common@1.26.0(long@5.3.2)(protobufjs@8.8.1)":
+    dependencies:
+      "@temporalio/proto": 1.26.0
+      long: 5.3.2
+      ms: 3.0.0-canary.202508261828
+      nexus-rpc: 0.0.3
+      protobufjs: 8.8.1
+  "@temporalio/core-bridge@1.26.0(long@5.3.2)(protobufjs@8.8.1)":
+    dependencies:
+      "@grpc/grpc-js": 1.14.4
+      "@temporalio/common": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      long: 5.3.2
+      protobufjs: 8.8.1
+  "@temporalio/nexus@1.26.0(long@5.3.2)(protobufjs@8.8.1)":
+    dependencies:
+      "@temporalio/client": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/common": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/proto": 1.26.0
+      long: 5.3.2
+      nexus-rpc: 0.0.3
+      protobufjs: 8.8.1
+  "@temporalio/proto@1.26.0":
+    dependencies:
+      long: 5.3.2
+      protobufjs: 8.8.1
+  "@temporalio/testing@1.26.0(@swc/helpers@0.5.15)(long@5.3.2)(protobufjs@8.8.1)":
+    dependencies:
+      "@temporalio/activity": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/client": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/common": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/core-bridge": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/proto": 1.26.0
+      "@temporalio/worker": 1.26.0(@swc/helpers@0.5.15)(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/workflow": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      long: 5.3.2
+      protobufjs: 8.8.1
+    transitivePeerDependencies:
+      - "@minify-html/node"
+      - "@swc/css"
+      - "@swc/helpers"
+      - "@swc/html"
+      - clean-css
+      - cssnano
+      - csso
+      - esbuild
+      - html-minifier-terser
+      - lightningcss
+      - postcss
+      - uglify-js
+      - webpack-cli
+  "@temporalio/worker@1.26.0(@swc/helpers@0.5.15)(long@5.3.2)(protobufjs@8.8.1)":
+    dependencies:
+      "@grpc/grpc-js": 1.14.4
+      "@swc/core": 1.10.11(@swc/helpers@0.5.15)
+      "@temporalio/activity": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/client": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/common": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/core-bridge": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/nexus": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/proto": 1.26.0
+      "@temporalio/workflow": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      heap-js: 2.6.0
+      long: 5.3.2
+      memfs: 4.17.0
+      nexus-rpc: 0.0.3
+      protobufjs: 8.8.1
+      rxjs: 7.8.2
+      source-map: 0.7.6
+      source-map-loader: 5.0.0(webpack@5.108.4(@swc/core@1.10.11(@swc/helpers@0.5.15)))
+      supports-color: 8.1.1
+      swc-loader: 0.2.6(@swc/core@1.10.11(@swc/helpers@0.5.15))(webpack@5.108.4(@swc/core@1.10.11(@swc/helpers@0.5.15)))
+      unionfs: 4.6.0
+      webpack: 5.108.4(@swc/core@1.10.11(@swc/helpers@0.5.15))
+    transitivePeerDependencies:
+      - "@minify-html/node"
+      - "@swc/css"
+      - "@swc/helpers"
+      - "@swc/html"
+      - clean-css
+      - cssnano
+      - csso
+      - esbuild
+      - html-minifier-terser
+      - lightningcss
+      - postcss
+      - uglify-js
+      - webpack-cli
+  "@temporalio/workflow@1.26.0(long@5.3.2)(protobufjs@8.8.1)":
+    dependencies:
+      "@temporalio/common": 1.26.0(long@5.3.2)(protobufjs@8.8.1)
+      "@temporalio/proto": 1.26.0
+      long: 5.3.2
+      nexus-rpc: 0.0.3
+      protobufjs: 8.8.1

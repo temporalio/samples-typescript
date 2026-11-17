@@ -1,0 +1,51 @@
+{
+  "name": "nexus-serialization-context",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "build": "tsc --build",
+    "build.watch": "tsc --build --watch",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "lint": "eslint .",
+    "test": "mocha --exit --require ts-node/register --require source-map-support/register src/mocha/*.test.ts",
+    "start.caller": "ts-node src/caller/worker.ts",
+    "start.compressed": "ts-node src/handler/worker.ts compressed",
+    "start.encrypted": "ts-node src/handler/worker.ts encrypted",
+    "workflow": "ts-node src/starter.ts"
+  },
+  "nodemonConfig": {
+    "execMap": {
+      "ts": "ts-node"
+    },
+    "ext": "ts",
+    "watch": [
+      "src"
+    ]
+  },
+  "dependencies": {
+    "@temporalio/client": "^1.26.0",
+    "@temporalio/common": "^1.26.0",
+    "@temporalio/nexus": "^1.26.0",
+    "@temporalio/proto": "^1.26.0",
+    "@temporalio/worker": "^1.26.0",
+    "@temporalio/workflow": "^1.26.0",
+    "nexus-rpc": "^0.0.3"
+  },
+  "devDependencies": {
+    "@temporalio/testing": "^1.26.0",
+    "@tsconfig/node22": "^22.0.0",
+    "@types/mocha": "10.x",
+    "@types/node": "^22.9.1",
+    "@typescript-eslint/eslint-plugin": "^8.72.1",
+    "@typescript-eslint/parser": "^8.72.1",
+    "eslint": "^8.57.1",
+    "eslint-config-prettier": "^9.1.0",
+    "mocha": "^12.0.3",
+    "nodemon": "^3.1.7",
+    "prettier": "^3.4.2",
+    "source-map-support": "^0.5.21",
+    "ts-node": "^10.9.2",
+    "typescript": "^6.0.3"
+  }
+}
