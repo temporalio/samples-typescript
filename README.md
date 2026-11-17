@@ -110,6 +110,7 @@ and you'll be given the list of sample options.
 #### Nexus APIs
 
 - [**Nexus Hello**](./nexus-hello): Demonstrates how to define a Nexus Service, implement the Operation handlers, and call the Operations from a Workflow.
+- [**Nexus Serialization Context**](./nexus-serialization-context): Select endpoint-specific encryption and compression for synchronous and workflow-backed asynchronous Nexus Operations.
 - [**Nexus Cancellation**](./nexus-cancellation): Demonstrates how to cancel a Nexus Operation from a caller workflow using a CancellationScope
 - [**Nexus Messaging**](./nexus-messaging): Demonstrates how to send signal, update and query messages through Nexus.
   This contains two samples, one sending messages to an existing workflow and a second that creates a workflow through Nexus
