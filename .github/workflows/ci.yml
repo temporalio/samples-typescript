@@ -63,6 +63,7 @@ jobs:
             langsmith
             mutex
             nestjs-exchange-rates
+            nexus-serialization-context
             nexus-standalone-activity
             nexus-standalone-operations
             sleep-for-days
