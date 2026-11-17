@@ -85,6 +85,14 @@ describe('Nexus serialization context workflows', function () {
             event.nexusOperationScheduledEventAttributes ? [event.nexusOperationScheduledEventAttributes] : [],
           );
           assert.equal(scheduled.length, 8);
+          assert.deepStrictEqual(
+            scheduled.map((operation) => `${operation.endpoint}/${operation.service}/${operation.operation}`).sort(),
+            ENDPOINTS.flatMap((endpoint) => [
+              `${endpoint}/SyncEchoService/echo`,
+              `${endpoint}/AsyncEchoService/echoAsync`,
+            ]).sort(),
+          );
+
           const completedEvents = history.events!.filter((event) => event.nexusOperationCompletedEventAttributes);
           assert.equal(completedEvents.length, 8);
           const lastScheduled = Math.max(
