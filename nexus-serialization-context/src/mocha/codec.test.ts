@@ -23,7 +23,8 @@ describe('Nexus codec', () => {
         'encryption-key-id': Buffer.from(keyId),
         'nexus-endpoint-name': Buffer.from(context.endpoint),
       });
-      const [decoded] = await handler.decode([request], context);
+      const [plain, decoded] = await handler.decode([defaultPayloadConverter.toPayload('plain'), request], context);
+      assert.equal(defaultPayloadConverter.fromPayload(plain), 'plain');
       assert.equal(defaultPayloadConverter.fromPayload(decoded), 'hello');
       const [result] = await handler.encode([defaultPayloadConverter.toPayload('reply')], context);
       assert.deepStrictEqual(result.metadata, request.metadata);

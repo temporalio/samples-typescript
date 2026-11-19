@@ -83,8 +83,7 @@ export class NexusCodec implements PayloadCodec {
   async decode(payloads: Payload[], context?: SerializationContext): Promise<Payload[]> {
     const { keyId, key, compress } = this.select(context);
     return payloads.map((payload) => {
-      if (Buffer.from(payload.metadata?.encoding ?? []).toString() !== 'binary/nexus-aes-gcm')
-        throw new Error('Expected an AES-GCM payload');
+      if (Buffer.from(payload.metadata?.encoding ?? []).toString() !== 'binary/nexus-aes-gcm') return payload;
       if (Buffer.from(payload.metadata?.['encryption-key-id'] ?? []).toString() !== keyId)
         throw new Error('Unexpected encryption key ID');
       const data = Buffer.from(payload.data ?? []);
