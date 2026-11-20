@@ -29,9 +29,18 @@ export class NexusCodec implements PayloadCodec {
   private readonly endpoints: ReadonlyMap<string, EndpointCodec>;
 
   constructor(role: 'caller' | 'compressed' | 'encrypted' = 'caller') {
-    this.endpoints = new Map(
-      [...endpointCodecs].filter(([, codec]) => role === 'caller' || codec.compress === (role === 'compressed')),
-    );
+    const endpoints = new Map<string, EndpointCodec>();
+    for (const [endpoint, settings] of endpointCodecs) {
+      if (role === 'caller') {
+        endpoints.set(endpoint, settings);
+      } else if (role === 'compressed' && settings.compress) {
+        endpoints.set(endpoint, settings);
+      } else if (role === 'encrypted' && !settings.compress) {
+        endpoints.set(endpoint, settings);
+      }
+    }
+    this.endpoints = endpoints;
+
     switch (role) {
       case 'caller':
         this.workflowCodec = endpointCodec('caller-workflow', 'sample-key-C-123', false);
