@@ -1438,7 +1438,7 @@ importers:
         specifier: ^1.25.0
         version: 1.25.0(long@5.3.2)(protobufjs@8.8.1)
       '@temporalio/google-adk':
-        specifier: 1.0.0
+        specifier: ^1.0.0
         version: 1.0.0(@google/adk@2.0.0(8531262d13e5d3e38fb82b765923df10))(@google/genai@2.19.0(@modelcontextprotocol/sdk@1.29.0(zod@4.6.7)))(@modelcontextprotocol/sdk@1.29.0(zod@4.6.7))(@swc/helpers@0.5.15)(long@5.3.2)(protobufjs@8.8.1)
       '@temporalio/interceptors-opentelemetry':
         specifier: ^1.25.0
@@ -23143,7 +23143,7 @@ snapshots:
       protobufjs: 8.8.1
       uuid: 11.1.0
       web-streams-polyfill: 4.2.0
-      zod: 4.4.3
+      zod: 4.6.7
     optionalDependencies:
       '@modelcontextprotocol/sdk': 1.29.0(zod@4.6.7)
     transitivePeerDependencies:
