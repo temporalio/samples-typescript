@@ -7,7 +7,7 @@ import {
   PayloadConverterError,
 } from '@temporalio/common';
 import EJSON from 'ejson';
-import { decode, encode } from '@temporalio/common/lib/encoding';
+import { decode, encode } from '@temporalio/common/encoding';
 
 /**
  * Converts between values and [EJSON](https://docs.meteor.com/api/ejson.html) Payloads.
