@@ -1,5 +1,5 @@
 import { NativeConnection, Worker } from '@temporalio/worker';
-import { OpenAIAgentsPlugin, SandboxClientProvider } from '@temporalio/openai-agents';
+import { OnHostSandboxClientProvider, OpenAIAgentsPlugin } from '@temporalio/openai-agents';
 import { OpenAIProvider } from '@openai/agents-openai';
 import { UnixLocalSandboxClient } from '@openai/agents-core/sandbox/local';
 
@@ -22,7 +22,7 @@ async function run() {
       plugins: [
         new OpenAIAgentsPlugin({
           modelProvider: new OpenAIProvider({ apiKey }),
-          sandboxClientProviders: [new SandboxClientProvider('local', new UnixLocalSandboxClient())],
+          sandboxClientProviders: [new OnHostSandboxClientProvider('local', new UnixLocalSandboxClient())],
           resolvableWorkerEnvVars: ['SANDBOX_SERVICE_TOKEN'],
         }),
       ],

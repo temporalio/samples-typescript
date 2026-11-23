@@ -9,7 +9,7 @@ This is a single project: one `package.json` and one set of configs at the `open
 These apply to every sample in this directory:
 
 - A running Temporal dev server: `temporal server start-dev`.
-- Node 22 or later.
+- Node 22.12 or later.
 - An OpenAI API key: `export OPENAI_API_KEY=...`.
 - Dependencies installed once at the `openai-agents/` root: `npm install`.
 
@@ -40,26 +40,26 @@ Each scenario's README describes how to start its Worker and run its scenarios b
 
 Any OpenAI Agents SDK `ModelProvider` can drive the model Activity. The provider runs in the Activity, never inside the Workflow sandbox.
 
-| Feature                 | Status                   | Notes                                                                                            |
-| :---------------------- | :----------------------- | :----------------------------------------------------------------------------------------------- |
-| Multi-turn agents       | Supported                | Agent loop runs durably in the Workflow                                                          |
-| Handoffs                | Supported                | `Agent` and `handoff()` forms                                                                    |
-| Inline function tools   | Supported                | Must be deterministic                                                                            |
-| Activity-backed tools   | Supported                | Via `activityAsTool()`                                                                           |
-| Nexus operation tools   | Supported                | Via `nexusOperationAsTool()`                                                                     |
-| Nested agent tools      | Supported                | Via `agentAsTool()`                                                                              |
-| Hosted tools            | Supported                | Executed server-side by the model provider                                                       |
-| Stateless MCP servers   | Supported                | Via `StatelessMCPServerProvider` and `statelessMcpServer()`                                      |
-| Stateful MCP servers    | Supported                | Via `StatefulMCPServerProvider` and `statefulMcpServer()`                                        |
-| Sandbox agents          | Supported (experimental) | Via `SandboxClientProvider` and `temporalSandboxClient()`; see [`sandboxes`](./src/sandboxes)    |
-| Sessions                | Supported                | Via `WorkflowSafeMemorySession`; upstream `MemorySession` is rejected                            |
-| Run state and approvals | Supported                | Serialize with `result.state.toString()` and rehydrate with `RunState.fromString`                |
-| Guardrails              | Supported                | Guardrail callbacks must be deterministic                                                        |
-| Tracing                 | Supported                | OpenAI hosted traces, custom `TracingProcessor`s, OTel, and optional `temporal:*` spans          |
-| Agent context           | Supported                | Activity tools receive a copy                                                                    |
-| `continueAsNew`         | Supported                | Plugin config propagates to the continuation                                                     |
-| Child Workflows         | Supported                | Plugin config propagates to children                                                             |
-| Local Activities        | Supported                | Set `useLocalActivity: true` in `modelParams`                                                    |
-| Model override per run  | Supported                | `runConfig.model` accepts a string model name                                                    |
-| Streaming               | Supported (experimental) | `run(agent, input, { stream: true })` over a Workflow Stream; see [`streaming`](./src/streaming) |
-| Voice agents            | Not supported            |                                                                                                  |
+| Feature                 | Status                   | Notes                                                                                               |
+| :---------------------- | :----------------------- | :-------------------------------------------------------------------------------------------------- |
+| Multi-turn agents       | Supported                | Agent loop runs durably in the Workflow                                                             |
+| Handoffs                | Supported                | `Agent` and `handoff()` forms                                                                       |
+| Inline function tools   | Supported                | Must be deterministic                                                                               |
+| Activity-backed tools   | Supported                | Via `activityAsTool()`                                                                              |
+| Nexus operation tools   | Supported                | Via `nexusOperationAsTool()`                                                                        |
+| Nested agent tools      | Supported                | Via `agent.asTool()`                                                                                |
+| Hosted tools            | Supported                | Executed server-side by the model provider                                                          |
+| Stateless MCP servers   | Supported                | Via `StatelessMCPServerProvider` and `statelessMcpServer()`                                         |
+| Stateful MCP servers    | Supported                | Via `StatefulMCPServerProvider` and `statefulMcpServer()`                                           |
+| Sandbox agents          | Supported (experimental) | Via `OnHostSandboxClientProvider` and `temporalSandboxClient()`; see [`sandboxes`](./src/sandboxes) |
+| Sessions                | Supported                | Via `WorkflowSafeMemorySession`; upstream `MemorySession` is rejected                               |
+| Run state and approvals | Supported                | Serialize with `result.state.toString()` and rehydrate with `RunState.fromString`                   |
+| Guardrails              | Supported                | Guardrail callbacks must be deterministic                                                           |
+| Tracing                 | Supported                | OpenAI hosted traces, custom `TracingProcessor`s, OTel, and optional `temporal:*` spans             |
+| Agent context           | Supported                | Activity tools receive a copy                                                                       |
+| `continueAsNew`         | Supported                | Plugin config propagates to the continuation                                                        |
+| Child Workflows         | Supported                | Plugin config propagates to children                                                                |
+| Local Activities        | Supported                | Set `useLocalActivity: true` in `modelParams`                                                       |
+| Model override per run  | Supported                | `runConfig.model` accepts a string model name                                                       |
+| Streaming               | Supported (experimental) | `run(agent, input, { stream: true })` over a Workflow Stream; see [`streaming`](./src/streaming)    |
+| Voice agents            | Not supported            |                                                                                                     |

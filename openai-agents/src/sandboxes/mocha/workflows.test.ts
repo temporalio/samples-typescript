@@ -1,7 +1,8 @@
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { after, before, describe, it } from 'mocha';
 import { Worker } from '@temporalio/worker';
-import { OpenAIAgentsPlugin, SandboxClientProvider } from '@temporalio/openai-agents';
+import { ApplicationFailure, TemporalFailure, WorkflowFailedError } from '@temporalio/client';
+import { OnHostSandboxClientProvider, OpenAIAgentsPlugin, SANDBOX_LOST_FAILURE_TYPE } from '@temporalio/openai-agents';
 import { UnixLocalSandboxClient } from '@openai/agents-core/sandbox/local';
 import assert from 'assert';
 import { FakeModelProvider, textResponse, toolCallResponse, toolOutputs } from './fake-model';
@@ -42,7 +43,7 @@ describe('openai-agents/sandboxes workflow scenarios', function () {
       plugins: [
         new OpenAIAgentsPlugin({
           modelProvider: provider,
-          sandboxClientProviders: [new SandboxClientProvider('local', new UnixLocalSandboxClient())],
+          sandboxClientProviders: [new OnHostSandboxClientProvider('local', new UnixLocalSandboxClient())],
           resolvableWorkerEnvVars: [SECRET_VAR],
         }),
       ],
@@ -122,7 +123,7 @@ describe('openai-agents/sandboxes workflow scenarios', function () {
     assert.ok(!history.includes(SECRET), 'the resolved value must not appear in history');
   });
 
-  it('sandboxWorkflow: a running process handle does not survive a Worker restart', async () => {
+  it('sandboxWorkflow: a Worker restart loses the sandbox, and the run fails with SandboxLost', async () => {
     const taskQueue = 'test-sandboxes-restart-' + Date.now();
     const workflowId = 'test-sandboxes-restart-' + Date.now();
     const beforeRestart = new FakeModelProvider([
@@ -142,10 +143,18 @@ describe('openai-agents/sandboxes workflow scenarios', function () {
     const firstWorker = await createWorker(taskQueue, beforeRestart);
     await firstWorker.runUntil(beforeRestart.model.exhausted);
     const secondWorker = await createWorker(taskQueue, afterRestart);
-    const result = await secondWorker.runUntil(handle.result());
+    const err = await secondWorker.runUntil(handle.result()).then(
+      () => assert.fail('the Workflow should fail after the Worker restart'),
+      (e: unknown) => e,
+    );
 
-    assert.strictEqual(result, 'The running process was lost when the Worker restarted.');
     assert.match(toolOutputs(beforeRestart.model, 'exec_command')[0]!, /Process running with session ID 1/);
-    assert.match(toolOutputs(afterRestart.model, 'write_stdin')[0]!, /write_stdin failed: session not found: 1/);
+    assert.ok(err instanceof WorkflowFailedError, `expected WorkflowFailedError, got ${err}`);
+    let cause: unknown = err.cause;
+    while (cause instanceof TemporalFailure && !(cause instanceof ApplicationFailure)) {
+      cause = cause.cause;
+    }
+    assert.ok(cause instanceof ApplicationFailure, `expected an ApplicationFailure, got ${cause}`);
+    assert.strictEqual(cause.type, SANDBOX_LOST_FAILURE_TYPE);
   });
 });
