@@ -1,5 +1,5 @@
 // @@@SNIPSTART typescript-strands-continue-as-new-workflow
-import type { Message } from '@strands-agents/sdk';
+import type { JSONValue, Message } from '@strands-agents/sdk';
 import { TemporalAgent } from '@temporalio/strands-agents';
 import {
   allHandlersFinished,
@@ -14,6 +14,7 @@ import {
 
 export interface ChatInput {
   messages?: Message[];
+  modelState?: Record<string, JSONValue>;
 }
 
 export const chatTurn = defineUpdate<string, [string]>('turn');
@@ -49,6 +50,7 @@ export async function chatWorkflow(input: ChatInput = {}): Promise<void> {
   agent = new TemporalAgent({
     activityOptions: { startToCloseTimeout: '60 seconds', retry: { maximumAttempts: 3 } },
     messages: input.messages ?? [],
+    modelState: input.modelState,
   });
 
   await condition(() => done || workflowInfo().continueAsNewSuggested);
@@ -56,7 +58,9 @@ export async function chatWorkflow(input: ChatInput = {}): Promise<void> {
   await condition(allHandlersFinished);
 
   if (!done) {
-    await continueAsNew<typeof chatWorkflow>({ messages: agent.messages });
+    // A stateful model clears `messages` after each turn and keeps its context in
+    // `modelState`, so carry both.
+    await continueAsNew<typeof chatWorkflow>({ messages: agent.messages, modelState: agent.modelState.getAll() });
   }
 }
 // @@@SNIPEND

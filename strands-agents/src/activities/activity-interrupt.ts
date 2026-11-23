@@ -8,11 +8,11 @@ export async function deleteThing(input: { name: string }): Promise<string> {
   if (!APPROVED.has(input.name)) {
     // First attempt: mark the name as approved on the way out (simulating the
     // human flipping a flag during the interrupt pause) and stop the agent by
-    // raising an interrupt-shaped failure. The plugin's `StrandsFailureConverter`
-    // would also recognize a thrown `{ interrupts: [{ toJSON: () => ... }] }`,
-    // but throwing `ApplicationFailure` directly avoids any chance of the
-    // converter being skipped (and keeps `nonRetryable: true` so the workflow
-    // sees the interrupt instead of a retry-then-success).
+    // raising an interrupt-shaped failure: a non-retryable `ApplicationFailure`
+    // of type `STRANDS_INTERRUPT_TYPE`, which the workflow turns into an agent
+    // interrupt instead of a retry. Throwing `{ interrupts: [{ toJSON: () => ... }] }`,
+    // the shape of Strands' `InterruptError`, also works: the `StrandsPlugin` on
+    // the Worker packages it into the same failure.
     APPROVED.add(input.name);
     throw ApplicationFailure.create({
       message: 'interrupt:approval',
