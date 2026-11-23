@@ -1865,7 +1865,7 @@ importers:
         specifier: ^1.25.0
         version: 1.25.0(long@5.3.2)(protobufjs@8.8.1)
       '@temporalio/langsmith':
-        specifier: 2.0.0
+        specifier: ^2.0.0
         version: 2.0.0(@swc/helpers@0.5.15)(langsmith@0.10.13(@opentelemetry/api@1.9.0)(@opentelemetry/exporter-trace-otlp-proto@0.220.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(openai@6.49.0(@aws-sdk/credential-provider-node@3.972.98)(@smithy/signature-v4@5.7.5)(ws@8.18.0)(zod@4.6.7))(ws@8.18.0))(long@5.3.2)(protobufjs@8.8.1)
       '@temporalio/worker':
         specifier: ^1.25.0
@@ -3934,7 +3934,7 @@ importers:
         specifier: ^1.25.0
         version: 1.25.0(long@5.3.2)(protobufjs@8.8.1)
       '@temporalio/strands-agents':
-        specifier: 2.0.0
+        specifier: ^2.0.0
         version: 2.0.0(@strands-agents/sdk@1.26.0(@a2a-js/sdk@0.3.14(@grpc/grpc-js@1.14.4)(express@5.2.1))(@google/genai@2.19.0(@modelcontextprotocol/sdk@1.29.0(zod@4.4.3)))(@modelcontextprotocol/client@2.4.0)(@opentelemetry/api@1.9.0)(@opentelemetry/resources@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-metrics@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-base@2.9.0(@opentelemetry/api@1.9.0))(@opentelemetry/sdk-trace-node@2.9.0(@opentelemetry/api@1.9.0))(@smithy/types@4.20.0)(express@5.2.1)(openai@6.49.0(@aws-sdk/credential-provider-node@3.972.98)(@smithy/signature-v4@5.7.5)(ws@8.18.0)(zod@4.4.3))(zod@4.4.3))(@swc/helpers@0.5.15)(long@5.3.2)(protobufjs@8.8.1)(zod@4.4.3)
       '@temporalio/worker':
         specifier: ^1.25.0
@@ -4138,7 +4138,7 @@ importers:
         specifier: ^1.25.0
         version: 1.25.0(long@5.3.2)(protobufjs@8.8.1)
       '@temporalio/vercel-ai-sdk':
-        specifier: 2.0.0
+        specifier: ^2.0.0
         version: 2.0.0(@ai-sdk/mcp@2.0.79(zod@4.4.3))(@ai-sdk/provider@4.0.30)(@swc/helpers@0.5.15)(ai@7.0.127(zod@4.4.3))(long@5.3.2)(protobufjs@8.8.1)(zod@4.4.3)
       '@temporalio/worker':
         specifier: ^1.25.0
