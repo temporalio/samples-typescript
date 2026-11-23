@@ -27,6 +27,8 @@ describe('openai-agents/tools hosted-tool scenarios', function () {
       workflowsPath: require.resolve('../workflows'),
       plugins: [new OpenAIAgentsPlugin({ modelProvider: provider })],
       bundlerOptions: {
+        // As in worker.ts: keep the `openai` client out of the Workflow bundle.
+        ignoreModules: ['openai'],
         webpackConfigHook: (config) => ({
           ...config,
           resolve: {

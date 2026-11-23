@@ -21,6 +21,10 @@ async function run() {
         }),
       ],
       bundlerOptions: {
+        // The Workflow imports hosted tools from @openai/agents-openai, which also loads the `openai` client.
+        // openai 7 creates a FinalizationRegistry when it loads, which Workflows don't allow. Only the
+        // Worker uses the client, so leave it out of the Workflow bundle.
+        ignoreModules: ['openai'],
         webpackConfigHook: (config) => ({
           ...config,
           resolve: {

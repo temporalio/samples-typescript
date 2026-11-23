@@ -7,7 +7,7 @@ retries like any other Activity.
 
 The Workflow (`src/sandboxes/workflows.ts`) builds a `SandboxAgent` with its default capabilities
 and runs it with `temporalSandboxClient('local')` as `runConfig.sandbox.client`. `'local'` names the
-`SandboxClientProvider` that the Worker registers and prefixes that provider's Activity names
+`OnHostSandboxClientProvider` that the Worker registers and prefixes that provider's Activity names
 (`local-sandbox-client-create`, `local-sandbox-session-exec-command`, and so on), so the two names must match.
 
 ## Configuration
@@ -19,6 +19,11 @@ agent's commands directly on the Worker host**, as the Worker's OS user, in a te
 a container or a chroot, so only run it where you'd be comfortable running the commands yourself. It supports macOS
 and Linux. To isolate the agent, register a different backend, such as `DockerSandboxClient`, under the same provider
 name. Only the Worker changes.
+
+The Unix-local and Docker backends run the sandbox on the Worker's own machine, so the Worker registers them with
+`OnHostSandboxClientProvider`, which sends every later operation on a sandbox to the Worker that created it.
+`SandboxClientProvider` refuses these backends. It's for hosted backends, such as E2B or Daytona, that any Worker can
+reach.
 
 ### The secret
 
@@ -33,9 +38,12 @@ anyway. The agent's instructions tell it never to print the value.
 
 ### Running processes
 
-If a command is still running when `exec_command` returns, the agent gets a session ID for the process. If the Worker
-then restarts, the restarted Worker can't reach that process through the session ID. For that reason, the agent's
-instructions ask it to run each command to completion in a single `exec_command` call.
+If a command is still running when `exec_command` returns, the agent gets a session ID for the process. The agent's
+instructions ask it to run each command to completion in a single `exec_command` call instead.
+
+If the Worker restarts, it loses its sandboxes. The next operation on one fails with the non-retryable
+`ApplicationFailure` type `SandboxLost`, and the run fails. The plugin doesn't start a new sandbox in its place or clean
+up the workspace left behind.
 
 ## Run
 
@@ -63,5 +71,5 @@ npx mocha --exit --require ts-node/register --require source-map-support/registe
 
 The tests run a real Worker against `TestWorkflowEnvironment` with a scripted fake model and the Unix-local backend,
 so no `OPENAI_API_KEY` is required. They check the sandbox Activities in history, that the token's value never
-appears in history, and that a running process can't be reached after a Worker restart. They're skipped on Windows,
+appears in history, and that a Worker restart fails the run with `SandboxLost`. They're skipped on Windows,
 which the Unix-local backend doesn't support.
