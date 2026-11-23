@@ -9,7 +9,7 @@ module.exports = {
     project: './tsconfig.json',
     tsconfigRootDir: __dirname,
   },
-  plugins: ['@typescript-eslint', 'deprecation'],
+  plugins: ['@typescript-eslint'],
   extends: [
     'eslint:recommended',
     'plugin:@typescript-eslint/eslint-recommended',
@@ -19,7 +19,7 @@ module.exports = {
   rules: {
     // recommended for safety
     '@typescript-eslint/no-floating-promises': 'error', // forgetting to await Activities and Workflow APIs is bad
-    'deprecation/deprecation': 'warn',
+    '@typescript-eslint/no-deprecated': 'warn',
 
     // code style preference
     'object-shorthand': ['error', 'always'],

@@ -7,15 +7,13 @@ const ADDITIONAL_SAMPLES = [];
 // Some directories contain one or more samples nested in them instead of having
 // a package.json. These are treated as NON_SAMPLES, but child directories are added
 // as samples.
-const HAS_CHILD_SAMPLES = [
-  'message-passing',
-  'polling',
-];
+const HAS_CHILD_SAMPLES = ['message-passing', 'polling'];
 
 // Some samples have different config files from those in .shared/
 // that we don't want to overwrite
 const TSCONFIG_EXCLUDE = [
   'vercel-ai-sdk',
+  'google-adk',
   'nextjs-ecommerce-oneclick',
   'monorepo-folders',
   'fetch-esm',
@@ -130,12 +128,13 @@ for (let i = 0; i < FILES.length; i++) {
   }
 }
 
-
 // Collect all samples that are children of dirs specified in HAS_CHILD_SAMPLES
-const childSamples = await Promise.all(HAS_CHILD_SAMPLES.map(async (dirName) => {
-  const dirents = await fs.readdir(`./${dirName}`, { withFileTypes: true});
-  return dirents.filter((dirent) => dirent.isDirectory()).map(({name}) => `${dirName}/${name}`);
-})).then((samples) => {
+const childSamples = await Promise.all(
+  HAS_CHILD_SAMPLES.map(async (dirName) => {
+    const dirents = await fs.readdir(`./${dirName}`, { withFileTypes: true });
+    return dirents.filter((dirent) => dirent.isDirectory()).map(({ name }) => `${dirName}/${name}`);
+  }),
+).then((samples) => {
   return samples.reduce((accum, cur) => accum.concat(cur), []);
 });
 
@@ -166,7 +165,7 @@ if (process.stdin.isTTY) {
   [answer] = await question(
     `Running pre-commit hook.
 This will overwrite changes made to most config files in samples (like ${chalk.bold('hello-world/tsconfig.json')}).
-Proceed? [Y/n] `
+Proceed? [Y/n] `,
   );
 }
 

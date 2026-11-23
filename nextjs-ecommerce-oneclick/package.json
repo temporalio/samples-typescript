@@ -35,18 +35,17 @@
     "@tsconfig/node22": "^22.0.0",
     "@types/node": "^22.9.1",
     "@types/react": "^18.0.0",
-    "@typescript-eslint/eslint-plugin": "^8.18.0",
-    "@typescript-eslint/parser": "^8.18.0",
+    "@typescript-eslint/eslint-plugin": "^8.72.1",
+    "@typescript-eslint/parser": "^8.72.1",
     "autoprefixer": "^10.2.6",
     "eslint": "^8.57.1",
     "eslint-config-next": "^15.0.4",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-deprecation": "^3.0.0",
     "husky": "^7.0.2",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.3.5",
     "prettier": "^3.4.2",
     "tailwindcss": "^2.2.4",
-    "typescript": "^5.6.3"
+    "typescript": "^6.0.3"
   }
 }

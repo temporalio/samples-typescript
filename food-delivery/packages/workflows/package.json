@@ -15,6 +15,6 @@
     "@fooddelivery/activities": "workspace:*",
     "@fooddelivery/tsconfig": "workspace:*",
     "eslint": "^8.57.1",
-    "typescript": "^5.6.3"
+    "typescript": "^6.0.3"
   }
 }

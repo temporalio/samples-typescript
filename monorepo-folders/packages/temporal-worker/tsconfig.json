@@ -1,12 +1,14 @@
 {
   "extends": "@tsconfig/node22/tsconfig.json",
-  "version": "5.6.3",
+  "version": "6.0.3",
   "compilerOptions": {
+    "types": ["node"],
     "lib": ["es2021"],
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
-    "outDir": "./lib"
+    "outDir": "./lib",
+    "rootDir": ".."
   },
   "include": ["**/*.ts"]
 }

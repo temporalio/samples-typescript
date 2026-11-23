@@ -1,7 +1,7 @@
 module.exports = {
   root: true,
   parser: '@typescript-eslint/parser',
-  plugins: ['@typescript-eslint', 'deprecation'],
+  plugins: ['@typescript-eslint'],
   overrides: [
     {
       files: ['*.ts'],
@@ -17,7 +17,7 @@ module.exports = {
         rules: {
           // recommended for safety
           '@typescript-eslint/no-floating-promises': 'error', // forgetting to await Activities and Workflow APIs is bad
-          'deprecation/deprecation': 'warn',
+          '@typescript-eslint/no-deprecated': 'warn',
 
           // code style preference
           'object-shorthand': ['error', 'always'],

@@ -15,9 +15,9 @@ Create a custom data converter that encrypts data with AES. See [encryption docs
   - Click the `Configure data encoder` icon on the bottom left, and set `http://localhost:8888` as the `Remote Codec Endpoint`.
   - Or add this environment variable to the web UI server: `TEMPORAL_CODEC_ENDPOINT=http://localhost:8888`.
 
-  To encrypt payloads with `tctl`, pass the following option:
+  To encrypt payloads with the `temporal` CLI, pass the following option:
 
-  - `tctl --codec_endpoint 'http://localhost:8888' ...`
+  - `temporal workflow start  --codec-endpoint 'http://localhost:8888' --task-queue my-task-queue ...`
 
 The Payload Converter is supplied to the [client.ts](./src/client.ts) and [worker.ts](./src/worker.ts). When the Client sends `'Alice: Private message for Bob.'` to the Workflow, it gets encrypted on the Client and decrypted in the Worker. [`workflow.ts`](./src/workflow.ts) receives the decrypted message and appends another message. When it returns that longer string, the string gets encrypted by the Worker and decrypted by the Client.
 

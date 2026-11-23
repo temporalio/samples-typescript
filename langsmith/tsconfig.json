@@ -1,6 +1,7 @@
 {
   "extends": "@tsconfig/node22/tsconfig.json",
   "compilerOptions": {
+    "types": ["node"],
     "lib": ["es2021"],
     "declaration": true,
     "declarationMap": true,

@@ -37,15 +37,14 @@
     "@types/node": "^22.9.1",
     "@types/node-fetch": "^2.5.12",
     "@types/sinon": "^10.0.4",
-    "@typescript-eslint/eslint-plugin": "^8.18.0",
-    "@typescript-eslint/parser": "^8.18.0",
+    "@typescript-eslint/eslint-plugin": "^8.72.1",
+    "@typescript-eslint/parser": "^8.72.1",
     "eslint": "^8.57.1",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-deprecation": "^3.0.0",
     "nodemon": "^3.1.7",
     "prettier": "^3.4.2",
     "sinon": "^11.1.2",
     "ts-node": "^10.9.2",
-    "typescript": "^5.6.3"
+    "typescript": "^6.0.3"
   }
 }

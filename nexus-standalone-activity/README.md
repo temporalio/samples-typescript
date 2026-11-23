@@ -14,7 +14,7 @@ These APIs are experimental and may change in future releases.
 
 ## Run locally
 
-This sample requires the [Temporal CLI build with standalone Nexus Operations](https://github.com/temporalio/cli/releases/tag/v1.7.4-standalone-nexus-operations), with Activity callbacks enabled as shown below.
+For local development, use [Temporal CLI v1.10.0 or later](https://docs.temporal.io/cli/setup-cli) with Activity callbacks enabled as shown below.
 
 1. Install dependencies from this directory:
 
