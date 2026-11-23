@@ -9,7 +9,7 @@ This is a single project: one `package.json` and one set of configs at the `lang
 These apply to every sample in this directory:
 
 - A running Temporal dev server: `temporal server start-dev`.
-- Node 22 or later.
+- Node 22.12 or later.
 - Dependencies installed once at the `langsmith/` root: `npm install`.
 
 Tracing is **off by default**, matching the `langsmith` library. To see live traces in LangSmith, enable it in the Worker and Client process environment:

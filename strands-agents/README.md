@@ -9,7 +9,7 @@ One worker registers all activities, all workflows, and an MCP server. Each feat
 | Hello World        | `npm run workflow:hello-world`        | Minimal `TemporalAgent` invocation.                                                         |
 | Tools              | `npm run workflow:tools`              | Pure Strands `tool()` + `workflow.activityAsTool` for I/O.                                  |
 | Human in the Loop  | `npm run workflow:human-in-the-loop`  | Gate a tool call on human approval with a `BeforeToolCallEvent` hook + `event.interrupt()`. |
-| Activity Interrupt | `npm run workflow:activity-interrupt` | Activity-thrown interrupt routed through `StrandsFailureConverter`.                         |
+| Activity Interrupt | `npm run workflow:activity-interrupt` | Activity-thrown interrupt that pauses the agent; needs `StrandsPlugin` on the Worker.       |
 | Hooks              | `npm run workflow:hooks`              | `AfterToolCallEvent` with in-workflow and activity-dispatched callbacks.                    |
 | MCP                | `npm run workflow:mcp`                | Connect to a stdio MCP server via `TemporalMCPClient`.                                      |
 | Structured Output  | `npm run workflow:structured-output`  | Constrain output with a Zod schema.                                                         |

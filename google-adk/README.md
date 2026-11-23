@@ -9,7 +9,7 @@ This is a single project: one `package.json` and one set of configs at the `goog
 These apply to every sample in this directory:
 
 - A running Temporal dev server: `temporal server start-dev`.
-- Node.js 22.12.0 or later.
+- Node.js 22.17.0 or later.
 - A Gemini API key for live runs: `export GEMINI_API_KEY=...`. Each scenario also documents a credential-free local mode.
 - Dependencies installed once at the `google-adk/` root: `npm install`.
 

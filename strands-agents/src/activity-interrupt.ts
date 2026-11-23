@@ -1,14 +1,11 @@
 import { Client, Connection } from '@temporalio/client';
-import { StrandsPlugin } from '@temporalio/strands-agents';
 import { activityInterrupt, activityInterruptApproveSignal, activityInterruptPendingApprovalQuery } from './workflows';
 
 async function run() {
   const connection = await Connection.connect({
     address: process.env.TEMPORAL_ADDRESS ?? 'localhost:7233',
   });
-  // The starter goes through the plugin's failure converter so an Interrupt
-  // payload deserializes cleanly if it propagates to the client.
-  const client = new Client({ connection, plugins: [new StrandsPlugin()] });
+  const client = new Client({ connection });
 
   const handle = await client.workflow.start(activityInterrupt, {
     args: ["Please delete the 'system' user."],
