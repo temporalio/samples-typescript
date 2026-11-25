@@ -1,5 +1,5 @@
 import { NativeConnection, Worker } from '@temporalio/worker';
-import { NexusCodec } from '../codec';
+import { createSampleCodec } from '../codec-config';
 import { CALLER } from '../shared';
 
 async function run() {
@@ -10,7 +10,7 @@ async function run() {
       namespace: CALLER,
       taskQueue: CALLER,
       workflowsPath: require.resolve('./workflows'),
-      dataConverter: { payloadCodecs: [new NexusCodec()] },
+      dataConverter: { payloadCodecs: [createSampleCodec()] },
     });
     await worker.run();
   } finally {

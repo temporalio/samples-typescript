@@ -7,7 +7,7 @@ import { after, before, describe, it } from 'mocha';
 import { Client } from '@temporalio/client';
 import { TestWorkflowEnvironment } from '@temporalio/testing';
 import { Worker } from '@temporalio/worker';
-import { NexusCodec } from '../codec';
+import { createSampleCodec } from '../codec-config';
 import { CALLER, COMPRESSED_HANDLER, ENCRYPTED_HANDLER, ENDPOINTS } from '../shared';
 import { callerWorkflow } from '../caller/workflows';
 import { syncHandler, asyncHandler } from '../handler/handler';
@@ -43,7 +43,7 @@ describe('Nexus serialization context workflows', function () {
         namespace: CALLER,
         taskQueue: CALLER,
         workflowsPath: require.resolve('../caller/workflows'),
-        dataConverter: { payloadCodecs: [new NexusCodec()] },
+        dataConverter: { payloadCodecs: [createSampleCodec()] },
       }),
       ...(
         [
@@ -57,14 +57,14 @@ describe('Nexus serialization context workflows', function () {
           taskQueue: namespace,
           workflowsPath: require.resolve('../handler/workflows'),
           nexusServices: [syncHandler, asyncHandler],
-          dataConverter: { payloadCodecs: [new NexusCodec(role)] },
+          dataConverter: { payloadCodecs: [createSampleCodec(role)] },
         }),
       ),
     ]);
     const client = new Client({
       connection: env.connection,
       namespace: CALLER,
-      dataConverter: { payloadCodecs: [new NexusCodec()] },
+      dataConverter: { payloadCodecs: [createSampleCodec()] },
     });
     await workers[0].runUntil(() =>
       workers[1].runUntil(() =>

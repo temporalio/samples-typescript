@@ -1,5 +1,5 @@
 import { NativeConnection, Worker } from '@temporalio/worker';
-import { NexusCodec } from '../codec';
+import { createSampleCodec } from '../codec-config';
 import { COMPRESSED_HANDLER, ENCRYPTED_HANDLER } from '../shared';
 import { syncHandler, asyncHandler } from './handler';
 
@@ -15,7 +15,7 @@ async function run() {
       taskQueue: namespace,
       workflowsPath: require.resolve('./workflows'),
       nexusServices: [syncHandler, asyncHandler],
-      dataConverter: { payloadCodecs: [new NexusCodec(role)] },
+      dataConverter: { payloadCodecs: [createSampleCodec(role)] },
     });
     await worker.run();
   } finally {

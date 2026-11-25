@@ -3,10 +3,72 @@ import { createDecipheriv } from 'crypto';
 import { inflateSync } from 'zlib';
 import { temporal } from '@temporalio/proto';
 import { describe, it } from 'mocha';
-import { defaultPayloadConverter, NexusSerializationContext } from '@temporalio/common';
+import {
+  defaultPayloadConverter,
+  NexusSerializationContext,
+  Payload,
+  PayloadCodec,
+  SerializationContext,
+} from '@temporalio/common';
 import { NexusCodec } from '../codec';
+import { createSampleCodec } from '../codec-config';
 
 describe('Nexus codec', () => {
+  it('delegates both directions to supplied codecs, preserving payloads and context', async () => {
+    const calls: { name: string; direction: string; payloads: Payload[]; context?: SerializationContext }[] = [];
+    function recordingCodec(name: string): PayloadCodec {
+      return {
+        async encode(payloads, context) {
+          calls.push({ name, direction: 'encode', payloads, context });
+          return [defaultPayloadConverter.toPayload(`${name} encoded`)];
+        },
+        async decode(payloads, context) {
+          calls.push({ name, direction: 'decode', payloads, context });
+          return [defaultPayloadConverter.toPayload(`${name} decoded`)];
+        },
+      };
+    }
+    const codec = new NexusCodec(
+      new Map([
+        ['custom-endpoint-a', recordingCodec('a')],
+        ['custom-endpoint-b', recordingCodec('b')],
+      ]),
+      recordingCodec('existing workflow codec'),
+    );
+    const payloads = [defaultPayloadConverter.toPayload('hello')];
+    const cases: [string, SerializationContext | undefined][] = [
+      ['a', { type: 'nexus', endpoint: 'custom-endpoint-a', service: 'CustomService', operation: 'custom' }],
+      ['b', { type: 'nexus', endpoint: 'custom-endpoint-b', service: 'CustomService', operation: 'custom' }],
+      ['existing workflow codec', undefined],
+      ['existing workflow codec', { type: 'workflow', namespace: 'caller', workflowId: 'workflow-id' }],
+    ];
+    for (const [name, context] of cases) {
+      const [encoded] = await codec.encode(payloads, context);
+      const [decoded] = await codec.decode(payloads, context);
+      assert.equal(defaultPayloadConverter.fromPayload(encoded), `${name} encoded`);
+      assert.equal(defaultPayloadConverter.fromPayload(decoded), `${name} decoded`);
+    }
+    assert.equal(calls.length, cases.length * 2);
+    for (const [index, [name, context]] of cases.entries()) {
+      for (const [offset, direction] of ['encode', 'decode'].entries()) {
+        const call = calls[index * 2 + offset];
+        assert.equal(call.name, name);
+        assert.equal(call.direction, direction);
+        assert.strictEqual(call.payloads, payloads);
+        assert.strictEqual(call.context, context);
+      }
+    }
+    const unknown: NexusSerializationContext = {
+      type: 'nexus',
+      endpoint: 'unknown',
+      service: 'CustomService',
+      operation: 'custom',
+    };
+    await assert.rejects(codec.encode(payloads, unknown), /Unknown Nexus endpoint/);
+    await assert.rejects(codec.decode(payloads, unknown), /Unknown Nexus endpoint/);
+    assert.equal(calls.length, cases.length * 2);
+  });
+
   it('round trips caller requests and handler results through every endpoint', async () => {
     for (const keyId of ['compressed-encrypted-1', 'compressed-encrypted-2', 'encrypted-1', 'encrypted-2']) {
       const context: NexusSerializationContext = {
@@ -15,8 +77,8 @@ describe('Nexus codec', () => {
         service: 'SyncEchoService',
         operation: 'echo',
       };
-      const caller = new NexusCodec();
-      const handler = new NexusCodec(keyId.startsWith('compressed') ? 'compressed' : 'encrypted');
+      const caller = createSampleCodec();
+      const handler = createSampleCodec(keyId.startsWith('compressed') ? 'compressed' : 'encrypted');
       const [request] = await caller.encode([defaultPayloadConverter.toPayload('hello')], context);
       assert.deepStrictEqual(request.metadata, {
         encoding: Buffer.from('binary/nexus-aes-gcm'),
@@ -33,7 +95,7 @@ describe('Nexus codec', () => {
     }
   });
   it('compresses before encrypting with either key', async () => {
-    const codec = new NexusCodec();
+    const codec = createSampleCodec();
     const payload = defaultPayloadConverter.toPayload('repeat me '.repeat(100));
     for (const number of [1, 2]) {
       const context = (id: string): NexusSerializationContext => ({
@@ -60,7 +122,7 @@ describe('Nexus codec', () => {
       ['compressed', '', 'compressed-encrypted-1', 'handler-a-key-01', false],
       ['encrypted', '', 'encrypted-1', 'handler-b-key-01', false],
     ] as const) {
-      const codec = new NexusCodec(role);
+      const codec = createSampleCodec(role);
       const context = endpoint
         ? {
             type: 'nexus' as const,
@@ -96,7 +158,7 @@ describe('Nexus codec', () => {
   });
 
   it('rejects unknown endpoints on both encode and decode', async () => {
-    const codec = new NexusCodec();
+    const codec = createSampleCodec();
     const context: NexusSerializationContext = {
       type: 'nexus',
       endpoint: 'unknown',
@@ -110,8 +172,31 @@ describe('Nexus codec', () => {
     await assert.rejects(codec.decode([], context), /Unknown Nexus endpoint: unknown/);
   });
 
+  it('restricts handlers to their own endpoints and rejects a different endpoint key', async () => {
+    const payloads = [defaultPayloadConverter.toPayload('hello')];
+    for (const role of ['compressed', 'encrypted'] as const) {
+      const handler = createSampleCodec(role);
+      const prefix = role === 'compressed' ? 'compressed-encrypted' : 'encrypted';
+      const context: NexusSerializationContext = {
+        type: 'nexus',
+        endpoint: `nexus-serialization-${prefix}-1`,
+        service: 'SyncEchoService',
+        operation: 'echo',
+      };
+      const encoded = await handler.encode(payloads, context);
+      await assert.rejects(
+        handler.decode(encoded, { ...context, endpoint: `nexus-serialization-${prefix}-2` }),
+        /Unexpected encryption key ID/,
+      );
+      const otherPrefix = role === 'compressed' ? 'encrypted' : 'compressed-encrypted';
+      const other = { ...context, endpoint: `nexus-serialization-${otherPrefix}-1` };
+      await assert.rejects(handler.encode(payloads, other), /Unknown Nexus endpoint/);
+      await assert.rejects(handler.decode(encoded, other), /Unknown Nexus endpoint/);
+    }
+  });
+
   it('keeps overlapping endpoint calls separate and leaves ordinary workflow defaults unchanged', async () => {
-    const codec = new NexusCodec();
+    const codec = createSampleCodec();
     const contexts: NexusSerializationContext[] = [1, 2].map((number) => ({
       type: 'nexus',
       endpoint: `nexus-serialization-encrypted-${number}`,
@@ -135,7 +220,7 @@ describe('Nexus codec', () => {
   });
 
   it('uses a fresh nonce and ciphertext for repeated values', async () => {
-    const codec = new NexusCodec();
+    const codec = createSampleCodec();
     const context: NexusSerializationContext = {
       type: 'nexus',
       endpoint: 'nexus-serialization-encrypted-1',
@@ -154,7 +239,7 @@ describe('Nexus codec', () => {
   });
 
   it('rejects altered ciphertext, incomplete nonces, and truncated authentication tags', async () => {
-    const codec = new NexusCodec();
+    const codec = createSampleCodec();
     const context: NexusSerializationContext = {
       type: 'nexus',
       endpoint: 'nexus-serialization-encrypted-1',

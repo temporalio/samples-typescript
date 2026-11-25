@@ -22,10 +22,23 @@ the service and operation, which can be used to select keys.
 
 ## Adapt this pattern
 
-`NexusCodec` maps endpoints to encryption settings and uses a default for ordinary
-workflow payloads. Add it to `dataConverter.payloadCodecs` in the caller and handler
-`Client` and `Worker` options. See [src/codec.ts](src/codec.ts) for the key maps and
-[src/handler/worker.ts](src/handler/worker.ts) for worker setup.
+`NexusCodec` accepts a map of endpoint names to payload codecs and a fallback codec
+for ordinary workflow payloads. It delegates encoding and decoding to the selected
+codec, passing through the serialization context. For example:
+
+```typescript
+const endpointCodecs = new Map<string, PayloadCodec>();
+endpointCodecs.set('my-endpoint', myEndpointCodec);
+const codec = new NexusCodec(endpointCodecs, myExistingWorkflowCodec);
+```
+
+Add this routing codec to `dataConverter.payloadCodecs` in the caller and handler
+`Client` and `Worker` options. Unknown Nexus endpoints are rejected rather than
+falling back to the workflow codec.
+
+See [src/codec.ts](src/codec.ts) for routing and the demonstration `EncryptionCodec`,
+[src/codec-config.ts](src/codec-config.ts) for the sample's endpoint maps and keys,
+and [src/handler/worker.ts](src/handler/worker.ts) for worker setup.
 
 Because AES-GCM uses symmetric encryption, the caller and handler share a secret key
 for each endpoint. This sample uses that key for both requests and results.
@@ -35,8 +48,8 @@ The caller uses a separate key for its workflow input and final result.
 For this example, each handler reuses its endpoint-1 key for backing workflow inputs.
 
 When adapting this sample, use your existing codec for ordinary workflow payloads
-so workers can still read existing histories. The sample selects the workflow default
-where `select` returns `workflowCodec` in [src/codec.ts](src/codec.ts).
+so workers can still read existing histories. Pass it as the second argument to
+`NexusCodec`; `select` returns it for non-Nexus contexts in [src/codec.ts](src/codec.ts).
 
 | Ordinary workflow payload                              | Default key ID           |
 | ------------------------------------------------------ | ------------------------ |
