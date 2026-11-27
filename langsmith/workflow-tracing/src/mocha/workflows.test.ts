@@ -108,7 +108,7 @@ describe('langsmith/workflow-tracing', function () {
     const pipeline = traceable(
       async () =>
         client.workflow.execute(SummarizeWorkflow, {
-          args: ['the meeting notes'],
+          args: [{ text: 'the meeting notes' }],
           workflowId: 'test-langsmith-workflow-tracing-' + Date.now(),
           taskQueue,
         }),
@@ -117,7 +117,7 @@ describe('langsmith/workflow-tracing', function () {
 
     const result = await worker.runUntil(pipeline());
 
-    assert.strictEqual(result, 'summary:points:the meeting notes');
+    assert.deepStrictEqual(result, { summary: 'summary:points:the meeting notes' });
 
     assert.strictEqual(collector.countByName('extract_key_points'), 1);
     assert.strictEqual(collector.countByName('summarize'), 1);

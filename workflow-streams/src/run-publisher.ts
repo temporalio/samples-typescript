@@ -37,7 +37,7 @@ async function run() {
   }
 
   const result = await handle.result();
-  console.log(`workflow result: ${result}`);
+  console.log(`workflow result: ${result.chargeId}`);
   await connection.close();
 }
 

@@ -25,35 +25,35 @@ async function run() {
   const handle = await activitiesClient.start('greet', {
     ...activityOptions,
     id: activityId,
-    args: ['Temporal'],
+    args: [{ name: 'Temporal' }],
   });
   // @@@SNIPEND
 
   // Optional: wait for activity result
   // @@@SNIPSTART typescript-standalone-activity-result
-  console.log(await handle.result()); // Hello, Temporal!
+  console.log((await handle.result()).greeting); // Hello, Temporal!
   // @@@SNIPEND
 
   // `execute` allows starting the activity and getting the result in one go
   const result = await activitiesClient.execute('greet', {
     ...activityOptions,
     id: activityId + '-2',
-    args: ['World'],
+    args: [{ name: 'World' }],
   });
-  console.log(result); // Hello, World!
+  console.log(result.greeting); // Hello, World!
 
   // If needed, activity handle can be recreated from just activity ID, although with weaker type safety
   // @@@SNIPSTART typescript-standalone-activity-get-handle
-  const newHandle = client.activity.getHandle<string>(activityId);
+  const newHandle = client.activity.getHandle<activities.GreetResult>(activityId);
   // @@@SNIPEND
-  console.log(await newHandle.result()); // Hello, Temporal!
+  console.log((await newHandle.result()).greeting); // Hello, Temporal!
 
   // Activity client can execute activities without the typed interface - useful when activity declarations are unavailable
   try {
     await client.activity.execute('greet', {
       ...activityOptions,
       id: activityId + '-3',
-      args: [1],
+      args: [{ name: 1 }],
     });
   } catch (err) {
     if (err instanceof ActivityExecutionFailedError) {

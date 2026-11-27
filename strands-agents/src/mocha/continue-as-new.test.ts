@@ -42,8 +42,8 @@ describe('chatWorkflow', () => {
       });
 
       const replies: string[] = [];
-      replies.push(await handle.executeUpdate(chatTurn, { args: ['first'] }));
-      replies.push(await handle.executeUpdate(chatTurn, { args: ['second'] }));
+      replies.push((await handle.executeUpdate(chatTurn, { args: [{ prompt: 'first' }] })).reply);
+      replies.push((await handle.executeUpdate(chatTurn, { args: [{ prompt: 'second' }] })).reply);
 
       await handle.signal(chatEnd);
       await handle.result();

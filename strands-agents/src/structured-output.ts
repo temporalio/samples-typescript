@@ -8,7 +8,7 @@ async function run() {
   const client = new Client({ connection });
 
   const person = await client.workflow.execute(structuredOutputWorkflow, {
-    args: ['John Smith is a 30 year-old software engineer.'],
+    args: [{ prompt: 'John Smith is a 30 year-old software engineer.' }],
     taskQueue: 'strands-agents',
     workflowId: 'strands-structured-output',
   });

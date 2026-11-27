@@ -7,15 +7,21 @@ import type * as activities from './activities';
 const localActivities = proxyLocalActivities<typeof activities>({ startToCloseTimeout: '10 seconds' });
 
 // @@@SNIPSTART typescript-openai-agents-hello-world-workflow
-export async function helloWorld(prompt: string): Promise<string> {
+type HelloWorldInput = { prompt: string };
+type HelloWorldResult = { text: string };
+
+export async function helloWorld({ prompt }: HelloWorldInput): Promise<HelloWorldResult> {
   const agent = new Agent({ name: 'HelloAgent', instructions: 'You are a helpful assistant.' });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 // @@@SNIPEND
 
 // @@@SNIPSTART typescript-openai-agents-activity-tool-workflow
-export async function tools(prompt: string): Promise<string> {
+type ToolsInput = { prompt: string };
+type ToolsResult = { text: string };
+
+export async function tools({ prompt }: ToolsInput): Promise<ToolsResult> {
   const weatherTool = activityAsTool<typeof activities.getWeather>(
     {
       name: 'getWeather',
@@ -36,12 +42,15 @@ export async function tools(prompt: string): Promise<string> {
     tools: [weatherTool],
   });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 // @@@SNIPEND
 
 // @@@SNIPSTART typescript-openai-agents-inline-tool-workflow
-export async function inlineTool(prompt: string): Promise<string> {
+type InlineToolInput = { prompt: string };
+type InlineToolResult = { text: string };
+
+export async function inlineTool({ prompt }: InlineToolInput): Promise<InlineToolResult> {
   const addTool = tool({
     name: 'add',
     description: 'Add two numbers together.',
@@ -55,11 +64,14 @@ export async function inlineTool(prompt: string): Promise<string> {
     tools: [addTool],
   });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 // @@@SNIPEND
 
-export async function localActivityTool(prompt: string): Promise<string> {
+type LocalActivityToolInput = { prompt: string };
+type LocalActivityToolResult = { text: string };
+
+export async function localActivityTool({ prompt }: LocalActivityToolInput): Promise<LocalActivityToolResult> {
   const headlinesTool = tool({
     name: 'getHeadlines',
     description: 'Get the latest headlines for a topic.',
@@ -73,10 +85,13 @@ export async function localActivityTool(prompt: string): Promise<string> {
     tools: [headlinesTool],
   });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 
-export async function agentContext(prompt: string): Promise<string> {
+type AgentContextInput = { prompt: string };
+type AgentContextResult = { text: string };
+
+export async function agentContext({ prompt }: AgentContextInput): Promise<AgentContextResult> {
   interface AppContext {
     userId: string;
   }
@@ -95,7 +110,7 @@ export async function agentContext(prompt: string): Promise<string> {
   });
 
   const result = await new TemporalOpenAIRunner().run(agent, prompt, { context: { userId: 'user-42' } });
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 
 const SummarySchema = z.object({
@@ -104,25 +119,34 @@ const SummarySchema = z.object({
   keywords: z.array(z.string()).describe('Key terms'),
 });
 
-export async function structuredOutput(prompt: string): Promise<string> {
+type StructuredOutputInput = { prompt: string };
+type StructuredOutputResult = z.infer<typeof SummarySchema>;
+
+export async function structuredOutput({ prompt }: StructuredOutputInput): Promise<StructuredOutputResult> {
   const agent = new Agent({
     name: 'SummaryAgent',
     instructions: 'Summarize the provided text as structured JSON matching the output schema.',
     outputType: SummarySchema,
   });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return JSON.stringify(result.finalOutput);
+  return SummarySchema.parse(result.finalOutput);
 }
 
-export async function modelOverride(prompt: string): Promise<string> {
+type ModelOverrideInput = { prompt: string };
+type ModelOverrideResult = { text: string };
+
+export async function modelOverride({ prompt }: ModelOverrideInput): Promise<ModelOverrideResult> {
   const agent = new Agent({ name: 'OverrideAgent', instructions: 'You are a helpful assistant.' });
   const result = await new TemporalOpenAIRunner().run(agent, prompt, {
     runConfig: { model: 'gpt-4o-mini' },
   });
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 
-export async function dynamicInstructions(prompt: string): Promise<string> {
+type DynamicInstructionsInput = { prompt: string };
+type DynamicInstructionsResult = { text: string };
+
+export async function dynamicInstructions({ prompt }: DynamicInstructionsInput): Promise<DynamicInstructionsResult> {
   interface UserContext {
     userName: string;
     style: string;
@@ -137,5 +161,5 @@ export async function dynamicInstructions(prompt: string): Promise<string> {
   const result = await new TemporalOpenAIRunner().run(agent, prompt, {
     context: { userName: 'Ada', style: 'concise' },
   });
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }

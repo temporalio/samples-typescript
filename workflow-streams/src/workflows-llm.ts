@@ -23,7 +23,7 @@ const { streamCompletion } = proxyActivities<typeof activities>({
  * start, so the consumer must reset on the activity's retry event. See
  * `llm-activities.ts` and `run-llm.ts`.
  */
-export async function llmStreaming(input: LLMInput): Promise<string> {
+export async function llmStreaming(input: LLMInput): Promise<activities.StreamCompletionResult> {
   // Construct the stream as the first statement of the workflow function so
   // the publish-signal handler is registered before any external publisher
   // (the activity, here) tries to publish.

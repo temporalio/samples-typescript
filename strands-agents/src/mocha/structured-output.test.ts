@@ -38,7 +38,7 @@ describe('structuredOutputWorkflow', () => {
 
     const result = await worker.runUntil(
       client.workflow.execute(structuredOutputWorkflow, {
-        args: ['describe John'],
+        args: [{ prompt: 'describe John' }],
         workflowId: 'test-structured',
         taskQueue,
       }),

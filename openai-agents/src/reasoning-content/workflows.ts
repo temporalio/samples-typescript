@@ -10,7 +10,8 @@ export interface ReasoningResult {
   content: string | null;
 }
 
-export async function reasoningContent(prompt: string, model: string): Promise<ReasoningResult> {
-  const response: ReasoningResponse = await getReasoningResponse(prompt, model);
+export async function reasoningContent(input: activities.ReasoningInput): Promise<ReasoningResult> {
+  const { prompt } = input;
+  const response: ReasoningResponse = await getReasoningResponse(input);
   return { prompt, reasoningContent: response.reasoningContent, content: response.content };
 }

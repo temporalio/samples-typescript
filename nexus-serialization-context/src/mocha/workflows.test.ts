@@ -72,11 +72,12 @@ describe('Nexus serialization context workflows', function () {
           const handle = await client.workflow.start(callerWorkflow, {
             workflowId: `nexus-serialization-${randomUUID()}`,
             taskQueue: CALLER,
-            args: ['Hello from Nexus'],
+            args: [{ message: 'Hello from Nexus' }],
             workflowExecutionTimeout: '30s',
           });
+          const results = await handle.result();
           assert.deepStrictEqual(
-            await handle.result(),
+            results,
             Object.fromEntries(
               ENDPOINTS.map((endpoint) => [endpoint, { sync: 'Hello from Nexus', async: 'Hello from Nexus' }]),
             ),
@@ -116,8 +117,11 @@ describe('Nexus serialization context workflows', function () {
           for (const payload of [callerStarted.input!.payloads![0], callerCompleted.result!.payloads![0]]) {
             assert.equal(payload.metadata!['nexus-endpoint-name'], undefined);
             assert.equal(Buffer.from(payload.metadata!['encryption-key-id']).toString(), 'caller-workflow');
-            decrypt(payload, 'sample-key-C-123', false);
           }
+          assert.deepStrictEqual(decrypt(callerStarted.input!.payloads![0], 'sample-key-C-123', false), {
+            message: 'Hello from Nexus',
+          });
+          assert.deepStrictEqual(decrypt(callerCompleted.result!.payloads![0], 'sample-key-C-123', false), results);
           const endpoints = new Set<string>();
           const workflowIds = new Set<string>();
           for (const namespace of [COMPRESSED_HANDLER, ENCRYPTED_HANDLER]) {
@@ -149,14 +153,15 @@ describe('Nexus serialization context workflows', function () {
                 compressed ? 'compressed-encrypted-1' : 'encrypted-1',
               );
               assert.equal(input.metadata!['nexus-endpoint-name'], undefined);
-              assert.equal(
-                decrypt(input, compressed ? 'handler-a-key-01' : 'handler-b-key-01', false),
-                'Hello from Nexus',
-              );
+              assert.deepStrictEqual(decrypt(input, compressed ? 'handler-a-key-01' : 'handler-b-key-01', false), {
+                message: 'Hello from Nexus',
+              });
               const completed = backing.events!.find(
                 (event) => event.workflowExecutionCompletedEventAttributes,
               )!.workflowExecutionCompletedEventAttributes!;
-              assertEndpointPayload(completed.result!.payloads![0], context.endpoint!);
+              assertEndpointPayload(completed.result!.payloads![0], context.endpoint!, {
+                message: 'Hello from Nexus',
+              });
             }
           }
           assert.deepStrictEqual(endpoints, new Set(ENDPOINTS));
@@ -182,19 +187,19 @@ function decrypt(payload: Payload, key: string, compressed: boolean): unknown {
   return defaultPayloadConverter.fromPayload(inner);
 }
 
-function assertEndpointPayload(payload: Payload, endpoint: string): void {
+function assertEndpointPayload(payload: Payload, endpoint: string, expected: unknown = 'Hello from Nexus'): void {
   const keyId = endpoint.replace('nexus-serialization-', '');
   assert.deepStrictEqual(payload.metadata, {
     encoding: Buffer.from('binary/nexus-aes-gcm'),
     'encryption-key-id': Buffer.from(keyId),
     'nexus-endpoint-name': Buffer.from(endpoint),
   });
-  assert.equal(
+  assert.deepStrictEqual(
     decrypt(
       payload,
       `handler-${endpoint.includes('compressed') ? 'a' : 'b'}-key-0${endpoint.slice(-1)}`,
       endpoint.includes('compressed'),
     ),
-    'Hello from Nexus',
+    expected,
   );
 }

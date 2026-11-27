@@ -15,37 +15,39 @@ export async function run() {
     workflowId: `messages-introduction-${nanoid()}`,
   });
 
-  const supportedLanguages = await handle.query(greetingWorkflow.getLanguages, { includeUnsupported: false });
+  const { languages: supportedLanguages } = await handle.query(greetingWorkflow.getLanguages, {
+    includeUnsupported: false,
+  });
   console.log(`supported languages: ${supportedLanguages}`);
 
   // Use executeUpdate to change the language
-  let previousLanguage = await handle.executeUpdate(greetingWorkflow.setLanguage, {
-    args: [Language.CHINESE],
+  let { previousLanguage } = await handle.executeUpdate(greetingWorkflow.setLanguage, {
+    args: [{ language: Language.CHINESE }],
   });
 
   // Send a query
-  let currentLanguage = await handle.query(greetingWorkflow.getLanguage);
+  let { language: currentLanguage } = await handle.query(greetingWorkflow.getLanguage);
   console.log(`language changed: ${previousLanguage} -> ${currentLanguage}`);
 
   // Use startUpdate followed by handle.result() to change the language
   const updateHandle = await handle.startUpdate(greetingWorkflow.setLanguage, {
-    args: [Language.ENGLISH],
+    args: [{ language: Language.ENGLISH }],
     waitForStage: cl.WorkflowUpdateStage.ACCEPTED,
   });
-  previousLanguage = await updateHandle.result();
-  currentLanguage = await handle.query(greetingWorkflow.getLanguage);
+  ({ previousLanguage } = await updateHandle.result());
+  ({ language: currentLanguage } = await handle.query(greetingWorkflow.getLanguage));
   console.log(`language changed: ${previousLanguage} -> ${currentLanguage}`);
 
   // Use an async update handler that calls an activity to change the language
-  previousLanguage = await handle.executeUpdate(greetingWorkflow.setLanguageUsingActivity, {
-    args: [Language.ARABIC],
-  });
-  currentLanguage = await handle.query(greetingWorkflow.getLanguage);
+  ({ previousLanguage } = await handle.executeUpdate(greetingWorkflow.setLanguageUsingActivity, {
+    args: [{ language: Language.ARABIC }],
+  }));
+  ({ language: currentLanguage } = await handle.query(greetingWorkflow.getLanguage));
   console.log(`language changed: ${previousLanguage} -> ${currentLanguage}`);
 
   // Send a signal
   await handle.signal(greetingWorkflow.approve, { name: '' });
-  console.log(await handle.result());
+  console.log((await handle.result()).greeting);
 }
 
 run().catch((err) => {

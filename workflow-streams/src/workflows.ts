@@ -33,14 +33,14 @@ const { chargeCard } = proxyActivities<typeof activities>({
  * messages. Threading `streamState` lets the workflow survive continue-as-new
  * without losing buffered items.
  */
-export async function order(input: OrderInput): Promise<string> {
+export async function order(input: OrderInput): Promise<activities.ChargeCardResult> {
   const stream = new WorkflowStream(input.streamState);
   const status = stream.topic<StatusEvent>(TOPIC_STATUS);
   const progress = stream.topic<ProgressEvent>(TOPIC_PROGRESS);
 
   status.publish({ kind: 'received', orderId: input.orderId });
 
-  const chargeId = await chargeCard(input.orderId);
+  const { chargeId } = await chargeCard({ orderId: input.orderId });
 
   status.publish({ kind: 'shipped', orderId: input.orderId });
   progress.publish({ message: `charge id: ${chargeId}` });
@@ -50,7 +50,7 @@ export async function order(input: OrderInput): Promise<string> {
   // next poll delivers it before this task returns and the in-memory log is
   // gone.
   await sleep('500 milliseconds');
-  return chargeId;
+  return { chargeId };
 }
 
 /**
@@ -61,7 +61,7 @@ export async function order(input: OrderInput): Promise<string> {
  * the meantime — the shape needed to demo the "show up late and still see
  * what happened" pattern.
  */
-export async function pipeline(input: PipelineInput): Promise<string> {
+export async function pipeline(input: PipelineInput): Promise<PipelineResult> {
   const stream = new WorkflowStream(input.streamState);
   const status = stream.topic<StageEvent>(TOPIC_STATUS);
 
@@ -75,7 +75,7 @@ export async function pipeline(input: PipelineInput): Promise<string> {
   // The "complete" stage above is the in-band terminator subscribers break
   // on. Hold the run open briefly so the final poll delivers it.
   await sleep('500 milliseconds');
-  return `pipeline ${input.pipelineId} done`;
+  return { message: `pipeline ${input.pipelineId} done` };
 }
 
 export const closeSignal = defineSignal('close');
@@ -89,7 +89,7 @@ export const closeSignal = defineSignal('close');
  * service or "event bus" pattern, where the workflow owns durable state but
  * the events come from outside.
  */
-export async function hub(input: HubInput): Promise<string> {
+export async function hub(input: HubInput): Promise<HubResult> {
   new WorkflowStream(input.streamState);
   let closed = false;
   setHandler(closeSignal, () => {
@@ -100,7 +100,7 @@ export async function hub(input: HubInput): Promise<string> {
   // signaling close (see run-external-publisher.ts). Hold the run open
   // briefly so subscribers' final poll delivers any items still in the log.
   await sleep('500 milliseconds');
-  return `hub ${input.hubId} closed`;
+  return { message: `hub ${input.hubId} closed` };
 }
 
 /**
@@ -122,7 +122,7 @@ export async function hub(input: HubInput): Promise<string> {
  * accessor, but the running count plus the carried `base_offset` (in
  * continue-as-new chains) is sufficient.
  */
-export async function ticker(input: TickerInput): Promise<string> {
+export async function ticker(input: TickerInput): Promise<TickerResult> {
   const count = input.count ?? TICKER_DEFAULTS.count;
   const keepLast = input.keepLast ?? TICKER_DEFAULTS.keepLast;
   const truncateEvery = input.truncateEvery ?? TICKER_DEFAULTS.truncateEvery;
@@ -149,5 +149,9 @@ export async function ticker(input: TickerInput): Promise<string> {
   // truncation so even slow consumers eventually see it. Hold the run open
   // briefly so the final poll delivers it.
   await sleep('500 milliseconds');
-  return `ticker emitted ${published} events`;
+  return { published };
 }
+
+type PipelineResult = { message: string };
+type HubResult = { message: string };
+type TickerResult = { published: number };

@@ -98,7 +98,7 @@ describe('langsmith/agent-pipeline', function () {
     const pipeline = traceable(
       async () =>
         client.workflow.execute(ResearchWorkflow, {
-          args: ['durable execution'],
+          args: [{ topic: 'durable execution' }],
           workflowId: 'test-langsmith-agent-pipeline-' + Date.now(),
           taskQueue,
         }),
@@ -107,7 +107,7 @@ describe('langsmith/agent-pipeline', function () {
 
     const result = await worker.runUntil(pipeline());
 
-    assert.strictEqual(result, 'reviewed: report based on: facts about durable execution');
+    assert.deepStrictEqual(result, { reviewedReport: 'reviewed: report based on: facts about durable execution' });
 
     assert.strictEqual(collector.parentNameOf('RunWorkflow:ResearchWorkflow'), 'research_pipeline');
     assert.strictEqual(collector.parentNameOf('RunActivity:gatherFacts'), 'RunWorkflow:ResearchWorkflow');

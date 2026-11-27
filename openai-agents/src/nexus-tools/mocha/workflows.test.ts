@@ -48,13 +48,13 @@ describe('openai-agents/nexus-tools workflow', function () {
 
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(nexusToolWorkflow, {
-        args: ['What is the weather in Tokyo?'],
+        args: [{ prompt: 'What is the weather in Tokyo?' }],
         workflowId: 'test-nexus-tools-' + Date.now(),
         taskQueue,
       }),
     );
 
-    assert.strictEqual(result, 'It is 22C and sunny in Tokyo.');
+    assert.deepStrictEqual(result, { text: 'It is 22C and sunny in Tokyo.' });
 
     // The Nexus operation result is sent back to the model on the second turn as a
     // function_call_result item, proving the operation ran and its output reached the model.

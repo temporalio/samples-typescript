@@ -21,12 +21,14 @@ interface LockResponse {
   releaseSignalName: string;
 }
 
-export async function lockWorkflow(requests = Array<LockRequest>()): Promise<void> {
+type LockWorkflowInput = { requests?: LockRequest[] };
+
+export async function lockWorkflow({ requests = [] }: LockWorkflowInput = {}): Promise<void> {
   let currentWorkflowId: string | null = null;
   setHandler(lockRequestSignal, (req: LockRequest) => {
     requests.push(req);
   });
-  setHandler(currentWorkflowIdQuery, () => currentWorkflowId);
+  setHandler(currentWorkflowIdQuery, () => ({ workflowId: currentWorkflowId }));
 
   // Run workflow until workflowInfo suggests to continue as new
   while (!workflowInfo().continueAsNewSuggested) {
@@ -57,11 +59,21 @@ export async function lockWorkflow(requests = Array<LockRequest>()): Promise<voi
   }
   // carry over any pending requests to the next execution
   if (requests.length > 0) {
-    await continueAsNew<typeof lockWorkflow>(requests);
+    await continueAsNew<typeof lockWorkflow>({ requests });
   }
 }
 
-export async function oneAtATimeWorkflow(resourceId: string, sleepForMs = 500, lockTimeoutMs = 1000): Promise<void> {
+type OneAtATimeWorkflowInput = {
+  resourceId: string;
+  sleepForMs?: number;
+  lockTimeoutMs?: number;
+};
+
+export async function oneAtATimeWorkflow({
+  resourceId,
+  sleepForMs = 500,
+  lockTimeoutMs = 1000,
+}: OneAtATimeWorkflowInput): Promise<void> {
   let releaseSignalName = '';
   setHandler(lockAcquiredSignal, (lockResponse: LockResponse) => {
     releaseSignalName = lockResponse.releaseSignalName;
@@ -69,19 +81,19 @@ export async function oneAtATimeWorkflow(resourceId: string, sleepForMs = 500, l
   const hasLock = () => !!releaseSignalName;
 
   // Send a signal to the given lock Workflow to acquire the lock
-  await signalWithStartLockWorkflow(resourceId, lockTimeoutMs, workflowInfo().taskQueue);
+  await signalWithStartLockWorkflow({ resourceId, timeoutMs: lockTimeoutMs, taskQueue: workflowInfo().taskQueue });
   await condition(hasLock);
 
-  await notifyLocked(resourceId, releaseSignalName);
+  await notifyLocked({ resourceId, releaseSignalName });
 
   // Simulate a potentially long-running critical path that can't be run
   // in parallel.
-  await useAPIThatCantBeCalledInParallel(sleepForMs);
+  await useAPIThatCantBeCalledInParallel({ sleepForMs });
 
   // Send a signal to the given lock Workflow to release the lock
   const handle = getExternalWorkflowHandle(resourceId);
   await handle.signal(releaseSignalName);
   releaseSignalName = '';
 
-  await notifyUnlocked(resourceId);
+  await notifyUnlocked({ resourceId });
 }

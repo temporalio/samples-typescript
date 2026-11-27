@@ -19,7 +19,7 @@ function weatherModelProvider(): (model: string) => BaseLlm {
       const parts = (llmRequest.contents ?? []).flatMap((content) => content.parts ?? []);
       const conversion = parts.find((part) => part.functionResponse?.name === 'celsiusToFahrenheit');
       const toolResponse = parts.find((part) => part.functionResponse?.name === 'getWeather')?.functionResponse
-        ?.response as { result?: unknown; error?: unknown } | undefined;
+        ?.response as { forecast?: string; error?: unknown } | undefined;
       if (toolResponse === undefined) {
         if (conversion === undefined) {
           yield {
@@ -39,7 +39,7 @@ function weatherModelProvider(): (model: string) => BaseLlm {
       }
       const text =
         toolResponse.error === undefined
-          ? String(toolResponse.result)
+          ? String(toolResponse.forecast)
           : `I could not look up the weather: ${String(toolResponse.error)}`;
       yield { content: { role: 'model', parts: [{ text }] }, turnComplete: true };
     }
@@ -74,7 +74,7 @@ describe('google-adk/tools workflow scenarios', function () {
     });
     return worker.runUntil(
       testEnv.client.workflow.execute(weatherAgent, {
-        args: ['What is the weather in Tokyo?'],
+        args: [{ prompt: 'What is the weather in Tokyo?' }],
         workflowId,
         taskQueue,
       }),
@@ -85,7 +85,7 @@ describe('google-adk/tools workflow scenarios', function () {
     const taskQueue = 'test-google-adk-tools-agent';
     const workflowId = taskQueue + '-' + Date.now();
     const result = await runWeatherAgent(taskQueue, workflowId, activities);
-    assert.strictEqual(result, 'The weather in Tokyo is warm and sunny, 17 degrees.');
+    assert.strictEqual(result.text, 'The weather in Tokyo is warm and sunny, 17 degrees.');
 
     const { events } = await testEnv.client.workflow.getHandle(workflowId).fetchHistory();
     const scheduled = (events ?? []).map((e) => e.activityTaskScheduledEventAttributes?.activityType?.name);
@@ -101,6 +101,6 @@ describe('google-adk/tools workflow scenarios', function () {
         throw ApplicationFailure.nonRetryable('the weather service is down');
       },
     });
-    assert.strictEqual(result, 'I could not look up the weather: Activity task failed');
+    assert.strictEqual(result.text, 'I could not look up the weather: Activity task failed');
   });
 });

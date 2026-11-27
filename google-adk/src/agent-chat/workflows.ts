@@ -13,10 +13,19 @@ export interface ChatState {
   runs: number;
 }
 
-export const sendMessage = defineUpdate<string, [string]>('sendMessage');
+type SendMessageInput = { prompt: string };
+type SendMessageResult = { answer: string };
+type AgentChatInput = Partial<ChatState> & { turnsPerRun?: number };
+
+export const sendMessage = defineUpdate<SendMessageResult, [SendMessageInput]>('sendMessage');
 export const getChatState = defineQuery<ChatState>('getChatState');
 
-export async function agentChat(messages: Message[] = [], turns = 0, runs = 1, turnsPerRun = 3): Promise<void> {
+export async function agentChat({
+  messages = [],
+  turns = 0,
+  runs = 1,
+  turnsPerRun = 3,
+}: AgentChatInput = {}): Promise<void> {
   let processing = 0;
   let nextUpdate = 0;
   let currentUpdate = 0;
@@ -31,7 +40,7 @@ export async function agentChat(messages: Message[] = [], turns = 0, runs = 1, t
   const sessionId = `run-${runs}`;
   await runner.sessionService.createSession({ appName: runner.appName, userId: 'user', sessionId });
   setHandler(getChatState, () => ({ messages, turns, runs }));
-  setHandler(sendMessage, async (prompt) => {
+  setHandler(sendMessage, async ({ prompt }) => {
     const update = nextUpdate++;
     processing++;
     try {
@@ -47,7 +56,7 @@ export async function agentChat(messages: Message[] = [], turns = 0, runs = 1, t
       }
       messages = [...messages, { role: 'user', text: prompt }, { role: 'assistant', text: answer }];
       turns++;
-      return answer;
+      return { answer };
     } finally {
       currentUpdate++;
       processing--;
@@ -55,5 +64,5 @@ export async function agentChat(messages: Message[] = [], turns = 0, runs = 1, t
   });
 
   await condition(() => turns >= turnsPerRun && processing === 0);
-  await continueAsNew<typeof agentChat>(messages, 0, runs + 1, turnsPerRun);
+  await continueAsNew<typeof agentChat>({ messages, runs: runs + 1, turnsPerRun });
 }

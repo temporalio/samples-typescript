@@ -47,11 +47,11 @@ describe('greeting workflow', function () {
       const supportedLanguages = await wfHandle.query(greetingWorkflow.getLanguages, {
         includeUnsupported: false,
       });
-      assert.deepEqual(supportedLanguages, [Language.CHINESE, Language.ENGLISH]);
+      assert.deepEqual(supportedLanguages.languages, [Language.CHINESE, Language.ENGLISH]);
       await wfHandle.signal(greetingWorkflow.approve, { name: 'test-approver' });
       return await wfHandle.result();
     });
-    assert.equal(wfResult, 'Hello, world');
+    assert.deepEqual(wfResult, { greeting: 'Hello, world' });
   });
 
   it('can be queried for unsupported language', async function () {
@@ -63,7 +63,7 @@ describe('greeting workflow', function () {
       const allLanguages = await wfHandle.query(greetingWorkflow.getLanguages, {
         includeUnsupported: true,
       });
-      assert.deepEqual(allLanguages, [
+      assert.deepEqual(allLanguages.languages, [
         Language.ARABIC,
         Language.CHINESE,
         Language.ENGLISH,
@@ -75,7 +75,7 @@ describe('greeting workflow', function () {
       await wfHandle.signal(greetingWorkflow.approve, { name: 'test-approver' });
       return await wfHandle.result();
     });
-    assert.equal(wfResult, 'Hello, world');
+    assert.deepEqual(wfResult, { greeting: 'Hello, world' });
   });
 
   it('can be updated to change the language', async function () {
@@ -86,19 +86,19 @@ describe('greeting workflow', function () {
       });
 
       const currentLanguage = await wfHandle.query(greetingWorkflow.getLanguage);
-      assert.equal(currentLanguage, Language.ENGLISH);
+      assert.equal(currentLanguage.language, Language.ENGLISH);
 
       await wfHandle.executeUpdate(greetingWorkflow.setLanguage, {
-        args: [Language.CHINESE],
+        args: [{ language: Language.CHINESE }],
       });
 
       const updatedLanguage = await wfHandle.query(greetingWorkflow.getLanguage);
-      assert.equal(updatedLanguage, Language.CHINESE);
+      assert.equal(updatedLanguage.language, Language.CHINESE);
 
       await wfHandle.signal(greetingWorkflow.approve, { name: 'test-approver' });
       return await wfHandle.result();
     });
-    assert.equal(wfResult, '你好，世界');
+    assert.deepEqual(wfResult, { greeting: '你好，世界' });
   });
 
   it('rejects an invalid language', async function () {
@@ -109,11 +109,11 @@ describe('greeting workflow', function () {
       });
 
       const currentLanguage = await wfHandle.query(greetingWorkflow.getLanguage);
-      assert.equal(currentLanguage, Language.ENGLISH);
+      assert.equal(currentLanguage.language, Language.ENGLISH);
 
       try {
         await wfHandle.executeUpdate(greetingWorkflow.setLanguage, {
-          args: [Language.PORTUGUESE],
+          args: [{ language: Language.PORTUGUESE }],
         });
         assert.fail('Expected an error to be thrown');
       } catch (err) {
@@ -121,12 +121,12 @@ describe('greeting workflow', function () {
       }
 
       const updatedLanguage = await wfHandle.query(greetingWorkflow.getLanguage);
-      assert.equal(updatedLanguage, Language.ENGLISH);
+      assert.equal(updatedLanguage.language, Language.ENGLISH);
 
       await wfHandle.signal(greetingWorkflow.approve, { name: 'test-approver' });
       return await wfHandle.result();
     });
-    assert.equal(wfResult, 'Hello, world');
+    assert.deepEqual(wfResult, { greeting: 'Hello, world' });
   });
 
   it('can be updated to change the language using an activity', async function () {
@@ -137,18 +137,18 @@ describe('greeting workflow', function () {
       });
 
       const currentLanguage = await wfHandle.query(greetingWorkflow.getLanguage);
-      assert.equal(currentLanguage, Language.ENGLISH);
+      assert.equal(currentLanguage.language, Language.ENGLISH);
 
       await wfHandle.executeUpdate(greetingWorkflow.setLanguageUsingActivity, {
-        args: [Language.PORTUGUESE],
+        args: [{ language: Language.PORTUGUESE }],
       });
 
       const updatedLanguage = await wfHandle.query(greetingWorkflow.getLanguage);
-      assert.equal(updatedLanguage, Language.PORTUGUESE);
+      assert.equal(updatedLanguage.language, Language.PORTUGUESE);
 
       await wfHandle.signal(greetingWorkflow.approve, { name: 'test-approver' });
       return await wfHandle.result();
     });
-    assert.equal(wfResult, 'Olá mundo');
+    assert.deepEqual(wfResult, { greeting: 'Olá mundo' });
   });
 });

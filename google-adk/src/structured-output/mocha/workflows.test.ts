@@ -26,7 +26,7 @@ describe('google-adk/structured-output', function () {
     });
     return worker.runUntil(
       testEnv.client.workflow.execute(summarizeIncident, {
-        args: ['The database is timing out.'],
+        args: [{ description: 'The database is timing out.' }],
         workflowId: taskQueue,
         taskQueue,
       }),

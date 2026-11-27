@@ -15,8 +15,8 @@ async function run() {
     workflowId: 'langsmith-message-handlers-' + nanoid(),
   });
 
-  await handle.signal(handleMessage, 'when is my order arriving?');
-  const reply = await handle.executeUpdate(composeReply, { args: ['please send my tracking number'] });
+  await handle.signal(handleMessage, { text: 'when is my order arriving?' });
+  const { reply } = await handle.executeUpdate(composeReply, { args: [{ text: 'please send my tracking number' }] });
   console.log(reply);
 
   await handle.signal(complete);

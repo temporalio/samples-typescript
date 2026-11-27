@@ -1,7 +1,10 @@
 import { InMemoryRunner, LlmAgent, isFinalResponse, stringifyContent } from '@google/adk';
 import { TemporalMCPToolset, TemporalModel } from '@temporalio/google-adk/workflow';
 
-export async function filesystemAgent(prompt: string): Promise<string> {
+type FilesystemAgentInput = { prompt: string };
+type FilesystemAgentResult = { text: string };
+
+export async function filesystemAgent({ prompt }: FilesystemAgentInput): Promise<FilesystemAgentResult> {
   const agent = new LlmAgent({
     name: 'filesystem_agent',
     model: new TemporalModel('gemini-2.5-flash'),
@@ -20,5 +23,5 @@ export async function filesystemAgent(prompt: string): Promise<string> {
       finalText = stringifyContent(event);
     }
   }
-  return finalText;
+  return { text: finalText };
 }

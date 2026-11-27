@@ -12,10 +12,12 @@ async function echoThrough(endpoint: string, message: string) {
       scheduleToCloseTimeout: '30s',
     }),
   ]);
-  return { endpoint, sync, async };
+  return { endpoint, sync, async: async.message };
 }
 
-export async function callerWorkflow(message: string): Promise<EndpointResults> {
+type CallerWorkflowInput = { message: string };
+
+export async function callerWorkflow({ message }: CallerWorkflowInput): Promise<EndpointResults> {
   log.info('Calling Nexus endpoints', { endpointCount: ENDPOINTS.length });
   // Call every endpoint concurrently, so all eight operations run at once.
   const replies = await Promise.all(ENDPOINTS.map((endpoint) => echoThrough(endpoint, message)));

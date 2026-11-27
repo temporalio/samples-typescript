@@ -1,7 +1,10 @@
 import { InMemoryRunner, LlmAgent, isFinalResponse, stringifyContent } from '@google/adk';
 import { TemporalModel } from '@temporalio/google-adk/workflow';
 
-export async function multiAgent(topic: string): Promise<string> {
+type MultiAgentInput = { topic: string };
+type MultiAgentResult = { text: string };
+
+export async function multiAgent({ topic }: MultiAgentInput): Promise<MultiAgentResult> {
   const researcher = new LlmAgent({
     name: 'researcher',
     description: 'Reads a topic and hands it to whoever should write about it.',
@@ -36,5 +39,5 @@ export async function multiAgent(topic: string): Promise<string> {
       finalText = stringifyContent(event);
     }
   }
-  return finalText;
+  return { text: finalText };
 }

@@ -28,7 +28,9 @@ import {
  * interactive feel, and the WorkflowStreamClient's asyncDispose flushes
  * cleanly on scope exit.
  */
-export async function streamCompletion(input: LLMInput): Promise<string> {
+export type StreamCompletionResult = { text: string };
+
+export async function streamCompletion(input: LLMInput): Promise<StreamCompletionResult> {
   await using client = WorkflowStreamClient.fromWithinActivity({ batchInterval: '200 milliseconds' });
   // Disable provider-side retries; let Temporal own retry policy at the
   // activity layer.
@@ -58,5 +60,5 @@ export async function streamCompletion(input: LLMInput): Promise<string> {
 
   const fullText = full.join('');
   complete.publish({ fullText });
-  return fullText;
+  return { text: fullText };
 }

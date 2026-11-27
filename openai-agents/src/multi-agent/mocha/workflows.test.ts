@@ -61,15 +61,15 @@ describe('openai-agents/multi-agent workflow', function () {
 
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(researchWorkflow, {
-        args: ['Caribbean surfing in April'],
+        args: [{ query: 'Caribbean surfing in April' }],
         workflowId: 'test-multi-agent-' + Date.now(),
         taskQueue,
       }),
     );
 
     // The synthesized report incorporates both search summaries.
-    assert.ok(result.includes(summaryA), 'report should include first search summary');
-    assert.ok(result.includes(summaryB), 'report should include second search summary');
+    assert.ok(result.report.includes(summaryA), 'report should include first search summary');
+    assert.ok(result.report.includes(summaryB), 'report should include second search summary');
 
     // One planner call, two search calls (one per planned query), one writer call.
     assert.strictEqual(provider.model.requests.length, 4, 'expected planner + 2 searches + writer model calls');

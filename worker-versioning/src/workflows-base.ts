@@ -13,14 +13,16 @@ const { someActivity, someIncompatibleActivity } = proxyActivities<typeof activi
   startToCloseTimeout: '10 seconds',
 });
 
-export const doNextSignal = defineSignal<[string]>('do_next_signal');
+type DoNextInput = { action: string };
+
+export const doNextSignal = defineSignal<[DoNextInput]>('do_next_signal');
 
 setWorkflowOptions({ versioningBehavior: 'AUTO_UPGRADE' }, autoUpgradingWorkflowV1);
 export async function autoUpgradingWorkflowV1(): Promise<void> {
   log.info('Changing workflow v1 started.');
   const signals: string[] = [];
-  setHandler(doNextSignal, (signal: string) => {
-    signals.push(signal);
+  setHandler(doNextSignal, ({ action }) => {
+    signals.push(action);
   });
 
   // eslint-disable-next-line no-constant-condition
@@ -33,7 +35,7 @@ export async function autoUpgradingWorkflowV1(): Promise<void> {
 
     if (nextSignal === 'do-activity') {
       log.info('Changing workflow v1 running activity');
-      await someActivity('v1');
+      await someActivity({ calledBy: 'v1' });
     } else if (nextSignal === 'conclude') {
       log.info('Concluding workflow v1');
       return;
@@ -45,8 +47,8 @@ setWorkflowOptions({ versioningBehavior: 'AUTO_UPGRADE' }, autoUpgradingWorkflow
 export async function autoUpgradingWorkflowV1b(): Promise<void> {
   log.info('Changing workflow v1b started.');
   const signals: string[] = [];
-  setHandler(doNextSignal, (signal: string) => {
-    signals.push(signal);
+  setHandler(doNextSignal, ({ action }) => {
+    signals.push(action);
   });
 
   // eslint-disable-next-line no-constant-condition
@@ -62,7 +64,7 @@ export async function autoUpgradingWorkflowV1b(): Promise<void> {
       if (patched('DifferentActivity')) {
         await someIncompatibleActivity({ calledBy: 'v1b', moreData: 'hello!' });
       } else {
-        await someActivity('v1b');
+        await someActivity({ calledBy: 'v1b' });
       }
     } else if (nextSignal === 'conclude') {
       log.info('Concluding workflow v1b');
@@ -75,8 +77,8 @@ setWorkflowOptions({ versioningBehavior: 'PINNED' }, pinnedWorkflowV1);
 export async function pinnedWorkflowV1(): Promise<void> {
   log.info('Pinned workflow v1 started.');
   const signals: string[] = [];
-  setHandler(doNextSignal, (signal: string) => {
-    signals.push(signal);
+  setHandler(doNextSignal, ({ action }) => {
+    signals.push(action);
   });
 
   // eslint-disable-next-line no-constant-condition
@@ -88,18 +90,18 @@ export async function pinnedWorkflowV1(): Promise<void> {
     }
   }
 
-  await someActivity('Pinned-v1');
+  await someActivity({ calledBy: 'Pinned-v1' });
 }
 
 setWorkflowOptions({ versioningBehavior: 'PINNED' }, pinnedWorkflowV2);
 export async function pinnedWorkflowV2(): Promise<void> {
   log.info('Pinned workflow v2 started.');
   const signals: string[] = [];
-  setHandler(doNextSignal, (signal: string) => {
-    signals.push(signal);
+  setHandler(doNextSignal, ({ action }) => {
+    signals.push(action);
   });
 
-  await someActivity('Pinned-v2');
+  await someActivity({ calledBy: 'Pinned-v2' });
 
   // eslint-disable-next-line no-constant-condition
   while (true) {

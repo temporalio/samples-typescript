@@ -8,10 +8,12 @@ const { helloActivity } = proxyActivities<typeof activities>({
 
 export const TASK_QUEUE = 'serverless-task-queue-typescript';
 
-export async function sampleWorkflow(name: string): Promise<string> {
-  log.info('SampleWorkflow started', { name });
-  const result = await helloActivity(name);
-  log.info('SampleWorkflow completed', { result });
+type SampleWorkflowInput = { name: string };
+
+export async function sampleWorkflow(input: SampleWorkflowInput): Promise<activities.HelloActivityResult> {
+  log.info('SampleWorkflow started', { name: input.name });
+  const result = await helloActivity(input);
+  log.info('SampleWorkflow completed', { result: result.greeting });
   return result;
 }
 

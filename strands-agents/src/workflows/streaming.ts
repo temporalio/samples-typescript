@@ -2,7 +2,10 @@
 import { TemporalAgent } from '@temporalio/strands-agents';
 import { WorkflowStream } from '@temporalio/workflow-streams/workflow';
 
-export async function streamingWorkflow(prompt: string): Promise<string> {
+type StreamingWorkflowInput = { prompt: string };
+type StreamingWorkflowResult = { text: string };
+
+export async function streamingWorkflow({ prompt }: StreamingWorkflowInput): Promise<StreamingWorkflowResult> {
   // Constructing the stream installs the publish/poll handlers that
   // WorkflowStreamClient calls. Nothing in the workflow body reads from it.
   void new WorkflowStream();
@@ -12,6 +15,6 @@ export async function streamingWorkflow(prompt: string): Promise<string> {
     streamingTopic: 'events',
   });
   const result = await agent.invoke(prompt);
-  return result.toString();
+  return { text: result.toString() };
 }
 // @@@SNIPEND

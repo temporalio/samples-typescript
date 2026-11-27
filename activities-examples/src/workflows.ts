@@ -13,12 +13,15 @@ const {
   startToCloseTimeout: '30 seconds',
 });
 
-export async function httpWorkflow(): Promise<string> {
-  const answer = await makeHTTPRequest();
-  return `The answer is ${answer}`;
+type HttpWorkflowResult = { message: string };
+type AsyncActivityWorkflowResult = { message: string };
+
+export async function httpWorkflow(): Promise<HttpWorkflowResult> {
+  const { answer } = await makeHTTPRequest();
+  return { message: `The answer is ${answer}` };
 }
 
-export async function asyncActivityWorkflow(): Promise<string> {
-  const answer = await completeSomethingAsync();
-  return `The Peon says: ${answer}`;
+export async function asyncActivityWorkflow(): Promise<AsyncActivityWorkflowResult> {
+  const { message } = await completeSomethingAsync();
+  return { message: `The Peon says: ${message}` };
 }

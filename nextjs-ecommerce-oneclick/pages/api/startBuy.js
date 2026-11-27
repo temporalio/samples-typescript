@@ -16,7 +16,7 @@ export default async function startBuy(req, res) {
   await getTemporalClient().workflow.start(OneClickBuy, {
     taskQueue: 'ecommerce-oneclick',
     workflowId: transactionId,
-    args: [itemId],
+    args: [{ itemId }],
   });
 
   res.status(200).json({ ok: true });

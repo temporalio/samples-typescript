@@ -11,11 +11,11 @@ async function run() {
 
   const result = await client.workflow.execute(sampleWorkflow, {
     taskQueue: TASK_QUEUE,
-    args: ['Serverless Lambda Worker!'],
+    args: [{ name: 'Serverless Lambda Worker!' }],
     workflowId: 'serverless-workflow-id-1',
     workflowIdConflictPolicy: WorkflowIdConflictPolicy.TERMINATE_EXISTING,
   });
-  console.log(`Workflow result: ${result}`);
+  console.log(`Workflow result: ${result.greeting}`);
 }
 
 run().catch((err) => {

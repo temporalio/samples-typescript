@@ -10,10 +10,12 @@ const { composeGreeting } = proxyActivities<typeof activities>({
   },
 });
 
-export async function greetingWorkflow(name: string): Promise<string> {
+type GreetingWorkflowInput = { name: string };
+
+export async function greetingWorkflow({ name }: GreetingWorkflowInput): Promise<activities.ComposeGreetingResult> {
   return await composeGreeting({
-    greeting: "Hello",
+    greeting: 'Hello',
     name,
-  })
+  });
 }
 // @@@SNIPEND

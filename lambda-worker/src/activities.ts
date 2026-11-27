@@ -1,6 +1,10 @@
 import { log } from '@temporalio/activity';
 
-export async function helloActivity(name: string): Promise<string> {
+type HelloActivityInput = { name: string };
+
+export type HelloActivityResult = { greeting: string };
+
+export async function helloActivity({ name }: HelloActivityInput): Promise<HelloActivityResult> {
   log.info('HelloActivity started', { name });
-  return `Hello, ${name}!`;
+  return { greeting: `Hello, ${name}!` };
 }

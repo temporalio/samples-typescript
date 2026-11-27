@@ -18,10 +18,10 @@ async function run() {
   console.log('\n--- Testing cancellable workflow (normal completion) ---');
   const completedMessage = await client.workflow.execute(cancellableCallerWorkflow, {
     taskQueue: callerTaskQueue,
-    args: ['Temporal', 'en'],
+    args: [{ name: 'Temporal', language: 'en' }],
     workflowId: 'workflow-completed-' + nanoid(),
   });
-  console.log(`Completed message: ${completedMessage}`);
+  console.log(`Completed message: ${completedMessage.message}`);
 
   // Demonstrate cancellable workflow with actual cancellation
   console.log('\n--- Testing cancellable workflow (with cancellation) ---');
@@ -31,14 +31,14 @@ async function run() {
   const handle = await client.workflow.signalWithStart(cancellableCallerWorkflow, {
     taskQueue: callerTaskQueue,
     workflowId,
-    args: ['Temporal', 'en'],
+    args: [{ name: 'Temporal', language: 'en' }],
     signal: cancellableCallerWorkflowCancel,
   });
   console.log(`Started cancellable workflow: ${workflowId}, sent cancellation signal`);
 
   try {
     const cancelledMessage = await handle.result();
-    console.log(`Unexpected completion: ${cancelledMessage}`);
+    console.log(`Unexpected completion: ${cancelledMessage.message}`);
   } catch (error: unknown) {
     if (isCancellation((error as WorkflowFailedError).cause)) {
       console.log(`Workflow was cancelled as expected: ${(error as Error).message}`);

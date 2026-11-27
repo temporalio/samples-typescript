@@ -2,7 +2,10 @@ import { Agent, tool } from '@openai/agents-core';
 import { TemporalOpenAIRunner } from '@temporalio/openai-agents/workflow';
 import z from 'zod';
 
-export async function tracedAgent(prompt: string): Promise<string> {
+type TracedAgentInput = { prompt: string };
+type TracedAgentResult = { text: string };
+
+export async function tracedAgent({ prompt }: TracedAgentInput): Promise<TracedAgentResult> {
   const addTool = tool({
     name: 'add',
     description: 'Add two numbers together.',
@@ -16,5 +19,5 @@ export async function tracedAgent(prompt: string): Promise<string> {
     tools: [addTool],
   });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }

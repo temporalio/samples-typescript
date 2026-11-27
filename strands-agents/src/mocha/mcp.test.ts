@@ -81,11 +81,11 @@ describe('mcpWorkflow', () => {
 
     const result = await worker.runUntil(
       client.workflow.execute(mcpWorkflow, {
-        args: ['echo hi'],
+        args: [{ prompt: 'echo hi' }],
         workflowId: 'test-mcp',
         taskQueue,
       }),
     );
-    assert.equal(result, 'echoed');
+    assert.deepEqual(result, { text: 'echoed' });
   });
 });

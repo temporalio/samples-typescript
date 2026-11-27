@@ -9,7 +9,7 @@ async function run(): Promise<void> {
 
   const handle = client.workflow.getHandle('state-id-0');
 
-  await handle.signal(setValueSignal, 'meaning-of-life', 42);
+  await handle.signal(setValueSignal, { key: 'meaning-of-life', value: 42 });
   console.log('setValueSignal sent');
 }
 

@@ -8,7 +8,7 @@ async function run() {
   const client = new Client({ connection });
 
   const handle = await client.workflow.start(activityInterrupt, {
-    args: ["Please delete the 'system' user."],
+    args: [{ prompt: "Please delete the 'system' user." }],
     taskQueue: 'strands-agents',
     workflowId: 'strands-activity-interrupt',
   });
@@ -16,14 +16,14 @@ async function run() {
   let reason: string | null = null;
   while (reason === null) {
     await new Promise((resolve) => setTimeout(resolve, 500));
-    reason = await handle.query(activityInterruptPendingApprovalQuery);
+    ({ reason } = await handle.query(activityInterruptPendingApprovalQuery));
   }
   console.log(`Approval requested: ${reason}`);
 
-  await handle.signal(activityInterruptApproveSignal, 'approve');
+  await handle.signal(activityInterruptApproveSignal, { response: 'approve' });
 
   const result = await handle.result();
-  console.log(`Result: ${result}`);
+  console.log(`Result: ${result.text}`);
 }
 
 run().catch((err) => {

@@ -16,7 +16,7 @@ async function run() {
       return client.workflow.execute(SummarizeWorkflow, {
         taskQueue: 'langsmith-workflow-tracing',
         workflowId: 'langsmith-workflow-tracing-' + nanoid(),
-        args: ['the meeting notes'],
+        args: [{ text: 'the meeting notes' }],
       });
     },
     { name: 'user_pipeline' },

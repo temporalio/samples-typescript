@@ -11,18 +11,24 @@ const { getWeather } = proxyActivities<typeof activities>({
 });
 
 // @@@SNIPSTART typescript-vercel-ai-sdk-haiku-agent
-export async function haikuAgent(prompt: string): Promise<string> {
+type HaikuAgentInput = { prompt: string };
+type HaikuAgentResult = { text: string };
+
+export async function haikuAgent({ prompt }: HaikuAgentInput): Promise<HaikuAgentResult> {
   const result = await generateText({
     model: temporalProvider.languageModel('gpt-4o-mini'),
     prompt,
     system: 'You only respond in haikus.',
   });
-  return result.text;
+  return { text: result.text };
 }
 // @@@SNIPEND
 
 // @@@SNIPSTART typescript-vercel-ai-sdk-tools-agent
-export async function toolsAgent(question: string): Promise<string> {
+type ToolsAgentInput = { question: string };
+type ToolsAgentResult = { text: string };
+
+export async function toolsAgent({ question }: ToolsAgentInput): Promise<ToolsAgentResult> {
   const result = await generateText({
     model: temporalProvider.languageModel('gpt-4o-mini'),
     prompt: question,
@@ -38,12 +44,15 @@ export async function toolsAgent(question: string): Promise<string> {
     },
     stopWhen: stepCountIs(5),
   });
-  return result.text;
+  return { text: result.text };
 }
 // @@@SNIPEND
 
 // @@@SNIPSTART typescript-vercel-ai-sdk-middleware-agent
-export async function middlewareAgent(prompt: string): Promise<string> {
+type MiddlewareAgentInput = { prompt: string };
+type MiddlewareAgentResult = { text: string };
+
+export async function middlewareAgent({ prompt }: MiddlewareAgentInput): Promise<MiddlewareAgentResult> {
   const cache = new Map<string, any>();
   const middleware: LanguageModelMiddleware = {
     specificationVersion: 'v4',
@@ -71,12 +80,15 @@ export async function middlewareAgent(prompt: string): Promise<string> {
     prompt,
     system: 'You only respond in haikus.',
   });
-  return result.text;
+  return { text: result.text };
 }
 // @@@SNIPEND
 
 // @@@SNIPSTART typescript-vercel-ai-sdk-mcp-agent
-export async function mcpAgent(prompt: string): Promise<string> {
+type McpAgentInput = { prompt: string };
+type McpAgentResult = { text: string };
+
+export async function mcpAgent({ prompt }: McpAgentInput): Promise<McpAgentResult> {
   const mcpClient = new TemporalMCPClient({ name: 'testServer' });
   const tools = await mcpClient.tools();
   const result = await generateText({
@@ -86,7 +98,7 @@ export async function mcpAgent(prompt: string): Promise<string> {
     system: 'You are a helpful agent, You always use your tools when needed.',
     stopWhen: stepCountIs(5),
   });
-  return result.text;
+  return { text: result.text };
 }
 // @@@SNIPEND
 
@@ -111,7 +123,10 @@ const streamingProvider = new TemporalProvider({
 });
 
 // @@@SNIPSTART typescript-vercel-ai-sdk-streaming-agent
-export async function streamingAgent(prompt: string): Promise<string> {
+type StreamingAgentInput = { prompt: string };
+type StreamingAgentResult = { text: string };
+
+export async function streamingAgent({ prompt }: StreamingAgentInput): Promise<StreamingAgentResult> {
   // Host the WorkflowStream as the first statement of the workflow so its
   // publish-signal handler is registered before the streaming activity starts
   // publishing deltas to it.
@@ -144,6 +159,6 @@ export async function streamingAgent(prompt: string): Promise<string> {
   // delta. The timeout is a fallback for when nothing is subscribed, so the run
   // can't hang forever.
   await condition(() => consumerDone, '10 seconds');
-  return text;
+  return { text };
 }
 // @@@SNIPEND

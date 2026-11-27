@@ -1,7 +1,11 @@
 // @@@SNIPSTART typescript-activity-fake-progress
 import { activityInfo, log, sleep, CancelledFailure, heartbeat } from '@temporalio/activity';
 
-export async function fakeProgress(sleepIntervalMs = 1000): Promise<void> {
+interface FakeProgressInput {
+  sleepIntervalMs?: number;
+}
+
+export async function fakeProgress({ sleepIntervalMs = 1000 }: FakeProgressInput = {}): Promise<void> {
   try {
     // allow for resuming from heartbeat
     const startingPoint = activityInfo().heartbeatDetails || 1;

@@ -8,8 +8,10 @@ const { greetLocal } = proxyActivities<typeof activities>({
 });
 
 // A variant of the preceding workflow that does not perform any HTTP requests
-export async function exampleLocal(name: string): Promise<string> {
-  return await greetLocal(name);
+type GreetingWorkflowInput = { name: string };
+
+export async function exampleLocal(input: GreetingWorkflowInput): Promise<activities.GreetResult> {
+  return await greetLocal(input);
 }
 // @@@SNIPEND
 
@@ -24,6 +26,6 @@ const { greetHTTP } = proxyActivities<typeof activities>({
   },
 });
 
-export async function exampleFetch(name: string): Promise<string> {
-  return await greetHTTP(name);
+export async function exampleFetch(input: GreetingWorkflowInput): Promise<activities.GreetResult> {
+  return await greetHTTP(input);
 }

@@ -11,9 +11,9 @@ let dslInput: DSL = {
   root: {
     sequence: {
       elements: [
-        { activity: { name: 'activity1', arguments: ['arg1'], result: 'result1' } },
-        { activity: { name: 'activity2', arguments: ['result1'], result: 'result2' } },
-        { activity: { name: 'activity3', arguments: ['arg2', 'result2'], result: 'result3' } },
+        { activity: { name: 'activity1', arguments: { arg1: 'arg1' }, result: 'result1' } },
+        { activity: { name: 'activity2', arguments: { arg: 'result1' }, result: 'result2' } },
+        { activity: { name: 'activity3', arguments: { arg2: 'arg2', arg: 'result2' }, result: 'result3' } },
       ],
     },
   },
@@ -29,12 +29,11 @@ async function run() {
   const client = new Client({ connection });
 
   // Invoke the `DSLInterpreter` Workflow, only resolved when the workflow completes
-  const result = await client.workflow.execute(DSLInterpreter, {
+  await client.workflow.execute(DSLInterpreter, {
     args: [dslInput],
     taskQueue: 'dsl-interpreter',
     workflowId: 'my-dsl-id',
   });
-  console.log(result); // Hello, Temporal!
 }
 
 run().catch((err) => {

@@ -44,40 +44,40 @@ async function run() {
     case 'stream': {
       const streamHandle = await client.workflow.start(streamingAgent, {
         taskQueue: 'vercel-ai-sdk',
-        args: ['Temporal'],
+        args: [{ prompt: 'Temporal' }],
         workflowId: 'workflow-' + nanoid(),
       });
       console.log(`Started workflow ${streamHandle.workflowId}`);
       await renderStream(client, streamHandle.workflowId, STREAM_TOPIC);
-      console.log(await streamHandle.result());
+      console.log((await streamHandle.result()).text);
       await connection.close();
       return;
     }
     case 'middleware':
       handle = await client.workflow.start(middlewareAgent, {
         taskQueue: 'vercel-ai-sdk',
-        args: ['Middleware'],
+        args: [{ prompt: 'Middleware' }],
         workflowId: 'workflow-' + nanoid(),
       });
       break;
     case 'mcp':
       handle = await client.workflow.start(mcpAgent, {
         taskQueue: 'vercel-ai-sdk',
-        args: ['Tell me about lickitung.'],
+        args: [{ prompt: 'Tell me about lickitung.' }],
         workflowId: 'workflow-' + nanoid(),
       });
       break;
     case 'tools':
       handle = await client.workflow.start(toolsAgent, {
         taskQueue: 'vercel-ai-sdk',
-        args: ['What is the weather in Tokyo?'],
+        args: [{ question: 'What is the weather in Tokyo?' }],
         workflowId: 'workflow-' + nanoid(),
       });
       break;
     case 'haiku':
       handle = await client.workflow.start(haikuAgent, {
         taskQueue: 'vercel-ai-sdk',
-        args: ['Temporal'],
+        args: [{ prompt: 'Temporal' }],
         workflowId: 'workflow-' + nanoid(),
       });
       break;
@@ -87,7 +87,7 @@ async function run() {
   console.log(`Started workflow ${handle.workflowId}`);
 
   // optional: wait for workflow result
-  console.log(await handle.result()); // Hello, Temporal!
+  console.log((await handle.result()).text); // Hello, Temporal!
 }
 
 run().catch((err) => {

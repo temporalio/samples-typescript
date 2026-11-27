@@ -8,18 +8,21 @@ import {
   setHandler,
 } from '@temporalio/workflow';
 
-export const approveSignal = defineSignal<[string]>('approve');
-export const approveUpdate = defineUpdate<string, [string]>('approveUpdate');
+type ApprovalInput = { decision: string };
+type ApprovalResult = { decision: string };
 
-export async function humanApproval(): Promise<string> {
+export const approveSignal = defineSignal<[ApprovalInput]>('approve');
+export const approveUpdate = defineUpdate<ApprovalResult, [ApprovalInput]>('approveUpdate');
+
+export async function humanApproval(): Promise<ApprovalResult> {
   let result: string | undefined;
 
-  setHandler(approveSignal, (value) => {
+  setHandler(approveSignal, ({ decision: value }) => {
     result = value;
   });
-  setHandler(approveUpdate, (value) => {
+  setHandler(approveUpdate, ({ decision: value }) => {
     result = value;
-    return value;
+    return { decision: value };
   });
 
   const tool = new LongRunningFunctionTool({
@@ -32,7 +35,8 @@ export async function humanApproval(): Promise<string> {
   });
 
   try {
-    return (await tool.runAsync({ args: {}, toolContext: {} as never })) as string;
+    const decision = (await tool.runAsync({ args: {}, toolContext: {} as never })) as string;
+    return { decision };
   } catch (err) {
     if (CancellationScope.current().consideredCancelled) {
       throw new CancelledFailure('Workflow cancelled');

@@ -2,7 +2,10 @@ import { FunctionTool, InMemoryRunner, LlmAgent, isFinalResponse, stringifyConte
 import { Type } from '@google/genai';
 import { activityAsTool, TemporalModel } from '@temporalio/google-adk/workflow';
 
-export async function weatherAgent(prompt: string): Promise<string> {
+type WeatherAgentInput = { prompt: string };
+type WeatherAgentResult = { text: string };
+
+export async function weatherAgent({ prompt }: WeatherAgentInput): Promise<WeatherAgentResult> {
   const agent = new LlmAgent({
     name: 'weather_agent',
     model: new TemporalModel('gemini-2.5-flash'),
@@ -44,5 +47,5 @@ export async function weatherAgent(prompt: string): Promise<string> {
       finalText = stringifyContent(event);
     }
   }
-  return finalText;
+  return { text: finalText };
 }

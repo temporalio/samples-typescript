@@ -5,6 +5,8 @@ const { answer } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
 });
 
-export async function GreetingWorkflow(prompt: string): Promise<string> {
-  return answer(prompt);
+type GreetingWorkflowInput = { prompt: string };
+
+export async function GreetingWorkflow(input: GreetingWorkflowInput): Promise<activities.AnswerResult> {
+  return answer(input);
 }

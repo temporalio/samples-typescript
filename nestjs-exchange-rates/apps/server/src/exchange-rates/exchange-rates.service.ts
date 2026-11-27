@@ -7,7 +7,7 @@ export class ExchangeRatesService {
   constructor(@Inject('EXCHANGE_RATES_WORKFLOW_HANDLE') private handle: WorkflowHandle) {}
 
   async getExchangeRates() {
-    return this.handle.query(getExchangeRatesQuery);
+    return (await this.handle.query(getExchangeRatesQuery)).rates;
   }
 }
 

@@ -20,15 +20,27 @@ interface ApproveInput {
   name: string;
 }
 
+interface SetLanguageInput {
+  language: Language;
+}
+
+type GetLanguagesResult = { languages: Language[] };
+type GetLanguageResult = { language: Language };
+type SetLanguageResult = { previousLanguage: Language };
+type GreetingWorkflowResult = { greeting: string };
+type GreetingServiceResult = { greeting?: string };
+
 // 👉 Use the objects returned by defineQuery/defineSignal/defineUpdate to set
 // the message handlers in Workflow code, and to send messages from Client code.
-export const getLanguages = wf.defineQuery<Language[], [GetLanguagesInput]>('getLanguages');
+export const getLanguages = wf.defineQuery<GetLanguagesResult, [GetLanguagesInput]>('getLanguages');
 export const approve = wf.defineSignal<[ApproveInput]>('approve');
-export const setLanguage = wf.defineUpdate<Language, [Language]>('setLanguage');
-export const setLanguageUsingActivity = wf.defineUpdate<Language, [Language]>('setLanguageUsingActivity');
-export const getLanguage = wf.defineQuery<Language>('getLanguage');
+export const setLanguage = wf.defineUpdate<SetLanguageResult, [SetLanguageInput]>('setLanguage');
+export const setLanguageUsingActivity = wf.defineUpdate<SetLanguageResult, [SetLanguageInput]>(
+  'setLanguageUsingActivity',
+);
+export const getLanguage = wf.defineQuery<GetLanguageResult>('getLanguage');
 
-export async function greetingWorkflow(): Promise<string> {
+export async function greetingWorkflow(): Promise<GreetingWorkflowResult> {
   // The workflow has built-in support for two languages only (see remote
   // greeting service below for support for more languages).
   const greetings: Partial<Record<Language, string>> = {
@@ -40,13 +52,13 @@ export async function greetingWorkflow(): Promise<string> {
   let approverName: string | undefined;
   let language = Language.ENGLISH;
 
-  wf.setHandler(getLanguages, (input: GetLanguagesInput): Language[] => {
+  wf.setHandler(getLanguages, (input: GetLanguagesInput): GetLanguagesResult => {
     // 👉 A Query handler returns a value: it must not mutate the Workflow state
     // and cannot perform async operations.
     if (input.includeUnsupported) {
-      return Object.values(Language);
+      return { languages: Object.values(Language) };
     } else {
-      return Object.keys(greetings) as Language[];
+      return { languages: Object.keys(greetings) as Language[] };
     }
   });
 
@@ -58,24 +70,24 @@ export async function greetingWorkflow(): Promise<string> {
 
   wf.setHandler(
     setLanguage,
-    (newLanguage: Language) => {
+    ({ language: newLanguage }) => {
       // 👉 An Update handler can mutate the Workflow state and return a value.
       const previousLanguage = language;
       language = newLanguage;
-      return previousLanguage;
+      return { previousLanguage };
     },
     {
-      validator: (newLanguage: Language) => {
+      validator: ({ language: newLanguage }) => {
         // 👉 Update validators are optional
         if (!(newLanguage in greetings)) {
           throw new wf.ApplicationFailure(`${newLanguage} is not supported`);
         }
       },
-    }
+    },
   );
 
   wf.setHandler(getLanguage, () => {
-    return language;
+    return { language };
   });
 
   /**
@@ -83,7 +95,7 @@ export async function greetingWorkflow(): Promise<string> {
    */
 
   const lock = new Mutex();
-  wf.setHandler(setLanguageUsingActivity, async (newLanguage) => {
+  wf.setHandler(setLanguageUsingActivity, async ({ language: newLanguage }) => {
     // 👉 An Update handler can mutate the Workflow state and return a value.
     // 👉 Since this update handler is async, it can execute an activity.
     if (!(newLanguage in greetings)) {
@@ -93,7 +105,7 @@ export async function greetingWorkflow(): Promise<string> {
         // scheduled activity has completed. This ensures that multiple calls to
         // setLanguageUsingActivity are processed in order.
         if (!(newLanguage in greetings)) {
-          const greeting = await callGreetingService(newLanguage);
+          const { greeting } = await callGreetingService({ language: newLanguage });
           if (!greeting) {
             // 👉 An update validator cannot be async, so cannot be used to check that the remote
             // call_greeting_service supports the requested language. Raising ApplicationError
@@ -107,15 +119,15 @@ export async function greetingWorkflow(): Promise<string> {
     }
     const previousLanguage = language;
     language = newLanguage;
-    return previousLanguage;
+    return { previousLanguage };
   });
 
   await wf.condition(() => approvedForRelease);
-  return greetings[language]!; // eslint-disable-line @typescript-eslint/no-non-null-assertion
+  return { greeting: greetings[language]! }; // eslint-disable-line @typescript-eslint/no-non-null-assertion
 }
 
 export const activities = {
-  callGreetingService: async (toLanguage: Language): Promise<string | undefined> => {
+  callGreetingService: async ({ language }: SetLanguageInput): Promise<GreetingServiceResult> => {
     // The remote greeting service supports more languages.
     const greetings = {
       [Language.ENGLISH]: 'Hello, world',
@@ -127,7 +139,7 @@ export const activities = {
       [Language.HINDI]: 'नमस्ते दुनिया',
     };
     await new Promise((resolve) => setTimeout(resolve, 200)); // Simulate a network call
-    return greetings[toLanguage];
+    return { greeting: greetings[language] };
   },
 };
 

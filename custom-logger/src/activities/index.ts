@@ -1,8 +1,16 @@
 import { log } from '@temporalio/activity';
 
 // @@@SNIPSTART typescript-activity-use-injected-logger
-export async function greet(name: string): Promise<string> {
+interface GreetInput {
+  name: string;
+}
+
+export interface GreetResult {
+  greeting: string;
+}
+
+export async function greet({ name }: GreetInput): Promise<GreetResult> {
   log.info('Log from activity', { name });
-  return `Hello, ${name}!`;
+  return { greeting: `Hello, ${name}!` };
 }
 // @@@SNIPEND

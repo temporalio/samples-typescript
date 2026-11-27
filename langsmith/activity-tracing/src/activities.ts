@@ -8,7 +8,11 @@ const callModel = traceable(
   { name: 'inner_llm_call' },
 );
 
-export async function answer(prompt: string): Promise<string> {
-  return callModel(prompt);
+type AnswerInput = { prompt: string };
+
+export type AnswerResult = { answer: string };
+
+export async function answer({ prompt }: AnswerInput): Promise<AnswerResult> {
+  return { answer: await callModel(prompt) };
 }
 // @@@SNIPEND

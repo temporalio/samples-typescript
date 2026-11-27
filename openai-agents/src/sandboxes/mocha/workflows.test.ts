@@ -79,13 +79,13 @@ describe('openai-agents/sandboxes workflow scenarios', function () {
     const worker = await createWorker(taskQueue, provider);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(sandboxWorkflow, {
-        args: ['Write three lines to notes.txt, then show me the last one.'],
+        args: [{ prompt: 'Write three lines to notes.txt, then show me the last one.' }],
         workflowId,
         taskQueue,
       }),
     );
 
-    assert.strictEqual(result, 'The last line of notes.txt is gamma.');
+    assert.deepStrictEqual(result, { text: 'The last line of notes.txt is gamma.' });
     const history = await testEnv.client.workflow.getHandle(workflowId).fetchHistory();
     const activities = (history.events ?? [])
       .map((event) => event.activityTaskScheduledEventAttributes?.activityType?.name ?? '')
@@ -110,13 +110,13 @@ describe('openai-agents/sandboxes workflow scenarios', function () {
     const worker = await createWorker(taskQueue, provider);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(sandboxWorkflow, {
-        args: ['Check whether SERVICE_TOKEN is set, without printing it.'],
+        args: [{ prompt: 'Check whether SERVICE_TOKEN is set, without printing it.' }],
         workflowId,
         taskQueue,
       }),
     );
 
-    assert.strictEqual(result, 'SERVICE_TOKEN is set.');
+    assert.deepStrictEqual(result, { text: 'SERVICE_TOKEN is set.' });
     assert.match(toolOutputs(provider.model, 'exec_command')[0]!, new RegExp(`has ${SECRET.length} characters`));
     const history = historyText(await testEnv.client.workflow.getHandle(workflowId).fetchHistory());
     assert.ok(history.includes(SECRET_VAR), 'the Worker variable name should appear in history');
@@ -135,7 +135,7 @@ describe('openai-agents/sandboxes workflow scenarios', function () {
     ]);
 
     const handle = await testEnv.client.workflow.start(sandboxWorkflow, {
-      args: ['Start a slow command, then check on it.'],
+      args: [{ prompt: 'Start a slow command, then check on it.' }],
       workflowId,
       taskQueue,
     });

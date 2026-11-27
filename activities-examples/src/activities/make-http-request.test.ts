@@ -8,5 +8,5 @@ const mockedAxios = jest.mocked(axios);
 test('makeHTTPRequest works', async () => {
   mockedAxios.get.mockResolvedValue({ data: { args: { answer: '88' } } });
   const result = await makeHTTPRequest();
-  expect(result).toBe('88');
+  expect(result).toEqual({ answer: '88' });
 });

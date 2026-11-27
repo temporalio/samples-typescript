@@ -14,15 +14,15 @@ async function run() {
 
   const handle = await client.workflow.start(YOUR_WORKFLOW, {
     taskQueue: TASK_QUEUE_NAME,
-    // type inference works! args: [name: string]
-    args: ['Temporal'],
+    // TypeScript checks the Workflow input.
+    args: [{ name: 'Temporal' }],
     // in practice, use a meaningful business ID, like customerId or transactionId
     workflowId: 'workflow-' + nanoid(),
   });
   console.log(`Started workflow ${handle.workflowId}`);
 
   // optional: wait for client result
-  console.log(await handle.result());
+  console.log((await handle.result()).greeting);
 }
 
 run().catch((err) => {

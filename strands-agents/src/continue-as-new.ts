@@ -13,7 +13,7 @@ async function run() {
   });
 
   for (const prompt of ['Hi! What is durable execution?', 'Give me a one-sentence summary.']) {
-    const reply = await handle.executeUpdate(chatTurn, { args: [prompt] });
+    const { reply } = await handle.executeUpdate(chatTurn, { args: [{ prompt }] });
     console.log(`user: ${prompt}`);
     console.log(`assistant: ${reply}\n`);
   }

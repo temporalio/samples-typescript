@@ -34,11 +34,11 @@ async function run() {
       if (!line) continue;
       if (line === 'exit') break;
       if (line === 'history') {
-        const history = await handle.query(getHistory);
+        const { history } = await handle.query(getHistory);
         console.log(history.join('\n'));
         continue;
       }
-      const reply = await handle.executeUpdate(processUserMessage, { args: [line] });
+      const { reply } = await handle.executeUpdate(processUserMessage, { args: [{ message: line }] });
       console.log(`agent> ${reply}\n`);
     }
   } finally {

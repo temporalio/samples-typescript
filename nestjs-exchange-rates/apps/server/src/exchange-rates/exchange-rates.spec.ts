@@ -9,7 +9,7 @@ describe('ExchangeRatesService', () => {
 
   beforeAll(async () => {
     const handleMock = {
-      query: jest.fn(() => rates),
+      query: jest.fn(() => ({ rates })),
     };
 
     app = await Test.createTestingModule({

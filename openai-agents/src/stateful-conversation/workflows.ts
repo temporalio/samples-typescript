@@ -3,8 +3,14 @@ import { TemporalOpenAIRunner } from '@temporalio/openai-agents/workflow';
 import { condition, continueAsNew, defineQuery, defineUpdate, setHandler, workflowInfo } from '@temporalio/workflow';
 import { initAgents, type AirlineAgentContext } from './agents';
 
-export const processUserMessage = defineUpdate<string, [string]>('processUserMessage');
-export const getHistory = defineQuery<string[]>('getHistory');
+type ProcessUserMessageInput = { message: string };
+type ProcessUserMessageResult = { reply: string };
+type GetHistoryResult = { history: string[] };
+
+export const processUserMessage = defineUpdate<ProcessUserMessageResult, [ProcessUserMessageInput]>(
+  'processUserMessage',
+);
+export const getHistory = defineQuery<GetHistoryResult>('getHistory');
 
 export interface StatefulConversationState {
   history: string[];
@@ -21,9 +27,9 @@ export async function statefulConversationWorkflow(state?: StatefulConversationS
   let inputItems: AgentInputItem[] = state?.inputItems ?? [];
   let currentAgentName = state?.currentAgentName ?? initAgents().startingAgent.name;
 
-  setHandler(getHistory, () => history);
+  setHandler(getHistory, () => ({ history }));
 
-  setHandler(processUserMessage, async (message: string): Promise<string> => {
+  setHandler(processUserMessage, async ({ message }): Promise<ProcessUserMessageResult> => {
     history.push(`User: ${message}`);
     inputItems = [...inputItems, { role: 'user', content: message }];
 
@@ -51,7 +57,7 @@ export async function statefulConversationWorkflow(state?: StatefulConversationS
     inputItems = result.history;
     currentAgentName = result.lastAgent?.name ?? currentAgentName;
 
-    return result.finalOutput ?? '';
+    return { reply: result.finalOutput ?? '' };
   });
 
   await condition(() => workflowInfo().continueAsNewSuggested);

@@ -1,12 +1,14 @@
 import * as wf from '@temporalio/workflow';
-import { nexusRemoteGreetingService, NEXUS_ENDPOINT, Language } from '../api';
+import { nexusRemoteGreetingService, NEXUS_ENDPOINT } from '../api';
 
 const nexusClient = wf.createNexusServiceClient({
   service: nexusRemoteGreetingService,
   endpoint: NEXUS_ENDPOINT,
 });
 
-export async function callerRemoteWorkflow(): Promise<string[]> {
+type CallerRemoteWorkflowResult = { log: string[] };
+
+export async function callerRemoteWorkflow(): Promise<CallerRemoteWorkflowResult> {
   const log: string[] = [];
 
   const userIdOne = 'UserId_One';
@@ -43,14 +45,14 @@ export async function callerRemoteWorkflow(): Promise<string[]> {
   log.push(`attached approval context to running workflow for user: ${userIdTwo}`);
 
   // Interact with workflow one: query languages, set language to spanish
-  const languagesOne = await nexusClient.executeOperation(
+  const { languages: languagesOne } = await nexusClient.executeOperation(
     'getLanguages',
     { userId: userIdOne },
     { scheduleToCloseTimeout: '10s' },
   );
   log.push(`workflow one languages: ${languagesOne.join(', ')}`);
 
-  const prevLangOne: Language = await nexusClient.executeOperation(
+  const { previousLanguage: prevLangOne } = await nexusClient.executeOperation(
     'setLanguage',
     { userId: userIdOne, language: 'spanish' },
     { scheduleToCloseTimeout: '10s' },
@@ -58,14 +60,14 @@ export async function callerRemoteWorkflow(): Promise<string[]> {
   log.push(`workflow one: set language to spanish, previous was: ${prevLangOne}`);
 
   // Interact with workflow two: query language, set language to hindi
-  const currentLangTwo = await nexusClient.executeOperation(
+  const { language: currentLangTwo } = await nexusClient.executeOperation(
     'getLanguage',
     { userId: userIdTwo },
     { scheduleToCloseTimeout: '10s' },
   );
   log.push(`workflow two current language: ${currentLangTwo}`);
 
-  const prevLangTwo: Language = await nexusClient.executeOperation(
+  const { previousLanguage: prevLangTwo } = await nexusClient.executeOperation(
     'setLanguage',
     { userId: userIdTwo, language: 'hindi' },
     { scheduleToCloseTimeout: '10s' },
@@ -81,8 +83,8 @@ export async function callerRemoteWorkflow(): Promise<string[]> {
 
   // Wait for both results
   const [resultOne, resultTwo] = await Promise.all([handleOne.result(), handleTwo.result()]);
-  log.push(`workflow one result: ${resultOne}`);
-  log.push(`workflow two result: ${resultTwo}`);
+  log.push(`workflow one result: ${resultOne.greeting}`);
+  log.push(`workflow two result: ${resultTwo.greeting}`);
 
-  return log;
+  return { log };
 }

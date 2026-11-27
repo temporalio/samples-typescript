@@ -17,12 +17,12 @@ async function run() {
   const userId = 'user-1';
   const result = await client.workflow.execute(callerWorkflow, {
     taskQueue: CALLER_TASK_QUEUE,
-    args: [userId],
+    args: [{ userId }],
     workflowId: 'callerpattern-' + nanoid(),
   });
 
   console.log('Caller workflow result:');
-  for (const entry of result) {
+  for (const entry of result.log) {
     console.log(' ', entry);
   }
 

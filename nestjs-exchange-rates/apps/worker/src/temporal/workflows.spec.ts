@@ -71,6 +71,6 @@ describe('example workflow', function () {
     // This generally takes less than one second, but allow up to 5 seconds for slow CI environments
     await setTimeout(5000);
     const result = await handle.query(getExchangeRatesQuery);
-    expect(result).toEqual({ AUD: 1.27 });
+    expect(result).toEqual({ rates: { AUD: 1.27 } });
   });
 });

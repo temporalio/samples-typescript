@@ -4,7 +4,10 @@ import { TemporalOpenAIRunner, WorkflowSafeMemorySession } from '@temporalio/ope
 import { continueAsNew } from '@temporalio/workflow';
 
 // @@@SNIPSTART typescript-openai-agents-session-workflow
-export async function multiTurnChat(prompts: string[]): Promise<string[]> {
+type MultiTurnChatInput = { prompts: string[] };
+type MultiTurnChatResult = { replies: string[] };
+
+export async function multiTurnChat({ prompts }: MultiTurnChatInput): Promise<MultiTurnChatResult> {
   const agent = new Agent({ name: 'ChatAgent', instructions: 'You are a helpful assistant.' });
   const session = new WorkflowSafeMemorySession();
   const runner = new TemporalOpenAIRunner();
@@ -13,7 +16,7 @@ export async function multiTurnChat(prompts: string[]): Promise<string[]> {
     const result = await runner.run(agent, prompt, { session });
     replies.push(result.finalOutput ?? '');
   }
-  return replies;
+  return { replies };
 }
 // @@@SNIPEND
 
@@ -24,7 +27,9 @@ export interface CarryoverChatInput {
 }
 
 // @@@SNIPSTART typescript-openai-agents-session-carryover-workflow
-export async function carryoverChat(input: CarryoverChatInput): Promise<string[] | void> {
+type CarryoverChatResult = { replies: string[] };
+
+export async function carryoverChat(input: CarryoverChatInput): Promise<CarryoverChatResult> {
   const agent = new Agent({ name: 'ChatAgent', instructions: 'You are a helpful assistant.' });
   const session = new WorkflowSafeMemorySession({ initialItems: input.initialItems });
   const runner = new TemporalOpenAIRunner();
@@ -32,18 +37,18 @@ export async function carryoverChat(input: CarryoverChatInput): Promise<string[]
 
   const [prompt, ...remaining] = input.prompts;
   if (prompt === undefined) {
-    return accumulated;
+    return { replies: accumulated };
   }
 
   const result = await runner.run(agent, prompt, { session });
   accumulated.push(result.finalOutput ?? '');
 
   if (remaining.length === 0) {
-    return accumulated;
+    return { replies: accumulated };
   }
 
   const items = await session.getItems();
-  await continueAsNew<typeof carryoverChat>({
+  return continueAsNew<typeof carryoverChat>({
     prompts: remaining,
     initialItems: items,
     accumulated,

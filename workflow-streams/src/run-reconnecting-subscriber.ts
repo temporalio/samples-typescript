@@ -126,7 +126,7 @@ async function run() {
     }
 
     const result = await handle.result();
-    emit(state, `workflow result: ${result}`);
+    emit(state, `workflow result: ${result.message}`);
   } finally {
     stopped = true;
     await pollerDone;

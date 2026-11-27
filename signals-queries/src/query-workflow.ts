@@ -9,7 +9,7 @@ async function run(): Promise<void> {
 
   const handle = client.workflow.getHandle('unblock-or-cancel-0');
 
-  console.log('blocked?', await handle.query(isBlockedQuery));
+  console.log('blocked?', (await handle.query(isBlockedQuery)).isBlocked);
 }
 
 run().catch((err) => {

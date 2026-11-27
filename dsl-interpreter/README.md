@@ -2,6 +2,9 @@
 
 This sample demonstrates how to implement a DSL workflow, based on the [Go equivalent](https://github.com/temporalio/samples-go/tree/main/dsl). In this sample, we provide 2 sample yaml files each defines a custom workflow that can be processed by this DSL workflow sample code.
 
+An Activity's `arguments` is a map from input field names to DSL bindings or literal strings.
+For example, `arguments: { arg2: arg2, arg: result2 }` passes one object with the value of the `arg2` variable and the result of an earlier Activity stored as `result2`.
+
 See also:
 
 - https://github.com/Devessier/temporal-electronic-signature (implementing XState)

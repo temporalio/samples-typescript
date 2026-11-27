@@ -1,7 +1,10 @@
 import { InMemoryRunner, LlmAgent, isFinalResponse, stringifyContent } from '@google/adk';
 import { TemporalModel } from '@temporalio/google-adk/workflow';
 
-export async function observedAgent(prompts: string[]): Promise<string[]> {
+type ObservedAgentInput = { prompts: string[] };
+type ObservedAgentResult = { answers: string[] };
+
+export async function observedAgent({ prompts }: ObservedAgentInput): Promise<ObservedAgentResult> {
   const agent = new LlmAgent({
     name: 'assistant',
     model: new TemporalModel('gemini-2.5-flash'),
@@ -23,5 +26,5 @@ export async function observedAgent(prompts: string[]): Promise<string[]> {
     }
     answers.push(finalText);
   }
-  return answers;
+  return { answers };
 }

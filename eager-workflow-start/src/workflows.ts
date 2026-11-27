@@ -6,6 +6,8 @@ const { greet } = proxyLocalActivities<typeof activities>({
 });
 
 /** A workflow that calls a local activity */
-export async function eagerWorkflow(name: string): Promise<string> {
-  return await greet(name);
+type EagerWorkflowInput = { name: string };
+
+export async function eagerWorkflow(input: EagerWorkflowInput): Promise<activities.GreetResult> {
+  return await greet(input);
 }

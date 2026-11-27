@@ -35,42 +35,42 @@ async function run() {
       handle = await client.workflow.start(deterministic, {
         taskQueue,
         workflowId,
-        args: ['Write a short piece about the importance of software testing.'],
+        args: [{ prompt: 'Write a short piece about the importance of software testing.' }],
       });
       break;
     case 'parallelization':
       handle = await client.workflow.start(parallelization, {
         taskQueue,
         workflowId,
-        args: ['What is the most important skill for a software engineer?'],
+        args: [{ prompt: 'What is the most important skill for a software engineer?' }],
       });
       break;
     case 'llm-as-judge':
       handle = await client.workflow.start(llmAsJudge, {
         taskQueue,
         workflowId,
-        args: ['Explain what Temporal is in two sentences.'],
+        args: [{ prompt: 'Explain what Temporal is in two sentences.' }],
       });
       break;
     case 'agents-as-tools':
       handle = await client.workflow.start(agentsAsTools, {
         taskQueue,
         workflowId,
-        args: ['What are the benefits of durable execution?'],
+        args: [{ prompt: 'What are the benefits of durable execution?' }],
       });
       break;
     case 'input-guardrails':
       handle = await client.workflow.start(inputGuardrail, {
         taskQueue,
         workflowId,
-        args: ['Tell me something interesting about Temporal.'],
+        args: [{ prompt: 'Tell me something interesting about Temporal.' }],
       });
       break;
     case 'output-guardrails':
       handle = await client.workflow.start(outputGuardrail, {
         taskQueue,
         workflowId,
-        args: ['Describe a safe software deployment strategy.'],
+        args: [{ prompt: 'Describe a safe software deployment strategy.' }],
       });
       break;
     default:
@@ -78,7 +78,7 @@ async function run() {
   }
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  console.log((await handle.result()).text);
 }
 
 run().catch((err) => {

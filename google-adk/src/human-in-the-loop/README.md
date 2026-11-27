@@ -12,7 +12,7 @@ npx ts-node src/human-in-the-loop/worker.ts
 
 # In another terminal, start the Workflow and send the approval Signal:
 temporal workflow start --type humanApproval --task-queue google-adk-human-in-the-loop --workflow-id google-adk-human-in-the-loop-1
-temporal workflow signal --workflow-id google-adk-human-in-the-loop-1 --name approve --input '"approved-by-operator"'
+temporal workflow signal --workflow-id google-adk-human-in-the-loop-1 --name approve --input '{"decision":"approved-by-operator"}'
 ```
 
 ## Test

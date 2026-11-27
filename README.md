@@ -19,6 +19,7 @@
   - [Full-stack apps](#full-stack-apps)
 - [External apps & libraries](#external-apps--libraries)
 - [Contributing](#contributing)
+  - [Sample best practices](#sample-best-practices)
   - [Dependencies](#dependencies)
   - [Upgrading the SDK version in `package.json`s](#upgrading-the-sdk-version-in-packagejsons)
   - [Config files](#config-files)
@@ -258,6 +259,12 @@ pnpm run lint
 > ```
 > in the root directory</br>
 > **Warning**: this may result in losing work-in-progress (i.e. untracked files).
+
+### Sample best practices
+
+Follow Temporal best practices where possible. Keep examples focused on what they teach, especially when introducing a feature for the first time.
+
+- **Use named object types for handler inputs and results.** Workflows, Activities, Signals, Queries, and Updates that take input should accept one object. Handlers that return a value should return an object. This lets you add optional fields later without changing the signature. Keep handlers that need no input parameterless and use `void` for handlers that return no value. The introductory `hello-world` and `hello-world-js` samples use strings to keep the first example small.
 
 ### Dependencies
 

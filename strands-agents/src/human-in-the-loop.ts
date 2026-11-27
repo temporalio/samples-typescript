@@ -8,7 +8,7 @@ async function run() {
   const client = new Client({ connection });
 
   const handle = await client.workflow.start(humanInTheLoop, {
-    args: ['Please delete /tmp/sensitive.txt'],
+    args: [{ prompt: 'Please delete /tmp/sensitive.txt' }],
     taskQueue: 'strands-agents',
     workflowId: 'strands-human-in-the-loop',
   });
@@ -16,14 +16,14 @@ async function run() {
   let reason: string | null = null;
   while (reason === null) {
     await new Promise((resolve) => setTimeout(resolve, 500));
-    reason = await handle.query(hitlPendingApprovalQuery);
+    ({ reason } = await handle.query(hitlPendingApprovalQuery));
   }
   console.log(`Approval requested: ${reason}`);
 
-  await handle.signal(hitlApproveSignal, 'approve');
+  await handle.signal(hitlApproveSignal, { response: 'approve' });
 
   const result = await handle.result();
-  console.log(`Result: ${result}`);
+  console.log(`Result: ${result.text}`);
 }
 
 run().catch((err) => {

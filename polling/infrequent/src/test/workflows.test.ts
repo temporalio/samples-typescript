@@ -29,7 +29,7 @@ describe('infrequent polling workflow', function () {
     });
 
     const handle = await client.workflow.start(greetingWorkflow, {
-      args: ['Temporal'],
+      args: [{ name: 'Temporal' }],
       workflowId: nanoid(),
       taskQueue,
     });
@@ -37,7 +37,7 @@ describe('infrequent polling workflow', function () {
     await worker.runUntil(async () => {
       await testEnv.sleep('241s');
       const result = await handle.result();
-      assert.equal(result, 'Hello, Temporal!');
+      assert.deepEqual(result, { greeting: 'Hello, Temporal!' });
     });
   });
 });

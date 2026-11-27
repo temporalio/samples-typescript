@@ -10,7 +10,9 @@ export const PersonInfo = z.object({
 
 export type PersonInfo = z.infer<typeof PersonInfo>;
 
-export async function structuredOutputWorkflow(prompt: string): Promise<PersonInfo> {
+type StructuredOutputWorkflowInput = { prompt: string };
+
+export async function structuredOutputWorkflow({ prompt }: StructuredOutputWorkflowInput): Promise<PersonInfo> {
   const agent = new TemporalAgent({
     activityOptions: { startToCloseTimeout: '60 seconds', retry: { maximumAttempts: 3 } },
     structuredOutputSchema: PersonInfo,

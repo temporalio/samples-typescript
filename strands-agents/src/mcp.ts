@@ -8,11 +8,11 @@ async function run() {
   const client = new Client({ connection });
 
   const result = await client.workflow.execute(mcpWorkflow, {
-    args: ["Use the echo tool to echo the message 'hello from MCP'."],
+    args: [{ prompt: "Use the echo tool to echo the message 'hello from MCP'." }],
     taskQueue: 'strands-agents',
     workflowId: 'strands-mcp',
   });
-  console.log(`Result: ${result}`);
+  console.log(`Result: ${result.text}`);
 }
 
 run().catch((err) => {

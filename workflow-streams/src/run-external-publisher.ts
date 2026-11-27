@@ -75,7 +75,7 @@ async function run() {
   await Promise.all([publishNews(), consumeNews()]);
 
   const result = await handle.result();
-  console.log(`\nworkflow result: ${result}`);
+  console.log(`\nworkflow result: ${result.message}`);
   await connection.close();
 }
 

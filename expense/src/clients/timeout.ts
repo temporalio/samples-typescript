@@ -11,7 +11,7 @@ async function run() {
   const result = await client.workflow.execute(expense, {
     taskQueue: 'expense',
     workflowId: expenseId,
-    args: [expenseId, '1s'],
+    args: [{ expenseId, timeout: '1s' }],
   });
 
   // Prints "Done: { status: 'TIMED_OUT' }" after approximately 1 second

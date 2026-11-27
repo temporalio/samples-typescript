@@ -16,17 +16,17 @@ async function run() {
 
   const echoMessage = await client.workflow.execute(echoCallerWorkflow, {
     taskQueue: callerTaskQueue,
-    args: ['This message is from the client'],
+    args: [{ message: 'This message is from the client' }],
     workflowId: 'workflow-' + nanoid(),
   });
-  console.log(`Echo message: ${echoMessage}`);
+  console.log(`Echo message: ${echoMessage.message}`);
 
   const helloMessage = await client.workflow.execute(helloCallerWorkflow, {
     taskQueue: callerTaskQueue,
-    args: ['Temporal', 'en'],
+    args: [{ name: 'Temporal', language: 'en' }],
     workflowId: 'workflow-' + nanoid(),
   });
-  console.log(`Hello message: ${helloMessage}`);
+  console.log(`Hello message: ${helloMessage.message}`);
 }
 
 run().catch((err) => {

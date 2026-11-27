@@ -119,7 +119,7 @@ describe('streaming agents', function () {
 
     await worker.runUntil(async () => {
       const handle = await client.workflow.start(streamingAgent, {
-        args: ['Temporal'],
+        args: [{ prompt: 'Temporal' }],
         workflowId: 'test-stream-text-' + Date.now(),
         taskQueue,
       });
@@ -129,7 +129,7 @@ describe('streaming agents', function () {
       const deltas = await deltasPromise;
 
       // The workflow durably reassembles the full text from the replayed stream.
-      assert.strictEqual(result, chunks.join(''));
+      assert.deepStrictEqual(result, { text: chunks.join('') });
       // The external subscriber saw the response arrive incrementally.
       assert.ok(deltas.length > 1, `expected multiple live deltas, got ${deltas.length}`);
       assert.strictEqual(deltas.join(''), chunks.join(''));

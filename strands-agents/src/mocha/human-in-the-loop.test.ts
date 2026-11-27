@@ -38,13 +38,13 @@ describe('humanInTheLoop workflow', () => {
 
     const result = await worker.runUntil(async () => {
       const handle = await client.workflow.start(humanInTheLoop, {
-        args: ['delete /tmp/x'],
+        args: [{ prompt: 'delete /tmp/x' }],
         workflowId: 'test-hitl',
         taskQueue,
       });
-      await handle.signal(hitlApproveSignal, 'approve');
+      await handle.signal(hitlApproveSignal, { response: 'approve' });
       return handle.result();
     });
-    assert.equal(result, 'deleted /tmp/x');
+    assert.deepEqual(result, { text: 'deleted /tmp/x' });
   });
 });

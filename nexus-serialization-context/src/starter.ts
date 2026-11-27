@@ -15,7 +15,7 @@ async function run() {
     const handle = await client.workflow.start(callerWorkflow, {
       workflowId: `nexus-serialization-${randomUUID()}`,
       taskQueue: CALLER,
-      args: ['Hello from Nexus'],
+      args: [{ message: 'Hello from Nexus' }],
     });
     console.log(`Started workflow: ${handle.workflowId}`);
     const results = await handle.result();

@@ -9,11 +9,11 @@ async function run() {
   const client = new Client({ connection });
 
   const result = await client.workflow.execute(helloWorld, {
-    args: ['Write a haiku about durable execution.'],
+    args: [{ prompt: 'Write a haiku about durable execution.' }],
     taskQueue: 'strands-agents',
     workflowId: 'strands-hello-world',
   });
-  console.log(`Result: ${result}`);
+  console.log(`Result: ${result.text}`);
 }
 
 run().catch((err) => {

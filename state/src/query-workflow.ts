@@ -8,7 +8,7 @@ async function run(): Promise<void> {
   const connection = await Connection.connect(config.connectionOptions);
   const client = new Client({ connection });
   const handle = client.workflow.getHandle('state-id-0');
-  const meaning = await handle.query(getValueQuery, 'meaning-of-life');
+  const { value: meaning } = await handle.query(getValueQuery, { key: 'meaning-of-life' });
   console.log({ meaning });
 }
 // @@@SNIPEND

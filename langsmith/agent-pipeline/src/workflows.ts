@@ -6,15 +6,18 @@ const { gatherFacts, writeReport, reviewReport } = proxyActivities<typeof activi
   startToCloseTimeout: '1 minute',
 });
 
-export async function ReviewWorkflow(report: string): Promise<string> {
-  return reviewReport(report);
+type ReviewWorkflowInput = { report: string };
+type ResearchWorkflowInput = { topic: string };
+
+export async function ReviewWorkflow(input: ReviewWorkflowInput): Promise<activities.ReviewReportResult> {
+  return reviewReport(input);
 }
 
-export async function ResearchWorkflow(topic: string): Promise<string> {
-  const facts = await gatherFacts(topic);
-  const report = await writeReport(facts);
+export async function ResearchWorkflow(input: ResearchWorkflowInput): Promise<activities.ReviewReportResult> {
+  const { facts } = await gatherFacts(input);
+  const { report } = await writeReport({ facts });
   return executeChild(ReviewWorkflow, {
-    args: [report],
+    args: [{ report }],
     workflowId: `${workflowInfo().workflowId}-review`,
   });
 }

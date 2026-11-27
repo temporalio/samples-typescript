@@ -8,4 +8,6 @@ export const ENDPOINTS = [
   'nexus-serialization-encrypted-2',
 ] as const;
 
-export type EndpointResults = Record<string, { sync: string; async: string }>;
+type EndpointResult = { sync: string; async: string };
+
+export type EndpointResults = Record<string, EndpointResult>;

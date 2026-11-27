@@ -28,7 +28,7 @@ async function run() {
       handle = await client.workflow.start(multiTurnChat, {
         taskQueue,
         workflowId,
-        args: [['What is the capital of France?', 'And what is it known for?']],
+        args: [{ prompts: ['What is the capital of France?', 'And what is it known for?'] }],
       });
       break;
     case 'carryover-chat':
@@ -43,7 +43,7 @@ async function run() {
   }
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  console.log((await handle.result()).replies);
 }
 
 run().catch((err) => {

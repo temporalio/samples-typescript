@@ -6,6 +6,6 @@ const { greet } = proxyActivities<typeof activities>({
 });
 
 export async function logSampleWorkflow(): Promise<void> {
-  const greeting = await greet('Temporal');
+  const { greeting } = await greet({ name: 'Temporal' });
   log.info('Greeted', { greeting });
 }

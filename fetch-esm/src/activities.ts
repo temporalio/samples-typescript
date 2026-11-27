@@ -4,15 +4,19 @@ import fetch from 'node-fetch';
 
 import { ApplicationFailure } from '@temporalio/common';
 
-export async function greetHTTP(name: string): Promise<string> {
+type GreetInput = { name: string };
+
+export type GreetResult = { greeting: string };
+
+export async function greetHTTP({ name }: GreetInput): Promise<GreetResult> {
   const response = await fetch('http://httpbin.org/get?greeting=Hello');
   if (!response.ok) {
     throw ApplicationFailure.retryable(`HTTP error! status: ${response.status}`);
   }
   const body: any = await response.json();
-  return `${body.args.greeting}, ${name}!`;
+  return { greeting: `${body.args.greeting}, ${name}!` };
 }
 
-export async function greetLocal(name: string): Promise<string> {
-  return humanizeString(`Hello-World-And-Hello-${name}!`, { preserveCase: true });
+export async function greetLocal({ name }: GreetInput): Promise<GreetResult> {
+  return { greeting: humanizeString(`Hello-World-And-Hello-${name}!`, { preserveCase: true }) };
 }

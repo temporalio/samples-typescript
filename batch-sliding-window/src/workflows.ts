@@ -46,7 +46,11 @@ export interface SlidingWindowState {
 
 // --- Signals and Queries ---
 
-export const reportCompletionSignal = defineSignal<[number]>('reportCompletion');
+interface ReportCompletionInput {
+  recordId: number;
+}
+
+export const reportCompletionSignal = defineSignal<[ReportCompletionInput]>('reportCompletion');
 export const stateQuery = defineQuery<SlidingWindowState>('state');
 
 // --- Helpers ---
@@ -68,8 +72,11 @@ function divideIntoPartitions(total: number, n: number): number[] {
  * parallel SlidingWindowWorkflows, waits for all to complete, and returns
  * the total number of processed records.
  */
-export async function processBatchWorkflow(input: ProcessBatchWorkflowInput): Promise<number> {
-  const totalRecords = await getRecordCount();
+type ProcessBatchWorkflowResult = { processedRecords: number };
+type SlidingWindowWorkflowResult = { processedRecords: number };
+
+export async function processBatchWorkflow(input: ProcessBatchWorkflowInput): Promise<ProcessBatchWorkflowResult> {
+  const { recordCount: totalRecords } = await getRecordCount();
 
   if (input.slidingWindowSize < input.partitions) {
     throw ApplicationFailure.nonRetryable('SlidingWindowSize cannot be less than number of partitions');
@@ -85,7 +92,7 @@ export async function processBatchWorkflow(input: ProcessBatchWorkflowInput): Pr
     windowSizes,
   });
 
-  const childPromises: Promise<number>[] = [];
+  const childPromises: Promise<SlidingWindowWorkflowResult>[] = [];
   let offset = 0;
 
   for (let i = 0; i < input.partitions; i++) {
@@ -112,7 +119,7 @@ export async function processBatchWorkflow(input: ProcessBatchWorkflowInput): Pr
   }
 
   const results = await Promise.all(childPromises);
-  return results.reduce((sum, r) => sum + r, 0);
+  return { processedRecords: results.reduce((sum, result) => sum + result.processedRecords, 0) };
 }
 
 /**
@@ -121,7 +128,7 @@ export async function processBatchWorkflow(input: ProcessBatchWorkflowInput): Pr
  * at once; when one completes (via reportCompletion signal) a new one starts.
  * Calls continue-as-new after each page to bound history size.
  */
-export async function slidingWindowWorkflow(input: SlidingWindowWorkflowInput): Promise<number> {
+export async function slidingWindowWorkflow(input: SlidingWindowWorkflowInput): Promise<SlidingWindowWorkflowResult> {
   const currentRecords: Record<string, boolean> = input.currentRecords ?? {};
   let progress = input.progress;
   let childrenStartedCount = 0;
@@ -143,7 +150,7 @@ export async function slidingWindowWorkflow(input: SlidingWindowWorkflowInput): 
     progress,
   }));
 
-  setHandler(reportCompletionSignal, (recordId: number) => {
+  setHandler(reportCompletionSignal, ({ recordId }) => {
     const key = String(recordId);
     if (key in currentRecords) {
       delete currentRecords[key];
@@ -198,7 +205,7 @@ export async function slidingWindowWorkflow(input: SlidingWindowWorkflowInput): 
 
   // Last run: wait for all outstanding children to complete
   await condition(() => Object.keys(currentRecords).length === 0);
-  return progress;
+  return { processedRecords: progress };
 }
 
 /**
@@ -216,6 +223,6 @@ export async function recordProcessorWorkflow(record: SingleRecord): Promise<voi
   const parent = workflowInfo().parent;
   if (parent) {
     const handle = getExternalWorkflowHandle(parent.workflowId);
-    await handle.signal(reportCompletionSignal, record.id);
+    await handle.signal(reportCompletionSignal, { recordId: record.id });
   }
 }

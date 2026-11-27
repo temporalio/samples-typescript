@@ -40,7 +40,9 @@ const { chargeCustomer, refundOrder, sendPushNotification } = proxyActivities<ty
   },
 })
 
-export async function order(productId: number): Promise<void> {
+type OrderInput = { productId: number }
+
+export async function order({ productId }: OrderInput): Promise<void> {
   const product = getProductById(productId)
   if (!product) {
     throw ApplicationFailure.create({ message: `Product ${productId} not found` })
@@ -72,7 +74,7 @@ export async function order(productId: number): Promise<void> {
     await chargeCustomer(product)
   } catch (err) {
     const message = `Failed to charge customer for ${product.name}. Error: ${errorMessage(err)}`
-    await sendPushNotification(message)
+    await sendPushNotification({ message })
     throw ApplicationFailure.create({ message })
   }
 
@@ -88,7 +90,7 @@ export async function order(productId: number): Promise<void> {
     throw ApplicationFailure.create({ message: 'Not picked up in time' })
   }
 
-  await sendPushNotification('🚗 Order picked up')
+  await sendPushNotification({ message: '🚗 Order picked up' })
 
   const notDeliveredInTime = !(await condition(() => state === 'Delivered', '1 min'))
   if (notDeliveredInTime) {
@@ -97,14 +99,14 @@ export async function order(productId: number): Promise<void> {
     throw ApplicationFailure.create({ message: 'Not delivered in time' })
   }
 
-  await sendPushNotification('✅ Order delivered!')
+  await sendPushNotification({ message: '✅ Order delivered!' })
 
   await sleep('1 min') // this could also be hours or even months
 
-  await sendPushNotification(`✍️ Rate your meal. How was the ${product.name.toLowerCase()}?`)
+  await sendPushNotification({ message: `✍️ Rate your meal. How was the ${product.name.toLowerCase()}?` })
 }
 
 async function refundAndNotify(product: Product, message: string) {
   await refundOrder(product)
-  await sendPushNotification(message)
+  await sendPushNotification({ message })
 }

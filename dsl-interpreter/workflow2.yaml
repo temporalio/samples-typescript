@@ -7,7 +7,7 @@
 #  2.2) sequence 2
 #    2.2.1) activity4, takes result1 as input, and put result as result4
 #    2.2.2) activity5, takes arg3 and result4 as input, and put result as result5
-# 3) activity1, takes result3 and result5 as input, and put result as result6.
+# 3) activity1 takes result3 as input and stores its result as result6.
 
 variables:
   arg1: value1
@@ -20,7 +20,7 @@ root:
       - activity:
           name: activity1
           arguments:
-            - arg1
+            arg1: arg1
           result: result1
       - parallel:
           branches:
@@ -29,30 +29,29 @@ root:
                   - activity:
                       name: activity2
                       arguments:
-                        - result1
+                        arg: result1
                       result: result2
                   - activity:
                       name: activity3
                       arguments:
-                        - arg2
-                        - result2
+                        arg2: arg2
+                        arg: result2
                       result: result3
             - sequence:
                 elements:
                   - activity:
                       name: activity4
                       arguments:
-                        - result1
+                        result1: result1
                       result: result4
                   - activity:
                       name: activity5
                       arguments:
-                        - arg3
-                        - result4
+                        arg3: arg3
+                        result4: result4
                       result: result5
       - activity:
           name: activity1
           arguments:
-            - result3
-            - result5
+            arg1: result3
           result: result6

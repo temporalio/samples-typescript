@@ -50,7 +50,7 @@ describe('openai-agents/reasoning-content', function () {
 
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(reasoningContent, {
-        args: ['What is the square root of 841?', 'fake-reasoning-model'],
+        args: [{ prompt: 'What is the square root of 841?', model: 'fake-reasoning-model' }],
         workflowId: 'test-reasoning-content-' + Date.now(),
         taskQueue,
       }),

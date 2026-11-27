@@ -25,7 +25,7 @@ async function run() {
   const handle = await client.workflow.start(streamingChat, {
     taskQueue,
     workflowId,
-    args: ['Write a short poem about durable execution.'],
+    args: [{ prompt: 'Write a short poem about durable execution.' }],
   });
   console.log(`Started workflow ${handle.workflowId}`);
 
@@ -42,7 +42,7 @@ async function run() {
 
   const result = await handle.result();
   console.log('\n---');
-  console.log(result);
+  console.log(result.text);
 }
 
 run().catch((err) => {

@@ -35,11 +35,11 @@ describe('Example activity', () => {
       client.activity.typed<typeof activities>().execute('greet', {
         id: 'test',
         taskQueue,
-        args: ['Temporal'],
+        args: [{ name: 'Temporal' }],
         scheduleToCloseTimeout: '10s',
       }),
     );
-    assert.equal(result, 'Hello, Temporal!');
+    assert.deepEqual(result, { greeting: 'Hello, Temporal!' });
   });
 
   it('throws when name is not string', async () => {
@@ -53,7 +53,7 @@ describe('Example activity', () => {
         client.activity.execute('greet', {
           id: 'test',
           taskQueue,
-          args: [1],
+          args: [{ name: 1 }],
           scheduleToCloseTimeout: '10s',
         }),
         (err) => {

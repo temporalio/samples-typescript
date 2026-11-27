@@ -6,6 +6,10 @@ const { logTime } = proxyActivities<typeof activities>({
 });
 
 /** A workflow that simply calls an activity */
-export async function scheduledWorkflow(name: string): Promise<void> {
-  await logTime(name, '' + Date.now());
+interface ScheduledWorkflowInput {
+  name: string;
+}
+
+export async function scheduledWorkflow({ name }: ScheduledWorkflowInput): Promise<void> {
+  await logTime({ name, wfTime: '' + Date.now() });
 }

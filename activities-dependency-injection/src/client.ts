@@ -11,7 +11,7 @@ async function run(): Promise<void> {
     taskQueue: 'dependency-injection',
     workflowId: 'dependency-injection',
   });
-  console.log(result);
+  console.log(`${result.english}\n${result.spanish}`);
 }
 
 run().catch((err) => {

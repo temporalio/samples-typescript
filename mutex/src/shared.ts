@@ -9,6 +9,8 @@ interface LockResponse {
   releaseSignalName: string;
 }
 
-export const currentWorkflowIdQuery = defineQuery<string | null>('current-workflow-id');
+type CurrentWorkflowIdResult = { workflowId: string | null };
+
+export const currentWorkflowIdQuery = defineQuery<CurrentWorkflowIdResult>('current-workflow-id');
 export const lockRequestSignal = defineSignal<[LockRequest]>('lock-requested');
 export const lockAcquiredSignal = defineSignal<[LockResponse]>('lock-acquired');

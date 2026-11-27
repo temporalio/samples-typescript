@@ -63,6 +63,6 @@ describe('openai-agents/human-approval workflow scenarios', function () {
       return handle.result();
     });
 
-    assert.strictEqual(result, 'Action completed successfully.');
+    assert.deepStrictEqual(result, { text: 'Action completed successfully.' });
   });
 });

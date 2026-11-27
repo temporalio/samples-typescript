@@ -6,7 +6,10 @@ import { condition, defineSignal, setHandler } from '@temporalio/workflow';
 const HOSTED_MCP_SERVER_LABEL = 'gitmcp';
 const HOSTED_MCP_SERVER_URL = 'https://gitmcp.io/openai/codex';
 
-export async function simple(prompt: string): Promise<string> {
+type SimpleInput = { prompt: string };
+type SimpleResult = { text: string };
+
+export async function simple({ prompt }: SimpleInput): Promise<SimpleResult> {
   const agent = new Agent({
     name: 'HostedMcpSimpleAgent',
     instructions: 'You are a helpful assistant. Use the hosted MCP tools when they are relevant.',
@@ -19,14 +22,18 @@ export async function simple(prompt: string): Promise<string> {
     ],
   });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 
-export const approvalDecision = defineSignal<[boolean]>('approvalDecision');
+type ApprovalDecisionInput = { approve: boolean };
+type ApprovalInput = { prompt: string };
+type ApprovalResult = { text: string };
 
-export async function approval(prompt: string): Promise<string> {
+export const approvalDecision = defineSignal<[ApprovalDecisionInput]>('approvalDecision');
+
+export async function approval({ prompt }: ApprovalInput): Promise<ApprovalResult> {
   let decision: boolean | undefined;
-  setHandler(approvalDecision, (approve: boolean) => {
+  setHandler(approvalDecision, ({ approve }) => {
     decision = approve;
   });
 
@@ -49,5 +56,5 @@ export async function approval(prompt: string): Promise<string> {
   });
 
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }

@@ -55,12 +55,12 @@ describe('openai-agents/basic workflow scenarios', function () {
     const { worker } = await makeWorker(taskQueue, [textResponse('Hello from the fake model!')]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(helloWorld, {
-        args: ['Say hello.'],
+        args: [{ prompt: 'Say hello.' }],
         workflowId: 'test-hello-world-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Hello from the fake model!');
+    assert.deepStrictEqual(result, { text: 'Hello from the fake model!' });
   });
 
   it('tools: activityAsTool round-trip', async () => {
@@ -71,12 +71,12 @@ describe('openai-agents/basic workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(tools, {
-        args: ['What is the weather in Tokyo?'],
+        args: [{ prompt: 'What is the weather in Tokyo?' }],
         workflowId: 'test-tools-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'It is sunny in Tokyo.');
+    assert.deepStrictEqual(result, { text: 'It is sunny in Tokyo.' });
   });
 
   it('inlineTool: inline tool round-trip', async () => {
@@ -87,12 +87,12 @@ describe('openai-agents/basic workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(inlineTool, {
-        args: ['What is 3 + 4?'],
+        args: [{ prompt: 'What is 3 + 4?' }],
         workflowId: 'test-inline-tool-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, '3 plus 4 equals 7.');
+    assert.deepStrictEqual(result, { text: '3 plus 4 equals 7.' });
   });
 
   it('localActivityTool: local activity tool round-trip', async () => {
@@ -103,12 +103,12 @@ describe('openai-agents/basic workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(localActivityTool, {
-        args: ['Get headlines about AI.'],
+        args: [{ prompt: 'Get headlines about AI.' }],
         workflowId: 'test-local-activity-tool-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Here are the latest AI headlines.');
+    assert.deepStrictEqual(result, { text: 'Here are the latest AI headlines.' });
   });
 
   it('agentContext: tool reads runContext.context and value reaches the model', async () => {
@@ -119,12 +119,12 @@ describe('openai-agents/basic workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(agentContext, {
-        args: ['Who am I?'],
+        args: [{ prompt: 'Who am I?' }],
         workflowId: 'test-agent-context-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'You are user-42.');
+    assert.deepStrictEqual(result, { text: 'You are user-42.' });
 
     // The whoAmI tool returns runContext.context.userId; its result is sent back
     // to the model on the second turn as a function_call_result item, proving the
@@ -136,21 +136,18 @@ describe('openai-agents/basic workflow scenarios', function () {
     assert.deepStrictEqual((toolResults[0] as { output: unknown }).output, { type: 'text', text: 'user-42' });
   });
 
-  it('structuredOutput: returns typed object as JSON', async () => {
+  it('structuredOutput: returns a typed object', async () => {
     const taskQueue = 'test-structured-output';
     const payload = { title: 'Temporal', summary: 'A durable execution platform.', keywords: ['temporal', 'workflow'] };
     const { worker } = await makeWorker(taskQueue, [textResponse(JSON.stringify(payload))]);
-    const raw = await worker.runUntil(
+    const result = await worker.runUntil(
       testEnv.client.workflow.execute(structuredOutput, {
-        args: ['Temporal is a durable execution platform for building reliable distributed systems.'],
+        args: [{ prompt: 'Temporal is a durable execution platform for building reliable distributed systems.' }],
         workflowId: 'test-structured-output-' + Date.now(),
         taskQueue,
       }),
     );
-    const parsed = JSON.parse(raw);
-    assert.strictEqual(parsed.title, 'Temporal');
-    assert.ok(typeof parsed.summary === 'string');
-    assert.ok(Array.isArray(parsed.keywords));
+    assert.deepStrictEqual(result, payload);
   });
 
   it('modelOverride: runConfig.model is the model resolved by the provider', async () => {
@@ -158,12 +155,12 @@ describe('openai-agents/basic workflow scenarios', function () {
     const { worker, provider } = await makeWorker(taskQueue, [textResponse('Temporal is a workflow engine.')]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(modelOverride, {
-        args: ['Briefly explain what Temporal is.'],
+        args: [{ prompt: 'Briefly explain what Temporal is.' }],
         workflowId: 'test-model-override-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Temporal is a workflow engine.');
+    assert.deepStrictEqual(result, { text: 'Temporal is a workflow engine.' });
     assert.deepStrictEqual(provider.requestedModelNames, ['gpt-4o-mini']);
   });
 
@@ -172,12 +169,12 @@ describe('openai-agents/basic workflow scenarios', function () {
     const { worker, provider } = await makeWorker(taskQueue, [textResponse('Hello back!')]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(dynamicInstructions, {
-        args: ['Hello!'],
+        args: [{ prompt: 'Hello!' }],
         workflowId: 'test-dynamic-instructions-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Hello back!');
+    assert.deepStrictEqual(result, { text: 'Hello back!' });
 
     // The instructions function computes the system prompt from runContext.context
     // ({ userName: 'Ada', style: 'concise' }); assert that resolved prompt reached the model.

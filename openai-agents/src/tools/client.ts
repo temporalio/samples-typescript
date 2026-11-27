@@ -28,21 +28,21 @@ async function run() {
       handle = await client.workflow.start(webSearch, {
         taskQueue,
         workflowId,
-        args: ['What is a notable recent development in durable execution?'],
+        args: [{ prompt: 'What is a notable recent development in durable execution?' }],
       });
       break;
     case 'image-generation':
       handle = await client.workflow.start(imageGeneration, {
         taskQueue,
         workflowId,
-        args: ['Generate an image of a robot orchestrating workflows.'],
+        args: [{ prompt: 'Generate an image of a robot orchestrating workflows.' }],
       });
       break;
     case 'code-interpreter':
       handle = await client.workflow.start(codeInterpreter, {
         taskQueue,
         workflowId,
-        args: ['What is the 20th Fibonacci number? Compute it.'],
+        args: [{ prompt: 'What is the 20th Fibonacci number? Compute it.' }],
       });
       break;
     default:
@@ -50,7 +50,7 @@ async function run() {
   }
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  console.log((await handle.result()).text);
 }
 
 run().catch((err) => {

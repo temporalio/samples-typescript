@@ -59,7 +59,7 @@ describe('google-adk/streaming workflow scenarios', function () {
     const workflowId = 'test-google-adk-streaming-' + Date.now();
     const result = await worker.runUntil(async () => {
       const handle = await testEnv.client.workflow.start(streamingModelCall, {
-        args: ['stream please'],
+        args: [{ prompt: 'stream please' }],
         workflowId,
         taskQueue,
       });

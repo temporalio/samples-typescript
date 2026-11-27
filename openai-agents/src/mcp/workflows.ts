@@ -6,49 +6,64 @@ import type { Activities } from './activities';
 const activities = proxyActivities<Activities>({ startToCloseTimeout: '1 minute' });
 
 // @@@SNIPSTART typescript-openai-agents-stateless-mcp-workflow
-export async function filesystem(prompt: string): Promise<string> {
+type FilesystemInput = { prompt: string };
+type FilesystemResult = { text: string };
+
+export async function filesystem({ prompt }: FilesystemInput): Promise<FilesystemResult> {
   const agent = new Agent({
     name: 'FilesystemAgent',
     instructions: 'You are a helpful assistant with access to a filesystem.',
     mcpServers: [statelessMcpServer('filesystem')],
   });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 // @@@SNIPEND
 
-export async function streamableHttp(prompt: string): Promise<string> {
+type StreamableHttpInput = { prompt: string };
+type StreamableHttpResult = { text: string };
+
+export async function streamableHttp({ prompt }: StreamableHttpInput): Promise<StreamableHttpResult> {
   const agent = new Agent({
     name: 'StreamableHttpAgent',
     instructions: 'You are a helpful assistant with access to tools via HTTP.',
     mcpServers: [statelessMcpServer('streamableHttp')],
   });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 
-export async function sse(prompt: string): Promise<string> {
+type SseInput = { prompt: string };
+type SseResult = { text: string };
+
+export async function sse({ prompt }: SseInput): Promise<SseResult> {
   const agent = new Agent({
     name: 'SseAgent',
     instructions: 'You are a helpful assistant with access to tools via SSE.',
     mcpServers: [statelessMcpServer('sse')],
   });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 
-export async function promptServer(prompt: string): Promise<string> {
-  const instructions = await activities.fetchSummarizePrompt();
+type PromptServerInput = { prompt: string };
+type PromptServerResult = { text: string };
+
+export async function promptServer({ prompt }: PromptServerInput): Promise<PromptServerResult> {
+  const { instructions } = await activities.fetchSummarizePrompt();
   const agent = new Agent({
     name: 'PromptAgent',
     instructions,
   });
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 
 // @@@SNIPSTART typescript-openai-agents-stateful-mcp-workflow
-export async function statefulMemory(prompt: string): Promise<string> {
+type StatefulMemoryInput = { prompt: string };
+type StatefulMemoryResult = { text: string };
+
+export async function statefulMemory({ prompt }: StatefulMemoryInput): Promise<StatefulMemoryResult> {
   const server = statefulMcpServer('memory');
   await server.connect();
   try {
@@ -58,7 +73,7 @@ export async function statefulMemory(prompt: string): Promise<string> {
       mcpServers: [server],
     });
     const result = await new TemporalOpenAIRunner().run(agent, prompt);
-    return result.finalOutput ?? '';
+    return { text: result.finalOutput ?? '' };
   } finally {
     await server.cleanup();
   }

@@ -27,7 +27,7 @@ export const nexusGreetingServiceHandler = nexus.serviceHandler(nexusGreetingSer
   setLanguage: new temporalNexus.TemporalOperationHandler({
     async start(_ctx, client, input: SetLanguageInput) {
       const handle = client.getWorkflowHandle(workflowIdForUser(input.userId));
-      return await handle.update(setLanguageUpdate, { args: [input.language], waitForStage: 'ACCEPTED' });
+      return await handle.update(setLanguageUpdate, { args: [{ language: input.language }], waitForStage: 'ACCEPTED' });
     },
   }),
 

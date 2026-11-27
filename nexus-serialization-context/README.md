@@ -190,7 +190,7 @@ nexus-serialization-compressed-encrypted-2: sync="Hello from Nexus" async="Hello
 nexus-serialization-encrypted-2: sync="Hello from Nexus" async="Hello from Nexus"
 ```
 
-All eight results should be `Hello from Nexus`.
+The starter should print `Hello from Nexus` for all eight operations. The sync handler returns the string directly; the workflow-backed async handler returns an object with a `message` field, which the caller reads for display.
 
 The run creates five workflow executions: one caller and four async backing workflows.
 The four sync operations return directly from their handlers.

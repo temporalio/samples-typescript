@@ -9,7 +9,9 @@ export interface ApprovalInput {
 }
 
 // @@@SNIPSTART typescript-openai-agents-approval-workflow
-export async function approvalWorkflow(input: ApprovalInput = {}): Promise<string> {
+type ApprovalResult = { text: string };
+
+export async function approvalWorkflow(input: ApprovalInput = {}): Promise<ApprovalResult> {
   const action = tool({
     name: 'dangerousAction',
     description: 'Performs a dangerous action that requires human approval before execution.',
@@ -40,7 +42,7 @@ export async function approvalWorkflow(input: ApprovalInput = {}): Promise<strin
       state.approve(interruption);
     }
     const resumed = await runner.run(agent, state);
-    return resumed.finalOutput ?? '';
+    return { text: resumed.finalOutput ?? '' };
   }
 
   let approved = false;
@@ -51,11 +53,11 @@ export async function approvalWorkflow(input: ApprovalInput = {}): Promise<strin
   const result = await runner.run(agent, 'Delete the old backup files.');
 
   if (result.interruptions.length === 0) {
-    return result.finalOutput ?? '';
+    return { text: result.finalOutput ?? '' };
   }
 
   await condition(() => approved);
-  await continueAsNew<typeof approvalWorkflow>({ resumeFromRunState: result.state.toString() });
+  return continueAsNew<typeof approvalWorkflow>({ resumeFromRunState: result.state.toString() });
   throw new Error('unreachable');
 }
 // @@@SNIPEND

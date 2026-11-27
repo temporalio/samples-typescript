@@ -67,7 +67,7 @@ describe('openai-agents/streaming workflow scenarios', function () {
       const handle = await client.workflow.start(streamingChat, {
         taskQueue,
         workflowId,
-        args: ['Hi'],
+        args: [{ prompt: 'Hi' }],
       });
 
       const received: StreamEvent[] = [];
@@ -98,6 +98,6 @@ describe('openai-agents/streaming workflow scenarios', function () {
       return finalOutput;
     });
 
-    assert.strictEqual(result, 'Hello streamed world');
+    assert.deepStrictEqual(result, { text: 'Hello streamed world' });
   });
 });

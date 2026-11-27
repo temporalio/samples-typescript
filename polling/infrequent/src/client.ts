@@ -12,11 +12,11 @@ async function run() {
   const handle = await client.workflow.start(greetingWorkflow, {
     taskQueue: 'infrequent-activity-polling-task-queue',
     workflowId: 'workflow-' + nanoid(),
-    args: ["Temporal"],
+    args: [{ name: 'Temporal' }],
   });
   console.log(`Started workflow ${handle.workflowId}`);
 
-  console.log(await handle.result());
+  console.log((await handle.result()).greeting);
 }
 
 run().catch((err) => {

@@ -58,12 +58,12 @@ describe('openai-agents/agent-patterns workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(deterministic, {
-        args: ['Write about testing.'],
+        args: [{ prompt: 'Write about testing.' }],
         workflowId: 'test-deterministic-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, polishedText);
+    assert.deepStrictEqual(result, { text: polishedText });
     assert.strictEqual(provider.model.requests.length, 3, 'should have made exactly 3 model calls');
     const secondTurnInput = provider.model.requests[1]?.input;
     const secondTurnText = Array.isArray(secondTurnInput) ? JSON.stringify(secondTurnInput) : String(secondTurnInput);
@@ -87,12 +87,12 @@ describe('openai-agents/agent-patterns workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(parallelization, {
-        args: ['What is the most important skill?'],
+        args: [{ prompt: 'What is the most important skill?' }],
         workflowId: 'test-parallelization-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, judgeAnswer);
+    assert.deepStrictEqual(result, { text: judgeAnswer });
     assert.strictEqual(provider.model.requests.length, 4, 'should have called model 3 times for agents + 1 for judge');
   });
 
@@ -108,12 +108,12 @@ describe('openai-agents/agent-patterns workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(llmAsJudge, {
-        args: ['Explain what Temporal is.'],
+        args: [{ prompt: 'Explain what Temporal is.' }],
         workflowId: 'test-llm-as-judge-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, secondDraft);
+    assert.deepStrictEqual(result, { text: secondDraft });
     assert.strictEqual(
       provider.model.requests.length,
       4,
@@ -132,12 +132,12 @@ describe('openai-agents/agent-patterns workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(agentsAsTools, {
-        args: ['What are the benefits of durable execution?'],
+        args: [{ prompt: 'What are the benefits of durable execution?' }],
         workflowId: 'test-agents-as-tools-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, finalAnswer);
+    assert.deepStrictEqual(result, { text: finalAnswer });
     const toolResults = provider.model.requests
       .flatMap((req) => (Array.isArray(req.input) ? req.input : []))
       .filter((item) => item.type === 'function_call_result' && item.name === 'ask_specialist');
@@ -149,13 +149,13 @@ describe('openai-agents/agent-patterns workflow scenarios', function () {
     const { worker, provider } = await makeWorker(taskQueue, []);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(inputGuardrail, {
-        args: ['This is a blocked request.'],
+        args: [{ prompt: 'This is a blocked request.' }],
         workflowId: 'test-input-guardrail-blocked-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.ok(result.startsWith('BLOCKED:'), `expected BLOCKED sentinel, got: ${result}`);
-    assert.ok(result.includes('keyword-guardrail'), 'sentinel should name the guardrail');
+    assert.ok(result.text.startsWith('BLOCKED:'), `expected BLOCKED sentinel, got: ${result.text}`);
+    assert.ok(result.text.includes('keyword-guardrail'), 'sentinel should name the guardrail');
     assert.strictEqual(provider.model.requests.length, 0, 'model should not be called when input guardrail fires');
   });
 
@@ -165,12 +165,12 @@ describe('openai-agents/agent-patterns workflow scenarios', function () {
     const { worker } = await makeWorker(taskQueue, [textResponse(modelReply)]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(inputGuardrail, {
-        args: ['Tell me something interesting about Temporal.'],
+        args: [{ prompt: 'Tell me something interesting about Temporal.' }],
         workflowId: 'test-input-guardrail-pass-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, modelReply);
+    assert.deepStrictEqual(result, { text: modelReply });
   });
 
   it('outputGuardrail: blocks unsafe model output after model call', async () => {
@@ -178,13 +178,13 @@ describe('openai-agents/agent-patterns workflow scenarios', function () {
     const { worker, provider } = await makeWorker(taskQueue, [textResponse('This response contains UNSAFE content.')]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(outputGuardrail, {
-        args: ['Describe something.'],
+        args: [{ prompt: 'Describe something.' }],
         workflowId: 'test-output-guardrail-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.ok(result.startsWith('BLOCKED:'), `expected BLOCKED sentinel, got: ${result}`);
-    assert.ok(result.includes('output-safety-guardrail'), 'sentinel should name the guardrail');
+    assert.ok(result.text.startsWith('BLOCKED:'), `expected BLOCKED sentinel, got: ${result.text}`);
+    assert.ok(result.text.includes('output-safety-guardrail'), 'sentinel should name the guardrail');
     assert.strictEqual(provider.model.requests.length, 1, 'model should be called once before output guardrail fires');
   });
 });

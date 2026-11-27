@@ -44,26 +44,26 @@ export interface RunFromRemoteInput {
   userId: string;
 }
 
-export type RunFromRemoteOutput = string;
+export type RunFromRemoteOutput = { greeting: string };
 
 export interface GetLanguagesInput {
   userId: string;
 }
 
-export type GetLanguagesOutput = Language[];
+export type GetLanguagesOutput = { languages: Language[] };
 
 export interface GetLanguageInput {
   userId: string;
 }
 
-export type GetLanguageOutput = Language;
+export type GetLanguageOutput = { language: Language };
 
 export interface SetLanguageInput {
   userId: string;
   language: Language;
 }
 
-export type SetLanguageOutput = Language;
+export type SetLanguageOutput = { previousLanguage: Language };
 
 export interface ApproveInput {
   userId: string;

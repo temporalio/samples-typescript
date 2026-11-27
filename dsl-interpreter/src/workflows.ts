@@ -1,5 +1,5 @@
 import { proxyActivities } from '@temporalio/workflow';
-import type * as activities from './activities';
+import type { ActivityResult } from './activities';
 
 export type DSL = {
   variables: Record<string, unknown>;
@@ -9,9 +9,10 @@ export type DSL = {
 type Sequence = {
   elements: Statement[];
 };
+type ActivityInput = Record<string, string>;
 type ActivityInvocation = {
   name: string;
-  arguments?: string[];
+  arguments?: ActivityInput;
   result?: string;
 };
 type Parallel = {
@@ -20,13 +21,14 @@ type Parallel = {
 
 type Statement = { activity: ActivityInvocation } | { sequence: Sequence } | { parallel: Parallel };
 
-const acts = proxyActivities<typeof activities>({
+// Activity names and input fields are selected by the DSL at runtime.
+const acts = proxyActivities<Record<string, (input: ActivityInput) => Promise<ActivityResult>>>({
   startToCloseTimeout: '1 minute',
-}) as Record<string, (...args: string[]) => Promise<string | undefined>>;
+});
 
-export async function DSLInterpreter(dsl: DSL): Promise<unknown> {
+export async function DSLInterpreter(dsl: DSL): Promise<void> {
   const bindings = dsl.variables as Record<string, string>;
-  return await execute(dsl.root, bindings);
+  await execute(dsl.root, bindings);
 }
 
 async function execute(statement: Statement, bindings: Record<string, string | undefined>): Promise<void> {
@@ -40,11 +42,12 @@ async function execute(statement: Statement, bindings: Record<string, string | u
     }
   } else {
     const activity = statement.activity;
-    let args = activity.arguments || [];
-    args = args.map((arg) => bindings[arg] ?? arg);
-    const activityResult = await acts[activity.name](...args);
+    const input = Object.fromEntries(
+      Object.entries(activity.arguments ?? {}).map(([key, value]) => [key, bindings[value] ?? value]),
+    );
+    const { value } = await acts[activity.name](input);
     if (activity.result) {
-      bindings[activity.result] = activityResult;
+      bindings[activity.result] = value;
     }
   }
 }

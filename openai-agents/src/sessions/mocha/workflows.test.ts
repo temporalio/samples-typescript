@@ -51,13 +51,13 @@ describe('openai-agents/sessions workflow scenarios', function () {
     const { worker, provider } = await makeWorker(taskQueue, [textResponse(firstReply), textResponse(secondReply)]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(multiTurnChat, {
-        args: [[firstPrompt, secondPrompt]],
+        args: [{ prompts: [firstPrompt, secondPrompt] }],
         workflowId: 'test-multi-turn-chat-' + Date.now(),
         taskQueue,
       }),
     );
 
-    assert.deepStrictEqual(result, [firstReply, secondReply]);
+    assert.deepStrictEqual(result, { replies: [firstReply, secondReply] });
     assert.strictEqual(provider.model.requests.length, 2, 'should have made one model call per prompt');
 
     const turn1Input = provider.model.requests[0]!.input;
@@ -132,7 +132,7 @@ describe('openai-agents/sessions workflow scenarios', function () {
       }),
     );
 
-    assert.deepStrictEqual(result, [firstReply, secondReply, thirdReply]);
+    assert.deepStrictEqual(result, { replies: [firstReply, secondReply, thirdReply] });
     assert.strictEqual(
       provider.model.requests.length,
       3,

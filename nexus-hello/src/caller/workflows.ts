@@ -1,10 +1,10 @@
 // @@@SNIPSTART typescript-nexus-hello-caller-workflow
 import * as wf from '@temporalio/workflow';
-import { helloService, LanguageCode } from '../api';
+import { helloService, EchoInput, EchoOutput, HelloInput, HelloOutput } from '../api';
 
 const HELLO_SERVICE_ENDPOINT = 'my-nexus-endpoint-name';
 
-export async function echoCallerWorkflow(message: string): Promise<string> {
+export async function echoCallerWorkflow({ message }: EchoInput): Promise<EchoOutput> {
   const nexusClient = wf.createNexusServiceClient({
     service: helloService,
     endpoint: HELLO_SERVICE_ENDPOINT,
@@ -12,10 +12,10 @@ export async function echoCallerWorkflow(message: string): Promise<string> {
 
   const result = await nexusClient.executeOperation('echo', { message }, { scheduleToCloseTimeout: '10s' });
 
-  return result.message;
+  return result;
 }
 
-export async function helloCallerWorkflow(name: string, language: LanguageCode): Promise<string> {
+export async function helloCallerWorkflow({ name, language }: HelloInput): Promise<HelloOutput> {
   const nexusClient = wf.createNexusServiceClient({
     service: helloService,
     endpoint: HELLO_SERVICE_ENDPOINT,
@@ -27,6 +27,6 @@ export async function helloCallerWorkflow(name: string, language: LanguageCode):
     { scheduleToCloseTimeout: '10s' },
   );
 
-  return helloResult.message;
+  return helloResult;
 }
 // @@@SNIPEND

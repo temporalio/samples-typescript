@@ -4,6 +4,8 @@ export const taskQueue = 'nest-test';
 
 export type ExchangeRates = { [key: string]: number };
 
-export const getExchangeRatesQuery = defineQuery<ExchangeRates | null>('getExchangeRates');
+type GetExchangeRatesResult = { rates: ExchangeRates | null };
+
+export const getExchangeRatesQuery = defineQuery<GetExchangeRatesResult>('getExchangeRates');
 
 export type exchangeRatesWorkflowType = () => Promise<void>;

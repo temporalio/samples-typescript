@@ -16,7 +16,7 @@ async function run() {
   const handle = await client.workflow.start(reasoningContent, {
     taskQueue: 'openai-agents-reasoning-content',
     workflowId: 'openai-agents-' + nanoid(),
-    args: [prompt, model],
+    args: [{ prompt, model }],
   });
 
   console.log(`Started workflow ${handle.workflowId}`);

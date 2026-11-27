@@ -1,6 +1,13 @@
 import { CancellationScope, sleep, log, proxyActivities, isCancellation } from '@temporalio/workflow';
 
-const { httpPostJSON, httpGetJSON, cleanup } = proxyActivities({
+// Placeholder Activity contracts for the cancellation examples below.
+type CancellationActivities = {
+  httpPostJSON(input: PostJsonInput): Promise<void>;
+  httpGetJSON(input: UrlInput): Promise<HttpGetJsonResult>;
+  cleanup(input: UrlInput): Promise<void>;
+};
+
+const { httpPostJSON, httpGetJSON, cleanup } = proxyActivities<CancellationActivities>({
   startToCloseTimeout: '10m',
 });
 
@@ -50,19 +57,24 @@ export async function cancelTimerAltImpl(): Promise<void> {
  * Demonstrates how to clean up after cancellation.
  */
 // @@@SNIPSTART typescript-handle-external-workflow-cancellation-while-activity-running
-export async function handleExternalWorkflowCancellationWhileActivityRunning(
-  url: string,
-  data: unknown,
-): Promise<void> {
+type PostJsonInput = {
+  url: string;
+  data: unknown;
+};
+
+export async function handleExternalWorkflowCancellationWhileActivityRunning({
+  url,
+  data,
+}: PostJsonInput): Promise<void> {
   try {
-    await httpPostJSON(url, data);
+    await httpPostJSON({ url, data });
   } catch (err) {
     if (isCancellation(err)) {
       log.info('Workflow cancelled');
       // Cleanup logic must be in a nonCancellable scope
       // If we'd run cleanup outside of a nonCancellable scope it would've been cancelled
       // before being started because the Workflow's root scope is cancelled.
-      await CancellationScope.nonCancellable(() => cleanup(url));
+      await CancellationScope.nonCancellable(() => cleanup({ url }));
     }
     throw err; // <-- Fail the Workflow
   }
@@ -70,18 +82,33 @@ export async function handleExternalWorkflowCancellationWhileActivityRunning(
 // @@@SNIPEND
 
 // @@@SNIPSTART typescript-non-cancellable-shields-children
-export async function nonCancellable(url: string): Promise<any> {
+type UrlInput = { url: string };
+type HttpGetJsonResult = { data: unknown };
+
+export async function nonCancellable({ url }: UrlInput): Promise<HttpGetJsonResult> {
   // Prevent Activity from being cancelled and await completion.
   // Note that the Workflow is completely oblivious and impervious to cancellation in this example.
-  return CancellationScope.nonCancellable(() => httpGetJSON(url));
+  return CancellationScope.nonCancellable(() => httpGetJSON({ url }));
 }
 // @@@SNIPEND
 
 // @@@SNIPSTART typescript-multiple-activities-single-timeout-workflow
-export function multipleActivitiesSingleTimeout(urls: string[], timeoutMs: number): Promise<any> {
+type MultipleActivitiesInput = {
+  urls: string[];
+  timeoutMs: number;
+};
+type MultipleActivitiesResult = { responses: HttpGetJsonResult[] };
+
+export async function multipleActivitiesSingleTimeout({
+  urls,
+  timeoutMs,
+}: MultipleActivitiesInput): Promise<MultipleActivitiesResult> {
   // If timeout triggers before all activities complete
   // the Workflow will fail with a CancelledFailure.
-  return CancellationScope.withTimeout(timeoutMs, () => Promise.all(urls.map((url) => httpGetJSON(url))));
+  const responses = await CancellationScope.withTimeout(timeoutMs, () =>
+    Promise.all(urls.map((url) => httpGetJSON({ url }))),
+  );
+  return { responses };
 }
 // @@@SNIPEND
 
@@ -89,20 +116,20 @@ export function multipleActivitiesSingleTimeout(urls: string[], timeoutMs: numbe
  * Demonstrates how to make Workflow aware of cancellation while waiting on nonCancellable scope.
  */
 // @@@SNIPSTART typescript-cancel-requested-with-non-cancellable
-export async function resumeAfterCancellation(url: string): Promise<any> {
-  let result: any = undefined;
+type ResumeAfterCancellationInput = { url: string };
+
+export async function resumeAfterCancellation({ url }: ResumeAfterCancellationInput): Promise<HttpGetJsonResult> {
   const scope = new CancellationScope({ cancellable: false });
-  const promise = scope.run(() => httpGetJSON(url));
+  const promise = scope.run(() => httpGetJSON({ url }));
   try {
-    result = await Promise.race([scope.cancelRequested, promise]);
+    return await Promise.race([scope.cancelRequested, promise]);
   } catch (err) {
     if (!isCancellation(err)) {
       throw err;
     }
     // Prevent Workflow from completing so Activity can complete
-    result = await promise;
+    return await promise;
   }
-  return result;
 }
 // @@@SNIPEND
 /**
@@ -121,10 +148,10 @@ export async function cancellationScopesWithCallbacks(): Promise<void> {
 }
 // @@@SNIPEND
 // @@@SNIPSTART typescript-shared-promise-scopes
-export async function sharedScopes(): Promise<any> {
+export async function sharedScopes(): Promise<HttpGetJsonResult> {
   // Start activities in the root scope
-  const p1 = httpGetJSON('http://url1.ninja');
-  const p2 = httpGetJSON('http://url2.ninja');
+  const p1 = httpGetJSON({ url: 'http://url1.ninja' });
+  const p2 = httpGetJSON({ url: 'http://url2.ninja' });
 
   const scopePromise = CancellationScope.cancellable(async () => {
     const first = await Promise.race([p1, p2]);
@@ -139,11 +166,11 @@ export async function sharedScopes(): Promise<any> {
 }
 // @@@SNIPEND
 // @@@SNIPSTART typescript-shield-awaited-in-root-scope
-export async function shieldAwaitedInRootScope(): Promise<any> {
-  let p: Promise<any> | undefined = undefined;
+export async function shieldAwaitedInRootScope(): Promise<HttpGetJsonResult> {
+  let p!: Promise<HttpGetJsonResult>;
 
   await CancellationScope.nonCancellable(async () => {
-    p = httpGetJSON('http://example.com'); // <-- Start activity in nonCancellable scope without awaiting completion
+    p = httpGetJSON({ url: 'http://example.com' }); // <-- Start activity in nonCancellable scope without awaiting completion
   });
   // Activity is shielded from cancellation even though it is awaited in the cancellable root scope
   return p;

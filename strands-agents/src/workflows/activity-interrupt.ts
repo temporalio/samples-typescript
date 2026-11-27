@@ -3,17 +3,25 @@ import type { InterruptResponseContent, InterruptResponseContentData } from '@st
 import { TemporalAgent, workflow as strandsWorkflow } from '@temporalio/strands-agents';
 import { condition, defineQuery, defineSignal, setHandler } from '@temporalio/workflow';
 
-export const activityInterruptApproveSignal = defineSignal<[string]>('activityInterruptApprove');
-export const activityInterruptPendingApprovalQuery = defineQuery<string | null>('activityInterruptPendingApproval');
+type ActivityInterruptApprovalInput = { response: string };
+type ActivityInterruptInput = { prompt: string };
+type ActivityInterruptResult = { text: string };
+type PendingApprovalResult = { reason: string | null };
 
-export async function activityInterrupt(prompt: string): Promise<string> {
+export const activityInterruptApproveSignal =
+  defineSignal<[ActivityInterruptApprovalInput]>('activityInterruptApprove');
+export const activityInterruptPendingApprovalQuery = defineQuery<PendingApprovalResult>(
+  'activityInterruptPendingApproval',
+);
+
+export async function activityInterrupt({ prompt }: ActivityInterruptInput): Promise<ActivityInterruptResult> {
   let approval: string | null = null;
   let pendingReason: string | null = null;
 
-  setHandler(activityInterruptApproveSignal, (response) => {
+  setHandler(activityInterruptApproveSignal, ({ response }) => {
     approval = response;
   });
-  setHandler(activityInterruptPendingApprovalQuery, () => pendingReason);
+  setHandler(activityInterruptPendingApprovalQuery, () => ({ reason: pendingReason }));
 
   const agent = new TemporalAgent({
     activityOptions: { startToCloseTimeout: '60 seconds', retry: { maximumAttempts: 3 } },
@@ -44,6 +52,6 @@ export async function activityInterrupt(prompt: string): Promise<string> {
     }));
     result = await agent.invoke(responses as InterruptResponseContent[]);
   }
-  return result.toString();
+  return { text: result.toString() };
 }
 // @@@SNIPEND

@@ -7,8 +7,8 @@ async function run() {
   });
   const client = new Client({ connection });
 
-  const fired = await client.workflow.execute(hooksWorkflow, {
-    args: ["Echo 'hello' once."],
+  const { fired } = await client.workflow.execute(hooksWorkflow, {
+    args: [{ prompt: "Echo 'hello' once." }],
     taskQueue: 'strands-agents',
     workflowId: 'strands-hooks',
   });

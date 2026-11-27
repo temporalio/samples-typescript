@@ -1,20 +1,27 @@
 import * as wf from '@temporalio/workflow';
-import { nexusGreetingService, NEXUS_ENDPOINT, Language } from '../api';
+import { nexusGreetingService, NEXUS_ENDPOINT } from '../api';
 
 const nexusClient = wf.createNexusServiceClient({
   service: nexusGreetingService,
   endpoint: NEXUS_ENDPOINT,
 });
 
-export async function callerWorkflow(userId: string): Promise<string[]> {
+type CallerWorkflowInput = { userId: string };
+type CallerWorkflowResult = { log: string[] };
+
+export async function callerWorkflow({ userId }: CallerWorkflowInput): Promise<CallerWorkflowResult> {
   const log: string[] = [];
 
   // Query the list of known languages
-  const languages = await nexusClient.executeOperation('getLanguages', { userId }, { scheduleToCloseTimeout: '10s' });
+  const { languages } = await nexusClient.executeOperation(
+    'getLanguages',
+    { userId },
+    { scheduleToCloseTimeout: '10s' },
+  );
   log.push(`languages: ${languages.join(', ')}`);
 
   // Query the current language
-  const currentLanguage = await nexusClient.executeOperation(
+  const { language: currentLanguage } = await nexusClient.executeOperation(
     'getLanguage',
     { userId },
     { scheduleToCloseTimeout: '10s' },
@@ -22,7 +29,7 @@ export async function callerWorkflow(userId: string): Promise<string[]> {
   log.push(`current language: ${currentLanguage}`);
 
   // Set language to French via update
-  const previousLanguage: Language = await nexusClient.executeOperation(
+  const { previousLanguage } = await nexusClient.executeOperation(
     'setLanguage',
     { userId, language: 'french' },
     { scheduleToCloseTimeout: '10s' },
@@ -33,5 +40,5 @@ export async function callerWorkflow(userId: string): Promise<string[]> {
   await nexusClient.executeOperation('approve', { userId }, { scheduleToCloseTimeout: '10s' });
   log.push('approved');
 
-  return log;
+  return { log };
 }

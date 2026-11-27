@@ -1,3 +1,5 @@
-export async function ping(): Promise<string> {
-  return 'pong';
+type PingResult = { reply: string };
+
+export async function ping(): Promise<PingResult> {
+  return { reply: 'pong' };
 }

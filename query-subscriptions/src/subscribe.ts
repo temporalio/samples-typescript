@@ -93,7 +93,7 @@ export async function run(): Promise<void> {
   const { workflowId } = await client.workflow.start(counter, {
     taskQueue,
     workflowId: `counter-${Date.now()}`,
-    args: [0 /* initialValue */],
+    args: [{ initialValue: 0 }],
   });
   for await (const state of subsClient.subscribe<State>(workflowId)) {
     console.log(state);

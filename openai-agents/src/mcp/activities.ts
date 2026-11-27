@@ -1,9 +1,11 @@
 import { Client } from '@modelcontextprotocol/sdk/client/index.js';
 import { StreamableHTTPClientTransport } from '@modelcontextprotocol/sdk/client/streamableHttp.js';
 
+type FetchSummarizePromptResult = { instructions: string };
+
 export function makeActivities(promptServerUrl: string) {
   return {
-    async fetchSummarizePrompt(): Promise<string> {
+    async fetchSummarizePrompt(): Promise<FetchSummarizePromptResult> {
       const client = new Client({ name: 'prompt-activity-client', version: '1.0.0' });
       const transport = new StreamableHTTPClientTransport(new URL(promptServerUrl));
       await client.connect(transport);
@@ -13,7 +15,7 @@ export function makeActivities(promptServerUrl: string) {
         if (!textContent || textContent.content.type !== 'text') {
           throw new Error('summarize prompt returned no text content');
         }
-        return textContent.content.text;
+        return { instructions: textContent.content.text };
       } finally {
         await client.close();
       }

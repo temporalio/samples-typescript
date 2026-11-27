@@ -20,7 +20,7 @@ async function run() {
   await client.workflow.execute(oneAtATimeWorkflow, {
     taskQueue: 'mutex',
     workflowId,
-    args: [resourceId, 5000, 7500],
+    args: [{ resourceId, sleepForMs: 5000, lockTimeoutMs: 7500 }],
   });
   console.log('Test workflow finished after', Date.now() - start, 'ms');
 }

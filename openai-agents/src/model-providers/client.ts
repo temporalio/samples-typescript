@@ -26,10 +26,10 @@ async function run() {
   const taskQueue = 'openai-agents-model-providers';
   const workflowId = 'openai-agents-' + nanoid();
 
-  const handle = await client.workflow.start(customProvider, { taskQueue, workflowId, args: [prompt, model] });
+  const handle = await client.workflow.start(customProvider, { taskQueue, workflowId, args: [{ prompt, model }] });
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  console.log((await handle.result()).text);
 }
 
 run().catch((err) => {

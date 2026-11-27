@@ -97,13 +97,15 @@ describe('langsmith/message-handlers', function () {
         workflowId: 'test-langsmith-message-handlers-' + Date.now(),
         taskQueue,
       });
-      await handle.signal(handleMessage, 'when is my order arriving?');
-      await handle.executeUpdate(composeReply, { args: ['please send my tracking number'] });
+      await handle.signal(handleMessage, { text: 'when is my order arriving?' });
+      await handle.executeUpdate(composeReply, { args: [{ text: 'please send my tracking number' }] });
       await handle.signal(complete);
       return handle.result();
     });
 
-    assert.deepStrictEqual(log, ['intent:when is my order arriving?', 'reply:please send my tracking number']);
+    assert.deepStrictEqual(log, {
+      log: ['intent:when is my order arriving?', 'reply:please send my tracking number'],
+    });
 
     assert.strictEqual(collector.parentNameOf('classify_intent'), 'HandleSignal:handle_message');
     assert.strictEqual(collector.parentNameOf('draft_reply'), 'HandleUpdate:compose_reply');

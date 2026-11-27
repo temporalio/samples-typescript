@@ -35,8 +35,8 @@ describe('google-adk/human-in-the-loop workflow scenarios', function () {
         workflowId: taskQueue + '-' + Date.now(),
         taskQueue,
       });
-      await handle.signal(approveSignal, 'approved-via-signal');
-      assert.strictEqual(await handle.result(), 'approved-via-signal');
+      await handle.signal(approveSignal, { decision: 'approved-via-signal' });
+      assert.deepStrictEqual(await handle.result(), { decision: 'approved-via-signal' });
     });
   });
 
@@ -48,9 +48,9 @@ describe('google-adk/human-in-the-loop workflow scenarios', function () {
         workflowId: taskQueue + '-' + Date.now(),
         taskQueue,
       });
-      const updateResult = await handle.executeUpdate(approveUpdate, { args: ['approved-via-update'] });
-      assert.strictEqual(updateResult, 'approved-via-update');
-      assert.strictEqual(await handle.result(), 'approved-via-update');
+      const updateResult = await handle.executeUpdate(approveUpdate, { args: [{ decision: 'approved-via-update' }] });
+      assert.deepStrictEqual(updateResult, { decision: 'approved-via-update' });
+      assert.deepStrictEqual(await handle.result(), { decision: 'approved-via-update' });
     });
   });
 

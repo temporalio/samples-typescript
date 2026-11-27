@@ -10,22 +10,27 @@ const draftReply = traceable(async (text: string): Promise<string> => `reply:${t
   name: 'draft_reply',
 });
 
-export const handleMessage = defineSignal<[string]>('handle_message');
-export const composeReply = defineUpdate<string, [string]>('compose_reply');
+type HandleMessageInput = { text: string };
+type ComposeReplyInput = { text: string };
+type ComposeReplyResult = { reply: string };
+type ConversationWorkflowResult = { log: string[] };
+
+export const handleMessage = defineSignal<[HandleMessageInput]>('handle_message');
+export const composeReply = defineUpdate<ComposeReplyResult, [ComposeReplyInput]>('compose_reply');
 export const complete = defineSignal('complete');
 
-export async function ConversationWorkflow(): Promise<string[]> {
+export async function ConversationWorkflow(): Promise<ConversationWorkflowResult> {
   const log: string[] = [];
   let done = false;
 
-  setHandler(handleMessage, async (text: string) => {
+  setHandler(handleMessage, async ({ text }) => {
     log.push(await classifyMessage(text));
   });
 
-  setHandler(composeReply, async (text: string) => {
+  setHandler(composeReply, async ({ text }) => {
     const reply = await draftReply(text);
     log.push(reply);
-    return reply;
+    return { reply };
   });
 
   setHandler(complete, () => {
@@ -33,6 +38,6 @@ export async function ConversationWorkflow(): Promise<string[]> {
   });
 
   await condition(() => done && allHandlersFinished());
-  return log;
+  return { log };
 }
 // @@@SNIPEND

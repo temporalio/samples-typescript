@@ -50,12 +50,12 @@ describeWorkflow(
 
       const result = await worker.runUntil(
         client.workflow.execute(haikuAgent, {
-          args: ['Temporal'],
+          args: [{ prompt: 'Temporal' }],
           workflowId: 'test',
           taskQueue,
         }),
       );
-      assert.ok(result.length > 0);
+      assert.ok(result.text.length > 0);
     });
   },
 );

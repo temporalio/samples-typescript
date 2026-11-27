@@ -11,13 +11,13 @@ async function run(): Promise<void> {
     taskQueue: 'activities-examples',
     workflowId: 'activities-examples',
   });
-  console.log(result); // 'The answer is 42'
+  console.log(result.message); // 'The answer is 42'
 
   result = await client.workflow.execute(asyncActivityWorkflow, {
     taskQueue: 'activities-examples',
     workflowId: 'activities-examples',
   });
-  console.log(result);
+  console.log(result.message);
 }
 
 run().catch((err) => {

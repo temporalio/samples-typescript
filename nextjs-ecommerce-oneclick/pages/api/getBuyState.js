@@ -10,8 +10,7 @@ export default async function queryState(req, res) {
   console.log({ id });
   const workflow = await getTemporalClient().workflow.getHandle(id);
   try {
-    const purchaseState = await workflow.query('purchaseState');
-    res.status(200).json({ purchaseState });
+    res.status(200).json(await workflow.query('purchaseState'));
   } catch (e) {
     console.error(e);
     res.status(500).send({ message: e.details, errorCode: e.code });

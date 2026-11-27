@@ -49,12 +49,12 @@ describe('openai-agents/handoffs workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(agentHandoffs, {
-        args: ['I have a billing question about my invoice.'],
+        args: [{ prompt: 'I have a billing question about my invoice.' }],
         workflowId: 'test-agent-handoffs-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Your invoice has been processed.');
+    assert.deepStrictEqual(result, { text: 'Your invoice has been processed.' });
   });
 
   it('agentHandoffs: triage routes to support specialist via Agent[] handoffs', async () => {
@@ -65,12 +65,12 @@ describe('openai-agents/handoffs workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(agentHandoffs, {
-        args: ['I need help with a support issue.'],
+        args: [{ prompt: 'I need help with a support issue.' }],
         workflowId: 'test-agent-handoffs-support-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Your support ticket has been filed.');
+    assert.deepStrictEqual(result, { text: 'Your support ticket has been filed.' });
   });
 
   it('handoffFunction: triage routes to billing specialist via handoff() function', async () => {
@@ -81,12 +81,12 @@ describe('openai-agents/handoffs workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(handoffFunction, {
-        args: ['I have a billing question.'],
+        args: [{ prompt: 'I have a billing question.' }],
         workflowId: 'test-handoff-function-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Billing handled via handoff function.');
+    assert.deepStrictEqual(result, { text: 'Billing handled via handoff function.' });
   });
 
   it('handoffWithFilter: filter drops newItems so specialist sees no handoff function_call_result', async () => {
@@ -97,12 +97,12 @@ describe('openai-agents/handoffs workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(handoffWithFilter, {
-        args: ['I have a billing question.'],
+        args: [{ prompt: 'I have a billing question.' }],
         workflowId: 'test-handoff-with-filter-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Billing answer after filtered handoff.');
+    assert.deepStrictEqual(result, { text: 'Billing answer after filtered handoff.' });
 
     assert.strictEqual(provider.model.requests.length, 2, 'expected exactly two model requests');
 
