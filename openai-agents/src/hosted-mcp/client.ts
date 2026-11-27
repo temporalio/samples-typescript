@@ -28,23 +28,23 @@ async function run() {
       handle = await client.workflow.start(simple, {
         taskQueue,
         workflowId,
-        args: ['What does the openai/codex project do? Use the hosted MCP tools to find out.'],
+        args: [{ prompt: 'What does the openai/codex project do? Use the hosted MCP tools to find out.' }],
       });
       break;
     case 'approval':
       handle = await client.workflow.start(approval, {
         taskQueue,
         workflowId,
-        args: ['What does the openai/codex project do? Use the hosted MCP tools to find out.'],
+        args: [{ prompt: 'What does the openai/codex project do? Use the hosted MCP tools to find out.' }],
       });
-      await handle.signal(approvalDecision, true);
+      await handle.signal(approvalDecision, { approve: true });
       break;
     default:
       throw new Error(`Unknown scenario: ${scenario}`);
   }
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  console.log((await handle.result()).text);
 }
 
 run().catch((err) => {

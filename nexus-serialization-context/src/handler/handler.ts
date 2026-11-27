@@ -16,7 +16,7 @@ export const asyncHandler = nexus.serviceHandler(asyncEchoService, {
     return startWorkflow(ctx, EchoWorkflow, {
       // Reuse the request ID for retries. Independent operations get separate executions.
       workflowId: `nexus-echo-${ctx.requestId}`,
-      args: [message],
+      args: [{ message }],
     });
   }),
 });

@@ -36,47 +36,64 @@ async function run() {
   let handle;
   switch (scenario) {
     case 'hello-world':
-      handle = await client.workflow.start(helloWorld, { taskQueue, workflowId, args: ['Say hello in one sentence.'] });
+      handle = await client.workflow.start(helloWorld, {
+        taskQueue,
+        workflowId,
+        args: [{ prompt: 'Say hello in one sentence.' }],
+      });
       break;
     case 'tools':
-      handle = await client.workflow.start(tools, { taskQueue, workflowId, args: ['What is the weather in Tokyo?'] });
+      handle = await client.workflow.start(tools, {
+        taskQueue,
+        workflowId,
+        args: [{ prompt: 'What is the weather in Tokyo?' }],
+      });
       break;
     case 'inline-tool':
-      handle = await client.workflow.start(inlineTool, { taskQueue, workflowId, args: ['What is 42 plus 58?'] });
+      handle = await client.workflow.start(inlineTool, {
+        taskQueue,
+        workflowId,
+        args: [{ prompt: 'What is 42 plus 58?' }],
+      });
       break;
     case 'local-activity-tool':
       handle = await client.workflow.start(localActivityTool, {
         taskQueue,
         workflowId,
-        args: ['Get headlines about AI.'],
+        args: [{ prompt: 'Get headlines about AI.' }],
       });
       break;
     case 'agent-context':
-      handle = await client.workflow.start(agentContext, { taskQueue, workflowId, args: ['Who am I?'] });
+      handle = await client.workflow.start(agentContext, { taskQueue, workflowId, args: [{ prompt: 'Who am I?' }] });
       break;
     case 'structured-output':
       handle = await client.workflow.start(structuredOutput, {
         taskQueue,
         workflowId,
-        args: ['Temporal is a durable execution platform for building reliable distributed systems.'],
+        args: [{ prompt: 'Temporal is a durable execution platform for building reliable distributed systems.' }],
       });
       break;
     case 'model-override':
       handle = await client.workflow.start(modelOverride, {
         taskQueue,
         workflowId,
-        args: ['Briefly explain what Temporal is.'],
+        args: [{ prompt: 'Briefly explain what Temporal is.' }],
       });
       break;
     case 'dynamic-instructions':
-      handle = await client.workflow.start(dynamicInstructions, { taskQueue, workflowId, args: ['Hello!'] });
+      handle = await client.workflow.start(dynamicInstructions, {
+        taskQueue,
+        workflowId,
+        args: [{ prompt: 'Hello!' }],
+      });
       break;
     default:
       throw new Error(`Unknown scenario: ${scenario}`);
   }
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  const result = await handle.result();
+  console.log('text' in result ? result.text : JSON.stringify(result));
 }
 
 run().catch((err) => {

@@ -9,5 +9,5 @@ For a credential-free local run, start it with `MODEL_PROVIDER=fake npx ts-node 
 Start the Workflow with:
 
 ```sh
-temporal workflow start --type summarizeIncident --task-queue google-adk-structured-output --workflow-id google-adk-structured-output-1 --input '"The primary database is timing out."'
+temporal workflow start --type summarizeIncident --task-queue google-adk-structured-output --workflow-id google-adk-structured-output-1 --input '{"description":"The primary database is timing out."}'
 ```

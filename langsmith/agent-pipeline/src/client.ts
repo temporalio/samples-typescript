@@ -16,7 +16,7 @@ async function run() {
       return client.workflow.execute(ResearchWorkflow, {
         taskQueue: 'langsmith-agent-pipeline',
         workflowId: 'langsmith-agent-pipeline-' + nanoid(),
-        args: ['durable execution'],
+        args: [{ topic: 'durable execution' }],
       });
     },
     { name: 'research_pipeline' },

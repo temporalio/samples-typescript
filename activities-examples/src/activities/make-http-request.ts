@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-export async function makeHTTPRequest(): Promise<string> {
+type MakeHttpRequestResult = { answer: string };
+
+export async function makeHTTPRequest(): Promise<MakeHttpRequestResult> {
   const res = await axios.get('http://httpbin.org/get?answer=42');
 
-  return res.data.args.answer;
+  return { answer: res.data.args.answer };
 }

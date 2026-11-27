@@ -13,10 +13,12 @@ const { sendNotificationEmail } = proxyActivities<ReturnType<typeof createActivi
 });
 
 // @@@SNIPSTART typescript-timer-reminder-workflow
+type ProcessOrderResult = { message: string };
+
 export async function processOrderWorkflow({
   orderProcessingMS,
   sendDelayedEmailTimeoutMS,
-}: ProcessOrderOptions): Promise<string> {
+}: ProcessOrderOptions): Promise<ProcessOrderResult> {
   let processing = true;
   // Dynamically define the timeout based on given input
   const { processOrder } = proxyActivities<ReturnType<typeof createActivities>>({
@@ -35,6 +37,6 @@ export async function processOrderWorkflow({
     await processOrderPromise;
   }
 
-  return 'Order completed!';
+  return { message: 'Order completed!' };
 }
 // @@@SNIPEND

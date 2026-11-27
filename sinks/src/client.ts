@@ -12,7 +12,7 @@ async function run() {
     taskQueue: 'sinks',
     workflowId: 'log-sample-0',
   });
-  console.log(result); // Hello, Temporal!
+  console.log(result.greeting); // Hello, Temporal!
 }
 
 run().catch((err) => {

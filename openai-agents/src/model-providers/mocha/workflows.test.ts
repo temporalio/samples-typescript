@@ -44,12 +44,12 @@ describe('openai-agents/model-providers custom-provider injection', function () 
     const { worker, provider } = await makeWorker(taskQueue, [textResponse('Hello from the custom provider.')]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(customProvider, {
-        args: ['Say hello.'],
+        args: [{ prompt: 'Say hello.' }],
         workflowId: 'test-custom-provider-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Hello from the custom provider.');
+    assert.deepStrictEqual(result, { text: 'Hello from the custom provider.' });
     assert.strictEqual(provider.model.requests.length, 1, 'the injected provider should handle the model call');
   });
 
@@ -58,7 +58,7 @@ describe('openai-agents/model-providers custom-provider injection', function () 
     const { worker, provider } = await makeWorker(taskQueue, [textResponse('Done.')]);
     await worker.runUntil(
       testEnv.client.workflow.execute(customProvider, {
-        args: ['Say hello.', 'my-custom-model'],
+        args: [{ prompt: 'Say hello.', model: 'my-custom-model' }],
         workflowId: 'test-custom-provider-model-' + Date.now(),
         taskQueue,
       }),

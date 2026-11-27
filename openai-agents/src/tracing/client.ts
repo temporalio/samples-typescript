@@ -21,11 +21,11 @@ async function run() {
   const handle = await client.workflow.start(tracedAgent, {
     taskQueue: 'openai-agents-tracing',
     workflowId: 'openai-agents-' + nanoid(),
-    args: [prompt],
+    args: [{ prompt }],
   });
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  console.log((await handle.result()).text);
 }
 
 run().catch((err) => {

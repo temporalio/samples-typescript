@@ -48,12 +48,12 @@ describe('openai-agents/tracing custom TracingProcessor', function () {
 
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(tracedAgent, {
-        args: ['What is 42 plus 58?'],
+        args: [{ prompt: 'What is 42 plus 58?' }],
         workflowId: 'test-tracing-custom-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, '42 plus 58 is 100.');
+    assert.deepStrictEqual(result, { text: '42 plus 58 is 100.' });
 
     assert.ok(recorder.traceIds.length >= 1, 'at least one trace should be recorded');
     assert.ok(recorder.spanTypes.includes('agent'), 'an agent span should be recorded');

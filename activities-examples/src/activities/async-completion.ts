@@ -2,7 +2,9 @@
 import { CompleteAsyncError, activityInfo } from '@temporalio/activity';
 import { Client } from '@temporalio/client';
 
-export async function doSomethingAsync(): Promise<string> {
+type AsyncActivityResult = { message: string };
+
+export async function doSomethingAsync(): Promise<AsyncActivityResult> {
   const taskToken = activityInfo().taskToken;
   setTimeout(() => doSomeWork(taskToken), 1000);
   throw new CompleteAsyncError();
@@ -12,6 +14,7 @@ export async function doSomethingAsync(): Promise<string> {
 async function doSomeWork(taskToken: Uint8Array): Promise<void> {
   const client = new Client();
   // does some work...
-  await client.activity.complete(taskToken, "Job's done!");
+  const result: AsyncActivityResult = { message: "Job's done!" };
+  await client.activity.complete(taskToken, result);
 }
 // @@@SNIPEND

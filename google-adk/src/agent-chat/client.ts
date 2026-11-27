@@ -18,7 +18,8 @@ async function run() {
       console.log((await handle.query(getChatState)).messages);
       continue;
     }
-    console.log(`assistant> ${await handle.executeUpdate(sendMessage, { args: [prompt] })}`);
+    const { answer } = await handle.executeUpdate(sendMessage, { args: [{ prompt }] });
+    console.log(`assistant> ${answer}`);
   }
   input.close();
   await handle.terminate();

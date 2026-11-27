@@ -44,11 +44,11 @@ describe('toolsWorkflow', () => {
 
     const result = await worker.runUntil(
       client.workflow.execute(toolsWorkflow, {
-        args: ['count r in strawberry and check the weather'],
+        args: [{ prompt: 'count r in strawberry and check the weather' }],
         workflowId: 'test-tools',
         taskQueue,
       }),
     );
-    assert.equal(result, 'there are 3 Rs and it is sunny');
+    assert.deepEqual(result, { text: 'there are 3 Rs and it is sunny' });
   });
 });

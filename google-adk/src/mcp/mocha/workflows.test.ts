@@ -78,12 +78,12 @@ describe('google-adk/mcp workflow scenarios', function () {
     });
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(filesystemAgent, {
-        args: ['Summarize hello.txt.'],
+        args: [{ prompt: 'Summarize hello.txt.' }],
         workflowId,
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'contents of hello.txt');
+    assert.deepStrictEqual(result, { text: 'contents of hello.txt' });
 
     const { events } = await testEnv.client.workflow.getHandle(workflowId).fetchHistory();
     const scheduled = (events ?? []).map((e) => e.activityTaskScheduledEventAttributes?.activityType?.name);

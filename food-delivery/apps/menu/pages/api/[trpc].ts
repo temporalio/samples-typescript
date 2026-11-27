@@ -14,7 +14,7 @@ export const appRouter = t.router({
     .mutation(async ({ input, ctx }) => {
       await ctx.temporal.workflow.start(order, {
         workflowId: input.orderId,
-        args: [input.productId],
+        args: [{ productId: input.productId }],
         taskQueue,
       })
 

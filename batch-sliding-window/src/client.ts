@@ -17,7 +17,7 @@ async function run() {
     args: [{ pageSize: 5, slidingWindowSize: 10, partitions: 3 }],
   });
 
-  console.log(`Workflow completed. Total records processed: ${result}`);
+  console.log(`Workflow completed. Total records processed: ${result.processedRecords}`);
 }
 
 run().catch((err) => {

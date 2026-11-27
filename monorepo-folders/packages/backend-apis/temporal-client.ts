@@ -15,13 +15,13 @@ export async function runWorkflow(): Promise<string> {
   const result = await client.workflow.execute(WorkflowA, {
     taskQueue: 'monorepo',
     workflowId: 'workflow-a-' + Date.now(), // TODO: remember to replace this with a meaningful business ID
-    args: ['Temporal'], // type inference works! args: [name: string]
+    args: [{ name: 'Temporal' }],
   });
   // Starts the `WorkflowB` Workflow, don't wait for it to complete
   await client.workflow.start(WorkflowB, {
     taskQueue: 'monorepo',
     workflowId: 'workflow-b-' + Date.now(), // TODO: remember to replace this with a meaningful business ID
   });
-  console.log(result); // // [api-server] A: Hello, Temporal!, B: Hello, Temporal!
-  return result;
+  console.log(result.message);
+  return result.message;
 }

@@ -36,7 +36,9 @@ export function setReasoningClientFactory(factory: () => ReasoningClient): void 
   clientFactory = factory;
 }
 
-export async function getReasoningResponse(prompt: string, model: string): Promise<ReasoningResponse> {
+export type ReasoningInput = { prompt: string; model: string };
+
+export async function getReasoningResponse({ prompt, model }: ReasoningInput): Promise<ReasoningResponse> {
   const client = clientFactory();
   const response = await client.responses.create({
     model,

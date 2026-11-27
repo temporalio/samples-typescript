@@ -25,12 +25,16 @@ describe('google-adk/agent-chat', function () {
     });
     await worker.runUntil(async () => {
       const handle = await testEnv.client.workflow.start(agentChat, {
-        args: [[], 0, 1, 2],
+        args: [{ turnsPerRun: 2 }],
         workflowId: taskQueue,
         taskQueue,
       });
-      assert.strictEqual(await handle.executeUpdate(sendMessage, { args: ['My name is Ada.'] }), 'Hello, Ada.');
-      assert.strictEqual(await handle.executeUpdate(sendMessage, { args: ['What is my name?'] }), 'Your name is Ada.');
+      assert.deepStrictEqual(await handle.executeUpdate(sendMessage, { args: [{ prompt: 'My name is Ada.' }] }), {
+        answer: 'Hello, Ada.',
+      });
+      assert.deepStrictEqual(await handle.executeUpdate(sendMessage, { args: [{ prompt: 'What is my name?' }] }), {
+        answer: 'Your name is Ada.',
+      });
       await testEnv.sleep(100);
       const state = await handle.query(getChatState);
       assert.deepStrictEqual(state.messages, [
@@ -70,13 +74,16 @@ describe('google-adk/agent-chat', function () {
     });
     await worker.runUntil(async () => {
       const handle = await testEnv.client.workflow.start(agentChat, {
-        args: [[], 0, 1, 3],
+        args: [{ turnsPerRun: 3 }],
         workflowId: taskQueue,
         taskQueue,
       });
-      const first = handle.executeUpdate(sendMessage, { args: ['First prompt.'] });
-      const second = handle.executeUpdate(sendMessage, { args: ['Second prompt.'] });
-      assert.deepStrictEqual((await Promise.all([first, second])).sort(), ['First answer.', 'Second answer.']);
+      const first = handle.executeUpdate(sendMessage, { args: [{ prompt: 'First prompt.' }] });
+      const second = handle.executeUpdate(sendMessage, { args: [{ prompt: 'Second prompt.' }] });
+      assert.deepStrictEqual((await Promise.all([first, second])).map(({ answer }) => answer).sort(), [
+        'First answer.',
+        'Second answer.',
+      ]);
       assert.strictEqual(requests.length, 2);
       const firstPrompt = JSON.stringify(requests[0]).includes('First prompt.') ? 'First prompt.' : 'Second prompt.';
       const secondPrompt = firstPrompt === 'First prompt.' ? 'Second prompt.' : 'First prompt.';

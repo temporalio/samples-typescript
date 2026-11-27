@@ -1,5 +1,9 @@
 // Add Workflow Definitions here.
-export async function YOUR_WORKFLOW(name: string): Promise<string> {
+type YourWorkflowInput = { name: string };
+
+type YourWorkflowResult = { greeting: string };
+
+export async function YOUR_WORKFLOW({ name }: YourWorkflowInput): Promise<YourWorkflowResult> {
   // Your workflow code here
-  return `Hello, ${name}!`;
+  return { greeting: `Hello, ${name}!` };
 }

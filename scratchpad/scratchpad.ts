@@ -6,9 +6,12 @@ import { loadClientConnectConfig } from '@temporalio/envconfig';
 const workflowId = 'scratchpad';
 const taskQueue = 'scratchpad';
 
+type GreetingInput = { name: string };
+type GreetingResult = { greeting: string };
+
 const activities = {
-  async activity(name: string): Promise<string> {
-    return `Hello, ${name}!`;
+  async activity({ name }: GreetingInput): Promise<GreetingResult> {
+    return { greeting: `Hello, ${name}!` };
   },
 };
 
@@ -16,18 +19,18 @@ const { activity } = proxyActivities<typeof activities>({
   startToCloseTimeout: '1 minute',
 });
 
-export async function workflow(name: string): Promise<string> {
-  return await activity(name);
+export async function workflow(input: GreetingInput): Promise<GreetingResult> {
+  return await activity(input);
 }
 
 async function starter(client: Client): Promise<void> {
   const result = await client.workflow.execute(workflow, {
     taskQueue,
     workflowId,
-    args: ['Temporal'],
+    args: [{ name: 'Temporal' }],
     workflowIdConflictPolicy: 'TERMINATE_EXISTING',
   });
-  console.log(result);
+  console.log(result.greeting);
 }
 
 async function main(): Promise<void> {

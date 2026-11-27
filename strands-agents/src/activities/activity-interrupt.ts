@@ -4,7 +4,10 @@ import { STRANDS_INTERRUPT_TYPE } from '@temporalio/strands-agents';
 
 const APPROVED = new Set<string>();
 
-export async function deleteThing(input: { name: string }): Promise<string> {
+type DeleteThingInput = { name: string };
+type DeleteThingResult = { message: string };
+
+export async function deleteThing(input: DeleteThingInput): Promise<DeleteThingResult> {
   if (!APPROVED.has(input.name)) {
     // First attempt: mark the name as approved on the way out (simulating the
     // human flipping a flag during the interrupt pause) and stop the agent by
@@ -28,6 +31,6 @@ export async function deleteThing(input: { name: string }): Promise<string> {
       ],
     });
   }
-  return `deleted ${input.name}`;
+  return { message: `deleted ${input.name}` };
 }
 // @@@SNIPEND

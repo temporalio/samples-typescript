@@ -48,12 +48,12 @@ describe('openai-agents/tools hosted-tool scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(webSearch, {
-        args: ['What is durable execution?'],
+        args: [{ prompt: 'What is durable execution?' }],
         workflowId: 'test-web-search-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Durable execution keeps state on failure.');
+    assert.deepStrictEqual(result, { text: 'Durable execution keeps state on failure.' });
 
     const tools = provider.model.requests[0]?.tools ?? [];
     assert.ok(
@@ -67,12 +67,12 @@ describe('openai-agents/tools hosted-tool scenarios', function () {
     const { worker, provider } = await makeWorker(taskQueue, [textResponse('Here is your generated image.')]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(imageGeneration, {
-        args: ['Generate an image of a robot.'],
+        args: [{ prompt: 'Generate an image of a robot.' }],
         workflowId: 'test-image-generation-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'Here is your generated image.');
+    assert.deepStrictEqual(result, { text: 'Here is your generated image.' });
 
     const tools = provider.model.requests[0]?.tools ?? [];
     assert.ok(
@@ -86,12 +86,12 @@ describe('openai-agents/tools hosted-tool scenarios', function () {
     const { worker, provider } = await makeWorker(taskQueue, [textResponse('The answer is 6765.')]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(codeInterpreter, {
-        args: ['What is the 20th Fibonacci number?'],
+        args: [{ prompt: 'What is the 20th Fibonacci number?' }],
         workflowId: 'test-code-interpreter-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'The answer is 6765.');
+    assert.deepStrictEqual(result, { text: 'The answer is 6765.' });
 
     const tools = provider.model.requests[0]?.tools ?? [];
     assert.ok(

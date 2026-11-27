@@ -9,7 +9,9 @@ export interface IncidentSummary {
   actions: string[];
 }
 
-export async function summarizeIncident(description: string): Promise<IncidentSummary> {
+type SummarizeIncidentInput = { description: string };
+
+export async function summarizeIncident({ description }: SummarizeIncidentInput): Promise<IncidentSummary> {
   const agent = new LlmAgent({
     name: 'incident_summarizer',
     model: new TemporalModel('gemini-2.5-flash'),

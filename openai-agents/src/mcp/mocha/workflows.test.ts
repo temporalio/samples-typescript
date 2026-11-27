@@ -67,13 +67,13 @@ describe('openai-agents/mcp workflow scenarios', function () {
 
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(filesystem, {
-        args: ['List the files.'],
+        args: [{ prompt: 'List the files.' }],
         workflowId: 'test-mcp-filesystem-' + Date.now(),
         taskQueue,
       }),
     );
 
-    assert.strictEqual(result, 'The files are: hello.txt, notes.txt');
+    assert.deepStrictEqual(result, { text: 'The files are: hello.txt, notes.txt' });
 
     // The listFiles tool result must have been sent back to the model.
     const toolResults = provider.model.requests
@@ -112,13 +112,13 @@ describe('openai-agents/mcp workflow scenarios', function () {
 
       const result = await worker.runUntil(
         testEnv.client.workflow.execute(streamableHttp, {
-          args: ['What is 17 plus 25?'],
+          args: [{ prompt: 'What is 17 plus 25?' }],
           workflowId: 'test-mcp-streamable-http-' + Date.now(),
           taskQueue,
         }),
       );
 
-      assert.strictEqual(result, 'The answer is 42.');
+      assert.deepStrictEqual(result, { text: 'The answer is 42.' });
 
       // The add tool must have returned "42" to the model.
       const toolResults = provider.model.requests
@@ -158,13 +158,13 @@ describe('openai-agents/mcp workflow scenarios', function () {
 
       const result = await worker.runUntil(
         testEnv.client.workflow.execute(sse, {
-          args: ['What is the secret?'],
+          args: [{ prompt: 'What is the secret?' }],
           workflowId: 'test-mcp-sse-' + Date.now(),
           taskQueue,
         }),
       );
 
-      assert.strictEqual(result, 'The secret is swordfish.');
+      assert.deepStrictEqual(result, { text: 'The secret is swordfish.' });
 
       // The getSecret tool must have returned "swordfish" to the model.
       const toolResults = provider.model.requests
@@ -199,13 +199,13 @@ describe('openai-agents/mcp workflow scenarios', function () {
 
       const result = await worker.runUntil(
         testEnv.client.workflow.execute(promptServer, {
-          args: ['Temporal is a durable execution platform for building reliable distributed systems.'],
+          args: [{ prompt: 'Temporal is a durable execution platform for building reliable distributed systems.' }],
           workflowId: 'test-mcp-prompt-server-' + Date.now(),
           taskQueue,
         }),
       );
 
-      assert.strictEqual(result, 'Temporal is a durable execution platform.');
+      assert.deepStrictEqual(result, { text: 'Temporal is a durable execution platform.' });
 
       // The summarize prompt text must have been set as the agent's system instructions.
       const systemInstructions = provider.model.requests[0]?.systemInstructions;
@@ -247,13 +247,13 @@ describe('openai-agents/mcp workflow scenarios', function () {
 
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(statefulMemory, {
-        args: ['Save a note titled "greeting" with body "Hello, world!" then read it back.'],
+        args: [{ prompt: 'Save a note titled "greeting" with body "Hello, world!" then read it back.' }],
         workflowId: 'test-mcp-stateful-memory-' + Date.now(),
         taskQueue,
       }),
     );
 
-    assert.strictEqual(result, 'I saved and read back: Hello, world!');
+    assert.deepStrictEqual(result, { text: 'I saved and read back: Hello, world!' });
 
     // The readNote tool must have returned the saved note body to the model,
     // proving that state persisted across the saveNote call within the same run.

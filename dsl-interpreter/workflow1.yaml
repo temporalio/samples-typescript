@@ -13,16 +13,16 @@ root:
       - activity:
           name: activity1
           arguments:
-            - arg1
+            arg1: arg1
           result: result1
       - activity:
           name: activity2
           arguments:
-            - result1
+            arg: result1
           result: result2
       - activity:
           name: activity3
           arguments:
-            - arg2
-            - result2
+            arg2: arg2
+            arg: result2
           result: result3

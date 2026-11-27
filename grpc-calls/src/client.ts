@@ -14,10 +14,10 @@ async function run() {
   // const client = new Client({ connection });
   // await client.workflow.start(/* etc */);
 
-  const payload = defaultPayloadConverter.toPayload('Temporal');
+  const payload = defaultPayloadConverter.toPayload({ name: 'Temporal' });
   if (payload == null) {
     // This should not happen with standard inputs and the defaultPayloadConverter.
-    throw new TypeError('Could not convert string to payload');
+    throw new TypeError('Could not convert workflow input to payload');
   }
   // equivalent grpc call to client.workflow.start()
   await connection.workflowService.startWorkflowExecution({

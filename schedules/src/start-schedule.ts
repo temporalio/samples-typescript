@@ -13,7 +13,7 @@ async function run() {
     action: {
       type: 'startWorkflow',
       workflowType: reminder,
-      args: ['♻️ Dear future self, please take out the recycling tonight. Sincerely, past you ❤️'],
+      args: [{ text: '♻️ Dear future self, please take out the recycling tonight. Sincerely, past you ❤️' }],
       taskQueue: 'schedules',
     },
     scheduleId: 'sample-schedule',

@@ -32,8 +32,8 @@ describe('workflow-streams workflows', function () {
 
   it('order returns the charge id', async () => {
     const mockActivities: typeof activities = {
-      async chargeCard(orderId) {
-        return `charge-${orderId}`;
+      async chargeCard({ orderId }) {
+        return { chargeId: `charge-${orderId}` };
       },
     };
     const taskQueue = `test-${nanoid()}`;
@@ -50,7 +50,7 @@ describe('workflow-streams workflows', function () {
         workflowId: `test-${nanoid()}`,
       }),
     );
-    assert.equal(result, 'charge-order-42');
+    assert.deepEqual(result, { chargeId: 'charge-order-42' });
   });
 
   it('pipeline runs all stages to completion', async () => {
@@ -67,7 +67,7 @@ describe('workflow-streams workflows', function () {
         workflowId: `test-${nanoid()}`,
       }),
     );
-    assert.equal(result, 'pipeline p1 done');
+    assert.deepEqual(result, { message: 'pipeline p1 done' });
   });
 
   it('hub closes on signal', async () => {
@@ -86,7 +86,7 @@ describe('workflow-streams workflows', function () {
       await handle.signal(closeSignal);
       return await handle.result();
     });
-    assert.equal(result, 'hub newsroom closed');
+    assert.deepEqual(result, { message: 'hub newsroom closed' });
   });
 
   it('ticker emits and truncates', async () => {
@@ -103,13 +103,13 @@ describe('workflow-streams workflows', function () {
         workflowId: `test-${nanoid()}`,
       }),
     );
-    assert.equal(result, 'ticker emitted 12 events');
+    assert.deepEqual(result, { published: 12 });
   });
 
   it('llmStreaming returns the streamed text', async () => {
     const mockActivities: typeof llmActivities = {
       async streamCompletion() {
-        return 'a streamed answer';
+        return { text: 'a streamed answer' };
       },
     };
     const taskQueue = `test-${nanoid()}`;
@@ -126,7 +126,7 @@ describe('workflow-streams workflows', function () {
         workflowId: `test-${nanoid()}`,
       }),
     );
-    assert.equal(result, 'a streamed answer');
+    assert.deepEqual(result, { text: 'a streamed answer' });
   });
 });
 
@@ -182,6 +182,6 @@ describe('workflow-streams subscribe integration', function () {
 
     assert.deepEqual(statuses, ['received', 'shipped', 'complete']);
     assert.ok(progressCount >= 2, `expected at least 2 progress events, got ${progressCount}`);
-    assert.equal(result, 'charge-order-42');
+    assert.deepEqual(result, { chargeId: 'charge-order-42' });
   });
 });

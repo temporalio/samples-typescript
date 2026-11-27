@@ -39,11 +39,11 @@ describe('hooksWorkflow', () => {
 
     const fired = await worker.runUntil(
       client.workflow.execute(hooksWorkflow, {
-        args: ['say hello'],
+        args: [{ prompt: 'say hello' }],
         workflowId: 'test-hooks',
         taskQueue,
       }),
     );
-    assert.deepEqual(fired, ['echo']);
+    assert.deepEqual(fired, { fired: ['echo'] });
   });
 });

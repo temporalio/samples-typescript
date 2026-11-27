@@ -11,9 +11,9 @@ async function run(): Promise<void> {
     taskQueue: 'timer-examples',
     workflowId: 'countdown-0',
   });
-  console.log('Time left: ', await handle.query(timeLeftQuery));
-  await handle.signal(setDeadlineSignal, Date.now() + 3000);
-  console.log('Time left: ', await handle.query(timeLeftQuery));
+  console.log('Time left: ', (await handle.query(timeLeftQuery)).milliseconds);
+  await handle.signal(setDeadlineSignal, { deadline: Date.now() + 3000 });
+  console.log('Time left: ', (await handle.query(timeLeftQuery)).milliseconds);
   await handle.result();
   console.log('Done');
 }

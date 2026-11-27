@@ -12,14 +12,21 @@ const runReviewModel = traceable(async (report: string): Promise<string> => `rev
   name: 'review_llm_call',
 });
 
-export async function gatherFacts(topic: string): Promise<string> {
-  return runGatherModel(topic);
+type GatherFactsInput = { topic: string };
+type WriteReportInput = { facts: string };
+type ReviewReportInput = { report: string };
+type GatherFactsResult = { facts: string };
+type WriteReportResult = { report: string };
+export type ReviewReportResult = { reviewedReport: string };
+
+export async function gatherFacts({ topic }: GatherFactsInput): Promise<GatherFactsResult> {
+  return { facts: await runGatherModel(topic) };
 }
 
-export async function writeReport(facts: string): Promise<string> {
-  return runWriteModel(facts);
+export async function writeReport({ facts }: WriteReportInput): Promise<WriteReportResult> {
+  return { report: await runWriteModel(facts) };
 }
 
-export async function reviewReport(report: string): Promise<string> {
-  return runReviewModel(report);
+export async function reviewReport({ report }: ReviewReportInput): Promise<ReviewReportResult> {
+  return { reviewedReport: await runReviewModel(report) };
 }

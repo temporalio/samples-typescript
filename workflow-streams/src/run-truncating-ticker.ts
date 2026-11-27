@@ -103,7 +103,7 @@ async function run() {
 
   const result = await handle.result();
   console.log();
-  console.log(`workflow result: ${result}`);
+  console.log(`workflow result: ticker emitted ${result.published} events`);
   await connection.close();
 }
 

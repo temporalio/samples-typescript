@@ -9,8 +9,10 @@ const { greet, greet_es } = proxyActivities<ReturnType<typeof createActivities>>
 });
 // @@@SNIPEND
 
-export async function dependencyWF(): Promise<string> {
-  const english = await greet('Hello');
-  const spanish = await greet_es('Hola');
-  return `${english}\n${spanish}`;
+type DependencyWorkflowResult = { english: string; spanish: string };
+
+export async function dependencyWF(): Promise<DependencyWorkflowResult> {
+  const { greeting: english } = await greet({ msg: 'Hello' });
+  const { greeting: spanish } = await greet_es({ mensaje: 'Hola' });
+  return { english, spanish };
 }

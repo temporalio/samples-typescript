@@ -51,7 +51,7 @@ async function main(): Promise<void> {
   console.info('Started pinned workflow v2: %s', pinnedHandle2.workflowId);
 
   for (const handle of [autoUpgradeHandle, pinnedHandle, pinnedHandle2]) {
-    await handle.signal(doNextSignal, 'conclude');
+    await handle.signal(doNextSignal, { action: 'conclude' });
     await handle.result();
   }
 
@@ -60,8 +60,8 @@ async function main(): Promise<void> {
 
 async function advanceWorkflows(autoHandle: WorkflowHandle, pinnedHandle: WorkflowHandle): Promise<void> {
   for (let i = 0; i < 3; i += 1) {
-    await autoHandle.signal(doNextSignal, 'do-activity');
-    await pinnedHandle.signal(doNextSignal, 'some-signal');
+    await autoHandle.signal(doNextSignal, { action: 'do-activity' });
+    await pinnedHandle.signal(doNextSignal, { action: 'some-signal' });
     await delay(500);
   }
 }

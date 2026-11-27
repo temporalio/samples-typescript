@@ -39,11 +39,11 @@ async function run() {
   const handle = await client.workflow.start(nexusToolWorkflow, {
     taskQueue: TASK_QUEUE,
     workflowId: 'openai-agents-nexus-' + nanoid(),
-    args: [prompt],
+    args: [{ prompt }],
   });
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  console.log((await handle.result()).text);
 }
 
 run().catch((err) => {

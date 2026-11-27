@@ -7,21 +7,24 @@ const { checkoutItem, canceledPurchase } = wf.proxyActivities<typeof activities>
 });
 
 type PurchaseState = 'PURCHASE_PENDING' | 'PURCHASE_CONFIRMED' | 'PURCHASE_CANCELED';
+type PurchaseStateResult = { purchaseState: PurchaseState };
 
 export const cancelPurchase = wf.defineSignal('cancelPurchase');
-export const purchaseStateQuery = wf.defineQuery<PurchaseState>('purchaseState');
+export const purchaseStateQuery = wf.defineQuery<PurchaseStateResult>('purchaseState');
 
 // @@@SNIPSTART typescript-oneclick-buy
-export async function OneClickBuy(itemId: string) {
+type OneClickBuyInput = { itemId: string };
+
+export async function OneClickBuy({ itemId }: OneClickBuyInput): Promise<activities.PurchaseResult> {
   const itemToBuy = itemId;
   let purchaseState: PurchaseState = 'PURCHASE_PENDING';
   wf.setHandler(cancelPurchase, () => void (purchaseState = 'PURCHASE_CANCELED'));
-  wf.setHandler(purchaseStateQuery, () => purchaseState);
+  wf.setHandler(purchaseStateQuery, () => ({ purchaseState }));
   if (await wf.condition(() => purchaseState === 'PURCHASE_CANCELED', '5s')) {
-    return await canceledPurchase(itemToBuy);
+    return await canceledPurchase({ itemId: itemToBuy });
   } else {
     purchaseState = 'PURCHASE_CONFIRMED';
-    return await checkoutItem(itemToBuy);
+    return await checkoutItem({ itemId: itemToBuy });
   }
 }
 // @@@SNIPEND

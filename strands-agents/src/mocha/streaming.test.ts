@@ -32,7 +32,7 @@ describe('streamingWorkflow', () => {
 
     await worker.runUntil(async () => {
       const handle = await client.workflow.start(streamingWorkflow, {
-        args: ['say something'],
+        args: [{ prompt: 'say something' }],
         workflowId: 'test-streaming',
         taskQueue,
       });
@@ -49,7 +49,7 @@ describe('streamingWorkflow', () => {
         }
       })();
 
-      assert.equal(await handle.result(), 'streamed');
+      assert.deepEqual(await handle.result(), { text: 'streamed' });
       await subscriber;
       assert.ok(events.some((e) => e.type === 'modelMessageStartEvent'));
       assert.ok(events.some((e) => e.type === 'modelMessageStopEvent'));

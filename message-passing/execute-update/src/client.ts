@@ -17,13 +17,13 @@ async function run() {
   console.log(`Started workflow ${handle.workflowId}`);
 
   // Send the 'fetchAndAdd' update with the value `1` as input.
-  const prevValue = await handle.executeUpdate(fetchAndAdd, { args: [1] });
-  console.log(`incrementing counter; previous value was ${prevValue}`);
+  const { previousCount } = await handle.executeUpdate(fetchAndAdd, { args: [{ amount: 1 }] });
+  console.log(`incrementing counter; previous value was ${previousCount}`);
 
   // Send the 'fetchAndAdd' update with invalid input.
   const invalidArg = -1;
   try {
-    await handle.executeUpdate(fetchAndAdd, { args: [invalidArg] });
+    await handle.executeUpdate(fetchAndAdd, { args: [{ amount: invalidArg }] });
   } catch (error) {
     console.log(`Update argument ${invalidArg} was rejected: ${error}`);
   }
@@ -31,7 +31,8 @@ async function run() {
   // Send the 'done' update to allow the workflow to complete.
   await handle.executeUpdate(done);
 
-  console.log(`Final counter value is ${await handle.result()}`);
+  const { count } = await handle.result();
+  console.log(`Final counter value is ${count}`);
 }
 
 run().catch((err) => {

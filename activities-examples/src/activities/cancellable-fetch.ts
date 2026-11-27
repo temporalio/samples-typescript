@@ -3,7 +3,13 @@ import fetch from 'node-fetch';
 import { cancellationSignal, heartbeat } from '@temporalio/activity';
 import type { AbortSignal as FetchAbortSignal } from 'node-fetch/externals';
 
-export async function cancellableFetch(url: string): Promise<Uint8Array> {
+interface CancellableFetchInput {
+  url: string;
+}
+
+type CancellableFetchResult = { dataBase64: string };
+
+export async function cancellableFetch({ url }: CancellableFetchInput): Promise<CancellableFetchResult> {
   const response = await fetch(url, { signal: cancellationSignal() as FetchAbortSignal });
   const contentLengthHeader = response.headers.get('Content-Length');
   if (contentLengthHeader === null) {
@@ -21,6 +27,6 @@ export async function cancellableFetch(url: string): Promise<Uint8Array> {
     chunks.push(chunk);
     heartbeat(bytesRead / contentLength);
   }
-  return Buffer.concat(chunks);
+  return { dataBase64: Buffer.concat(chunks).toString('base64') };
 }
 // @@@SNIPEND

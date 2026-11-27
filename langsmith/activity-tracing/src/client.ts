@@ -16,7 +16,7 @@ async function run() {
       return client.workflow.execute(GreetingWorkflow, {
         taskQueue: 'langsmith-activity-tracing',
         workflowId: 'langsmith-activity-tracing-' + nanoid(),
-        args: ['hello'],
+        args: [{ prompt: 'hello' }],
       });
     },
     { name: 'user_pipeline' },

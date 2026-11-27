@@ -40,13 +40,13 @@ describe('activityInterrupt workflow', () => {
 
     const result = await worker.runUntil(async () => {
       const handle = await client.workflow.start(activityInterrupt, {
-        args: ['delete system'],
+        args: [{ prompt: 'delete system' }],
         workflowId: 'test-activity-interrupt',
         taskQueue,
       });
-      await handle.signal(activityInterruptApproveSignal, 'approve');
+      await handle.signal(activityInterruptApproveSignal, { response: 'approve' });
       return handle.result();
     });
-    assert.equal(result, 'deleted system');
+    assert.deepEqual(result, { text: 'deleted system' });
   });
 });

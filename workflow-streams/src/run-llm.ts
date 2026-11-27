@@ -102,7 +102,7 @@ async function run() {
 
   const result = await handle.result();
   if (!done) console.log();
-  console.log(`[workflow result: ${result.length} chars]`);
+  console.log(`[workflow result: ${result.text.length} chars]`);
   await connection.close();
 }
 

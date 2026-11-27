@@ -1,13 +1,15 @@
 // @@@SNIPSTART typescript-blocked-workflow
 import * as wf from '@temporalio/workflow';
 
+type IsBlockedResult = { isBlocked: boolean };
+
 export const unblockSignal = wf.defineSignal('unblock');
-export const isBlockedQuery = wf.defineQuery<boolean>('isBlocked');
+export const isBlockedQuery = wf.defineQuery<IsBlockedResult>('isBlocked');
 
 export async function unblockOrCancel(): Promise<void> {
   let isBlocked = true;
   wf.setHandler(unblockSignal, () => void (isBlocked = false));
-  wf.setHandler(isBlockedQuery, () => isBlocked);
+  wf.setHandler(isBlockedQuery, () => ({ isBlocked }));
   wf.log.info('Blocked');
   try {
     await wf.condition(() => !isBlocked);

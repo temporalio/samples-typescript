@@ -5,7 +5,10 @@ import { weatherService } from './api';
 export const WEATHER_ENDPOINT = 'openai-agents-weather-endpoint';
 
 // @@@SNIPSTART typescript-openai-agents-nexus-tool-workflow
-export async function nexusToolWorkflow(prompt: string): Promise<string> {
+type NexusToolWorkflowInput = { prompt: string };
+type NexusToolWorkflowResult = { text: string };
+
+export async function nexusToolWorkflow({ prompt }: NexusToolWorkflowInput): Promise<NexusToolWorkflowResult> {
   const weatherTool = nexusOperationAsTool(
     weatherService.operations.getWeather,
     {
@@ -28,6 +31,6 @@ export async function nexusToolWorkflow(prompt: string): Promise<string> {
   });
 
   const result = await new TemporalOpenAIRunner().run(agent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 // @@@SNIPEND

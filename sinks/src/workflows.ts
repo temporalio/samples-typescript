@@ -13,9 +13,11 @@ export type MySinks = AlertSinks;
 // @@@SNIPSTART typescript-logger-sink-workflow
 const { alerter } = proxySinks<MySinks>();
 
-export async function sinkWorkflow(): Promise<string> {
+type SinkWorkflowResult = { greeting: string };
+
+export async function sinkWorkflow(): Promise<SinkWorkflowResult> {
   log.info('Workflow Execution started');
   alerter.alert('alerter: Workflow Execution started');
-  return 'Hello, Temporal!';
+  return { greeting: 'Hello, Temporal!' };
 }
 // @@@SNIPEND

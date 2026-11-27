@@ -21,11 +21,11 @@ async function run() {
   const handle = await client.workflow.start(researchWorkflow, {
     taskQueue: 'openai-agents-multi-agent',
     workflowId: 'openai-agents-multi-agent-' + nanoid(),
-    args: [query],
+    args: [{ query }],
   });
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  console.log((await handle.result()).report);
 }
 
 run().catch((err) => {

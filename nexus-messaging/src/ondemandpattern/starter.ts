@@ -21,7 +21,7 @@ async function run() {
   });
 
   console.log('Caller remote workflow result:');
-  for (const entry of result) {
+  for (const entry of result.log) {
     console.log(' ', entry);
   }
 

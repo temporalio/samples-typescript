@@ -11,9 +11,9 @@ async function run() {
   const handle = await client.workflow.start(progress, { taskQueue: 'timer-progress', workflowId: 'progress-0' });
 
   await setTimeout(2000);
-  const val = await handle.query(getProgress);
+  const { percent } = await handle.query(getProgress);
   // Should print "10", may print another number depending on timing
-  console.log(val);
+  console.log(percent);
 
   await handle.result();
   console.log('complete');

@@ -12,7 +12,7 @@ async function run() {
   const handle = await client.workflow.start(streamingModelCall, {
     taskQueue: 'google-adk-streaming',
     workflowId,
-    args: ['Tell me a short story about a robot learning to paint.'],
+    args: [{ prompt: 'Tell me a short story about a robot learning to paint.' }],
   });
   console.log(`Started workflow ${handle.workflowId}`);
 

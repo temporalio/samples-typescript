@@ -9,8 +9,13 @@ import { TemporalAgent } from '@temporalio/strands-agents';
 import { condition, defineQuery, defineSignal, setHandler } from '@temporalio/workflow';
 import { z } from 'zod';
 
-export const hitlApproveSignal = defineSignal<[string]>('hitlApprove');
-export const hitlPendingApprovalQuery = defineQuery<string | null>('hitlPendingApproval');
+type HumanApprovalInput = { response: string };
+type HumanInTheLoopInput = { prompt: string };
+type HumanInTheLoopResult = { text: string };
+type PendingApprovalResult = { reason: string | null };
+
+export const hitlApproveSignal = defineSignal<[HumanApprovalInput]>('hitlApprove');
+export const hitlPendingApprovalQuery = defineQuery<PendingApprovalResult>('hitlPendingApproval');
 
 const deleteFile = tool({
   name: 'deleteFile',
@@ -19,14 +24,14 @@ const deleteFile = tool({
   callback: ({ path }) => `deleted ${path}`,
 });
 
-export async function humanInTheLoop(prompt: string): Promise<string> {
+export async function humanInTheLoop({ prompt }: HumanInTheLoopInput): Promise<HumanInTheLoopResult> {
   let approval: string | null = null;
   let pendingReason: string | null = null;
 
-  setHandler(hitlApproveSignal, (response) => {
+  setHandler(hitlApproveSignal, ({ response }) => {
     approval = response;
   });
-  setHandler(hitlPendingApprovalQuery, () => pendingReason);
+  setHandler(hitlPendingApprovalQuery, () => ({ reason: pendingReason }));
 
   const agent = new TemporalAgent({
     activityOptions: { startToCloseTimeout: '60 seconds', retry: { maximumAttempts: 3 } },
@@ -59,6 +64,6 @@ export async function humanInTheLoop(prompt: string): Promise<string> {
     }));
     result = await agent.invoke(responses as InterruptResponseContent[]);
   }
-  return result.toString();
+  return { text: result.toString() };
 }
 // @@@SNIPEND

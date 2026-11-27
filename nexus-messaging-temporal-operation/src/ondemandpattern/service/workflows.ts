@@ -1,15 +1,25 @@
 import * as wf from '@temporalio/workflow';
-import { AttachApprovalContextInput, Language } from '../api';
+import {
+  AttachApprovalContextInput,
+  GetLanguageOutput,
+  GetLanguagesOutput,
+  Language,
+  RunFromRemoteOutput,
+  SetLanguageOutput,
+} from '../api';
 import { createActivities } from './activities';
 
 const { callGreetingService } = wf.proxyActivities<ReturnType<typeof createActivities>>({
   startToCloseTimeout: '10s',
 });
 
-export const getLanguagesQuery = wf.defineQuery<Language[], []>('getLanguages');
-export const getLanguageQuery = wf.defineQuery<Language, []>('getLanguage');
-export const setLanguageUpdate = wf.defineUpdate<Language, [Language]>('setLanguage');
-export const setLanguageUsingActivityUpdate = wf.defineUpdate<Language, [Language]>('setLanguageUsingActivity');
+export const getLanguagesQuery = wf.defineQuery<GetLanguagesOutput>('getLanguages');
+export const getLanguageQuery = wf.defineQuery<GetLanguageOutput>('getLanguage');
+type LanguageInput = { language: Language };
+export const setLanguageUpdate = wf.defineUpdate<SetLanguageOutput, [LanguageInput]>('setLanguage');
+export const setLanguageUsingActivityUpdate = wf.defineUpdate<SetLanguageOutput, [LanguageInput]>(
+  'setLanguageUsingActivity',
+);
 export const approveSignal = wf.defineSignal<[]>('approve');
 export const attachApprovalContextSignal = wf.defineSignal<[AttachApprovalContextInput]>('attachApprovalContext');
 
@@ -18,29 +28,29 @@ const INITIAL_GREETINGS: Partial<Record<Language, string>> = {
   english: 'Hello, world',
 };
 
-export async function greetingWorkflow(): Promise<string> {
+export async function greetingWorkflow(): Promise<RunFromRemoteOutput> {
   let language: Language = 'english';
   let greetings: Partial<Record<Language, string>> = { ...INITIAL_GREETINGS };
   let approved = false;
   let approvalContext: string | undefined;
 
-  wf.setHandler(getLanguagesQuery, () => Object.keys(greetings) as Language[]);
+  wf.setHandler(getLanguagesQuery, () => ({ languages: Object.keys(greetings) as Language[] }));
 
-  wf.setHandler(getLanguageQuery, () => language);
+  wf.setHandler(getLanguageQuery, () => ({ language }));
 
   wf.setHandler(
     setLanguageUpdate,
-    async (newLanguage: Language): Promise<Language> => {
+    async ({ language: newLanguage }): Promise<SetLanguageOutput> => {
       const previous = language;
       if (!(newLanguage in greetings)) {
         const allGreetings = await callGreetingService();
         greetings = { ...greetings, ...allGreetings };
       }
       language = newLanguage;
-      return previous;
+      return { previousLanguage: previous };
     },
     {
-      validator: (newLanguage: Language) => {
+      validator: ({ language: newLanguage }) => {
         const validLanguages: Language[] = ['arabic', 'chinese', 'english', 'french', 'hindi', 'portuguese', 'spanish'];
         if (!validLanguages.includes(newLanguage)) {
           throw new Error(`Invalid language: ${newLanguage}`);
@@ -49,12 +59,12 @@ export async function greetingWorkflow(): Promise<string> {
     },
   );
 
-  wf.setHandler(setLanguageUsingActivityUpdate, async (newLanguage: Language): Promise<Language> => {
+  wf.setHandler(setLanguageUsingActivityUpdate, async ({ language: newLanguage }): Promise<SetLanguageOutput> => {
     const previous = language;
     const allGreetings = await callGreetingService();
     greetings = { ...greetings, ...allGreetings };
     language = newLanguage;
-    return previous;
+    return { previousLanguage: previous };
   });
 
   wf.setHandler(approveSignal, () => {
@@ -69,5 +79,5 @@ export async function greetingWorkflow(): Promise<string> {
 
   await wf.condition(() => approved && wf.allHandlersFinished());
 
-  return greetings[language] ?? `Hello from ${language}`;
+  return { greeting: greetings[language] ?? `Hello from ${language}` };
 }

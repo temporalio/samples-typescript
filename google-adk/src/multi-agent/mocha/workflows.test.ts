@@ -69,11 +69,11 @@ describe('google-adk/multi-agent workflow scenarios', function () {
     });
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(multiAgent, {
-        args: ['mountains'],
+        args: [{ topic: 'mountains' }],
         workflowId: 'test-google-adk-multi-agent-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'snow on the mountain');
+    assert.deepStrictEqual(result, { text: 'snow on the mountain' });
   });
 });

@@ -16,7 +16,7 @@ async function run() {
   console.log(`Started workflow ${handle.workflowId}`);
 
   // Wait for workflow completion (runs indefinitely until it receives a signal)
-  console.log(await handle.result());
+  console.log((await handle.result()).message);
 }
 
 run().catch((err) => {

@@ -10,7 +10,10 @@ import type {
 } from '@openai/agents-core';
 import { TemporalOpenAIRunner } from '@temporalio/openai-agents/workflow';
 
-export async function deterministic(prompt: string): Promise<string> {
+type DeterministicInput = { prompt: string };
+type DeterministicResult = { text: string };
+
+export async function deterministic({ prompt }: DeterministicInput): Promise<DeterministicResult> {
   const outlineAgent = new Agent({
     name: 'OutlineAgent',
     instructions: 'Create a brief outline for the given topic.',
@@ -33,10 +36,13 @@ export async function deterministic(prompt: string): Promise<string> {
   const draft = draftResult.finalOutput ?? '';
 
   const polishResult = await runner.run(polishAgent, draft);
-  return polishResult.finalOutput ?? '';
+  return { text: polishResult.finalOutput ?? '' };
 }
 
-export async function parallelization(prompt: string): Promise<string> {
+type ParallelizationInput = { prompt: string };
+type ParallelizationResult = { text: string };
+
+export async function parallelization({ prompt }: ParallelizationInput): Promise<ParallelizationResult> {
   const agent1 = new Agent({
     name: 'Perspective1Agent',
     instructions: 'Answer the question from a technical perspective.',
@@ -66,10 +72,13 @@ export async function parallelization(prompt: string): Promise<string> {
   const judgeInput = candidates.map((c, i) => `Candidate ${i + 1}:\n${c}`).join('\n\n');
 
   const judgeResult = await runner.run(judgeAgent, judgeInput);
-  return judgeResult.finalOutput ?? '';
+  return { text: judgeResult.finalOutput ?? '' };
 }
 
-export async function llmAsJudge(prompt: string): Promise<string> {
+type LlmAsJudgeInput = { prompt: string };
+type LlmAsJudgeResult = { text: string };
+
+export async function llmAsJudge({ prompt }: LlmAsJudgeInput): Promise<LlmAsJudgeResult> {
   const generatorAgent = new Agent({
     name: 'GeneratorAgent',
     instructions: 'Generate a response to the given prompt.',
@@ -92,15 +101,18 @@ export async function llmAsJudge(prompt: string): Promise<string> {
     const judgment = judgeResult.finalOutput ?? '';
 
     if (judgment.startsWith('APPROVED')) {
-      return output;
+      return { text: output };
     }
   }
 
-  return output;
+  return { text: output };
 }
 
 // @@@SNIPSTART typescript-openai-agents-agent-as-tool-workflow
-export async function agentsAsTools(prompt: string): Promise<string> {
+type AgentsAsToolsInput = { prompt: string };
+type AgentsAsToolsResult = { text: string };
+
+export async function agentsAsTools({ prompt }: AgentsAsToolsInput): Promise<AgentsAsToolsResult> {
   const specialistAgent = new Agent({
     name: 'SpecialistAgent',
     instructions: 'You are a specialist. Answer questions concisely.',
@@ -120,11 +132,14 @@ export async function agentsAsTools(prompt: string): Promise<string> {
 
   const runner = new TemporalOpenAIRunner();
   const result = await runner.run(orchestratorAgent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 // @@@SNIPEND
 
-export async function inputGuardrail(prompt: string): Promise<string> {
+type InputGuardrailInput = { prompt: string };
+type InputGuardrailResult = { text: string };
+
+export async function inputGuardrail({ prompt }: InputGuardrailInput): Promise<InputGuardrailResult> {
   const blockedKeywords = ['blocked', 'BLOCK', 'forbidden'];
 
   const guardrail: InputGuardrail = {
@@ -146,7 +161,7 @@ export async function inputGuardrail(prompt: string): Promise<string> {
     const result = await runner.run(agent, prompt, {
       runConfig: { inputGuardrails: [guardrail] },
     });
-    return result.finalOutput ?? '';
+    return { text: result.finalOutput ?? '' };
   } catch (err) {
     const tripwire =
       err instanceof InputGuardrailTripwireTriggered
@@ -155,13 +170,16 @@ export async function inputGuardrail(prompt: string): Promise<string> {
           ? err.cause
           : undefined;
     if (tripwire) {
-      return `BLOCKED: input failed guardrail "${tripwire.result.guardrail.name}"`;
+      return { text: `BLOCKED: input failed guardrail "${tripwire.result.guardrail.name}"` };
     }
     throw err;
   }
 }
 
-export async function outputGuardrail(prompt: string): Promise<string> {
+type OutputGuardrailInput = { prompt: string };
+type OutputGuardrailResult = { text: string };
+
+export async function outputGuardrail({ prompt }: OutputGuardrailInput): Promise<OutputGuardrailResult> {
   const bannedPhrase = 'UNSAFE';
 
   const guardrail: OutputGuardrail = {
@@ -183,7 +201,7 @@ export async function outputGuardrail(prompt: string): Promise<string> {
     const result = await runner.run(agent, prompt, {
       runConfig: { outputGuardrails: [guardrail] },
     });
-    return result.finalOutput ?? '';
+    return { text: result.finalOutput ?? '' };
   } catch (err) {
     const tripwire =
       err instanceof OutputGuardrailTripwireTriggered
@@ -192,7 +210,7 @@ export async function outputGuardrail(prompt: string): Promise<string> {
           ? err.cause
           : undefined;
     if (tripwire) {
-      return `BLOCKED: output failed guardrail "${tripwire.result.guardrail.name}"`;
+      return { text: `BLOCKED: output failed guardrail "${tripwire.result.guardrail.name}"` };
     }
     throw err;
   }

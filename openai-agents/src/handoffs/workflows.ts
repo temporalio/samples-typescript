@@ -2,7 +2,10 @@ import { Agent, handoff } from '@openai/agents-core';
 import type { HandoffInputData } from '@openai/agents-core';
 import { TemporalOpenAIRunner } from '@temporalio/openai-agents/workflow';
 
-export async function agentHandoffs(prompt: string): Promise<string> {
+type AgentHandoffsInput = { prompt: string };
+type AgentHandoffsResult = { text: string };
+
+export async function agentHandoffs({ prompt }: AgentHandoffsInput): Promise<AgentHandoffsResult> {
   const billingAgent = new Agent({
     name: 'billing',
     instructions: 'You are a billing specialist. Help with billing questions.',
@@ -21,10 +24,13 @@ export async function agentHandoffs(prompt: string): Promise<string> {
 
   const runner = new TemporalOpenAIRunner();
   const result = await runner.run(triageAgent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 
-export async function handoffFunction(prompt: string): Promise<string> {
+type HandoffFunctionInput = { prompt: string };
+type HandoffFunctionResult = { text: string };
+
+export async function handoffFunction({ prompt }: HandoffFunctionInput): Promise<HandoffFunctionResult> {
   const billingAgent = new Agent({
     name: 'billing',
     instructions: 'You are a billing specialist. Help with billing questions.',
@@ -43,7 +49,7 @@ export async function handoffFunction(prompt: string): Promise<string> {
 
   const runner = new TemporalOpenAIRunner();
   const result = await runner.run(triageAgent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 
 function dropNewItems(data: HandoffInputData): HandoffInputData {
@@ -53,7 +59,10 @@ function dropNewItems(data: HandoffInputData): HandoffInputData {
   };
 }
 
-export async function handoffWithFilter(prompt: string): Promise<string> {
+type HandoffWithFilterInput = { prompt: string };
+type HandoffWithFilterResult = { text: string };
+
+export async function handoffWithFilter({ prompt }: HandoffWithFilterInput): Promise<HandoffWithFilterResult> {
   const billingAgent = new Agent({
     name: 'billing',
     instructions: 'You are a billing specialist. Help with billing questions.',
@@ -75,5 +84,5 @@ export async function handoffWithFilter(prompt: string): Promise<string> {
 
   const runner = new TemporalOpenAIRunner();
   const result = await runner.run(triageAgent, prompt);
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }

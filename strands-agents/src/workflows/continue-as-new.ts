@@ -17,9 +17,13 @@ export interface ChatInput {
   modelState?: Record<string, JSONValue>;
 }
 
-export const chatTurn = defineUpdate<string, [string]>('turn');
+type ChatTurnInput = { prompt: string };
+type ChatTurnResult = { reply: string };
+type ChatMessagesResult = { messages: Message[] };
+
+export const chatTurn = defineUpdate<ChatTurnResult, [ChatTurnInput]>('turn');
 export const chatEnd = defineSignal('endChat');
-export const chatMessages = defineQuery<Message[]>('messages');
+export const chatMessages = defineQuery<ChatMessagesResult>('messages');
 
 export async function chatWorkflow(input: ChatInput = {}): Promise<void> {
   let done = false;
@@ -27,7 +31,7 @@ export async function chatWorkflow(input: ChatInput = {}): Promise<void> {
   // Serialize concurrent `turn` updates so they can't interleave on `agent.messages`.
   let pending: Promise<unknown> = Promise.resolve();
 
-  setHandler(chatTurn, async (prompt) => {
+  setHandler(chatTurn, async ({ prompt }) => {
     await condition(() => agent !== null);
     const prev = pending;
     let release!: () => void;
@@ -37,7 +41,7 @@ export async function chatWorkflow(input: ChatInput = {}): Promise<void> {
     try {
       await prev;
       const result = await agent!.invoke(prompt);
-      return result.toString().trim();
+      return { reply: result.toString().trim() };
     } finally {
       release();
     }
@@ -45,7 +49,7 @@ export async function chatWorkflow(input: ChatInput = {}): Promise<void> {
   setHandler(chatEnd, () => {
     done = true;
   });
-  setHandler(chatMessages, () => (agent ? [...agent.messages] : []));
+  setHandler(chatMessages, () => ({ messages: agent ? [...agent.messages] : [] }));
 
   agent = new TemporalAgent({
     activityOptions: { startToCloseTimeout: '60 seconds', retry: { maximumAttempts: 3 } },

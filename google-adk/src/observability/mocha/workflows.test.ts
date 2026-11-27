@@ -50,12 +50,12 @@ describe('google-adk/observability workflow scenarios', function () {
     });
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(observedAgent, {
-        args: [prompts],
+        args: [{ prompts }],
         workflowId: `${taskQueue}-${Date.now()}`,
         taskQueue,
       }),
     );
-    assert.deepStrictEqual(result, ['snow on the mountain', 'snow on the mountain']);
+    assert.deepStrictEqual(result, { answers: ['snow on the mountain', 'snow on the mountain'] });
 
     assert.ok(
       modelCalls.length >= prompts.length,

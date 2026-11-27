@@ -16,7 +16,7 @@ async function run() {
   const workflowId = 'strands-streaming';
 
   const handle = await client.workflow.start(streamingWorkflow, {
-    args: ['Count from 1 to 5, one number per sentence.'],
+    args: [{ prompt: 'Count from 1 to 5, one number per sentence.' }],
     taskQueue: 'strands-agents',
     workflowId,
   });
@@ -39,7 +39,7 @@ async function run() {
 
   const result = await handle.result();
   await consume;
-  console.log(`Final result: ${result}`);
+  console.log(`Final result: ${result.text}`);
 }
 
 run().catch((err) => {

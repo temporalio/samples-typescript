@@ -52,13 +52,15 @@ describe('openai-agents/stateful-conversation workflow', function () {
         taskQueue,
       });
 
-      const reply1 = await handle.executeUpdate(processUserMessage, { args: ['What is the baggage allowance?'] });
-      assert.strictEqual(reply1, 'You may bring one carry-on bag.');
+      const reply1 = await handle.executeUpdate(processUserMessage, {
+        args: [{ message: 'What is the baggage allowance?' }],
+      });
+      assert.deepStrictEqual(reply1, { reply: 'You may bring one carry-on bag.' });
 
-      const reply2 = await handle.executeUpdate(processUserMessage, { args: ['Do you have wifi?'] });
-      assert.strictEqual(reply2, 'We offer free wifi; join Airline-Wifi.');
+      const reply2 = await handle.executeUpdate(processUserMessage, { args: [{ message: 'Do you have wifi?' }] });
+      assert.deepStrictEqual(reply2, { reply: 'We offer free wifi; join Airline-Wifi.' });
 
-      const history = await handle.query(getHistory);
+      const { history } = await handle.query(getHistory);
       assert.ok(
         history.some((line) => line === 'Handed off from Triage to FAQ'),
         `expected a handoff line in history, got:\n${history.join('\n')}`,

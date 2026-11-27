@@ -46,12 +46,12 @@ describe('openai-agents/hosted-mcp workflow scenarios', function () {
     ]);
     const result = await worker.runUntil(
       testEnv.client.workflow.execute(simple, {
-        args: ['What does openai/codex do?'],
+        args: [{ prompt: 'What does openai/codex do?' }],
         workflowId: 'test-hosted-mcp-simple-' + Date.now(),
         taskQueue,
       }),
     );
-    assert.strictEqual(result, 'The openai/codex project is a coding agent.');
+    assert.deepStrictEqual(result, { text: 'The openai/codex project is a coding agent.' });
 
     // The hosted MCP tool serializes as a hosted_tool named 'hosted_mcp'; asserting it
     // is present in the first request's tool list proves the agent was wired with it.
@@ -65,17 +65,17 @@ describe('openai-agents/hosted-mcp workflow scenarios', function () {
 
     const result = await worker.runUntil(async () => {
       const handle = await testEnv.client.workflow.start(approval, {
-        args: ['What does openai/codex do?'],
+        args: [{ prompt: 'What does openai/codex do?' }],
         workflowId: 'test-hosted-mcp-approval-' + Date.now(),
         taskQueue,
       });
       // The workflow gates the run on the approval signal; without this the run never
       // starts, so a returned result proves the signal was received and consumed.
-      await handle.signal(approvalDecision, true);
+      await handle.signal(approvalDecision, { approve: true });
       return handle.result();
     });
 
-    assert.strictEqual(result, 'Approved and answered.');
+    assert.deepStrictEqual(result, { text: 'Approved and answered.' });
 
     const hostedTools = provider.model.requests[0]?.tools.filter((t) => t.name === 'hosted_mcp');
     assert.strictEqual(hostedTools?.length, 1, 'request should carry exactly one hosted_mcp tool');

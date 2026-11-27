@@ -96,13 +96,13 @@ describe('langsmith/activity-tracing', function () {
 
     const result = await worker.runUntil(
       client.workflow.execute(GreetingWorkflow, {
-        args: ['hello'],
+        args: [{ prompt: 'hello' }],
         workflowId: 'test-langsmith-activity-tracing-' + Date.now(),
         taskQueue,
       }),
     );
 
-    assert.strictEqual(result, 'answer to: hello');
+    assert.deepStrictEqual(result, { answer: 'answer to: hello' });
 
     assert.strictEqual(collector.parentNameOf('inner_llm_call'), 'RunActivity:answer');
     assert.strictEqual(collector.parentNameOf('RunActivity:answer'), 'RunWorkflow:GreetingWorkflow');

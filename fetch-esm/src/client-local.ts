@@ -9,7 +9,7 @@ const client = new Client({ connection });
 const result = await client.workflow.execute(exampleLocal, {
   taskQueue: 'fetch-esm',
   workflowId: `my-business-id-${Date.now()}`,
-  args: ['Wonderful-Temporal'],
+  args: [{ name: 'Wonderful-Temporal' }],
 });
-console.log(result); // Hello World And Hello Wonderful Temporal!
+console.log(result.greeting); // Hello World And Hello Wonderful Temporal!
 // @@@SNIPEND

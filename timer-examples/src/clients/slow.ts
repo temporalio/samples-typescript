@@ -13,7 +13,7 @@ async function run(): Promise<void> {
     workflowId: 'process-order-slow',
     args: [{ orderProcessingMS: 1000, sendDelayedEmailTimeoutMS: 100 }],
   });
-  console.log(result);
+  console.log(result.message);
 }
 
 run().catch((err) => {

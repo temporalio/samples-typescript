@@ -9,16 +9,18 @@ async function run() {
 
   const result = await client.workflow.execute(toolsWorkflow, {
     args: [
-      [
-        'Please do two things:',
-        "1. Count the letter R's in 'strawberry'.",
-        '2. Fetch the weather in San Francisco.',
-      ].join('\n'),
+      {
+        prompt: [
+          'Please do two things:',
+          "1. Count the letter R's in 'strawberry'.",
+          '2. Fetch the weather in San Francisco.',
+        ].join('\n'),
+      },
     ],
     taskQueue: 'strands-agents',
     workflowId: 'strands-tools',
   });
-  console.log(`Result: ${result}`);
+  console.log(`Result: ${result.text}`);
 }
 
 run().catch((err) => {

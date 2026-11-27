@@ -14,13 +14,13 @@ async function run() {
   });
 
   const handle = await client.workflow.start(example, {
-    args: ['Alice: Private message for Bob.'],
+    args: [{ message: 'Alice: Private message for Bob.' }],
     taskQueue: 'encryption',
     workflowId: `my-business-id-${uuid()}`,
   });
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  console.log((await handle.result()).message);
   // @@@SNIPEND
 }
 

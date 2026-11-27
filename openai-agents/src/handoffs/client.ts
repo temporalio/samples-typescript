@@ -28,21 +28,21 @@ async function run() {
       handle = await client.workflow.start(agentHandoffs, {
         taskQueue,
         workflowId,
-        args: ['I have a billing question about my invoice.'],
+        args: [{ prompt: 'I have a billing question about my invoice.' }],
       });
       break;
     case 'handoff-function':
       handle = await client.workflow.start(handoffFunction, {
         taskQueue,
         workflowId,
-        args: ['I need help with a support issue.'],
+        args: [{ prompt: 'I need help with a support issue.' }],
       });
       break;
     case 'handoff-with-filter':
       handle = await client.workflow.start(handoffWithFilter, {
         taskQueue,
         workflowId,
-        args: ['I have a billing question about my invoice.'],
+        args: [{ prompt: 'I have a billing question about my invoice.' }],
       });
       break;
     default:
@@ -50,7 +50,7 @@ async function run() {
   }
 
   console.log(`Started workflow ${handle.workflowId}`);
-  console.log(await handle.result());
+  console.log((await handle.result()).text);
 }
 
 run().catch((err) => {

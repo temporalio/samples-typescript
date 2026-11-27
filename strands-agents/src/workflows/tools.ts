@@ -13,7 +13,10 @@ const letterCounter = tool({
   callback: ({ word, letter }) => word.toLowerCase().split(letter.toLowerCase()).length - 1,
 });
 
-export async function toolsWorkflow(prompt: string): Promise<string> {
+type ToolsWorkflowInput = { prompt: string };
+type ToolsWorkflowResult = { text: string };
+
+export async function toolsWorkflow({ prompt }: ToolsWorkflowInput): Promise<ToolsWorkflowResult> {
   const agent = new TemporalAgent({
     activityOptions: { startToCloseTimeout: '60 seconds', retry: { maximumAttempts: 3 } },
     tools: [
@@ -30,6 +33,6 @@ export async function toolsWorkflow(prompt: string): Promise<string> {
     ],
   });
   const result = await agent.invoke(prompt);
-  return result.toString();
+  return { text: result.toString() };
 }
 // @@@SNIPEND

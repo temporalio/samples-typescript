@@ -12,7 +12,7 @@ async function run() {
   const handle = await client.workflow.start(expense, {
     taskQueue: 'expense',
     workflowId: expenseId,
-    args: [expenseId],
+    args: [{ expenseId }],
   });
 
   // At a "later time" send signal for approval

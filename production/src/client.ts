@@ -10,9 +10,9 @@ async function run() {
   const result = await client.workflow.execute(example, {
     taskQueue: 'production-sample',
     workflowId: 'production-sample-0',
-    args: ['Temporal'],
+    args: [{ name: 'Temporal' }],
   });
-  console.log(result); // Hello, Temporal!
+  console.log(result.greeting); // Hello, Temporal!
 }
 
 run().catch((err) => {

@@ -1,6 +1,10 @@
 import { log } from '@temporalio/activity';
 
-export async function activityB(name: string): Promise<string> {
+type ActivityBInput = { name: string };
+
+type ActivityBResult = { message: string };
+
+export async function activityB({ name }: ActivityBInput): Promise<ActivityBResult> {
   log.info('hello from activityB', { name });
-  return `ActivityB result: B-${name}!`;
+  return { message: `ActivityB result: B-${name}!` };
 }

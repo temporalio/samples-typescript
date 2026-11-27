@@ -7,7 +7,10 @@ export const streamingTopic = 'responses';
 
 export const consumerDoneSignal = defineSignal('consumer-done');
 
-export async function streamingModelCall(prompt: string): Promise<{ text: string; chunks: number }> {
+type StreamingModelCallInput = { prompt: string };
+type StreamingModelCallResult = { text: string; chunks: number };
+
+export async function streamingModelCall({ prompt }: StreamingModelCallInput): Promise<StreamingModelCallResult> {
   new WorkflowStream();
 
   let consumerDone = false;

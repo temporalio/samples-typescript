@@ -47,13 +47,16 @@ function writerAgent() {
   });
 }
 
-export async function researchWorkflow(query: string): Promise<string> {
+type ResearchWorkflowInput = { query: string };
+type ResearchWorkflowResult = { report: string };
+
+export async function researchWorkflow({ query }: ResearchWorkflowInput): Promise<ResearchWorkflowResult> {
   const runner = new TemporalOpenAIRunner();
 
   const planResult = await runner.run(plannerAgent(), `Query: ${query}`);
   const plan = planResult.finalOutput;
   if (!plan) {
-    return '';
+    return { report: '' };
   }
 
   const summaries = await Promise.all(
@@ -72,5 +75,5 @@ export async function researchWorkflow(query: string): Promise<string> {
   );
   const report = writeResult.finalOutput;
 
-  return report?.markdownReport ?? '';
+  return { report: report?.markdownReport ?? '' };
 }

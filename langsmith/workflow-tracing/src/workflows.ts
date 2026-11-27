@@ -9,8 +9,11 @@ const summarize = traceable(async (points: string): Promise<string> => `summary:
   name: 'summarize',
 });
 
-export async function SummarizeWorkflow(text: string): Promise<string> {
+type SummarizeWorkflowInput = { text: string };
+type SummarizeWorkflowResult = { summary: string };
+
+export async function SummarizeWorkflow({ text }: SummarizeWorkflowInput): Promise<SummarizeWorkflowResult> {
   const points = await extractKeyPoints(text);
-  return summarize(points);
+  return { summary: await summarize(points) };
 }
 // @@@SNIPEND

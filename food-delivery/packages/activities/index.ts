@@ -1,7 +1,9 @@
 import { Product } from '@fooddelivery/common'
 import { notificationService, paymentService } from './services'
 
-export async function sendPushNotification(message: string): Promise<void> {
+type SendPushNotificationInput = { message: string }
+
+export async function sendPushNotification({ message }: SendPushNotificationInput): Promise<void> {
   notificationService.sendNotification({ type: 'push', message })
 }
 

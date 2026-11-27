@@ -1,4 +1,8 @@
 // Add Activity Definitions here.
-export async function YOUR_ACTIVITY(name: string): Promise<string> {
-  return `Hello, ${name}!`;
+type YourActivityInput = { name: string };
+
+type YourActivityResult = { greeting: string };
+
+export async function YOUR_ACTIVITY({ name }: YourActivityInput): Promise<YourActivityResult> {
+  return { greeting: `Hello, ${name}!` };
 }

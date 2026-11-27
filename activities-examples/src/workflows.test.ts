@@ -35,7 +35,7 @@ test('httpWorkflow with mock activity', async () => {
       taskQueue: 'test',
       workflowsPath: require.resolve('./workflows'),
       activities: {
-        makeHTTPRequest: async () => '99',
+        makeHTTPRequest: async () => ({ answer: '99' }),
       },
     }),
   );
@@ -45,6 +45,6 @@ test('httpWorkflow with mock activity', async () => {
       workflowId: uuid4(),
       taskQueue: 'test',
     });
-    expect(result).toEqual('The answer is 99');
+    expect(result).toEqual({ message: 'The answer is 99' });
   });
 });

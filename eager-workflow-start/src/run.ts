@@ -25,7 +25,7 @@ async function run() {
   await worker.runUntil(async () => {
     const handle = await client.workflow.start(eagerWorkflow, {
       taskQueue: 'eager-workflow-start',
-      args: ['Temporal'],
+      args: [{ name: 'Temporal' }],
       workflowId: 'workflow-' + nanoid(),
       requestEagerStart: true,
     });
@@ -33,7 +33,7 @@ async function run() {
     console.log(`Started workflow ${handle.workflowId}`);
     console.log(`Workflow eagerly started: ${handle.eagerlyStarted}`);
 
-    console.log(await handle.result());
+    console.log((await handle.result()).greeting);
   });
 
   await sharedNativeConnection.close();

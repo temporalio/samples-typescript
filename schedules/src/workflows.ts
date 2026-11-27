@@ -5,7 +5,7 @@ const { addReminderToDatabase, notifyUser } = proxyActivities<typeof activities>
   startToCloseTimeout: '1 minute',
 });
 
-export async function reminder(text: string): Promise<void> {
-  await addReminderToDatabase(text);
-  await notifyUser(text);
+export async function reminder(input: activities.ReminderInput): Promise<void> {
+  await addReminderToDatabase(input);
+  await notifyUser(input);
 }

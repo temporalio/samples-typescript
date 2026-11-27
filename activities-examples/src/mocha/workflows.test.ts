@@ -51,20 +51,20 @@ describe('example workflow', async function () {
   }
 
   it('returns correct result', async () => {
-    const fakeMakeHTTPRequest = sinon.stub().resolves('42');
+    const fakeMakeHTTPRequest = sinon.stub().resolves({ answer: '42' });
 
     const result = await executeWithWorker({ activities: { makeHTTPRequest: fakeMakeHTTPRequest } });
-    assert.equal(result, 'The answer is 42');
+    assert.deepEqual(result, { message: 'The answer is 42' });
   });
 
   it('retries one failure', async () => {
     const fakeMakeHTTPRequest = sinon.stub();
     fakeMakeHTTPRequest.onFirstCall().rejects(new Error('example error'));
-    fakeMakeHTTPRequest.resolves('88');
+    fakeMakeHTTPRequest.resolves({ answer: '88' });
 
     const result = await executeWithWorker({ activities: { makeHTTPRequest: fakeMakeHTTPRequest } });
 
-    assert.equal(result, 'The answer is 88');
+    assert.deepEqual(result, { message: 'The answer is 88' });
     assert.equal(fakeMakeHTTPRequest.callCount, 2);
   });
 

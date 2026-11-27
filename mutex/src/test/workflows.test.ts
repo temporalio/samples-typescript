@@ -33,11 +33,11 @@ describe('lock workflow', function () {
       workflowBundle,
       activities: {
         ...activities.createActivities(env.client),
-        async notifyLocked(resourceId: string, releaseSignalName: string) {
-          lockedEvents.emit('locked', { resourceId, releaseSignalName });
+        async notifyLocked(input: activities.NotifyLockedInput) {
+          lockedEvents.emit('locked', input);
         },
-        async notifyUnlocked(resourceId: string) {
-          lockedEvents.emit('unlocked', { resourceId });
+        async notifyUnlocked(input: activities.NotifyUnlockedInput) {
+          lockedEvents.emit('unlocked', input);
         },
       },
       taskQueue,
@@ -55,19 +55,19 @@ describe('lock workflow', function () {
       await env.client.workflow.start(oneAtATimeWorkflow, {
         taskQueue,
         workflowId: testWorkflowId,
-        args: [lockWorkflowId, 1000, 1500],
+        args: [{ resourceId: lockWorkflowId, sleepForMs: 1000, lockTimeoutMs: 1500 }],
       });
 
       await once(lockedEvents, 'locked');
 
       const lockWorkflowHandle = env.client.workflow.getHandle(lockWorkflowId);
 
-      let currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
+      let { workflowId: currentWorkflowId } = await lockWorkflowHandle.query(currentWorkflowIdQuery);
       assert.equal(currentWorkflowId, testWorkflowId);
 
       await once(lockedEvents, 'unlocked');
 
-      currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
+      ({ workflowId: currentWorkflowId } = await lockWorkflowHandle.query(currentWorkflowIdQuery));
       assert.equal(currentWorkflowId, null);
     });
   });
@@ -79,29 +79,29 @@ describe('lock workflow', function () {
       await env.client.workflow.start(oneAtATimeWorkflow, {
         taskQueue,
         workflowId: testWorkflowId1,
-        args: [lockWorkflowId, 10000 /* 10s */],
+        args: [{ resourceId: lockWorkflowId, sleepForMs: 10000 /* 10s */ }],
       });
 
       await once(lockedEvents, 'locked');
 
       const lockWorkflowHandle = env.client.workflow.getHandle(lockWorkflowId);
-      let currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
+      let { workflowId: currentWorkflowId } = await lockWorkflowHandle.query(currentWorkflowIdQuery);
       assert.equal(currentWorkflowId, testWorkflowId1);
 
       const testWorkflowId2 = 'test-' + nanoid();
       await env.client.workflow.start(oneAtATimeWorkflow, {
         taskQueue,
         workflowId: testWorkflowId2,
-        args: [lockWorkflowHandle.workflowId, 10000 /* 10s */],
+        args: [{ resourceId: lockWorkflowHandle.workflowId, sleepForMs: 10000 /* 10s */ }],
       });
 
       await env.sleep('100ms');
-      currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
+      ({ workflowId: currentWorkflowId } = await lockWorkflowHandle.query(currentWorkflowIdQuery));
       assert.equal(currentWorkflowId, testWorkflowId1);
 
       await env.sleep('1200ms');
 
-      currentWorkflowId = await lockWorkflowHandle.query(currentWorkflowIdQuery);
+      ({ workflowId: currentWorkflowId } = await lockWorkflowHandle.query(currentWorkflowIdQuery));
       assert.equal(currentWorkflowId, testWorkflowId2);
     });
   });

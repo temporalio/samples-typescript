@@ -33,7 +33,7 @@ describe('Eager workflow', () => {
 
     const result = await worker.runUntil(async () => {
       const handle = await client.workflow.start(eagerWorkflow, {
-        args: ['Temporal'],
+        args: [{ name: 'Temporal' }],
         workflowId: 'test',
         taskQueue,
         requestEagerStart: true,
@@ -41,6 +41,6 @@ describe('Eager workflow', () => {
       expect(handle.eagerlyStarted).toBe(true);
       return await handle.result();
     });
-    expect(result).toBe('Hello, Temporal!');
+    expect(result).toEqual({ greeting: 'Hello, Temporal!' });
   });
 });

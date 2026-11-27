@@ -3,7 +3,10 @@ import { Manifest, SandboxAgent } from '@openai/agents-core/sandbox';
 import { TemporalOpenAIRunner, temporalSandboxClient, workerEnvValue } from '@temporalio/openai-agents/workflow';
 import { ApplicationFailure } from '@temporalio/workflow';
 
-export async function sandboxWorkflow(prompt: string): Promise<string> {
+type SandboxWorkflowInput = { prompt: string };
+type SandboxWorkflowResult = { text: string };
+
+export async function sandboxWorkflow({ prompt }: SandboxWorkflowInput): Promise<SandboxWorkflowResult> {
   const agent = new SandboxAgent({
     name: 'SandboxAgent',
     instructions:
@@ -20,6 +23,6 @@ export async function sandboxWorkflow(prompt: string): Promise<string> {
   if (typeof result.finalOutput !== 'string') {
     throw ApplicationFailure.nonRetryable('SandboxAgent returned no final output');
   }
-  return result.finalOutput;
+  return { text: result.finalOutput };
 }
 // @@@SNIPEND

@@ -33,10 +33,10 @@ async function run() {
   const result = await client.workflow.execute(example, {
     taskQueue,
     workflowId: `my-business-id-${Date.now()}`,
-    args: ['Temporal'],
+    args: [{ name: 'Temporal' }],
   });
 
-  console.log(result); // Hello, Temporal!
+  console.log(result.greeting); // Hello, Temporal!
 }
 
 run().then(

@@ -14,7 +14,7 @@ async function run() {
     taskQueue: 'cron-workflows',
     workflowId: 'my-schedule', // Save this to later terminate or cancel this schedule
     cronSchedule: '* * * * *', // start every minute
-    args: ['Temporal'],
+    args: [{ name: 'Temporal' }],
   });
   console.log('Cron started');
 

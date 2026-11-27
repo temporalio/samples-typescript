@@ -8,7 +8,10 @@ export const streamingTopic = 'model-stream';
 
 export const consumerDoneSignal = defineSignal('consumer-done');
 
-export async function streamingChat(prompt: string): Promise<string> {
+type StreamingChatInput = { prompt: string };
+type StreamingChatResult = { text: string };
+
+export async function streamingChat({ prompt }: StreamingChatInput): Promise<StreamingChatResult> {
   new WorkflowStream();
 
   let consumerDone = false;
@@ -23,6 +26,6 @@ export async function streamingChat(prompt: string): Promise<string> {
   await result.completed;
   // Completing discards the stream log, racing a subscriber's final poll; the timeout covers no subscriber.
   await condition(() => consumerDone, '10 seconds');
-  return result.finalOutput ?? '';
+  return { text: result.finalOutput ?? '' };
 }
 // @@@SNIPEND

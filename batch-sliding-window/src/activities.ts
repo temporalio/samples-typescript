@@ -12,6 +12,10 @@ export interface GetRecordsOutput {
   records: SingleRecord[];
 }
 
+interface GetRecordCountResult {
+  recordCount: number;
+}
+
 /**
  * Factory that creates record-loader activities with a fixed total record count.
  * The sample returns fake records; a real application would load from a database
@@ -19,8 +23,8 @@ export interface GetRecordsOutput {
  */
 export function createActivities(recordCount: number) {
   return {
-    async getRecordCount(): Promise<number> {
-      return recordCount;
+    async getRecordCount(): Promise<GetRecordCountResult> {
+      return { recordCount };
     },
 
     async getRecords(input: GetRecordsInput): Promise<GetRecordsOutput> {

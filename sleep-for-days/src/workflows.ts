@@ -11,16 +11,18 @@ const { sendEmail } = proxyActivities<typeof activities>({
 export const complete = defineSignal('complete');
 
 /** A workflow that repeatedly calls an activity and sleeps, until it receives a signal. */
-export async function sleepForDays(): Promise<string> {
+type SleepForDaysResult = { message: string };
+
+export async function sleepForDays(): Promise<SleepForDaysResult> {
   let isComplete = false;
   setHandler(complete, () => {
     isComplete = true;
   });
 
   while (!isComplete) {
-    await sendEmail(`Sleeping for 30 days`);
+    await sendEmail({ msg: 'Sleeping for 30 days' });
     await Promise.race([sleep('30 days'), condition(() => isComplete)]);
   }
-  return 'done!';
+  return { message: 'done!' };
 }
 // @@@SNIPEND

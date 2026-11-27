@@ -31,7 +31,7 @@ async function run() {
   console.log(`Started workflow ${handle.workflowId}`);
   console.log('Sending approval signal...');
   await handle.signal('approve');
-  console.log(await handle.result());
+  console.log((await handle.result()).text);
 }
 
 run().catch((err) => {

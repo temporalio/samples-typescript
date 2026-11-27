@@ -10,7 +10,9 @@ export async function example(): Promise<void> {
 }
 
 // @@@SNIPSTART typescript-workflow-type
-export async function helloWorld(): Promise<string> {
-  return '👋 Hello World!';
+type HelloWorldResult = { greeting: string };
+
+export async function helloWorld(): Promise<HelloWorldResult> {
+  return { greeting: '👋 Hello World!' };
 }
 // @@@SNIPEND

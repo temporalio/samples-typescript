@@ -10,7 +10,10 @@ const echo = tool({
   callback: ({ text }) => text,
 });
 
-export async function hooksWorkflow(prompt: string): Promise<string[]> {
+type HooksWorkflowInput = { prompt: string };
+type HooksWorkflowResult = { fired: string[] };
+
+export async function hooksWorkflow({ prompt }: HooksWorkflowInput): Promise<HooksWorkflowResult> {
   const fired: string[] = [];
 
   const agent = new TemporalAgent({
@@ -27,12 +30,12 @@ export async function hooksWorkflow(prompt: string): Promise<string[]> {
   agent.addHook(
     AfterToolCallEvent,
     strandsWorkflow.activityAsHook('persistToolCall', {
-      activityInput: (event) => event.toolUse.name,
+      activityInput: (event) => ({ toolName: event.toolUse.name }),
       activityOptions: { startToCloseTimeout: '15 seconds', retry: { maximumAttempts: 3 } },
     }),
   );
 
   await agent.invoke(prompt);
-  return fired;
+  return { fired };
 }
 // @@@SNIPEND

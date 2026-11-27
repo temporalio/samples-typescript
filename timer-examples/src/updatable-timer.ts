@@ -1,8 +1,11 @@
 // TODO - incorporate into the starter
 import { defineSignal, defineQuery, setHandler, condition, log } from '@temporalio/workflow';
 
-export const setDeadlineSignal = defineSignal<[number]>('setDeadline');
-export const timeLeftQuery = defineQuery<number>('timeLeft');
+type SetDeadlineInput = { deadline: number };
+type TimeLeftResult = { milliseconds: number };
+
+export const setDeadlineSignal = defineSignal<[SetDeadlineInput]>('setDeadline');
+export const timeLeftQuery = defineQuery<TimeLeftResult>('timeLeft');
 
 // @@@SNIPSTART typescript-updatable-timer-impl
 // usage
@@ -10,12 +13,12 @@ export async function countdownWorkflow(): Promise<void> {
   const target = Date.now() + 24 * 60 * 60 * 1000; // 1 day!!!
   const timer = new UpdatableTimer(target);
   log.info('timer set', { target: new Date(target) });
-  setHandler(setDeadlineSignal, (deadline) => {
+  setHandler(setDeadlineSignal, ({ deadline }) => {
     // send in new deadlines via Signal
     timer.deadline = deadline;
     log.info('timer updated', { target: new Date(deadline) });
   });
-  setHandler(timeLeftQuery, () => timer.deadline - Date.now());
+  setHandler(timeLeftQuery, () => ({ milliseconds: timer.deadline - Date.now() }));
   await timer; // if you send in a signal with a new time, this timer will resolve earlier!
   log.info('countdown done!');
 }

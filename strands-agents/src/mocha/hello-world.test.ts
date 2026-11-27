@@ -31,11 +31,11 @@ describe('helloWorld workflow', () => {
 
     const result = await worker.runUntil(
       client.workflow.execute(helloWorld, {
-        args: ['say hi'],
+        args: [{ prompt: 'say hi' }],
         workflowId: 'test-hello',
         taskQueue,
       }),
     );
-    assert.equal(result, 'hello from stub');
+    assert.deepEqual(result, { text: 'hello from stub' });
   });
 });
